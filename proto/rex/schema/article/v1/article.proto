@@ -1,0 +1,48 @@
+// rex.schema.article.v1.Article: the first extraction schema. A news/blog/tech article as a typed record.
+// Extraction metadata lives in rex.extract.v1.Extraction (decisions.md U4), which carries this message in its
+// `record` Any.
+//
+// LOCKED 2026-10-12 (decisions.md U5). No map<> fields (decisions.md U1/U3): former `custom` contents are
+// promoted to typed fields (subtitle, language); truly site-specific data waits for a typed-extension
+// mechanism (not in this version).
+syntax = "proto3";
+
+package rex.schema.article.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Article {
+  option (rex.schema.v1.record) = {
+    schema_org: "NewsArticle"
+    schema_org_also: ["Article", "BlogPosting", "ReportageNewsArticle", "TechArticle"]
+    primary: ["body_text"]
+  };
+
+  string canonical_url = 1 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "headline", required: true }];
+  string subtitle = 3 [(rex.schema.v1.field) = { schema_org: "alternativeHeadline" }];
+  repeated Person authors = 4 [(rex.schema.v1.field) = { schema_org: "author", max_items: 20 }];
+  google.protobuf.Timestamp published_at = 5 [(rex.schema.v1.field) = { schema_org: "datePublished" }];
+  google.protobuf.Timestamp updated_at = 6 [(rex.schema.v1.field) = { schema_org: "dateModified" }];
+  string section = 7 [(rex.schema.v1.field) = { schema_org: "articleSection" }];
+  string summary = 8 [(rex.schema.v1.field) = { schema_org: "description" }];
+  // Primary image only (matches og:image); not a gallery.
+  string image = 9 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  repeated string tags = 10 [(rex.schema.v1.field) = { schema_org: "keywords", max_items: 100 }];
+  string language = 11 [(rex.schema.v1.field) = { schema_org: "inLanguage" }];
+  // Not bound to schema.org: JSON-LD articleBody is plain text. Filled by readability or a site selector.
+  string body_html = 12 [(rex.schema.v1.field) = { kind: VALUE_KIND_HTML }];
+  string body_text = 13 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "articleBody" }];
+}
+
+// An author (person or organization byline).
+message Person {
+  option (rex.schema.v1.record) = {
+    schema_org: "Person"
+    schema_org_also: ["Organization"]
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}

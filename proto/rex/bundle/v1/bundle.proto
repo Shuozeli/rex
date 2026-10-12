@@ -1,0 +1,52 @@
+// rex recipe bundle: how recipes and schemas are published to static hosting (Cloudflare R2 by default, any
+// static host works) and consumed by clients such as the browser extension.
+//
+// Layout under a base URL, e.g. https://recipes.<domain>/v1/<channel>/ :
+//   index.json            SignedIndex (protojson)
+//   r/<sha256>.json       one ExtractionRecipe (canonical protojson), content-addressed, immutable
+//   s/<sha256>.fds        one google.protobuf.FileDescriptorSet with every schema the index references
+//
+// Decided 2026-10-12 (decisions.md U16, delegated).
+syntax = "proto3";
+
+package rex.bundle.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/extract/v1/extraction.proto";
+import "rex/extract/v1/extraction_recipe.proto";
+
+// What is fetched as index.json. The signature covers `payload` byte-for-byte; clients parse `payload`
+// only after verifying it, so the index and its signature can never race.
+message SignedIndex {
+  string key_id = 1;          // which pinned public key signed it
+  string alg = 2;             // "Ed25519"
+  bytes signature = 3;
+  bytes payload = 4;          // canonical protojson of Index (UTF-8)
+}
+
+message Index {
+  string format = 1;                          // "rex.bundle.index.v1"
+  string channel = 2;                         // "stable" | "dev"
+  uint64 sequence = 3;                        // strictly increasing per channel (anti-rollback)
+  google.protobuf.Timestamp generated_at = 4;
+  string min_client_version = 5;              // clients below this ignore the whole index
+  SchemaSet schemas = 6;
+  repeated IndexEntry entries = 7;
+}
+
+message SchemaSet {
+  string sha256 = 1;                          // of s/<sha256>.fds
+  uint64 bytes = 2;
+  repeated string messages = 3;               // full names available, e.g. "rex.schema.article.v1.Article"
+}
+
+message IndexEntry {
+  rex.extract.v1.RecipeRef ref = 1;           // id + version + sha256 (= r/<sha256>.json)
+  string schema = 2;                          // the recipe's schema message
+  string extends = 3;                         // base recipe id, resolved within the same index
+  rex.extract.v1.UrlMatch urls = 4;           // stage-1 match rules, copied from the recipe; empty = base recipe
+  int32 priority = 5;
+  repeated string requires = 6;               // engine features; clients lacking one skip the entry
+  uint64 bytes = 7;
+  bool base = 8;                              // generic/base recipe (no URL match; used via extends or the schema.org fallback)
+}

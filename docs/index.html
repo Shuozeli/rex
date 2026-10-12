@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rex design</title>
+<meta name="description" content="Animated walkthrough of the rex design: signed, declarative recipes turn the page you read into one typed, schema-conformant JSON record.">
+<style>
+:root {
+  --bg: #f6f5f2; --surface: #ffffff; --surface-2: #efede8; --text: #1c1c1e; --muted: #67666b;
+  --border: #e2e0da; --accent: #3b5bdb; --accent-soft: #e7ecff; --ok: #2b8a3e; --ok-soft: #e3f6e8;
+  --bad: #c92a2a; --bad-soft: #fde8e8; --warn: #d9480f; --code-bg: #f3f1ec;
+  --o-site: #7048e8; --o-jsonld: #1971c2; --o-og: #0c8599; --o-meta: #5c940d; --o-read: #e8590c;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.05);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131315; --surface: #1c1c1f; --surface-2: #26262a; --text: #ececee; --muted: #a0a0a8;
+    --border: #34343a; --accent: #7b93ff; --accent-soft: #252c4a; --ok: #51cf66; --ok-soft: #1b3122;
+    --bad: #ff6b6b; --bad-soft: #3a1d1f; --warn: #ff922b; --code-bg: #232327;
+    --o-site: #9775fa; --o-jsonld: #4dabf7; --o-og: #3bc9db; --o-meta: #94d82d; --o-read: #ff922b;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131315; --surface: #1c1c1f; --surface-2: #26262a; --text: #ececee; --muted: #a0a0a8;
+  --border: #34343a; --accent: #7b93ff; --accent-soft: #252c4a; --ok: #51cf66; --ok-soft: #1b3122;
+  --bad: #ff6b6b; --bad-soft: #3a1d1f; --warn: #ff922b; --code-bg: #232327;
+  --o-site: #9775fa; --o-jsonld: #4dabf7; --o-og: #3bc9db; --o-meta: #94d82d; --o-read: #ff922b;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, "PingFang SC", "Noto Sans CJK SC", sans-serif; }
+code, pre, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .86em; }
+a { color: var(--accent); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+header.hero { padding: 48px 0 24px; }
+.hero h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 0 0 12px; letter-spacing: -.02em; }
+.hero p.lead { font-size: clamp(16px, 2.2vw, 19px); color: var(--muted); max-width: 760px; margin: 0; }
+.tagrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tag { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+nav.toc { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+nav.toc .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; scrollbar-width: none; }
+nav.toc a { white-space: nowrap; font-size: 13px; text-decoration: none; color: var(--muted); padding: 5px 10px; border-radius: 999px; }
+nav.toc a:hover, nav.toc a.active { background: var(--accent-soft); color: var(--accent); }
+section.block { padding: 40px 0 8px; scroll-margin-top: 48px; }
+section.block h2 { font-size: clamp(22px, 3.4vw, 30px); margin: 0 0 6px; letter-spacing: -.01em; }
+section.block h2 .num { color: var(--accent); font-weight: 600; margin-right: 8px; }
+p.sub { color: var(--muted); margin: 0 0 20px; max-width: 780px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 20px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+button { font: inherit; font-size: 14px; cursor: pointer; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: 7px 14px; transition: background .15s, border-color .15s, transform .1s; }
+button:hover { border-color: var(--accent); }
+button:active { transform: translateY(1px); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.seg.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.caption { min-height: 3.2em; padding: 12px 14px; border-radius: 10px; background: var(--surface-2); color: var(--text); font-size: 15px; transition: opacity .25s; }
+.caption b { color: var(--accent); }
+.kbd { font-family: ui-monospace, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+
+/* ---------- 1. pipeline ---------- */
+.pipe { display: flex; align-items: stretch; gap: 0; margin: 8px 0 16px; }
+.pnode { flex: 1 1 0; min-width: 0; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 10px; text-align: center; transition: all .35s ease; position: relative; }
+.pnode .ico { font-size: 22px; line-height: 1; margin-bottom: 6px; }
+.pnode .t { font-weight: 650; font-size: 14px; }
+.pnode .s { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.pnode.on { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-3px); box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 25%, transparent); }
+.pnode.done { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.pnode .zone { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; background: var(--surface); border: 1px solid var(--border); padding: 0 6px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+.pconn { flex: 0 0 34px; position: relative; align-self: center; height: 4px; background: var(--border); border-radius: 2px; overflow: visible; }
+.pconn::after { content: ""; position: absolute; right: -2px; top: -4px; border: 6px solid transparent; border-left-color: var(--border); border-right-width: 0; }
+.pconn .dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); top: -3px; left: 0; opacity: 0; }
+.pconn.flow { background: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.pconn.flow .dot { animation: travelX 1s ease-in-out infinite; }
+@keyframes travelX { 0% { left: -4px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 6px); opacity: 0; } }
+@keyframes travelY { 0% { top: -4px; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 6px); opacity: 0; } }
+.privacy-wall { display: flex; justify-content: center; margin-top: -6px; margin-bottom: 12px; }
+.privacy-wall span { font-size: 12px; color: var(--ok); background: var(--ok-soft); border-radius: 999px; padding: 3px 12px; opacity: 0; transform: translateY(-4px); transition: all .4s; }
+.privacy-wall span.show { opacity: 1; transform: none; }
+@media (max-width: 760px) {
+  .pipe { flex-direction: column; }
+  .pconn { flex: 0 0 26px; width: 4px; height: 26px; align-self: center; }
+  .pconn::after { right: auto; left: -4px; top: auto; bottom: -3px; border: 6px solid transparent; border-top-color: var(--border); border-bottom-width: 0; }
+  .pconn .dot { left: -3px; top: 0; }
+  .pconn.flow .dot { animation-name: travelY; }
+  .pnode { padding: 10px; }
+}
+
+/* ---------- 2. code vs data ---------- */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+.codecard { position: relative; overflow: hidden; }
+.codecard h3 { margin: 0 0 4px; font-size: 16px; }
+.codecard .meta { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+pre.code { background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px; overflow-x: auto; margin: 0; line-height: 1.5; }
+.k { color: var(--o-jsonld); } .str { color: var(--o-meta); } .js { color: var(--bad); font-weight: 600; } .cm { color: var(--muted); }
+.stamp { position: absolute; right: 16px; top: 54px; transform: rotate(-12deg) scale(2.4); opacity: 0; font-weight: 800; letter-spacing: .04em; font-size: 15px; padding: 6px 12px; border: 3px solid; border-radius: 8px; background: var(--surface); transition: transform .45s cubic-bezier(.2,1.6,.4,1), opacity .3s; pointer-events: none; text-align: center; }
+.stamp.bad { color: var(--bad); border-color: var(--bad); }
+.stamp.good { color: var(--ok); border-color: var(--ok); }
+.in .stamp { opacity: .95; transform: rotate(-12deg) scale(1); }
+.in .stamp.good { transition-delay: .5s; }
+.why { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+/* ---------- 3. sequence ---------- */
+.seq { position: relative; --lanes: 5; }
+.seq .lanes { display: grid; grid-template-columns: repeat(var(--lanes), 1fr); gap: 0; text-align: center; margin-bottom: 6px; }
+.seq .lane { font-size: 12.5px; font-weight: 650; padding: 8px 4px; border-radius: 9px; background: var(--surface-2); margin: 0 3px; }
+.seq .lane small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
+.seq .body { position: relative; padding: 6px 0 10px; }
+.seq .life { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px dashed var(--border); }
+.seq .row { position: relative; height: 58px; opacity: .14; transition: opacity .35s; }
+.seq .row.show { opacity: 1; }
+.seq .row .arrow { position: absolute; top: 34px; height: 3px; background: var(--accent); border-radius: 2px; transform: scaleX(0); transition: transform .55s cubic-bezier(.4,0,.2,1); }
+.seq .row.show .arrow { transform: scaleX(1); }
+.seq .row .arrow::after { content: ""; position: absolute; top: -5px; border: 6.5px solid transparent; }
+.seq .row .arrow.r { transform-origin: left center; }
+.seq .row .arrow.r::after { right: -6px; border-left-color: var(--accent); border-right-width: 0; }
+.seq .row .arrow.l { transform-origin: right center; background: var(--ok); }
+.seq .row .arrow.l::after { left: -6px; border-right-color: var(--ok); border-left-width: 0; }
+.seq .row .lbl { position: absolute; top: 6px; font-size: 13px; white-space: nowrap; background: var(--surface); padding: 0 6px; border-radius: 6px; }
+.seq .row .lbl .n { display: inline-block; width: 18px; height: 18px; line-height: 18px; border-radius: 50%; text-align: center; background: var(--accent); color: #fff; font-size: 11px; margin-right: 6px; }
+.seq .row.cur .lbl { font-weight: 650; }
+
+/* ---------- 4. extraction demo ---------- */
+.xgrid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 860px) { .xgrid { grid-template-columns: 1fr; } }
+.browser { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.browser .bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+.browser .dots i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--border); margin-right: 4px; }
+.browser .url { flex: 1; min-width: 0; font-size: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 3px 8px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.browser .extbtn { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; flex: 0 0 auto; }
+.browser .extbtn.pulse { animation: pulse 1.2s ease-out 2; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 100% { box-shadow: 0 0 0 12px transparent; } }
+.page { padding: 16px 18px 18px; font-family: Georgia, "Times New Roman", "Songti SC", serif; }
+.page .mast { font-family: inherit; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+.page [data-x] { border-radius: 6px; outline: 2px solid transparent; outline-offset: 3px; transition: outline-color .3s, background .3s; }
+.page .sect { font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 700; color: var(--o-read); text-transform: uppercase; letter-spacing: .05em; }
+.page h3.ttl { font-size: 22px; line-height: 1.2; margin: 4px 0 6px; }
+.page .subh { font-size: 15px; color: var(--muted); margin: 0 0 8px; font-style: italic; }
+.page .by { font-family: -apple-system, sans-serif; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.page .img { height: 74px; border-radius: 8px; background: linear-gradient(135deg, color-mix(in srgb, var(--o-jsonld) 35%, var(--surface-2)), color-mix(in srgb, var(--o-site) 30%, var(--surface-2))); margin-bottom: 10px; display: grid; place-items: center; font-family: -apple-system, sans-serif; font-size: 11px; color: var(--muted); }
+.page p { font-size: 14px; margin: 0 0 8px; }
+.page .ad, .page .next { font-family: -apple-system, sans-serif; font-size: 11px; color: var(--muted); border: 1px dashed var(--border); border-radius: 6px; padding: 6px 8px; margin: 8px 0; }
+.page .paywall { font-family: -apple-system, sans-serif; text-align: center; border-radius: 10px; padding: 14px; background: var(--surface-2); font-size: 13px; }
+.page .paywall b { display: block; margin-bottom: 6px; }
+.page .tags { font-family: -apple-system, sans-serif; display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.page .tags span { font-size: 11px; border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; }
+.headbox { margin: 0 12px 12px; border: 1px dashed var(--border); border-radius: 10px; padding: 8px 10px; font-size: 11.5px; background: var(--code-bg); }
+.headbox .hl { color: var(--muted); font-weight: 600; font-family: -apple-system, sans-serif; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+.headbox div[data-x] { padding: 2px 4px; border-radius: 5px; outline: 2px solid transparent; transition: outline-color .3s, background .3s; overflow-wrap: anywhere; }
+.flashsel { animation: selpulse 1.6s ease-out; }
+@keyframes selpulse { 0%, 70% { outline-color: var(--hc); background: color-mix(in srgb, var(--hc) 14%, transparent); } 100% { outline-color: transparent; background: transparent; } }
+.missel { outline-color: var(--bad) !important; background: var(--bad-soft) !important; }
+.json { background: var(--code-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 6px 12px 12px; font-size: 12.5px; line-height: 1.7; min-height: 420px; overflow-x: auto; }
+.json .ln { display: flex; gap: 8px; align-items: baseline; padding: 0 4px; border-radius: 5px; white-space: nowrap; }
+.json .ln.new { animation: lnin .9s ease-out; }
+@keyframes lnin { 0% { background: color-mix(in srgb, var(--hc, var(--accent)) 28%, transparent); transform: translateX(-6px); opacity: 0; } 30% { opacity: 1; transform: none; } 100% { background: transparent; } }
+.json .key { color: var(--o-jsonld); }
+.json .val { color: var(--text); overflow: hidden; text-overflow: ellipsis; max-width: 290px; display: inline-block; vertical-align: bottom; }
+.json .strike { text-decoration: line-through; color: var(--muted); max-width: 120px; overflow: hidden; text-overflow: ellipsis; display: inline-block; vertical-align: bottom; }
+.badge { font-family: -apple-system, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .03em; color: #fff; border-radius: 5px; padding: 1px 6px; margin-left: auto; flex: 0 0 auto; }
+.b-SITE_SELECTOR { background: var(--o-site); } .b-JSON_LD { background: var(--o-jsonld); } .b-OPEN_GRAPH { background: var(--o-og); } .b-META { background: var(--o-meta); } .b-READABILITY { background: var(--o-read); }
+.st-ok { color: var(--ok); font-weight: 700; } .st-bad { color: var(--bad); font-weight: 700; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.legend .badge { margin-left: 0; }
+.selchip { display: inline-block; font-family: ui-monospace, monospace; font-size: 12px; background: var(--code-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0 6px; margin-left: 4px; }
+
+/* ---------- 5. matching ---------- */
+.urlin { width: 100%; font: inherit; font-family: ui-monospace, monospace; font-size: 14px; padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); }
+.urlin:focus { outline: none; border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+.chips button { font-size: 12px; padding: 4px 10px; font-family: ui-monospace, monospace; }
+.mtable { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13px; }
+.mtable th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; padding: 0 8px; }
+.mtable td { background: var(--surface-2); padding: 8px; vertical-align: top; transition: background .3s; }
+.mtable td:first-child { border-radius: 9px 0 0 9px; } .mtable td:last-child { border-radius: 0 9px 9px 0; }
+.mtable tr.win td { background: var(--ok-soft); }
+.mtable tr.win td:first-child { box-shadow: inset 3px 0 0 var(--ok); }
+.mtable tr.cand td { background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface-2)); }
+.mtable .y { color: var(--ok); font-weight: 700; } .mtable .n { color: var(--bad); font-weight: 700; } .mtable .d { color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+.verdict { margin-top: 12px; padding: 12px 14px; border-radius: 10px; font-size: 15px; animation: lnin .6s ease-out; }
+.verdict.win { background: var(--ok-soft); }
+.verdict.gen { background: var(--surface-2); }
+
+/* ---------- 6. sync ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.steps li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; background: var(--surface-2); border: 1.5px solid transparent; transition: all .3s; }
+.steps li .ic { flex: 0 0 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; background: var(--border); color: var(--muted); }
+.steps li.run { border-color: var(--accent); }
+.steps li.run .ic { background: transparent; border: 3px solid var(--accent-soft); border-top-color: var(--accent); animation: spin .7s linear infinite; color: transparent; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.steps li.ok .ic { background: var(--ok); color: #fff; }
+.steps li.fail { border-color: var(--bad); background: var(--bad-soft); }
+.steps li.fail .ic { background: var(--bad); color: #fff; }
+.steps li.skip { opacity: .45; }
+.steps li .d { font-size: 13px; color: var(--muted); }
+.steps li .r { font-size: 13px; margin-top: 2px; font-weight: 600; }
+.store { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.store .box { border-radius: 10px; border: 1px solid var(--border); padding: 10px 12px; font-size: 13px; background: var(--surface); transition: all .4s; }
+.store .box .big { font-size: 20px; font-weight: 700; font-family: ui-monospace, monospace; }
+.store .box.swap { border-color: var(--ok); background: var(--ok-soft); }
+.result { margin-top: 12px; padding: 12px 14px; border-radius: 10px; font-weight: 600; display: none; }
+.result.show { display: block; animation: lnin .6s ease-out; }
+.result.good { background: var(--ok-soft); color: var(--ok); }
+.result.badr { background: var(--bad-soft); color: var(--bad); }
+.result.neutral { background: var(--surface-2); color: var(--text); }
+
+/* ---------- 7. privacy ---------- */
+.log { background: var(--code-bg); border-radius: 10px; border: 1px solid var(--border); padding: 10px; font-family: ui-monospace, monospace; font-size: 12px; height: 168px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; }
+.log div { animation: lnin .7s ease-out; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.log .leak { color: var(--bad); }
+.log .safe { color: var(--ok); }
+
+/* ---------- 8. layers ---------- */
+.layers { display: grid; gap: 10px; }
+.layer { display: grid; grid-template-columns: 210px 1fr; gap: 14px; align-items: center; padding: 12px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+@media (max-width: 680px) { .layer { grid-template-columns: 1fr; } }
+.layer h4 { margin: 0; font-size: 15px; }
+.layer .how { font-size: 13.5px; color: var(--muted); }
+.meter { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-top: 6px; }
+.meter i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+.in .meter i { width: var(--w); }
+.freq { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* ---------- 9. roadmap ---------- */
+.road { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; position: relative; }
+@media (max-width: 760px) { .road { grid-template-columns: 1fr 1fr; } }
+.ms { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px; font-size: 13px; opacity: 0; transform: translateY(10px); transition: all .5s; }
+.in .ms { opacity: 1; transform: none; }
+.ms .m { font-weight: 800; color: var(--accent); font-size: 15px; }
+.ms.done { border-color: var(--ok); }
+.ms.done .m::after { content: " ✓"; color: var(--ok); }
+.ms .rel { display: inline-block; font-size: 11px; background: var(--accent-soft); color: var(--accent); border-radius: 6px; padding: 0 6px; margin: 4px 0; }
+
+/* ---------- 10. docs ---------- */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.doc { font-size: 15px; overflow-wrap: break-word; }
+.doc td, .doc th { min-width: 96px; }
+.doc code { overflow-wrap: anywhere; }
+.doc h1 { font-size: 26px; } .doc h2 { font-size: 21px; margin-top: 28px; border-top: 1px solid var(--border); padding-top: 18px; } .doc h3 { font-size: 17px; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; display: block; overflow-x: auto; }
+.doc th, .doc td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+.doc th { background: var(--surface-2); }
+.doc pre { background: var(--code-bg); border: 1px solid var(--border); padding: 12px; border-radius: 10px; overflow-x: auto; }
+.doc :not(pre) > code { background: var(--code-bg); padding: 1px 5px; border-radius: 5px; }
+.doc .mermaid { background: var(--surface); text-align: center; padding: 8px; border-radius: 10px; border: 1px solid var(--border); overflow-x: auto; }
+footer { color: var(--muted); font-size: 13px; padding: 40px 0 60px; }
+
+/* ---------- player bar (step counter + mini status) ---------- */
+.stepn { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.mini { display: none; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 100%; }
+
+/* ================= mobile ================= */
+html, body { overflow-x: clip; }
+@media (pointer: coarse) { button { min-height: 40px; } }
+@media (max-width: 760px) {
+  header.hero { padding: 28px 0 16px; }
+  section.block { padding: 28px 0 4px; }
+  .card { padding: 14px; border-radius: 12px; }
+  p.sub { font-size: 14.5px; margin-bottom: 14px; }
+  .caption { font-size: 14px; padding: 10px 12px; }
+
+  /* step controls stay pinned under the nav while you scroll through a demo */
+  .controls.player { position: sticky; top: 50px; z-index: 15; background: var(--surface); margin: -4px -6px 12px; padding: 8px 6px; border-radius: 10px; box-shadow: 0 6px 12px -8px rgba(0,0,0,.25); }
+  .controls.player .mini { display: block; }
+  .controls.player button { flex: 1 1 0; padding: 7px 8px; }
+  .scroller { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: -14px; margin-right: -14px; padding: 0 14px 2px; }
+  .scroller::-webkit-scrollbar { display: none; }
+  .scroller button { white-space: nowrap; flex: 0 0 auto; }
+
+  /* 1. pipeline: compact rows */
+  .pnode { display: grid; grid-template-columns: 34px 1fr; column-gap: 10px; text-align: left; align-items: center; padding: 10px 12px; }
+  .pnode .ico { grid-row: span 2; margin: 0; font-size: 20px; text-align: center; }
+  .pnode .s { margin-top: 0; }
+  .pnode .zone { top: 50%; left: auto; right: 10px; transform: translateY(-50%); }
+  .pnode.on { transform: translateX(4px); }
+  .privacy-wall { margin-top: 8px; }
+
+  /* 2. code vs data */
+  .stamp { top: 44px; right: 10px; font-size: 12px; padding: 4px 8px; }
+  pre.code { font-size: 12px; }
+
+  /* 3. sequence: label on its own line, arrow underneath */
+  .seq .lane { font-size: 10.5px; padding: 6px 1px; margin: 0 2px; line-height: 1.25; }
+  .seq .lane small { display: none; }
+  .seq .row { height: auto; padding: 6px 0 24px; }
+  .seq .row .lbl { position: relative; left: 0 !important; top: 0; display: block; white-space: normal; font-size: 13px; padding: 4px 8px; }
+  .seq .row .arrow { top: auto; bottom: 9px; }
+
+  /* 4. extraction */
+  .page { padding: 12px 14px 14px; }
+  .page h3.ttl { font-size: 19px; }
+  .json { min-height: 0; font-size: 11.5px; padding: 10px 8px; }
+  .json .ln { flex-wrap: wrap; white-space: normal; gap: 2px 6px; padding: 2px 4px; }
+  .json .val { max-width: 100%; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal; overflow-wrap: anywhere; }
+  .json .strike { max-width: 100%; }
+
+  /* 5. matching: rows become cards */
+  .urlin { font-size: 16px; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; margin: 10px -14px 14px; padding: 0 14px 2px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips button { flex: 0 0 auto; white-space: nowrap; max-width: 78vw; overflow: hidden; text-overflow: ellipsis; }
+  .mtable, .mtable tbody, .mtable tr, .mtable td { display: block; width: 100%; }
+  .mtable { border-spacing: 0; }
+  .mtable tr.hd { display: none; }
+  .mtable tr { margin-bottom: 8px; border-radius: 10px; overflow: hidden; background: var(--surface-2); transition: background .3s; }
+  .mtable tr.win { background: var(--ok-soft); box-shadow: inset 3px 0 0 var(--ok); }
+  .mtable tr.cand { background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface-2)); }
+  .mtable td, .mtable tr.win td, .mtable tr.cand td { background: transparent; border-radius: 0 !important; padding: 4px 12px; box-shadow: none !important; overflow-wrap: anywhere; }
+  .mtable td:first-child { padding-top: 10px; }
+  .mtable td:last-child { padding-bottom: 10px; }
+  .mtable td[data-l]::before { content: attr(data-l); display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-family: -apple-system, sans-serif; }
+  .verdict { font-size: 14px; }
+
+  /* 6–7. sync + privacy */
+  .store { grid-template-columns: 1fr; }
+  .steps li { padding: 9px 10px; gap: 10px; }
+  .log { font-size: 11px; height: 190px; }
+  .log div { white-space: normal; overflow-wrap: anywhere; }
+
+  /* 10. docs */
+  .doc { font-size: 14.5px; }
+  .doc h1 { font-size: 22px; } .doc h2 { font-size: 18px; }
+  .doc pre { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <h1>rex <span style="font-weight:400;color:var(--muted)">· Page to JSON</span></h1>
+  <p class="lead">Click once on the article you're reading and get it back as clean, structured JSON. Every record conforms to a typed proto schema (Article, Feed, …). The extension doesn't contain the know-how for each site. It downloads <b>recipes</b> (plain data, never code) from a hosted, signed bundle, so new sites and fixes arrive without an extension update.</p>
+  <div class="tagrow">
+    <span class="tag">Chrome MV3</span><span class="tag">output: rex.extract.v1.Extraction</span><span class="tag">schemas: proto + schema.org</span><span class="tag">recipes on Cloudflare R2 (pluggable)</span><span class="tag">status: design</span>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#big">1 · Big picture</a>
+  <a href="#data">2 · Recipes are data</a>
+  <a href="#click">3 · One click</a>
+  <a href="#extract">4 · Extraction</a>
+  <a href="#match">5 · URL matching</a>
+  <a href="#sync">6 · Sync &amp; trust</a>
+  <a href="#privacy">7 · Privacy</a>
+  <a href="#layers">8 · What changes</a>
+  <a href="#road">9 · Roadmap</a>
+  <a href="#docs">10 · Full docs</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section class="block" id="big">
+  <h2><span class="num">1</span>The big picture</h2>
+  <p class="sub">A recipe travels from the rex git repo, through CI and signing, to your browser. Your reading never travels back. Press <b>Play</b>, or step through it.</p>
+  <div class="card">
+    <div class="controls player">
+      <span class="mini" id="pMini">Tap Play or Step</span>
+      <button class="primary" id="pPlay">▶ Play</button>
+      <button id="pStep">Step →</button>
+      <button id="pReset">Reset</button>
+    </div>
+    <div class="pipe" id="pipe"></div>
+    <div class="privacy-wall"><span id="pWall">🔒 Everything after this point stays in your browser</span></div>
+    <div class="caption" id="pCap">Press Play to follow one recipe from the server to your tab.</div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="block" id="data">
+  <h2><span class="num">2</span>Why recipes must be <i>data</i>, not code</h2>
+  <p class="sub">Chrome extensions (Manifest V3) may not download code and run it. That's why the existing myfeed recipes can't simply be moved into the extension. rex recipes are only selectors, typed sources and a closed set of transforms, which the packaged engine reads.</p>
+  <div class="two">
+    <div class="card codecard reveal">
+      <h3>myfeed recipe</h3>
+      <div class="meta">YAML with an embedded JavaScript function</div>
+<pre class="code"><span class="k">steps</span>:
+  - <span class="k">goto</span>: <span class="str">"https://www.wsj.com"</span>
+  - <span class="k">eval</span>:
+      <span class="k">ref</span>: extract_articles
+<span class="k">scripts</span>:
+  <span class="k">extract_articles</span>: <span class="js">|
+    (async () =&gt; {
+      document.querySelectorAll('h3 a')
+      ... arbitrary JS ...
+    })()</span></pre>
+      <div class="stamp bad">BLOCKED<br><small>remote code · MV3</small></div>
+      <div class="why">Fetching this from a server and running it breaks the Chrome Web Store rule against remotely hosted code. It would also let whoever controls the server run code on every page you open.</div>
+    </div>
+    <div class="card codecard reveal">
+      <h3>rex recipe (<code>ExtractionRecipe</code>)</h3>
+      <div class="meta">Declarative: field path → ordered candidates → typed value</div>
+<pre class="code"><span class="k">id</span>: <span class="str">wsj.com/main</span>
+<span class="k">schema</span>: <span class="str">rex.schema.article.v1.Article</span>
+<span class="k">extends</span>: <span class="str">generic/article.v1</span>
+<span class="k">fields</span>:
+  - <span class="k">path</span>: <span class="str">title</span>
+    <span class="k">candidates</span>: [ { <span class="k">css</span>: { <span class="k">selector</span>: <span class="str">"h1"</span> } } ]
+  - <span class="k">path</span>: <span class="str">body_html</span>
+    <span class="k">expect</span>: true
+    <span class="k">candidates</span>:
+      - <span class="k">css</span>: { <span class="k">selector</span>: <span class="str">"section.article-body"</span>,
+               <span class="k">take</span>: <span class="str">TAKE_HTML</span> }</pre>
+      <div class="stamp good">ALLOWED<br><small>inert data</small></div>
+      <div class="why">The packaged rex engine interprets this. A bad recipe can produce wrong fields, but it can never run code. CI, the CLI and any app embedding rex run the same engine, so they produce byte-identical JSON.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="block" id="click">
+  <h2><span class="num">3</span>What happens when you click</h2>
+  <p class="sub">The extension uses <code>activeTab</code>, so it can only access a tab after you click on it. It doesn't watch your other tabs.</p>
+  <div class="card">
+    <div class="controls player">
+      <span class="mini" id="sMini">Tap Play or Step</span>
+      <button class="primary" id="sPlay">▶ Play</button>
+      <button id="sStep">Step →</button>
+      <button id="sReset">Reset</button>
+    </div>
+    <div class="seq" id="seq"></div>
+    <div class="caption" id="sCap">Seven messages, all inside your browser.</div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="block" id="extract">
+  <h2><span class="num">4</span>How a page becomes an Article</h2>
+  <p class="sub">Two layers are combined. A <b>generic baseline</b> (JSON-LD, OpenGraph, meta tags, Readability) runs on every page. The <b>recipe</b> then overrides it field by field. Try the paywall case to see how <code>required</code> catches a broken page.</p>
+  <div class="card">
+    <div class="controls scroller">
+      <button class="seg on" data-sc="normal">Article + recipe</button>
+      <button class="seg" data-sc="paywall">Paywall stub</button>
+      <button class="seg" data-sc="generic">No recipe (generic)</button>
+    </div>
+    <div class="controls player">
+      <span class="mini" id="xMini">Tap Play or Step</span>
+      <button class="primary" id="xPlay">▶ Play</button>
+      <button id="xStep">Step →</button>
+      <button id="xReset">Reset</button>
+    </div>
+    <div class="caption" id="xCap" style="margin-bottom:14px"></div>
+    <div class="xgrid">
+      <div class="browser">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url" id="xUrl"></span><span class="extbtn" id="xBtn" title="extension">{}</span></div>
+        <div class="page" id="xPage"></div>
+        <div class="headbox">
+          <div class="hl">Invisible &lt;head&gt; metadata the page also ships</div>
+          <div data-x id="h-jsonld">&lt;script type="application/ld+json"&gt; {"@type":"NewsArticle","headline":"Fed Holds Rates","author":{"name":"Jane Doe"},"datePublished":"2026-10-11T13:30:00Z","articleSection":"Economy"}</div>
+          <div data-x id="h-og">&lt;meta property="og:description" content="Officials signal patience…"&gt; &lt;meta property="og:image" content="…/fed.jpg"&gt;</div>
+          <div data-x id="h-canon">&lt;link rel="canonical" href="https://www.wsj.com/articles/fed-holds-rates-steady-4f2a"&gt;</div>
+        </div>
+      </div>
+      <div>
+        <div class="json mono" id="xJson"></div>
+        <div class="legend">
+          <span class="badge b-SITE_SELECTOR">SITE_SELECTOR · site recipe</span>
+          <span class="badge b-JSON_LD">JSON_LD</span>
+          <span class="badge b-OPEN_GRAPH">OPEN_GRAPH</span>
+          <span class="badge b-META">META</span>
+          <span class="badge b-READABILITY">READABILITY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="block" id="match">
+  <h2><span class="num">5</span>Which recipe applies? Stage 1: the URL</h2>
+  <p class="sub">Matching happens <b>locally</b> against the signed index, so the URL is never sent anywhere. This playground is stage 1 (URL rules). Stage 2 then confirms each URL candidate on the parsed page (JSON-LD type, og:type, selectors); if nothing is confirmed, the <b>schema.org fallback</b> maps the page’s JSON-LD <code>@type</code> to a schema and runs its generic recipe.</p>
+  <div class="card">
+    <input class="urlin" id="mUrl" spellcheck="false" autocomplete="off" value="https://www.wsj.com/articles/fed-holds-rates-steady-4f2a">
+    <div class="chips" id="mChips"></div>
+    <div class="tablewrap"><table class="mtable" id="mTable"></table></div>
+    <div id="mVerdict"></div>
+    <p class="sub" style="margin:14px 0 0;font-size:13.5px">Tie-break order (after stage-2 confirmation): exact host beats <code>*.</code> wildcard → a matched include path beats none → higher priority → recipe id. <code>www.</code> is treated as an alias for the bare host.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="block" id="sync">
+  <h2><span class="num">6</span>How recipes update, and why you can trust them</h2>
+  <p class="sub">Every 6 hours (or when you click <b>Refresh</b>), the extension pulls the bundle from Cloudflare. A new bundle is <b>all-or-nothing</b>: if any check fails, the old bundle stays active. Try to break it.</p>
+  <div class="card">
+    <div class="controls scroller">
+      <button class="seg on" data-sync="normal">Normal update</button>
+      <button class="seg" data-sync="nm">Nothing changed (304)</button>
+      <button class="seg" data-sync="tamper">Tampered index</button>
+      <button class="seg" data-sync="replay">Replay old bundle</button>
+      <button class="seg" data-sync="corrupt">Corrupted recipe file</button>
+    </div>
+    <ol class="steps" id="syncSteps"></ol>
+    <div class="store">
+      <div class="box" id="storeA"><div class="d">Active bundle (chrome.storage.local)</div><div class="big" id="seqNow">seq 1841</div><div class="d" id="seqNote">wsj.com/main v7 · 312 recipes</div></div>
+      <div class="box"><div class="d">Pinned public keys (shipped in the extension)</div><div class="big">2 slots</div><div class="d">rex-2026a · rex-2026b (rotation)</div></div>
+    </div>
+    <div class="result" id="syncResult"></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="block" id="privacy">
+  <h2><span class="num">7</span>Why download <i>all</i> recipes instead of just the one you need?</h2>
+  <p class="sub">Fetching recipes one site at a time would tell the CDN which sites you read. Syncing the whole bundle reveals nothing about your reading. Recipes are small (a few KB each), so this is cheap.</p>
+  <div class="two">
+    <div class="card"><h3 style="margin:0 0 8px;font-size:16px">✗ Lazy fetch (rejected)</h3><div class="log" id="logLazy"></div></div>
+    <div class="card"><h3 style="margin:0 0 8px;font-size:16px">✓ Eager sync (chosen)</h3><div class="log" id="logEager"></div></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="block" id="layers">
+  <h2><span class="num">8</span>"Dynamic schema": what changes, how often, and how</h2>
+  <p class="sub">There are four layers. Only engine features and the bundle format need an extension release. Even a contract change is handled with a version flag, so older extensions keep working.</p>
+  <div class="layers reveal">
+    <div class="layer"><div><h4>Recipe content</h4><div class="meter"><i style="--w:96%"></i></div><div class="freq">changes: continuously</div></div><div class="how">New sites and selector fixes are a reviewed PR with fixtures; merge publishes a new immutable recipe version. Your extension picks it up on the next sync. <b>No release.</b></div></div>
+    <div class="layer"><div><h4>New schemas</h4><div class="meter"><i style="--w:70%"></i></div><div class="freq">changes: per recipe</div></div><div class="how">A new page type (e.g. <code>product.v1</code>) is a new annotated proto message, shipped in the bundle’s descriptor set with a generic recipe. Still typed and schema.org-bound, never a key-value bag. <b>No release.</b></div></div>
+    <div class="layer"><div><h4>Contract (rex.extract.v1 → v2)</h4><div class="meter"><i style="--w:22%"></i></div><div class="freq">changes: rarely</div></div><div class="how">Additive proto changes are safe. New engine capabilities are gated by a recipe’s <code>requires</code> flags: an older extension skips that recipe and falls back instead of misbehaving. Breaking changes get a new package.</div></div>
+    <div class="layer"><div><h4>Bundle format</h4><div class="meter"><i style="--w:8%"></i></div><div class="freq">changes: almost never</div></div><div class="how">The format lives under the <code>/v1/</code> path. A breaking change ships at <code>/v2/</code> while <code>/v1/</code> keeps serving older extensions.</div></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="block" id="road">
+  <h2><span class="num">9</span>Roadmap</h2>
+  <p class="sub">Each milestone builds on the previous one. The extractor comes first because everything else depends on its behavior.</p>
+  <div class="road reveal">
+    <div class="ms done" style="transition-delay:0s"><div class="m">M0</div>Contracts (protos), decisions, full design.</div>
+    <div class="ms" style="transition-delay:.1s"><div class="m">M1–M2</div>rex engine: native + wasm, readability, conformance.</div>
+    <div class="ms" style="transition-delay:.2s"><div class="m">M3–M4</div>Recipe repo + CI gates, signed publishing to R2.</div>
+    <div class="ms" style="transition-delay:.3s"><div class="m">M5</div><span class="rel">v0.1</span><br>Extension: sync → match → extract → copy/download → report.</div>
+    <div class="ms" style="transition-delay:.4s"><div class="m">M6</div><span class="rel">v0.2</span><br>Sources UI, dev mode (explain, save fixture), icon state, liveness CI.</div>
+    <div class="ms" style="transition-delay:.5s"><div class="m">M7</div><span class="rel">v0.3</span><br>rex draft (BYO-LLM), more schemas, first integration.</div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="block" id="docs">
+  <h2><span class="num">10</span>Full documents</h2>
+  <p class="sub">Rendered from the Markdown files next to this page, which remain the source of truth.</p>
+  <div class="card">
+    <div class="tabs">
+      <button class="seg on" data-doc="prd.md">PRD</button>
+      <button class="seg" data-doc="requirements.md">Requirements</button>
+      <button class="seg" data-doc="design.md">Design</button>
+      <button class="seg" data-doc="designs/261012-generic-recipe-extractor.md">Extractor (rex)</button>
+      <button class="seg" data-doc="decisions.md">Decisions</button>
+      <button class="seg" data-doc="MANIFEST.md">Manifest</button>
+    </div>
+    <div class="doc" id="docView">Loading…</div>
+  </div>
+</section>
+
+</main>
+<footer class="wrap">rex · design preview · source: <code>docs/*.md</code></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* A generic stepper: steps run in order; Play auto-advances. */
+function stepper({ count, onStep, onReset, interval = 2000, play, step, reset, mini, label }) {
+  const setMini = (i) => { if (mini) mini.textContent = i < 0 ? "Tap Play or Step" : `${i + 1}/${count()} · ${label ? label(i) : ""}`; };
+  let i = -1, timer = null;
+  const stop = () => { clearInterval(timer); timer = null; play.textContent = "▶ Play"; };
+  const next = () => { if (i >= count() - 1) { stop(); return false; } i++; onStep(i); setMini(i); if (i >= count() - 1) stop(); return true; };
+  const doReset = () => { stop(); i = -1; onReset(); setMini(-1); };
+  play.onclick = () => {
+    if (timer) { stop(); return; }
+    if (i >= count() - 1) doReset();
+    play.textContent = "❚❚ Pause"; next();
+    timer = setInterval(next, reduced ? 900 : interval);
+  };
+  step.onclick = () => { stop(); if (!next()) { doReset(); next(); } };
+  reset.onclick = doReset;
+  return { reset: doReset, stop };
+}
+
+/* Reveal-on-scroll */
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.3 });
+$$(".reveal").forEach((el) => io.observe(el));
+
+/* Active TOC link */
+const navLinks = $$("nav.toc a");
+const secIo = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  navLinks.forEach((a) => {
+    const on = a.getAttribute("href") === "#" + e.target.id;
+    a.classList.toggle("active", on);
+    if (on) { const bar = a.parentElement; if (bar.scrollTo) bar.scrollTo({ left: a.offsetLeft - (bar.clientWidth - a.offsetWidth) / 2, behavior: reduced ? "auto" : "smooth" }); }
+  });
+}), { rootMargin: "-40% 0px -55% 0px" });
+$$("section.block").forEach((s) => secIo.observe(s));
+
+/* ================= 1. pipeline ================= */
+const NODES = [
+  { ico: "🗂️", t: "Recipe repo (git)", s: "recipe + redacted fixtures · PR review", zone: "github" },
+  { ico: "✂️", t: "CI + publish", s: "check · test · hash · sign", zone: "github" },
+  { ico: "☁️", t: "Cloudflare R2", s: "index.json + r/<sha256>.json", zone: "static host" },
+  { ico: "⚙️", t: "Service worker", s: "sync · verify · match", zone: "your browser" },
+  { ico: "📰", t: "Your tab", s: "HTML serialized, read-only", zone: "your browser" },
+  { ico: "🧾", t: "Extraction JSON", s: "typed record · copy · download", zone: "your browser" },
+];
+const PCAPS = [
+  "<b>1. Recipe repo.</b> A recipe for <code>wsj.com/main</code> is a YAML file in git, together with ≥ 2 <i>redacted</i> fixtures of real pages. A pull request is the human review gate.",
+  "<b>2. CI + publish.</b> CI proves every recipe against its fixtures (same engine as the extension). On merge, the publish job canonicalizes each recipe, names it by its sha256, builds the schema descriptor set, and <b>signs</b> the index (Ed25519, key only in a protected CI environment).",
+  "<b>3. Cloudflare R2.</b> Plain static files. Recipe files are named by their hash and never change, while <code>index.json</code> refreshes every few minutes. GitHub Pages or any static host would work the same way.",
+  "<b>4. Service worker.</b> Every 6 hours it downloads the <i>whole</i> bundle, checks the signature and hashes, then swaps it in all at once. From here on, nothing leaves your browser.",
+  "<b>5. Your tab.</b> You click the icon. The URL is matched locally; a tiny packaged script hands the current HTML (including logged-in content) to the service worker, where the rex wasm engine confirms the page type and extracts, off-page.",
+  "<b>6. Extraction JSON.</b> A <code>rex.extract.v1.Extraction</code>: status, per-field provenance, and the typed record (e.g. <code>rex.schema.article.v1.Article</code>). Any app embedding the rex engine gets byte-identical output.",
+];
+const pipe = $("#pipe");
+pipe.innerHTML = NODES.map((n, i) =>
+  (i ? '<div class="pconn"><span class="dot"></span></div>' : "") +
+  `<div class="pnode"><span class="zone">${n.zone}</span><div class="ico">${n.ico}</div><div class="t">${esc(n.t)}</div><div class="s">${esc(n.s)}</div></div>`).join("");
+const pnodes = $$(".pnode", pipe), pconns = $$(".pconn", pipe);
+stepper({
+  count: () => NODES.length, interval: 2600,
+  play: $("#pPlay"), step: $("#pStep"), reset: $("#pReset"), mini: $("#pMini"), label: (i) => NODES[i].t,
+  onStep(i) {
+    pnodes.forEach((n, k) => { n.classList.toggle("on", k === i); n.classList.toggle("done", k < i); });
+    pconns.forEach((c, k) => c.classList.toggle("flow", k === i - 1));
+    $("#pWall").classList.toggle("show", i >= 3);
+    $("#pCap").innerHTML = PCAPS[i];
+  },
+  onReset() {
+    pnodes.forEach((n) => n.classList.remove("on", "done")); pconns.forEach((c) => c.classList.remove("flow"));
+    $("#pWall").classList.remove("show");
+    $("#pCap").textContent = "Press Play to follow one recipe from the server to your tab.";
+  },
+});
+
+/* ================= 3. sequence ================= */
+const LANES = [["You", "reader"], ["Popup", "UI"], ["Service worker", "background"], ["Storage", "verified bundle"], ["Your tab", "isolated world"]];
+const MSGS = [
+  [0, 1, "click the toolbar icon", "Clicking grants <code>activeTab</code>: temporary access to <b>this tab only</b>, including its URL."],
+  [1, 2, "extract(tabId)", "The popup is only a UI. It asks the service worker to do the work."],
+  [2, 3, "stage 1: match URL", "The URL is matched against the URL rules in the signed index (section 5), locally, with no network request."],
+  [2, 4, "run packaged serializer", "<code>scripting.executeScript({files:['serialize.js']})</code> returns <code>doctype + outerHTML</code>. Nothing else runs in the page."],
+  [4, 2, "HTML", "The page's HTML (post-JavaScript, including logged-in content) comes back to the service worker. Extraction happens <b>off-page</b>."],
+  [2, 3, "stage 2 + extract (rex wasm)", "rex parses once, confirms the page type (JSON-LD type / og:type / selectors), uses the cached compiled recipe, and produces the <code>Extraction</code>."],
+  [2, 1, "render · Copy · Download", "The popup previews the typed record with status and per-field origins, plus Copy and Download."],
+];
+const seq = $("#seq"), N = LANES.length;
+const cx = (k) => ((k + 0.5) / N) * 100;
+seq.innerHTML = `<div class="lanes">${LANES.map(([a, b]) => `<div class="lane">${a}<small>${b}</small></div>`).join("")}</div>
+  <div class="body">${LANES.map((_, k) => `<div class="life" style="left:${cx(k)}%"></div>`).join("")}
+  ${MSGS.map(([a, b, l], i) => {
+    const L = Math.min(cx(a), cx(b)), W = Math.abs(cx(a) - cx(b));
+    return `<div class="row"><div class="lbl" style="left:${L}%"><span class="n">${i + 1}</span>${l}</div><div class="arrow ${b > a ? "r" : "l"}" style="left:${L}%;width:${W}%"></div></div>`;
+  }).join("")}</div>`;
+const rows = $$(".row", seq);
+stepper({
+  count: () => MSGS.length, interval: 2200,
+  play: $("#sPlay"), step: $("#sStep"), reset: $("#sReset"), mini: $("#sMini"), label: (i) => `${LANES[MSGS[i][0]][0]} → ${LANES[MSGS[i][1]][0]}: ${MSGS[i][2]}`,
+  onStep(i) { rows.forEach((r, k) => { r.classList.toggle("show", k <= i); r.classList.toggle("cur", k === i); }); $("#sCap").innerHTML = `<b>${i + 1}.</b> ${MSGS[i][3]}`; },
+  onReset() { rows.forEach((r) => r.classList.remove("show", "cur")); $("#sCap").textContent = "Seven messages, all inside your browser."; },
+});
+
+/* ================= 4. extraction ================= */
+const ORIGIN_VAR = { SITE_SELECTOR: "--o-site", JSON_LD: "--o-jsonld", OPEN_GRAPH: "--o-og", META: "--o-meta", READABILITY: "--o-read" };
+const BODY_FULL = "Federal Reserve officials held interest rates steady on Wednesday, signaling patience as price growth slowed for a third straight month…";
+const BASE = [
+  { note: "<b>Baseline · JSON-LD.</b> Most news pages embed structured data in <code>&lt;head&gt;</code>. The extension always reads it first, whether or not a recipe matches.", origin: "JSON_LD", target: "h-jsonld",
+    sets: [["title", "Fed Holds Rates"], ["authors", '[{"name": "Jane Doe"}]'], ["publishedAt", "2026-10-11T13:30:00Z"], ["section", "Economy"]] },
+  { note: "<b>Baseline · OpenGraph.</b> Social-sharing tags fill <code>summary</code> and <code>image</code>.", origin: "OPEN_GRAPH", target: "h-og",
+    sets: [["summary", "Officials signal patience as price growth slows."], ["image", "https://images.example/fed.jpg"]] },
+  { note: "<b>Baseline · meta.</b> <code>&lt;link rel=canonical&gt;</code> fills <code>canonicalUrl</code>.", origin: "META", target: "h-canon",
+    sets: [["canonicalUrl", "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a"]] },
+];
+const SCEN = {
+  normal: {
+    url: "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a", recipe: '{ id: "wsj.com/main", version: 7 }', paywall: false,
+    intro: "A WSJ-style article page. A recipe for <code>wsj.com/main v7</code> matches. Press Play.",
+    steps: [...BASE,
+      { note: "<b>Baseline · Readability.</b> It guesses the body from a <i>clone</i> of the page. The guess is close, but it also picked up the <i>Advertisement</i> and <i>Read next</i> boxes.", origin: "READABILITY", target: "m-body",
+        sets: [["bodyText", "Federal Reserve officials held… Advertisement… Read next: Markets rally…"]] },
+      { note: "<b>Recipe overrides · title.</b> The selector <span class='selchip'>h1</span> gives the full headline, which is better than JSON-LD's shortened one. The recipe wins.", origin: "SITE_SELECTOR", target: "m-title",
+        sets: [["title", "Fed Holds Rates Steady as Inflation Cools"]] },
+      { note: "<b>Recipe overrides · body.</b> <span class='selchip'>section.article-body</span> (expect ✓) gives clean text without ads. The HTML version is sanitized too.", origin: "SITE_SELECTOR", target: "m-body-main",
+        sets: [["bodyText", BODY_FULL]] },
+      { note: "<b>Typed field.</b> <span class='selchip'>h2.sub-head</span> → <code>subtitle</code>, a typed Article field bound to schema.org <code>alternativeHeadline</code>. No free-form key-value bag.", origin: "SITE_SELECTOR", target: "m-sub",
+        sets: [["subtitle", "Officials signal patience as price growth slows"]] },
+      { note: "<b>multi = true.</b> <span class='selchip'>a.tag</span> takes every match, deduplicated in order.", origin: "SITE_SELECTOR", target: "m-tags",
+        sets: [["tags", '["Federal Reserve", "Inflation", "Economy"]']] },
+      { note: "<b>Result: status OK.</b> Every <code>required</code> selector found something. <code>sources[]</code> records where each field came from.", status: "EXTRACTION_STATUS_OK" },
+    ],
+  },
+  paywall: {
+    url: "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a", recipe: '{ id: "wsj.com/main", version: 7 }', paywall: true,
+    intro: "Same URL, but this time the page only shows a teaser and a subscribe box. Press Play.",
+    steps: [...BASE,
+      { note: "<b>Baseline · Readability</b> finds the teaser paragraph and treats it as the body. On its own, this would look like success.", origin: "READABILITY", target: "m-body",
+        sets: [["bodyText", "Federal Reserve officials held interest rates steady… (teaser only)"]] },
+      { note: "<b>Recipe · title</b> <span class='selchip'>h1</span> ✓ still matches.", origin: "SITE_SELECTOR", target: "m-title",
+        sets: [["title", "Fed Holds Rates Steady as Inflation Cools"]] },
+      { note: "<b>Recipe · body</b> <span class='selchip'>section.article-body</span> is marked <b>expect</b> but matched <b>nothing</b>. The teaser stays in <code>bodyText</code>, but the result is now flagged.", miss: "bodyText", target: "m-paywall" },
+      { note: "<b>Result: FAILED_EXPECTATION.</b> <code>expect</code> is checked against the recipe's <i>own</i> candidates, not the fallback. This is how paywall stubs and site redesigns get caught instead of being saved as fake successes.", status: "EXTRACTION_STATUS_FAILED_EXPECTATION" },
+    ],
+  },
+  generic: {
+    url: "https://blog.example.org/2026/10/fed-notes", recipe: null, paywall: false,
+    intro: "A blog with no recipe in the index. The extension still produces an Article, using the generic layer only. Press Play.",
+    steps: [...BASE.map((s) => s.target === "h-canon" ? { ...s, sets: [["canonicalUrl", "https://blog.example.org/2026/10/fed-notes"]] } : s),
+      { note: "<b>Baseline · Readability</b> supplies the body. Without a recipe, the ad and <i>Read next</i> clutter stay in.", origin: "READABILITY", target: "m-body",
+        sets: [["bodyText", "Federal Reserve officials held… Advertisement… Read next: Markets rally…"]] },
+      { note: "<b>Result: OK, labeled generic.</b> <code>recipe</code> is empty and every source is generic. This is useful on any site, and the popup labels it clearly.", status: "EXTRACTION_STATUS_OK" },
+    ],
+  },
+};
+const ORDER = ["url", "canonicalUrl", "recipe", "title", "subtitle", "authors", "publishedAt", "section", "summary", "image", "tags", "bodyText", "status", "expectationsFailed"];
+let sc = "normal", xstate = {};
+
+function renderPage() {
+  const S = SCEN[sc];
+  $("#xUrl").textContent = S.url;
+  const mast = S.recipe ? "MOCK · wsj.com-style page" : "MOCK · a personal blog";
+  const body = S.paywall
+    ? `<div data-x id="m-body"><p>Federal Reserve officials held interest rates steady on Wednesday, signaling…</p>
+       <div class="paywall" data-x id="m-paywall"><b>Continue reading your article</b>Subscribe to read the full story.</div></div>`
+    : `<div data-x id="m-body"><section data-x id="m-body-main"><p>${BODY_FULL}</p><p>Markets had largely priced in the decision.</p></section>
+       <div class="ad">Advertisement</div><div class="next">Read next: Markets rally after the decision →</div></div>`;
+  $("#xPage").innerHTML = `<div class="mast"><span>${mast}</span><span>Oct 11, 2026</span></div>
+    <div class="sect">Economy</div>
+    <h3 class="ttl" data-x id="m-title">Fed Holds Rates Steady as Inflation Cools</h3>
+    <p class="subh" data-x id="m-sub">Officials signal patience as price growth slows</p>
+    <div class="by">By Jane Doe · <time>Oct. 11, 2026 9:30 am ET</time></div>
+    <div class="img">image</div>${body}
+    <div class="tags" data-x id="m-tags"><span>Federal Reserve</span><span>Inflation</span><span>Economy</span></div>`;
+}
+function renderJson(changed = new Set()) {
+  const S = SCEN[sc];
+  const lines = [];
+  const val = (k) => {
+    if (k === "url") return { v: JSON.stringify(S.url) };
+    if (k === "recipe") return { v: S.recipe ? S.recipe : "null  // generic" };
+    return xstate[k];
+  };
+  lines.push('<div class="ln">{</div>');
+  for (const k of ORDER) {
+    const e = val(k);
+    if (!e) continue;
+    const isNew = changed.has(k);
+    const hc = e.origin ? `var(${ORIGIN_VAR[e.origin]})` : e.cls === "st-bad" ? "var(--bad)" : "var(--accent)";
+    const prev = e.prev ? `<span class="strike">${esc(e.prev)}</span>` : "";
+    const badge = (e.miss ? `<span class="badge" style="background:var(--bad)">EXPECT ✗</span>` : "") + (e.origin ? `<span class="badge b-${e.origin}"${e.miss ? ' style="margin-left:4px"' : ""}>${e.origin}</span>` : "");
+    lines.push(`<div class="ln${isNew ? " new" : ""}" style="--hc:${hc}">&nbsp;&nbsp;<span class="key">"${k}"</span>: ${prev}<span class="val ${e.cls || ""}" title="${esc(e.v)}">${esc(e.v)}</span>${badge}</div>`);
+  }
+  if (xstate.__sources) lines.push(`<div class="ln new" style="--hc:var(--accent)">&nbsp;&nbsp;<span class="key">"sources"</span>: <span class="val">[ ${xstate.__sources} fields with origin ]</span></div>`);
+  lines.push('<div class="ln">}</div>');
+  $("#xJson").innerHTML = lines.join("");
+}
+function flash(id, color) {
+  const el = document.getElementById(id); if (!el) return;
+  el.classList.remove("flashsel"); void el.offsetWidth;
+  el.style.setProperty("--hc", color); el.classList.add("flashsel");
+}
+const xs = stepper({
+  count: () => SCEN[sc].steps.length, interval: 2300,
+  play: $("#xPlay"), step: $("#xStep"), reset: $("#xReset"), mini: $("#xMini"),
+  label: (i) => { const st = SCEN[sc].steps[i]; return st.status ? st.status.replace("EXTRACTION_STATUS_", "status ") : st.miss ? `${st.miss}: EXPECT ✗` : `${st.sets.map(([k]) => k).join(", ")} ← ${st.origin}`; },
+  onStep(i) {
+    const st = SCEN[sc].steps[i], changed = new Set();
+    if (i === 0) { const b = $("#xBtn"); b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); }
+    if (st.sets) for (const [k, v] of st.sets) {
+      const old = xstate[k];
+      xstate[k] = { v: v.startsWith("[") ? v : JSON.stringify(v), origin: st.origin, prev: old && old.origin !== st.origin ? old.v : null };
+      changed.add(k);
+    }
+    if (st.miss) {
+      xstate[st.miss] = { ...xstate[st.miss], miss: true, prev: null };
+      const el = document.getElementById(st.target); if (el) el.classList.add("missel");
+      changed.add(st.miss);
+    }
+    if (st.status) {
+      const bad = st.status.includes("FAILED");
+      xstate.status = { v: st.status, cls: bad ? "st-bad" : "st-ok" };
+      changed.add("status");
+      if (bad) { xstate.expectationsFailed = { v: '["body_html"]', cls: "st-bad" }; changed.add("expectationsFailed"); }
+      xstate.__sources = Object.keys(xstate).filter((k) => xstate[k] && xstate[k].origin).length;
+    }
+    if (st.target && !st.miss) flash(st.target, `var(${ORIGIN_VAR[st.origin]})`);
+    renderJson(changed);
+    $("#xCap").innerHTML = st.note;
+  },
+  onReset() { xstate = {}; renderPage(); renderJson(); $("#xCap").innerHTML = SCEN[sc].intro; },
+});
+$$("[data-sc]").forEach((b) => b.onclick = () => {
+  $$("[data-sc]").forEach((x) => x.classList.toggle("on", x === b));
+  sc = b.dataset.sc; xs.reset();
+});
+xs.reset();
+
+/* ================= 5. matching ================= */
+const ENTRIES = [
+  { site: "wsj.com", key: "main", v: 7, hosts: ["wsj.com", "*.wsj.com"], inc: ["^/articles/"], exc: ["/print$"], prio: 0 },
+  { site: "wsj.com", key: "livecoverage", v: 3, hosts: ["wsj.com"], inc: ["^/livecoverage/"], exc: [], prio: 0 },
+  { site: "example-news.com", key: "main", v: 12, hosts: ["example-news.com", "*.example-news.com"], inc: [], exc: [], prio: 0 },
+  { site: "example-news.com", key: "blog", v: 2, hosts: ["blog.example-news.com"], inc: ["^/20\\d\\d/"], exc: [], prio: 1 },
+];
+const PRESETS = [
+  "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a",
+  "https://www.wsj.com/livecoverage/stock-market-today",
+  "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a/print",
+  "https://blog.example-news.com/2026/10/launch-notes",
+  "https://markets.example-news.com/quote/ACME",
+  "https://news.ycombinator.com/item?id=4242",
+];
+const normHost = (h) => { h = h.toLowerCase().replace(/\.$/, ""); return h.startsWith("www.") ? h.slice(4) : h; };
+function evalEntry(e, u) {
+  const host = normHost(u.hostname), path = u.pathname + u.search;
+  const exact = e.hosts.some((x) => !x.startsWith("*.") && normHost(x) === host);
+  const domain = !exact && e.hosts.some((x) => x.startsWith("*.") && host.endsWith("." + normHost(x.slice(2))));
+  const incPat = e.inc.length === 0 ? "" : (e.inc.find((p) => new RegExp(p).test(path)) ?? null);
+  const excPat = e.exc.find((p) => new RegExp(p).test(path)) ?? null;
+  const ok = (exact || domain) && incPat !== null && !excPat;
+  return { e, exact, domain, incPat, excPat, ok };
+}
+const cmpKeys = [
+  ["an exact host beats a wildcard host", (r) => (r.exact ? 0 : 1)],
+  ["a matched include path beats none", (r) => (r.incPat ? 0 : 1)],
+  ["higher priority wins", (r) => -r.e.prio],
+  ["longer include pattern wins", (r) => -(r.incPat ? r.incPat.length : 0)],
+  ["alphabetical (site, sourceKey)", (r) => r.e.site + "/" + r.e.key],
+];
+function runMatch() {
+  let u;
+  try { u = new URL($("#mUrl").value.trim()); } catch { $("#mTable").innerHTML = ""; $("#mVerdict").innerHTML = '<div class="verdict gen">Not a valid URL yet…</div>'; return; }
+  const res = ENTRIES.map((e) => evalEntry(e, u));
+  const cands = res.filter((r) => r.ok);
+  cands.sort((a, b) => { for (const [, f] of cmpKeys) { const x = f(a), y = f(b); if (x < y) return -1; if (x > y) return 1; } return 0; });
+  const win = cands[0];
+  const y = '<span class="y">✓</span>', n = '<span class="n">✗</span>';
+  $("#mTable").innerHTML = `<tr class="hd"><th>Index entry</th><th>Host rule</th><th>Include paths</th><th>Exclude paths</th><th>Result</th></tr>` +
+    res.map((r) => `<tr class="${r === win ? "win" : r.ok ? "cand" : ""}">
+      <td><b>${r.e.site}/${r.e.key}</b> <span class="d">v${r.e.v}${r.e.prio ? " · prio " + r.e.prio : ""}</span><br><span class="d mono">${r.e.hosts.join(", ")}</span></td>
+      <td data-l="Host rule">${r.exact ? y + " exact" : r.domain ? y + " wildcard" : n + ' <span class="d">' + esc(normHost(u.hostname)) + "</span>"}</td>
+      <td class="mono" data-l="Include paths">${r.e.inc.length === 0 ? '<span class="d">(any)</span> ' + y : r.incPat ? y + " " + esc(r.incPat) : n + " " + esc(r.e.inc.join(" | "))}</td>
+      <td class="mono" data-l="Exclude paths">${r.e.exc.length === 0 ? '<span class="d">—</span>' : r.excPat ? n + " hit " + esc(r.excPat) : y + ' <span class="d">' + esc(r.e.exc.join(" | ")) + "</span>"}</td>
+      <td data-l="Result">${r === win ? '<b class="y">WINNER</b>' : r.ok ? '<span class="d">candidate</span>' : '<span class="d">no match</span>'}</td></tr>`).join("");
+  let why = "";
+  if (win && cands.length > 1) {
+    const second = cands[1];
+    for (const [label, f] of cmpKeys) if (f(win) !== f(second)) { why = ` It beat <b>${second.e.site}/${second.e.key}</b> because ${label}.`; break; }
+  }
+  $("#mVerdict").innerHTML = win
+    ? `<div class="verdict win">Use recipe <b>${win.e.site}/${win.e.key} v${win.e.v}</b>.${why}</div>`
+    : `<div class="verdict gen">No URL rule matches. After parsing, the <b>schema.org fallback</b> reads the page's JSON-LD <code>@type</code> / <code>og:type</code> (e.g. <code>BlogPosting</code> → <code>article.v1</code>) and runs <code>generic/article.v1</code>. The popup labels it "generic".</div>`;
+}
+$("#mChips").innerHTML = PRESETS.map((p) => `<button data-u="${esc(p)}">${esc(p.replace(/^https:\/\//, ""))}</button>`).join("");
+$$("#mChips button").forEach((b) => b.onclick = () => { $("#mUrl").value = b.dataset.u; runMatch(); });
+$("#mUrl").addEventListener("input", runMatch);
+runMatch();
+
+/* ================= 6. sync ================= */
+const SYNC_STEPS = [
+  ["GET index.json", "Conditional request with If-None-Match (ETag). Cheap when nothing changed."],
+  ["Verify Ed25519 signature", "Checked against a public key pinned inside the extension. A CDN or attacker can't forge it."],
+  ["Check sequence > last accepted", "Anti-rollback: an old (possibly buggy) bundle can't be replayed."],
+  ["Fetch new r/<sha256>.json files", "Only files not already stored. Each is checked against its hash in the signed index."],
+  ["Atomic swap", "Write the recipes, then switch the index in one storage write, then clean up unused files."],
+];
+const SYNC_SC = {
+  normal: { fail: -1, nm: false, res: ["good", "✓ Bundle 1842 is active. Two recipe files changed (wsj.com/main v7 → v8, plus a new site). Next click uses v8."], rs: ["200 · 184 KB", "valid · key rex-2026a", "1842 > 1841", "2 new files · hashes match", "swapped"] },
+  nm: { fail: -1, nm: true, res: ["neutral", "304 Not Modified. Nothing to do; this costs one tiny request."], rs: ["304 Not Modified"] },
+  tamper: { fail: 1, res: ["badr", "✗ Rejected: signature invalid. The old bundle (1841) stays active. Diagnostics show the reason."], rs: ["200 · 184 KB", "signature does not match any pinned key"] },
+  replay: { fail: 2, res: ["badr", "✗ Rejected: sequence 1830 ≤ 1841 (rollback attempt). The old bundle stays active."], rs: ["200 · 179 KB", "valid · key rex-2026a", "1830 ≤ 1841"] },
+  corrupt: { fail: 3, res: ["badr", "✗ Rejected: r/9f2c….json hash mismatch. Nothing was swapped, and the old bundle is untouched (all-or-nothing)."], rs: ["200 · 184 KB", "valid · key rex-2026a", "1842 > 1841", "sha256 mismatch on r/9f2c….json"] },
+};
+const ul = $("#syncSteps");
+ul.innerHTML = SYNC_STEPS.map(([t, d], i) => `<li><span class="ic">${i + 1}</span><div><div>${esc(t)}</div><div class="d">${esc(d)}</div><div class="r"></div></div></li>`).join("");
+const lis = $$("li", ul);
+let syncToken = 0;
+async function runSync(name) {
+  const tok = ++syncToken, S = SYNC_SC[name], wait = (ms) => new Promise((r) => setTimeout(r, reduced ? 60 : ms));
+  lis.forEach((li, i) => { li.className = ""; $(".ic", li).textContent = i + 1; $(".r", li).textContent = ""; });
+  $("#syncResult").className = "result"; $("#storeA").classList.remove("swap");
+  $("#seqNow").textContent = "seq 1841"; $("#seqNote").textContent = "wsj.com/main v7 · 312 recipes";
+  await wait(250);
+  for (let i = 0; i < lis.length; i++) {
+    if (tok !== syncToken) return;
+    const li = lis[i];
+    li.className = "run"; await wait(750);
+    if (tok !== syncToken) return;
+    const failed = S.fail === i;
+    li.className = failed ? "fail" : "ok";
+    $(".ic", li).textContent = failed ? "✗" : "✓";
+    $(".r", li).textContent = S.rs[i] || "";
+    $(".r", li).style.color = failed ? "var(--bad)" : "var(--ok)";
+    if (failed || (S.nm && i === 0)) { lis.slice(i + 1).forEach((x) => x.className = "skip"); break; }
+    if (i === lis.length - 1) {
+      $("#storeA").classList.add("swap"); $("#seqNow").textContent = "seq 1842"; $("#seqNote").textContent = "wsj.com/main v8 · 313 recipes";
+    }
+  }
+  if (tok !== syncToken) return;
+  const r = $("#syncResult"); r.className = "result show " + S.res[0]; r.textContent = S.res[1];
+}
+$$("[data-sync]").forEach((b) => b.onclick = () => { $$("[data-sync]").forEach((x) => x.classList.toggle("on", x === b)); runSync(b.dataset.sync); });
+const syncIo = new IntersectionObserver((es) => { if (es[0].isIntersecting) { runSync("normal"); syncIo.disconnect(); } }, { threshold: 0.4 });
+syncIo.observe($("#sync"));
+
+/* ================= 7. privacy logs ================= */
+const LAZY = [
+  ["09:14 GET /v1/stable/r/wsj-main.json", ""], ["→ CDN learns: this IP reads WSJ at 09:14", "leak"],
+  ["10:02 GET /v1/stable/r/nyt-main.json", ""], ["→ CDN learns: …and the NYT at 10:02", "leak"],
+  ["11:47 GET /v1/stable/r/clinic-blog.json", ""], ["→ CDN learns: …and a health blog at 11:47", "leak"],
+];
+const EAGER = [
+  ["06:00 GET /v1/stable/index.json  → 304", ""], ["→ CDN learns: an extension checked for updates", "safe"],
+  ["12:00 GET /v1/stable/index.json  → 200", ""], ["12:00 GET r/<every new hash> (2 files)", ""],
+  ["→ CDN learns: nothing about what you read", "safe"], ["09:14 / 10:02 / 11:47: matched locally, 0 requests", "safe"],
+];
+function feed(el, lines) {
+  let i = 0;
+  const tick = () => {
+    const [t, c] = lines[i % lines.length];
+    const d = document.createElement("div"); d.textContent = t; if (c) d.className = c;
+    el.appendChild(d); while (el.children.length > 7) el.removeChild(el.firstChild);
+    i++;
+  };
+  tick(); return setInterval(tick, reduced ? 2500 : 1300);
+}
+let feeding = false;
+new IntersectionObserver((es) => { if (es[0].isIntersecting && !feeding) { feeding = true; feed($("#logLazy"), LAZY); feed($("#logEager"), EAGER); } }, { threshold: 0.3 }).observe($("#privacy"));
+
+/* ================= 10. docs ================= */
+const dark = () => document.documentElement.dataset.theme === "dark" || (document.documentElement.dataset.theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+if (window.mermaid) mermaid.initialize({ startOnLoad: false, theme: dark() ? "dark" : "default", securityLevel: "strict" });
+const cache = {};
+async function showDoc(name) {
+  const view = $("#docView");
+  view.textContent = "Loading…";
+  try {
+    if (!cache[name]) {
+      const r = await fetch(name, { cache: "no-cache" });
+      if (!r.ok) throw new Error(r.status + " " + r.statusText);
+      cache[name] = await r.text();
+    }
+    const md = cache[name];
+    if (!window.marked) { view.innerHTML = `<pre>${esc(md)}</pre>`; return; }
+    view.innerHTML = marked.parse(md);
+    $$("pre code.language-mermaid", view).forEach((c) => { const d = document.createElement("div"); d.className = "mermaid"; d.textContent = c.textContent; c.parentElement.replaceWith(d); });
+    const docBase = new URL(name, location.href);
+    $$("a[href]", view).forEach((a) => {
+      const target = new URL(a.getAttribute("href"), docBase);
+      if (!target.pathname.endsWith(".md")) return;
+      a.href = target.href;
+      const btn = $$("[data-doc]").find((x) => new URL(x.dataset.doc, location.href).pathname === target.pathname);
+      if (btn) a.onclick = (ev) => { ev.preventDefault(); btn.click(); };
+    });
+    if (window.mermaid) await mermaid.run({ nodes: $$(".mermaid", view) });
+  } catch (err) {
+    view.innerHTML = `<p>Couldn't load <code>${esc(name)}</code> (${esc(err.message)}). Open this page through the HTTP server rather than <code>file://</code>, or read <a href="${esc(name)}">${esc(name)}</a> directly.</p>`;
+  }
+}
+$$("[data-doc]").forEach((b) => b.onclick = () => { $$("[data-doc]").forEach((x) => x.classList.toggle("on", x === b)); showDoc(b.dataset.doc); });
+showDoc("prd.md");
+})();
+</script>
+</body>
+</html>

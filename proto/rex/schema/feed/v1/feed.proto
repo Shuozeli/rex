@@ -1,0 +1,34 @@
+// rex.schema.feed.v1.Feed: a listing page (front page, section, search results, channel) as a typed
+// list of items. The myfeed contract {id, title, url, preview} is the core of FeedItem.
+//
+// Decided 2026-10-12 (decisions.md U9, delegated to Claude).
+syntax = "proto3";
+
+package rex.schema.feed.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Feed {
+  option (rex.schema.v1.record) = {
+    schema_org: "ItemList"
+    schema_org_also: ["CollectionPage"]
+    primary: ["items"]
+  };
+
+  string title = 1 [(rex.schema.v1.field) = { schema_org: "name" }];
+  repeated FeedItem items = 2 [(rex.schema.v1.field) = { schema_org: "itemListElement", max_items: 500 }];
+}
+
+message FeedItem {
+  option (rex.schema.v1.record) = { schema_org: "ListItem" };
+
+  string id = 1 [(rex.schema.v1.field) = { required: true }];   // site-stable id; dedup key with url
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url", required: true }];
+  string preview = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  google.protobuf.Timestamp published_at = 5 [(rex.schema.v1.field) = { schema_org: "datePublished" }];
+  string author = 6 [(rex.schema.v1.field) = { schema_org: "author" }];
+  int64 score = 7;                    // votes / likes, site-native scale
+  int64 comment_count = 8 [(rex.schema.v1.field) = { schema_org: "commentCount" }];
+}

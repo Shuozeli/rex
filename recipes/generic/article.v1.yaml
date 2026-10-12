@@ -1,0 +1,90 @@
+# Baseline for rex.schema.article.v1.Article: what every article page gets with no site recipe.
+# Site recipes `extends` this; their own candidates are tried first, these follow.
+# Order: JSON-LD -> OpenGraph -> meta -> readability; discovery hints last.
+# `json_ld: {}` = read the field through its schema.org binding (annotations on the schema message).
+id: generic/article.v1
+version: 1
+schema: rex.schema.article.v1.Article
+fields:
+  - path: canonical_url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - json_ld: {}
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - url: { strip_query: ["utm_*", "fbclid", "gclid"] }
+
+  - path: title
+    candidates:
+      - json_ld: {}
+      - meta: { key: "og:title" }
+      - readability: { part: READABILITY_PART_TITLE }
+      - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
+      - hint: { key: title }
+
+  - path: subtitle
+    candidates:
+      - json_ld: {}
+
+  - path: authors            # JSON-LD objects coerce field-by-field via schema.org bindings; a plain string fills Person.name
+    candidates:
+      - json_ld: {}
+      - meta: { key: "author" }
+      - meta: { key: "article:author" }
+      - readability: { part: READABILITY_PART_BYLINE }
+      - hint: { key: author }
+
+  - path: published_at
+    candidates:
+      - json_ld: {}
+      - meta: { key: "article:published_time" }
+      - css: { selector: "time[datetime]", take: TAKE_ATTRIBUTE, attribute: datetime, scope: CSS_SCOPE_DOCUMENT }
+      - hint: { key: published_at }
+
+  - path: updated_at
+    candidates:
+      - json_ld: {}
+      - meta: { key: "article:modified_time" }
+
+  - path: section
+    candidates:
+      - json_ld: {}
+      - meta: { key: "article:section" }
+
+  - path: summary
+    candidates:
+      - json_ld: {}
+      - meta: { key: "og:description" }
+      - meta: { key: "description" }
+      - readability: { part: READABILITY_PART_EXCERPT }
+
+  - path: image
+    candidates:
+      - meta: { key: "og:image" }
+      - json_ld: { path: "image[0].url" }
+      - json_ld: {}
+
+  - path: tags
+    candidates:
+      - meta: { key: "article:tag" }
+      - json_ld: {}
+    pipe:
+      - split: { pattern: "\\s*,\\s*" }
+      - unique: {}
+
+  - path: language
+    candidates:
+      - json_ld: {}
+      - css: { selector: "html[lang]", take: TAKE_ATTRIBUTE, attribute: lang, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: body_html
+    candidates:
+      - readability: { part: READABILITY_PART_CONTENT_HTML }
+
+  - path: body_text
+    candidates:
+      - field: { path: body_html }
+        pipe:
+          - html_to_text: {}
+      - json_ld: {}

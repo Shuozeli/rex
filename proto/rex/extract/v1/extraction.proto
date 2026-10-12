@@ -1,0 +1,72 @@
+// rex Extraction: the schema-agnostic OUTPUT envelope of the extractor (HTML + recipe -> one typed record).
+// The record itself is a schema message (a proto message annotated with rex.schema.v1 options, decisions.md
+// U1/U3) carried in `record` as google.protobuf.Any; everything about HOW it was extracted lives here.
+//
+// Decided 2026-10-12 (decisions.md U4; made host-neutral by U14). Hosts (the browser extension, a crawler,
+// the CLI) fill the host fields; the engine fills the rest.
+syntax = "proto3";
+
+package rex.extract.v1;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+// Identity of an immutable recipe version.
+message RecipeRef {
+  string id = 1;            // e.g. "wsj.com/main", "generic/article.v1"
+  uint32 version = 2;
+  string sha256 = 3;        // of the canonical recipe protojson; empty for unpublished (dev) recipes
+}
+
+message Extraction {
+  // ---- what was applied ----
+  RecipeRef recipe = 1;                         // the recipe that matched (a generic recipe when nothing site-specific did)
+  string schema = 2;                            // full name of the record type, e.g. "rex.schema.article.v1.Article"
+  string url = 3;                               // the page URL
+  string extractor_version = 4;                 // engine + host, e.g. "rex/0.1.0 ext/0.1.0"
+  google.protobuf.Timestamp fetch_time = 5;     // when the HTML was captured (host-supplied)
+  google.protobuf.Timestamp extract_time = 6;   // host-supplied (the engine has no clock)
+  string source_id = 7;                         // host-defined id of the captured document (e.g. a crawler's raw-object id); empty in the extension
+  string source_ref = 8;                        // host-defined locator of the captured document; empty in the extension
+
+  // ---- outcome ----
+  ExtractionStatus status = 9;
+  repeated string missing_required = 10;        // field paths, e.g. "offer.price"   (status = INVALID)
+  repeated string expectations_failed = 11;     // field paths whose recipe `expect` missed (status = FAILED_EXPECTATION)
+  repeated FieldSource sources = 12;            // provenance for every populated field
+  optional uint32 body_readability_agreement_bps = 13;  // primary long text vs readability, token-set Jaccard x 10000
+
+  // ---- the typed record ----
+  google.protobuf.Any record = 14;              // a rex.schema.* message; type_url names `schema`
+
+  repeated RecipeRef chain = 15;                // the full extends chain, most specific first
+}
+
+// Precedence when several apply: EMPTY > INVALID > FAILED_EXPECTATION > OK.
+enum ExtractionStatus {
+  EXTRACTION_STATUS_UNSPECIFIED = 0;
+  EXTRACTION_STATUS_OK = 1;
+  EXTRACTION_STATUS_INVALID = 2;               // a schema `required` field is missing
+  EXTRACTION_STATUS_FAILED_EXPECTATION = 3;    // a recipe `expect` missed (paywall stub, redesign, drift)
+  EXTRACTION_STATUS_EMPTY = 4;                 // every schema `primary` field is missing
+}
+
+message FieldSource {
+  string path = 1;          // dotted field path, e.g. "title", "offer.price", "authors[0].name"
+  FieldOrigin origin = 2;
+  uint32 candidate = 3;     // index of the winning candidate in the merged candidate list
+  string recipe = 4;        // "id@version" of the recipe that contributed the winning candidate
+}
+
+enum FieldOrigin {
+  FIELD_ORIGIN_UNSPECIFIED = 0;
+  FIELD_ORIGIN_JSON_LD = 1;
+  FIELD_ORIGIN_OPEN_GRAPH = 2;
+  FIELD_ORIGIN_META = 3;
+  FIELD_ORIGIN_READABILITY = 4;
+  FIELD_ORIGIN_SITE_SELECTOR = 5;
+  FIELD_ORIGIN_DISCOVERY = 6;     // a host-supplied hint (e.g. a crawler's feed/sitemap entry)
+  FIELD_ORIGIN_MICRODATA = 7;
+  FIELD_ORIGIN_URL = 8;           // derived from the page URL
+  FIELD_ORIGIN_CONST = 9;         // a recipe constant or default
+}

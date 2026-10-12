@@ -1,0 +1,230 @@
+// rex ExtractionRecipe: how ONE site/page type maps its HTML onto ONE schema message (decisions.md U1-U8).
+// Pure declarative data: selectors, typed sources, a closed set of transforms. No code, no JS.
+// Authored as YAML or protojson (1:1, no shorthand); stored and shipped as protojson.
+//
+// Evaluation (per field, in schema order respecting `field` references):
+//   candidates = own candidates ++ inherited candidates (unless replace_inherited)
+//   for each candidate: raw -> candidate.pipe -> rule.pipe -> coerce to the schema field's type/kind
+//   the first candidate that yields a valid, non-empty typed value wins; misses are recorded as diagnostics.
+//   Cardinality comes from the schema: a `repeated` field collects every match of the winning candidate.
+//
+// Decided 2026-10-12: U6 skeleton (with the user), U7 candidates + U8 transforms + U2 match proto
+// (delegated to Claude; see decisions.md).
+syntax = "proto3";
+
+package rex.extract.v1;
+
+// ============================================================================
+// U6: skeleton
+// ============================================================================
+
+message ExtractionRecipe {
+  string id = 1;                      // stable id, e.g. "wsj.com/main" or "generic/article.v1"
+  uint32 version = 2;                 // immutable per id
+  string schema = 3;                  // full schema message name, e.g. "rex.schema.article.v1.Article"
+  string extends = 4;                 // base recipe id, e.g. "generic/article.v1"; empty = none (max depth 3)
+  string root = 5;                    // default CSS scope for css candidates; empty = document; declared but missing = EMPTY
+  RecipeMatch match = 6;              // client-side matching (U2); empty for base recipes
+  repeated FieldRule fields = 7;
+  repeated string requires = 8;       // engine feature flags; an engine lacking one rejects the recipe at compile
+}
+
+message FieldRule {
+  string path = 1;                    // field path in the schema: "title", "authors", "authors.name"
+  repeated Candidate candidates = 2;  // ordered; first success wins
+  repeated Transform pipe = 3;        // field-level, applied after each candidate's own pipe
+  bool expect = 4;                    // one of THIS recipe's own candidates must win, else FAILED_EXPECTATION
+  bool replace_inherited = 5;         // drop the candidates inherited through `extends`
+  string each = 6;                    // repeated message fields only: one item per matched element
+  repeated FieldRule fields = 7;      // rules for the item's sub-fields, relative to the `each` element
+}
+
+// ============================================================================
+// U2: matching (client-side only)
+// ============================================================================
+
+message RecipeMatch {
+  UrlMatch urls = 1;                  // stage 1; required for site recipes, empty for base recipes
+  PageMatch page = 2;                 // stage 2, evaluated on the parsed document
+  int32 priority = 3;
+}
+
+message UrlMatch {
+  repeated string hosts = 1;          // "wsj.com" (www. is an alias), "*.wsj.com" = any subdomain
+  repeated string include = 2;        // RE2 on path+query; empty = any path
+  repeated string exclude = 3;        // RE2 on path+query
+}
+
+message PageMatch {
+  repeated PageCondition any = 1;     // at least one must hold (if non-empty)
+  repeated PageCondition all = 2;     // every one must hold
+}
+
+message PageCondition {
+  oneof condition {
+    string exists = 1;                // CSS selector matches at least one element
+    JsonLdTypes json_ld_type = 2;     // a JSON-LD node has one of these @types
+    MetaEquals meta = 3;              // meta[property|name=key] content equals value (case-insensitive)
+    string not_exists = 4;            // CSS selector matches nothing (e.g. exclude listing pages)
+  }
+}
+
+message JsonLdTypes { repeated string types = 1; }
+message MetaEquals { string key = 1; string value = 2; }
+
+// ============================================================================
+// U7: candidates (sources)
+// ============================================================================
+
+message Candidate {
+  oneof source {
+    CssSource css = 1;
+    JsonLdSource json_ld = 2;
+    MicrodataSource microdata = 3;
+    MetaSource meta = 4;
+    LinkSource link = 5;
+    ReadabilitySource readability = 6;
+    UrlSource url = 7;
+    ConstSource constant = 8;
+    FieldRefSource field = 9;
+    HintSource hint = 10;
+  }
+  repeated Transform pipe = 20;       // candidate-local transforms, before the rule's pipe
+}
+
+message CssSource {
+  string selector = 1;                // relative to the scope; a leading combinator is prefixed with :scope
+  Take take = 2;
+  string attribute = 3;               // when take = TAKE_ATTRIBUTE
+  CssScope scope = 4;
+}
+
+enum Take {
+  TAKE_UNSPECIFIED = 0;               // = the schema kind's natural mode (HTML kind -> HTML, TEXT kind -> BLOCK_TEXT, else TEXT)
+  TAKE_TEXT = 1;                      // single line, whitespace collapsed
+  TAKE_BLOCK_TEXT = 2;                // multi-line, block-aware
+  TAKE_OWN_TEXT = 3;                  // direct child text nodes only
+  TAKE_HTML = 4;                      // inner HTML
+  TAKE_OUTER_HTML = 5;
+  TAKE_ATTRIBUTE = 6;
+  TAKE_EXISTS = 7;                    // "true" if matched (bool fields)
+}
+
+enum CssScope {
+  CSS_SCOPE_UNSPECIFIED = 0;          // = CURRENT
+  CSS_SCOPE_CURRENT = 1;              // the `each` element, else the recipe root
+  CSS_SCOPE_ROOT = 2;                 // the recipe root
+  CSS_SCOPE_DOCUMENT = 3;             // the whole document
+}
+
+// Empty `types` = the schema record's schema_org (+ schema_org_also); empty `path` = the field's schema_org
+// binding. So `json_ld: {}` reads the field "the schema.org way" with zero configuration.
+message JsonLdSource {
+  repeated string types = 1;
+  string path = 2;                    // dotted, with [n] / [*], e.g. "author[*].name"; @graph flattened, @id resolved once
+}
+
+message MicrodataSource {             // same defaulting rules as JsonLdSource
+  repeated string types = 1;          // itemtype short names, e.g. "Product"
+  string path = 2;                    // itemprop path, e.g. "offers.price"
+}
+
+message MetaSource { string key = 1; }        // meta[property=key] or meta[name=key], case-insensitive
+message LinkSource { string rel = 1; }        // link[rel=rel] href, e.g. "canonical"
+
+message ReadabilitySource { ReadabilityPart part = 1; }
+enum ReadabilityPart {
+  READABILITY_PART_UNSPECIFIED = 0;
+  READABILITY_PART_TITLE = 1;
+  READABILITY_PART_BYLINE = 2;
+  READABILITY_PART_EXCERPT = 3;
+  READABILITY_PART_CONTENT_HTML = 4;
+  READABILITY_PART_CONTENT_TEXT = 5;
+}
+
+message UrlSource {
+  UrlPart part = 1;
+  int32 segment = 2;                  // PATH_SEGMENT: index, negative from the end (-1 = last)
+  string query_param = 3;             // QUERY_PARAM
+}
+enum UrlPart {
+  URL_PART_UNSPECIFIED = 0;
+  URL_PART_HREF = 1;
+  URL_PART_HOST = 2;
+  URL_PART_PATH_SEGMENT = 3;
+  URL_PART_QUERY_PARAM = 4;
+}
+
+message ConstSource { string value = 1; }
+message FieldRefSource { string path = 1; }   // another field's final value; references must form a DAG
+message HintSource { string key = 1; }        // host-supplied hint (e.g. a crawler's feed/sitemap entry), e.g. "title", "published_at"
+
+// ============================================================================
+// U8: transforms (closed set; unknown = compile error)
+// ============================================================================
+
+message Transform {
+  oneof op {
+    Trim trim = 1;
+    CollapseWhitespace collapse_ws = 2;
+    ChangeCase change_case = 3;
+    StripAffix strip = 4;
+    Truncate truncate = 5;
+    Regex regex = 6;
+    RegexReplace regex_replace = 7;
+    Split split = 8;
+    Join join = 9;
+    Slice slice = 10;
+    Unique unique = 11;
+    Filter filter = 12;
+    HtmlToText html_to_text = 13;
+    JsonPath json = 14;
+    ParseDatetime datetime = 15;
+    ParseNumber number = 16;
+    NormalizeUrl url = 17;
+    MapValue map = 18;
+    DefaultValue default = 19;
+  }
+}
+
+message Trim {}
+message CollapseWhitespace {}
+message ChangeCase { bool upper = 1; }                    // false = lower
+message StripAffix { string prefix = 1; string suffix = 2; }
+message Truncate { uint32 chars = 1; }
+message Regex { string pattern = 1; uint32 group = 2; }   // RE2; group 0 = whole match; no match = candidate miss
+message RegexReplace { string pattern = 1; string with = 2; }
+message Split { string pattern = 1; }                     // RE2 separator; string -> list
+message Join { string separator = 1; }                    // list -> string
+message Slice { int32 start = 1; int32 end = 2; }         // list; negative from the end; end 0 = to the end. first = {0,1}, last = {-1,0}
+message Unique {}
+message Filter { string pattern = 1; bool invert = 2; }   // keep list items matching RE2 (or not)
+message HtmlToText {}
+message JsonPath { string path = 1; }                     // parse the value as JSON, then dotted path
+
+// Coercion to the schema type is automatic with built-in formats (RFC 3339 / ISO 8601, RFC 2822, epoch s/ms);
+// this transform is only needed for site-specific formats, time zones, locales, or relative dates.
+message ParseDatetime {
+  repeated string formats = 1;        // chrono strftime
+  string tz = 2;                      // IANA zone for offset-less inputs; empty = UTC
+  string locale = 3;                  // "en" | "zh"
+  bool relative = 4;                  // "3 hours ago", "3小时前"; requires feature "relative_dates", uses injected now
+}
+
+message ParseNumber {
+  string locale = 1;                  // grouping/decimal separators; empty = "en"
+  bool cjk_units = 2;                 // 万 / 亿 multipliers
+}
+
+message NormalizeUrl {
+  repeated string strip_query = 1;    // glob patterns, e.g. "utm_*", "fbclid", "gclid"
+  bool keep_fragment = 2;
+}
+
+message MapValue {
+  repeated MapEntry entries = 1;      // exact match after trim + case-fold; first hit wins
+  bool drop_unmapped = 2;             // true = unmapped value is a miss; false = pass through
+}
+message MapEntry { string from = 1; string to = 2; }
+
+message DefaultValue { string value = 1; }               // used only if every candidate missed

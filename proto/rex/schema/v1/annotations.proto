@@ -1,0 +1,64 @@
+// rex schema annotations: the custom options that turn an ordinary proto message into an extraction
+// schema. A schema IS a proto message (decisions.md U1); these options carry the extraction semantics that
+// proto types alone cannot express: value kind, schema.org binding, and record validity.
+//
+// LOCKED 2026-10-12 (decisions.md U3). Extension numbers are taken from the 50000-99999 range that
+// protobuf reserves for in-organization use; register a global range before publishing schemas publicly.
+syntax = "proto3";
+
+package rex.schema.v1;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+  RecordOptions record = 51200;
+}
+
+extend google.protobuf.FieldOptions {
+  FieldOptions field = 51201;
+}
+
+extend google.protobuf.EnumValueOptions {
+  EnumValueOptions enum_value = 51202;
+}
+
+// Record-level semantics, set on a schema message (and on nested messages such as Person or Offer).
+message RecordOptions {
+  // The primary schema.org type, e.g. "NewsArticle". Drives the matching fallback (decisions.md U2 step 4).
+  string schema_org = 1;
+  // Other schema.org types that also map to this schema, e.g. ["Article", "BlogPosting"].
+  repeated string schema_org_also = 2;
+  // Field names; if every one of them is missing the record is EMPTY.
+  repeated string primary = 3;
+}
+
+// Field-level semantics.
+message FieldOptions {
+  // Semantic kind layered on the proto type. UNSPECIFIED = inferred from the proto type.
+  ValueKind kind = 1;
+  // schema.org property name relative to the parent record's type, e.g. "headline".
+  string schema_org = 2;
+  // Missing after every candidate has been tried -> the record is INVALID.
+  bool required = 3;
+  // Cap for repeated fields; 0 = engine default.
+  uint32 max_items = 4;
+}
+
+// Value kinds that need extraction semantics beyond the proto scalar type. Datetimes use
+// google.protobuf.Timestamp, objects use nested messages, lists use repeated, enums use proto enums.
+// map<> fields are not allowed in schemas (a schema is not a key-value bag).
+enum ValueKind {
+  VALUE_KIND_UNSPECIFIED = 0;
+  VALUE_KIND_STRING = 1;   // single line, whitespace collapsed
+  VALUE_KIND_TEXT = 2;     // multi-line, block-aware, paragraphs preserved
+  VALUE_KIND_HTML = 3;     // always sanitized through an allow-list
+  VALUE_KIND_URL = 4;      // resolved to an absolute http(s) URL
+  VALUE_KIND_DECIMAL = 5;  // carried in a string field to keep precision
+  VALUE_KIND_DATE = 6;     // carried in a string field, YYYY-MM-DD
+}
+
+// Enum-value semantics: lets JSON-LD / microdata values map onto proto enum values automatically.
+message EnumValueOptions {
+  // e.g. ["https://schema.org/InStock", "InStock"]
+  repeated string schema_org = 1;
+}

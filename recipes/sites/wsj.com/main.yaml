@@ -1,0 +1,33 @@
+# Site recipe: states only what the baseline gets wrong (sparse).
+# Selectors are ILLUSTRATIVE; real ones are authored against fixtures (design.md §7) before activation.
+id: wsj.com/main
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+root: article
+match:
+  urls:
+    hosts: ["wsj.com"]
+    include: ["^/articles/[^/?]+"]
+    exclude: ["/print(\\?|$)"]
+  page:
+    any:
+      - json_ld_type: { types: [NewsArticle, Article] }
+      - meta: { key: "og:type", value: article }
+fields:
+  - path: title
+    candidates:
+      - css: { selector: "h1" }
+
+  - path: subtitle
+    candidates:
+      - css: { selector: "h2" }
+
+  - path: body_html
+    expect: true             # paywall stub / redesign -> FAILED_EXPECTATION even if readability fills it
+    candidates:
+      - css: { selector: "section[subscriptions-section=content]", take: TAKE_HTML }
+
+  - path: published_at
+    candidates:
+      - css: { selector: "time[datetime]", take: TAKE_ATTRIBUTE, attribute: datetime }
