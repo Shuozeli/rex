@@ -1,0 +1,42 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/wfcmw.cn/_/a2.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: wfcmw.cn/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - wfcmw.cn
+    include:
+    - ^/\d+/\d+/\d+/[^/]+\.html/?$
+  page:
+    any:
+    - exists: article.shandianyun
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: div.page-title + div.page-title
+      take: TAKE_TEXT
+  expect: true
+- path: published_at
+  candidates:
+  - css:
+      selector: div.page-tips span
+      take: TAKE_TEXT
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: article.shandianyun
+      take: TAKE_HTML
+  expect: true
+- path: body_text
+  candidates:
+  - css:
+      selector: article.shandianyun
+      take: TAKE_BLOCK_TEXT
+  expect: true

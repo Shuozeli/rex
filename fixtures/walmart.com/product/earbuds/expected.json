@@ -1,0 +1,129 @@
+{
+  "recipe": {
+    "id": "walmart.com/product",
+    "version": 1,
+    "sha256": "c8459d4bff66ca992459feb987e0e41756426b9358f522c5b0d9fceb3d34e315"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.walmart.com/ip/Wireless-Earbuds-Bluetooth-Headphones-Earphones-with-Wireless-Charging-Case-for-Android-iOS-for-TV-Smart-Phone-Computer-Laptop/20175403739",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:43:42Z",
+  "extractTime": "2026-10-14T04:43:42Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "list_price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "seller",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "features",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "walmart.com/product@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "20175403739",
+    "title": "Xxxxxxxx Xxxxxxx, 6-Xxx Xxxxxx XXX Xxxxxxxxx 5.4 Xxxxxxx with 70H Xxxxxxxx, XXX Xxxxxxx Xxxxxxxx Xxxx, XXX7 Xxxxxxxxxx Xxx Xxxx, Xxxxxxxxx Xxxxxxxxxx Xxxx with xXX & Xxxxxxx",
+    "brand": "XXXXX",
+    "price": "16.99",
+    "currency": "XXX",
+    "listPrice": "35.98",
+    "rating": 5.0,
+    "reviewCount": "12",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "seller": "Xxxx xx Xxxxx Xxxxxx",
+    "images": [
+      "https://i5.walmartimages.com/seo/Wireless-Earbuds-Bluetooth-Headphones-Earphones-with-Wireless-Charging-Case-for-Android-iOS-for-TV-Smart-Phone-Computer-Laptop_5ca741a1-45d8-47d3-a81e-2297851d2143.a700a81865a0913be189b4821fb4631d.jpeg",
+      "https://i5.walmartimages.com/asr/7e1cfff6-b9da-4c8a-9d4c-0e92ea321474.a4194407f95678a80ba3d253dd37d208.jpeg",
+      "https://i5.walmartimages.com/asr/7f603888-4eff-471b-9ef9-2ce2fc9b6fee.691afa444a1fdb45e5166d596de1b088.jpeg",
+      "https://i5.walmartimages.com/asr/f1de073d-efd6-4406-adea-cf344ff3ad3a.eb1df1268981e7c5f1676efeccdcb378.jpeg",
+      "https://i5.walmartimages.com/asr/2aace04d-7c8c-4676-a43e-3d57287b945e.1028d0bce2f3b7bc5906f786feb4d4d4.jpeg",
+      "https://i5.walmartimages.com/asr/a5f29019-aaeb-48a8-800d-ad3b7ebe04df.0695286d005a8ba343b11a5230b4e349.jpeg",
+      "https://i5.walmartimages.com/asr/7459e8b6-e48c-4ca9-91d8-b3874122f01c.139e7cfd4f0090bc5d68b9f8379e8dc5.jpeg",
+      "https://i5.walmartimages.com/seo/Wireless-Earbuds-Bluetooth-Headphones-Earphones-with-Wireless-Charging-Case-for-Android-iOS-for-TV-Smart-Phone-Computer-Laptop_5ca741a1-45d8-47d3-a81e-2297851d2143.a700a81865a0913be189b4821fb4631d.jpeg"
+    ],
+    "features": [
+      "XXX:Xxxxxxxx with 6 xxxxxxxxxxx xxx Xxxxxx XXX, Xxxxx Xxxxxxxx Xxxxxxx xxxxxxx xxxx xxxxx xxxx xxxxxxxx xxxxxxxxxx xxxxx xxxxxxxx xxxxxxxx xxxxxxxxxx xxxxx xxx xxxxxxx xxxxx, xxxxxxx xxx'xx xxxxxxxxx, xxxxxx xxx xxxxxx, xxxxxx, xx xxxxxxx in a xxxx xxxxxx. Xxx Xxxxxxxxxxxxx Xxxxx Xxxxxxxxxxxx (XXX) xxxxxxxxxx xxxxxxx xxxxxxxxxxxx xxxxx xx xxxxxxxxx out xxxxxxxxxxx xxxxx, xx xxxx xxxxx xxxxxxx xxxxx xxxx xxxx xxx'xx xxxxxxxx xx in xxxx xxxxxx",
+      "Xxxxxxx Xxxxxxx：Xxxx xxxxxxx xxxxxxxx xxxxxxxx xx to 7 hours of xxxxxxxxxx xxxxxxxx xx xxxx xxxx, xxxxx xxx 400xXx xxxxxxxx xxxx xxxxxxx xxx xxxxx xxxxxxx xxxx xx to 70 hours, xxxxxxx xxx xxxxxxx xxxxxxxxxx xxx day. Xxx xxxxx XXX xxxxxxx xxxxx xxx xxxxxxx xxxxx of xxx xxxx xxxxxx, xxxxx xxxxxx, xxx xxxxxxxx xxxx in xxxx xxxx, with xxxxxxx xxxxxx xxxx xxxxxxxxx xx xxxx xXX xxx Xxxxxxx xxxxxxx. Xxxxx xxxx xxxxxxxx Xxxxxxx xxx xxxxxxxx xxx xxxxxxxxxx xxxxxxxx xxx",
+      "Xxxxxxxxxxx Xxx xxx Xxxxxxxxxx: Xxxxxxxx with a xxxxxxx xxxx xxx xxxxxxxxx xxx xxxx xxxx xxxxx xxx xxxxxxx xxxxx of xxxx xxxx, xxxxx xxxxxxxxx xxxxxxx a xxxxxxxxxxx xxx xxxx xxxxxx xxxx xxxxxxx of xxx with Xx Xxx Xxxx. Xxxx with Xxxxxxxxxx xxx xxxxx xxxxxxxxx xxxxxxxxx, xxxxx xxxxxxx xxxxxxxx xxxxxxxxx xxxx xxxxxxx xxxxxxx xxxxxx xxxxxx xx xxxxx xxxxxx xxxxxxxx xxx xxxxx xxxxxxxxxx",
+      "Xxxxx Xxxxx Xxxxxxx: With xxxxx xxxxx xxxxxxxx, xxx xxx xxxxxx xxxxxx xxxx xxxxx with a xxxxxx xxx. Xxxx xx xxxxx xxxxx, answer xx xxx xxxxx, xxx xxxxxxxx xxxx xxxxx xxxxxxxxx xxxxxxx",
+      "Xxxxxxxxx Xxxxxx Xxxxx Xxxxxxxxxx：Xxxxx a xxxxxx-like xxxxx xxxxxxxxxx with xxxxx xxxxxxxx xxxxxxx xxxxxxxxx xxxxxxxxx xxxxxx xxxxxxxx xxxxx. Xxx xxxxxxxx xxxx xxxx xxx xxxxx xxxxxx xxxxxxx xxxx, xxxxxxxx xxxxx. Xxxxxxx xxx’xx xxxxxxx out, xxxxxxx in xxx xxxxxx, xx xxxxxxxxx, xxxxx xxxxxxxxx xxxxxxxxxx xxxx xxxxxx xxxxxxxxxx xxxxx xxxxxxxxxxx xxxxxxx xxxxxxx to xxxx xxx xxxxxx xxx xxx xxx xx"
+    ],
+    "url": "https://www.walmart.com/ip/Wireless-Earbuds-Bluetooth-Headphones-Earphones-with-Wireless-Charging-Case-for-Android-iOS-for-TV-Smart-Phone-Computer-Laptop/20175403739",
+    "description": "Xxx Xxxxxxxx Xxxxxxx, 6-Xxx Xxxxxx XXX Xxxxxxxxx 5.4 Xxxxxxx with 70H Xxxxxxxx, XXX Xxxxxxx Xxxxxxxx Xxxx, XXX7 Xxxxxxxxxx Xxx Xxxx, Xxxxxxxxx Xxxxxxxxxx Xxxx with xXX & Xxxxxxx xx Xxxxxxx.xxx"
+  },
+  "chain": [
+    {
+      "id": "walmart.com/product",
+      "version": 1,
+      "sha256": "c8459d4bff66ca992459feb987e0e41756426b9358f522c5b0d9fceb3d34e315"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

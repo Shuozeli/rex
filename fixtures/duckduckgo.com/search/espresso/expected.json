@@ -1,0 +1,149 @@
+{
+  "recipe": {
+    "id": "duckduckgo.com/search",
+    "version": 1,
+    "sha256": "786a57aa1894d784be95b9ef4f8247671c242a5fa71de0e6dee92b9b1b4cb7c2"
+  },
+  "schema": "rex.schema.search.v1.SearchResults",
+  "url": "https://duckduckgo.com/?q=best+espresso+machine&ia=web",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:10:59Z",
+  "extractTime": "2026-10-14T05:10:59Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "engine",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].display_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].snippet",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.search.v1.SearchResults",
+    "query": "best espresso machine",
+    "engine": "duckduckgo",
+    "results": [
+      {
+        "rank": 1,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 16 Xxxx Xxxxxxxx Xxxxxxxx of 2026, Xxxxxx & Xxxxxxxx",
+        "url": "https://www.seriouseats.com/best-espresso-machines-5185482",
+        "displayUrl": "https://www.seriouseats.com › xxxx-xxxxxxxx-xxxxxxxx-5185482",
+        "snippet": "Sep 17, 2026Xx xxxxxx 41 xxxx xxxxxxxx xxxxxxxx to xxxx xxxxx 16 xxxxxx xxx xxxx xxxxx, xxxxxxx xxxxx xxx-xxxxxx xxxxxxxxx, xxx xxxx xxxx to xxx. Xx xxxx xxx xxxxx xx xxx xxxxxx."
+      },
+      {
+        "rank": 2,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx Xxxxxxxx 2026 | Xxxxxx - Xxxxxx Xxxxxx",
+        "url": "https://www.forbes.com/sites/forbes-personal-shopper/article/best-espresso-machine/",
+        "displayUrl": "https://www.forbes.com › xxxxx › xxxxxx-xxxxxxxx-xxxxxxx › xxxxxxx › xxxx-xxxxxxxx-xxxxxxx",
+        "snippet": "Mar 25, 2026Xxxx xxxx-xxxxxxx xxxxxxxx xxxxx xx xxxx: Xxx xxxxxx xxxxxxxxxxxx xxxxxx 15 xxxxxx to xxxx xxx 6 xxxx xxxxxxxx xxxxxxxx of 2026 xxx xxx xxxxx xxxxxx."
+      },
+      {
+        "rank": 3,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "7 Xxxx Xxxxxxxx Xxxxxxxx of 2026, Xxxxxx xx Xxxxxx Xxxxxxx",
+        "url": "https://www.goodhousekeeping.com/what-to-buy/kitchen-products/g73417440/best-espresso-machine/",
+        "displayUrl": "https://www.goodhousekeeping.com › xxxx-to-xxx › xxxxxxx-xxxxxxxx › x73417440 › xxxx-xxxxxxxx-xxxxxxx",
+        "snippet": "6 days agoXxx Xxxxxx Xxxxxxx Xxxxxx 60+ Xxxxxxxx Xxxxxxxx—Xxxxx 7 Xxxx Out xx Xxx Xx'xx xxxx xxxx 50 xxxx of xxxxxxxx to xxxx xxx xxxx xxxxxxxx."
+      },
+      {
+        "rank": 4,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 10 Xxxx Xxxxxxxx Xxxxxxxx of 2026, Xxxxxx & Xxxxxxxx",
+        "url": "https://www.foodandwine.com/lifestyle/kitchen/best-espresso-machines",
+        "displayUrl": "https://www.foodandwine.com › xxxxxxxxx › xxxxxxx › xxxx-xxxxxxxx-xxxxxxxx",
+        "snippet": "Sep 22, 2026Xxx 10 Xxxx Xxxxxxxx Xxxxxxxx xxx Xxxxx Xxxx of Xxxxxx Xxxxxxx, Xxxxxxxxx to Xxx Xxxxx Xxxx xxxx xxx xxxxxxxxx xxxxxxx with xxx of xxxxx xxxxxx xxxxx xxxxxxxx."
+      },
+      {
+        "rank": 5,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 7 xxxx xxxxxxxx xxxxxxxx xxx xxx xxx in 2026",
+        "url": "https://www.tomsguide.com/home/coffee-makers/best-espresso-machines",
+        "displayUrl": "https://www.tomsguide.com › xxxx › xxxxxx-xxxxxx › xxxx-xxxxxxxx-xxxxxxxx",
+        "snippet": "Xxx xxxxxx-xxxxxxxx xxxxx to xxx xxxx xxxxxxxx xxxxxxxx xxx xxx xxx, xxx xxxxxx xx xxxxxxx xxx xxxxx xxx xxx xxx."
+      },
+      {
+        "rank": 6,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 4 Xxxx Xxxx Xxxxxxxx Xxxxxxxx of 2026 | Reviews xx Xxxxxxxxxx",
+        "url": "https://www.nytimes.com/wirecutter/reviews/best-espresso-machine-grinder-and-accessories-for-beginners/",
+        "displayUrl": "https://www.nytimes.com › xxxxxxxxxx › reviews › xxxx-xxxxxxxx-xxxxxxx-xxxxxxx-xxx-xxxxxxxxxxx-xxx-xxxxxxxxx",
+        "snippet": "Mar 17, 2026Xxxxx xxxxxx (xxx xxxxxxx) xxxxxx of xxxxxxxxx xxx xxxxxx, xx xxxxx xxx Xxxxxxxx Xx is xxx xxxx xxxxxxx xxx xxxx xxx xxx xxxxxxx xxxxxxxx xxxxxxxxxxx."
+      },
+      {
+        "rank": 7,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx xxxx xxxxxxxx xxxxxxxx in 2026, xxxxx xxx xxxxxx - XXX",
+        "url": "https://www.cnn.com/cnn-underscored/reviews/best-espresso-machines",
+        "displayUrl": "https://www.cnn.com › xxx-xxxxxxxxxxx › reviews › xxxx-xxxxxxxx-xxxxxxxx",
+        "snippet": "Sep 11, 2026X xxxxxx 16 xxx-xxxxx xxxxxxxx xxxxxxxx to xxx xxx xxxx xxxxxxxx in xxxxxx, xxxx of xxxxxxx xxxxxxxx xxxxx xxx xxxxxxx xxxxx. Xxxxx xxxx out xx xxx."
+      },
+      {
+        "rank": 8,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx Xxxx Xxxxxxxxx Xxxxxxxx Xxxxxxxx xxx xxx Xxxxxxx Xxxxxxx Xxxxx",
+        "url": "https://www.bonappetit.com/story/best-automatic-espresso-machines",
+        "displayUrl": "https://www.bonappetit.com › xxxxx › xxxx-xxxxxxxxx-xxxxxxxx-xxxxxxxx",
+        "snippet": "Oct 5, 2026Xxxxxxxxx xxxxxxxx xxxxxxxx xxxx xxx xxx xxxx out of xxxxxxx a xxxx xx xxxxxx a xxxxxxxxxx. Xxxx xxxxx, xxxx, xxxx, xxx xxxxx; xxx xxxx xx xxxx xxxxxx xxxx xxxxxx."
+      },
+      {
+        "rank": 9,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 7 Xxxxxxxx Xxxxxxxx Xxxxxxxx in 2026 [Xx *XX Xxxxx]",
+        "url": "https://coffeechronicler.com/gear/espresso-machines/",
+        "displayUrl": "https://coffeechronicler.com › xxxx › xxxxxxxx-xxxxxxxx",
+        "snippet": "Jul 11, 2026Xxxxxxxx xxxxxxxx xxx a xxx xxxx xxxxxxxxxxx xxxx xxxxxxx xxxxxx xxxxxxxxx. Xxxx xxxx xxxxxx to xx xxxxxx xxxxxxxxx. Xxxx xxxx to xxx a xxxxx xxxx xxxx xxxx xxxx xxxxx xxx (xxxx xxxxxxxxxxx) xxxx xxxxx of xxxxxxxxxx xx xxxxxxxx out xxxx xxxxx."
+      },
+      {
+        "rank": 10,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx Xxxxxxxx xxx Xxxxxx Xxxxx & Xxxxxxxxx (2026) - Xxx Xxxxxxx",
+        "url": "https://www.bonappetit.com/story/best-espresso-machines",
+        "displayUrl": "https://www.bonappetit.com › xxxxx › xxxx-xxxxxxxx-xxxxxxxx",
+        "snippet": "Jun 23, 2026Xxx Xxxx Xxxxxxxx Xxxxxxxx xxx Xxxxxxxxx, Xxxxxx Xxxxx, xxx Xxxxxxxx in Xxxxxxx A xxxx xxxxxxxx xxxxxxx is xx xxxxxxxxxx. Xxx xxx xxxx xx xxx xxxxx xx xxx xxxxxx xxxx xxxxx year?"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "duckduckgo.com/search",
+      "version": 1,
+      "sha256": "786a57aa1894d784be95b9ef4f8247671c242a5fa71de0e6dee92b9b1b4cb7c2"
+    }
+  ]
+}

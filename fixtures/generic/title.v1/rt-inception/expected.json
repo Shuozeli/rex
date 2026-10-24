@@ -1,0 +1,128 @@
+{
+  "recipe": {
+    "id": "generic/title.v1",
+    "version": 1,
+    "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+  },
+  "schema": "rex.schema.creative.v1.Title",
+  "url": "https://www.rottentomatoes.com/m/inception",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:39Z",
+  "extractTime": "2026-10-14T05:35:39Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "release_date",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "genres",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "directors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "actors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_scale",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "content_rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/title.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Title",
+    "name": "Inception",
+    "type": "TITLE_TYPE_MOVIE",
+    "releaseDate": "2010-07-16",
+    "genres": [
+      "Xxx-Xx",
+      "Xxxxxxx & Xxxxxxxx",
+      "Action"
+    ],
+    "directors": [
+      {
+        "name": "Xxxxxxxxxxx Xxxxx"
+      }
+    ],
+    "actors": [
+      {
+        "name": "Xxxxxxxx XxXxxxxx"
+      },
+      {
+        "name": "Xxxxxx Xxxxxx-Xxxxxx"
+      },
+      {
+        "name": "Xxxxxx Xxxx"
+      },
+      {
+        "name": "Xxx Xxxxx"
+      },
+      {
+        "name": "Xxx Xxxxxxxx"
+      }
+    ],
+    "rating": 86.0,
+    "ratingScale": 100.0,
+    "ratingCount": "364",
+    "contentRating": "XX-13",
+    "description": "Xxxxxxxx reviews, ratings, xxx xxxxxxxx xxx Xxxxxxxxx xx Xxxxxx Xxxxxxxx. Xxxx updated with xxxxxx xxx xxxxxxxx xxxxxx today!",
+    "image": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7825626_p_v10_ae.jpg",
+    "url": "https://www.rottentomatoes.com/m/inception"
+  },
+  "chain": [
+    {
+      "id": "generic/title.v1",
+      "version": 1,
+      "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+    }
+  ]
+}

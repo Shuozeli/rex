@@ -1,0 +1,79 @@
+# Tiantian Fund (天天基金) fund page -> rex.schema.finance.v1.Quote (decisions.md U37). Open-end funds are
+# priced once a day: price is the unit NAV (单位净值) with its date and daily change; the fund info table
+# gives the size (规模) and type.
+id: fund.eastmoney.com/fund
+version: 1
+schema: rex.schema.finance.v1.Quote
+match:
+  urls:
+    hosts: ["fund.eastmoney.com"]
+    include: ["^/\\d{6}\\.html"]
+  page:
+    all:
+      - exists: ".dataItem01"
+fields:
+  - path: symbol
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/(\\d{6})\\.html", group: 1 }
+
+  - path: name               # "易方达消费行业股票 ( 110022 )"
+    candidates:
+      - css: { selector: ".fundDetail-tit" }
+    pipe:
+      - regex_replace: { pattern: "\\s*\\(\\s*\\d{6}\\s*\\)\\s*$", with: "" }
+
+  - path: type
+    candidates:
+      - constant: { value: "INSTRUMENT_TYPE_FUND" }
+
+  - path: currency
+    candidates:
+      - constant: { value: "CNY" }
+
+  - path: price
+    expect: true
+    candidates:
+      - css: { selector: ".dataItem01 .dataNums span" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: change_percent
+    candidates:
+      - css: { selector: ".dataItem01 .dataNums span" }
+    pipe:
+      - filter: { pattern: "%$" }
+      - slice: { start: 0, end: 1 }
+
+  - path: nav_date           # "单位净值 ( 2026-10-14)"
+    candidates:
+      - css: { selector: ".dataItem01 dt" }
+    pipe:
+      - regex: { pattern: "(\\d{4}-\\d{2}-\\d{2})", group: 1 }
+
+  - path: net_assets         # "规模 ：97.06亿元（2026-06-30）"
+    candidates:
+      - css: { selector: ".infoOfFund td" }
+    pipe:
+      - regex: { pattern: "^规模\\s*[：:]\\s*([\\d.]+[万亿]*)元", group: 1 }
+      - number: { cjk_units: true }
+
+  - path: stats              # "类型： 股票型 | 中高风险", "基金经理： 萧楠", ...
+    each: ".infoOfFund td"
+    fields:
+      - path: name
+        candidates:
+          - css: {}
+        pipe:
+          - regex: { pattern: "^([^：:]+?)\\s*[：:]", group: 1 }
+          - regex_replace: { pattern: "\\s+", with: "" }
+      - path: value
+        candidates:
+          - css: {}
+        pipe:
+          - regex: { pattern: "^[^：:]+[：:]\\s*(.+)$", group: 1 }
+
+  - path: url
+    candidates:
+      - url: { part: URL_PART_HREF }

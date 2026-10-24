@@ -1,0 +1,76 @@
+{
+  "recipe": {
+    "id": "generic/article.v1",
+    "version": 1,
+    "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://notes.example.net/parsing/?ref=home",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-01T00:00:00Z",
+  "extractTime": "2026-10-01T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://notes.example.net/parsing/",
+    "title": "Xxxxx xx xxxxxxxxxxxxx xxxxxxx",
+    "authors": [
+      {
+        "name": "Xxx Xxx"
+      }
+    ],
+    "publishedAt": "2026-09-30T00:00:00Z",
+    "summary": "Xxxx xxxxxxxx xxxx xxxx-xxxxx xxxxxxxx.",
+    "bodyHtml": "<p>Xxxx-xxxxx xxxxxxxx xxxx xxx xxxx xxxxx xxxxxxx xxxxxxxxx xxxxxxx xx xxxxxxxxx xxxxxxxx, xxxxx xxxxxx xxxxxxxxxxxxxxx.</p>\n  <p>A xxxx xxxxxxx xxxxxxx a xxxx xxx xxxx xxxxx xxx xxx xxxxx xxxx, xx xxxxxxxxxx xxxxxxx at xxxxxxx xxx xxxx xxxx xxxxxxxxxx.</p>",
+    "bodyText": "Xxxx-xxxxx xxxxxxxx xxxx xxx xxxx xxxxx xxxxxxx xxxxxxxxx xxxxxxx xx xxxxxxxxx xxxxxxxx, xxxxx xxxxxx xxxxxxxxxxxxxxx.\n\nA xxxx xxxxxxx xxxxxxx a xxxx xxx xxxx xxxxx xxx xxx xxxxx xxxx, xx xxxxxxxxxx xxxxxxx at xxxxxxx xxx xxxx xxxx xxxxxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

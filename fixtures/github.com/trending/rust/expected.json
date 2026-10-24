@@ -1,0 +1,98 @@
+{
+  "recipe": {
+    "id": "github.com/trending",
+    "version": 1,
+    "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://github.com/trending/rust",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:42:22Z",
+  "extractTime": "2026-10-13T03:42:22Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].preview",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxxxx Xxxx xxxxxxxxxxxx xx XxxXxx today · XxxXxx",
+    "items": [
+      {
+        "id": "storytold/artcraft",
+        "title": "xxxxxxxxx/xxxxxxxx",
+        "url": "https://github.com/storytold/artcraft",
+        "preview": "XxxXxxxx xx xx xxxxxxxxxxx xxxxxxxx xxxxxx xxx xxxxxxx, xxxxxxxxx, xxx xxxxxxxxxx",
+        "score": "4095"
+      },
+      {
+        "id": "1jehuang/jcode",
+        "title": "1xxxxxxx/xxxxx",
+        "url": "https://github.com/1jehuang/jcode",
+        "preview": "Xxxx xxxxxxxxxxx xxxxxx xxxxx xxxxxxx xxxxxxx xx xxxx",
+        "score": "161"
+      },
+      {
+        "id": "microsoft/litebox",
+        "title": "xxxxxxxxx/xxxxxxx",
+        "url": "https://github.com/microsoft/litebox",
+        "preview": "A xxxxxxxx-xxxxxxx xxxxxxx XX xxxxxxxxxx xxxxxx- xxx xxxx-xxxx xxxxxxxxx",
+        "score": "44"
+      },
+      {
+        "id": "nautechsystems/nautilus_trader",
+        "title": "xxxxxxxxxxxxxx/xxxxxxxx_xxxxxx",
+        "url": "https://github.com/nautechsystems/nautilus_trader",
+        "preview": "Xxxxxxxxxx-xxxxx Xxxx-xxxxxx xxxxxxx xxxxxx xxxx xxxxxxxxxxxxx xxxxx-xxxxxx xxxxxxxxxxxx",
+        "score": "36"
+      },
+      {
+        "id": "HakanSeven12/OpenCADStudio",
+        "title": "XxxxxXxxxx12/XxxxXXXXxxxxx",
+        "url": "https://github.com/HakanSeven12/OpenCADStudio",
+        "preview": "A XXX xxxxxxxxxxx xxxxx xxxx Xxxx — 2X/3X xxxxxxx, XXX/XXX xxxxxxx, xxx XXX-xxxxxxxxxxx xxxxxxxxx",
+        "score": "96"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "github.com/trending",
+      "version": 1,
+      "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+    }
+  ]
+}

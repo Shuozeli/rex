@@ -1,0 +1,19 @@
+id: conformance/c04-jsonld-objects
+version: 1
+schema: rex.schema.article.v1.Article
+fields:
+  - path: title
+    candidates: [ { json_ld: {} } ]
+  - path: subtitle
+    candidates: [ { json_ld: {} } ]
+  - path: authors
+    candidates: [ { json_ld: {} } ]
+  - path: image
+    candidates: [ { json_ld: {} } ]
+  - path: tags
+    candidates: [ { json_ld: {} } ]
+    pipe: [ { unique: {} } ]
+  - path: published_at
+    candidates: [ { json_ld: {} } ]
+  - path: body_text
+    candidates: [ { json_ld: {} } ]

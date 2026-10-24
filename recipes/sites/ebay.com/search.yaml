@@ -1,0 +1,65 @@
+# eBay search results -> rex.schema.commerce.v1.ProductList (decisions.md U35). Cards are li[data-listingid];
+# the first card is a "Shop on eBay" placeholder linking to /itm/123456, which drops out because ids are real
+# (9+ digit) item numbers. eBay obfuscates its "Sponsored" label, so `sponsored` is not extracted.
+id: ebay.com/search
+version: 1
+schema: rex.schema.commerce.v1.ProductList
+match:
+  urls:
+    hosts: ["ebay.com"]
+    include: ["^/sch/"]
+  page:
+    all:
+      - exists: "li[data-listingid]"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: _nkw }
+
+  - path: page
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: _pgn }
+    pipe:
+      - default: { value: "1" }
+
+  - path: items
+    expect: true
+    each: "li[data-listingid]"
+    each_index: rank
+    fields:
+      - path: id
+        candidates:
+          - css: { selector: "a.s-card__link", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "/itm/(\\d{9,})", group: 1 }
+      - path: title
+        candidates:
+          - css: { selector: ".s-card__title > span" }
+        pipe:
+          - filter: { pattern: "^New Listing$", invert: true }
+          - slice: { start: 0, end: 1 }
+      - path: url
+        candidates:
+          - css: { selector: "a.s-card__link", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "\\?.*$", with: "" }
+      - path: price            # "$48.99", or a range "$20.00 to $30.00" (its low end)
+        candidates:
+          - css: { selector: ".s-card__price" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: currency
+        candidates:
+          - css: { selector: ".s-card__price" }
+            pipe:
+              - slice: { start: 0, end: 1 }
+              - regex: { pattern: "^(\\$)", group: 1 }
+              - map: { entries: [ { from: "$", to: "USD" } ] }
+      - path: image
+        candidates:
+          - css: { selector: "img.s-card__image", take: TAKE_ATTRIBUTE, attribute: src }
+        pipe:
+          - slice: { start: 0, end: 1 }

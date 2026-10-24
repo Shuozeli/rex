@@ -1,0 +1,62 @@
+name: Liveness
+
+# Daily: fetch the live sample pages in liveness.yaml and check that each still matches its recipe with
+# status OK (decisions.md U20). Failures open (or update) one issue labelled `liveness`.
+
+on:
+  schedule:
+    - cron: "23 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  liveness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: "27.x"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo build --release -p rex-cli
+      - name: Check live pages
+        id: run
+        run: ./target/release/rex liveness --report liveness-report.json
+      # Auto-harvested recipes (dev channel): reported as an artifact for promotion, never an issue.
+      - name: Check auto-harvested recipes
+        if: always()
+        continue-on-error: true
+        run: ./target/release/rex liveness --file liveness-auto.yaml --report liveness-auto-report.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: liveness-report
+          path: |
+            liveness-report.json
+            liveness-auto-report.json
+          retention-days: 30
+      - name: Open or update the liveness issue
+        if: failure() && steps.run.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Liveness run ${{ github.run_id }} on $(date -u +%Y-%m-%d) found failing recipes:"
+            echo
+            jq -r '.[] | select(.ok | not) | "- `\(.recipe)` on \(.url): \(.problem // "matched \(.matched // "nothing") with \(.status // "no status")")"' liveness-report.json
+            echo
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } > body.md
+          gh label create liveness --color B60205 --description "Live site check failures" --force
+          n=$(gh issue list --label liveness --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then gh issue comment "$n" --body-file body.md; else gh issue create --title "Liveness: recipes failing on live pages" --label liveness --body-file body.md; fi

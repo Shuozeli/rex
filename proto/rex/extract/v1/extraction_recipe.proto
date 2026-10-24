@@ -37,6 +37,8 @@ message FieldRule {
   bool replace_inherited = 5;         // drop the candidates inherited through `extends`
   string each = 6;                    // repeated message fields only: one item per matched element
   repeated FieldRule fields = 7;      // rules for the item's sub-fields, relative to the `each` element
+  string each_index = 8;              // with `each`: an integer item sub-field that receives the item's 1-based
+                                      // position among the kept items (search rank, list position)
 }
 
 // ============================================================================
@@ -97,6 +99,9 @@ message CssSource {
   Take take = 2;
   string attribute = 3;               // when take = TAKE_ATTRIBUTE
   CssScope scope = 4;
+  // Descendant selectors whose subtrees are removed before a text/HTML value is taken (ads, "read next",
+  // share bars inside an article body). No effect on TAKE_ATTRIBUTE / TAKE_EXISTS. (decisions.md U22)
+  repeated string exclude = 5;
 }
 
 enum Take {
@@ -184,6 +189,8 @@ message Transform {
     NormalizeUrl url = 17;
     MapValue map = 18;
     DefaultValue default = 19;
+    ParseDuration duration = 20;
+    Decode decode = 21;
   }
 }
 
@@ -226,5 +233,18 @@ message MapValue {
   bool drop_unmapped = 2;             // true = unmapped value is a miss; false = pass through
 }
 message MapEntry { string from = 1; string to = 2; }
+
+// "PT1H2M3S" / "P1DT2H" (ISO 8601) or "1:02:03" / "3:33" (clock) -> whole seconds; no match = candidate miss.
+message ParseDuration {}
+
+// Decode an encoded string, e.g. the target inside a search engine's redirect link (Google `/url?q=<percent>`,
+// Bing `u=a1<base64url>`). Invalid input or non-UTF-8 output = candidate miss.
+message Decode { DecodeKind kind = 1; }
+enum DecodeKind {
+  DECODE_KIND_UNSPECIFIED = 0;
+  DECODE_KIND_PERCENT = 1;            // %xx escapes, '+' as space
+  DECODE_KIND_BASE64 = 2;             // standard alphabet, padding optional
+  DECODE_KIND_BASE64URL = 3;          // URL-safe alphabet, padding optional
+}
 
 message DefaultValue { string value = 1; }               // used only if every candidate missed

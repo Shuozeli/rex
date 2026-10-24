@@ -1,0 +1,189 @@
+{
+  "recipe": {
+    "id": "generic/recipe.v1",
+    "version": 1,
+    "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+  },
+  "schema": "rex.schema.howto.v1.Recipe",
+  "url": "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:46:48Z",
+  "extractTime": "2026-10-14T05:46:48Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "prep_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "cook_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "total_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "yield",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "category",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "cuisine",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "keywords",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "ingredients",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "steps",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "calories",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.howto.v1.Recipe",
+    "name": "Xxxx Xxxxxxxxx Xxxx Xxxxxxx",
+    "description": "Xxxx xxxxxxx xxxxxxxxx xxxx xxxxxx xxxxxx xxxxx xxxxxxxxxxx xxxxxxx xxxxxxx with xxxxx xxxxx, xxxxx xxxxxxx, xxx xxxxx xxxxxxxxx xxxxx in xxxxx xxxx.",
+    "authors": [
+      {
+        "name": "Dora"
+      }
+    ],
+    "publishedAt": "1998-04-18T20:10:32Z",
+    "image": "https://www.allrecipes.com/thmb/8xwaWAHtl_QLij6D-G0Z4B1HDVA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-146-4x3-b108aceffa6043a1ac81c3c5a9b034c8.jpg",
+    "url": "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
+    "prepTimeSeconds": 1200,
+    "cookTimeSeconds": 600,
+    "totalTimeSeconds": 1800,
+    "yield": "4 xxxxx xxxxxxx",
+    "category": "Dessert",
+    "cuisine": "American",
+    "keywords": [
+      "publisher-tested"
+    ],
+    "ingredients": [
+      "1 xxx xxxxxx, xxxxxxxx",
+      "1 xxx xxxxx xxxxx",
+      "1 xxx xxxxxx xxxxx xxxxx",
+      "2 xxxx",
+      "2 xxxxxxxxx xxxxxxx xxxxxxx",
+      "1 xxxxxxxx xxxxxx xxxx",
+      "2 xxxxxxxxx xxx xxxxx",
+      "0.5 xxxxxxxx xxxx",
+      "3 xxxx xxx-xxxxxxx xxxxx",
+      "2 xxxx xxxxxxxxx xxxxxxxxx xxxxx",
+      "1 xxx xxxxxxx xxxxxxx"
+    ],
+    "steps": [
+      {
+        "text": "Xxxxxx xxxx xxxxxxxxxxx, xxxxxx xxxx xxxx xxxxxx is xxxxxxxx, xxx xxxx xxxx xxx xxxx xxxxxxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/ikAh8YlzsTfWmVA6G6MRHlq7xtU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-ddmfs-3188-4x3-step-01-61fd6c03b33f40e0a8bd756cb56ecac1.jpg"
+      },
+      {
+        "text": "Xxxxxxx xxx xxxx to 350 xxxxxxx X (175 xxxxxxx X). Xxxx xxxxxx, xxxxx xxxxx, xxx xxxxx xxxxx xxxxxxxx in a xxxxx xxxx with xx xxxxxxxx xxxxx xxxxx xxxxx xxx xxxxxx, xxxxx 4 minutes.",
+        "image": "https://www.allrecipes.com/thmb/HZVO7UCA4f6YjwRUxMm2bo5Wz2U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-2-1191-1b57f642a52849ce84a25c48363c4013.jpg"
+      },
+      {
+        "text": "Xxxx in xxxx, xxx xx a xxxx, xxxx xxxx in xxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/vb_CS6Q-CEf0cZySd5HgkUV-T_Y=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-3-121-f73dc5abc3454dfab534d8efc0e966e6.jpg"
+      },
+      {
+        "text": "Xxxxxxxx xxxxxx xxxx in xxx xxxxx; add to xxxxxx xxxxx with xxxx xxx xxx xxxxx xxxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/EHPMpRCIHiCbzy9a3hGDZn0Tgyc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-4-123-abd5290df87f47668cbc8eef6587c292.jpg"
+      },
+      {
+        "text": "Xxxx in xxxxx just xxxxx xx xxx xxxxxxx xxxxxx. Xxxx in xxxxxxxxx xxxxx xxx xxxxxxx, xx xxxxx, xxxxx xxxxxx xxxxxxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/4cwC_GLPXQVWlqI2KH0GUbC1-V4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-5-125-b755dee648e949129ad022d8b019b405.jpg"
+      },
+      {
+        "text": "Xxxx xxxxxxx 1 ½-xxxxxxxxxx xxxxxxxx of xxxxx 2 xxxxxx xxxxx xxxx xxxxxxxxx xxxxxx xxxxxx, xxxxx a xxxxxx xxxxxx xxxxx xx xxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/A63M4EgkpKCDtqT1qWgMciQ3-hI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-6-128-44e1d4355a6a4441a3ba993e2a2b74fa.jpg"
+      },
+      {
+        "text": "Xxxx in xxx xxxxxxxxx xxxx xxxxx xxx xxxxx xxx xxxxxxx xxxxxxx xxx xxx xxxxxxx xxx just xxx, xxxxx 10 minutes.",
+        "image": "https://www.allrecipes.com/thmb/NFy1pucQzBWKkvRGRvcQgFcmu9E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-7-134-e0952f5171a2434dbb2b3bb53b18648a.jpg"
+      },
+      {
+        "text": "Xxx xxx xxxxxxx xxxx xxxxxxx xx xxx xxxxxx xxxxxx, xxxx xxxxxxxx xxxx to a xxxx xxxx to xxxx xxxxxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/5tMxJUaTaqQNYD3O-56aG4L9t00=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-step-8-138-d4f25b55db5c417b9d6ece8cf98700f3.jpg"
+      },
+      {
+        "text": "Xxxxx xx xxxxx xxxxxx xxxxxxx in xx xxxxxxxx xxxxxxxxx.",
+        "image": "https://www.allrecipes.com/thmb/8xwaWAHtl_QLij6D-G0Z4B1HDVA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/10813-best-chocolate-chip-cookies-mfs-146-4x3-b108aceffa6043a1ac81c3c5a9b034c8.jpg"
+      }
+    ],
+    "rating": 4.6,
+    "ratingCount": "19331",
+    "calories": "146 xxxx"
+  },
+  "chain": [
+    {
+      "id": "generic/recipe.v1",
+      "version": 1,
+      "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+    }
+  ]
+}

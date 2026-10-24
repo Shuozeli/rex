@@ -1,0 +1,86 @@
+# Baseline for rex.schema.job.v1.JobPosting: any page with schema.org JobPosting data, as required for Google
+# for Jobs (ATS boards, company career pages, job sites). Site recipes `extends` this.
+id: generic/job.v1
+version: 1
+schema: rex.schema.job.v1.JobPosting
+fields:
+  - path: id
+    candidates:
+      - json_ld: { path: "identifier.value" }
+      - json_ld: { path: "identifier" }
+
+  - path: title
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: company
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: locations
+    candidates:
+      - json_ld: { path: "jobLocation.address" }
+      - microdata: { path: "jobLocation.address" }
+
+  - path: remote             # jobLocationType "TELECOMMUTE"
+    candidates:
+      - json_ld: { path: "jobLocationType" }
+        pipe:
+          - map: { entries: [ { from: "TELECOMMUTE", to: "true" } ], drop_unmapped: true }
+
+  - path: employment_types
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: salary.min         # baseSalary: MonetaryAmount { currency, value: QuantitativeValue }
+    candidates:
+      - json_ld: { path: "baseSalary.value.minValue" }
+      - json_ld: { path: "baseSalary.value.value" }
+      - json_ld: { path: "estimatedSalary.value.minValue" }
+
+  - path: salary.max
+    candidates:
+      - json_ld: { path: "baseSalary.value.maxValue" }
+      - json_ld: { path: "estimatedSalary.value.maxValue" }
+
+  - path: salary.currency
+    candidates:
+      - json_ld: { path: "baseSalary.currency" }
+      - json_ld: { path: "estimatedSalary.currency" }
+
+  - path: salary.unit
+    candidates:
+      - json_ld: { path: "baseSalary.value.unitText" }
+      - json_ld: { path: "estimatedSalary.value.unitText" }
+
+  - path: posted_at
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: valid_through
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: description_html
+    candidates:
+      - json_ld: { path: "description" }
+      - microdata: { path: "description" }
+
+  - path: description_text   # the JSON-LD description is HTML
+    candidates:
+      - json_ld: { path: "description" }
+      - microdata: { path: "description" }
+    pipe:
+      - html_to_text: {}
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

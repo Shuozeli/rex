@@ -1,0 +1,78 @@
+{
+  "recipe": {
+    "id": "conformance/c04-jsonld-objects",
+    "version": 1,
+    "sha256": "e13d687291561f5384667a01ef6791fc2725c09f6892b4a2e63a81de73a96314"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://conformance.example/c04",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T00:00:00Z",
+  "extractTime": "2026-10-12T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "subtitle",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "conformance/c04-jsonld-objects@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "title": "Graph article",
+    "subtitle": "With references",
+    "authors": [
+      {
+        "name": "Ada Example",
+        "url": "https://conformance.example/people/ada"
+      },
+      {
+        "name": "Conformance Desk"
+      }
+    ],
+    "publishedAt": "2026-10-01T10:00:00Z",
+    "image": "https://conformance.example/img/graph.png",
+    "tags": [
+      "graphs",
+      "json-ld"
+    ],
+    "bodyText": "Plain article body from JSON-LD.\n\nSecond paragraph."
+  },
+  "chain": [
+    {
+      "id": "conformance/c04-jsonld-objects",
+      "version": 1,
+      "sha256": "e13d687291561f5384667a01ef6791fc2725c09f6892b4a2e63a81de73a96314"
+    }
+  ]
+}

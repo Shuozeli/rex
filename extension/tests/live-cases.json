@@ -1,0 +1,314 @@
+{
+  "_doc": "Live pages for tests/live-remote.mjs: one per site/generic recipe; `fixture` gives the expected field set (decisions.md U38).",
+  "cases": [
+    {
+      "recipe": "amazon.com/product",
+      "url": "https://www.amazon.com/dp/B0D1XD1ZV3",
+      "fixture": "fixtures/amazon.com/product/airpods-pro-2"
+    },
+    {
+      "recipe": "amazon.com/search",
+      "url": "https://www.amazon.com/s?k=mechanical+keyboard",
+      "fixture": "fixtures/amazon.com/search/mechanical-keyboard"
+    },
+    {
+      "recipe": "apps.apple.com/app",
+      "url": "https://apps.apple.com/us/app/duolingo-learn-languages/id570060128",
+      "fixture": "fixtures/apps.apple.com/app/duolingo-rendered"
+    },
+    {
+      "recipe": "arstechnica.com/article",
+      "url": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/",
+      "fixture": "fixtures/arstechnica.com/article/gaming"
+    },
+    {
+      "recipe": "baidu.com/search",
+      "url": "https://www.baidu.com/s?wd=%E6%84%8F%E5%BC%8F%E5%92%96%E5%95%A1%E6%9C%BA%E6%8E%A8%E8%8D%90",
+      "fixture": "fixtures/baidu.com/search/espresso"
+    },
+    {
+      "recipe": "bbc.co.uk/news-article",
+      "url": "https://www.bbc.co.uk/news/articles/cm9qzwjgnjxlo",
+      "fixture": "fixtures/bbc.co.uk/news-article/article-browser-design"
+    },
+    {
+      "recipe": "bestbuy.com/search",
+      "url": "https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=laptop",
+      "fixture": "fixtures/bestbuy.com/search/laptop"
+    },
+    {
+      "recipe": "bilibili.com/search",
+      "url": "https://search.bilibili.com/all?keyword=%E6%84%8F%E5%BC%8F%E5%92%96%E5%95%A1%E6%9C%BA",
+      "fixture": "fixtures/bilibili.com/search/espresso"
+    },
+    {
+      "recipe": "bilibili.com/video",
+      "url": "https://www.bilibili.com/video/BV149WF6zEw2/",
+      "fixture": "fixtures/bilibili.com/video/anji"
+    },
+    {
+      "recipe": "bing.com/search",
+      "url": "https://www.bing.com/search?q=best+espresso+machine&setlang=en&rdr=1&rdrig=3479A0333F8545A7B2D7A146F93C4B03",
+      "fixture": "fixtures/bing.com/search/best-espresso-machine"
+    },
+    {
+      "recipe": "blog.cloudflare.com/post",
+      "url": "https://blog.cloudflare.com/transformers-on-logpush/",
+      "fixture": "fixtures/blog.cloudflare.com/post/post-a"
+    },
+    {
+      "recipe": "bsky.app/post",
+      "url": "https://bsky.app/profile/bsky.app/post/3l6oveex3ii2l",
+      "fixture": "fixtures/bsky.app/post/p1"
+    },
+    {
+      "recipe": "cnbc.com/quote",
+      "url": "https://www.cnbc.com/quotes/AAPL",
+      "fixture": "fixtures/cnbc.com/quote/aapl"
+    },
+    {
+      "recipe": "coinmarketcap.com/coin",
+      "url": "https://coinmarketcap.com/currencies/bitcoin/",
+      "fixture": "fixtures/coinmarketcap.com/coin/btc"
+    },
+    {
+      "recipe": "douyin.com/video",
+      "url": "https://www.douyin.com/video/7664968192621064930",
+      "fixture": "fixtures/douyin.com/video/v1"
+    },
+    {
+      "recipe": "duckduckgo.com/search",
+      "url": "https://duckduckgo.com/?q=best+espresso+machine&ia=web",
+      "fixture": "fixtures/duckduckgo.com/search/espresso"
+    },
+    {
+      "recipe": "ebay.com/item",
+      "url": "https://www.ebay.com/itm/307218209972",
+      "fixture": "fixtures/ebay.com/item/k1"
+    },
+    {
+      "recipe": "ebay.com/search",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=mechanical+keyboard",
+      "fixture": "fixtures/ebay.com/search/keyboard"
+    },
+    {
+      "recipe": "finance.yahoo.com/quote",
+      "url": "https://finance.yahoo.com/quote/AAPL/",
+      "fixture": "fixtures/finance.yahoo.com/quote/aapl"
+    },
+    {
+      "recipe": "fund.eastmoney.com/fund",
+      "url": "https://fund.eastmoney.com/110022.html",
+      "fixture": "fixtures/fund.eastmoney.com/fund/f110022"
+    },
+    {
+      "recipe": "generic/app.v1",
+      "url": "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US",
+      "fixture": "fixtures/generic/app.v1/googleplay-spotify"
+    },
+    {
+      "recipe": "generic/article.v1",
+      "url": "https://garymarcus.substack.com/p/could-this-be-the-frontier-labs-wework",
+      "fixture": "fixtures/generic/article.v1/blogposting-jsonld"
+    },
+    {
+      "recipe": "generic/book.v1",
+      "url": "https://books.google.com/books/about/The_Great_Gatsby.html?id=iXn5U2IzVH0C",
+      "fixture": "fixtures/generic/book.v1/googlebooks-gatsby"
+    },
+    {
+      "recipe": "generic/business.v1",
+      "url": "https://guide.michelin.com/us/en/california/san-francisco/restaurant/zuni-cafe",
+      "fixture": "fixtures/generic/business.v1/michelin-zuni"
+    },
+    {
+      "recipe": "generic/event.v1",
+      "url": "https://www.eventbrite.com/e/the-music-of-ennio-morricone-a-candlelit-piano-strings-experience-tickets-1992045689281",
+      "fixture": "fixtures/generic/event.v1/eventbrite-candlelight"
+    },
+    {
+      "recipe": "generic/faq.v1",
+      "url": "https://www.bankrate.com/mortgages/mortgage-rates/",
+      "fixture": "fixtures/generic/faq.v1/bankrate-mortgage"
+    },
+    {
+      "recipe": "generic/howto.v1",
+      "url": "https://www.wikihow.com/Boil-Eggs",
+      "fixture": "fixtures/generic/howto.v1/wikihow-egg"
+    },
+    {
+      "recipe": "generic/job.v1",
+      "url": "https://jobs.lever.co/palantir/ac978161-6f46-4f6b-ad9e-a258e642751c",
+      "fixture": "fixtures/generic/job.v1/lever-admin"
+    },
+    {
+      "recipe": "generic/recipe.v1",
+      "url": "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
+      "fixture": "fixtures/generic/recipe.v1/allrecipes-cookies"
+    },
+    {
+      "recipe": "generic/title.v1",
+      "url": "https://www.imdb.com/title/tt0903747/",
+      "fixture": "fixtures/generic/title.v1/imdb-breakingbad"
+    },
+    {
+      "recipe": "github.com/trending",
+      "url": "https://github.com/trending",
+      "fixture": "fixtures/github.com/trending/all"
+    },
+    {
+      "recipe": "goodreads.com/book",
+      "url": "https://www.goodreads.com/book/show/4671.The_Great_Gatsby",
+      "fixture": "fixtures/goodreads.com/book/gatsby"
+    },
+    {
+      "recipe": "google.com/search",
+      "url": "https://www.google.com/search?q=best+espresso+machine&hl=en",
+      "fixture": "fixtures/google.com/search/best-espresso-machine"
+    },
+    {
+      "recipe": "lobste.rs/front",
+      "url": "https://lobste.rs/",
+      "fixture": "fixtures/lobste.rs/front/front"
+    },
+    {
+      "recipe": "medium.com/article",
+      "url": "https://medium.com/rustaceans/corewarz-core-war-learns-to-call-subroutines-67bd18f45c62",
+      "fixture": "fixtures/medium.com/article/corewarz"
+    },
+    {
+      "recipe": "mp.weixin.qq.com/article",
+      "url": "https://mp.weixin.qq.com/s?__biz=MjM5Njc3NjM4MA==&mid=2651142935&idx=1&sn=9d4f538b587789a98fb94393921b35b3",
+      "fixture": "fixtures/mp.weixin.qq.com/article/a1",
+      "note": "WeChat shows a verification page to a fresh desktop profile"
+    },
+    {
+      "recipe": "news.ycombinator.com/front",
+      "url": "https://news.ycombinator.com/",
+      "fixture": "fixtures/news.ycombinator.com/front/front-page"
+    },
+    {
+      "recipe": "news.ycombinator.com/item",
+      "url": "https://news.ycombinator.com/item?id=50071017",
+      "fixture": "fixtures/news.ycombinator.com/item/item-50071017"
+    },
+    {
+      "recipe": "npr.org/article",
+      "url": "https://www.npr.org/2026/10/10/nx-s1-5994366/for-reporters-covering-ai-keeping-up-with-story-is-both-tough-and-exciting",
+      "fixture": "fixtures/npr.org/article/story-a"
+    },
+    {
+      "recipe": "quora.com/question",
+      "url": "https://www.quora.com/What-is-the-meaning-of-life",
+      "fixture": "fixtures/quora.com/question/life"
+    },
+    {
+      "recipe": "quote.eastmoney.com/stock",
+      "url": "https://quote.eastmoney.com/sh600519.html",
+      "fixture": "fixtures/quote.eastmoney.com/stock/maotai"
+    },
+    {
+      "recipe": "reddit.com/community",
+      "url": "https://www.reddit.com/r/programming/",
+      "fixture": "fixtures/reddit.com/community/programming-sub"
+    },
+    {
+      "recipe": "reddit.com/thread",
+      "url": "https://www.reddit.com/r/rust/comments/1woatic/the_allocator_api_feature_has_been_stabilized_on/",
+      "fixture": "fixtures/reddit.com/thread/allocator-api"
+    },
+    {
+      "recipe": "ruanyifeng.com/blog",
+      "url": "http://www.ruanyifeng.com/blog/2026/09/weekly-issue-413.html",
+      "fixture": "fixtures/ruanyifeng.com/blog/weekly-413"
+    },
+    {
+      "recipe": "search.yahoo.com/search",
+      "url": "https://search.yahoo.com/search?p=best+espresso+machine",
+      "fixture": "fixtures/search.yahoo.com/search/espresso"
+    },
+    {
+      "recipe": "sspai.com/post",
+      "url": "https://sspai.com/post/116033",
+      "fixture": "fixtures/sspai.com/post/post-a"
+    },
+    {
+      "recipe": "stackoverflow.com/question",
+      "url": "https://stackoverflow.com/questions/11227809/why-is-conditional-processing-of-a-sorted-array-faster-than-of-an-unsorted-array",
+      "fixture": "fixtures/stackoverflow.com/question/branch-prediction"
+    },
+    {
+      "recipe": "target.com/product",
+      "url": "https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349",
+      "fixture": "fixtures/target.com/product/cuisinart-summary-rating"
+    },
+    {
+      "recipe": "target.com/search",
+      "url": "https://www.target.com/s?searchTerm=coffee+maker",
+      "fixture": "fixtures/target.com/search/coffee",
+      "note": "Target's search API does not answer a fresh profile"
+    },
+    {
+      "recipe": "theguardian.com/article",
+      "url": "https://www.theguardian.com/technology/2026/oct/12/cyber-attack-like-openai-medicare-breach-seems-likely-in-uk-says-minister",
+      "fixture": "fixtures/theguardian.com/article/technology"
+    },
+    {
+      "recipe": "threads.com/post",
+      "url": "https://www.threads.com/@zuck/post/DeZtp-TkQHh",
+      "fixture": "fixtures/threads.com/post/t1"
+    },
+    {
+      "recipe": "tiktok.com/video",
+      "url": "https://www.tiktok.com/@nasa/video/7695090484124929293",
+      "fixture": "fixtures/tiktok.com/video/n1"
+    },
+    {
+      "recipe": "walmart.com/product",
+      "url": "https://www.walmart.com/ip/Wireless-Earbuds-Bluetooth-Headphones-Earphones-with-Wireless-Charging-Case-for-Android-iOS-for-TV-Smart-Phone-Computer-Laptop/20175403739",
+      "fixture": "fixtures/walmart.com/product/earbuds"
+    },
+    {
+      "recipe": "walmart.com/search",
+      "url": "https://www.walmart.com/search?q=air+fryer",
+      "fixture": "fixtures/walmart.com/search/airfryer"
+    },
+    {
+      "recipe": "wikipedia.org/article",
+      "url": "https://en.wikipedia.org/wiki/Web_scraping",
+      "fixture": "fixtures/wikipedia.org/article/en-web-scraping"
+    },
+    {
+      "recipe": "x.com/profile",
+      "url": "https://x.com/Tesla",
+      "fixture": "fixtures/x.com/profile/tesla",
+      "note": "needs a logged-in X session"
+    },
+    {
+      "recipe": "x.com/status",
+      "url": "https://x.com/Tesla/status/2110165104713183485",
+      "fixture": "fixtures/x.com/status/tesla-post",
+      "note": "needs a logged-in X session"
+    },
+    {
+      "recipe": "xueqiu.com/stock",
+      "url": "https://www.xueqiu.com/S/SH600519",
+      "fixture": "fixtures/xueqiu.com/stock/maotai"
+    },
+    {
+      "recipe": "youtube.com/search",
+      "url": "https://www.youtube.com/results?search_query=lofi+hip+hop",
+      "fixture": "fixtures/youtube.com/search/lofi-2026-10"
+    },
+    {
+      "recipe": "youtube.com/watch",
+      "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "fixture": "fixtures/youtube.com/watch/big-buck-bunny"
+    },
+    {
+      "recipe": "zhihu.com/question",
+      "url": "https://www.zhihu.com/question/1892955223472960751",
+      "fixture": "fixtures/zhihu.com/question/q-1892955223472960751"
+    }
+  ]
+}

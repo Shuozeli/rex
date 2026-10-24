@@ -1,0 +1,267 @@
+{
+  "recipe": {
+    "id": "youtube.com/search",
+    "version": 2,
+    "sha256": "6e3399d997a9dddfed9e9995b799bfd9c9dd6a3aeb843a06f12408a278e230f4"
+  },
+  "schema": "rex.schema.media.v1.VideoList",
+  "url": "https://www.youtube.com/results?search_query=lofi+hip+hop",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T05:22:30Z",
+  "extractTime": "2026-10-15T05:22:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].channel_name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].channel_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].thumbnail",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.VideoList",
+    "query": "lofi hip hop",
+    "items": [
+      {
+        "id": "rFZHOHl-L8A",
+        "title": "xxxx xxx xxx xxxxx 📚 xxxxx to xxxxx/xxxxx to",
+        "url": "https://www.youtube.com/watch?v=rFZHOHl-L8A",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "views": "15000000",
+        "publishedAt": "2026-09-15T05:22:30Z",
+        "thumbnail": "https://i.ytimg.com/vi/rFZHOHl-L8A/hq720.jpg",
+        "rank": 1
+      },
+      {
+        "id": "n61ULEU7CO0",
+        "title": "Xxxx of xxxx xxx xxx 2021 ✨ [xxxxx to xxxxx/xxxxx to]",
+        "url": "https://www.youtube.com/watch?v=n61ULEU7CO0&list=RDn61ULEU7CO0&start_radio=1",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "durationSeconds": 22258,
+        "views": "58000000",
+        "publishedAt": "2022-10-16T05:22:30Z",
+        "rank": 2
+      },
+      {
+        "id": "7NOSDKb0HlU",
+        "title": "xxxx xxx xxx xxxxx - xxxxx to xxxxx/xxxxx to 🐾",
+        "url": "https://www.youtube.com/watch?v=7NOSDKb0HlU",
+        "channelName": "Xxxxxxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@ChillhopMusic",
+        "views": "39000000",
+        "publishedAt": "2020-10-16T05:22:30Z",
+        "rank": 3
+      },
+      {
+        "id": "zW5wpJY1rgQ",
+        "title": "Xxxxx Xxxxx ~ xxxx xxx xxx xxx ~ xxxxx to xxxxx / xxxxx to",
+        "url": "https://www.youtube.com/watch?v=zW5wpJY1rgQ&list=RDzW5wpJY1rgQ&start_radio=1",
+        "channelName": "Xxxx Xxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@mimilofichill",
+        "durationSeconds": 88623,
+        "views": "6200000",
+        "publishedAt": "2022-10-16T05:22:30Z",
+        "rank": 4
+      },
+      {
+        "id": "ByZGu229-yA",
+        "title": "xxxx xxx xxx xxxxx- 24/7 xxxxx to xxxxx, xxxxx xxx xxxx to ✨️",
+        "url": "https://www.youtube.com/watch?v=ByZGu229-yA",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/@afrolofi",
+        "views": "181000",
+        "publishedAt": "2025-10-15T05:22:30Z",
+        "rank": 5
+      },
+      {
+        "id": "4xDzrJKXOOY",
+        "title": "xxxxxxxxx xxxxx 🌌 xxxxx to xxxxx/xxxx to",
+        "url": "https://www.youtube.com/watch?v=4xDzrJKXOOY",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "views": "70000000",
+        "publishedAt": "2023-10-16T05:22:30Z",
+        "rank": 6
+      },
+      {
+        "id": "8iU8LPEa4o0",
+        "title": "Xxxxx Xxxxx Xxxxx 4 • xxxx & xxxx xxxxxx Xxx [2017]",
+        "url": "https://www.youtube.com/watch?v=8iU8LPEa4o0&list=RD8iU8LPEa4o0&start_radio=1",
+        "channelName": "Xxxxxxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@ChillhopMusic",
+        "durationSeconds": 7275,
+        "views": "34000000",
+        "publishedAt": "2018-10-17T05:22:30Z",
+        "rank": 7
+      },
+      {
+        "id": "_jH2oTNRe7g",
+        "title": "xxxx xxxxxx xxxxx 🍂 xxxx xxxxx to xxxxx / xxxxx to",
+        "url": "https://www.youtube.com/watch?v=_jH2oTNRe7g&list=RD_jH2oTNRe7g&start_radio=1",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "durationSeconds": 3882,
+        "views": "883000",
+        "publishedAt": "2026-10-06T05:22:30Z",
+        "rank": 8
+      },
+      {
+        "id": "QyGbnE-RHKA",
+        "title": "Xxxxxxxx Xxxxx Xxxx 🪴 [xxxx xxxxx / xxxxxxxx xxxxxxxx]",
+        "url": "https://www.youtube.com/watch?v=QyGbnE-RHKA&list=RDQyGbnE-RHKA&start_radio=1",
+        "channelName": "Xxxxxxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@ChillhopMusic",
+        "durationSeconds": 7302,
+        "views": "383000",
+        "publishedAt": "2026-05-18T05:22:30Z",
+        "rank": 9
+      },
+      {
+        "id": "CLeZyIID9Bo",
+        "title": "Xxxxx Xxxx Xxx [xxxxx xx-xx xxx xxx xxxxx]",
+        "url": "https://www.youtube.com/watch?v=CLeZyIID9Bo&list=RDCLeZyIID9Bo&start_radio=1",
+        "channelName": "Xxxxxx",
+        "channelUrl": "https://www.youtube.com/@settlefm",
+        "durationSeconds": 6292,
+        "views": "34000000",
+        "publishedAt": "2022-10-16T05:22:30Z",
+        "rank": 10
+      },
+      {
+        "id": "lTRiuFIWV54",
+        "title": "1 A.M Xxxxx Xxxxxxx 📚 [xxxx xxx xxx]",
+        "url": "https://www.youtube.com/watch?v=lTRiuFIWV54&list=RDlTRiuFIWV54&start_radio=1",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "durationSeconds": 3674,
+        "views": "137000000",
+        "publishedAt": "2020-10-16T05:22:30Z",
+        "rank": 11
+      },
+      {
+        "id": "mG1aeD7odqk",
+        "title": "xxxxxxxx xxxx xxxx xxx-xxx xxx xxxxx like xxxx.",
+        "url": "https://www.youtube.com/watch?v=mG1aeD7odqk&list=RDmG1aeD7odqk&start_radio=1",
+        "channelName": "xxx xxxxxxx xxx 2",
+        "channelUrl": "https://www.youtube.com/@thebootlegboy2",
+        "durationSeconds": 3621,
+        "views": "349000",
+        "publishedAt": "2025-11-19T05:22:30Z",
+        "rank": 12
+      },
+      {
+        "id": "CFGLoQIhmow",
+        "title": "xxxx xxx xxx xxx 📚 xxxxx to xxxxx/xxxxx to (Xxxx 1)",
+        "url": "https://www.youtube.com/watch?v=CFGLoQIhmow&list=RDCFGLoQIhmow&start_radio=1",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "durationSeconds": 10241,
+        "views": "10000000",
+        "publishedAt": "2025-10-15T05:22:30Z",
+        "rank": 13
+      },
+      {
+        "id": "zSoaGqSncH8",
+        "title": "Xxxxxxxx Xxxxx Xxxx 🌅 Xxxx Xxx Xxx xxx a Xxxxx Day",
+        "url": "https://www.youtube.com/watch?v=zSoaGqSncH8&list=RDzSoaGqSncH8&start_radio=1",
+        "channelName": "Xxxx & Xxxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@lofiandchillbeats",
+        "durationSeconds": 16210,
+        "views": "300000",
+        "publishedAt": "2023-10-16T05:22:30Z",
+        "rank": 14
+      },
+      {
+        "id": "5VEsjkRD1Fo",
+        "title": "Xxxxx Xxx Xxxxx - Xxxx xxx xxx xxx ~ Xxxxxx Xxxxxx / Xxxxxxxx Xxxxx / Xxxxxxx Xxxxx",
+        "url": "https://www.youtube.com/watch?v=5VEsjkRD1Fo&list=RD5VEsjkRD1Fo&start_radio=1",
+        "channelName": "Xxxxxx High",
+        "channelUrl": "https://www.youtube.com/@chillimusic4402",
+        "views": "2000000",
+        "rank": 15
+      },
+      {
+        "id": "8b3fqIBrNW0",
+        "title": "xxxx xxx xxx xxx 📚 xxxxx to xxxxx/xxxxx to (Xxxx 2)",
+        "url": "https://www.youtube.com/watch?v=8b3fqIBrNW0&list=RD8b3fqIBrNW0&start_radio=1",
+        "channelName": "Xxxx Xxxx",
+        "channelUrl": "https://www.youtube.com/channel/UCSJ4gkVC6NrvII8umztf0Ow",
+        "views": "1800000",
+        "publishedAt": "2025-10-15T05:22:30Z",
+        "rank": 16
+      },
+      {
+        "id": "Q89Dzox4jAE",
+        "title": "Xxxx Xxxx Xxxxx 📂 Xxxx Xxxxx Xxxxx/Xxxx Xxxxxxxxxxxxx [xxxxx xx-xx xxx xxx xxxxx]",
+        "url": "https://www.youtube.com/watch?v=Q89Dzox4jAE&list=RDQ89Dzox4jAE&start_radio=1",
+        "channelName": "X X X X X X X X X X X X",
+        "channelUrl": "https://www.youtube.com/channel/UCsxTsDvh-xQnShEtN1M64zQ",
+        "views": "5000000",
+        "rank": 17
+      },
+      {
+        "id": "m8WjnuhoeDg",
+        "title": "xxxxxxxx xxxx xxxx xxx-xxx xxx xxxxxx like xxxx.",
+        "url": "https://www.youtube.com/watch?v=m8WjnuhoeDg&list=RDm8WjnuhoeDg&start_radio=1",
+        "channelName": "xxx xxxxxxx xxx 2",
+        "channelUrl": "https://www.youtube.com/@thebootlegboy2",
+        "views": "596000",
+        "publishedAt": "2025-10-15T05:22:30Z",
+        "rank": 18
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "youtube.com/search",
+      "version": 2,
+      "sha256": "6e3399d997a9dddfed9e9995b799bfd9c9dd6a3aeb843a06f12408a278e230f4"
+    }
+  ]
+}

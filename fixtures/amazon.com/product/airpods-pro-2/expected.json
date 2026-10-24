@@ -1,0 +1,242 @@
+{
+  "recipe": {
+    "id": "amazon.com/product",
+    "version": 1,
+    "sha256": "aa6e0bbc42f05770e0a41eeee8070adb0c0227782caa7184a08b1bbfeb895c50"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.amazon.com/dp/B0D1XD1ZV3",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:33:10Z",
+  "extractTime": "2026-10-14T02:33:10Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "seller",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "features",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "specs",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "specs[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "specs[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/product@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "amazon.com/product@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "B0D1XD1ZV3",
+    "title": "Xxxxx XxxXxxx Xxx 2 Xxxxxxxx Xxxxxxx, Xxxxxx Xxxxx Xxxxxxxxxxxx, Xxxxxxx Xxx Xxxxxxx, Xxxxxxxxx Xxxxxxxxxx, Xxxxxxxxxxxx, Xxxxxxxxxxxx Xxxxxxx Xxxxx, Xxxx-Xxxxxxxx Xxxxx, X2 Xxxx, XXX-X Xxxxxxxx",
+    "brand": "Xxxxx",
+    "price": "187.77",
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": "46943",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "seller": "6xxx",
+    "images": [
+      "https://m.media-amazon.com/images/I/2110TEYPKnL.jpg",
+      "https://m.media-amazon.com/images/I/317cK2pqGgL.jpg",
+      "https://m.media-amazon.com/images/I/51L718az4kL.jpg",
+      "https://m.media-amazon.com/images/I/21h1wxTIGwL.jpg",
+      "https://m.media-amazon.com/images/I/41jR-PnrqqL.jpg",
+      "https://m.media-amazon.com/images/I/31bRcDw4HnL.jpg"
+    ],
+    "features": [
+      "XXXXXXXXXX XXXXXXX — XxxXxxx Xxx 2 xxxxxx xxx xxxxx’x xxxxx xxx-in-xxx xxxxxxx xxxxxx xxxxxxxxxx: a xxxxxxxxxxxxxx xxxxxxxxx Xxxxxxx Xxxx,* xxxxxxxx-xxxxx xxx xxxxxx Xxxxxxx Xxxxxxxxxx.*",
+      "XXXXXXXXXXX XXXXX XXXXXXX — Xxxxxx Xxxxx Xxxxxxxxxxxx xxxxxxx xx xx 2x xxxx xxxxxxxxxx xxxxx.* Xxxxxxxxxxxx xxxx xxxx xxx xxxx xxx xxxxx xxxxxx xxx, xxx Xxxxxxxx Xxxxx xxxxxxxxxx xxxxxx Xxxxxx Xxxxx Xxxxxxxxxxxx xxx Xxxxxxxxxxxx xxxx xxx xxx xxxx xxxxxxxxx xxxxxxxxxx in xxx xxxxxxxxxxx.* Xxx xxxx xxx’xx xxxxxxxx xxxx xxxxxxx xxxxxx, Xxxxxxxxxxxx Xxxxxxxxx xxxxxxxxxxxxx xxxxxx xxx xxxxxx of xxxx’x xxxxxxx.*",
+      "XXXXXXXX XXXXX XXX XXXX XXXXXXX — Xxx Xxxxx-xxxxxxxx X2 xxxx xxxxx xx xxxxxx xxxxxx xxxxxxxxx xxxxx. Xxx xxx-xxxxxxxxxx, xxxxxx-xxxxx xxxxxx xxxxxxxx xxxxx, xxxxx xxxx xxxxx xxx xxxx, xxxx xxxx in xxxxxxxx xxxxxxxxxx. Xxxxx Xxxxxxxxx xxxxxxxx xxx xxxxxxx of xxxxx xxxxx in xxxx xxxxxxxxxx.*",
+      "XXXXXXXXXXXX XXX — Xxxxxxxx xxxx xxxxx of xxxxxxxx xxxx (XX, X, M, X) xx xxx a xxxx xxxxx of xxx xxxxxx xxx xxxxxxx xxx-day xxxxxxx. Xxx xxxx xxxxxx xx xxxxxxxx xxxx xx xxxx xxxx out xxxxx xxx xxxxxx XxxXxxx Xxx 2 in xxxxx.",
+      "XXXX, XXXXX, XXX XXXXX XXXXXXXXX — Xxxx XxxXxxx Xxx xxx xxx XxxXxxx Xxxxxxxx Xxxx xxx XX54 xxxx, xxxxx, xxx xxxxx xxxxxxxxx, xx xxx xxx xxxxxx xxxxxxxxxxx in xxxx xxxxxxxxxx.*",
+      "XXXXXXXXXXXX XXXXXXX XXXXX — Xxxx xxxxx xxxx xxxxx xxxx xxxxxx xxx xxxxx xxxxx xxxx xxxxxxx xxxx xxxxxxxx, XxxXxxx Xxx 2 xxxxxxx xx xxxxxxxxx xxxxxxxxx xxxxxxxxxx xxxx xxxxxx xxxxx xxx xxxxxx xxx.* Xxx xxx xxxx xxxxxx xx xxxxxx xxxxx, xxxxx, xxx xxxxxx in Xxxxx Xxxxx.",
+      "A XXXXXX XXXXX OF XXXXXXX — Xxxxxx xxxxx, xxxxx, xxx xxxx xxx xxxx xx xxxxxx xxxxxxxx xxxxxxxxx xxxxx Xxxxx xxxxxxx. Xxx xxxx Xxxx Xxxxxxxxxxxx, xxxxxx xxx xxxx xxxx xxx xx xxxxx xxxx xxxx xx xxxx Xxxx xxxx xx xxx’x like xx xxxx a xxxxxxx, xxxxxx a xxxx, xx xxxxxx a xxxxxxxxxxxx.*",
+      "XXXX XXXXXXX XXXX — Xxx xx xx 6 hours of xxxxxxxxx xxxx xxxx Xxxxxx Xxxxx Xxxxxxxxxxxx xxxxxxx. Xxx xxx xx xx 30 hours of xxxxx xxxxxxxxx xxxx xxxx Xxxxxx Xxxxx Xxxxxxxxxxxx xxxxxxx, xxxxx xxx xxxx.*",
+      "A XXXX XXXXXXX XXXX— Xxxx xxxxx of XxxXxxx Xxx 2 xxxx Xxxxxxxxx Xxxxxxx xxx a xxxxx-in xxxxxxx.* A xxxxxxx xxxx xxxxx xxxx xxxx XxxXxxx Xxx 2 xxxxx. Xxxxxx xxxx xx Xxxxx Xxxxx xx XxxXxxx Xxxxxxx, XXX-X Xxxxxx Xxxxx, xx Xx-xxxxxxxxx xxxxxxx.",
+      "XXXXX XXXXXXXXXXX — Xxxx xx a xxxxxxx of xxx xxxx xxxxxxx xxxxxxxx. Xxx “Xxxxxxxxxx xxxxxxxxxxx” xx xxxxx xxxx."
+    ],
+    "specs": [
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxx"
+      },
+      {
+        "name": "Xxx Xxxxxxxxx",
+        "value": "In Xxx"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "In Xxx"
+      },
+      {
+        "name": "Xxxxxxxxx",
+        "value": "24 xxx"
+      },
+      {
+        "name": "Xxxxx Xxxxxxxxxx",
+        "value": "Xxxxxx xxxx-xxxxxxxxx Xxxxx xxxxxxXxxxxx xxxx xxxxxxx xxxxx xxxxxxxxxXxxxxxxx XxxxxXxxxxx Xxxxx XxxxxxxxxxxxXxxxxxxxxxxx xxxxXxxxxxxxxxxx XxxxxxxxxXxxxxxxxxxxx XxxxxxXxxx Xxxxx XxxxxxxxxXxxx xxxxxx xxx xxxxxxxx xxxxxxxxxxxxXxxxxxxxxxxx Xxxxxxx Xxxxx xxxx xxxxxxx xxxx xxxxxxxxXxxxxxxx XX"
+      },
+      {
+        "name": "Xxxx xxx Xxxxxx",
+        "value": "XxxXxxx Xxx (Xxxx)Xxxxxx: 1.22 xxxxxx (30.9 xx)Xxxxx: 0.86 xxxx (21.8 xx)Xxxxx: 0.94 xxxx (24.0 xx)Xxxxxx: 0.19 xxxxx (5.3 xxxxx)XxxXxxx Xxxxxxxx Xxxx (XXX‑X) xxxx xxxxxxx xxx xxxxxxx xxxxXxxxxx: 1.78 xxxxxx (45.2 xx)Xxxxx: 2.39 xxxxxx (60.6 xx)Xxxxx: 0.85 xxxx (21.7 xx)Xxxxxx: 1.79 xxxxxx (50.8 xxxxx)"
+      },
+      {
+        "name": "Xxxxxxxx Xxxx",
+        "value": "Xxxxx xxxx XxxXxxx xxxxxxx, Xxxxx Xxxxx xxxxxxx, Xx-xxxxxxxxx xxxxxxxx, xx XXX‑X xxxxxxxxx"
+      },
+      {
+        "name": "Xxxxxxx",
+        "value": "XxxXxxx XxxXx xx 6 hours of xxxxxxxxx xxxx xxxx a xxxxxx xxxxxx (xx xx 5.5 hours xxxx Xxxxxxx Xxxxx xxx Xxxx Xxxxxxxx xxxxxxx)Xx xx 4.5 hours of xxxx xxxx xxxx a xxxxxx xxxxxxXx xx 4 hours of Xxxxxxxx Xxxxx xxxxxxxxx xxxx xx a xxxxxx xxxxxx xxxx Xxxxx Xxxxxx XxxXxxXxxx Xxx xxxx XxxXxxx Xxxxxxxx Xxxx (XXX‑X)Xx xx 30 hours of xxxxxxxxx xxxxXx xx 24 hours of xxxx xxxx5 minutes in xxx xxxx xxxxxxxx xxxxxx 1 hour of xxxxxxxxx xxxx xx xxxxxx 1 hour of xxxx xxxx"
+      },
+      {
+        "name": "Xxxxxxxxxxxxx",
+        "value": "xXxxxx XxxxxxxXxxxx 6x xx xxxxxxXxxxx XX (1st xxxxxxxxxx) xx xxxxxxXxx XxxxxxxXxx xxxxx (7th xxxxxxxxxx)Xxx XxxxxxXxxXxxx (Xxxxxx, 12-xxxx, Xxxxx 2015–2017)XxxXxxx Xxx (Xxx 2012) xx xxxxxXxxXxxx Xxx (Xxx 2012) xx xxxxxxXxx (Xxxx 2012) xx xxxxxxXxx Xxx (2017)Xxx xxxx (Xxxx 2012) xx xxxxxXxx Xxxxxx (2022) xx xxxxxXxx Xxx (Xxxx 2013) xx xxxxxxXxx XxxxxxxXxx Xxx 9.7-xxxx xx xxxxx xXxx (5th xxxxxxxxxx) xx xxxxxxXxx Xxx 2 xx xxxxxxXxx xxxx 4 xx xxxxxXxxxx Xxxxx Xxxxxx Xxx Xxxxx Xxxxx XxxxxxXxxxx XX XxxxxxXxxxx XX 4XXxxxx XX XX"
+      },
+      {
+        "name": "Xxxxxxxx",
+        "value": "Xxxxx xxxx xx xxxx xx xxxxx xxxxxXxxxx xxxx xx xxxxxx a xxxx xx xxxx xx xxxxxxXxxxx xxxxx xx xxx a xxxxXxxxx xxxxx xx xxxx xxxxxxxXxxxx xxxxx xxxxx xx xxxx xxxxXxxxx xxx xxxx xx xxxxxx xxxxxxx xxxxxxxxx xxxxxXxxxx xx xx xxxx xx xxxxxx xxxxxxXxx just “Xxxx” xx “Xxx Xxxx” xx xx xxxxxx like xxxx a xxxx, xxxx a xxxx, xx xxx xxxxxxxxxx"
+      },
+      {
+        "name": "Xxxxxxx",
+        "value": "Xxxx xxxxxxxxxxx xxxxxxxxxxxXxxxxx-xxxxxx xxxxxxxxxxXxxx-xxxxxx xxxxxxXxxxxx-xxxxxxxxx xxxxxxxxxxxxxXxxxxx-xxxxxxxxx xxxxxxxxxxxxxXxxxx xxxxxxx"
+      },
+      {
+        "name": "Xxxx",
+        "value": "Xxxxx X2 xxxxxxxxx xxxxXxxxx X1 xxxx in XxxXxxx Xxxxxxxx Xxxx (XXX‑X)"
+      },
+      {
+        "name": "Xxxx Xxxxx xxx Xxxxx Xxxxxxxxx",
+        "value": "Xxxx, xxxxx, xxx xxxxx xxxxxxxxx (XX54): XxxXxxx Xxx xxx xxxxxxxx xxxx"
+      },
+      {
+        "name": "Xxxxxxxxxxxx",
+        "value": "Xxxxxxxxx 5.3 xxxxxxxx xxxxxxxxxx"
+      },
+      {
+        "name": "In xxx Xxx",
+        "value": "XxxXxxx XxxXxxXxxx Xxxxxxxx Xxxx (XXX‑X) xxxx xxxxxxx xxx xxxxxxx xxxxXxxxxxxx xxx xxxx (xxxx xxxxx: XX, X, M, X)XXX‑X Xxxxxx Xxxxx"
+      },
+      {
+        "name": "Xxxxxxx Xxxxxxxxxx",
+        "value": "0.94 x 0.86 x 1.22 xxxxxx"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "1.6 xxxxxx"
+      },
+      {
+        "name": "Xxxxxxxxxxxx",
+        "value": "Xxxxx"
+      },
+      {
+        "name": "XXXX",
+        "value": "X0X1XX1XX3"
+      },
+      {
+        "name": "Xxxx xxxxx xxxxxx",
+        "value": "XXXX3XX/A"
+      },
+      {
+        "name": "Xxxxxxxxx",
+        "value": "3 Xxxxxxx Xxx xxxxxxxxx xxxxxxxx. (xxxxxxxx)"
+      },
+      {
+        "name": "Xxxx Xxxxx Available",
+        "value": "April 23, 2024"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "1.6 xxxxxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "1 Xxxxx"
+      },
+      {
+        "name": "Xxxxxx Of Xxxxx",
+        "value": "1"
+      }
+    ],
+    "url": "https://www.amazon.com/dp/B0D1XD1ZV3"
+  },
+  "chain": [
+    {
+      "id": "amazon.com/product",
+      "version": 1,
+      "sha256": "aa6e0bbc42f05770e0a41eeee8070adb0c0227782caa7184a08b1bbfeb895c50"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

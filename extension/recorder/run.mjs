@@ -1,0 +1,247 @@
+// Records the extension on real pages in the recorder desktop (docker/), as a tutorial video and an e2e test.
+//
+// Each scene is the flow a user goes through, with real input: type the URL into the address bar, scroll
+// the page, move the pointer to the rex icon and click it, wait for the popup's result, scroll the popup.
+// CDP only observes (load state, the popup's result, the extraction behind it). ffmpeg records the whole
+// screen at 50 fps (a frame every 20 ms) per scene; captions are burned in from the logged events, and the
+// scenes are joined between an intro and a results card.
+//
+// Run inside the container:
+//   docker compose -f extension/recorder/docker/compose.yaml exec desktop \
+//     node /repo/extension/recorder/run.mjs /repo/extension/recorder/scenarios/tutorial.json --out /out/tutorial
+// Options: --only a,b (scene names), --no-video (skip captions and joining; checks only).
+// Exit code 1 when a scene does not meet its `expect`.
+import { execFileSync } from "node:child_process";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { attachWorker, connect, evaluate, sleep } from "./lib/cdp.mjs";
+import * as desk from "./lib/desktop.mjs";
+import { assemble, cardAss, sceneAss } from "./lib/video.mjs";
+
+const args = process.argv.slice(2);
+const opt = (n, d) => (args.indexOf(n) < 0 ? d : args[args.indexOf(n) + 1]);
+const scenarioFile = args.find((a) => a.endsWith(".json"));
+if (!scenarioFile) throw new Error("usage: run.mjs <scenario.json> [--out dir] [--only a,b] [--no-video]");
+const scenario = JSON.parse(readFileSync(scenarioFile, "utf8"));
+const out = opt("--out", "/out/recording");
+const only = opt("--only", "").split(",").filter(Boolean);
+const video = !args.includes("--no-video");
+const CDP = process.env.REX_CDP ?? "http://127.0.0.1:9222";
+const EXT = readFileSync("/tmp/rex-ext-id", "utf8").trim();
+const ICON = scenario.icon ?? "/ext/icons/icon-16.png";
+mkdirSync(out, { recursive: true });
+
+const REPO = process.env.REX_REPO ?? "/repo";
+// A fixture scene (hermetic mode) takes its URL from meta.json and its expectation from expected.json: the
+// exact recipe and version, the status and the number of top-level fields.
+function resolveScene(s) {
+  if (!s.fixture) return s;
+  const dir = join(REPO, s.fixture);
+  const meta = JSON.parse(readFileSync(join(dir, "meta.json"), "utf8"));
+  const exp = JSON.parse(readFileSync(join(dir, "expected.json"), "utf8"));
+  const fields = Object.keys(exp.record ?? {}).filter((k) => k !== "@type").length;
+  return {
+    name: s.name ?? s.fixture.split("/").slice(-3).join("-"),
+    label: s.label ?? s.fixture.replace(/^fixtures\//, ""),
+    url: meta.url,
+    expect: { recipe: `${exp.recipe.id}@${exp.recipe.version}`, status: exp.status.replace("EXTRACTION_STATUS_", ""), fields },
+    ...s,
+  };
+}
+const scenes = scenario.scenes.map(resolveScene).filter((s) => only.length === 0 || only.includes(s.name));
+
+async function waitFor(fn, ms, every = 100) {
+  const started = Date.now();
+  while (Date.now() - started < ms) {
+    const v = await fn().catch(() => null);
+    if (v) return v;
+    await sleep(every);
+  }
+  return null;
+}
+
+/** Restarts Chrome (the container's loop starts it again) and waits for CDP and the extension worker. */
+async function freshChrome() {
+  // SIGTERM first: Chrome shuts down cleanly and does not offer to restore pages next time.
+  try {
+    execFileSync("pkill", ["-TERM", "-f", "/opt/google/chrome/chrome"]);
+  } catch {}
+  await waitFor(async () => {
+    try {
+      execFileSync("pgrep", ["-f", "/opt/google/chrome/chrome --user-data-dir"]);
+      return false;
+    } catch {
+      return true;
+    }
+  }, 10000, 200);
+  await sleep(1500);
+  const up = await waitFor(async () => (await fetch(`${CDP}/json/version`)).ok, 30000, 300);
+  if (!up) throw new Error("Chrome did not come back");
+  await sleep(1500);
+}
+
+const isPage = (t) => t.type === "page" && !t.url.startsWith("chrome-extension://") && !t.url.startsWith("devtools://");
+const isPopup = (t) => t.type === "page" && t.url.startsWith(`chrome-extension://${EXT}/popup.html`);
+
+function check(expect, r) {
+  const problems = [];
+  if (!expect) return problems;
+  if (expect.recipe && !(r.matched ?? "").startsWith(expect.recipe)) problems.push(`recipe ${r.matched} (want ${expect.recipe})`);
+  if (r.mismatch) problems.push(r.mismatch);
+  const status = expect.status ?? "OK";
+  if (r.status !== status) problems.push(`status ${r.status} (want ${status})`);
+  if (expect.minFields && r.fields < expect.minFields) problems.push(`${r.fields} fields (want >= ${expect.minFields})`);
+  if (expect.fields !== undefined && r.fields !== expect.fields) problems.push(`${r.fields} fields (want ${expect.fields})`);
+  return problems;
+}
+
+async function runScene(scene, index) {
+  const r = { name: scene.name, label: scene.label, url: scene.url };
+  if (scenario.restartBetweenScenes !== false || index === 0) await freshChrome();
+  const conn = await connect(CDP);
+  const events = [];
+  let rec = null;
+  try {
+    const sw = await attachWorker(conn, EXT);
+    const worker = (expr, ms) => evaluate(conn, sw, expr, ms);
+    // The e2e build exposes rexDebug; the store build does not, and is driven through its UI only.
+    r.build = (await worker("typeof globalThis.rexDebug")) === "object" ? "e2e" : "store";
+    if (r.build === "e2e") {
+      const synced = await worker("globalThis.rexDebug.sync()", 120000);
+      r.bundle = `${synced.status.sources[0]?.id} #${synced.status.sources[0]?.sequence}`;
+    } else {
+      // A fresh install syncs by itself; wait until a bundle is stored.
+      r.bundle = await waitFor(
+        () => worker(`(async () => { const all = await chrome.storage.local.get(null); const s = Object.entries(all).find(([k, v]) => k.startsWith("rex.source.") && !k.endsWith(".error") && v?.sequence); return s ? s[0].slice(11) + " #" + s[1].sequence : null; })()`),
+        120000,
+        1000,
+      );
+      if (!r.bundle) throw new Error("the extension did not sync a bundle");
+    }
+
+    const pageTarget = (await conn.send("Target.getTargets")).targetInfos.find(isPage);
+    if (!pageTarget) throw new Error("no browser tab");
+    await conn.send("Target.activateTarget", { targetId: pageTarget.targetId });
+    const page = (await conn.send("Target.attachToTarget", { targetId: pageTarget.targetId, flatten: true })).sessionId;
+    const pageEval = (expr) => evaluate(conn, page, expr, 5000);
+
+    rec = desk.startRecording(join(out, `${scene.name}.raw.mp4`));
+    await rec.ready;
+    const ev = (kind, data = {}) => events.push({ t: Date.now() - rec.t0, kind, ...data });
+    await desk.moveTo(960, 600, 200);
+    await sleep(600);
+
+    // 1. Open the page from the address bar.
+    ev("caption", { text: `第 1 步：在地址栏输入网址，打开${scene.label}` });
+    desk.key("ctrl+l");
+    await sleep(300);
+    desk.type(scene.url);
+    await sleep(300);
+    desk.key("Return");
+    await waitFor(async () => (await pageEval("location.href")) !== "about:blank" && (await pageEval("document.readyState")) === "complete", 30000, 250);
+    await sleep(scene.settleMs ?? 2500);
+
+    // 2. Look around the page.
+    ev("caption", { text: "浏览页面：rex 只读取你打开的这一页，不会另外请求网站" });
+    await desk.moveTo(960, 620, 500);
+    await desk.wheel(8, 1600);
+    await sleep(800);
+    await desk.wheel(-8, 1200);
+    await sleep(600);
+
+    // 3. Click the rex icon on the toolbar (real pointer, real click).
+    ev("caption", { text: "第 2 步：点击工具栏上的 rex 图标" });
+    const icon = desk.locateIcon(ICON);
+    r.icon = icon;
+    if (icon.score > 25) throw new Error(`rex icon not found on the toolbar (best match ${JSON.stringify(icon)})`);
+    const before = new Set((await conn.send("Target.getTargets")).targetInfos.filter(isPopup).map((t) => t.targetId));
+    const clicked = Date.now();
+    await desk.click(icon.x, icon.y, 900);
+    ev("click", { x: icon.x, y: icon.y });
+    const popupTarget = await waitFor(async () => (await conn.send("Target.getTargets")).targetInfos.find((t) => isPopup(t) && !before.has(t.targetId)), 8000);
+    if (!popupTarget) throw new Error("the popup did not open");
+    const popup = (await conn.send("Target.attachToTarget", { targetId: popupTarget.targetId, flatten: true })).sessionId;
+    ev("caption", { text: "第 3 步：rex 用这个网站的 recipe 把页面变成结构化数据" });
+    // The result as the popup shows it: the status badge, "Recipe <id>@<version>", one .field per field.
+    const shown = await waitFor(
+      () =>
+        evaluate(
+          conn,
+          popup,
+          `(() => {
+            const msg = document.querySelector("#message:not([hidden])");
+            const fields = document.querySelectorAll("#record > .field").length;
+            if (!fields && !msg) return null;
+            const meta = document.getElementById("meta")?.innerText ?? "";
+            return { status: document.getElementById("status").textContent.trim(), recipe: (meta.match(/Recipe\\s+(\\S+@\\d+)/) ?? [])[1] ?? null,
+                     fields, message: msg?.innerText ?? null, text: document.body.innerText.slice(0, 600) };
+          })()`,
+          5000,
+        ),
+      20000,
+    );
+    r.popupMs = Date.now() - clicked;
+    r.popupText = shown?.text ?? null;
+    r.matched = shown?.recipe ?? null;
+    r.status = !shown ? "ERROR" : shown.recipe ? shown.status : "NO_MATCH";
+    r.fields = shown?.fields ?? 0;
+    if (!shown) r.error = "the popup showed no result";
+    else if (shown.message && !shown.recipe) r.message = shown.message;
+
+    // e2e build: the extraction behind the popup must agree with what the popup shows.
+    if (r.build === "e2e" && shown) {
+      const tabId = await worker(`(async () => (await chrome.tabs.query({ active: true, lastFocusedWindow: true }))[0]?.id)()`);
+      const x = await worker(`globalThis.rexDebug.extractTab(${tabId})`, 60000).catch((e) => ({ ok: false, error: String(e) }));
+      const ext = x.output?.extraction;
+      const behind = ext?.recipe ? `${ext.recipe.id}@${ext.recipe.version}` : null;
+      if (behind !== r.matched) r.mismatch = `popup shows ${r.matched}, the extraction is ${behind}`;
+    }
+    r.finalUrl = await pageEval("location.href").catch(() => null);
+    ev("caption", { text: r.matched ? `结果：recipe ${r.matched} · 状态 ${r.status} · ${r.fields} 个字段` : `结果：没有可用的 recipe（${r.status}）` });
+    await sleep(2200);
+
+    // 4. Scroll through the fields in the popup.
+    await desk.moveTo(icon.x - 200, 420, 500);
+    await desk.wheel(6, 2000);
+    await sleep(900);
+    await desk.wheel(6, 1600);
+    await sleep(1500);
+    desk.key("Escape");
+    await sleep(600);
+    ev("end");
+  } catch (e) {
+    r.status = r.status ?? "ERROR";
+    r.error = String(e.message ?? e);
+    if (rec?.t0) events.push({ t: Date.now() - rec.t0, kind: "caption", text: `出错：${r.error.slice(0, 50)}` });
+    await sleep(2000);
+    if (rec?.t0) events.push({ t: Date.now() - rec.t0, kind: "end" });
+  } finally {
+    if (rec) await rec.stop();
+    conn.close();
+  }
+  r.problems = r.error ? [r.error, ...check(scene.expect, r)] : check(scene.expect, r);
+  r.pass = r.problems.length === 0;
+  writeFileSync(join(out, `${scene.name}.events.json`), JSON.stringify(events, null, 1));
+  if (video && rec) writeFileSync(join(out, `${scene.name}.ass`), sceneAss(events));
+  return r;
+}
+
+const results = [];
+for (const [i, scene] of scenes.entries()) {
+  const r = await runScene(scene, i);
+  results.push(r);
+  console.log(`${r.pass ? "ok  " : "FAIL"} ${scene.name.padEnd(12)} ${r.matched ?? "-"} ${r.status} ${r.fields ?? 0} fields${r.popupMs ? `, popup ${r.popupMs} ms` : ""}${r.pass ? "" : ` — ${r.problems.join("; ")}`}`);
+}
+writeFileSync(join(out, "results.json"), JSON.stringify({ scenario: scenario.title, at: new Date().toISOString(), results }, null, 2));
+
+if (video) {
+  writeFileSync(join(out, "intro.ass"), cardAss([{ text: scenario.title, size: 64, bold: true }, ...(scenario.subtitle ?? []).map((s) => ({ text: s, size: 32 }))]));
+  const rows = results.map((r) => `${r.label}    ${r.matched ?? "（无匹配）"}    ${r.status}    ${r.fields ?? 0} 个字段`);
+  writeFileSync(join(out, "outro.ass"), cardAss([{ text: "这次测试的结果", size: 56, bold: true }, ...rows.map((t, i) => ({ text: t, size: 32, ok: results[i].pass }))]));
+  const final = join(out, `${scenario.name ?? "recording"}.mp4`);
+  assemble({ dir: out, scenes: results.map((r) => r.name), file: final });
+  console.log(`video: ${final}`);
+}
+const failed = results.filter((r) => !r.pass).length;
+console.log(`${results.length - failed}/${results.length} scenes passed`);
+process.exit(failed === 0 ? 0 : 1);

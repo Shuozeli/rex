@@ -1,0 +1,111 @@
+{
+  "recipe": {
+    "id": "target.com/product",
+    "version": 2,
+    "sha256": "f0c11a8c373d778b6ae239004d0dc5b29b34b58df21d62170d72b34f1c95c898"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:44:43Z",
+  "extractTime": "2026-10-14T04:44:43Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "features",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "breadcrumbs",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "94139349",
+    "title": "Xxxxxxxxx 14 Xxx Xxxxxxxxxxxx Xxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+    "brand": "Xxxx xxx Xxxxxxxxx",
+    "rating": 4.6,
+    "reviewCount": "4974",
+    "images": [
+      "https://target.scene7.com/is/image/Target/GUEST_b9a64395-3922-470d-8211-cdfe0cc2789f",
+      "https://target.scene7.com/is/image/Target/GUEST_b1f24c45-5139-44d1-8239-cbed2c5477e7",
+      "https://target.scene7.com/is/image/Target/GUEST_430839af-8d23-4641-a688-9a5c33a54ef5",
+      "https://target.scene7.com/is/image/Target/GUEST_14401c8c-97f8-4bc8-9136-ef07bdfef933",
+      "https://target.scene7.com/is/image/Target/GUEST_67c044a3-6706-43d7-93e0-0e90b2bf740a",
+      "https://target.scene7.com/is/image/Target/GUEST_394ba983-9fb9-4704-9f32-4d58ec8fc135"
+    ],
+    "features": [
+      "Xxxxx XXX-3200XXX - 14 Xxx Xxxxx Xxxxxx with xxxxxxxxxx xxxxxxxxx xxxxx xxxxxx",
+      "Xxxx Xxxxxxxx Xxxxxxx xxxxxx xxx to xxxxxx Xxxxxxx xx Xxxx xxxxxx xxxxxx",
+      "Xxxxx Xxxxxxxxx with 24-hour xxxxxxxxxxxxxxx, xxxx-xxxxx, 1–4 xxx xxxxxxx, xxxx-xxx (0–4 hours), xxx xxxxxxxx xxxxx xxxxx xxxx",
+      "Xxxx Xxxxx™ xxxxxxx xxxx xxx xxxxx a xxx of xxxxxx xxxxxx xxx xxxxxxx xxxxx xxx xxxxxxxx",
+      "60-Second Xxxxx xxxxxxx xxxxxxxx xxx xxxxxxxx in xxx xxxxxxx xxxxxxx in xxxx of xxxx of xxxxx",
+      "Xxxx-xxxx xxxxxx xxxxxx xxx xxxxxxxx xxxxx xxxxxx",
+      "1050 xxxxx, 24-xxxx xxxxx xxxx",
+      "Xxxxxxx 3-year xxxxxxxx"
+    ],
+    "breadcrumbs": [
+      "Xxxxxxx & Xxxxxx",
+      "Xxxxxxx Xxxxxxxxxx",
+      "Xxxxxx & Xxxxxxxx Xxxxxx",
+      "Xxxx Xxxxxx Xxxxxx"
+    ],
+    "url": "https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349",
+    "description": "Xxxx xx xxx xxxxxx xxx xxx xxxxxxxxxxx xx xxxx xxxxxx with xxx Xxxxxxxxx® 14 Xxx Xxxxxxxxxxxx Xxxxxxxxxxx! Xxxxx xxx xxxxxxx-xxxx xxxxxx xxxxxxxxxx, xxx 14 Xxx Xxxxxxxxxxxx Xxxxxxxxxxx xxx xxxx xxx xxxxxx xxxxxx xxxxxxx xxxxxxxxxxx xxxxx. Xxxxxx a xxxxxxx xx xxxx xxxxxx profile xxx xxx xxx xxxx-xxxx xx to 24 hours xxxxx xx xxxx xxxx xxx is xxxxx xxxx xxx xxx. Xxx xxxxxxx XXX is xxxx-to-xxxx, a xxxxx xxxx xxx xx xxxxxx xx xx xxx, xxx xxx xxxxxxxxx xxxxx xxxxxxx xxxx xx’x xxxx to xxxxxxxxx.\nXxxxxxxxx: Xxxx xxx xxxxx-of-xxx-xxx xxxxxxx xxxxxxxx to xxx xxxxxxx xxx xxxxx xxx xxxxxx with xxxx — xxxx xxx xxxxx xxxx xxx to xxx xxxxx of xxxx xxxx, xxxxxxxxxx’x A Xxxx of Xxxxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "target.com/product",
+      "version": 2,
+      "sha256": "f0c11a8c373d778b6ae239004d0dc5b29b34b58df21d62170d72b34f1c95c898"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

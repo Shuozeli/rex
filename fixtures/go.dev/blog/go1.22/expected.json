@@ -1,0 +1,84 @@
+{
+  "recipe": {
+    "id": "go.dev/blog",
+    "version": 1,
+    "sha256": "8c6313457b02a2b783876ed6bd864498a4047cfda55d167f00cd2dc23bcc0ce1"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://go.dev/blog/go1.22",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T04:48:52Z",
+  "extractTime": "2026-10-13T04:48:52Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://go.dev/blog/go1.22",
+    "title": "Xx 1.22 xx xxxxxxxx!",
+    "authors": [
+      {
+        "name": "Xxx Xxxxxxxxx"
+      }
+    ],
+    "publishedAt": "2024-02-06T00:00:00Z",
+    "summary": "Xx 1.22 xxxxxxxx xxx xxxxx, xxxxxx xxx xxxxxxxx xxxxxxx xxxxxxxxxxxxx xxx xxxxxxxx xxxxxxxxxxx.",
+    "image": "https://go.dev/doc/gopher/gopher5logo.jpg",
+    "bodyHtml": "<p>Today xxx Xx xxxx xx xxxxxxxx xx xxxxxxx Xx 1.22,\nxxxxx xxx xxx xxx xx xxxxxxxx xxx <a href=\"https://go.dev/dl/\">xxxxxxxx xxxx</a>.</p>\n<p>Xx 1.22 xxxxx xxxx xxxxxxx xxxxxxxxx xxx xxxxxxxx xxx xxxxxxxxxxxx. Xxxx xxx\nxxxx xx xxx xxxxxxx xxxxxxx; xxx xxx xxxx xxxx, xxxxx xx xxx <a href=\"https://go.dev/doc/go1.22\">xxxxxxx\nxxxxx</a>.</p>\n<h2>Xxxxxxxx xxxxxxx</h2>\n<p>Xxx xxxx-xxxxxxxx “xxx” xxxx xxxxxx xxxx xxxxxxxxxx xxxxxxx xx xxxx xxxxxxxxx\nxxxxxxx xxxxxxxxxx xx now xxxxxxxx. Xxxxxxxx xxxx Xx 1.22, xxx xxxxxxxxx xxxx\nxxxx xxxxx “a”, “x”, xxx “x” xx xxxx xxxxx:</p>\n<pre><code>xxxx xxxx() {\n    xxxx := xxxx(xxxx xxxx)\n\n    xxxxxx := []xxxxxx{\"a\", \"x\", \"x\"}\n    xxx _, x := xxxxx xxxxxx {\n        xx xxxx() {\n            xxx.Xxxxxxx(x)\n            xxxx &lt;- xxxx\n        }()\n    }\n\n    // xxxx xxx xxx xxxxxxxxxx xx xxxxxxxx xxxxxx xxxxxxx\n    xxx _ = xxxxx xxxxxx {\n        &lt;-xxxx\n    }\n}\n</code></pre>\n<p>Xxx xxxx xxxxxxxxxxx xxxxx xxxx xxxxxx xxx xxx xxxxxxx xxxx xxxxx xxxx xxxx xxxx\nxxxxxxxx xxxxxxxxxxxx, xxx xxx xxxxxxx <a href=\"https://go.dev/blog/loopvar-preview\">xxxx xxxxxxxx xxxx\nxxxx</a>.</p>\n<p>Xxx second xxxxxxxx xxxxxx xx xxxxxxx xxx xxxxxxx xxxx xxxxxxxx:</p>\n<pre><code>xxxxxxx xxxx\n\nxxxxxx \"xxx\"\n\nxxxx xxxx() {\n    xxx x := xxxxx 10 {\n        xxx.Xxxxxxx(10 - x)\n    }\n    xxx.Xxxxxxx(\"xx1.22 xxx xxxx-xxx!\")\n}\n</code></pre>\n<p>Xxx xxxxxx xx <code>x</code> xx xxxx xxxxxxxxx xxxxxxx xx xxxx 0 xx 9, xxxxxxxxx. Xxx xxxx\nxxxxxxx, xxxxxx xxxxx xx <a href=\"https://go.dev/ref/spec#For_range\">xxx xxxx</a>.</p>\n<h2>Xxxxxxxx xxxxxxxxxxx</h2>\n<p>Xxxxxx xxxxxxxxxxxx xx xxx Xx xxxxxxx xxxxxxxx XXX xxxxxxxxxxx xx 1-3%, xxxxx\nxxxx xxxxxxxx xxx xxxxxx xxxxxxxx xx xxxx Xx xxxxxxxx xx xxxxxx 1%.</p>\n<p>Xx Xx 1.21, <a href=\"https://go.dev/blog/pgo\">xx xxxxxxx</a> xxxxxxx-xxxxxx xxxxxxxxxxxx (XXX) xxx xxx Xx\nxxxxxxxx xxx xxxx xxxxxxxxxxxxx xxxxxxxxx xx xxxxxxx. Xxx xx xxx xxxxxxxxxxxxx\nxxxxx xx 1.22 xx xxxxxxxx xxxxxxxxxxxxxxxx, xxxxxxxx xxxxxx xxxxxxxx xx xxxx\nxxxxxxxxx xxxxxx xxxxx. Xxxx xxxxxxxx xxxx xxx xxxxxxxxxxxx xxxxxxx 2-14% xxxx\nXXX xxxxxxx.</p>\n<h2>Xxxxxxxx xxxxxxx xxxxxxxxx</h2>\n<ul>\n<li>\n<p>A xxx <a href=\"https://go.dev/pkg/math/rand/v2\">xxxx/xxxx/x2</a> xxxxxxx\nxxxxxxxx a xxxxxxx, xxxx xxxxxxxxxx XXX xxx xxxx xxxxxx-xxxxxxx,\nxxxxxx xxxxxx-xxxxxx xxxxxxxxxx xxxxxxxxxx. Xxx\n<a href=\"https://go.dev/issue/61716\">xxx xxxxxxxx</a> xxx xxxxxxxxxx xxxxxxx.</p>\n</li>\n<li>\n<p>Xxx xxxxxxxx xxxx xx <a href=\"https://go.dev/pkg/net/http#ServeMux\">xxx/xxxx.XxxxxXxx</a>\nnow xxxxxx xxxxxxx xxx xxxxxxxxx.</p>\n<p>Xxx xxxxxxx, xxx xxxxxx xxxxxxx a xxxxxxx like <code>XXX /xxxx/{xx}/</code>, xxxxx\nxxxxxxx xxxx <code>XXX</code> xxxxxxxx xxx xxxxxxxx xxx xxxxx xx xxx <code>{xx}</code> xxxxxxx\nxx a xxx xxxx xxx xx xxxxxxxx xxxxxxx <a href=\"https://go.dev/pkg/net/http#Request\">Xxxxxxx</a> xxxxxx.</p>\n</li>\n<li>\n<p>A xxx <code>Xxxx[T]</code> xxxx xx <a href=\"https://go.dev/pkg/database/sql\">xxxxxxxx/xxx</a> xxxxxxxx\na xxx xx xxxx xxxxxxxx xxxxxxx.</p>\n</li>\n<li>\n<p>A <code>Xxxxxx</code> xxxxxxxx xxx xxxxx xx xxxxxxx <a href=\"https://go.dev/pkg/slices\">xxxxxx</a>, xx\nxxxxxxxxxxx xxxxxxxx xxxxxx xx xxx xxxx.</p>\n</li>\n</ul>\n<hr>\n<p>Xxxxxx xx xxxxxxxx xxx xxxxxxxxxxx xx xxxx xxxxxxx xx xxxxxxx xxxx xxx\nxxxxxxxxxxxxx, xxxxxx xxxx, xxxxxxx xxxxxxxx, xxx xxxxxxx xxx xxxxxxx\nxxxxxxxxxx. Xxxx xxxxxxx xxxxxx xx xxxxxx xxxx Xx 1.22 xx xx xxxxxx xx xxxxxxxx.\nXx xxxxxx, xx xxx xxxxxx xxx xxxxxxxx, xxxxxx <a href=\"https://go.dev/issue/new\">xxxx xx xxxxx</a>.</p>\n<p>Xxxxx Xx 1.22!</p>",
+    "bodyText": "Today xxx Xx xxxx xx xxxxxxxx xx xxxxxxx Xx 1.22, xxxxx xxx xxx xxx xx xxxxxxxx xxx xxxxxxxx xxxx.\n\nXx 1.22 xxxxx xxxx xxxxxxx xxxxxxxxx xxx xxxxxxxx xxx xxxxxxxxxxxx. Xxxx xxx xxxx xx xxx xxxxxxx xxxxxxx; xxx xxx xxxx xxxx, xxxxx xx xxx xxxxxxx xxxxx.\n\nXxxxxxxx xxxxxxx\n\nXxx xxxx-xxxxxxxx “xxx” xxxx xxxxxx xxxx xxxxxxxxxx xxxxxxx xx xxxx xxxxxxxxx xxxxxxx xxxxxxxxxx xx now xxxxxxxx. Xxxxxxxx xxxx Xx 1.22, xxx xxxxxxxxx xxxx xxxx xxxxx “a”, “x”, xxx “x” xx xxxx xxxxx:\n\nxxxx xxxx() {\n    xxxx := xxxx(xxxx xxxx)\n\n    xxxxxx := []xxxxxx{\"a\", \"x\", \"x\"}\n    xxx _, x := xxxxx xxxxxx {\n        xx xxxx() {\n            xxx.Xxxxxxx(x)\n            xxxx <- xxxx\n        }()\n    }\n\n    // xxxx xxx xxx xxxxxxxxxx xx xxxxxxxx xxxxxx xxxxxxx\n    xxx _ = xxxxx xxxxxx {\n        <-xxxx\n    }\n}\n\nXxx xxxx xxxxxxxxxxx xxxxx xxxx xxxxxx xxx xxx xxxxxxx xxxx xxxxx xxxx xxxx xxxx xxxxxxxx xxxxxxxxxxxx, xxx xxx xxxxxxx xxxx xxxxxxxx xxxx xxxx.\n\nXxx second xxxxxxxx xxxxxx xx xxxxxxx xxx xxxxxxx xxxx xxxxxxxx:\n\nxxxxxxx xxxx\n\nxxxxxx \"xxx\"\n\nxxxx xxxx() {\n    xxx x := xxxxx 10 {\n        xxx.Xxxxxxx(10 - x)\n    }\n    xxx.Xxxxxxx(\"xx1.22 xxx xxxx-xxx!\")\n}\n\nXxx xxxxxx xx x xx xxxx xxxxxxxxx xxxxxxx xx xxxx 0 xx 9, xxxxxxxxx. Xxx xxxx xxxxxxx, xxxxxx xxxxx xx xxx xxxx.\n\nXxxxxxxx xxxxxxxxxxx\n\nXxxxxx xxxxxxxxxxxx xx xxx Xx xxxxxxx xxxxxxxx XXX xxxxxxxxxxx xx 1-3%, xxxxx xxxx xxxxxxxx xxx xxxxxx xxxxxxxx xx xxxx Xx xxxxxxxx xx xxxxxx 1%.\n\nXx Xx 1.21, xx xxxxxxx xxxxxxx-xxxxxx xxxxxxxxxxxx (XXX) xxx xxx Xx xxxxxxxx xxx xxxx xxxxxxxxxxxxx xxxxxxxxx xx xxxxxxx. Xxx xx xxx xxxxxxxxxxxxx xxxxx xx 1.22 xx xxxxxxxx xxxxxxxxxxxxxxxx, xxxxxxxx xxxxxx xxxxxxxx xx xxxx xxxxxxxxx xxxxxx xxxxx. Xxxx xxxxxxxx xxxx xxx xxxxxxxxxxxx xxxxxxx 2-14% xxxx XXX xxxxxxx.\n\nXxxxxxxx xxxxxxx xxxxxxxxx\n\nA xxx xxxx/xxxx/x2 xxxxxxx xxxxxxxx a xxxxxxx, xxxx xxxxxxxxxx XXX xxx xxxx xxxxxx-xxxxxxx, xxxxxx xxxxxx-xxxxxx xxxxxxxxxx xxxxxxxxxx. Xxx xxx xxxxxxxx xxx xxxxxxxxxx xxxxxxx.\n\nXxx xxxxxxxx xxxx xx xxx/xxxx.XxxxxXxx now xxxxxx xxxxxxx xxx xxxxxxxxx.\n\nXxx xxxxxxx, xxx xxxxxx xxxxxxx a xxxxxxx like XXX /xxxx/{xx}/, xxxxx xxxxxxx xxxx XXX xxxxxxxx xxx xxxxxxxx xxx xxxxx xx xxx {xx} xxxxxxx xx a xxx xxxx xxx xx xxxxxxxx xxxxxxx Xxxxxxx xxxxxx.\n\nA xxx Xxxx[T] xxxx xx xxxxxxxx/xxx xxxxxxxx a xxx xx xxxx xxxxxxxx xxxxxxx.\n\nA Xxxxxx xxxxxxxx xxx xxxxx xx xxxxxxx xxxxxx, xx xxxxxxxxxxx xxxxxxxx xxxxxx xx xxx xxxx.\n\nXxxxxx xx xxxxxxxx xxx xxxxxxxxxxx xx xxxx xxxxxxx xx xxxxxxx xxxx xxx xxxxxxxxxxxxx, xxxxxx xxxx, xxxxxxx xxxxxxxx, xxx xxxxxxx xxx xxxxxxx xxxxxxxxxx. Xxxx xxxxxxx xxxxxx xx xxxxxx xxxx Xx 1.22 xx xx xxxxxx xx xxxxxxxx. Xx xxxxxx, xx xxx xxxxxx xxx xxxxxxxx, xxxxxx xxxx xx xxxxx.\n\nXxxxx Xx 1.22!"
+  },
+  "chain": [
+    {
+      "id": "go.dev/blog",
+      "version": 1,
+      "sha256": "8c6313457b02a2b783876ed6bd864498a4047cfda55d167f00cd2dc23bcc0ce1"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

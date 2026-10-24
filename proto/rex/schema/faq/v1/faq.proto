@@ -1,0 +1,28 @@
+// rex.schema.faq.v1: question-and-answer lists published by the site itself (FAQ pages and FAQ blocks).
+// User Q&A threads (Stack Overflow, Quora) are rex.schema.social.v1.Thread.
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.faq.v1;
+
+import "rex/schema/v1/annotations.proto";
+
+message FaqPage {
+  option (rex.schema.v1.record) = {
+    schema_org: "FAQPage"
+    primary: ["items"]
+    fallback_rank: -10                     // FAQ blocks ride along on pages that are about something else
+  };
+
+  string title = 1 [(rex.schema.v1.field) = { schema_org: "name" }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  repeated Faq items = 3 [(rex.schema.v1.field) = { schema_org: "mainEntity", max_items: 300 }];
+}
+
+message Faq {
+  option (rex.schema.v1.record) = { schema_org: "Question" };
+
+  string question = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string answer = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "acceptedAnswer", required: true }];
+}

@@ -1,0 +1,95 @@
+# Quora question page -> rex.schema.social.v1.Thread (decisions.md U35). The question is the post (Quora shows
+# no asker); answers are the replies. Answer blocks carry a dom_annotate_question_answer_item_<n> class; ads
+# have no /answer/ permalink and are skipped. Answer dates are relative ("11y", "7y") or a short date.
+# reply_count is the total answer count from og:description ("Answer (1 of 422): ...").
+id: quora.com/question
+version: 1
+schema: rex.schema.social.v1.Thread
+requires: [relative_dates]
+match:
+  urls:
+    hosts: ["quora.com"]
+    exclude: ["^/(profile|topic|search|spaces?|answer)/", "/answer/"]
+  page:
+    all:
+      - exists: "[class*=dom_annotate_question_answer_item]"
+fields:
+  - path: title
+    candidates:
+      - meta: { key: "og:title" }
+
+  - path: url
+    candidates:
+      - meta: { key: "og:url" }
+
+  - path: post.text
+    expect: true
+    candidates:
+      - meta: { key: "og:title" }
+
+  - path: post.url
+    candidates:
+      - meta: { key: "og:url" }
+
+  - path: reply_count
+    candidates:
+      - meta: { key: "og:description" }
+    pipe:
+      - regex: { pattern: "^Answer \\(\\d+ of ([\\d,]+)\\)", group: 1 }
+      - number: {}
+
+  - path: replies
+    expect: true
+    each: "[class*=dom_annotate_question_answer_item]:has(a[href*='/answer/'])"
+    fields:
+      - path: id               # the answer slug: /answer/Ryan-Chew-1
+        candidates:
+          - css: { selector: "a[href*='/answer/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "/answer/([^/?#]+)", group: 1 }
+      - path: url
+        candidates:
+          - css: { selector: "a[href*='/answer/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "\\?.*$", with: "" }
+      - path: author.name
+        candidates:
+          - css: { selector: "a[href*='/profile/']" }
+        pipe:
+          - filter: { pattern: "\\S" }
+          - slice: { start: 0, end: 1 }
+      - path: author.url
+        candidates:
+          - css: { selector: "a[href*='/profile/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: text
+        candidates:
+          - css: { selector: ".spacing_log_answer_content" }
+        pipe:
+          - filter: { pattern: "\\S" }
+          - slice: { start: 0, end: 1 }
+      - path: published_at     # the permalink text: "11y", "3mo", "Sep 23", "Mar 5, 2019"
+        candidates:
+          - css: { selector: "a[href*='/answer/']" }
+        pipe:
+          - filter: { pattern: "\\S" }
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "^Updated\\s+", with: "" }
+          - regex_replace: { pattern: "^(\\d+)(y|mo|w|d|h|m)$", with: "$1$2 ago" }
+          - datetime: { formats: ["%b %d, %Y"], relative: true }
+      - path: likes            # upvotes: the first visible count (a hidden "999" placeholder precedes it)
+        candidates:
+          - css: { selector: "span[class*=whiteSpace--nowrap]" }
+        pipe:
+          - filter: { pattern: "^[\\d.,]+[KM]?$" }
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: replies          # aria-label "13 comments"
+        candidates:
+          - css: { selector: "button[aria-label$=' comments'], button[aria-label$=' comment']", take: TAKE_ATTRIBUTE, attribute: aria-label }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}

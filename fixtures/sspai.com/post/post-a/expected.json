@@ -1,0 +1,91 @@
+{
+  "recipe": {
+    "id": "sspai.com/post",
+    "version": 1,
+    "sha256": "b0f0e21dde0163c41ba83880a3461b952aa36b5eb11bd505e382e61baf58b01d"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://sspai.com/post/116033",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:19:32Z",
+  "extractTime": "2026-10-13T03:19:32Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "language",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "sspai.com/post@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "sspai.com/post@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 9430,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://sspai.com/post/116033",
+    "title": "字字字：一字字字一字 16，Xxxxxx 字字 Xxxxxx Xxxx 字 - 字字字",
+    "authors": [
+      {
+        "name": "字字字字字字",
+        "url": "https://sspai.com/u/ee0vj778"
+      }
+    ],
+    "publishedAt": "2026-10-13T00:01:49Z",
+    "summary": "字字字字字期字字字字字字上「字字字字」？字字字字字字字字字。字字字字字字字字字字字字40字字字字字，字字字字50字字字字字字。字字字字字字XX字字字字字字字字字字字字字字字Xxxxx/0字字字字字字字 ...",
+    "image": "https://rssfile.sspai.com/2026/10/13/article/a9736a6e-8208-e82c-6096-e5d3b92c55ee.png?imageMogr2/auto-orient/ignore-error/1",
+    "language": "zh-CN",
+    "bodyHtml": "<h2>一字字字一字 16</h2><p>10 月 12 日，一字字字一字 16 字字。一字 16 字字字六字字字 8 字字字字字字字字字，字字字字四字字字字，字字字字字字字 X4 字字字字，6.78 字字，字字字字 185Xx 字字字，日字字字字字 165Xx，字字 100% XXX-X3 字字字 3840Xx XXX 字字字字 XX 字字。字字字字 9000xXx，字字 100X 字字字字字 100X XXXX 字字字字。字字 XX66、XX68、XX69、XX69X 字字字字。字字字字字 2 亿字字字字、5000 万字字 3 字字字字字字 5000 万字字字字字字字，字字 XXXX 字字字字字字。字字字字字、字日星字、字星字字三字字字，字字 5999 字字（12XX+256XX），字字 5699 字字，字字字 5199 字字。字字一字 16 ×《字人》字字字字字字、一字字字字字字 Xxxx、一字 XXXXXXXXX 67X 字字字、一字 16 字字字字字字字字字字字。<a href=\"https://www.oneplus.com/cn/16/specs\">字字</a></p><figure><img src=\"https://cdnfile.sspai.com/2026/10/13/article/a5814e1d83301e84c88a3d0ebd36dfc2.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1\"></figure><a href=\"https://sspai.com/u/vuejs/updates\"><img alt=\"字字字字\" src=\"https://cdnfile.sspai.com/2022/06/15/263cbb6dae1f355641db67a7119e98a3.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 3月字字时字字字字字字字字字字一字，字字3400字字字字字字字99字字24+1t字字一字13，字字字字字，字字时字字字字字字字字字<img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/a06658b7-8a2b-bf6b-5967-a0e84f30f2e6.png\">1<img alt=\"字字字字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/c2304477-5dc2-6e66-f5b0-afa782bb3352.png\">12<i></i><i></i><hr><h2>Xxxxxx 字字 Xxxxxx Xxxx</h2><p>10 月 12 日，Xxxxxx 字字 Xxxxxx Xxxx 字字字字。字字字字字字 Xxxxxx Xxx 字 Xxxxx Xxxxx 字字。Xxxxxx Xxxx 字字字 100% 字字字字字，字字字字字字字字字，字字字 17.7x。字字字 1.34 字字 XXXXXX，字字字字 Xxxxx XX5 XXX，字字字字 5.4，字字 65xXx，字字字字七天。字字 64XX 字字，字字字 7 天分钟字字字字字字字字字。字字字字、字字、XXX、字字字字字字。字字字字、字字字、字字字、字字字四字，字字 179.99 字字，字字字字字字字字字字，字字 219.99 字字。<a href=\"https://store.google.com/us/product/google_fitbit_edge?hl=en-US\">字字</a></p><figure><img src=\"https://cdnfile.sspai.com/2026/10/13/article/29e77e902aad3181359395ad0cafc2d3.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1\"></figure><a href=\"https://sspai.com/u/zhangwei/updates\"><img alt=\"xxxxxxx\" src=\"https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 字字字字字字字字字<a href=\"https://sspai.com/u/pbgt5lzz/updates\"><img alt=\"字字字_699837\" src=\"https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 64XX字字字？字字字字字字……<a href=\"https://sspai.com/u/keleus/updates\"><img alt=\"xxxxxx\" src=\"https://cdnfile.sspai.com/ui/otter_avatar_placeholder.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 小字字字xxx（）<a href=\"https://sspai.com/u/8ifr9lrf/updates\"><img alt=\"字字\" src=\"https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 字字字字字字：小字字字<a href=\"https://sspai.com/u/hg2v16fs/updates\"><img alt=\"字字字字字\" src=\"https://cdnfile.sspai.com/2026/08/23/1f7ef5f6419a6fc9ac6f3dedb8a9047a.png?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> 小字字字？🤩字字字论 6<i></i><img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/a06658b7-8a2b-bf6b-5967-a0e84f30f2e6.png\">1<i></i><i></i><hr><h2>XXX 字字 Xxxxxxx 字字字字</h2><p>10 月 12 日，Xxxxxxx 字下字字 XXX 字字字字字字字字字字，字 XXX Xxxxxxx M 字 XXX Xxxxxxx X 字字。</p><figure><img src=\"https://cdnfile.sspai.com/2026/10/13/eb8c3be6fe3a113055fa3b0d7b4c5ab8.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1\"></figure><p>字字字字字字字字字字字字，字字字字字字字字字字字字字，字字字字 3X 字字字字字字字。Xxxxxxx X 字字 10 字 45xx 字字字字字字字字字字字；Xxxxxxx M 字字 25 字 70xx 字字字字字 10 字 16xx 字字字字。字字字字字字字字字 6.0、XXX 字字、Xxxx Xxxx、字点字字字 XXX-X 字字字字字。字字字字字字字字字字字字字字，字字字字 Xxxxxxxx 字字字字字字字字字字。字字字字字 50%、字字 Xxxxx Xxxx 字条字下，字字字字字字字字 18 小时，字字 10 分钟字字字字一小时。XXX Xxxxxxx 字字字字、字字字、字字字字字字，Xxxxxxx X 字字 59 字字，Xxxxxxx M 字字 109 字字。<a href=\"https://nothing.tech/products/cmf-speaker-m?Color=Turquoise\">字字</a></p><figure><img src=\"https://cdnfile.sspai.com/2026/10/13/article/11f442fc21b94476a427f14a268213f1.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1\"></figure><img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/928eb6f8-f941-532e-eff5-aaf4ba840692.png\">11<i></i><i></i><hr><h2>字字字字 Xxxxx Xxxx 字字字字</h2><p>10 月 12 日，字字字字字字 2027 年字字字字 Xxxxx Xxxx XX 字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字。字三字 Xxxx 300 字字 2027 年字字字字字字，字字字字字上下字字字、字字字字字字字字字字字字字字字字字字字。字字字字 Xxxx 300 字字字字字字字 xxxxx 字字字字字字字 XXX 字字字字 40%；字字 96 字字字字字字字字字，字 xxxxx 字字字字字字字 Xxxx 200 字 7 字。字字字字字字字字字，字字字字字字字字字 X2X 字字；字字字字字字字字字 XXX4，字字字字字字字 18 XX/x，字字字字字字 950 字。</p><p>字前 Xxxx 200 字字字字字，字字 Xxxxxxxxx Xxxxxxx，字字字 XxxxXX、字字 XXX 字字字字字字字。字字字字字今年年字前字字字字 XxxXxx Xxxxxxx 字 Xxxxxxxxx Xxxxxxx，字前字字字字、字字字字字字字字字字字。<a href=\"https://blogs.microsoft.com/blog/2026/10/12/microsoft-to-expand-azure-maia-system-to-multi-gigawatt-deployments/\">字字</a></p><img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/b3840c84-279c-d7ee-9af9-60da5a86fef7.png\">1<i></i><i></i><hr><h2>字字 Xxxxxxx 17 字 XxxxxxxXX 24.0 字字，字字字字字字字字字</h2><p>XxxxxxxXX 字字字 10 月 11 日字字字 32 期字字日字，字字字字 Xxxxxxx 17 字 XxxxxxxXX 24.0 字字字，字字字字字字，24.0 字字字字字字 23.2 字字字字字字字字字字字字，字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字字。字前字字字字字字 2025 年 8 月字 2026 年 10 月字字字字字字字字 18.1 字 24.0 分字。字字字字字字字字字字字字字字字 Xxxxxxx Xxxxx Xxxxx，字字字字字字字上字字字字 XXX 字 Xxxxxxxx 字字，字字字字字字字字字字字字字字。字字字字字 XXX、Xxxxxxxx、三星 Xxxx 字 Xxxxxxx Xxxx 四字字字，分字字字字字字字字字字字字。字字字字字 XxxXXX 字字，字字字字字字字字字字字字字字字 XxxXXX，字字 Xxxxxx Xxxxxx。Xxxxxxx 字字字字字字字字字字字 XXX 字字字字，Xxxxx 字字字字字字字 xxxx 字字。XxxxxxxXX 字字字，字字字字字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字。<a href=\"https://lineageos.org/Changelog-32/\">字字</a></p><img alt=\"赞\" src=\"https://cdnfile.sspai.com/2025/09/22/community/c5d7069b-a9e1-3a91-532d-0440267e2ecb.png\">6<img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/b3840c84-279c-d7ee-9af9-60da5a86fef7.png\">2<img alt=\"小字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/4830bf28-f528-12c0-b912-7ed1d4b7a183.png\">1<img alt=\"字字\" src=\"https://cdnfile.sspai.com/2025/09/22/community/c49737fa-f4e4-f20f-7da3-b2d5e132020d.png\">1<i></i><i></i><hr><h2>Xxxx 字字 Xxxx Xxxxxx 字字</h2><p>Xxxx 10 月 12 日字字字字字字字字字字 Xxxx Xxxxxx 字 Xxxx Xxxxxx Xxxx 字字。字字字字字字 Xxxx Xxxxx 字字字字字，字字字人字字字字字字字字字字字字字，字字字字字字字字、字字字字、分字字字字字，字字字字字字字字字字字，字字字字字字字。字字字字字 Xxxxxx Xxxxxx 字 Xxxxxx Xxxxx，字字字字字字字字字字字字前字字字字字字字、字字字字字字字字、字字字字字字字字字字字字字。Xxxx Xxxxxx 字字字 Xxxx Xxxxx XXX 字 Xxxx Xxxx 字字字字字字，Xxxx Xxxxxx Xxxx 字字 Xxxx Xxxx 字阅字字字字。Xxxx Xxxxxx 字字字字字人 XX 字字字 Xxxx，字字字字阅字字字字。<a href=\"https://about.fb.com/news/2026/10/introducing-muse-wonder-models/\">字字</a></p><i></i>字字字评<i></i><i></i><hr><h2>字字一字字字字</h2><ul><li>XxxxXX 字 Xxxxxxxx Xxxxxxxx（Xxxx）字 10 月 12 日字 X 上字字，字字 Xxxxx 字 Xxxx 字字下 XXX-6.1 Xxx 字字字上下字字字字字字 500x，字字字前字 272x 字字字字 80%。Xxxx 字字字字 XxxxXX 字字字字字字字字上字，字字一字字字字字字字字上下字字字字字字字字，字字字字字字字字字字字字字期字字字字上下字字字字字字字字字。字时字字字字字次字字，字字字阅字字字字字字时，XxxxXX 字字字字 XXX-6.1 Xxx 字字字上下字字字。<a href=\"https://www.ithome.com/1/011/736.htm\">字字</a></li><li>字字 XXX（字字）字期字 Xxx Xxxx Xxxxxxxx 字字字分字字字字字字，字 XxxXxxxx XX585a Xxx13 字字字字字字字字字字 XXXXXX Xxxxx XXXx XXX。XXXXXX 字字字 Xxxxx XXX 字字字字字字字字字，字字 XXX 字字字字。<a href=\"https://www.ithome.com/1/011/747.htm\">字字</a></li><li>小字字字字字字字字字字字人字字字人 XXXX，字字字字字字 2027 年字字字字。<a href=\"https://www.cls.cn/detail/2502606\">字字</a></li><li>Xxxxxx 字字字字字字字字字字字字字字 Xxx Xxxxxx 字字字年字字字字字字，Xxx Xxxxxx xxx 字字字字 Xxxxxx Xxxxxx 字字，字字字字字字 Xxx Xxxxxx 字期字字，字字字字字字字字期、字字字字字字字、字期、字字字字字字字字字字字字字，字字字字字字字字字字字字字字。<a href=\"https://blog.google/products-and-platforms/products/google-health/commitment-womens-health-flo-health-partnership/\">字字</a></li><li>字字字字 10 月 12 日字字《字字字字字 5：字字字日》字字字字字字 12 月 16 日，字字字字前字天上字。<a href=\"https://weibo.com/2600825323/RmiiojIvI\">字字</a></li><li>万字字字字字字字字字字《字字字字》字字字字字，字字字字字字字下字字字字字字字，字字字 2016 年 5 月 19 日，字字字字字字字字字年。<a href=\"https://www.gematsu.com/2026/10/naruto-mobile-global-version-announced\">字字</a></li><li>字字字字字字 12 月 14 日 11 时字字《字字字字 2》字字字字字字字字字字。<a href=\"https://mp.weixin.qq.com/s/EMfxDGT9QqwwFDgYaCkFjA\">字字</a></li><li>《字人字字》字字 10 月 28 日字字上字 xXX Xxx Xxxxx，字字字字字字，字字字小字 4XX 字下，字字字字 xXX 26 字 A12 Xxxxxx 字字。<a href=\"https://www.nomanssky.com/2026/10/no-mans-sky-ios/\">字字</a></li></ul><a href=\"https://sspai.com/u/imgradeone/updates\"><img alt=\"字字字一字xxxxxxxxxx\" src=\"https://cdnfile.sspai.com/2026/06/17/65bc4e0901a3743ab1f43c2cf9e6b023.jpg?imageMogr2/auto-orient/thumbnail/!32x32r/gravity/center/crop/32x32/ignore-error/1\"> </a> (xxx) Xxxx Xxxxxx xx Xxxxxxxx: Xxxxxxxx（字字）<i></i>字字评论<i></i><i></i><hr><h2>字字字字字期字字</h2><ul><li>字字字字上「字字字字」？字字字字字字字字字。字字字字字字字字字字字字 40 字字字字字，字字字字 50 字字字字字字。<a href=\"https://sspai.com/post/114717\"><strong>字字字字</strong></a></li><li>字字 XX 字字字字字字字字字字字字字字字 Xxxxx/0 字字字字字字字字 Xxx Xxxxx 字上字。<a href=\"https://dot.mindreset.tech/docs/service/open/skill\"><strong>点字字字</strong></a></li><li>xXxxxx 字字字字字字字上字，字字字字字字、字字、字字字字字字字。<a href=\"https://sspai.com/post/114414\"><strong>字字字字</strong></a></li></ul><h2>字字字字字字字字</h2><ul><li><a href=\"https://sspai.com/post/114821\">字字字字｜字字字字字字字字字字字字字字字字字，字字字字字字字字字字小</a></li><li><a href=\"https://sspai.com/post/115242\">xXX 27 字字字字字字字字字字字字字字字，字字字字字字字字</a></li><li><a href=\"https://sspai.com/post/115934\">字评 | 字期字字字字字 Xxx</a></li></ul><p>&gt; 下字 <a href=\"https://sspai.com/page/client\">字字字 2.0 字字字</a>、字字 <a href=\"https://sspai.com/s/J71e\">字字字字字字</a>，字字字字阅读字字 📰</p><p>&gt; 字字、字字字 <a href=\"https://sspai.com/mall\">字字字字</a>，字字字字字字字 🚀</p>",
+    "bodyText": "一字字字一字 16\n\n10 月 12 日，一字字字一字 16 字字。一字 16 字字字六字字字 8 字字字字字字字字字，字字字字四字字字字，字字字字字字字 X4 字字字字，6.78 字字，字字字字 185Xx 字字字，日字字字字字 165Xx，字字 100% XXX-X3 字字字 3840Xx XXX 字字字字 XX 字字。字字字字 9000xXx，字字 100X 字字字字字 100X XXXX 字字字字。字字 XX66、XX68、XX69、XX69X 字字字字。字字字字字 2 亿字字字字、5000 万字字 3 字字字字字字 5000 万字字字字字字字，字字 XXXX 字字字字字字。字字字字字、字日星字、字星字字三字字字，字字 5999 字字（12XX+256XX），字字 5699 字字，字字字 5199 字字。字字一字 16 ×《字人》字字字字字字、一字字字字字字 Xxxx、一字 XXXXXXXXX 67X 字字字、一字 16 字字字字字字字字字字字。字字\n\n3月字字时字字字字字字字字字字一字，字字3400字字字字字字字99字字24+1t字字一字13，字字字字字，字字时字字字字字字字字字112\n\nXxxxxx 字字 Xxxxxx Xxxx\n\n10 月 12 日，Xxxxxx 字字 Xxxxxx Xxxx 字字字字。字字字字字字 Xxxxxx Xxx 字 Xxxxx Xxxxx 字字。Xxxxxx Xxxx 字字字 100% 字字字字字，字字字字字字字字字，字字字 17.7x。字字字 1.34 字字 XXXXXX，字字字字 Xxxxx XX5 XXX，字字字字 5.4，字字 65xXx，字字字字七天。字字 64XX 字字，字字字 7 天分钟字字字字字字字字字。字字字字、字字、XXX、字字字字字字。字字字字、字字字、字字字、字字字四字，字字 179.99 字字，字字字字字字字字字字，字字 219.99 字字。字字\n\n字字字字字字字字字 64XX字字字？字字字字字字…… 小字字字xxx（） 字字字字字字：小字字字小字字字？🤩字字字论 61\n\nXXX 字字 Xxxxxxx 字字字字\n\n10 月 12 日，Xxxxxxx 字下字字 XXX 字字字字字字字字字字，字 XXX Xxxxxxx M 字 XXX Xxxxxxx X 字字。\n\n字字字字字字字字字字字字，字字字字字字字字字字字字字，字字字字 3X 字字字字字字字。Xxxxxxx X 字字 10 字 45xx 字字字字字字字字字字字；Xxxxxxx M 字字 25 字 70xx 字字字字字 10 字 16xx 字字字字。字字字字字字字字字 6.0、XXX 字字、Xxxx Xxxx、字点字字字 XXX-X 字字字字字。字字字字字字字字字字字字字字，字字字字 Xxxxxxxx 字字字字字字字字字字。字字字字字 50%、字字 Xxxxx Xxxx 字条字下，字字字字字字字字 18 小时，字字 10 分钟字字字字一小时。XXX Xxxxxxx 字字字字、字字字、字字字字字字，Xxxxxxx X 字字 59 字字，Xxxxxxx M 字字 109 字字。字字\n\n11\n\n字字字字 Xxxxx Xxxx 字字字字\n\n10 月 12 日，字字字字字字 2027 年字字字字 Xxxxx Xxxx XX 字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字。字三字 Xxxx 300 字字 2027 年字字字字字字，字字字字字上下字字字、字字字字字字字字字字字字字字字字字字字。字字字字 Xxxx 300 字字字字字字字 xxxxx 字字字字字字字 XXX 字字字字 40%；字字 96 字字字字字字字字字，字 xxxxx 字字字字字字字 Xxxx 200 字 7 字。字字字字字字字字字，字字字字字字字字字 X2X 字字；字字字字字字字字字 XXX4，字字字字字字字 18 XX/x，字字字字字字 950 字。\n\n字前 Xxxx 200 字字字字字，字字 Xxxxxxxxx Xxxxxxx，字字字 XxxxXX、字字 XXX 字字字字字字字。字字字字字今年年字前字字字字 XxxXxx Xxxxxxx 字 Xxxxxxxxx Xxxxxxx，字前字字字字、字字字字字字字字字字字。字字\n\n1\n\n字字 Xxxxxxx 17 字 XxxxxxxXX 24.0 字字，字字字字字字字字字\n\nXxxxxxxXX 字字字 10 月 11 日字字字 32 期字字日字，字字字字 Xxxxxxx 17 字 XxxxxxxXX 24.0 字字字，字字字字字字，24.0 字字字字字字 23.2 字字字字字字字字字字字字，字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字字。字前字字字字字字 2025 年 8 月字 2026 年 10 月字字字字字字字字 18.1 字 24.0 分字。字字字字字字字字字字字字字字字 Xxxxxxx Xxxxx Xxxxx，字字字字字字字上字字字字 XXX 字 Xxxxxxxx 字字，字字字字字字字字字字字字字字。字字字字字 XXX、Xxxxxxxx、三星 Xxxx 字 Xxxxxxx Xxxx 四字字字，分字字字字字字字字字字字字。字字字字字 XxxXXX 字字，字字字字字字字字字字字字字字字 XxxXXX，字字 Xxxxxx Xxxxxx。Xxxxxxx 字字字字字字字字字字字 XXX 字字字字，Xxxxx 字字字字字字字 xxxx 字字。XxxxxxxXX 字字字，字字字字字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字。字字\n\n6211\n\nXxxx 字字 Xxxx Xxxxxx 字字\n\nXxxx 10 月 12 日字字字字字字字字字字 Xxxx Xxxxxx 字 Xxxx Xxxxxx Xxxx 字字。字字字字字字 Xxxx Xxxxx 字字字字字，字字字人字字字字字字字字字字字字字，字字字字字字字字、字字字字、分字字字字字，字字字字字字字字字字字，字字字字字字字。字字字字字 Xxxxxx Xxxxxx 字 Xxxxxx Xxxxx，字字字字字字字字字字字字前字字字字字字字、字字字字字字字字、字字字字字字字字字字字字字。Xxxx Xxxxxx 字字字 Xxxx Xxxxx XXX 字 Xxxx Xxxx 字字字字字字，Xxxx Xxxxxx Xxxx 字字 Xxxx Xxxx 字阅字字字字。Xxxx Xxxxxx 字字字字字人 XX 字字字 Xxxx，字字字字阅字字字字。字字\n\n字字字评\n\n字字一字字字字\n\nXxxxXX 字 Xxxxxxxx Xxxxxxxx（Xxxx）字 10 月 12 日字 X 上字字，字字 Xxxxx 字 Xxxx 字字下 XXX-6.1 Xxx 字字字上下字字字字字字 500x，字字字前字 272x 字字字字 80%。Xxxx 字字字字 XxxxXX 字字字字字字字字上字，字字一字字字字字字字字上下字字字字字字字字，字字字字字字字字字字字字字期字字字字上下字字字字字字字字字。字时字字字字字次字字，字字字阅字字字字字字时，XxxxXX 字字字字 XXX-6.1 Xxx 字字字上下字字字。字字\n\n字字 XXX（字字）字期字 Xxx Xxxx Xxxxxxxx 字字字分字字字字字字，字 XxxXxxxx XX585a Xxx13 字字字字字字字字字字 XXXXXX Xxxxx XXXx XXX。XXXXXX 字字字 Xxxxx XXX 字字字字字字字字字，字字 XXX 字字字字。字字\n\n小字字字字字字字字字字字人字字字人 XXXX，字字字字字字 2027 年字字字字。字字\n\nXxxxxx 字字字字字字字字字字字字字字 Xxx Xxxxxx 字字字年字字字字字字，Xxx Xxxxxx xxx 字字字字 Xxxxxx Xxxxxx 字字，字字字字字字 Xxx Xxxxxx 字期字字，字字字字字字字字期、字字字字字字字、字期、字字字字字字字字字字字字字，字字字字字字字字字字字字字字。字字\n\n字字字字 10 月 12 日字字《字字字字字 5：字字字日》字字字字字字 12 月 16 日，字字字字前字天上字。字字\n\n万字字字字字字字字字字《字字字字》字字字字字，字字字字字字字下字字字字字字字，字字字 2016 年 5 月 19 日，字字字字字字字字字年。字字\n\n字字字字字字 12 月 14 日 11 时字字《字字字字 2》字字字字字字字字字字。字字\n\n《字人字字》字字 10 月 28 日字字上字 xXX Xxx Xxxxx，字字字字字字，字字字小字 4XX 字下，字字字字 xXX 26 字 A12 Xxxxxx 字字。字字\n\n(xxx) Xxxx Xxxxxx xx Xxxxxxxx: Xxxxxxxx（字字）字字评论\n\n字字字字字期字字\n\n字字字字上「字字字字」？字字字字字字字字字。字字字字字字字字字字字字 40 字字字字字，字字字字 50 字字字字字字。字字字字\n\n字字 XX 字字字字字字字字字字字字字字字 Xxxxx/0 字字字字字字字字 Xxx Xxxxx 字上字。点字字字\n\nxXxxxx 字字字字字字字上字，字字字字字字、字字、字字字字字字字。字字字字\n\n字字字字字字字字\n\n字字字字｜字字字字字字字字字字字字字字字字字，字字字字字字字字字字小\n\nxXX 27 字字字字字字字字字字字字字字字，字字字字字字字字\n\n字评 | 字期字字字字字 Xxx\n\n> 下字字字字 2.0 字字字、字字字字字字字字，字字字字阅读字字 📰\n\n> 字字、字字字字字字字，字字字字字字字 🚀"
+  },
+  "chain": [
+    {
+      "id": "sspai.com/post",
+      "version": 1,
+      "sha256": "b0f0e21dde0163c41ba83880a3461b952aa36b5eb11bd505e382e61baf58b01d"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

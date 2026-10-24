@@ -1,0 +1,95 @@
+{
+  "recipe": {
+    "id": "douyin.com/video",
+    "version": 1,
+    "sha256": "45fcc0d68ae9e01349b2b59426b7fd1ac4c96f889a5645b272b4248fa9c311cd"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.douyin.com/video/7667108134306118523",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:36:51Z",
+  "extractTime": "2026-10-14T03:36:51Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "douyin.com/video@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "7667108134306118523",
+    "title": "字24字 | 字字～ 字字字字字一下#字字 #xxxx #字字字字 #xxxx字字字字 #字字字字字字字字字字字字字字字字",
+    "url": "https://www.douyin.com/video/7667108134306118523",
+    "channel": {
+      "name": "字字（字字字字）",
+      "url": "https://www.douyin.com/user/MS4wLjABAAAAYcHfdLwtUugMaHSafhw7gLW2LmRdgBJ2JD_oaqhxD2XR572yfI1lG5sWlRR80OE8"
+    },
+    "publishedAt": "2026-07-27T07:35:00Z",
+    "likes": "21000",
+    "description": "字24字 | 字字～ 字字字字字一下#字字 #xxxx #字字字字 #xxxx字字字字 #字字字字字字字字字字字字字字字字",
+    "tags": [
+      "字字",
+      "xxxx",
+      "字字字字",
+      "xxxx字字字字",
+      "字字",
+      "字字",
+      "字字字字字",
+      "字字字字"
+    ]
+  },
+  "chain": [
+    {
+      "id": "douyin.com/video",
+      "version": 1,
+      "sha256": "45fcc0d68ae9e01349b2b59426b7fd1ac4c96f889a5645b272b4248fa9c311cd"
+    },
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

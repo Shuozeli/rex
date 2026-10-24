@@ -1,0 +1,46 @@
+# Medium story -> rex.schema.article.v1.Article (decisions.md U35). generic/article.v1 already finds the
+# metadata; this keeps the story header (member-only badge, topic chips, byline, read time, listen/share,
+# all marked .speechify-ignore) and the title out of the body, and reads the subtitle and topics.
+# Member-only stories show a preview to logged-out readers, so their body is only the first paragraphs.
+# Publications on their own domains are not matched here and use the generic recipe.
+id: medium.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["medium.com"]
+    include: ["-[0-9a-f]{10,12}$"]
+  page:
+    all:
+      - exists: "h1[data-testid=storyTitle]"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1[data-testid=storyTitle]" }
+
+  - path: subtitle
+    candidates:
+      - meta: { key: "og:description" }
+
+  - path: authors
+    replace_inherited: true
+    candidates:
+      - css: { selector: "a[data-testid=authorName]" }
+      - json_ld: {}
+
+  - path: tags              # the topic chips in the story header
+    candidates:
+      - css: { selector: "article section .speechify-ignore a[href*='/tag/']" }
+
+  - path: body_html
+    replace_inherited: true
+    expect: true
+    candidates:
+      - css: { selector: "article section", take: TAKE_HTML, exclude: [".speechify-ignore", "h1[data-testid=storyTitle]", "[data-testid=storyReadTime]", ".pw-subtitle-paragraph"] }
+
+  - path: body_text
+    replace_inherited: true
+    candidates:
+      - css: { selector: "article section", take: TAKE_BLOCK_TEXT, exclude: [".speechify-ignore", "h1[data-testid=storyTitle]", "[data-testid=storyReadTime]", ".pw-subtitle-paragraph"] }

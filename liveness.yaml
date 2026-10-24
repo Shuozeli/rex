@@ -1,0 +1,80 @@
+# Recipes checked daily against live, public, login-free pages (decisions.md U20).
+# A check passes when the page matches the expected recipe and extraction status is OK.
+# Paywalled or login-only sites are not listed; they rely on "Report broken recipe".
+checks:
+  - recipe: news.ycombinator.com/front
+    urls: ["https://news.ycombinator.com/", "https://news.ycombinator.com/newest"]
+  - recipe: lobste.rs/front
+    urls: ["https://lobste.rs/"]
+  - recipe: github.com/trending
+    urls: ["https://github.com/trending"]
+  - recipe: wikipedia.org/article
+    urls: ["https://en.wikipedia.org/wiki/Web_scraping", "https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96"]
+  - recipe: ruanyifeng.com/blog
+    urls: ["https://www.ruanyifeng.com/blog/2026/10/weekly-issue-414.html"]
+  - recipe: blog.cloudflare.com/post
+    urls: ["https://blog.cloudflare.com/the-road-to-quic/"]
+  - recipe: go.dev/blog
+    urls: ["https://go.dev/blog/go1.22"]
+  - recipe: bbc.co.uk/news-article
+    urls: ["https://www.bbc.co.uk/news/articles/cm9qzwjgnjxlo"]
+  - recipe: theguardian.com/article
+    urls: ["https://www.theguardian.com/technology/2026/oct/12/wikipedia-deeply-biased-sandi-toksvig-backing-rival"]
+  - recipe: npr.org/article
+    urls: ["https://www.npr.org/2026/10/10/nx-s1-5994366/for-reporters-covering-ai-keeping-up-with-story-is-both-tough-and-exciting"]
+  - recipe: arstechnica.com/article
+    urls: ["https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/"]
+  - recipe: sspai.com/post
+    urls: ["https://sspai.com/post/116033"]
+  - recipe: amazon.com/product
+    urls: ["https://www.amazon.com/dp/B0CFPJYX7P"]
+  - recipe: amazon.com/search
+    urls: ["https://www.amazon.com/s?k=wireless+earbuds"]
+  - recipe: youtube.com/watch
+    urls: ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
+  - recipe: bing.com/search
+    urls: ["https://www.bing.com/search?q=rust+webassembly&setlang=en"]
+  - recipe: news.ycombinator.com/item
+    urls: ["https://news.ycombinator.com/item?id=1"]
+  # Chinese platforms (decisions.md U34); WeChat and Douyin need a browser and are covered by fixtures + e2e.
+  - recipe: bilibili.com/video
+    urls: ["https://www.bilibili.com/video/BV1yPp96UEQU/"]
+  - recipe: bilibili.com/search
+    urls: ["https://search.bilibili.com/all?keyword=rust%E6%95%99%E7%A8%8B"]
+  - recipe: baidu.com/search
+    urls: ["https://www.baidu.com/s?wd=rust%20webassembly"]
+  # US platforms (decisions.md U35); the others need a browser and are covered by fixtures + e2e.
+  - recipe: walmart.com/product
+    urls: ["https://www.walmart.com/ip/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black/631193073"]
+  - recipe: walmart.com/search
+    urls: ["https://www.walmart.com/search?q=air+fryer"]
+  - recipe: target.com/product
+    urls: ["https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349"]
+  - recipe: medium.com/article
+    urls: ["https://medium.com/rustaceans/corewarz-core-war-learns-to-call-subroutines-67bd18f45c62"]
+  # schema.org bases (decisions.md U36). Event and job pages expire, so they are covered by fixtures only.
+  - recipe: generic/recipe.v1
+    urls: ["https://www.bbcgoodfood.com/recipes/easy-pancakes"]
+  - recipe: generic/howto.v1
+    urls: ["https://www.wikihow.com/Tie-a-Tie"]
+  - recipe: generic/faq.v1
+    urls: ["https://stripe.com/pricing"]
+  - recipe: generic/business.v1
+    urls: ["https://guide.michelin.com/us/en/california/san-francisco/restaurant/zuni-cafe"]
+  - recipe: generic/app.v1
+    urls: ["https://apps.apple.com/us/app/duolingo-language-lessons/id570060128", "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US"]
+  - recipe: generic/title.v1
+    urls: ["https://www.rottentomatoes.com/m/inception"]
+  - recipe: generic/book.v1
+    urls: ["https://books.google.com/books/about/The_Hobbit.html?id=pD6arNyKyi8C"]
+  - recipe: goodreads.com/book
+    urls: ["https://www.goodreads.com/book/show/5907.The_Hobbit"]
+  # Market quotes (decisions.md U37); Eastmoney stock and Xueqiu render client-side (fixtures + e2e only).
+  - recipe: finance.yahoo.com/quote
+    urls: ["https://finance.yahoo.com/quote/AAPL/", "https://finance.yahoo.com/quote/BTC-USD/"]
+  - recipe: cnbc.com/quote
+    urls: ["https://www.cnbc.com/quotes/AAPL"]
+  - recipe: coinmarketcap.com/coin
+    urls: ["https://coinmarketcap.com/currencies/bitcoin/"]
+  - recipe: fund.eastmoney.com/fund
+    urls: ["https://fund.eastmoney.com/110022.html"]

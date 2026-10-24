@@ -1,0 +1,77 @@
+# Target search results -> rex.schema.commerce.v1.ProductList (decisions.md U35). Unlike the product page,
+# listing cards carry prices. The card link's aria-label is the full title, with " Sponsored" appended on
+# sponsored cards.
+id: target.com/search
+version: 1
+schema: rex.schema.commerce.v1.ProductList
+match:
+  urls:
+    hosts: ["target.com"]
+    include: ["^/s\\?", "^/s/"]
+  page:
+    all:
+      - exists: "[data-test=ListingPageProductListing]"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: searchTerm }
+
+  - path: items
+    expect: true
+    each: "[data-test=ListingPageProductListing]"
+    each_index: rank
+    fields:
+      - path: id
+        candidates:
+          - css: { selector: "a[href*='/A-']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "/A-(\\d+)", group: 1 }
+      - path: title
+        candidates:
+          - css: { selector: "a.assets, a[aria-label]", take: TAKE_ATTRIBUTE, attribute: aria-label }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "\\s+Sponsored$", with: "" }
+      - path: url
+        candidates:
+          - css: { selector: "a[href*='/A-']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - url: {}
+          - regex_replace: { pattern: "\\?.*$", with: "" }
+      - path: price            # the first "$" amount is the current price ("$15.99 reg $21.99")
+        candidates:
+          - css: { selector: "span" }
+        pipe:
+          - filter: { pattern: "^\\$[\\d,.]+" }
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: currency
+        candidates:
+          - constant: { value: "USD" }
+      - path: rating           # "Average customer rating is 4.6 out of 5 stars with 4974 reviews."
+        candidates:
+          - css: { selector: "[data-test=rating-stars]", take: TAKE_ATTRIBUTE, attribute: aria-label }
+        pipe:
+          - regex: { pattern: "rating is ([\\d.]+) out of", group: 1 }
+      - path: review_count
+        candidates:
+          - css: { selector: "[data-test=rating-stars]", take: TAKE_ATTRIBUTE, attribute: aria-label }
+        pipe:
+          - regex: { pattern: "with ([\\d,]+) reviews", group: 1 }
+          - number: {}
+      - path: image
+        candidates:
+          - css: { selector: "img", take: TAKE_ATTRIBUTE, attribute: src }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "\\?.*$", with: "" }
+      - path: sponsored
+        candidates:
+          - css: { selector: "a[aria-label$=' Sponsored']", take: TAKE_ATTRIBUTE, attribute: aria-label }
+            pipe:
+              - slice: { start: 0, end: 1 }
+              - regex_replace: { pattern: "^.*$", with: "true" }
+        pipe:
+          - default: { value: "false" }

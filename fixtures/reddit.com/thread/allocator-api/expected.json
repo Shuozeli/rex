@@ -1,0 +1,1004 @@
+{
+  "recipe": {
+    "id": "reddit.com/thread",
+    "version": 1,
+    "sha256": "104c02d572a4f40dc9a40f2f05cc7df08a06b4fedcd5c0ddb24650b5c78b5583"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://www.reddit.com/r/rust/comments/1woatic/the_allocator_api_feature_has_been_stabilized_on/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:17:00Z",
+  "extractTime": "2026-10-14T03:17:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "community",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "replies[0].depth",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    },
+    {
+      "path": "post.replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/thread@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "title": "Xxx `xxxxxxxxx_xxx` xxxxxxx xxx xxxx xxxxxxxxxx, xx xxxxx xx xxxxxxx in Xxxx 1.100",
+    "community": "x/xxxx",
+    "url": "https://www.reddit.com/r/rust/comments/1woatic/the_allocator_api_feature_has_been_stabilized_on/",
+    "post": {
+      "id": "t3_1woatic",
+      "author": {
+        "name": "xxxxxx"
+      },
+      "publishedAt": "2026-09-23T16:29:43.514Z",
+      "likes": "541",
+      "replies": "76",
+      "url": "https://www.reddit.com/r/rust/comments/1woatic/the_allocator_api_feature_has_been_stabilized_on/"
+    },
+    "replies": [
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxx_xxxx"
+        },
+        "text": "Xxxxx, xxxxxxx xxxx xx xxxxxxxxxxx.",
+        "publishedAt": "2026-09-23T17:09:04.492Z",
+        "likes": "210",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblolrr/"
+      },
+      {
+        "id": "t1_xxx4xxx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxx xxxx, xxx xx xxxxx xxx xxx xxxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxx, xx xxxxx xx xxxxxx xxxxxxxxx xxx xxxxxx xx xxxx xxxx xxxxxx xxx xxxxxxx xxxxxxx xxx xxxxxx xxxxxxx. :) Xxxxx xxxxxxxxx xx xxxx XXX!",
+        "publishedAt": "2026-09-23T18:15:54.283Z",
+        "likes": "163",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm4qau/",
+        "depth": 1,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xx3xxxx",
+        "author": {
+          "name": "XxxxxxxxxxXxx1338"
+        },
+        "text": "xx xxxx xx xxxxxxx",
+        "publishedAt": "2026-09-26T03:45:23.382Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pc3ueey/",
+        "depth": 1,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xxxx3xx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxx, Xxxxxx xx xxxxxxxx xx xxx xxx \"xxxxx xxxxxxxxxxx\" xxx: https://www.reddit.com/r/rust/comments/78dabn/custom_allocators_are_on_the_verge_of_being/",
+        "publishedAt": "2026-09-23T16:33:58.301Z",
+        "likes": "184",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblg3jr/"
+      },
+      {
+        "id": "t1_xxx8z2x",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxxx xxx xxxxx xxxxxx: a xxxx-xxxxxx Xxxxxxxxx xx a xxxx xxxxxxx xxxxx xxxxxx xxxxxxxxxx xx in xxxxxxx \"xxxxxxxxx\" xxxxxxx (xxx xxxxxxx) xxx xxx XXX xxxxx of xxxxxx\n\nXxxx'x just xxxxx xxxxx - xxxx xxxxxx xxxxxxxxxx xxxx't xxxxx a xxxxxxx xxx xxxxx xxxxxx xxxxxxxxxx. Xxxx xxxxx xx xxxxxxxx xxxxxxxxx. Xxxxxxxx xxx xxxxxxxxx xx xxxxxxxxxx xxxxxx xxxx xxxxxx xxxxxxx xx xxxx xxxxxxxxxxx xxxxxx xx xxxxxxxxxx xx xxxx xx out xx xxxx xxxxxxxxxx xxxxxxxx.\n\nXx'x xxxxxxxx xx xxxxx't xxxxxx xxx xxxxxxxx - xxxxxx xxxxxxxxxxx xxxx xxxxxx in \"xxxxxxxxx\" xxxxx xxxxx xxx xxxxxx xxxxxxxxxxx xxx't xxxxxxxxxx, xxx X xxxxxx xx xx xxxx xxxx xxxxxxxx xxxxxxx like xxx xxxxxxxx xxx xxxxx xxxx xx xxx xxxxxxx xxxx xxx xxxxxx xxxxxxxxx xxx xxxxxxxxxxx xxxxxxxxxxx xxxx xxx xxxx a xxxxxx xxxx xxxxxxxxx (x.x. xx xxxxx xxxx xxxxxxxxx)",
+        "publishedAt": "2026-09-23T18:33:40.480Z",
+        "likes": "49",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm8z2y/",
+        "depth": 1,
+        "parentId": "t1_xxxx3xx"
+      },
+      {
+        "id": "t1_xxxx8xx",
+        "author": {
+          "name": "Xxxxxxxxxxx"
+        },
+        "text": "Xxxxxx, xxxx xxxxxxx xxxxxx xxxxx xxxxx xxxx xxxxx/xxxx/xxxx xxxxxxxxxx xxxx xx X(1) xxxxxxxxxxx xxx xxxxxxxx xxx xxxx xxxxxxx xxxxxx xxxxxxxxx xxxx. Xxx xxxxxx xxxx xxxxxxx-xxxxxxx xxxxxxxxxx xxxxxxxx xxxxx XX xxxxx?!",
+        "publishedAt": "2026-09-23T19:25:39.090Z",
+        "likes": "20",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbml8tn/",
+        "depth": 2,
+        "parentId": "t1_xxx8z2x"
+      },
+      {
+        "id": "t1_xxxxx4x",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxxxxxx xxxxxxx xxxxxxxxxx 100% xxxxxxxxx xxxxx XX xxxxx. Xx xxx xxxx a xxxxxxx xxx xxxxxx xxxxxx xxx'xx just xxxxxxxx out xxx xxx't xxxx xxxx xxx'xx xxxxx / xxxxxxxxxxxxx.",
+        "publishedAt": "2026-09-23T20:26:35.439Z",
+        "likes": "12",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbmzk4s/",
+        "depth": 3,
+        "parentId": "t1_xxxx8xx"
+      },
+      {
+        "id": "t1_xxx1x4x",
+        "author": {
+          "name": "xxxxxxxxxx"
+        },
+        "text": "Xx xxxxx xxxxxxxxx xxxx xx xx xxxxxx xxxxx 1970x Xxxx xxx xxxxxxxxx xx xxxxxxx xxxxxxxx xxxxx xxx xx xxxxxxx, just xxxxxxxx xx xxxxxx xxx xxxx xxxxx xxx xxxx xxxx xxxxxx xx xxxx xxxxxx xxxxx xxx xxxx xxxxxxxxxx. Xxxxx xxx xxxxxxx xxxxx a xxxxxxxx of XXX xx a xxxxxx. Xxx xx'xx xxxxxxx xxxxx xx xxxx xxxxxxxxxxx in Xxxx.",
+        "publishedAt": "2026-09-24T11:58:27.709Z",
+        "likes": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbr1b4d/",
+        "depth": 4,
+        "parentId": "t1_xxxxx4x"
+      },
+      {
+        "id": "t1_xxx1xx1",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxxx Xxxx x6 in 1975 xxxx a xxxxxxxx xxxx of xxxx xxxxxx xx xxxxxxxx xxx xxxx of xxx `xxxx`. Xxxxx'x a xxxx xxxxxx xxx xxxxx xxxx xxxxxxxxxx xxx xxxxxx xxxx - xxxx xxxxxxxxx, xxxx xxx't xxxx xxxxxx xxxx xx xxx XX. Xx xxx xxx xx xxxx a xxxxxxxxx xxxxxxxxx xxxxxxxx xxxx xx xxxxx xxxxxxxxxx xxxxxxx xxxx xxxx xxxx.\n\nXxx xxx xxxxxx xx xxxx xxxx xxxxxxxxxx xx xxxx xxxxx xxxx xxxxxxxxxxx xxxxxxxx xx xxxx / xxxxxx. Xxxxx xxx xxxx xxxx xxxxx xxxxxxx xxxxx xxx xxxxxx xxxxxxxxx xxxxxxx xxx xxxxxxxxxxxx xxxx (x.x. xxxxxxx XxxXX xxxxx x9). XxxxxXX xxxx a xxxx xxxxxxx xxxxx xx xxx xxxxxxxxxxx of xxxxxx xxx xxxx xxx't xxxxx. Xxx xxxx xxxxx'x xxxxxxx xxxxx xxxxxx. Xxx xxxxxxxxx xx xx xxxx xxxx xxxxxx != xxxxxxx xxxx xxxxxxxxxxxx.",
+        "publishedAt": "2026-09-24T17:24:50.361Z",
+        "likes": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbt1br1/",
+        "depth": 5,
+        "parentId": "t1_xxx1x4x"
+      },
+      {
+        "id": "t1_xxxxx7t",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "Xx xx xxx xxxx xxxxxxxx of xxxxxx a xxxx-xxxxxx xxxxxxxxx xxx xxxxxxx xx xx xxxxx xxxx xxxxx xxxx-xxxxx xxxx xxxxxxxxx xxx xx xxxxx xx xxxxx xxxxxxx xxxxxx. Xxxx xxxx xxxxxxx xxx xxxxxxx xxxx xxxx xxx xxxxxxxx xxxxxx xxx xxxxxxxxx xxxxxxxx xxxx.",
+        "publishedAt": "2026-09-23T22:08:33.717Z",
+        "likes": "6",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnlf7t/",
+        "depth": 2,
+        "parentId": "t1_xxx8z2x"
+      },
+      {
+        "id": "t1_xxxxxx5",
+        "author": {
+          "name": "XXX1997"
+        },
+        "text": "Xxxxx'x xx xxxxxxxx xx xx xxxx xxxx xxx xxxxxxx xx a \"xxxx xxxxxx\" xxxxxxxxx in xxxx Xxxxxx xx (xxxxxxx xxxxxxxx) xxx XxxxxxXxxxx. Xxx xxxxxxxxxxxxxx xxx a xxxxxxx-xxxxxxx \"xxxxxxxxxx\" xxxxxxxxx xx xxxxxxxxx xx xxx xxxxxx xxxxxxxxxx xxxx. Xxx xxxxxx xxxxxxxxxx xxx xxx xxxx xxxxx xxx xxxxxxxx xxxxx xx xxxxxxxxx, xx xxx-xxxxxxx-xxxxxxx xxxxxxxxxx may xx xxxx.\n\nXxx X xxxxx xxxx xxxxx xxxxxxxx xx xxxxxxx xxxxx X++ xxx::xxxxxxxxx<T> (xxxxx xxxxxxxxxx) xxxxxx X++ xxx::xxx::xxxxxxxxxxx_xxxxxxxxx (xxxxx xxx xxxxxxx xxxxxxxxxx). X xxxxxxxxxx xxxxx X++ xxx::xxx xxx xx xxxxxxxxxxxx xx xxx xxxxxxxx xxxx xxx::xxxxxxxxx<T> xxxxx xxxxx xxxxxxxxxx XXXx, xxx xx xxxxxxxxxx xxxxx xxx xx a xxxx xxx xxx Xxxx, xxxxx xxxxxxxx xxx xxxxxxxxxx xxxx xxxxxxxx xxx xxxxxxxxxx in X++ xx just XX.",
+        "publishedAt": "2026-09-24T01:31:51.800Z",
+        "likes": "6",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbomos5/",
+        "depth": 2,
+        "parentId": "t1_xxx8z2x"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "Xxxxxxxxxxx"
+        },
+        "text": "Xxxx :X",
+        "publishedAt": "2026-09-23T16:44:00.871Z",
+        "likes": "47",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblihwk/",
+        "depth": 1,
+        "parentId": "t1_xxxx3xx"
+      },
+      {
+        "id": "t1_xxxx6xx",
+        "author": {
+          "name": "Xxxxxx5147"
+        },
+        "text": "Xxx xxxxxxxx xxx a second xxxxx X xxx xxx xxxx, xxx 😅",
+        "publishedAt": "2026-09-23T21:33:02.154Z",
+        "likes": "14",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbne6xp/",
+        "depth": 1,
+        "parentId": "t1_xxxx3xx"
+      },
+      {
+        "id": "t1_xxxxx1z",
+        "author": {
+          "name": "XXxxxx01"
+        },
+        "text": "Xxx 1.100 xx xxxxx xx xxxxxxxxx xxxx Xxxxx xxx Xxxxxxxxx_xxx! Xx xxxxx like xx xxxx xxxx xx xx xxxx xxx xxxxxxx xxxxxx xxxxxxxx?",
+        "publishedAt": "2026-09-23T19:44:45.130Z",
+        "likes": "85",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbmpr1z/"
+      },
+      {
+        "id": "t1_xxxxx51",
+        "author": {
+          "name": "Xxxxx1924"
+        },
+        "text": "Xxxx xxxxx like xxxxx xxxx xxxxxxxxx min-xxxxxxx-xxx in xxx xxxx xxxxxxx",
+        "publishedAt": "2026-09-23T22:08:15.838Z",
+        "likes": "39",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnld51/",
+        "depth": 1,
+        "parentId": "t1_xxxxx1z"
+      },
+      {
+        "id": "t1_xxxx6nd",
+        "author": {
+          "name": "xxxxxxxxxx"
+        },
+        "text": "xxxxxxxxxxxxxxx xxx xxxxxx xx xxxxxxxx xxx xxxxxx xxxxx xxx xxx!",
+        "publishedAt": "2026-09-23T16:42:41.804Z",
+        "likes": "41",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbli6nd/"
+      },
+      {
+        "id": "t1_xxxxx85",
+        "author": {
+          "name": "xxxxx2010"
+        },
+        "text": "Xxxxxxx, xxxx XxxXxx xxxxx xx 10.5 years xxx",
+        "publishedAt": "2026-09-23T21:35:12.127Z",
+        "likes": "21",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnen85/"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xXxxx420"
+        },
+        "text": "Xxxx?? X xxxxxxx xxxx xxxxx xxxx in Xxxx 2.0, xxxxxxxxxx (/x xxxxx xxx!!)",
+        "publishedAt": "2026-09-23T17:18:31.777Z",
+        "likes": "35",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblqvzn/"
+      },
+      {
+        "id": "t1_xxx7xxx",
+        "author": {
+          "name": "XxxxXxxxxxxx"
+        },
+        "text": "Xx xxx xxx...\n\nXxx xx xxxxxxx xxxxxxx Xxx::xxx_xxx()?",
+        "publishedAt": "2026-09-23T21:03:16.950Z",
+        "likes": "16",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbn7srq/"
+      },
+      {
+        "id": "t1_xxxx860",
+        "author": {
+          "name": "Xxxxxx"
+        },
+        "text": "Xxx xxx",
+        "publishedAt": "2026-09-24T19:09:35.579Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbtq860/",
+        "depth": 1,
+        "parentId": "t1_xxx7xxx"
+      },
+      {
+        "id": "t1_xxx0xxx",
+        "author": {
+          "name": "XxxxxxXx"
+        },
+        "text": "Xxxxxxx xxxx xx xxxxxxxxxx xxxx xxxx xxxxxxx, xx xx now xxxxxx xx xxx/xxxxx xxxxxx?",
+        "publishedAt": "2026-09-23T17:58:05.897Z",
+        "likes": "13",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm0hra/"
+      },
+      {
+        "id": "t1_xxx6x6x",
+        "author": {
+          "name": "xxxxxxxxxxxx"
+        },
+        "text": "Xxx xxxx now xx xxxx xx xxxxxx xxxx xxx xxxxxx xxxxxx xxxxx xxxx xxx xxx xxxxxx, xxx xxxxx xxxxxxxx xxxxxxx in xxxxx xxxx xx Xxx xxx Xxx, xxxxxxx xxxxxxxxx xxx xxxxxxx xxx xxxx xxxxx xxx xxxxxxxxx.",
+        "publishedAt": "2026-09-23T18:22:44.234Z",
+        "likes": "46",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm6d6o/",
+        "depth": 1,
+        "parentId": "t1_xxx0xxx"
+      },
+      {
+        "id": "t1_xxxxxx5",
+        "author": {
+          "name": "XxxxxXxX"
+        },
+        "text": "X xxx xxx xxxxxx xxxx",
+        "publishedAt": "2026-09-23T22:36:09.757Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnqoh5/",
+        "depth": 2,
+        "parentId": "t1_xxx6x6x"
+      },
+      {
+        "id": "t1_xxx63xx",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "Xxxx xx xxx xxxxx xxxxx of xx xxxxxx xxxx xxxx xxxx xx xxxxxx xx xxx xxxxxx xxxxxxxxxx. Xxxxxxxxx, xxx xxx xxxxxxx xx, xxxxxx. Xx xxxxxxxx a xxxx xx xxxxxxxxx a xxxxxx xxxxxxxxx xxx xxxxx Xxx xxx Xxx xxxxxxx xxxx xxxx xxxx. Xxxxxxxxx xxxxx xxxxxx xxxxxxxxxx xxxxx xxxx xxxxxx.\n\nXxxx xxxx xxxx xxxxxx xxx xxxxx xxxx xxxx xx xxxxxxx xxxx xxx xxxxxxxxx xxxxx xxxxxxxxxx xx xxxxxxx xxxx xxx xxxxxxx Xxx/Xxx xxxxx (xxx xxxxxxxxx xxxxx xxxxx in xxx xxxxxx).\n\nXxx xxxxxxx, xxxxxxx of xxxxxxx\n\nxx xxx() -> Xxx<x32> {\n    xxx xxx x = Xxx::xxx();\n    // xx xxxxx xxxx x\n    x\n}\n\nA xxxxxxx xxxxxx xxx xxxxx xxxxxxxxx like\n\nxx xxx_in<A: Xxxxxxxxx + Xxxxx>(a :A) -> Xxx<x32,A> {\n    xxx xxx x = Xxx::xxx_in(a);\n    // xx xxxxx xxxx x\n    x\n}\nxx xxx() -> Xxx<x32> {\n    xxx_in(Xxxxxx)\n}\n\nNow xx a xxxxxxx xxxx xxx xxx xxxxxx xx xxxx xxx xxxxxxxx xx'x result xxxxx xxxx xxxxxx xxxxxxxxx xxxxxx xxxx xxx xxxxxx xxx.\n\nX xxx xxxx xx xxx \"xxxxx xxxxx\" xxxxxxx xx xxxx xxxx xxxx xxx xxxxxxxxx (xxxxxxxxx xxx xxxxxx) xx xxxxx xx xxxx, xxxxxx xxxxxxxxx xxxxxxxxxx xx xxxx xxxxx xxx xxxxxxxxx.",
+        "publishedAt": "2026-09-23T20:55:28.736Z",
+        "likes": "21",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbn63ey/",
+        "depth": 1,
+        "parentId": "t1_xxx0xxx"
+      },
+      {
+        "id": "t1_xxx4xxx",
+        "author": {
+          "name": "Xxxxxxxxx"
+        },
+        "text": "Xx xxxx xxxxx xxxxxxxxxx xx xxx xxxxxxxxx xx xxx xxxxxxxxx xx xxx xxxxxx xxx xxx xxxx xxxxx like a xxxxx xxxxxxxxx xx xx xxxx xxxxxxx xxxx xxxxx xxxx/xxxx of xxx xxxxxxxxx? Xxx xxx xxxx xxxxxxxx xx xx xxxx xxxx xx xxxx xxx xxxxx xx xxxx xx xxxx in a xxxxxx xxxxxx?",
+        "publishedAt": "2026-09-27T04:53:16.552Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pcb4qir/",
+        "depth": 2,
+        "parentId": "t1_xxx63xx"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "Xx xxxx xxxxx xxxxxxxxxx xx xxx xxxxxxxxx xx xxx xxxxxxxxx xx xxx xxxxxx xxx xxx xxxx xxxxx like a xxxxx xxxxxxxxx xx xx xxxx xxxxxxx xxxx xxxxx xxxx/xxxx of xxx xxxxxxxxx?\n\nXxxx xxxxx xx xxxxxxxx of xxxx A, xxxxx xxxx xxxxxxxxx Xxxxxxxxx. Xxxxxxxxxxx, xxxxxx xxx xxxxxxxxxx xxxxx xxxxxxxxxx xxx't xxxxxxx xx, xxx xxxx xxxx xx xx xxxxxxxxx Xxxxx.\n\nXxxxx xxx xxxxxxx xxxxxxxxxxxxxxx of Xxxxxxxxx in xxx xxxxxxxx xxxxxxx.\n\nxxxxxx xxxx<A: Xxxxxxxxx + ?Xxxxx> Xxxxxxxxx xxx &A { ... }\nxxxxxx xxxx<A: Xxxxxxxxx + ?Xxxxx> Xxxxxxxxx xxx &xxx A { ... }\nxxxxxx xxxx<A: Xxxxxxxxx + ?Xxxxx> Xxxxxxxxx xxx Xxx<A, _> { ... }\nxxxxxx xxxx<A: Xxxxxxxxx + ?Xxxxx> Xxxxxxxxx xxx Xx<A, _> { ... }\nxxxxxx xxxx<A: Xxxxxxxxx + ?Xxxxx> Xxxxxxxxx xxx Xxx<A, _> { ... }\n\nXxxxxx xxx xxxxxx xx.\n\nXxx xxxxxx xxxxxxxxxx xxx xxxxxxxxx xx xxxxxxxxxxx xx a xxxx-xxxxx xxxx xxxxx xx xxxxxx xxxxxxxx.\n\nXxx xxx-xxxxxx xxxxxxxxxx xxxxxxx xx a xxxxx xxxx xxxxxxx xxx xxxx a xxxxxxxxx.\n\nXxx xxx-xxxxxx xxxxxxxxxx xxxx xxx xxx xxxxxxx xx a xxxxx xxxx xxxxxxx xxx xxxx a Xx xx Xxx\n\nXxx xxx xxxx xxxxxxxx xx xx xxxx xxxx xx xxxx xxx xxxxx xx xxxx xx xxxx in a xxxxxx xxxxxx?\n\nXxxxxx xx'x xxxxxxxxx xxxx xx xxxx a xxx-xxxx xxxxxxxxx.",
+        "publishedAt": "2026-09-28T10:13:38.863Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pcjoycf/",
+        "depth": 3,
+        "parentId": "t1_xxx4xxx"
+      },
+      {
+        "id": "t1_xxxxxx8",
+        "author": {
+          "name": "Xxxxxxxxx"
+        },
+        "text": "Xxxx xx xxx xxxx xx xxxx xxxxxxx, xx xxx just xxxx xx xxxxx't xxxxxx a xxxxx xxxxx?",
+        "publishedAt": "2026-09-29T14:28:43.810Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pcsnlv8/",
+        "depth": 4,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "xxx",
+        "publishedAt": "2026-09-30T01:32:51.009Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pcwwwdn/",
+        "depth": 5,
+        "parentId": "t1_xxxxxx8"
+      },
+      {
+        "id": "t1_xxxx1x0",
+        "author": {
+          "name": "xxxxxx_m_x"
+        },
+        "text": "Xx'x xxx xxxxxxxxxx xxxxxx xx xxxxxx xxx, xxxxxxx xxxxx now xxx xxxx a \"xxxx\" Xxx (xxxxxxx a xxx xxxxxxxxxx xxx xxxxxxxx, xxx second xxxxxxx xx xx xxx xxxxxxxxx). Xxx xxxxxxxxxxxxx xxxxxxx xxxxxxxx xxxx xxxxxxx xxxxx, Xxxxxxxxxxx, xx xxxxxx in xxxxx xx xxxxxx xxxx Xxxxx xxx xxxxx xxxxxxxxxx.",
+        "publishedAt": "2026-09-24T19:21:42.053Z",
+        "likes": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbtt1e0/",
+        "depth": 1,
+        "parentId": "t1_xxx0xxx"
+      },
+      {
+        "id": "t1_xxxxxx8",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "Xx xxxxx xxx xxxxxx xxx xxxx xxxx xxxxxxx xx xxxxxxxxx xxxx xxxx xxxxxxx?\n\nX xxxxxx like xxx xxxx of xxxxxxxxxxx xxxx xxxx xxxxxxxx xxx xxxx, xxxx xxxxx xxxx xxxxxxx in xxxxxxx xxxxxx-xxxxx xxxxxxxxxx, xxxxx xxx xxxx of xxx xxxxxxxxxxx just xxxxx xxxx xxx xxxxxx, xxxxxx xxxx (x xxxxx xxx) xxxx xxxxxxxxx xxxxxxxxx xxxx xxxx xxxx xxx Xxxxxxxxx xxx.",
+        "publishedAt": "2026-09-23T17:09:59.930Z",
+        "likes": "27",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblott8/"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxxxxxx xxxx xxx xxxxxxxxxxxxx xxxxxx: https://github.com/rust-lang/rust/pull/156882\n\nXxx a xxxxxxxxxxxx in-xxxxxx xxxx xxx of xxx xxxxxxx of xxx Xxxxx xxxxxxxx, xx xxxx xxxxxxxxxxx xxxx xx xxxxx xx xxxxx xxxxxxxxx-xxxxxxxxxx (in Xxxxx xxxxxxxxxxx, xxx xxxxxxxxxx Xxxxxxxxx xxxxx xx xxxxxxxxxxx a xxxxxxx xxxx xxxxxxx xxxxxxx). Xxx xxxxxxx xxxx xxxx xxxxxxxx xxx xxxxxxxxx xxxx-xxxxxxxxxxxxx xxxxxxx.",
+        "publishedAt": "2026-09-23T17:21:08.061Z",
+        "likes": "60",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblriwh/",
+        "depth": 1,
+        "parentId": "t1_xxxxxx8"
+      },
+      {
+        "id": "t1_xxxxx8z",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "X xxxxxxx xxxx xxxxx xxxxxx, xxx xx xxxx xxxxxx xxxx xx a xxxxxx xxx xxxxxxxxx xxxx xxxx xxxxx xxxxxx xxxx xxx xxxx xxxxxxxxxxxxx xxxxx xxx xxxxxxxxx xx: xxx xxxx xxxxxx xx xx xxx xxxx xxx. Xxxxxx xxxxxxx, xx xxxx xxxxxx xx xxxxxx.\n\nXxxxx xxx xxxxx a xxx xxxxxxxx xxxxxxx xxxx xxxxx xxx xxxxxxxx xxxxxxx'x xxxxx (xxx xxxxxx xxx xxxxxxx), xxx xxxx xxx xx xxxx xxxx xxx xxxx xxxxxx xxxxxxx xxxxxx.",
+        "publishedAt": "2026-09-23T17:40:44.286Z",
+        "likes": "18",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblwa8z/",
+        "depth": 2,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xxxxx3x",
+        "author": {
+          "name": "XXXX_XXXXX"
+        },
+        "text": "Xxxx'x xxx xxxxx xxx xxxxxx? Xx xx xxxx xxxx xxxxx.",
+        "publishedAt": "2026-09-23T18:49:46.355Z",
+        "likes": "9",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbmct3p/",
+        "depth": 3,
+        "parentId": "t1_xxxxx8z"
+      },
+      {
+        "id": "t1_xxxx1x4",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "Xxxxxxx xx xxx xxxxx xxx xxxxxx, xxxxx xxx xxxxx. Xxx xxx xxxxx xxx day xxxxx xxx xxxxx Xxxxxx xxx Result xxxxxxxxxxx xxx xxxxx xxxxxxx xxxxxx xxxx xxxxx xxx xxxxxx, xxx xx xxx xxx of xxx day, xxx xxxxxx xxxxxxxxx.\n\nXxxx xxx xxx xxxxx of xx xxxxxxxx xxxxxx, xxx xxx xxxx xxxxx xxx xxxxxx out of xxx xxxx. Xxx xxxxx xxx xxx xxx xx xxxx xxx xxxx of xxxxx xxxxxxxxx xxxxxx like in xxxx xxxxxx xxxxxxxxx.",
+        "publishedAt": "2026-09-23T18:59:15.612Z",
+        "likes": "7",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbmf1k4/",
+        "depth": 4,
+        "parentId": "t1_xxxxx3x"
+      },
+      {
+        "id": "t1_xxxxxx9",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "xxx xx xxx xxx of xxx day, xxx xxxxxx xxxxxxxxx\n\nXxx xx, xxx xxxxxxxxxxx xxxxx xxxxxxxxx xxxxxxxx xxxx xxx xxxxxx, xxx xxx xxxx xxxxxx xxxx xxx xxxxx xx xxx xxxx xxx Xxxxxxxx xxxxxxxxxxx xxxxxxxx.\n\nXxxxxxxx, xxxxxx XXXx xxxxxxxx in xxxxxx xx a xxxx xxxxx, xxx a xxx xxxxx. Xxxxxx a xxxxxxxxxx XXX xxxx xxxxx xxxxx xxx \"xxxx xxxx\" xxxx xxxxxxxxx xxxxx xxx xxx xxxx of xxxx xxxxxx, xxx xxx't xxxxxxxxx xx xx xxxxxxx xxxxxxx of xx xxxxxxxx xx xxxxxxxxxx.",
+        "publishedAt": "2026-09-23T22:10:03.104Z",
+        "likes": "20",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnlpr9/",
+        "depth": 5,
+        "parentId": "t1_xxxx1x4"
+      },
+      {
+        "id": "t1_xxxx931",
+        "author": {
+          "name": "XxxXxxxx"
+        },
+        "text": "X like xx XXXx xx xx like xxxxxx\n\nXxxx xxxx xx xxx Xxxxxxx",
+        "publishedAt": "2026-09-24T01:07:08.480Z",
+        "likes": "11",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pboi931/",
+        "depth": 6,
+        "parentId": "t1_xxxxxx9"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "Xx xxxxxxx xxx't xx xxxx xxxx xxxxxxxxxxx xxx xx xxxx xxxxxx, xxx xxxx xxxxx xxxxxxxx xxxx xxxx xx. Xxxxxx xxx Result xxxxxxxxxxx xx xxxx xxxx xxxx xxxxxxxx xxxxxxxxxxx, xxx xxxxxxxxx xx xxx xxxxxxx xxxxx xx results. Xxxxx xxxx xxx xxxxx xxxxxx, xxx x xxxx xxxxx x xxxxx xxxxx xxx xxxxxxxxxxx xxxxxx xxxxx xxx xxxxxx.\n\nXxxx xxxx xxxxxxxxx, xxxx xxxxxx xxxxxx xxxxxxx xxxx x am xxxxxx xx xxxxx, xxx xxxxx xxxxxxx xxxxx xxxxxxxx. Xxxxx xx xxxx xxxxxxxx xx xxxxxxx xxxxx Xxxxxx xxx Result xxxxxxxxxxx xxxxxx xxxxx xxx xxxxxx, xxx xxx of xxxx?\n\nIn xx xxxxxx xxxxxxx, Xxxx xxxxxxxx xxxxxx xx xxxx xx xxxxx out xxxxxxxx xxxxxxx XXX'x, xxx xxxx xxx currently xxx xxxxxxx.\n\nXxx xx xxx xx x xxxx, xx xxx xxxxx xx xxxxxx xxxx xxxx xxxx xxxxx xxx xxxx. X xxxx xxxx xxx xxxxxxx of xxxxxxxxxxxx xxxx of xxx xxxxxxxxxxx xxxxx xxxxxx xxxx xxxxxx'x xxxx of xxxxxxxxx, xxxxx xx xxxxx, xxx x xxxx xxxx xxxx xxxx xx.",
+        "publishedAt": "2026-09-24T06:23:30.662Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpuoqb/",
+        "depth": 6,
+        "parentId": "t1_xxxxxx9"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "XxxxXxxxxx"
+        },
+        "text": "Xxxxxxxxxx X xxx't xxx xxxxxxx xxxxxxxxxx xxxxxx, xxx xxxxxxxx xxxx xx xxxxxxxxxxx. 1-2 xxxxxx xxxxxxxxxxx xx xxxxxxx xxxxx xxx xxxxxxx xxxxxx, a xxxxxx xxxxxxxxx xxxx xx xxxxxxxx xxxx. X xxxxx xxxx X xxx't xxx xxx-xxxxxx xxxxxxx of xxxxxxx xxxxxxxxxx xxxxxx, xxx xxxxx xxx xxx xxxxxxx xxxx xxxxxxx.",
+        "publishedAt": "2026-09-24T12:48:38.101Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbragmp/",
+        "depth": 7,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xxxxxx0",
+        "author": {
+          "name": "Xxxxxxx23"
+        },
+        "text": "...Xxx xxxxx xxx xxx xxx xx xxxx xxx xxxx of xxxxx xxxxxxxxx xxxxxx like in xxxx xxxxxx xxxxxxxxx.\n\nXx xxx? Like, xxxx xxx't Xxx. Xxxx of xxxxx xxxx xxxx xxxxxxxxx xxxxxxxxxxxxxxx xxx xxxxxxxxxx. Xx a xxx of xxxx xx a xxx xxxxxxxx, xxx xxx xxxx xxxx xxxxxxx.",
+        "publishedAt": "2026-09-24T00:23:04.073Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pboabd0/",
+        "depth": 5,
+        "parentId": "t1_xxxx1x4"
+      },
+      {
+        "id": "t1_xxxx02x",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "X xxxx xxxx xxx xxx xxxx xxx xxxxxxxxxx xx Xxx. Xxxx \"xxxxxxxxx xxxxxxxxxxxxxxx xxx xxxxxxxxxx\" xxxx xxxxx xxx today. Xxx years xxxxx, xxx xxx xxxx xxx xxxxxxxx xxxx xx xxxx of xxxxx xxxxxxxxx in xxx.",
+        "publishedAt": "2026-09-24T06:26:00.091Z",
+        "likes": "-2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpv02n/",
+        "depth": 6,
+        "parentId": "t1_xxxxxx0"
+      },
+      {
+        "id": "t1_xxxxx2x",
+        "author": {
+          "name": "Xxxxxxx23"
+        },
+        "text": "Xxxx't xx xxxxxxx in xxxx xxxx of xxxxxxxxx? Just xxxx xx xxx xxxxxxx xxxxx of xxxxxxxx xxxxx. Xxxx of xxxxxxx, xxxx xxxx of xxxxx xxx xxxx xxxxx (xx. xxxx xx xxxxxxx), xxxx of xxxxxx xxxxxxxxxxxx xxxxxxx xxxxxx xxx xxxxxx, xxxxxx xxxxx, xxxxx xxxxxx, xxx. Xxxx xxxxxxx xx in xxxx xxxx xxx'xx xxxxxxxx.\n\nX xxxx like xxxx xxxxx xx xxxx of a xxxx xxxx xxx xxxxxxxx xxxxxxx xxxx xxxxxxxx xxxxxxxxxxx xx xxxxxxxxxx. Xx xxxxxxx xxxx a xxx xxxx xxxxxx xxx xxxxxxx xx xxx xxxxxxxx xxx xxxxx xx xxx xxxx xxx xxxxxx of xxxxx (xxxx) xxxxxxxxx.",
+        "publishedAt": "2026-09-24T06:54:43.802Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpyj2y/",
+        "depth": 7,
+        "parentId": "t1_xxxx02x"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "Xxx xxx xxxx xxxx, x am just xxxxxxx. Xxx a xxxx xxxxx of xxxx. Xxx x xx xxxxx xx xxxxx xx xxxxxxx xxxxxx, xxxxx xxxx xxx xxx xxxx of xxxxxxxx, xxxxxx xxxx currently xx xxx xxxxx xx xxx xxxxxxx'x XXXx.",
+        "publishedAt": "2026-09-24T06:56:53.677Z",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpysps/",
+        "depth": 8,
+        "parentId": "t1_xxxxx2x"
+      },
+      {
+        "id": "t1_xxx3xxx",
+        "author": {
+          "name": "Xxxxxxxxxxxxx"
+        },
+        "text": "Xxxxx xxxx xx xxxxxxxxxx xxxx xx xxxxxxx? Xxxxx xxxx xxx xxxxx xx xxxxxxx, xxx xxxxx xxxxx xxxxxxxxx in xxxxxx xxx xx xxxxx xxxxxxxx xxxxx xxxxx xxxx a xxxxxxxxxxx xxxxxxx xxx xxxxxxxxx xxx xxx of xxx-xxxxxx xxxxxxx? Xxxxx xxx xxxx xxxxx xxxx xx xxxxxxxxxxxxx \"xxxxx\" like xxxx xxxxx xxxxxxx xxxxxxx?",
+        "publishedAt": "2026-09-23T20:43:53.214Z",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbn3hpg/",
+        "depth": 5,
+        "parentId": "t1_xxxx1x4"
+      },
+      {
+        "id": "t1_xxxxx9m",
+        "author": {
+          "name": "Xxxxxx"
+        },
+        "text": "X xxx't xxx xxx xxxx xxx a xxxx xxxxxxxxxxx of xxxxx xxxxxxxxxxx; xxxx xxxx xxxx xxxxxx xx xxxx xxxxxx, xxx xxxx in a xxxxx xxxx xxx xxxxxx xxxx'x xxxxx xxxxxxxxxxxx xx a xxxxx xxx xx xxxxxxx xxxxxxxxx. Xxxx xxxxxx xxxxx'x xx xxx Xxxxxx xxxxx xxxx xxxxxxxxxxxx xxxxxxxx xxxxxxxxxx xxxxxxxx xxxx xxx xx xxxxxxxxx xxxx xxxxxxx xxxx xxx xxxxxx xxxx xx xxxxxxxx, xxx xxxxx xx xxxx-xxxxxxx xxxx. Xxxx xxxxx xxx xxxx xx xxxxxx xxxxxx xx xxxxxxx xxxxxxxx xxxxx xx'x just xx a xxxxxxx xxxx xxx xxxxx xxxxxx xx xxxxxxx xx xxx xxxxxxxxx.",
+        "publishedAt": "2026-09-23T21:33:35.945Z",
+        "likes": "8",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbneb9m/",
+        "depth": 6,
+        "parentId": "t1_xxx3xxx"
+      },
+      {
+        "id": "t1_xxx8xxx",
+        "author": {
+          "name": "Xxxxxxxxxxxxx"
+        },
+        "text": "Xxxx, X am xxx xxxxxx xx'x xxxxxxxxx. X xxx xxxxxxxxxx xx xxx xxxxxx xxxxxxxxx xxxxxxxxxx xxxxxxxx xxxxx xxxxxx xxxx xxx xxxx xxxx xx xx xxx xxxx xxxxx, xxxxx xxxx xxxxx xx xxxx xxxxxx xxxxx xxxxxxxxxxx xxxxxx.",
+        "publishedAt": "2026-09-24T08:23:45.093Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbq8why/",
+        "depth": 7,
+        "parentId": "t1_xxxxx9m"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xx xxxxxx xxx xxx xx xxxxx in xxxx xxxx X xxx't xxxxx xx xx xxxxxx.\n\nXx xx, xxxx xxxxx xxxxxxxxx xxxxxxxx. Xxxx xxx xxxxxxxxxxx xxxxx xxxx xxxxxx in xxxxxxxxx xxxx xx xxxxxxx a xxxxx xx xx xx a xxxxx, xxx xxx xxxxxxxxxx.\n\nXx xxx xxx xx, xxxxxx xx xxx't xxxx xxxx xxxxxxx xxxxxxx of xxx xxxxxx xx like xxxxxx xx xxx't xxxx xxx xxxxxxxx xxxxxxx xxxxxxx xx xxxx xxx xxxxx.\n\nXxx, xxxx xxx xx xxx xxxx xxxxx xxx xxxxxxxxx xxx xx xxxx xxxxx xxx xxxxx xxxxx xxx xxxxx.\n\nXxxx xx xxxx xxxx of xxxxx xxxxxx xxxxxxx, xxxx of xxxxx xxx xx xxxx in xxx xx 2 xxxxx xxxxxxxx. Xxx xxxxxxxxxx xxxxxxx xxxx just xx xxxxxxx xxx of xxxxx.",
+        "publishedAt": "2026-09-23T21:50:51.394Z",
+        "likes": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnhvov/",
+        "depth": 6,
+        "parentId": "t1_xxx3xxx"
+      },
+      {
+        "id": "t1_xxxx4xx",
+        "author": {
+          "name": "xxxxxxxxxxx"
+        },
+        "text": "xx xxx xxxxxxxx xx xxxx xxxxxxxx-xxxxxxxxxx xxxxxx xxxx xxxx xxx't a xxxxx xx xxx; xxxx xx xxxx xxxxxxxxxxxxx xxxxx xxxxxxx, Xxxxxxxxx xxx xxxxxxxxx just xx xxxxxxxxx xxxxx xxx a xxxxxxx xxxxxxxxxxx of xxxxxxx xxxxxx xxx xxxx xxxxxxx. xxx xxxxxxxxxxx xxxxxxx xxxx xxxxx xxxxxxxxx xxxxxxxx ^^",
+        "publishedAt": "2026-09-24T01:00:54.274Z",
+        "likes": "8",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pboh4vk/",
+        "depth": 3,
+        "parentId": "t1_xxxxx8z"
+      },
+      {
+        "id": "t1_xxxx6xx",
+        "author": {
+          "name": "XXX1997"
+        },
+        "text": "Xx, xxxx xxxxxx of xxx Xxxxx xxxxxxxx xx xx, xxx xx xxxxxxxx xxxxxxxxxx xxxxxxxxx xxx xxxx :3\n\nXxxxxxxxx x/xxxxxxxxxxx xxxx — xxxx xx xxx xxx xxxxxxxxxxxxx xxxxx xxxxxxx xxx xxxxxxxxxx xxxxxxxx, xxx Xxxxxxxxx xxxx xxxxxxxxx xxxx xxx xxxxxxx xxxxxxxxx. Xxxx xxxx a xxxx xxxxx xxxxx xxxxxxxxx, xx xxxx a xxxxx xxx xxx xxxxxxxxx of Xxxxxxxxx, xxxxxxx xx'x xxxxxxxx xxxxx xxxxxx of a xxxxxxxx xx xxxxxxx xxxx xxxxxxx xxxxxxx xxx just xxxxxxxx xx xxx xxxxxxxxx xxxxxx xxxx xxx xxx xxxxx xxxxxxxxxx.",
+        "publishedAt": "2026-09-24T01:40:10.244Z",
+        "likes": "11",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pboo6yh/",
+        "depth": 3,
+        "parentId": "t1_xxxxx8z"
+      },
+      {
+        "id": "t1_xxxxx1x",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx9584"
+        },
+        "text": "X xxx't xxxx xxx xxxxxxxxx in xxxxxxxxxx, xxx xx xxx xxxx xxx xxxx xx xx xxxx xxx xxxxxxxxxxxxx xx xxx xxxx year?\n\nXx xxxxx xxxx, xxxx Xxxxxxx xx xxxxxxxxxx xx-xx, xx xxx xx xxxxxx xx xxx xxx xxxxxxx xx xxx xxx xxxxxx just xxxxxxx, xxxxxxxx, xxxx, xxx?",
+        "publishedAt": "2026-09-24T06:32:59.658Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpvv1f/",
+        "depth": 4,
+        "parentId": "t1_xxxx6xx"
+      },
+      {
+        "id": "t1_xxx1xxx",
+        "author": {
+          "name": "xxxxx"
+        },
+        "text": "Xxxxxxxxxxx xxxxxxx xxxx in a year xxxxx xx... xxxxxxxxx xxxxxxxxxx, xxxxx xxxx X xxxxxxx xx xxxxx't xxxx xx xxxxxxxx XXX, xxx xxxxx xx xxxxxxxxxxxxxx in xxx xxxxxx. X xxxxx xxxx xx xxxxxxxxx xxxx xxxxx xxxx xxxxxxx years.\n\nXx xxxxxx xxxx xxxx xx xx, X xxxxx xxxxxxx xxxxxxx xx xxxxxxxx xxxxxxxxxxxxxx xxxxxx a year, xxx xx'x xxxx xx xxx xx xxxx xxxx xxxxxx. Xx X'm xxxxx xxxxxx, X xxxxxxx xxxxxxxxxxx Xxxxxxxxx xxxx xxxxxx xxx \"xxxxxxxx\" xxxxxx xxxxxx, xxxxxx xx xxxx xxxxxx (xxx xx xxxxx just xx xxxxxx xx xxx xxxxx xxx, xxxxx xxxxxxxxxxx Xxxxxxxxx xxxxx xxxxxx xxxx xxxx xx'x xxxx xxxxxxxxxx. Xx'x xxxx xx xxx xxxx xxxx xxxxxx)",
+        "publishedAt": "2026-09-27T16:06:09.390Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pce1icj/",
+        "depth": 5,
+        "parentId": "t1_xxxxx1x"
+      },
+      {
+        "id": "t1_xxxxx63",
+        "author": {
+          "name": "XxxxxxxXxx"
+        },
+        "text": "Xxx! X xx xxxx a xxxxxxxx. Xxxx xx xxxxxxx in xxxx xxxxxxx? Xx xxx xxxx xx xxxxxxx X xxx xxxx xxxxx xx?",
+        "publishedAt": "2026-09-24T18:57:08.834Z",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbtnb63/",
+        "depth": 4,
+        "parentId": "t1_xxxx6xx"
+      },
+      {
+        "id": "t1_xxxxxx0",
+        "author": {
+          "name": "xxxxx7_"
+        },
+        "text": "Xxxxx xxx xxxx xx xxx XXX xxxx'x xxxx xxxxxxxxxx?",
+        "publishedAt": "2026-09-23T17:24:48.566Z",
+        "likes": "8",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblsfb0/"
+      },
+      {
+        "id": "t1_xxxx7ct",
+        "author": {
+          "name": "X911999"
+        },
+        "text": "Xxxx, xxxx'x xxx xxxx XXX, xxxx xxxxx xxx xxxx xxxxxxxxxx like Xxx::xxx_in xxx Xxx::xxx_in xxxx, xxxxxx X may xx xxxxx xxxxx xxxx xxxx xxxx",
+        "publishedAt": "2026-09-23T17:36:18.200Z",
+        "likes": "16",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pblv7ct/",
+        "depth": 1,
+        "parentId": "t1_xxxxxx0"
+      },
+      {
+        "id": "t1_xxxx1x8",
+        "author": {
+          "name": "xxxx_xxxx"
+        },
+        "text": "Xxxxxxx, xxx Xxxxxxxxx xxxxx xxxxxxxx-xxx xxx a xxxxx of xxx xxxx xxxx xxxx xxxxxxxxx xxxxxxxx xxx xxxxxx xxxxxxxxxxxx. In xxxxxxxxxx, xx now xxxxxxxxxx xxx xxxxxxx of \"xxxxxxxxxx xxxxxxxxxx\".",
+        "publishedAt": "2026-09-23T21:56:29.307Z",
+        "likes": "11",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnj1e8/",
+        "depth": 2,
+        "parentId": "t1_xxxx7ct"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxx XXX xxxxxxx xxxx xxxx'x xxxx xxxxxxxxxx xx xxxxxx xxxx in xxx xxxxxxxxxxxxx xxxxxx: https://github.com/rust-lang/rust/pull/156882 . Xxxxxxx, xx xxx xx xxx xxxxxxxxxxx xxxxxx xxxxx xxx xxxxxxxxx, xxxx xxxxxxx xxxx xxxxxxx xxxxxx xxxxxxxxxx xxx Xxx xxx Xxx, xxx xxx xxxxx xxxxxxxx xxxxxxxxxxx xxxxx xxx xxxx xxx xxxxxx xxxx.",
+        "publishedAt": "2026-09-23T17:34:56.079Z",
+        "likes": "11",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbluvbt/",
+        "depth": 1,
+        "parentId": "t1_xxxxxx0"
+      },
+      {
+        "id": "t1_xxxx7x5",
+        "author": {
+          "name": "xxxxxxxxxx"
+        },
+        "text": "Xxxxxxxxxxx. Xx xx xxxxxxx Xxx xxx Xxxxxx xx xxx-xx-xxxxxxxx just a Xxx xxxx xxxxxxxx xxxxxxxxxx, xxxx xxxx xxxx xx xxx xxx xx xxxxxxxxx xx xxxx a Xxxxxx ?\n\nXxxxxxx xxxx xxxxxx xxxx xx xxxxx'x xxxxxx of Xxx-xxxxxxx xxxxxx xxxxx, xxxx xxxxxx xxxx xxxxxxxxxx xxxx in XxxXxxXxxxx xxx xxxx of Xxx xxxxx xxxxx't xxxx xxxx xx'xx xxxxxxx xxxx xxxxx xx'xx xxxxxxx xx, xxx xx xxxxxxxxxx xxxxx xxxxx xxxx't a Xxx xxx xxx just XxxXxx xxxxxx xxxx xx XxxXxxxx xxxxx xxx xxxx xxxxxx xxxxxx xxxx xxxxx?",
+        "publishedAt": "2026-09-23T22:55:09.047Z",
+        "likes": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnu7j5/",
+        "depth": 2,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xxxx6xx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "In xxxxxx X xxx xx xxxxxx xxx xxx xxxxxx't xxxxxxxxxx xxxx a Xxxxxx xxxx a xxxxx xxxxxxxxx, xxxxxxxx xxxxx now xx xxxxxxx xx XXX xxx xxxx (of xxxxxx, xxxxx'x xxxxxxx xxxxxxxx xxxxxx xxxx xxxxx xx in xx xxxxxxxx xxxxx; Xxxxxx xxx't xxxxxxx). Xxx xxxx xx xxxxx xx xxxxxxxx xxxxxxxxx-xxxxx XXXx xxx xxx xxx xxxxxx xxxxxxxxxxx (xxxxxxxxx Xxxxxx), XXXX xxx xxxxxxx xxxxx now xx xxxx xxx'x xxxxxx xxxx xx xxx xxxxxxx-xxxxx XXXx xxx xxx of xxxx (xxxxx XXX xx xxxx), xx xxxxxx xxx xxxxxxxxx xxxxxxxxx like xxxxxxx xxxxxxxx xxxxxxxxx (xxxxx xxxx xxxxxx xxx xxxxxxx xx a xxxxxxxx xxx), xx xxxxxxxxx xxxxxx xxx xxxxxx of xxxxxxxxxxxx (x.x. Xxxxxx::xxxx_xxx16xx_xxxxx xxxxxx xxxxxxxxx a xxxxxxxxxxxx Xxxxxx::xxxx_xxx16xx_xxxxx_xxxx_xxxxxxxxx, xxx xx xx xxx xxxxx xxxxx xxxxxxxx, xxxxx X xxxxx xxxxxxxx xxxxxx xx a xxxxxxxxxx xxxxxxxx).",
+        "publishedAt": "2026-09-24T01:34:35.752Z",
+        "likes": "7",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbon6jb/",
+        "depth": 3,
+        "parentId": "t1_xxxx7x5"
+      },
+      {
+        "id": "t1_xxxx6x1",
+        "author": {
+          "name": "xxxxxx_m_x"
+        },
+        "text": "X xxxxx xxx xxxxxxx xxxxxxx xxx xxxxxx <A> xx Xxxxxx xx xxxx xx xxxxxx xxxx xxxx xxxxxxxxx xx xxxxxxxxx like xxxx. Xxxxx'x a XX xxxx xxx xx xxxxxxxxx.",
+        "publishedAt": "2026-09-24T19:26:42.769Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbtu6w1/",
+        "depth": 4,
+        "parentId": "t1_xxxx6xx"
+      },
+      {
+        "id": "t1_xxxxxx9",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "> xxxx xxxx xxxx xx xxx xxx xx xxxxxxxxx xx xxxx a Xxxxxx ?\n\nXxx xxxxx now.\n\nXxx xx xxxxxxx xx ````xxx xxxxxx Xxx<T, A = Xxxxxx>. Xx xxx xxxxxxxxx xx xxxx of xxx xxxx of xxxXxx``` xxx xx xxx xxxxx ```Xxx<x8>``` xxxx xxxxx xxxxxxxxxx a Xxx of ```x8``` xxxx xxxx xxx ```Xxxxxx``` xxxxxxxxx.\n\nXx'x xxxxxxxx xx xxxx a Xxx xxxxx xxxxxxxxx xx xxxxxxx xx xxxxxxx, xxxxxxxxx like Xxx<&xxx Xxxxxxxxx> xx Xxx<Xxx<xxx Xxxxxxxxx>> xxx X xxxxx xxxxxx xxxx xx xxxx xx xxxx in xxxxxxx xxxxxxxxxxxxx.\n\nIn-xxxxxxxxxx xxxx xxxxx xxx xxxx (xxxxxxxxx Xxxxxx) xxxx xxxxx xxxx Xxxx xxxx xxx xxx xxxxxxx xxxxxxxxx xxxx xxxx xx xx xxxxxxx xx xx xxxxx xx xxxxxxx Xxxx xxxxx xxxxxx xxxxxxxxxx.",
+        "publishedAt": "2026-10-12T15:33:56.615Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pfgrgx9/",
+        "depth": 3,
+        "parentId": "t1_xxxx7x5"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "https://github.com/rust-lang/rust/pull/156882#event-31657168371",
+        "publishedAt": "2026-09-23T17:34:08.112Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbluoeb/",
+        "depth": 1,
+        "parentId": "t1_xxxxxx0"
+      },
+      {
+        "id": "t1_xxxx4x2",
+        "author": {
+          "name": "XxxxxxxxXxx3544"
+        },
+        "text": "Xx'x xxxxx xxxx. Xxxxxxx xx xx xxxxxxxxxx xxxxxxx xxxxxxxxx xxxxxx xx xxxxx.\n\nXx xxxxxxx xxxxxxx xx xx XX xxxxxx xx xxx xxxx'x xxxx xxxxxxxxxxxx xxx xx'xx xxx xx xxxx xxxx xxxxxx xxxxx xxxxxxxxxxx.",
+        "publishedAt": "2026-09-24T02:30:28.632Z",
+        "likes": "7",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbox4p2/"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "Xxxxxx"
+        },
+        "text": "Xxx xxx xxxx xxxx't xxxxx xxxxxxxxxx xxx",
+        "publishedAt": "2026-09-24T19:11:57.159Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbtqrzq/",
+        "depth": 1,
+        "parentId": "t1_xxxx4x2"
+      },
+      {
+        "id": "t1_xxx1xxx",
+        "author": {
+          "name": "XxxxxxxxXxx3544"
+        },
+        "text": "Xxxx'x a xxxxxxx xxxx. Xxxxxxxx xx xxxxxx xxx xxxxxxxxx xxxxxxxxxxxxxx xx xxxx xxx xxxx xxxxxx xxx xx xxx xxx a xxxxxx xxxxxxxxxxxx xxxxx xxxxx xxx xxxx xxxxxxxxxx xxxx xxx xxxxxxxxx like xx XXX xx xx xxxxxxx xx X xxxx xxxx xxx xx xxxxx xxx xxxxxxxxxx XXXX. Xxx xxxxxxxxxxxx xx xxx xxx xxxxxxxxx xxxxxxxx in xxx xxxxx xxxxx of xxxxx X like xxxxxxxxxx xxxxxxxxx xxxx xxx xxxx xxx xxxx xxxx xx xxxxxxxx a xxxxxx xxxxxx xx xx xxx xxxx xxxxx xxxxxx xx XXX xxx xxx xxx Xxxx xxxxxx xxxxxxxxx xxxxx xxxxxxxxxx xxx xx xxxx xxxxxxxx xxx xxxxx xxxxxx xx xxxx xx xxxx xxxxxx xxx xxx xxxxxxx xxxxx xx xx xxxxxx xxxxxxx xxxxxxxxx. X xxx't xxxxxx xxxx xxx xxxx xxxxxxx xx xxxxxxx xxxxxxx xxxxxxxx xxxxxxx xxx xx xxxx'x xxxx xxxxx xx xxxxxx xxxx xxxxx xxxxxx xxx a xxxxxx of xxxxxx xxxx xx xxx xxxxxxxxxx.",
+        "publishedAt": "2026-09-25T05:45:54.937Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbx1uux/",
+        "depth": 2,
+        "parentId": "t1_xxxxxxx"
+      },
+      {
+        "id": "t1_xx0x49x",
+        "author": {
+          "name": "Xxxxxx"
+        },
+        "text": "Xx'x xxxxxxxxxxx, xxx xxxxx xxx xxxx xxx xxxxxxxx xxxx xxxx't xxxxxx out xxx.\n\nXxx now, xxx xxx xxx xxxx_xxx xxx xxxx_xxx xx xxx xxxxxx xxxx, xx xxxxx xxx Xxx xxx Xxx",
+        "publishedAt": "2026-09-25T18:08:14.663Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pc0p49x/",
+        "depth": 3,
+        "parentId": "t1_xxx1xxx"
+      },
+      {
+        "id": "t1_xxxxxxx",
+        "author": {
+          "name": "XxxxxXxxxxxxx"
+        },
+        "text": "Xx xxxx, xxxx xxxxxxx xx xxxx xxx xxx a xxxxx xxx. Xxxxxx xxxxxxxxxx xxxxxxx xxxxx xxxxxx xx xxxxx xx xxxx xxx xxxxxx xxxxx xxxxxxxx xx xxxxxxxxxxx xxxxxxxx xxxxx xxxxx xxx xxx't xxxxx xxxx xx xxx xxxxxx xxxxxxxxx. Xxxxxxx xxx xxxx xxxx'xx xxx xxxx in xxxxxxxx xxxxxx xx just xxxxx a \"xxxx xx xxxx\" xxx xxxx xxxxxx, xxxxx like xxx of xxxxx xxxxxxxx xxxx'x xxxxxx xxxxx xxxxxx xx a xxxxxxx xxxxx xxxxx xxxxxxx xxxxx xxxxx, xxx xxx xxxx xx'x xxxxxxxx a xxx xxxx.",
+        "publishedAt": "2026-09-24T21:45:30.220Z",
+        "likes": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbupeuf/"
+      },
+      {
+        "id": "t1_xxxxxx9",
+        "author": {
+          "name": "-Xxxxxxxxxxx-"
+        },
+        "text": "Xx xx xxx xxx'x xx??",
+        "publishedAt": "2026-09-23T23:17:57.292Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbnydd9/"
+      },
+      {
+        "id": "t1_xxxxxx3",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxxx xxxx xxx xxx xxxxxxxxxx xxx xxxxx xxxxxxx xxxxxxx xx xxxxxxxxx-xxxxx XXX, like in x++? X xxx’t xxxx xxxxxxx xxxx xxx/xx xxxxx xxxxxxxx xxxxxx xxx xxxx xxxxxx, xxx xx xxxxx xxxxx xxx xxxxx xxx xxxx xx xxxxxxx xx xx xxx a xxx xx xxxxxx xxx xxx xxx xxxx xxx xxxxxx xxx xxxxxxxx xxxxxxxxx xxxxxxxxxx.",
+        "publishedAt": "2026-09-24T07:01:38.269Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbpzdq3/"
+      },
+      {
+        "id": "t1_xx1xxxx",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxxx (xxxxx xxxxx xxxxxx) xxxx xx xxxxxxx xx xxx xxx xxxxx xxxx xxx xxxxxxxxx_xxx: https://github.com/rust-lang/rust/issues/163177 . In xxx xxxxxxxx, xxx xxx xxxxx xxxxxxxxxxx in xxx::xxxxxxxxxxx xxx just xxxxxx Xxxx xxxx xxx X xxx't xxxxx xxx of xxxx xxxxxxxxxxxxx xxxxxxx xxx xxxxxxxx xxxxxxxx xxxxxxxx, xx xxx xxxxx xxxx out xxx xxxxxxxxxxxxxxx xxx xxxxxx xxx xxxxxxxx xxxxxxxxx xxxxxxx xx a xxxxxx XXX in xxxx fork. In xxxx X xxxxx xxx xxxxxxx xxxxx xxx xxxx xxxxx xxxx xxx years: https://docs.rs/bumpalo/3.20.3/bumpalo/#collections",
+        "publishedAt": "2026-09-25T20:00:27.718Z",
+        "likes": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pc1eqol/",
+        "depth": 1,
+        "parentId": "t1_xxxxxx3"
+      },
+      {
+        "id": "t1_xx1xxxx",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxx, X am xxxxx xxxxxxx xxx xxxxx xxxxxxxxxx xxxxxx xxxx xxxxxx xxxxxxxxxx ;) X just xxxxxx xxx xxx xxxxxxxxxxx xx xxxx xxxx, xxx. Xxxxxxxxxx in xxxx/xxxxx :)",
+        "publishedAt": "2026-09-25T20:40:10.980Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pc1nomm/",
+        "depth": 2,
+        "parentId": "t1_xx1xxxx"
+      },
+      {
+        "id": "t1_xxxxx4x",
+        "author": {
+          "name": "xxxxxxxxxx"
+        },
+        "text": "Xxxx xx xxxx! Xxxxxx xx xxxxxxxx xxxxxxxx!",
+        "publishedAt": "2026-09-27T22:26:10.972Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pcgno4g/"
+      },
+      {
+        "id": "t1_xxx9xxx",
+        "author": {
+          "name": "Xxxxxxxx1"
+        },
+        "text": "X xxxx xxxxxxxxxx xxx xxxxxxxx xxxxxxxxxx -> Result<XxxXxxx<[x8]>, XxxxxXxxxx>. X xxxxxxx XxxXxxx<*xxx> xxxxx xx xxxxxxx.",
+        "publishedAt": "2026-09-23T21:11:23.144Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbn9jgb/"
+      },
+      {
+        "id": "t1_xxxx35x",
+        "author": {
+          "name": "XxxxXxxxXxxxXX"
+        },
+        "text": "XxxXxxx<T> xx xxxxxxxxxxx *xxx T (a xxxxxxx xx T) xxx xxxx xxx xxxxxxxxx xxxx xxx xxxxxxx xx xxx-xxxx. Xxxx XxxXxxx<[x8]> xx a xxxxxxxxxx xxx-xxxx xxxxxxx xx [x8], xxxxx xx a xxxxx of xxxxx of xxxx xxxxxx (xxxxxx xxxx xxxxxx xxxx a 'xxxx xxxxxxx' xx xxxx xxxxx xxxx xxxxxx).",
+        "publishedAt": "2026-09-23T21:42:09.836Z",
+        "likes": "19",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbng35e/",
+        "depth": 1,
+        "parentId": "t1_xxx9xxx"
+      },
+      {
+        "id": "t1_xxxxxx4",
+        "author": {
+          "name": "xxxxxxxxx"
+        },
+        "text": "Xx xxxxxxxxx xxx xxxx xxx xxxx xxxxxx xxxx xxx'xx xxxxx xxx, xx xxx xxxxxx xxxx xxxxx xx xxxxxxx xxx xxxx xxxxx xxxx xxxxxxxxx.",
+        "publishedAt": "2026-09-24T13:10:19.136Z",
+        "likes": "10",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbreqx4/",
+        "depth": 1,
+        "parentId": "t1_xxx9xxx"
+      },
+      {
+        "id": "t1_xxxx21x",
+        "author": {
+          "name": "[xxxxxxx]"
+        },
+        "text": "...xxxxxxxxxxxx?",
+        "publishedAt": "2026-09-23T17:43:54.181Z"
+      },
+      {
+        "id": "t1_xxx2x6m",
+        "author": {
+          "name": "xx_xxxxx_xx_xxxxxxx"
+        },
+        "text": "...xxxxxxxxxxxx?",
+        "publishedAt": "2026-09-23T18:07:29.625Z",
+        "likes": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm2q6m/",
+        "depth": 1,
+        "parentId": "t1_xxxx21x"
+      },
+      {
+        "id": "t1_xxx55xx",
+        "author": {
+          "name": "xxxxxxxxxxxx"
+        },
+        "text": "Xxxxxxx xxxxxxx xxx xxxxxxx xxxx xxx xxxxxxxxxxxx xxx? Xxxxxxx X am xxxxxxxx of xxxx.",
+        "publishedAt": "2026-09-23T18:17:41.896Z",
+        "likes": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/comment/pbm55rt/",
+        "depth": 2,
+        "parentId": "t1_xxx2x6m"
+      }
+    ],
+    "replyCount": "76"
+  },
+  "chain": [
+    {
+      "id": "reddit.com/thread",
+      "version": 1,
+      "sha256": "104c02d572a4f40dc9a40f2f05cc7df08a06b4fedcd5c0ddb24650b5c78b5583"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+# CNBC quote page -> rex.schema.finance.v1.Quote (decisions.md U37). The FinancialQuote JSON-LD gives the
+# regular-session quote through generic/quote.v1; the summary table adds the rest. Its labels are plain text,
+# so rows are picked by their text ("Prev Close341.27"). Index symbols start with a dot (.SPX).
+id: cnbc.com/quote
+version: 1
+schema: rex.schema.finance.v1.Quote
+extends: generic/quote.v1
+match:
+  urls:
+    hosts: ["cnbc.com"]
+    include: ["^/quotes/[^/]+/?$"]
+  page:
+    all:
+      - exists: ".QuoteStrip-lastPrice"
+fields:
+  - path: symbol
+    candidates:
+      - url: { part: URL_PART_PATH_SEGMENT, segment: 1 }
+
+  - path: name
+    candidates:
+      - css: { selector: ".QuoteStrip-name" }
+
+  - path: type
+    candidates:
+      - url: { part: URL_PART_PATH_SEGMENT, segment: 1 }
+        pipe:
+          - regex: { pattern: "^(\\.).+", group: 1 }
+          - map: { entries: [ { from: ".", to: "INSTRUMENT_TYPE_INDEX" } ] }
+      - constant: { value: "INSTRUMENT_TYPE_STOCK" }
+
+  - path: price              # the regular session's last price (the strip also shows after-hours trading)
+    expect: true
+    candidates:
+      - css: { selector: ".QuoteStrip-lastPrice" }
+    pipe:
+      - slice: { start: -1, end: 0 }
+
+  - path: market_state       # "Close" / "After Hours: Last | 7:59 PM EDT" / "Last | 4:36 PM EDT"
+    candidates:
+      - css: { selector: ".QuoteStrip-lastTimeAndPriceContainer" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex: { pattern: "(?i)^(close|after hours|pre-market|last)", group: 1 }
+      - map: { entries: [ { from: "close", to: "MARKET_STATE_CLOSED" }, { from: "after hours", to: "MARKET_STATE_POST" }, { from: "pre-market", to: "MARKET_STATE_PRE" } ], drop_unmapped: true }
+
+  - path: previous_close
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Prev Close\\s*(.+)$", group: 1 }
+
+  - path: open
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Open\\s*(.+)$", group: 1 }
+
+  - path: day_low
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Day Low\\s*(.+)$", group: 1 }
+
+  - path: day_high
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Day High\\s*(.+)$", group: 1 }
+
+  - path: year_low
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^52 Week Low\\s*([\\d.,]+)$", group: 1 }
+
+  - path: year_high
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^52 Week High\\s*([\\d.,]+)$", group: 1 }
+
+  - path: volume             # "Volume 45,024,186" in the quote strip
+    candidates:
+      - css: { selector: ".QuoteStrip-dataContainer" }
+    pipe:
+      - slice: { start: -1, end: 0 }
+      - regex: { pattern: "Volume\\s*(\\d{1,3}(?:,\\d{3})*)", group: 1 }
+
+  - path: avg_volume
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^10 Day Average Volume\\s*(.+)$", group: 1 }
+
+  - path: market_cap
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Market Cap\\s*(.+)$", group: 1 }
+
+  - path: pe_ratio
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^P/E \\(TTM\\)\\s*(.+)$", group: 1 }
+
+  - path: eps
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^EPS \\(TTM\\)\\s*(.+)$", group: 1 }
+
+  - path: dividend_yield
+    candidates:
+      - css: { selector: ".Summary-stat" }
+    pipe:
+      - regex: { pattern: "^Dividend Yield\\s*(.+)$", group: 1 }
+
+  - path: stats
+    each: ".Summary-stat"
+    fields:
+      - path: name
+        candidates:
+          - css: { selector: ".Summary-label" }
+      - path: value
+        candidates:
+          - css: { selector: ".Summary-value" }

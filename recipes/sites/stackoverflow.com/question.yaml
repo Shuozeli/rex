@@ -1,0 +1,110 @@
+# Stack Overflow / Stack Exchange question page -> rex.schema.social.v1.Thread (decisions.md U33). The
+# question is the post; answers are the replies in page order (accepted answer flagged). An answer's author
+# is its last user link (editors come first).
+id: stackoverflow.com/question
+version: 1
+schema: rex.schema.social.v1.Thread
+match:
+  urls:
+    hosts: ["stackoverflow.com", "*.stackexchange.com", "superuser.com", "serverfault.com", "askubuntu.com", "mathoverflow.net"]
+    include: ["^/questions/\\d+"]
+  page:
+    all:
+      - exists: "#question"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "#question-header h1", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - url: { part: URL_PART_HREF }
+
+  - path: tags
+    candidates:
+      - css: { selector: "#question .post-taglist a.post-tag", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: reply_count
+    candidates:
+      - css: { selector: "#answers-header h2", take: TAKE_ATTRIBUTE, attribute: data-answercount, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.id
+    candidates:
+      - css: { selector: "#question", take: TAKE_ATTRIBUTE, attribute: data-questionid, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.author.name
+    candidates:
+      - css: { selector: "#question .post-signature.owner .user-details a", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.author.url
+    candidates:
+      - css: { selector: "#question .post-signature.owner .user-details a", take: TAKE_ATTRIBUTE, attribute: href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.published_at
+    candidates:
+      - css: { selector: "#question .post-signature.owner .relativetime", take: TAKE_ATTRIBUTE, attribute: title, scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - datetime: { formats: ["%Y-%m-%d %H:%M:%SZ"] }
+
+  - path: post.text
+    candidates:
+      - css: { selector: "#question .s-prose", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.html
+    candidates:
+      - css: { selector: "#question .s-prose", take: TAKE_HTML, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.likes
+    candidates:
+      - css: { selector: "#question .js-vote-count", take: TAKE_ATTRIBUTE, attribute: data-value, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.replies
+    candidates:
+      - field: { path: reply_count }
+
+  - path: post.url
+    candidates:
+      - link: { rel: canonical }
+
+  - path: replies
+    each: ".answer"
+    fields:
+      - path: id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: data-answerid }
+      - path: author.name
+        candidates:
+          - css: { selector: ".post-signature .user-details a" }
+        pipe:
+          - slice: { start: -1, end: 0 }
+      - path: author.url
+        candidates:
+          - css: { selector: ".post-signature .user-details a", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: -1, end: 0 }
+      - path: published_at
+        candidates:
+          - css: { selector: "time[itemprop=dateCreated]", take: TAKE_ATTRIBUTE, attribute: datetime }
+        pipe:
+          - datetime: { formats: ["%Y-%m-%d %H:%M:%SZ"] }
+      - path: text
+        candidates:
+          - css: { selector: ".s-prose" }
+      - path: html
+        candidates:
+          - css: { selector: ".s-prose", take: TAKE_HTML }
+      - path: likes
+        candidates:
+          - css: { selector: ".js-vote-count", take: TAKE_ATTRIBUTE, attribute: data-value }
+      - path: accepted
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: itemprop }
+            pipe:
+              - map: { entries: [ { from: "acceptedanswer", to: "true" } ], drop_unmapped: true }
+        pipe:
+          - default: { value: "false" }
+      - path: url
+        candidates:
+          - css: { selector: "a.js-share-link", take: TAKE_ATTRIBUTE, attribute: href }

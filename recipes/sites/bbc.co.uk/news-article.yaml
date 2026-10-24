@@ -1,0 +1,24 @@
+# BBC News articles: the body is split into one component per text block and subheading. Plain HTTP gets the
+# data-block design; browsers get data-component layout blocks (decisions.md U38), so both are read.
+id: bbc.co.uk/news-article
+version: 2
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["bbc.co.uk", "bbc.com"]
+    include: ["^/news/articles/[a-z0-9]+"]
+  page:
+    any:
+      - json_ld_type: { types: [ReportageNewsArticle, NewsArticle] }
+fields:
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "article [data-block=text], article [data-block=subheadline]", take: TAKE_HTML }
+        pipe:
+          - join: { separator: "\n" }
+      # The design browsers get since 2026-10: paragraphs and subheadings inside layout-block components.
+      - css: { selector: "article [data-component=layout-block] :is(p, h2)", take: TAKE_OUTER_HTML }
+        pipe:
+          - join: { separator: "\n" }

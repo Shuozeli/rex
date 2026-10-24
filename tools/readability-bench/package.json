@@ -1,0 +1,14 @@
+{
+  "name": "rex-readability-bench",
+  "private": true,
+  "type": "module",
+  "description": "Differential benchmark: rex-readability vs Mozilla Readability.js (engine spec §14).",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "bench": "node bench.mjs"
+  },
+  "dependencies": {
+    "@mozilla/readability": "0.6.0",
+    "jsdom": "26.1.0"
+  }
+}

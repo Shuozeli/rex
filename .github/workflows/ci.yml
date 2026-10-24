@@ -1,0 +1,243 @@
+name: CI
+
+# Gates for every push and PR (design.md §7, decisions.md U17/U19/U20). scripts/ci-local.sh runs the same
+# steps on a workstation.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: "-D warnings"
+  CARGO_INCREMENTAL: 0
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  WASM_GZ_BUDGET: 1150000
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --all -- --check
+
+  rust:
+    name: Clippy, tests, recipes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Fixtures of the auto-harvested recipes live in their own repo (decisions.md U31).
+      - uses: actions/checkout@v4
+        with:
+          repository: Shuozeli/rex-fixtures
+          path: rex-fixtures
+          # Private repo: a read-only deploy key on rex-fixtures, its private half in this repo's secrets.
+          ssh-key: ${{ secrets.REX_FIXTURES_SSH_KEY }}
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: "27.x"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo clippy --workspace --all-targets --release
+      - run: cargo test --workspace --release
+      - run: cargo build --release -p rex-cli
+      - name: Version gate base
+        id: base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "ref=origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+          # After a force push, `before` is no longer in the history: compare with the parent instead.
+          elif [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ] \
+               && git cat-file -e "${{ github.event.before }}^{commit}" 2>/dev/null; then
+            echo "ref=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=HEAD~1" >> "$GITHUB_OUTPUT"
+          fi
+      - name: rex check (contract, fixtures >= 2, version gate)
+        run: ./target/release/rex check recipes --fixtures fixtures --fixtures rex-fixtures --git-base "${{ steps.base.outputs.ref }}"
+      - name: rex test (fixtures + conformance + harvested fixtures)
+        run: ./target/release/rex test --fixtures fixtures --fixtures conformance --fixtures rex-fixtures
+      - name: Fixture redaction lint
+        run: ./target/release/rex fixture lint fixtures rex-fixtures
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rex-cli
+          path: target/release/rex
+          retention-days: 3
+
+  wasm:
+    name: Wasm engine (size budget, native parity)
+    needs: rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: arduino/setup-protoc@v3
+        with:
+          version: "27.x"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-bindgen-cli@0.2.123
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: rex-cli
+          path: target/release
+      - run: chmod +x target/release/rex
+      - run: cargo build -p rex-wasm --target wasm32-unknown-unknown --profile wasm
+      - run: wasm-bindgen --target web --out-dir extension/wasm target/wasm32-unknown-unknown/wasm/rex_wasm.wasm
+      - name: Size budget (the shipped file, gzip -9)
+        run: |
+          size=$(gzip -9c extension/wasm/rex_wasm_bg.wasm | wc -c)
+          echo "rex_wasm_bg.wasm: $size bytes gzipped (budget $WASM_GZ_BUDGET)"
+          test "$size" -le "$WASM_GZ_BUDGET"
+      - name: Conformance under wasm (byte-identical to native)
+        run: |
+          wasm-bindgen --target nodejs --out-dir target/wasm-node target/wasm32-unknown-unknown/wasm/rex_wasm.wasm
+          ./target/release/rex bundle keygen --key-id ci --out "$RUNNER_TEMP/ci-key.json"
+          ./target/release/rex bundle build --key "$RUNNER_TEMP/ci-key.json" --out target/conformance-bundle
+          node crates/rex-wasm/tests/conformance.mjs target/wasm-node target/conformance-bundle
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rex-wasm-web
+          path: extension/wasm
+          retention-days: 3
+
+  extension:
+    name: Extension (typecheck, build, e2e in Chrome)
+    needs: [rust, wasm]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: extension
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: extension/pnpm-lock.yaml
+      - uses: actions/download-artifact@v4
+        with:
+          name: rex-cli
+          path: target/release
+      - uses: actions/download-artifact@v4
+        with:
+          name: rex-wasm-web
+          path: extension/wasm
+      - run: chmod +x ../target/release/rex
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - name: Store build (no test hooks, no <all_urls>)
+        run: |
+          pnpm run build
+          node -e '
+            const m = JSON.parse(require("fs").readFileSync("dist/manifest.json", "utf8"));
+            const bad = m.host_permissions.includes("<all_urls>") || require("fs").readFileSync("dist/background.js", "utf8").includes("rexDebug");
+            if (bad) { console.error("store build leaks e2e hooks or <all_urls>"); process.exit(1); }
+            console.log("manifest ok:", m.permissions.join(","));'
+          (cd dist && zip -qr ../rex-extension.zip .)
+          ls -l rex-extension.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rex-extension
+          path: extension/rex-extension.zip
+          retention-days: 14
+      - name: Install Chromium
+        run: |
+          pnpm exec playwright-core install --with-deps chromium
+          echo "REX_CHROME=$(node -e 'import("playwright-core").then(m => console.log(m.chromium.executablePath()))')" >> "$GITHUB_ENV"
+      - run: pnpm run build:e2e
+      - run: node tests/e2e.mjs
+      - run: node tests/e2e-sync.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screenshots
+          path: extension/test-results
+          retention-days: 7
+
+  docker-e2e:
+    name: Docker e2e (Google Chrome, store build, hermetic)
+    needs: [rust, wasm]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: extension/pnpm-lock.yaml
+      - uses: actions/download-artifact@v4
+        with:
+          name: rex-cli
+          path: target/release
+      - uses: actions/download-artifact@v4
+        with:
+          name: rex-wasm-web
+          path: extension/wasm
+      - run: chmod +x target/release/rex
+      - run: pnpm install --frozen-lockfile
+        working-directory: extension
+      - uses: docker/setup-buildx-action@v3
+      - name: ISO week (refreshes the Chrome layer weekly)
+        id: week
+        run: echo "v=$(date -u +%G-%V)" >> "$GITHUB_OUTPUT"
+      - name: Build the recorder desktop image
+        uses: docker/build-push-action@v6
+        with:
+          context: extension/recorder/docker
+          tags: rex-recorder-desktop:local
+          load: true
+          build-args: CHROME_REFRESH=${{ steps.week.outputs.v }}
+          cache-from: type=gha,scope=rex-recorder
+          cache-to: type=gha,mode=max,scope=rex-recorder
+      # No network inside the container: fixture pages and a bundle published from recipes/ (operations.md).
+      - name: Hermetic e2e (real input, policy-installed CRX, results against expected.json)
+        run: scripts/docker-e2e.sh
+        env:
+          REX_E2E_SKIP_BUILD: "1"
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-e2e
+          path: |
+            extension/recorder/docker/out/hermetic/run/results.json
+            extension/recorder/docker/out/hermetic/run/*.events.json
+            extension/recorder/docker/out/hermetic/run/rex-e2e-fixtures.mp4
+          retention-days: 14
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-e2e-raw-clips
+          path: extension/recorder/docker/out/hermetic/run/*.raw.mp4
+          retention-days: 7

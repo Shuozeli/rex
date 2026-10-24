@@ -1,0 +1,14 @@
+[package]
+name = "rex-redact"
+description = "Deterministic fixture redaction for rex (decisions.md U19): keeps structure, replaces publisher text."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+rex-dom = { path = "../rex-dom" }
+scraper = "0.24"
+regex = { version = "1", default-features = false, features = ["std", "unicode-perl"] }
+ego-tree = "0.10"
+serde_json = { version = "1", features = ["preserve_order"] }

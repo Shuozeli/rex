@@ -1,0 +1,8 @@
+id: conformance/c05a-expect-failed
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+fields:
+  - path: body_html
+    expect: true
+    candidates: [ { css: { selector: ".article-body", take: TAKE_HTML } } ]

@@ -1,0 +1,119 @@
+{
+  "recipe": {
+    "id": "apps.apple.com/app",
+    "version": 1,
+    "sha256": "7d2c7f53f71561df31166cda487732ad1a3b234c6ff240a1cf3078d0016af478"
+  },
+  "schema": "rex.schema.app.v1.App",
+  "url": "https://apps.apple.com/us/app/duolingo-learn-languages/id570060128",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:43Z",
+  "extractTime": "2026-10-14T05:35:43Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "developer",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "developer.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "developer.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "category",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "platforms",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "icon",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "apps.apple.com/app@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.app.v1.App",
+    "id": "id570060128",
+    "name": "Xxxxxxxx: Xxxxx Xxxxxxxxx",
+    "developer": {
+      "name": "Xxxxxxxxx Xxxxxxxx",
+      "url": "https://apps.apple.com/us/developer/duolingo/id570060151"
+    },
+    "category": "EducationalApplication",
+    "platforms": [
+      "iOS"
+    ],
+    "price": "0",
+    "currency": "USD",
+    "rating": 4.7,
+    "ratingCount": "5500000",
+    "description": "Xxxxx a xxx xxxxxxxx, xxxxx & xxxx with xxx xxxxx'x xxxx xxxxxxxxxx xxxxxxxxx xxx! Xxxxxxxx is xxx xxx, xxxx xxx xxx xxxxxxxx 40+ xxxxxxxxx xxxxxxx xxxxx, xxxx-xxxxx xxxxxxx. Xxxxxxxx xxxxxxxx, xxxxxxx, xxxxxxxxx & xxxxxxx to xxxxx xxxx xxxxxxxxxx & xxxxxxx xxxxxx.\n\nXxxxxxxx xx xxxxxxxx xxxxxxx & xxxxx xx xxxxxxxx of xxxxxxxx xxxxxxxxx, xxx xxxxxxx xxxx xxxxxxxx xxxxxxxxx & xxx xxx xxxx xxx xxxxxxx xxx xxxx xxxxxxxxxxxxx in Xxxxxxx, Xxxxxx, Xxxxxxxx, Xxxxxx, Xxxxxxx, Xxxxxxx, Xxxxxx, Xxxxxxx xxx xxxx.\n\nXxx now, xxx xxx xxxxx XXXXX xx Xxxxxxxx! Xxxxxxx xxx'xx a xxxxx xxxxxxxx xx xxxxxxx to xxxxx xx xxxx xxxx, xxx'xx xxxx xxxxxxxx xxxxx xxx Xxxxxxxx xxx. Xxxx xxxxxxx xxx xxx xxxxx xxxxxxx xxx xxx xxxxxx, xx xxxxxx xxx xxxxxxxx - xxxxx, xxxxxxx, xxxxxx, xxxxxx, Xxxxxxx, xxxxxxx.\n\n• Xxxxx: Xxxxx xxx xxxxx, xxxxx xx xxxx xxxx & xxxx xxxxxxx in xxx Xxxxx xxxxxx. Xxxxx xxx xxxxxx, xxxxx xxx xxxxx xxxxxxx & xxxxxxx xxxx xxxxxxxx with xxxxxx xxxxxxx. Xxxxxxx xxx'xx xxx to xxxxx xx xxxxxxx xxxx, xxx xxxxxx is xxxxxxxx to xxxx xxx xxxx xxx xxx xxxxx xxxx xxxxxx. Xxxxxxxxx!\n\n• Xxxx: Xxxxxx xxxxxxxx xxx xxxx xxxxxxxxxx! Xxxxx xx xxxxxxxx xxxxxxx, xxx Xxxx xxxxxx xxxxx xxxx xxxx like a xxxx. Xxxxx xxxxxxxx xxx xxxxx xxx xxxxxx xxxxx with xxxxxxxxx-xxxxxxx xxxx xxxxxxx xxx xxxxxxxxxx xxxxxx, xxxxxx xxxxxx, xxx xxxx xxxxxx xxxxxxxx.\n\n• Xxxxx: Xxxxx xxx to xxxx xxxxx & xxxx xxxxx in xxx Xxxxx xxxxxx, xx xxxxxxxxxx xxxxxx! Xxxxx xx xx-xxxxxx xxxxxxxx, xxx'xx xxxxx xxx-xx-xxx.\n\nXxxxxxx xxx'xx xxxxxxxx a xxxxxxxx xxx xxxxxx, xxxxxx, xxxxxx xx xxxx xxxxx xxxxxx, xxx'xx xxxx xxxxxxxx with Xxxxxxxx.\n\nXxx Xxxxxxxx?\n\n• Xxxxxxxx is xxx & xxxxxxxxx. Xxxx-like xxxxxxxx xxxxxxx & xxx xxxxxxxxxx xxxx xxx xxxxx xxxxxxxx, xxxxxxx, xxxxxxxxx, & xxxxxxx xxxxxx, xxxx xxxxx xxx xxxxx & xxxxxxxxxxx xxxxxx xxxxx in xxx xxx.\n\n• Xxxxxxxx xxxxx. Xxxxxxxx xx xxxxxxxx xxxxxxx, Xxxxxxxx xxx a xxxxxxx-xxxxx xxxxxxxx xxxxxxxxxxx xxxxxx to xxxxxx xxxx-xxxx xxxxxxxxx xxxxxxxxx xxxxxx xxxxxxxx xxxxxxx & xxxxx xxxxxxx xxxxx.\n\n• Xxxxx xxxx xxxxxxxx. Xxxx xxxxxx xxxx xxxxxxxx xxxxx with xxxxxxx xxxxxxx & xxxxxxxxxxxx xxxx xxx xxxx xxxxxxxxxx xxxxxxxx xxxxxxx xx xxxxx xxxxxx xxxx of xxxx xxxxx xxxxx.\n\n• Xxxx xxxxxxxx of xxxxxxxx. Xxxx xxxxxxxxx with xxxxxxxxxxx Xxxxxxxxxxxx xx xxx xxxxx xxxxxxxxx & xxxx xxxxx xxxxxx xxxxxxxxx xxx xxxxxx xxxxxxxxx.\n\n• Xxxxx xxxxxx is xxxx. Xxxxx Xxxxxxx, Xxxxxx, Xxxxxx, Xxxxxxx, Xxxxxxx, Xxxxxxxxxx, Xxxxxxx, Xxxxx, Xxxxx, Xxxxxx, Xxxxxxx, Xxxxxxxxx, Xxxxxxxxx, Xxxxxx, Xxxxx, Xxxxxxxxx, Xxxxxxxxx, Xxxxxx, Xxxxx, Xxxxxx, Xxxxx, Xxxxxxxx, Xxxxxxxx Xxxxxx, Xxxxxxxxxx, Xxxxxx, Xxxxxxxx, Xxxxxxx, & xxxx Xxxx Xxxxxxxx! Xxx now, xxxxx Xxxx, Xxxxx & xxxxxxx xxxx Xxxxx xxxxxx with xxx, xxxx-xxxxx xxxxxxx.\n\nXxxx xxx xxxxx is xxxxxx xxxxx Xxxxxxxx:\n\n\"Xxx & xxxx xxx xxxx xxxxxxxx-xxxxxxxx xxx.\" - Xxx Xxxx Xxxxxx Xxxxxxx\n\n\"Xxxx xxxx xxx & xxxxxxx is xxxxx xxx xxxx xxxxxxxxx xxxxxxxx-xxxxxxxx xxxxxxx X'xx xxxxx… xxxxxxx xxxx in xxx xxxx of xxxxx xxxxxxxxxx, xxxxxxxx, xxxxxxxxxxx, xxxxxxxxx xxxxxxxx-xxxxxx xxxxxxxxx, xxxx xxxx xx xxxxxx xxxx xxx xxxx.\" - Xxx Xxx Xxxx Xxxxx\n\n\"Xxxxxxxx may xxxx xxx xxxxxx to xxx xxxxxx of xxxxxxxxx.\" - XXXX Xxxxxxxx\n\n\"Xxxxxxxx is xxxxxxxx, xxxxxxxxxxxx & xxx.\" - Xxxxxx\n\n\"X Xxx't Xxxx Xxxxxxx Xxxxxxxx Xxxxx.\" - Xxxxx\n\nXx xxx like Xxxxxxxx, xxx Xxxxx Xxxxxxxx xxx 14 days xxxx! Xxxxx a xxxxxxxx xxxx with xx xxx & xxx xxx xxxxx like Xxxxxxxxx Xxxxxx & Xxxxxxx Xxxxxx Xxxxxx.\n\nXx xxx xxxxxx to xxxxxxxx Xxxxx Xxxxxxxx, xxxxxxx xxxx xx xxxxxxx to xxxx Xxxxx xxxxxxx, xxx xxxx xxxxxxx xxxx xx xxxxxxx xxx xxxxxxx xxxxxx 24-hours xxxxx to xxx xxx of xxx xxxxxxx xxxxxx. Xxxx-xxxxxxx may xx xxxxxx xxx xx xxx xxxx xx xxxxx to xxxx xxxxxxxx in xxx Xxx Xxxxx xxxxx xxxxxxxx. Xxx xxxxxx xxxxxxx of a xxxx xxxxx xxxxxx, xx xxxxxxx, xxxx xx xxxxxxxxx xxxx xxx xxxx xxxxxxxxx a xxxxxxxxxxxx to xxxx xxxxxxxxxxx, xxxxx xxxxxxxxxx.\n\nXxxxxxx Xxxxxx: https://www.duolingo.com/privacy\nXxxxx of Xxxxxxx: https://www.duolingo.com/terms",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/70/f8/4c/70f84cd4-f8f0-5d64-8b3a-f5d395293b80/AppIcon-0-0-1x_U007epad-0-1-85-220.png/1200x630wa.png",
+    "url": "https://apps.apple.com/us/app/duolingo-learn-languages/id570060128"
+  },
+  "chain": [
+    {
+      "id": "apps.apple.com/app",
+      "version": 1,
+      "sha256": "7d2c7f53f71561df31166cda487732ad1a3b234c6ff240a1cf3078d0016af478"
+    },
+    {
+      "id": "generic/app.v1",
+      "version": 1,
+      "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+    }
+  ]
+}

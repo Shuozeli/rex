@@ -1,0 +1,169 @@
+{
+  "recipe": {
+    "id": "cnbc.com/quote",
+    "version": 1,
+    "sha256": "e66e9623d0cf8ca799c905f78e674593c8553529e1d2ef5fff1af3db24c48294"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://www.cnbc.com/quotes/.SPX",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:05:07Z",
+  "extractTime": "2026-10-15T01:05:07Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "cnbc.com/quote@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/quote.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": ".SPX",
+    "name": "X&P 500 Xxxxx",
+    "type": "INSTRUMENT_TYPE_INDEX",
+    "exchange": "INDEX",
+    "currency": "USD",
+    "price": "7718.94",
+    "change": "-86.51",
+    "changePercent": "-1.11",
+    "previousClose": "7805.45",
+    "open": "7774.18",
+    "dayLow": "7693.31",
+    "dayHigh": "7789.15",
+    "yearLow": "6316.91",
+    "yearHigh": "7844.52",
+    "stats": [
+      {
+        "name": "Open",
+        "value": "7,774.18"
+      },
+      {
+        "name": "Day High",
+        "value": "7,789.15"
+      },
+      {
+        "name": "Day Low",
+        "value": "7,693.31"
+      },
+      {
+        "name": "Prev Close",
+        "value": "7,805.45"
+      },
+      {
+        "name": "52 Week High",
+        "value": "7,844.52"
+      },
+      {
+        "name": "52 Week High Xxxx",
+        "value": "10/06/26"
+      },
+      {
+        "name": "52 Week Low",
+        "value": "6,316.91"
+      },
+      {
+        "name": "52 Week Low Xxxx",
+        "value": "03/30/26"
+      }
+    ],
+    "url": "https://www.cnbc.com/quotes/.SPX"
+  },
+  "chain": [
+    {
+      "id": "cnbc.com/quote",
+      "version": 1,
+      "sha256": "e66e9623d0cf8ca799c905f78e674593c8553529e1d2ef5fff1af3db24c48294"
+    },
+    {
+      "id": "generic/quote.v1",
+      "version": 1,
+      "sha256": "45a02b8e65fe7cb6425f3f05f06dcb15c8015d20861039aa643a6fab60df94a7"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "recipe": {
+    "id": "generic/book.v1",
+    "version": 1,
+    "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+  },
+  "schema": "rex.schema.creative.v1.Book",
+  "url": "https://books.google.com/books/about/The_Hobbit.html?id=pD6arNyKyi8C",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:49:19Z",
+  "extractTime": "2026-10-14T05:49:19Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 3,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/book.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Book",
+    "name": "Xxx Xxxxxx",
+    "description": "Xxx xxxxxxx xxxxxxx Xxxxxx-xxxxx xxxxxx xxxx with X.X.X. Xxxxxxx'x xxxxxxx xxxxxxx to xxx xxxx xxxxxxx Xxxx of xxx Xxxxx xxxxxxx.“A xxxxxxxx xxxxxxx of a xxxxxxxxxxx xxxxxxxxx, xxxxxx with xxxxxxxx xxx xxxxxxxx with a xxxxx xxxxx xxxx is xxxxxxxxxxxx... Xxx xxxxx, xxxxx xx xxx, xxx xxxx a xxxx xxxxxxxxxxx xxxx, xxxxxxxxxxx xxxx, xxxx xxxx Xxx Xxxxxx to xxxxx xxxxxx.”—Xxx Xxx Xxxx Xxxxx Xxxx Review\"In a xxxx in xxx xxxxxx xxxxx xxxxx a xxxxxx.\" Xx xxxxxx xxx of xxx xxxx xxxxxxx xxx xxxxxxxxxx xxxxx in xxx Xxxxxxx xxxxxxxx—Xxxxxxx'x xxxxxxx to Xxx Xxxx of xxx Xxxxx. Xxx in xxx xxxxxxxxx xxxxx of Xxxxxx-xxxxx, xx xxxx a xxxxxxx xxxx xxx a xxxxxx xxxxx xxxx, Xxx Xxxxxx is xxx of xxxxxxxxxx'x xxxx xxxxxxxx xxx xxxx-xxxxx xxxx xxxxxxx xxxxxx.Xxxxx Xxxxxxx is a xxxxxx xxx xxxxxx a xxxxxxxxxxx, xxxxxxxxxxx xxxx, xxxxxx xxxxxxxxx xxx xxxxxxx xxxx xxx xxxxxx xx xxxxxx. Xxx xxx xxxxxxxxxxx is xxxxxxxxx xxxx xxx xxxxxx Xxxxxxx xxx a xxxxxxx of xxxxxxx xxxxxx xx xxx xxxxxxxx xxx day to xxxxx xxx xxxx xx xx xxxxxxxxx. Xxxx xxxx xxxxxxxx a xxxx to xxxx xxx xxxxxxxx xxxxx xxxxxxx xx Xxxxx xxx Xxxxxxxxxxx, a xxxxx xxx xxxx xxxxxxxxx xxxxxx. Xxxxx xxxxxxxxxxx xxxxx xxxxx xxxx xxxxx, xxxxxxx xxxx xx xxx xxxxxxx to xxx Xxxxxx Xxxxxxxx xx xxxx xxxxxxxxx xxxx a xxxxx xxxx xxx a xxxxxxxxxxx xxxxxxxx xxxxx xx Xxxxxx.",
+    "image": "https://books.google.com/books/content?id=pD6arNyKyi8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72zq3W42AB5xI9TENmRAWD72l-E_GRFSe7mB1j7OberSskvuFts3KIwAwymHsRQA8Ejduxs2LIbZhHgchvPuWdgPnsT9lBVw9kmpJrnS-3AF_puS568lLmbCngMR4j4HJstDwsR",
+    "url": "https://books.google.com/books/about/The_Hobbit.html?id=pD6arNyKyi8C"
+  },
+  "chain": [
+    {
+      "id": "generic/book.v1",
+      "version": 1,
+      "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+    }
+  ]
+}

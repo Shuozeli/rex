@@ -1,0 +1,39 @@
+# GitHub Trending (repositories) -> feed.v1. score = stars gained in the trending period.
+id: github.com/trending
+version: 1
+schema: rex.schema.feed.v1.Feed
+match:
+  urls:
+    hosts: ["github.com"]
+    include: ["^/trending(/[^/]+)?/?(\\?.*)?$"]
+  page:
+    all:
+      - exists: "article.Box-row h2 a"
+fields:
+  - path: title
+    candidates:
+      - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
+  - path: items
+    each: "article.Box-row"
+    fields:
+      - path: id
+        candidates:
+          - css: { selector: "h2 a", take: TAKE_ATTRIBUTE, attribute: href }
+            pipe:
+              - strip: { prefix: "/" }
+      - path: title
+        candidates:
+          - css: { selector: "h2 a" }
+            pipe:
+              - regex_replace: { pattern: "\\s*/\\s*", with: "/" }
+      - path: url
+        candidates:
+          - css: { selector: "h2 a", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: preview
+        candidates:
+          - css: { selector: "p" }
+      - path: score
+        candidates:
+          - css: { selector: "span.float-sm-right" }
+        pipe:
+          - regex: { pattern: "([\\d,]+)", group: 1 }

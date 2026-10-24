@@ -1,0 +1,103 @@
+{
+  "recipe": {
+    "id": "medium.com/article",
+    "version": 1,
+    "sha256": "c3818467f6ecef776f6d7b79c205f6c5ad13edbf43826029aab1a3b6b08fdda1"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://medium.com/rustaceans/rust-pointer-provenance-8a503b721392",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:50:20Z",
+  "extractTime": "2026-10-14T04:50:20Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "subtitle",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 7600,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://medium.com/rustaceans/rust-pointer-provenance-8a503b721392",
+    "title": "🦀Xxxx Xxxxxxx Xxxxxxxxxx",
+    "subtitle": "Xxx Xxxx xxxxx Xxxxx Xxxx Is Xxxxxxxxx Xxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxx Xxxxxxxx"
+      }
+    ],
+    "publishedAt": "2026-10-11T10:22:38.727Z",
+    "summary": "Xxx Xxxx xxxxx Xxxxx Xxxx Is Xxxxxxxxx Xxxxxxxx",
+    "image": "https://miro.medium.com/v2/resize:fit:1024/1*op27cqE4p74gLWotrTDCXg.png",
+    "tags": [
+      "Xxxx",
+      "Xxxxxxxxxxx",
+      "Xxxxxxx Xxxxxxxxxxx",
+      "Xxxxxx Xxxxxxxxxx",
+      "Xxxxxxxx Xxxxxxxxxxx"
+    ],
+    "bodyHtml": "<p>Xxxxx xxxxxxx xxxxxxxxxx xxxxxxx xxx xxxx xxxxxx xxxxx of a xxxxxxx: xx is a xxxxxx. A xxxxxxxx xxxxxxx xxxxxx, xxx xxxx xxxxx a xxxx in xxxxxx, xxx a xxxxxx xxx xxx xxxx. Xxx xxx xxxxx xx, xxxxxxx xx, xxxx xx, xxxx xxx xxx xxx xxxx xxx xxx a xxxx xxxxx, xxx xxxx xx xxxx xxxx a xxxxxxx xxxx xxx xxx xxxx. Xxx xxxxxxxx xxxxxx with xxx. Xx x86-64 xxx xxx64 a xxxxxxx is a 64-xxx xxxxxxx in a xxxxxxxx xxx xxxxxxx xxxx.</p><p>Xxx xxxxxxxx xxxx xxx xxxxx with xxx, xxx xx xxx xxx xxxxxx with xxx xxx a xxxx xxxx. To xxx xxxxxxxxx, a xxxxxxx is a xxxxxx xxxx xx xxxxxxxxx xxxxx of xxxxxxxxxx xxxxxx xxx xxxxxxxxxx: xxxxx xxxxxxxxxx xx xxx xxxxxxx xxxx, xxx xxxxxxxxx xxxxx xxxxx xx is xxxxxxx to xxxxx. Xxx xxxxxxxx xxx xxxx xxx xxxx xxxxxxx xxx xxxxx xx xxxxxxxxx xxxxxx, xxxxxxx xxx of xxxx xxx xxx xxxxx to xxxxx xxxxx xxx xxx xxxxx xxxx xxx. Xxxx xxx xxxx a xxxxxxx xxxxxxx <code>xxxxx</code> xxx xxxx, xxx xxx xxxxxx xxx xxxxxxxx to xxxxxxxxxxx xxxx xxxxxxxxxx xxxx a xxxx xxxxxxx, xxx xxx xxxxx xxx xxxx xx xxx xx xxxx xxx xxxx xxxxxxxx xxxx xxxx xxxx-xxxxxxx xxxxxx xxxxxxxx xxxxxx.</p><figure><img alt=\"\"></figure><p>Xxxx xxxxxxx xxxx in xxxxxxx xxx xxxx xxxxx xxxxxx xxxxx xxx xxxxxxx xxxxxx: xxxx-xxxx xxxx xxxxxxxxxx xxxx xxxx a xxxx xxx xxxx a <code>xxxx</code> xxxxxxx, xxxxx-xxxxx xxxxxxxxxxx xxxxxxx xxxx xxxxx xxxx xxxxxx xxxxx xxxxxxxxx, xxxxxx…</p>",
+    "bodyText": "Xxxxx xxxxxxx xxxxxxxxxx xxxxxxx xxx xxxx xxxxxx xxxxx of a xxxxxxx: xx is a xxxxxx. A xxxxxxxx xxxxxxx xxxxxx, xxx xxxx xxxxx a xxxx in xxxxxx, xxx a xxxxxx xxx xxx xxxx. Xxx xxx xxxxx xx, xxxxxxx xx, xxxx xx, xxxx xxx xxx xxx xxxx xxx xxx a xxxx xxxxx, xxx xxxx xx xxxx xxxx a xxxxxxx xxxx xxx xxx xxxx. Xxx xxxxxxxx xxxxxx with xxx. Xx x86-64 xxx xxx64 a xxxxxxx is a 64-xxx xxxxxxx in a xxxxxxxx xxx xxxxxxx xxxx.\n\nXxx xxxxxxxx xxxx xxx xxxxx with xxx, xxx xx xxx xxx xxxxxx with xxx xxx a xxxx xxxx. To xxx xxxxxxxxx, a xxxxxxx is a xxxxxx xxxx xx xxxxxxxxx xxxxx of xxxxxxxxxx xxxxxx xxx xxxxxxxxxx: xxxxx xxxxxxxxxx xx xxx xxxxxxx xxxx, xxx xxxxxxxxx xxxxx xxxxx xx is xxxxxxx to xxxxx. Xxx xxxxxxxx xxx xxxx xxx xxxx xxxxxxx xxx xxxxx xx xxxxxxxxx xxxxxx, xxxxxxx xxx of xxxx xxx xxx xxxxx to xxxxx xxxxx xxx xxx xxxxx xxxx xxx. Xxxx xxx xxxx a xxxxxxx xxxxxxx xxxxx xxx xxxx, xxx xxx xxxxxx xxx xxxxxxxx to xxxxxxxxxxx xxxx xxxxxxxxxx xxxx a xxxx xxxxxxx, xxx xxx xxxxx xxx xxxx xx xxx xx xxxx xxx xxxx xxxxxxxx xxxx xxxx xxxx-xxxxxxx xxxxxx xxxxxxxx xxxxxx.\n\nXxxx xxxxxxx xxxx in xxxxxxx xxx xxxx xxxxx xxxxxx xxxxx xxx xxxxxxx xxxxxx: xxxx-xxxx xxxx xxxxxxxxxx xxxx xxxx a xxxx xxx xxxx a xxxx xxxxxxx, xxxxx-xxxxx xxxxxxxxxxx xxxxxxx xxxx xxxxx xxxx xxxxxx xxxxx xxxxxxxxx, xxxxxx…"
+  },
+  "chain": [
+    {
+      "id": "medium.com/article",
+      "version": 1,
+      "sha256": "c3818467f6ecef776f6d7b79c205f6c5ad13edbf43826029aab1a3b6b08fdda1"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

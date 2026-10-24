@@ -1,0 +1,116 @@
+{
+  "recipe": {
+    "id": "bilibili.com/video",
+    "version": 2,
+    "sha256": "29cc4baf0b79c08b2b0e3ffadca0607a88f2769bab821d91206cd4da1ff58ebd"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.bilibili.com/en/video/BV149WF6zEw2/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-23T09:06:09Z",
+  "extractTime": "2026-10-23T09:06:09Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "thumbnail",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "BV149WF6zEw2",
+    "title": "Xxxxxxx",
+    "url": "https://www.bilibili.com/en/video/BV149WF6zEw2/",
+    "channel": {
+      "name": "字字-XxX",
+      "url": "https://space.bilibili.com/en/2016957/"
+    },
+    "publishedAt": "2026-10-12T14:15:30Z",
+    "durationSeconds": 217,
+    "views": "3000000",
+    "likes": "139300",
+    "description": "\"Xxxxxx xx xxx xxxx xxxxx xxxx xxxxxxx, xxx xxxx xxxxx xxx xxx xxxxx xx xxxxxxxx to xxxxxxxxxx.\" — Xxxxxxxxx Xxxxxxxxx, *Xxxxxx Xxxx xxx Xxxx*. Xx: Xxxx xxxxx is xxx xx xxxxxxxx xxxxxxxxxx, xxx a xxxxx of xxxx xxxx by xxxx.",
+    "tags": [
+      "Xxxxx",
+      "Xxxxx Xxxxxx",
+      "XXX",
+      "Xxxxxx Xxxxxxxx",
+      "Xxx Xxxxxxx"
+    ],
+    "thumbnail": "https://i0.hdslb.com/bfs/archive/72762d144338a711a18100d6202dcf33c6ee3a63.jpg@1280w_720h"
+  },
+  "chain": [
+    {
+      "id": "bilibili.com/video",
+      "version": 2,
+      "sha256": "29cc4baf0b79c08b2b0e3ffadca0607a88f2769bab821d91206cd4da1ff58ebd"
+    },
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

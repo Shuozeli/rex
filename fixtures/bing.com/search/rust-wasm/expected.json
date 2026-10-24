@@ -1,0 +1,162 @@
+{
+  "recipe": {
+    "id": "bing.com/search",
+    "version": 1,
+    "sha256": "b0a2c4d8b2a9c04f6b2b2e8aaf1d96c397e93f03358bf0a1427e43e19d41ea24"
+  },
+  "schema": "rex.schema.search.v1.SearchResults",
+  "url": "https://www.bing.com/search?q=rust+webassembly&setlang=en&rdr=1&rdrig=5D6C8B5004B24B75BB555B97D4260C91",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:35:19Z",
+  "extractTime": "2026-10-14T02:35:19Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "engine",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].display_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].snippet",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "total_results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "candidate": 1,
+      "recipe": "bing.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.search.v1.SearchResults",
+    "query": "rust webassembly",
+    "engine": "bing",
+    "results": [
+      {
+        "rank": 1,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx - Xxxxxxx, Xxxxx xxx Xxxxxxx",
+        "url": "https://rust.facepunch.com/",
+        "displayUrl": "https://rust.facepunch.com",
+        "snippet": "Xxx xxxx xxx in Xxxx xx xx xxxxxxx. Xxxxxxxxxx xxxxx xxx xx xxx - xxx xxxxxx’x xxxxxxxx xxx xxxxx xxxxxxxxxxx, xxx xxxxxxxxxxx, xxxxx …Xxxx xxxx"
+      },
+      {
+        "rank": 2,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxxxxx Xxxxxxxx",
+        "url": "https://rust-lang.org/",
+        "displayUrl": "https://rust-lang.org",
+        "snippet": "Xxxxxxxx of xxxxxxxxx xxxxxx xxx xxxxx xxx xxxxx Xxxx in xxxxxxxxxx today xxx xxxx, xxx-xxxxxxxx, xxxxx-xxxxxxxx xxxxxxxxx. Xxxx …"
+      },
+      {
+        "rank": 3,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx xx Xxxxx",
+        "url": "https://store.steampowered.com/app/252490/Rust/",
+        "displayUrl": "https://store.steampowered.com › xxx",
+        "snippet": "Xxx xxxx xxx in Xxxx xx xx xxxxxxx. Xxxxxxxxxx xxxxx xxx xx xxx - xxx xxxxxx’x xxxxxxxx, xxxxx xxxxxxxxxxx, xxx xxxxxxxxxxx, xxx xxxxx …"
+      },
+      {
+        "rank": 4,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx+ - Xxxxxxxx Xxxxxxxxx Xxx - Xxxx",
+        "url": "https://rust.facepunch.com/companion",
+        "displayUrl": "https://rust.facepunch.com › xxxxxxxxx",
+        "snippet": "Xxx xxxxxxxx Xxxx xxxxxxxxx xxx. Xxxxx xxxx xxxx xxxxxx, xxxx xx xxxx xxxx xxxxxxx xxx xxxxxxx xxxx xxxxx xxxxxxxxxxx."
+      },
+      {
+        "rank": 5,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxxxxx Xxxx - Xxxx Xxxxxxxxxxx Xxxxxxxx",
+        "url": "https://rust-lang.org/tools/install/",
+        "displayUrl": "https://rust-lang.org › xxxxx › xxxxxxx",
+        "snippet": "Xx xxxxxxx Xxxx, xx xxx xxx xxxxxxx a Xxxx xxxx xx XXX, Xxxxx xx xxxXX, xxx xxx xxxxxxxxx in xxxx xxxxxxxx, xxxx xxxxxx xxx xx-xxxxxx …"
+      },
+      {
+        "rank": 6,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx (xxxxxxxxxxx xxxxxxxx) - Xxxxxxxxx",
+        "url": "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+        "displayUrl": "https://en.wikipedia.org › xxxx › Xxxx_(xxxxxxxxxxx_xxxxxxxx)",
+        "snippet": "Xxxxxxxx xxxxxxxxx Xxxxxxx Xxxxx xxxxxxx Xxxx in 2006 xxxxx xxxxxxx xx Xxxxxxx, xxxxx xxxxxxxxxx xxxxxxxxx xxx xxxxxxx in 2009. Xxx …"
+      },
+      {
+        "rank": 7,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx - Xxxxx - XxxXxxx",
+        "url": "https://www.youtube.com/channel/UCF304kdATqWHcEqu5ZOWJCA",
+        "displayUrl": "https://www.youtube.com › xxxxxxx",
+        "snippet": "Xxxx xxx xxxxxxxxx xxxxxxx xx a xxxxx of XxxX, a xxxxxxx xxx xxx XXXX 2, xxxx xxxxxxxx xxxxxxxx xxxx xx xxxxx in Xxxxxxxxx. Xxx …"
+      },
+      {
+        "rank": 8,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "xxxxxx.xx - Xxx Xxxx xxxxxxxxx xxxxxxxxx",
+        "url": "https://rustup.rs/",
+        "displayUrl": "https://rustup.rs",
+        "snippet": "Xxx xxx xxxxxxxxx in xxxx xxxxxxxx, xxxx xxxxxx xxx xxxxxxxx xxxxxxxxxxxx. Xxx xxxxxx xx xx xxxxxxx Xxxx. Xx xxx, xxxxxxx xxx xxxxxxxxx …"
+      },
+      {
+        "rank": 9,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx - X3Xxxxxxx",
+        "url": "https://www.w3schools.com/rust/index.php",
+        "displayUrl": "https://www.w3schools.com › xxxx › xxxxx.xxx",
+        "snippet": "Xxxx xx a xxxxxxx xxxxxxxxxxx xxxxxxxx xxxx xx xxxxx xxxxxxxxxx xxxx xxx xxxxxxx xx xxxx xxxxxxx. Xxxx xx xxxxx xxx xxxxx xxxx …"
+      },
+      {
+        "rank": 10,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx | Xxxx Xxxx | Xxxxxx",
+        "url": "https://rust.fandom.com/wiki/Rust",
+        "displayUrl": "https://rust.fandom.com › xxxx › Xxxx",
+        "snippet": "Xxxx xx a xxxxxxxx xxxx xxxxxxx xx Xxxxxxxxx Xxxxxxx. Xxxxxxxx xx xxxxx like XxxX, Xxxxxxxxx, xxx X.T.A.X.X.X.X. – Xxxx xxxx xx …"
+      }
+    ],
+    "totalResults": "163000",
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "bing.com/search",
+      "version": 1,
+      "sha256": "b0a2c4d8b2a9c04f6b2b2e8aaf1d96c397e93f03358bf0a1427e43e19d41ea24"
+    }
+  ]
+}

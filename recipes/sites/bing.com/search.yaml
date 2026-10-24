@@ -1,0 +1,85 @@
+# Bing web results -> rex.schema.search.v1.SearchResults (decisions.md U32). Result links go through Bing's
+# click tracker (bing.com/ck/a?...&u=a1<base64url target>); the target is decoded from `u`.
+id: bing.com/search
+version: 1
+schema: rex.schema.search.v1.SearchResults
+match:
+  urls:
+    hosts: ["bing.com"]
+    include: ["^/search\\?"]
+  page:
+    all:
+      - exists: "#b_results"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: q }
+      - css: { selector: "#sb_form_q", take: TAKE_ATTRIBUTE, attribute: value, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: engine
+    candidates:
+      - constant: { value: "bing" }
+
+  - path: total_results
+    candidates:
+      - css: { selector: ".sb_count", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - number: {}
+
+  - path: page
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: first }
+        pipe:
+          - number: {}
+          - regex: { pattern: "^(\\d*)1$", group: 1 }    # first=11 -> page 2, first=21 -> page 3
+          - map: { entries: [ { from: "", to: "1" }, { from: "1", to: "2" }, { from: "2", to: "3" }, { from: "3", to: "4" }, { from: "4", to: "5" } ] }
+      - constant: { value: "1" }
+
+  - path: results
+    expect: true
+    each: "#b_results > li.b_algo, #b_results > li.b_ad li"
+    each_index: rank
+    fields:
+      - path: type
+        candidates:
+          - css: { selector: ".b_adSlug" }
+            pipe:
+              - map: { entries: [ { from: "ad", to: "RESULT_TYPE_AD" } ], drop_unmapped: true }
+        pipe:
+          - default: { value: "RESULT_TYPE_ORGANIC" }
+      - path: title
+        candidates:
+          - css: { selector: "h2" }
+      - path: url
+        candidates:
+          - css: { selector: "h2 a", take: TAKE_ATTRIBUTE, attribute: href }
+            pipe:
+              - regex: { pattern: "[?&]u=a1([^&]+)", group: 1 }
+              - decode: { kind: DECODE_KIND_BASE64URL }
+          - css: { selector: "h2 a", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: display_url
+        candidates:
+          - css: { selector: "cite" }
+      - path: snippet
+        candidates:
+          - css: { selector: ".b_caption p" }
+          - css: { selector: "p" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "\\s*Read more$", with: "" }
+      - path: sitelinks
+        each: ".b_deep h3 a, .b_vList a"
+        fields:
+          - path: title
+            candidates:
+              - css: {}
+          - path: url
+            candidates:
+              - css: { take: TAKE_ATTRIBUTE, attribute: href }
+                pipe:
+                  - regex: { pattern: "[?&]u=a1([^&]+)", group: 1 }
+                  - decode: { kind: DECODE_KIND_BASE64URL }
+
+  - path: related_searches
+    candidates:
+      - css: { selector: ".b_rs li a, #brsv3 li a", scope: CSS_SCOPE_DOCUMENT }

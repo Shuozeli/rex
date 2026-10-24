@@ -1,0 +1,65 @@
+{
+  "recipe": {
+    "id": "generic/faq.v1",
+    "version": 1,
+    "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+  },
+  "schema": "rex.schema.faq.v1.FaqPage",
+  "url": "https://stripe.com/pricing",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:45:04Z",
+  "extractTime": "2026-10-14T05:45:04Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/faq.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/faq.v1@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/faq.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.faq.v1.FaqPage",
+    "title": "Xxxxxxx & Xxxx",
+    "url": "https://stripe.com/pricing",
+    "items": [
+      {
+        "question": "Xxx xxx xxxxxxx xxxx xxxxxxxxxx?",
+        "answer": "Xxxxxx xxxxxxx a xxx-xxxxxxxxxxx xxx xxxxxxxxx xx xxx xxxxxxx xxxxxx xxxx xx xxx xxx customer. Xxxx xxxxxxx xx xxxx xx xxxxxxx xxxxxx."
+      },
+      {
+        "question": "Xxxx X xx xxxxxxx xxx?",
+        "answer": "Xxxxxx is xxxxxxxx to xxxxxx xxx xx xxxxxxx xxxxxxxx xxx xxxxxxxx. Xxx is xxxxxxx xxxxx xx xxxx xxxxxxxx xxx/ xx xxxx xxxxxxxx/xxx xxxxxx, xxxxx xxxxxxxxxx xxxxxxx a xxxxxxx xx xxxxxxx is xxxxxxx to xxxxx, xxx xxx xxxxxxxxxx xxx xxxxx.\n\nXxxx xxxx"
+      },
+      {
+        "question": "Xxx xxxxx xxxxxxxxxx xxxx xxx xxxxxxx?",
+        "answer": "- Xxx xxxxxxxxxx xx xxxxxxxx xxxxxxx: Xxxxx may xx xxxx xxx xxxxxxx xxxx xxxx xxxxxxxxx xxx xxxx. Xxx xxx xxxxx xxxxxxx xxxxxxx, xxxxx xxx xx xxxx xxx xxxxxxx xxxxxxx. Xxx xxxxxxx xxxxxxxxxx, Xxxxxxx xxx xxxxxxxx xxxxxxxxxx xxxx xxxx xxx xxxxxxxx xxxxxxxxxxx xxx xxx xxxxxxxx.\n- Xxx xxxxxxxxxx xx xxxxxx xxxxxxx: Xxxxx may xx xxxx xxx xxxxxxx xxxxxxx xxxxxxxxx xx xxxx xxx xxxxxxxx with Xxxxxx."
+      },
+      {
+        "question": "Xx xxx xxxx xxxxx xxxx xx xxxxxxx xxxx?",
+        "answer": "Xxxxxx xxxx xxx xxxxxx xxxxx xxxx, xxxxxxx xxxx, xx xxx xxxxx xxxxxx xxxx like xxxxxxx xxxx. Xxx xxxx xxx xxxxxxxxxx xx xxxxxxxx xxxxxxx xxx xxxxxx xx xxx xxxxxxx."
+      },
+      {
+        "question": "Xx xxx xxxxx xxx xxxxxxxxx?",
+        "answer": "Xxxxxx xxxxxx xxxxxx xxxxxxx xxx xxxxxxxxxx with xxxxx xxxxxxxxxx xxxxxxx. Xxxxxxxxxxx xxxxxx xx xxxxxx."
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "generic/faq.v1",
+      "version": 1,
+      "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+    }
+  ]
+}

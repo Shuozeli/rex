@@ -1,0 +1,35 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/iqilu.com/_/a1.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: sdxw.iqilu.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - sdxw.iqilu.com
+    include:
+    - ^/w/article/[^/]+\.html/?$
+  page:
+    any:
+    - exists: div.art_content
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: div.details_title
+      take: TAKE_TEXT
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div.art_content
+      take: TAKE_HTML
+  expect: true
+- path: published_at
+  candidates:
+  - css:
+      selector: div.details_author
+      take: TAKE_TEXT

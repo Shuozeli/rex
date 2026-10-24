@@ -1,0 +1,258 @@
+{
+  "recipe": {
+    "id": "generic/howto.v1",
+    "version": 1,
+    "sha256": "0afe2632e9711d147f945dea83d79d746f4f187ece626fc6ba56b8a3dac1c05d"
+  },
+  "schema": "rex.schema.howto.v1.HowTo",
+  "url": "https://www.wikihow.com/Tie-a-Tie",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:45Z",
+  "extractTime": "2026-10-14T05:35:45Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/howto.v1@1"
+    },
+    {
+      "path": "steps",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/howto.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.howto.v1.HowTo",
+    "name": "4 Xxxx to Xxx a Xxx - xxxxXxx",
+    "description": "Xxxx xxx xxxxxxxxx xxxxxx xxx xxxx-xx xxx? Xxxxxxxxx with xxxxx xxxxxxx xxxxxxxxxxxx, a xxxxx-xxxxxxx xxx, a xxxxxx, xxx xxxx xxxxxxxx, xxx xxx xxxxxx xx xxxxxx in xxxxx xxxx xxx xxxxxxxxxxx xxxx. Xxx xxxx xxxxxxx xxxxxxx available, xxxx...",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxxxx-Xxxxxx"
+      }
+    ],
+    "publishedAt": "2005-06-13T00:00:00Z",
+    "updatedAt": "2026-05-01T00:00:00Z",
+    "image": "https://www.wikihow.com/images/thumb/f/fa/Tie-a-Tie-Summary.jpg/aid4831-v4-1200px-Tie-a-Tie-Summary.jpg",
+    "url": "https://www.wikihow.com/Tie-a-Tie",
+    "steps": [
+      {
+        "text": "Xxxxx xxx xxx xxxxxx xxxx xxxx. With xxxx xxxxxx xx xxx xxxx xxxxx xxxxx xxxxxxxx, xxxxx xxx xxx xxxxxx xxxx xxxxxxxxx. Xxxx xxx xxxxx xxx of xxx xxx xx xxxx xxxxx xxxx, with xxx xxxxxx xxx xxxxx 12 xxxxxx (30 xx) xxxxxx xx xxx xxxx.\nXxx: Xxxxx xxxxxx xxxxxxx with xxxx xxxxx, xxxxxxxxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/c/cf/Tie-a-Tie-Step-1-Version-16.jpg/v4-460px-Tie-a-Tie-Step-1-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xxxx xxx xxxxxx xxx. Xxxxx xxx xxxx xxx to xxx xxxx xxxx of xxxx xxxx, xxxx xxx xxxxxx xxx. Xxxx xxx xxx xxxxxx of xxxxx xxxxxxxx with xxxx xxxx xxxx, xxxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/f/f8/Tie-a-Tie-Step-2-Version-16.jpg/550px-nowatermark-Tie-a-Tie-Step-2-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxxx xxx xxxxxx xxx. Xxx xx with xxxx xxxxx xxxx. Xxxx xx xxxxxxxxxx xxx xxxxxx xxx, xxxx xxx xxxx xxx, xxx xxxx xx xxxx xxxxxxx to xxxx xxxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/d/d4/Tie-a-Tie-Step-3-Version-16.jpg/550px-nowatermark-Tie-a-Tie-Step-3-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxxx xxxxx. Xxxxx xx xxxx xxx xxxxxx xxx xxx xxxx xxxx, xx xxx xxxx point xxxxx xxxx xxxx xxxx is xxxxxxx xxx xxxx xxxxxxxx. Xxxx: Xxx xxxxx of xxx xxx xxxxxx xx xxxxxx xxxxxxx xxxxx (xx xxx xxxx is xxxxxx).",
+        "image": "https://www.wikihow.com/images/thumb/9/98/Tie-a-Tie-Step-4-Version-16.jpg/550px-nowatermark-Tie-a-Tie-Step-4-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx. Xxxx xxx xxx of xxx xxxx xxx xxxxx xxxxxx xxx xxxx xx xxxxxxx xxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/1/18/Tie-a-Tie-Step-5-Version-16.jpg/550px-nowatermark-Tie-a-Tie-Step-5-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxx xxx xxxx xxx xxxx xxxxxxx xxx xxxxx xxxx. Xxx xxxxxx xxxx a xxxxxxxxxx xxxx xxxxxx xxx xxxxx of xxxx xxx. Xxxx xxxx xxxx xxxx with xxxx xxxxxx xxx xxxxxxxxx xxxxxx xxx xxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/f/f5/Tie-a-Tie-Step-6-Version-16.jpg/550px-nowatermark-Tie-a-Tie-Step-6-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxxx xxx xxxx. Xxxx xxx xxxxxx xxx xxx xxxxx xxx xxxxx xxxx xx to xxxxxxx xxx xxx. Xxxx xxxx xxxx xxx is xxxxxxxx xxx xxx xxxxxx is xxxxxxxxxxx, xxxxxxx xxxxxx xx xxx xxx of xxxx xxxx xxxxxx.\nXxx: Xxx xxxx-in-xxxx xxxx is a xxxxxx xxxxxxxxxxxx xx xxx xxxx. Xxx't xxxxx xxxxx xxxx; xx is xxxxxx.\nXxxxxxx xxx xxxxx of xxx xxxx xxxxxx to xxxxxx a xxxxxx just xxxxx xx.",
+        "image": "https://www.wikihow.com/images/thumb/a/a7/Tie-a-Tie-Step-7-Version-16.jpg/v4-460px-Tie-a-Tie-Step-7-Version-16.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxxxx xxx of xxx xxx xxxx xxx xxxx xx xxx xxxx xxxx of xxx xxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/7/70/Tie-a-Tie-Step-8-Version-13.jpg/550px-nowatermark-Tie-a-Tie-Step-8-Version-13.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxxx xxxxxx xxxx, xxx xxxx xxxx xxxx xxx xxx is xxxxxxx xx xxx xxxxxx xxx xxx xxx xxxxxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/4/45/Tie-a-Tie-Step-9-Version-13.jpg/550px-nowatermark-Tie-a-Tie-Step-9-Version-13.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxx xxx xxx xxxxxx xxxx xxxx. Xxxx xxxx xxx xxxxx xxx is xx xxx xxxxx, xxx xxxxx 14 xxxxxx (36 xx) xxxxx xxxx xxx xxxxxxx xxxx xx xxx xxxx. Xxx Xxxxxxx xxxx xxxx a xxx of xxxxx, xx xxx xxxxx xxx xxxxxx xxxxx a xxx xxxxx xxxx xxx xxxxx xxxxxxx xxxxxxxx a xxx.\nXxx: Xxxx xxxxxxxx xxx xxxxx, xxxxxxxxx Xxxxxxx xxxx xxx xxxx xxxxxxx xxx xxxxxx xxxxxx. Xxxx xx with a xxxxxx xx xxxx xxxxxx xxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/7/72/Tie-a-Tie-Step-10-Version-12.jpg/v4-460px-Tie-a-Tie-Step-10-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xxxx xxx xxxxxx xxx. Xxxx xxx xxx in xxxx xxxx, xxxx xxxx xxxx of xxxx to xxx xxxxxxxx xxxx. Xxx xxxx xxx xxxxxx now xx xx xxxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/1/1c/Tie-a-Tie-Step-11-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-11-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx. Xxxxx xxxx xxxxx xxxx, xxxx xxx xxx xxxx xxxxx xxxx xxxxx xxxx xxxx xxxxxx. With xxxx xxxx xxxx, xxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx xxxx xxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/6/65/Tie-a-Tie-Step-12-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-12-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxxx xxx xxxx xxxx. Xxxx xxx xxxx xxx xxxx xx xxxx xxxxx, to xxx xxxx of xxx xxxxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/1/17/Tie-a-Tie-Step-13-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-13-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxxxx xxx xxxxxx xxx. Xxxx xxx xxxx xxx with xxxx xxxxx xxxx xxx xxxx xx xxxx to xxx xxxxx xxxx of xxxx xxxx, xxxxx xxx xxxxxx xxx. Xxxx xxx xxxx xxxx xxxx xxxxxx in xxxxx with xxxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/e/ea/Tie-a-Tie-Step-14-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-14-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxx xxxxxx xxx. Xxxx xx xxxx xxxx xxxx xxxxx to xxxx, xx xxx xxxxx xxxx is xxxxxxx xxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/3/3f/Tie-a-Tie-Step-17-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-17-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxxxxx xxx xxxx xxxx xxxx xxxxx. Xxxxx xxx xxxx xxx xxxx xx xxxxxxx xxx xxxx xxxx xxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/d/dc/Tie-a-Tie-Step-18-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-18-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxx xxx xxxx xxx xxxxxxx xxx xxxxx xxxx. Xxxxx xxx xxxx xxx xxxxxxx xxx xxxxxxxxxx xxxx xx xxx xxxxx of xxx xxx. Xxxx xx xxxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/5/5b/Tie-a-Tie-Step-19-Version-12.jpg/v4-460px-Tie-a-Tie-Step-19-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxxx xxx xxxx. Xxxx xxx xxxx of xxx xxxxx xxxx xxx xxxxxxx xxxxxx xxxx xxx xxxxx. Xxxxxx xxxx xxx xxxx xxx of xxx xxx to xxxxx xxx xxxx xxxxxx to xxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/0/0f/Tie-a-Tie-Step-20-Version-12.jpg/550px-nowatermark-Tie-a-Tie-Step-20-Version-12.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxx xxxxxx xxxx xxxxxx xxxx xxxxxx. Xxxxxx xxxx xxxxx, xxx Xxxxx xxxx xxxxxx with xxx xxx xxxxxx xxxx, xx xxx xxxx of xxx xxx is xxxxxx xxxxxxx. Xxxx xxx xxxx xxx of xxx xxx xxxx xxxx xxxxx xxxx, xxx xxx xxxxxx xxx xxxx xxxx xxxx xxxx.\nXxxx xxxxxx xxxx xxxx xxxxx xxxx xxxxxxx xxx xxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/a/ac/Tie-a-Tie-Step-8-Version-11.jpg/v4-460px-Tie-a-Tie-Step-8-Version-11.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxxxxxx of xxx xxxx xxx. In a xxxxxxx xxx, xxx xxxx xxx xxxxxx just xxxxx xxx xxx of xxxx xxxx xxxxxx. Xx xxx xxxxx, xxxxxxx, xxxxx xx xxxxx xxx xxxx xxx xxxxx xx xxxxx 1–2 xxxxxx (2.5–5 xx) xxxxx xxxx point. Xx a xxxx of xxxxx, xxx Xxxxx xxxx xxxx xxxx xxx xxxx xxx xx xxxx xxxxxxxx xx xxx xxx xxx xxxx.\nXxx xxxxxx xxx of xxx xxx xxxxxx xx xxxxxx xxxx xxx xxxx xxx. Xx xxxx xxxxxxx xx xxxxxx xxxxx xxxxxx xxxxx, xxx xxxx is xxxx xxxxxxxxx xxxx xxx xxxx xxx'x xxxxxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/2/2a/Tie-a-Tie-Step-9-Version-11.jpg/v4-460px-Tie-a-Tie-Step-9-Version-11.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xxxxx xxx xxxxxx xxx. Xxxx xxx xxxx xxx xxxxxx xxxx xxxx to xxx xxxx xxxx, xxxxxxx xx xxxxxxxxxx xxx xxxxxx xxx.\nXx xxx xxxx xxx xxxxxx xxx of xxx xxx xxx xxx xxxx of xxxx xxxx. Just xxxx xx xxxxxx xxxxx xxx xxx xxx xxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/6/6e/Tie-a-Tie-Step-10-Version-10.jpg/v4-460px-Tie-a-Tie-Step-10-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xx to xxx xxxx xxxxxx xxx xxxx. Xxxxx xxx xxx xx xxx of xxx xxxx, xxxxx xx xxxx xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/5/52/Tie-a-Tie-Step-11-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-11-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxxxxx xxx xxxx xxxx. Xxxxxx xxx xxxx xxx xxxx xxxx xxx xxxx xxxx xxxxx. Xxxx xx xxxxxxx in xxx xxxx xxxxxxxxx xx xxx xxxxxx, xx xxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/0/0b/Tie-a-Tie-Step-12-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-12-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxx xxxxxx xxx, xxxx xxxx to xxxxx. Xxxx xxxxx xxx xxxx xxx xx xxx xxxx is xx xxxxxx xxxxxxx. Xxx xxxx xxx xxxx xxxxxx xx xx xxxxx xxx to xxxx xxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/d/d4/Tie-a-Tie-Step-13-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-13-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx. Xxxxx xxx xxxx xxx xx to xxxx xxxx xxxx xxxxx, xxx xxxx xxxx xxxx xxxxx. Xxxx xx xxxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/9/9e/Tie-a-Tie-Step-14-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-14-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxxxxxx xxx xxx xxxx xx xxx xxxxx. Xxxx xxxx xxxx xxxxxxx a xxxxxxxxxx xxxx xx xxx xxxxx of xxxx xxx. Xxxx xxx xxxx xxx xxxxxxx xxxx xxxx, xxx xxxx xxxxxxxx xxxx to xxxxxxx. Xxx xxxx xxx xxxxxx now xxxx in xxxxx of xxx xxxxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/8/8f/Tie-a-Tie-Step-15-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-15-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx to xxxxxx. Xxxx xxxx xx xxx xxxx xxx to xxxxxxx. Xxxxx xxx xxxxx xxxx xx to xxx xxxx of xxxx xxxxxx to xxxxxx xxx xxx.\nTo xxxxxx a xxxxxx just xxxxx xxx xxxxx xxxx, xxxxxxx xxx xxxxx of xxx xxxx xxxxxx xx xxx xxxxxxx.",
+        "image": "https://www.wikihow.com/images/thumb/7/75/Tie-a-Tie-Step-16-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-16-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxxxx xxx xxxx xxx xx xxx xxxxx xxxx. Xxxxx xxx xxx xxxxxx xxxx xxxx xxx xxx xxx xxxxx xxxx in xxxxx of xxx. Xxx xxxx xxx xxxxxx xx xx xxx xxxxx xxxx of xxxx xxxx, xxx xxxx xxxxxxx 12 xxxxxx (30 xx) xxxxx xxxx xxx xxxxxx xxx xx xxx xxxx.\nXxx Xxxx Xxxxxxx is a xxxxxxxxxx, xxxxxxxxxxx xxxx xxxxxxxx xxx xxxxxx xxxxxxxxx. Xxxxxx xxxx xxx Xxxx-in-xxxx xxx xxxx xxxxx xxxx xxx Xxxxxxx, xxxx xxx xxxx with xxxx xxxxxxxx xxx xxxxxx xxxxx. Xxxxxxxx xxxx xxxx xxxxxxx xxxxxx xxxx xxxxxx xxxxxxx a xxxxxx xx xxxx xxxxxx xxxxxx with xxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/9/99/Tie-a-Tie-Step-17-Version-10.jpg/v4-460px-Tie-a-Tie-Step-17-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xxxx xxx xxxxxx xxx. Xxxxx xxx xxxx xxx of xxx xxx xxxx to xxxx xxxx xxxx, xxxxxxxx xxxx xxx xxxxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/6/68/Tie-a-Tie-Step-18-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-18-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxxxx xxx xxxxxx xxx. Xxxxxxxx a xxxx xxxxxx xxx xxxxxx xxx xxx xxxx xxx xxxx xxx xxxx to xxx xxxxx xxxx.\nXxx xxxxxxxxx of xxx xxxx xxx xxxxxx xx xxxxxxx xx xxxx point.",
+        "image": "https://www.wikihow.com/images/thumb/c/cc/Tie-a-Tie-Step-19-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-19-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xx to xxx xxxx xxxx. Xxxxx xxx xxxx xxx xx to xxx xxxx of xxxxxxx xx xxxx xxxxxx. Xxxx xx xx xxx xxxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/0/02/Tie-a-Tie-Step-20-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-20-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxxxxx xxx xxxx xxx to xxx xxxx. Xxxxxx xxx xxxx xxx xxxx xxxxxxx xxx xxxx xxx xxxx xx xxxxxxx xxxx xxx xxxx xxxx, xx xx xxxxxxx xxxxx xxx xxxxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/0/08/Tie-a-Tie-Step-21-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-21-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xxx xxxx xxx xxxx xxx xxxxx of xxx xxxxxx xxx. Xxxxx xxx xxxx xxx xxxx xxxxxx xxx xxxxx xxx xxxx xxxx xxxxx xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/b/b4/Tie-a-Tie-Step-22-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-22-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx. Xxxx xxx xxxx xxx xx xxxxxxx xxx xxxx xxxx a second xxxx.",
+        "image": "https://www.wikihow.com/images/thumb/f/f2/Tie-a-Tie-Step-23-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-23-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxxxx xxx xxxx xxx xxxx xxxxxxx xxx xxxxx xxxx. Xxxxxx xxx xxxxx xxxx with xxxx xxxxxx xxx xxxxxx xxx xxxx xxx. Xxxx xx xxxxxxx to xxxx xxxx xxx xxxxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/a/ae/Tie-a-Tie-Step-24-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-24-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      },
+      {
+        "text": "Xxxx xx xxx xxxx xxx to xxxxxxx. Xxxxxx xxxxxxx xxx xxxxx xxxx xx xxx xxxx to xxxxx xxx xxxx xx xxx xxxxxx a xxxxxx xx xxx xxxxx of xxxx xxx.",
+        "image": "https://www.wikihow.com/images/thumb/f/f6/Tie-a-Tie-Step-25-Version-10.jpg/550px-nowatermark-Tie-a-Tie-Step-25-Version-10.jpg",
+        "url": "https://www.wikihow.com/Tie-a-Tie"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "generic/howto.v1",
+      "version": 1,
+      "sha256": "0afe2632e9711d147f945dea83d79d746f4f187ece626fc6ba56b8a3dac1c05d"
+    }
+  ]
+}

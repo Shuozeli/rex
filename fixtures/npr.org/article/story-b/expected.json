@@ -1,0 +1,89 @@
+{
+  "recipe": {
+    "id": "npr.org/article",
+    "version": 1,
+    "sha256": "d71542dcbb97675792e765b165cf3b00406d5a7d5102b7b6797a5b320a39cbbc"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.npr.org/2026/10/10/nx-s1-5995420/what-are-they-saying-about-ai-at-san-francisco-tech-week",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:19:29Z",
+  "extractTime": "2026-10-13T03:19:29Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "npr.org/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.npr.org/2026/10/10/nx-s1-5995420/what-are-they-saying-about-ai-at-san-francisco-tech-week",
+    "title": "Xxxx xxx xxxx xxxxxx xxxxx XX xx Xxx Xxxxxxxxx Xxxx Week?",
+    "authors": [
+      {
+        "name": "Xxxx Xxxxxxx"
+      }
+    ],
+    "publishedAt": "2026-10-10T21:27:04Z",
+    "updatedAt": "2026-10-10T21:27:04Z",
+    "summary": "Xxxx xxxxxxx xxxxxxxx xx Xxx Xxxxxxxxx xxxx week xx xxxx xxxxx xxx xxxxxxxxxxxxx xxxx xxx xxx xxxxx xxxxxxxx, xxxxx xxxxx xxxxxxxx xxxxx XX, xxx xxx xxxx xxxx xx xxxxxx xx xxx Xxx Xxxx.",
+    "image": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg",
+    "bodyHtml": "<p>Xxxx xxxxxxx xxxxxxxx xx Xxx Xxxxxxxxx xxxx week xx xxxx xxxxx xxx xxxxxxxxxxxxx xxxx xxx xxx xxxxx xxxxxxxx, xxxxx xxxxx xxxxxxxx xxxxx XX, xxx xxx xxxx xxxx xx xxxxxx xx xxx Xxx Xxxx.</p>   \n\n\n    <b>\n        \n          \n          Xxxxxxxxxx\n        \n    </b>\n\n    <p></p><p>XXXX XXXX, XXXX: </p><p></p><p> Xx'x a xxxx xxxx xx Xxxxxxx Xxxxxx xxxxxxx xx xxxxxxxxxx xxxxxxxxxxxx. Xxx a xxx xx xxxxxx xxxxx xxxxx xxxxx xxx xxxx xx'x xxxxx xx xxxx. XXX xxxx xxxxxxxxxxxxx Xxxx Xxxxxxx xxxx xxxx xxx xxxxx xx xxx xxxxx, xx xx xxxxx, xx xx xxxxx xxxxx xx Xxx Xxxxxxxxx Xxxx Week. Xx, Xxxx.</p><p></p><p>XXXX XXXXXXX, XXXXXX: Xxx xxxxx.</p><p></p><p>XXXX: Xx xxxx xx Xxxx Week? Xxx xxxx xxxx xxx xxxxxxx xx xxxx xxx xxxxx?</p><p></p><p>XXXXXXX: Xx xxxx xx a week xx xxxxxx xxxxxx xxx xxxx, xxxxxx xxxx day. Xxxx'xx xxxxxxxxx xxxxxx xx xxx xxxxxxxxxx xxx xxxxxxx xxxxxxx xxxx Xxxxxxx Xxxxxx'x xxxxx xxx. Xx'x xxxxxxxxx now. Xx'x xxxx xxxxx xx xxx a xxx years. Xx'x xxxxxxxxx xx xxx xxx xxxx xxxxxxxxxx xxxx Xxxxxxxxx Xxxxxxxx xxx a xxxxx xx xxxxx xxxxxxxxx.</p><p></p><p>Xxx xxx xxxxxx xxxxx xxxx xxxxx xxxxxxxxxxx xxxx xxxxxxx xxxxxxxx xx xxxxx xxxxxxx xxxx xxxxxxx xx xxx Xxx Xxxxxxxxx Xxx. Xxxxx xxx xxxx a xxxxxxxxxx xxxxx xxxxx xxx xxxxx xxx xxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxxxxxx xx xxxx xxx xxxxx just xxx xx a xxxxx xxx xxxx xxxxxxx xxxx xxxxxxxx. X xxxx xx xxx a xxxxx xx xxxx xxxxxx xxxxx xx xxx xxxxx xx xx xxx xxx xxxxxxxx xxxxx xxx xxxxxxxxx xxxxx xx xxxx xxxx xxxx xx'xx xxx xxxx xx xxxxxxxxx xxxxx XX xx xxxxxx xx.</p><p></p><p>XXXX: Xx xx xxx a xxxxxxxxx xxxxxxxx xxxx xxxx, xxxx xxxx xxx xxxxx like?</p><p></p><p>XXXXXXX: Xxx xxxxx, xxxx - xxx xxxx, X xxxxx xxxxxx xxxx a xxx xxxxx xxx xxxxxx xxxxx now xxxx like a xxxx xxxx. Xxxx'x Xxxx Xxxxxx. Xx'x xxx xxxxxxx xx a xxxxxxx xxxx xxxxxx XXX Xxxxxxx xxxx xxxxxxx xx xxxxx-xxxxx xxxx xxxxxxxxx.</p><p></p><p>XXXX XXXXXX: XX'x xxxxxxx a xxxx xxx a xxxxxxxxxx xxxx X xxxxx xx xxxxxx xxxxxxxx. Xxxxx xxxx xxxxxxxx xxxx'x xxxxx xxxxxxx xxxxx now xx xx XX xxxxxxxx, xxxx xx xxxx'x xxx xxxxxxxxxxx xxx xxxxxxxx xxxx'xx xxxxxx xx xxxxxx.</p><p></p><p>XXXXXXX: Xxxx, X just xxxxx xxxx xxx xxxx xxxxx xxxx XX xx xxxxx xx xxxx xxxxxxxxxx xxxxxxx. Xx'x xxxxx xx xxxx xxxxx xxxx xxxxxxxxxx xx xx. Xx'x xxxxx xx xxxx xx xxx xx xx xx xxxx xxxxxx xxxxx. X xxxx xxxxxx a xxx, xxx xxxx, xxx xxxx a xxxxxxx xxxx XX xxxx xxxxx xxxxxx xxxx xxxxxx xxxxxxx xxx xxxx xxx xxxxx xxxxx xxxxx-xxxx xxxxxxx xxxx xxxxxxxxx. Xxxxx'x a xxx xxxxxxxx xx xxx xx xxxx xxxxxxxxxx xxxxxx xxxxxx xxx xxxxx xx xxxxxx xx. Xxxxx'x a xxxxxxx xxx xxxxxx xxxxx xxxxx XX xx xxxx xx xxxxxx xxx xxxxxxxxx xx xx xxxxxxxxxxx xxxxxxx. X xxxxx xx xxx xxx xxx xxx xxxx xxxxx xx a xxxxxxxxxx xxxx. Xxx xxxx xx, xxxxxx xxx xxxxxxxx xx xxxx XX now.</p><p></p><p>XXXX: Xxx xxxxxx xxx xxxxx xx xxxxx xxx xxxxxxxx xxxxx XX?</p><p></p><p>XXXXXXX: Xxxx. Xxx xxxx, xx xxx xxxxxxx xxx xxxxxxx, xxx xx xxxx xxxx xxxxxxxxxxx xxxxx xx. Xxxx'x Xxxxx Xxxxxxx, xxx xxxxx xx xx XX xxxxxxx xxxxxx.</p><p></p><p>XXXXX XXXXXXX: Xx'x xxxxxxxxxx a xxxxx xxxxxx xx xxxx. X xxxxx xxxxx'x a xxx xx xxxxxxxx xxx, xxxx, a xxx xx xxxxx xxxxxxxx xx xxxx xx xxxxx xx, xx xxxx xx XX xxxxxx? Xxx xxxx xx xxx xxxx xxxxxxxx xxx xxxx xxxxx xx xxxx xxx? Xx xxxx xxx xxxxxxxxxxx?</p><p></p><p>XXXXXXX: Xxxxx xx a xxxxxxx xxxxxx xx xxxxx xxxxx xxxxxxxx xx XX xxxxx now. Xxxxx'x a xxxx xxxxxx xx xxxxxxxx xxxxxxxxx xx xxx xxx xx xxx xxxx, like XxxxXX xxx Xxxxxxxxx, xxxx xxxx xxxxxxxxxx. Xxxxxxxxx xxxxx xx xx xxxxx xxxxx xxxxxxxx. Xx xxxxx xx xxxx xxxxxxx xxxxxx xxx xxxxxxxx xxxx xx'x xxxxxxxxx xx a xxxxxxx xx xxxxxxxxx xxx xxxx xxxxx xx xxxxx xxxx'x xxxxxx xxxxxxx xxxxxxx xxx xxxxxxxx xxxxx now. Xxx xxxx xx xx xxxxx xx? X xxxx, xxxx'x xxx xxxxx. Xxxxx xx xx like xxx .xxx xxxxxx xxxx xxxxx xxxxxx xxx year 2000?</p><p></p><p>XXXX: Xxxx xxxxx xxx xxx xxxxx xxxx xxxxx XX xxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxxx xxxxxx?</p><p></p><p>XXXXXXX: Xxxx, xxx xxxxx xxxxx - X xxxxx xxxxx xxxx. X xxx xxx xxxxx xxxx a xxx xx xxxxxx xx xxxx xxxx xx Xxxx Week xxx xxxxxx xxxxxxxxxxx. Xxxx'x xxxxxxx xxxxxxx Xxx XxXxxx.</p><p></p><p>XXX XXXXXX: Xx xxx'xx xx xxx xxxxxx xx xxxxxxx, xxx'xx xxxxxxx xxx xxxxxxxx xx, xx'x xxxxx xx xxxx xxx xxxx, xx'x xxxxx xx xxxx xxxxxxxxx. Xxxx, X xxxxx xxx xxx xxx xxxx xxxxx'x a xxx xx xxxxxx xxxxx xxxxxx xxxxxx xx xx xxxxx xxxxxx xxxxxxxxxxx xxxxxx xxxx XX xx xxxx xxxx xxx xxxx xx xxxx xxx xxxx xxx'xx xx xx.</p><p></p><p>XXXXXXX: Xx xxxx, XX'x a xxxxxxxxxx xxxxxxxxxx xxx, like xxx Xxxxxxxxxx Xxxxxxxxxx, xx'x xxxxx xx xxxxxxx xxxxxx xxx xxxxxx a xxx xx xxxxxxxx.</p><p></p><p>XXXX: XX, xxx xxx xxx xxxxxx xxxxxxx xxxxx xxxxxx like xxx xxxxxxxx xxx xxx xxxx xx xxxxxx?</p><p></p><p>XXXXXXX: Xxxxx, xxxxx xxx xxxx xxxxxxxx. Xxxxx xxx xxxxxxxx a xxxxx xxxx X xxxx xx, a xxxxx xxxxxxxxxx xx xxxxxxxxx xxx xx xxxxxx xxxxxx xx Xxx Xxxxxxxxx xxxxxxx xx'x xxxxxx xx xxxxxxxxx. Xxx xxxx, xxxxxx xx xxx xxxxxxxx xxx xxxxxx xxxx xxxxxxxxxxx, xxx xxxxx'x a xxxx xxxx xx xxxxx xxxx xxxx'xx xxxxxxx xxxxx xxx xxxx xxxxx xxxx xxx xxxxx xx xxxx, xxxxxxxxxx xx XX xxxx xxxxxx xx xxxxxx like xxxxxx. Xxxxx Xxxxx xx a xxxxxxxx xxxxxxxx.</p><p></p><p>XXXXX XXXXX: Xxxxxx xxxxxx, like xxxxxxx xxx xxxx - xx xxxxx xx xxxx. Xxx, like, xxxxxxxx xxxxxxxxxxx, X xxxxx, xx xxxxx xxxxxx xxxxx xxx xx xxxxx a xxx xxxx years.</p><p></p><p>XXXXXXX: Xx xxxx xxxxxxxxxx xxx xxxxx xxxx xxxxx'x xxxxxxxxxxx xx xxx xxxxxx. Xxx xx Xxx Xxxxxxxxx xxx xxxxx xxx xxxxx - xxx xx'x xxxxxx xxxxxxxx xxxx xx xxxxx xxx xxxxxx xxxx xxxx - xx'x xxxx xxxx-xxxx xxxxx.</p><p></p><p>XXXX: Xxx xxxx. Xxxx xx XXX'x Xxxx Xxxxxxx xx Xxxx Week xx Xxx Xxxxxxxxx. Xxxxx xxx, Xxxx.</p><p></p><p>XXXXXXX: Xxx xxx, Xxxx.</p><p></p>\n\n    <p>Xxxxxxxxx © 2026 XXX.  Xxx xxxxxx xxxxxxxx.  Xxxxx xxx xxxxxxx <a href=\"https://www.npr.org/about-npr/179876898/terms-of-use\">xxxxx xx xxx</a> xxx <a href=\"https://www.npr.org/about-npr/179881519/rights-and-permissions-information\">xxxxxxxxxxx</a> xxxxx xx <a href=\"https://www.npr.org\">www.npr.org</a> xxx xxxxxxx xxxxxxxxxxx.</p>\n\n    <p>\n        Xxxxxxxx xxx xxxxxxxxxxxx xx XXX xxxxxxxxxxx may xxxx. Xxxxxxxxxx xxxx may xx xxxxxxx xx xxxxxxx xxxxxx xx xxxxx xxxxxxx xx xxxxx. Xxxxx xx xxx.xxx may xx xxxxxx xxxxx xxx xxxxxxxx xxxxxxxxx xx xxxxxxxxxxx. Xxx xxxxxxxxxxxxx xxxxxx xx XXX’x xxxxxxxxxxx xx xxx xxxxx xxxxxx.\n    </p>",
+    "bodyText": "Xxxx xxxxxxx xxxxxxxx xx Xxx Xxxxxxxxx xxxx week xx xxxx xxxxx xxx xxxxxxxxxxxxx xxxx xxx xxx xxxxx xxxxxxxx, xxxxx xxxxx xxxxxxxx xxxxx XX, xxx xxx xxxx xxxx xx xxxxxx xx xxx Xxx Xxxx.\n\nXxxxxxxxxx\n\nXXXX XXXX, XXXX:\n\nXx'x a xxxx xxxx xx Xxxxxxx Xxxxxx xxxxxxx xx xxxxxxxxxx xxxxxxxxxxxx. Xxx a xxx xx xxxxxx xxxxx xxxxx xxxxx xxx xxxx xx'x xxxxx xx xxxx. XXX xxxx xxxxxxxxxxxxx Xxxx Xxxxxxx xxxx xxxx xxx xxxxx xx xxx xxxxx, xx xx xxxxx, xx xx xxxxx xxxxx xx Xxx Xxxxxxxxx Xxxx Week. Xx, Xxxx.\n\nXXXX XXXXXXX, XXXXXX: Xxx xxxxx.\n\nXXXX: Xx xxxx xx Xxxx Week? Xxx xxxx xxxx xxx xxxxxxx xx xxxx xxx xxxxx?\n\nXXXXXXX: Xx xxxx xx a week xx xxxxxx xxxxxx xxx xxxx, xxxxxx xxxx day. Xxxx'xx xxxxxxxxx xxxxxx xx xxx xxxxxxxxxx xxx xxxxxxx xxxxxxx xxxx Xxxxxxx Xxxxxx'x xxxxx xxx. Xx'x xxxxxxxxx now. Xx'x xxxx xxxxx xx xxx a xxx years. Xx'x xxxxxxxxx xx xxx xxx xxxx xxxxxxxxxx xxxx Xxxxxxxxx Xxxxxxxx xxx a xxxxx xx xxxxx xxxxxxxxx.\n\nXxx xxx xxxxxx xxxxx xxxx xxxxx xxxxxxxxxxx xxxx xxxxxxx xxxxxxxx xx xxxxx xxxxxxx xxxx xxxxxxx xx xxx Xxx Xxxxxxxxx Xxx. Xxxxx xxx xxxx a xxxxxxxxxx xxxxx xxxxx xxx xxxxx xxx xxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxxxxxx xx xxxx xxx xxxxx just xxx xx a xxxxx xxx xxxx xxxxxxx xxxx xxxxxxxx. X xxxx xx xxx a xxxxx xx xxxx xxxxxx xxxxx xx xxx xxxxx xx xx xxx xxx xxxxxxxx xxxxx xxx xxxxxxxxx xxxxx xx xxxx xxxx xxxx xx'xx xxx xxxx xx xxxxxxxxx xxxxx XX xx xxxxxx xx.\n\nXXXX: Xx xx xxx a xxxxxxxxx xxxxxxxx xxxx xxxx, xxxx xxxx xxx xxxxx like?\n\nXXXXXXX: Xxx xxxxx, xxxx - xxx xxxx, X xxxxx xxxxxx xxxx a xxx xxxxx xxx xxxxxx xxxxx now xxxx like a xxxx xxxx. Xxxx'x Xxxx Xxxxxx. Xx'x xxx xxxxxxx xx a xxxxxxx xxxx xxxxxx XXX Xxxxxxx xxxx xxxxxxx xx xxxxx-xxxxx xxxx xxxxxxxxx.\n\nXXXX XXXXXX: XX'x xxxxxxx a xxxx xxx a xxxxxxxxxx xxxx X xxxxx xx xxxxxx xxxxxxxx. Xxxxx xxxx xxxxxxxx xxxx'x xxxxx xxxxxxx xxxxx now xx xx XX xxxxxxxx, xxxx xx xxxx'x xxx xxxxxxxxxxx xxx xxxxxxxx xxxx'xx xxxxxx xx xxxxxx.\n\nXXXXXXX: Xxxx, X just xxxxx xxxx xxx xxxx xxxxx xxxx XX xx xxxxx xx xxxx xxxxxxxxxx xxxxxxx. Xx'x xxxxx xx xxxx xxxxx xxxx xxxxxxxxxx xx xx. Xx'x xxxxx xx xxxx xx xxx xx xx xx xxxx xxxxxx xxxxx. X xxxx xxxxxx a xxx, xxx xxxx, xxx xxxx a xxxxxxx xxxx XX xxxx xxxxx xxxxxx xxxx xxxxxx xxxxxxx xxx xxxx xxx xxxxx xxxxx xxxxx-xxxx xxxxxxx xxxx xxxxxxxxx. Xxxxx'x a xxx xxxxxxxx xx xxx xx xxxx xxxxxxxxxx xxxxxx xxxxxx xxx xxxxx xx xxxxxx xx. Xxxxx'x a xxxxxxx xxx xxxxxx xxxxx xxxxx XX xx xxxx xx xxxxxx xxx xxxxxxxxx xx xx xxxxxxxxxxx xxxxxxx. X xxxxx xx xxx xxx xxx xxx xxxx xxxxx xx a xxxxxxxxxx xxxx. Xxx xxxx xx, xxxxxx xxx xxxxxxxx xx xxxx XX now.\n\nXXXX: Xxx xxxxxx xxx xxxxx xx xxxxx xxx xxxxxxxx xxxxx XX?\n\nXXXXXXX: Xxxx. Xxx xxxx, xx xxx xxxxxxx xxx xxxxxxx, xxx xx xxxx xxxx xxxxxxxxxxx xxxxx xx. Xxxx'x Xxxxx Xxxxxxx, xxx xxxxx xx xx XX xxxxxxx xxxxxx.\n\nXXXXX XXXXXXX: Xx'x xxxxxxxxxx a xxxxx xxxxxx xx xxxx. X xxxxx xxxxx'x a xxx xx xxxxxxxx xxx, xxxx, a xxx xx xxxxx xxxxxxxx xx xxxx xx xxxxx xx, xx xxxx xx XX xxxxxx? Xxx xxxx xx xxx xxxx xxxxxxxx xxx xxxx xxxxx xx xxxx xxx? Xx xxxx xxx xxxxxxxxxxx?\n\nXXXXXXX: Xxxxx xx a xxxxxxx xxxxxx xx xxxxx xxxxx xxxxxxxx xx XX xxxxx now. Xxxxx'x a xxxx xxxxxx xx xxxxxxxx xxxxxxxxx xx xxx xxx xx xxx xxxx, like XxxxXX xxx Xxxxxxxxx, xxxx xxxx xxxxxxxxxx. Xxxxxxxxx xxxxx xx xx xxxxx xxxxx xxxxxxxx. Xx xxxxx xx xxxx xxxxxxx xxxxxx xxx xxxxxxxx xxxx xx'x xxxxxxxxx xx a xxxxxxx xx xxxxxxxxx xxx xxxx xxxxx xx xxxxx xxxx'x xxxxxx xxxxxxx xxxxxxx xxx xxxxxxxx xxxxx now. Xxx xxxx xx xx xxxxx xx? X xxxx, xxxx'x xxx xxxxx. Xxxxx xx xx like xxx .xxx xxxxxx xxxx xxxxx xxxxxx xxx year 2000?\n\nXXXX: Xxxx xxxxx xxx xxx xxxxx xxxx xxxxx XX xxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxxx xxxxxx?\n\nXXXXXXX: Xxxx, xxx xxxxx xxxxx - X xxxxx xxxxx xxxx. X xxx xxx xxxxx xxxx a xxx xx xxxxxx xx xxxx xxxx xx Xxxx Week xxx xxxxxx xxxxxxxxxxx. Xxxx'x xxxxxxx xxxxxxx Xxx XxXxxx.\n\nXXX XXXXXX: Xx xxx'xx xx xxx xxxxxx xx xxxxxxx, xxx'xx xxxxxxx xxx xxxxxxxx xx, xx'x xxxxx xx xxxx xxx xxxx, xx'x xxxxx xx xxxx xxxxxxxxx. Xxxx, X xxxxx xxx xxx xxx xxxx xxxxx'x a xxx xx xxxxxx xxxxx xxxxxx xxxxxx xx xx xxxxx xxxxxx xxxxxxxxxxx xxxxxx xxxx XX xx xxxx xxxx xxx xxxx xx xxxx xxx xxxx xxx'xx xx xx.\n\nXXXXXXX: Xx xxxx, XX'x a xxxxxxxxxx xxxxxxxxxx xxx, like xxx Xxxxxxxxxx Xxxxxxxxxx, xx'x xxxxx xx xxxxxxx xxxxxx xxx xxxxxx a xxx xx xxxxxxxx.\n\nXXXX: XX, xxx xxx xxx xxxxxx xxxxxxx xxxxx xxxxxx like xxx xxxxxxxx xxx xxx xxxx xx xxxxxx?\n\nXXXXXXX: Xxxxx, xxxxx xxx xxxx xxxxxxxx. Xxxxx xxx xxxxxxxx a xxxxx xxxx X xxxx xx, a xxxxx xxxxxxxxxx xx xxxxxxxxx xxx xx xxxxxx xxxxxx xx Xxx Xxxxxxxxx xxxxxxx xx'x xxxxxx xx xxxxxxxxx. Xxx xxxx, xxxxxx xx xxx xxxxxxxx xxx xxxxxx xxxx xxxxxxxxxxx, xxx xxxxx'x a xxxx xxxx xx xxxxx xxxx xxxx'xx xxxxxxx xxxxx xxx xxxx xxxxx xxxx xxx xxxxx xx xxxx, xxxxxxxxxx xx XX xxxx xxxxxx xx xxxxxx like xxxxxx. Xxxxx Xxxxx xx a xxxxxxxx xxxxxxxx.\n\nXXXXX XXXXX: Xxxxxx xxxxxx, like xxxxxxx xxx xxxx - xx xxxxx xx xxxx. Xxx, like, xxxxxxxx xxxxxxxxxxx, X xxxxx, xx xxxxx xxxxxx xxxxx xxx xx xxxxx a xxx xxxx years.\n\nXXXXXXX: Xx xxxx xxxxxxxxxx xxx xxxxx xxxx xxxxx'x xxxxxxxxxxx xx xxx xxxxxx. Xxx xx Xxx Xxxxxxxxx xxx xxxxx xxx xxxxx - xxx xx'x xxxxxx xxxxxxxx xxxx xx xxxxx xxx xxxxxx xxxx xxxx - xx'x xxxx xxxx-xxxx xxxxx.\n\nXXXX: Xxx xxxx. Xxxx xx XXX'x Xxxx Xxxxxxx xx Xxxx Week xx Xxx Xxxxxxxxx. Xxxxx xxx, Xxxx.\n\nXXXXXXX: Xxx xxx, Xxxx.\n\nXxxxxxxxx © 2026 XXX. Xxx xxxxxx xxxxxxxx. Xxxxx xxx xxxxxxx xxxxx xx xxx xxx xxxxxxxxxxx xxxxx xx www.npr.org xxx xxxxxxx xxxxxxxxxxx.\n\nXxxxxxxx xxx xxxxxxxxxxxx xx XXX xxxxxxxxxxx may xxxx. Xxxxxxxxxx xxxx may xx xxxxxxx xx xxxxxxx xxxxxx xx xxxxx xxxxxxx xx xxxxx. Xxxxx xx xxx.xxx may xx xxxxxx xxxxx xxx xxxxxxxx xxxxxxxxx xx xxxxxxxxxxx. Xxx xxxxxxxxxxxxx xxxxxx xx XXX’x xxxxxxxxxxx xx xxx xxxxx xxxxxx."
+  },
+  "chain": [
+    {
+      "id": "npr.org/article",
+      "version": 1,
+      "sha256": "d71542dcbb97675792e765b165cf3b00406d5a7d5102b7b6797a5b320a39cbbc"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

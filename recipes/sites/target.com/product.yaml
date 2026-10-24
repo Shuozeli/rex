@@ -1,0 +1,92 @@
+# Target product page -> rex.schema.commerce.v1.Product (decisions.md U35). The price module is filled by a
+# separate price API after load; when it has not answered (it never did for the capture browser), price is
+# simply absent, so it is not expected. Highlights become features; "Shop all Cuisinart" names the brand.
+id: target.com/product
+version: 2
+schema: rex.schema.commerce.v1.Product
+extends: generic/product.v1
+match:
+  urls:
+    hosts: ["target.com"]
+    include: ["^/p/.*/A-\\d+"]
+  page:
+    all:
+      - exists: "h1[data-test=product-title]"
+fields:
+  - path: sku               # Target's TCIN
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/A-(\\d+)", group: 1 }
+
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1[data-test=product-title]" }
+
+  - path: brand
+    candidates:
+      - css: { selector: "a[data-test=shopAllBrandLink]" }
+    pipe:
+      - regex_replace: { pattern: "^Shop all\\s+", with: "" }
+
+  - path: price
+    candidates:
+      - css: { selector: "[data-test=product-price]" }
+    pipe:
+      - number: {}
+
+  - path: currency          # only alongside a price
+    replace_inherited: true
+    candidates:
+      - css: { selector: "[data-test=product-price]" }
+        pipe:
+          - regex_replace: { pattern: "(?s)^.*\\$.*$", with: "USD" }
+          - filter: { pattern: "^USD$" }
+
+  - path: list_price
+    candidates:
+      - css: { selector: "[data-test=product-regular-price]" }
+    pipe:
+      - number: {}
+
+  - path: rating            # the reviews block lower down loads lazily; the top summary is always there
+    candidates:
+      - css: { selector: "[data-test=rating-value]" }
+      - css: { selector: "[data-test=rating-stars]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "([\\d.]+) out of 5", group: 1 }
+
+  - path: review_count      # "4974 star ratings" / summary "4.59 out of 5 stars 4,976"
+    candidates:
+      - css: { selector: "[data-test=rating-count]" }
+      - css: { selector: "[data-test=rating-stars]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "stars\\s*([\\d,]+)", group: 1 }
+    pipe:
+      - number: {}
+
+  - path: images
+    replace_inherited: true
+    candidates:
+      - css: { selector: "[data-test^=image-gallery-item] img", take: TAKE_ATTRIBUTE, attribute: src }
+    pipe:
+      - regex_replace: { pattern: "\\?.*$", with: "" }
+
+  - path: features
+    candidates:
+      - css: { selector: "[data-test*=ProductDetailPageHighlights] li" }
+
+  - path: breadcrumbs       # the first crumb is "Target" itself
+    candidates:
+      - css: { selector: "[data-test*=BreadcrumbLink]" }
+    pipe:
+      - slice: { start: 1 }
+
+  - path: description
+    replace_inherited: true
+    candidates:
+      - css: { selector: "[data-test=item-details-description]" }
+      - meta: { key: "description" }

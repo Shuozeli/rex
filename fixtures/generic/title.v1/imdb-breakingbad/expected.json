@@ -1,0 +1,125 @@
+{
+  "recipe": {
+    "id": "generic/title.v1",
+    "version": 1,
+    "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+  },
+  "schema": "rex.schema.creative.v1.Title",
+  "url": "https://www.imdb.com/title/tt0903747/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:46:28Z",
+  "extractTime": "2026-10-14T05:46:28Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "release_date",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "genres",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "creators",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "actors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_scale",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "content_rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/title.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Title",
+    "name": "Xxxxxxxx Xxx",
+    "type": "TITLE_TYPE_SERIES",
+    "releaseDate": "2008-01-20",
+    "genres": [
+      "Crime",
+      "Drama",
+      "Thriller"
+    ],
+    "creators": [
+      {
+        "name": "Xxxxx Xxxxxxxx",
+        "url": "https://www.imdb.com/name/nm0319213/"
+      }
+    ],
+    "actors": [
+      {
+        "name": "Xxxxx Xxxxxxxx",
+        "url": "https://www.imdb.com/name/nm0186505/"
+      },
+      {
+        "name": "Xxxxx Xxxx",
+        "url": "https://www.imdb.com/name/nm0666739/"
+      },
+      {
+        "name": "Xxxx Xxxx",
+        "url": "https://www.imdb.com/name/nm0348152/"
+      }
+    ],
+    "rating": 9.5,
+    "ratingScale": 10.0,
+    "ratingCount": "2690857",
+    "contentRating": "XX-XX",
+    "description": "A xxxxxxxxx xxxxxxx xxxxxxxxx with xxxxxxxxxx xxxx xxxxxx xxxxx to xxxxxxxxxxxxx xxx xxxxxxx xxxxxxxxxxxxxxx with a xxxxxx xxxxxxx to xxxxxx xxx xxxxxx&xxxx;x xxxxxx.",
+    "image": "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_.jpg",
+    "url": "https://www.imdb.com/title/tt0903747/"
+  },
+  "chain": [
+    {
+      "id": "generic/title.v1",
+      "version": 1,
+      "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+    }
+  ]
+}

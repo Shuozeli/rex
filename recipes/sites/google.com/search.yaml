@@ -1,0 +1,91 @@
+# Google web results -> rex.schema.search.v1.SearchResults (decisions.md U32). Rendered page only (the server
+# HTML of an automated fetch is a JavaScript challenge); fixtures come from a real Chrome profile.
+# Ads (#tads, data-text-ad="1") and organic results ([data-snc]) are one list in page order, so `rank` is
+# the visible position.
+id: google.com/search
+version: 1
+schema: rex.schema.search.v1.SearchResults
+match:
+  urls:
+    hosts: ["google.com"]
+    include: ["^/search\\?"]
+  page:
+    all:
+      - exists: "#search"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: q }
+
+  - path: engine
+    candidates:
+      - constant: { value: "google" }
+
+  - path: total_results       # "About 2,550,000 results (0.20s)"
+    candidates:
+      - css: { selector: "#result-stats", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: page                # start=10 -> page 2
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: start }
+        pipe:
+          - regex: { pattern: "^(\\d*)0$", group: 1 }
+          - map: { entries: [ { from: "", to: "1" }, { from: "1", to: "2" }, { from: "2", to: "3" }, { from: "3", to: "4" }, { from: "4", to: "5" } ] }
+      - constant: { value: "1" }
+
+  - path: results
+    expect: true
+    each: "#tads [data-text-ad], #search [data-snc]"
+    each_index: rank
+    fields:
+      - path: type
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: data-text-ad }
+            pipe:
+              - map: { entries: [ { from: "1", to: "RESULT_TYPE_AD" } ], drop_unmapped: true }
+        pipe:
+          - default: { value: "RESULT_TYPE_ORGANIC" }
+      - path: title
+        candidates:
+          - css: { selector: "h3" }
+          - css: { selector: "[role=heading]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: url
+        candidates:
+          - css: { selector: "a[jsname=UWckNb]", take: TAKE_ATTRIBUTE, attribute: href }
+            pipe:
+              - regex: { pattern: "^/url\\?(?:.*&)?q=([^&]+)", group: 1 }
+              - decode: { kind: DECODE_KIND_PERCENT }
+          - css: { selector: "a[jsname=UWckNb]", take: TAKE_ATTRIBUTE, attribute: href }
+          - css: { selector: "a[href^=http]:not([href*='/aclk'])", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: display_url
+        candidates:
+          - css: { selector: "cite" }
+          - css: { selector: "span.x2VHCd" }
+        pipe:
+          - filter: { pattern: "://" }    # forum results show "10+ comments · 3 years ago" in the cite slot
+          - slice: { start: 0, end: 1 }
+      - path: snippet         # the leading "Jul 18, 2026 — " is the published date, not snippet text
+        candidates:
+          - css: { selector: ".VwiC3b" }
+          - css: { selector: ".p4wth" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "^[A-Z][a-z]{2} \\d{1,2}, \\d{4} — ", with: "" }
+          - regex_replace: { pattern: "\\s*Read more$", with: "" }
+      - path: published_at
+        candidates:
+          - css: { selector: ".VwiC3b span.YrbPuc" }
+        pipe:
+          - regex: { pattern: "([A-Z][a-z]{2} \\d{1,2}, \\d{4})", group: 1 }
+          - datetime: { formats: ["%b %d, %Y"] }
+
+  - path: related_searches
+    candidates:
+      - css: { selector: "#bres a", scope: CSS_SCOPE_DOCUMENT }

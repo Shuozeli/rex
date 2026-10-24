@@ -1,0 +1,36 @@
+// rex.schema.app.v1: one app store listing (App Store, Google Play, browser extension stores, game stores).
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.app.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/common/v1/common.proto";
+import "rex/schema/v1/annotations.proto";
+
+message App {
+  option (rex.schema.v1.record) = {
+    schema_org: "SoftwareApplication"
+    schema_org_also: ["MobileApplication", "WebApplication", "VideoGame"]
+    primary: ["developer", "rating", "description"]
+    fallback_rank: 20
+  };
+
+  string id = 1;                           // store id: com.duolingo, id570060128
+  string name = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  rex.schema.common.v1.Organization developer = 3;
+  string category = 4 [(rex.schema.v1.field) = { schema_org: "applicationCategory" }];
+  repeated string platforms = 5 [(rex.schema.v1.field) = { max_items: 10 }];   // "iOS", "ANDROID"
+  string price = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string currency = 7;
+  double rating = 8;
+  int64 rating_count = 9;
+  string content_rating = 10 [(rex.schema.v1.field) = { schema_org: "contentRating" }];   // "4+", "Everyone"
+  string version = 11 [(rex.schema.v1.field) = { schema_org: "softwareVersion" }];
+  google.protobuf.Timestamp updated_at = 12 [(rex.schema.v1.field) = { schema_org: "dateModified" }];
+  string description = 13 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  string icon = 14 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+  repeated string screenshots = 15 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "screenshot", max_items: 30 }];
+  string url = 16 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}

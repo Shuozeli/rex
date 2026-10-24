@@ -1,0 +1,127 @@
+{
+  "recipe": {
+    "id": "bestbuy.com/search",
+    "version": 1,
+    "sha256": "f9f3f12c88d061d01895454a590fbee8591260aa4a80cf87242034188a7ca4ae"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=4k+tv",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:10:52Z",
+  "extractTime": "2026-10-14T05:10:52Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bestbuy.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "4k tv",
+    "items": [
+      {
+        "id": "6610605",
+        "title": "Xxxxxxxx™ - 43\" Xxxxx X50 Xxxxxx XXX 4K XXX Xxxxx Xxxx XX",
+        "url": "https://www.bestbuy.com/product/insignia-43-class-f50-series-led-4k-uhd-smart-fire-tv/J2FPJK9F8G",
+        "price": "149.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "1871",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2f70fec5-fea8-463a-bf6f-fcec681947a4.jpg",
+        "rank": 1
+      },
+      {
+        "id": "6670834",
+        "title": "Xxxxxxx - 43” Xxxxx X8000H Xxxxxx Xxxxxxx XXX 4K Xxxxx Xxxxx XX (2026)",
+        "url": "https://www.bestbuy.com/product/samsung-43-class-u8000h-series-crystal-uhd-4k-smart-tizen-tv-2026/JJGRF3QT73",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "250",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/dfe4f1a1-a5ba-48b8-bbed-c9900428f874.jpg",
+        "rank": 2
+      },
+      {
+        "id": "6679051",
+        "title": "XX - 48\" Xxxxx X6 XXXX XX 4K Xxxxx xxxXX XX with Xxxxxxx Xxxxx, Xxxxx Xxxxx xxx Xxxxx Xxxxxx (2026)",
+        "url": "https://www.bestbuy.com/product/lg-48-class-b6-oled-ai-4k-smart-webos-tv-with-perfect-black-vivid-color-and-magic-remote-2026/JJ8VPZZCTJ",
+        "price": "699.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "92",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/fb3cfb99-eccf-4693-b6df-4fe0d27a2df4.jpg",
+        "rank": 3
+      },
+      {
+        "id": "6616641",
+        "title": "Xxxxxxxx™ - 65\" Xxxxx XX Xxxxxx XXXX 4K XXX Xxxxx Xxxx XX",
+        "url": "https://www.bestbuy.com/product/insignia-65-class-qf-series-qled-4k-uhd-smart-fire-tv/J2FPJK97V2",
+        "price": "349.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "670",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/b9c3c7ab-e2c7-4039-88a5-bf41f0f23e6b.jpg",
+        "rank": 4
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "bestbuy.com/search",
+      "version": 1,
+      "sha256": "f9f3f12c88d061d01895454a590fbee8591260aa4a80cf87242034188a7ca4ae"
+    }
+  ]
+}

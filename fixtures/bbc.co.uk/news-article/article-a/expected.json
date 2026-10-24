@@ -1,0 +1,96 @@
+{
+  "recipe": {
+    "id": "bbc.co.uk/news-article",
+    "version": 2,
+    "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.bbc.co.uk/news/articles/cm9qzwjgnjxlo?at_medium=RSS&at_campaign=rss",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:33:50Z",
+  "extractTime": "2026-10-13T03:33:50Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bbc.co.uk/news-article@2"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.bbc.co.uk/news/articles/cm9qzwjgnjxlo",
+    "title": "Xxxxxx shares xxxx xxxxx xxxxxx xxxxxx xxxx xx $1xx xxxxxxxx xxxxx",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxx"
+      }
+    ],
+    "publishedAt": "2026-10-13T01:36:36.784Z",
+    "updatedAt": "2026-10-13T01:50:47.273Z",
+    "section": "Business",
+    "summary": "Xxx xxxx xxxxxx Xxxxxx'x xxxxx xxxxxx xxxxxxxxx xx xxxx xxxx $580m xxx xxxx xx xxxxx xxx xxxxx xxxxx xxxx xx xxxx xxxx $14xx.",
+    "image": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/4b3e/live/9d1f7420-c69f-11f1-8a85-c72eae042e5a.jpg",
+    "bodyHtml": "<p><b>Shares xx xxxxxx xxx xxxxxxx Xxxxxx xxxxxx xx xxxxxx 50% xx Monday xxxxx a xxxxxx xxxx xx xx xx xxxxxxxx xxxxx xx xx xxxxxx xxx xxxxxx $1xx (£757m).</b></p><p>Xxxxxxxxxx xxxxxxx xxxxxxx Xxxxxx xxxxx xxxxxxxx a xxxx xx xxx xxx Xxxxx-xxxxx xxxx xx xxxxx xx xxxx week, xxxxxxxxx xx xxx Xxxx Xxxxxx Xxxxxxx.</p><p>Xxx xxxx xx Xxxxxx'x shares xxxxxx xxx xxxxx xxxxxx xxxxxxxxx xx xxxx $580m xxx xxxx xx xxxxx xxx xxxxx a xxxx xx xxxx xxxx $14xx xx xxxxxxx xxxxx <a href=\"https://www.bbc.co.uk/news/business-56031281\">xxxxxxx xx xxx Xxxxxx xx 2021</a>.</p><p>Xxxxxx xx xxx xx xxx xxxxx'x xxxx xxxxxxxxxx xxxxxx xxxx, xxxxxxxxx xx a xxxxxxx xxxxxx xxxxx xxxxxx xxx xxxxxx. Xxx XXX xxx xxxxxxxxx Xxxxxx xxx Xxxxxx xxx comment.</p><p>Xxxxxx xxx xxxxxxxx xx 2014 xx Xxxxxxx Xxxxx Xxxx, xxx xxx xxxx a xx-xxxxxxx xx xxxxxx xxx xxxxx Xxxxxx.</p><p>Xxxxx Xxxx xxxxx Xxxxxx'x xxxxx xxxxxx a xxxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxx xxxxx xx xxxxxxxx xxxxxxxxxxxxx xxxx xxxxxxx.</p><p>Xx <a href=\"https://www.bbc.co.uk/news/articles/cvglzlj81x2o\">xxxxxxxx xxxxxxxxx xxxx xxxx</a>, xxxxxxxxx xxxxxx xxxxx xxxxx xxxx xxxxxxx xxx xxx xxx xxxx xxxx xxx xx xxxxx xxxx xxxxxx.</p><p>\"Today, xxx xxxxxxxxx xx xxxxxx xxx xxxx xxxxxxxxxxx, xxxx xxxxxxxx, xxx xxxx xxxxxxxxxxxxx xx xxxxxx xxxx, xxxxxxxxxx xxxxxxxxxxx xxx xxxx xx xxxx xxxx xxx xxxxxxxxxx xxxxxxxx,\" Xxxxx Xxxx xxxx xx August.</p><p>Xxxxxx xxxx like Xxxxxx xxxx xxxx xxxxx xxxxxxxx xx xxxxxx years xx xxxx xxxxxxx xxxxx xxxx xxxxx xxxxxxxxxxxxx xxxx xxxxxxxx xxx xxxxx.</p><p>Xxxxxx xxxx xx 2025 xxxx xx xxxxx xxx xxxxxx a xxxxx xx xxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxxx xxxx xxxx Xxxxx Xxxx xxxxxxxxx xx xx \"xxxxxxxxxx point\" xx xxxxxx xxxxxx.</p><p>Xxxxxxxxxxx xx xxxxx xxxxxx xxxxxxxxx xxxx xxxx xxxxxx xx xxxx xxxx xxxxxxxxx xx xxxxxxxx xxxxx xx xxx xxx xxxxx xxxxxxxx.</p><p>Xxxxx Xxxxx - xxxxx xxxx xxxx xxxxxxxxx Xxxxxx, XxXxxxx xxx Xxxxx - xxx xxxx xxxx xxx shares xxxx xxxxxxx xxxx xxxxx xxxx xx 2021.</p><p>Xxxxxxxxx a xxxxxx xx xxxxx xxxxxxxx Xxxxx xx 2025, xxxxxx xx xxx XX xxxx xxxxxxxx xxxx xxxx xx xxxxxx xxxx xxxxxxxx xx xxxxx years xxxxxxx.</p><p>Xxxx xxxxxx xxxxxx xxx xxxxxxx <a href=\"https://www.bbc.co.uk/news/articles/cjwgll8d4g9o\">xxxxxxx xx xxxxx xxxx xxx-xxxxxxxxx</a>, xxxx xxxxx xxx xxxxx xxxxx xxxxxxxxxx xx xxx xxxx xx xxxxxxx a xxxxxxx.</p>",
+    "bodyText": "Shares xx xxxxxx xxx xxxxxxx Xxxxxx xxxxxx xx xxxxxx 50% xx Monday xxxxx a xxxxxx xxxx xx xx xx xxxxxxxx xxxxx xx xx xxxxxx xxx xxxxxx $1xx (£757m).\n\nXxxxxxxxxx xxxxxxx xxxxxxx Xxxxxx xxxxx xxxxxxxx a xxxx xx xxx xxx Xxxxx-xxxxx xxxx xx xxxxx xx xxxx week, xxxxxxxxx xx xxx Xxxx Xxxxxx Xxxxxxx.\n\nXxx xxxx xx Xxxxxx'x shares xxxxxx xxx xxxxx xxxxxx xxxxxxxxx xx xxxx $580m xxx xxxx xx xxxxx xxx xxxxx a xxxx xx xxxx xxxx $14xx xx xxxxxxx xxxxx xxxxxxx xx xxx Xxxxxx xx 2021.\n\nXxxxxx xx xxx xx xxx xxxxx'x xxxx xxxxxxxxxx xxxxxx xxxx, xxxxxxxxx xx a xxxxxxx xxxxxx xxxxx xxxxxx xxx xxxxxx. Xxx XXX xxx xxxxxxxxx Xxxxxx xxx Xxxxxx xxx comment.\n\nXxxxxx xxx xxxxxxxx xx 2014 xx Xxxxxxx Xxxxx Xxxx, xxx xxx xxxx a xx-xxxxxxx xx xxxxxx xxx xxxxx Xxxxxx.\n\nXxxxx Xxxx xxxxx Xxxxxx'x xxxxx xxxxxx a xxxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxx xxxxx xx xxxxxxxx xxxxxxxxxxxxx xxxx xxxxxxx.\n\nXx xxxxxxxx xxxxxxxxx xxxx xxxx, xxxxxxxxx xxxxxx xxxxx xxxxx xxxx xxxxxxx xxx xxx xxx xxxx xxxx xxx xx xxxxx xxxx xxxxxx.\n\n\"Today, xxx xxxxxxxxx xx xxxxxx xxx xxxx xxxxxxxxxxx, xxxx xxxxxxxx, xxx xxxx xxxxxxxxxxxxx xx xxxxxx xxxx, xxxxxxxxxx xxxxxxxxxxx xxx xxxx xx xxxx xxxx xxx xxxxxxxxxx xxxxxxxx,\" Xxxxx Xxxx xxxx xx August.\n\nXxxxxx xxxx like Xxxxxx xxxx xxxx xxxxx xxxxxxxx xx xxxxxx years xx xxxx xxxxxxx xxxxx xxxx xxxxx xxxxxxxxxxxxx xxxx xxxxxxxx xxx xxxxx.\n\nXxxxxx xxxx xx 2025 xxxx xx xxxxx xxx xxxxxx a xxxxx xx xxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxxx xxxx xxxx Xxxxx Xxxx xxxxxxxxx xx xx \"xxxxxxxxxx point\" xx xxxxxx xxxxxx.\n\nXxxxxxxxxxx xx xxxxx xxxxxx xxxxxxxxx xxxx xxxx xxxxxx xx xxxx xxxx xxxxxxxxx xx xxxxxxxx xxxxx xx xxx xxx xxxxx xxxxxxxx.\n\nXxxxx Xxxxx - xxxxx xxxx xxxx xxxxxxxxx Xxxxxx, XxXxxxx xxx Xxxxx - xxx xxxx xxxx xxx shares xxxx xxxxxxx xxxx xxxxx xxxx xx 2021.\n\nXxxxxxxxx a xxxxxx xx xxxxx xxxxxxxx Xxxxx xx 2025, xxxxxx xx xxx XX xxxx xxxxxxxx xxxx xxxx xx xxxxxx xxxx xxxxxxxx xx xxxxx years xxxxxxx.\n\nXxxx xxxxxx xxxxxx xxx xxxxxxx xxxxxxx xx xxxxx xxxx xxx-xxxxxxxxx, xxxx xxxxx xxx xxxxx xxxxx xxxxxxxxxx xx xxx xxxx xx xxxxxxx a xxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "bbc.co.uk/news-article",
+      "version": 2,
+      "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

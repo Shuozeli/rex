@@ -1,0 +1,31 @@
+# Wikipedia articles in every language. JSON-LD `headline` is Wikipedia's short description, so the
+# title comes from the page heading and the short description becomes the summary.
+id: wikipedia.org/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["*.wikipedia.org"]
+    include: ["^/wiki/[^:?]+$"]
+  page:
+    any:
+      - json_ld_type: { types: [Article] }
+      - exists: "#mw-content-text .mw-parser-output"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1#firstHeading", scope: CSS_SCOPE_DOCUMENT }
+  - path: summary
+    candidates:
+      - json_ld: { path: headline }
+  - path: body_html
+    expect: true
+    candidates:
+      - css:
+          selector: "#mw-content-text .mw-parser-output"
+          take: TAKE_HTML
+          exclude: [".ambox", ".navbox", ".navbox-styles", ".mw-editsection", ".reflist", ".mw-references-wrap", "ol.references",
+                    ".infobox", ".hatnote", ".metadata", ".sidebar", ".toc", "#toc", ".noprint", "sup.reference", "style",
+                    ".mw-empty-elt", "figure", ".thumb", ".sistersitebox", ".side-box"]

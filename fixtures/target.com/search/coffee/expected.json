@@ -1,0 +1,416 @@
+{
+  "recipe": {
+    "id": "target.com/search",
+    "version": 1,
+    "sha256": "ecc52938266917227b6a556e7b428f9c105147de73a23f54153ae03f0b9d7ef4"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.target.com/s?searchTerm=coffee+maker",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:40:18Z",
+  "extractTime": "2026-10-14T04:40:18Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].sponsored",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "coffee maker",
+    "items": [
+      {
+        "id": "94139349",
+        "title": "Xxxxxxxxx 14 Xxx Xxxxxxxxxxxx Xxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "4974",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_430839af-8d23-4641-a688-9a5c33a54ef5",
+        "sponsored": true,
+        "rank": 1
+      },
+      {
+        "id": "94682574",
+        "title": "Xxxxxxxxx Xxxxx xxx Xxxx Xxxxxx Xxxxx Xxxxxx Xxxxx XXX-30",
+        "url": "https://www.target.com/p/cuisinart-custom-grind-38-brew-single-cup-coffee-maker-dgb-30/-/A-94682574",
+        "price": "249.99",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "1073",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_5cd25f15-c0cc-40c2-adeb-35203b198fb8",
+        "sponsored": true,
+        "rank": 2
+      },
+      {
+        "id": "94469594",
+        "title": "Xxxxxx X-Xxxx Xxxx Xxxxxx-Xxxxx X-Xxx Xxx Xxxxxx Xxxxx",
+        "url": "https://www.target.com/p/keurig-k-mini-mate-single-serve-k-cup-pod-coffee-maker/-/A-94469594",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "1171",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_d74f6dae-4ba5-42b9-9224-b4b37c3bf352",
+        "sponsored": true,
+        "rank": 3
+      },
+      {
+        "id": "91986267",
+        "title": "Xx. Xxxxxx 5 Xxx Xxxxxx Xxxxxx Xxxxx Xxxxx: Xxxxx Xxxx Xxxxxx Xxxxxxx, Xxxxxxxx, Xxxxx Xxxxxx, 25 xx Xxxxxxxx",
+        "url": "https://www.target.com/p/mr-coffee-5c-switch-drip-coffee-maker-black/-/A-91986267",
+        "price": "15.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "1198",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_eee6fa58-0df8-4758-a2db-7307f6599043",
+        "rank": 4
+      },
+      {
+        "id": "91863920",
+        "title": "Xx. Xxxxxx 12-Xxx Xxxxxxxxxxxx Xxxxxx Xxxxx Xxxxx",
+        "url": "https://www.target.com/p/mr-coffee-12c-programmable-drip-coffee-maker-stainless-steel-finish/-/A-91863920",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "1009",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_22aead54-0df3-4d28-9158-7de16148d656",
+        "rank": 5
+      },
+      {
+        "id": "52580270",
+        "title": "Xxxxxxxx Xxxxx 12 Xxx Xxxxxxxxxxxx Xxxxxx Xxxxx Xxxxx 46290: Xxxx Xxxxxx Xxxxxxx, Xxxxxxxx Xxx Xxxxx, Xxxx Xxxxx",
+        "url": "https://www.target.com/p/hamilton-beach-12-cup-programmable-coffee-maker-black-46290/-/A-52580270",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "2676",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_08a50f83-d0ab-4aab-9c8d-5df77aedc6b5",
+        "rank": 6
+      },
+      {
+        "id": "88857764",
+        "title": "Xxxxxxx Xxxxxx Xxxxxx Xxxxxxxxx with Xxxx - Xxxxxxxxx Xxxxxxxxx Xxxxx Xxxxxxx Xxxxxxxx Xxxxxxxxx",
+        "url": "https://www.target.com/p/vondior-airpot-coffee-dispenser-with-pump-insulated-stainless-steel-thermal-beverage-dispenser/-/A-88857764",
+        "price": "39.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "110",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_20f39178-3f3a-4e6e-8a5c-061ba3453c1d",
+        "sponsored": true,
+        "rank": 7
+      },
+      {
+        "id": "94139335",
+        "title": "Xxxxxxxxx 12 Xxx Xxxxxxxxxxxx Xxxxxxx Xxxxxxxxxxx",
+        "url": "https://www.target.com/p/cuisinart-12-cup-programmable-thermal-coffeemaker/-/A-94139335",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 3.6,
+        "reviewCount": "226",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_a399f74b-c028-45eb-8dc6-23c3753adc12",
+        "sponsored": true,
+        "rank": 8
+      },
+      {
+        "id": "1007910460",
+        "title": "Xxxxxxxxx Xxxxxxxx Xxxx 12 Xxx Xxxxxx Xxxxx XXX-12 Xxxxx",
+        "url": "https://www.target.com/p/cuisinart-personal-brew-12-cup-coffee-maker-dcc-12-black/-/A-1007910460",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "47",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_15465822-6cbb-4f47-bb33-f4ea98c6a8d9",
+        "sponsored": true,
+        "rank": 9
+      },
+      {
+        "id": "1010937669",
+        "title": "Xxxxx XxxxXxxx Xxx Xxxxxx Xxxxx Xxxxxx",
+        "url": "https://www.target.com/p/braun-optibrew-pro-coffee-maker-silver/-/A-1010937669",
+        "price": "199.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "73",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_4244c2e7-fc94-4efc-a524-944b63eae60e",
+        "rank": 10
+      },
+      {
+        "id": "1010607710",
+        "title": "Xxxxxxx Xxxxxxxxxxx Xxxx Xxxxxx Xxxxx Xxxxx",
+        "url": "https://www.target.com/p/chefman-caffeinator-drip-coffee-maker-black/-/A-1010607710",
+        "price": "64.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "2288",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_22ad3ad2-ef28-4b7f-a92c-d085afc2ebc9",
+        "rank": 11
+      },
+      {
+        "id": "1010700311",
+        "title": "Xxxxxxxxx Xxxxxx Xxxxxx 3-in-1 Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/cuisinart-coffee-center-3-in-1-coffee-maker-stainless-steel/-/A-1010700311",
+        "price": "199.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "21",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_f452f4a4-a41a-4fad-85ee-2acf0aae0be8",
+        "rank": 12
+      },
+      {
+        "id": "1010869960",
+        "title": "Xxxxxxxx Xxxx Xxxxxx Xxxxxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/breville-luxe-brewer-thermal-coffee-maker-stainless-steel/-/A-1010869960",
+        "price": "349.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "83",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_bfe8d3fd-ad90-40ed-9c79-2318cfa780e9",
+        "rank": 13
+      },
+      {
+        "id": "91863923",
+        "title": "Xx. Xxxxxx 12-Xxx Xxxxxx Xxxxxx Xxxxx Xxxxx: Xxxxxxxx Xxxx Xxxxxx Xxxxxxx, 60 xx Xxxxxxxx, Xxxxxxxxxx-Xxxx Xxxxx",
+        "url": "https://www.target.com/p/mr-coffee-12c-drip-coffee-maker-black/-/A-91863923",
+        "price": "18.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "1292",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_de1060bf-8bcc-4059-8616-43b4d4ea11b6",
+        "rank": 14
+      },
+      {
+        "id": "1013439753",
+        "title": "Xxxx Xxxxxxxxx Xxxx Xxxxxx Xxxxx Xxxxx Xxxxxx",
+        "url": "https://www.target.com/p/cafe-specialty-drip-coffee-maker-glass-carafe/-/A-1013439753",
+        "price": "199.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "29",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_ee54d8a9-aa6b-4689-accd-10eb3a39f51e",
+        "rank": 15
+      },
+      {
+        "id": "94682574",
+        "title": "Xxxxxxxxx Xxxxx xxx Xxxx Xxxxxx Xxxxx Xxxxxx Xxxxx XXX-30",
+        "url": "https://www.target.com/p/cuisinart-custom-grind-38-brew-single-cup-coffee-maker-dgb-30/-/A-94682574",
+        "price": "249.99",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "1073",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_5cd25f15-c0cc-40c2-adeb-35203b198fb8",
+        "rank": 16
+      },
+      {
+        "id": "91863921",
+        "title": "Xx. Xxxxxx 5-Xxx Xxxxxxxxxxxx Xxxxxx Xxxxx Xxxxx: Xxxx Xxxxxx Xxxxxxx, Xxxxxxxx, Xxxxxxxxxx-Xxxx, Xxxxx Xxxxxx, 25 xx Xxxxxxxx",
+        "url": "https://www.target.com/p/mr-coffee-5c-programmable-drip-coffee-maker-black/-/A-91863921",
+        "price": "17.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "1144",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_b72ae77d-d998-47e0-abe9-f4a721d71cf9",
+        "rank": 17
+      },
+      {
+        "id": "92038440",
+        "title": "Xxxxxx X-Xxx Xxx & Xxxx Xxxxxx-Xxxxx & Xxxxxx Xxxxxx Xxxxx Xxxxx: Xxxxxxxx Xxxx Xxxxxx Xxx, 72 xx Xxxxxxxx",
+        "url": "https://www.target.com/p/keurig-k-duo-hot-38-iced-single-serve-38-carafe-coffee-maker-black/-/A-92038440",
+        "price": "139.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "2077",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_781cd488-2247-4f60-a75b-00104a38e45e",
+        "rank": 18
+      },
+      {
+        "id": "94218964",
+        "title": "xxxxx Xxxxxx-Xxxxx Xxxxxx Xxxxx",
+        "url": "https://www.target.com/p/bella-single-serve-coffee-maker/-/A-94218964",
+        "price": "49.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "840",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_65059983-d005-4488-86fe-22cd86341ffa",
+        "rank": 19
+      },
+      {
+        "id": "1007519504",
+        "title": "Xxxxx Xxxx Xxxx Xxx Xxxxxx 4-in-1 Xxxxxx Xxxxxxx xxx Xxxxxxxx, Xxxx Xxxxxx xxx Xxxx Xxxx, Xxxxxxxxxx Xxxxxx, Xxxxx-In Xxxxxxx (Xxxxxxxxx Xxxxxxxxxxx)",
+        "url": "https://www.target.com/p/ninja-luxe-cafe-pro-series-4-in-1-coffee-machine-silver-certified-refurbished/-/A-1007519504",
+        "price": "599.99",
+        "currency": "USD",
+        "rating": 3.9,
+        "reviewCount": "15",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_ffcaecb9-45ab-44be-971b-83b620b12a2f",
+        "rank": 20
+      },
+      {
+        "id": "53737584",
+        "title": "Xxxxxx X-Xxxxx Xxxxxx-Xxxxx X-Xxx Xxx Xxxxxx Xxxxx with Xxxx Xxxxxx Xxxxxxx",
+        "url": "https://www.target.com/p/keurig-k-elite-single-serve-k-cup-pod-coffee-maker-with-iced-coffee-setting/-/A-53737584",
+        "price": "139.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "11684",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_1edaab22-a7c9-4c1f-bfde-c60fd2ba295c",
+        "rank": 21
+      },
+      {
+        "id": "94482826",
+        "title": "xxxxx 12 Xxx Xxxxxxxxxxxx Xxxxxx Xxxxx",
+        "url": "https://www.target.com/p/bella-12-cup-programmable-coffee-maker/-/A-94482826",
+        "price": "39.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "615",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_52ead7e7-d92d-4f02-82af-cf443d0af417",
+        "rank": 22
+      },
+      {
+        "id": "93626933",
+        "title": "Xxxxxx Xxxxx Xxxxxx Xxxxx, Xxx & Xxxxxx Xxxxxx Xxxxxxxxxx, 6–14xx Xxxx, 40xx Xxxxxxxxx Xxxx",
+        "url": "https://www.target.com/p/r-w-flame-single-serve-coffee-maker-coffee-brewer-for-k-cups-pods-and-ground-coffee-capsule-coffee-machine-with-40-oz-water-tank-black/-/A-93626933",
+        "price": "44.98",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "57",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_d8d0b1f5-6e3e-471c-a455-43ccc15edfba",
+        "rank": 23
+      },
+      {
+        "id": "91992748",
+        "title": "Xxxxxxxx Xxxxx 12Xxx Xxxxxxxxxxxx Xxx & Xxxx Xxxxxx Xxxxx 49620: Xxxxxxxx Xxxx Xxxxxxx, 950W, Xxxxxxxxxx-Xxxx Xxxxx",
+        "url": "https://www.target.com/p/hamilton-beach-12cup-programmable-hot-38-iced-coffee-maker-49620/-/A-91992748",
+        "price": "39.99",
+        "currency": "USD",
+        "rating": 3.8,
+        "reviewCount": "248",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_3717fb36-01f4-4a7a-a7e0-7d2d83ed8700",
+        "rank": 24
+      },
+      {
+        "id": "94682101",
+        "title": "Xxxxx 12 Xxx Xxxxxxxxxxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/bodum-12-cup-programmable-coffee-maker-stainless-steel/-/A-94682101",
+        "price": "39.99",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "16",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_5ba1297b-bfd6-45ad-a771-a19731ef8d6f",
+        "rank": 25
+      },
+      {
+        "id": "95056676",
+        "title": "Xxxxxxxxx Xxxxxx Xxxxxx 2-in-1 12 Xxx Xxxxxx + Xxxxxx Xxxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/cuisinart-coffee-center-2-in-1-coffee-maker-stainless-steel/-/A-95056676",
+        "currency": "USD",
+        "rating": 3.9,
+        "reviewCount": "66",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_8ed0d64f-d455-44fa-82b8-2603e5f8e2fc",
+        "rank": 26
+      },
+      {
+        "id": "94139349",
+        "title": "Xxxxxxxxx 14 Xxx Xxxxxxxxxxxx Xxxx Xxxxxx Xxxxx Xxxxxxxxx Xxxxx",
+        "url": "https://www.target.com/p/cuisinart-14-cup-programmable-coffeemaker-stainless-steel/-/A-94139349",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "4974",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_430839af-8d23-4641-a688-9a5c33a54ef5",
+        "rank": 27
+      },
+      {
+        "id": "88158378",
+        "title": "Xx'Xxxxxx XxxxXxxx Xxxxxxxxx Xxxxxx Xxxxx with Xxxx Xxxxxxx Xxxxxxxxxx - Xxxxx Xxxxx",
+        "url": "https://www.target.com/p/de-39-longhi-truebrew-automatic-coffee-maker-with-bean-extract-technology-black-matte/-/A-88158378",
+        "price": "499.99",
+        "currency": "USD",
+        "rating": 3.7,
+        "reviewCount": "578",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_da32b95c-c6d5-4764-a23e-9f043882f030",
+        "rank": 28
+      },
+      {
+        "id": "94781039",
+        "title": "Xxxxx Xxxxxx-Xxxxx Xxxx & Xxxxxxx Xxxxxx Xxxxx with Xxxxxxxxxx Xxxx Xxxxxxx",
+        "url": "https://www.target.com/p/ninja-single-serve-pods-grounds-specialty-coffee-maker/-/A-94781039",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 3.9,
+        "reviewCount": "1100",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_7f1483f3-4542-4df7-9ea9-df6f3d92bf14",
+        "rank": 29
+      },
+      {
+        "id": "94469594",
+        "title": "Xxxxxx X-Xxxx Xxxx Xxxxxx-Xxxxx X-Xxx Xxx Xxxxxx Xxxxx",
+        "url": "https://www.target.com/p/keurig-k-mini-mate-single-serve-k-cup-pod-coffee-maker/-/A-94469594",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "1171",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_d74f6dae-4ba5-42b9-9224-b4b37c3bf352",
+        "rank": 30
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "target.com/search",
+      "version": 1,
+      "sha256": "ecc52938266917227b6a556e7b428f9c105147de73a23f54153ae03f0b9d7ef4"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "recipe": {
+    "id": "conformance/c05a-expect-failed",
+    "version": 1,
+    "sha256": "8435de9e64bafbc5fbc46257afef7a47a5894b469013edad76b3340a9944dae0"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://conformance.example/c05a",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T00:00:00Z",
+  "extractTime": "2026-10-12T00:00:00Z",
+  "status": "EXTRACTION_STATUS_FAILED_EXPECTATION",
+  "expectationsFailed": [
+    "body_html"
+  ],
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_URL",
+      "candidate": 3,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "candidate": 3,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://conformance.example/c05a",
+    "title": "Teaser only",
+    "summary": "Only the first paragraph is visible before the paywall, which readability will still find.",
+    "bodyHtml": "<p>Only the first paragraph is visible before the paywall, which readability will still find.</p>\nSubscribe to continue",
+    "bodyText": "Only the first paragraph is visible before the paywall, which readability will still find.\n\nSubscribe to continue"
+  },
+  "chain": [
+    {
+      "id": "conformance/c05a-expect-failed",
+      "version": 1,
+      "sha256": "8435de9e64bafbc5fbc46257afef7a47a5894b469013edad76b3340a9944dae0"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

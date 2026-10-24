@@ -1,0 +1,136 @@
+# Amazon product detail page -> rex.schema.commerce.v1.Product (decisions.md U32).
+# Prices render as symbol + whole + fraction parts ("$ 187 . 77") inside an aria-hidden span (text inside
+# aria-hidden subtrees is skipped, so that span is selected itself); the .a-offscreen copy is often empty. Spec rows come from three tables that vary by category.
+id: amazon.com/product
+version: 1
+schema: rex.schema.commerce.v1.Product
+extends: generic/product.v1
+match:
+  urls:
+    hosts: ["amazon.com"]
+    include: ["/dp/[A-Z0-9]{10}", "/gp/product/[A-Z0-9]{10}"]
+  page:
+    all:
+      - exists: "#productTitle"
+fields:
+  - path: sku               # the ASIN, from the URL first (stable, and not page text)
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/(?:dp|gp/product)/([A-Z0-9]{10})", group: 1 }
+      - css: { selector: "input#ASIN", take: TAKE_ATTRIBUTE, attribute: value }
+
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "#productTitle" }
+
+  - path: brand
+    candidates:
+      - css: { selector: "#productOverview_feature_div tr.po-brand td:last-child" }
+      - css: { selector: "#bylineInfo" }      # "Brand: Amazon" or "Visit the Apple Store"
+        pipe:
+          - regex_replace: { pattern: "^[^:]*:\\s*", with: "" }
+          - regex_replace: { pattern: "^Visit the\\s+(.*)\\s+Store$", with: "$1" }
+
+  - path: price
+    expect: true
+    candidates:
+      - css: { selector: "#corePriceDisplay_desktop_feature_div .priceToPay > span[aria-hidden=true]" }
+      - css: { selector: "#corePrice_feature_div .a-offscreen" }
+      - css: { selector: "#apex_desktop .a-price .a-offscreen" }
+    pipe:
+      - regex_replace: { pattern: "\\s+", with: "" }
+      - number: {}
+
+  - path: currency
+    candidates:
+      - css: { selector: "#corePriceDisplay_desktop_feature_div .priceToPay .a-price-symbol" }
+        pipe:
+          - map: { entries: [ { from: "$", to: "USD" }, { from: "€", to: "EUR" }, { from: "£", to: "GBP" } ] }
+      - constant: { value: "USD" }
+
+  - path: list_price
+    candidates:
+      - css: { selector: "#corePriceDisplay_desktop_feature_div .basisPrice .a-offscreen" }
+      - css: { selector: "#corePrice_feature_div .a-text-price[data-a-strike=true] .a-offscreen" }
+    pipe:
+      - number: {}
+
+  - path: rating
+    candidates:
+      - css: { selector: "#acrPopover", take: TAKE_ATTRIBUTE, attribute: title }
+    pipe:
+      - regex: { pattern: "([\\d.]+)", group: 1 }
+
+  - path: review_count
+    candidates:
+      - css: { selector: "#acrCustomerReviewText" }
+    pipe:
+      - number: {}
+
+  - path: availability       # "In Stock", "Only 3 left in stock - order soon.", "Currently unavailable."
+    candidates:
+      - css: { selector: "#availability span" }
+    pipe:
+      - regex: { pattern: "(?i)(in stock|out of stock|currently unavailable|pre-order)", group: 1 }
+
+  - path: seller
+    candidates:
+      - css: { selector: "#sellerProfileTriggerId" }
+      - css: { selector: "#merchantInfoFeature_feature_div .offer-display-feature-text-message" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: images             # thumbnails without the size modifier are the full images
+    candidates:
+      - css: { selector: "#altImages li.imageThumbnail img", take: TAKE_ATTRIBUTE, attribute: src }
+        pipe:
+          - regex_replace: { pattern: "\\._[^/]*_\\.", with: "." }
+      - css: { selector: "#landingImage", take: TAKE_ATTRIBUTE, attribute: data-old-hires }
+
+  - path: features
+    candidates:
+      - css: { selector: "#feature-bullets li .a-list-item" }
+
+  - path: specs
+    each: "#productOverview_feature_div tr, #productDetails_techSpec_section_1 tr, #productDetails_detailBullets_sections1 tr, #tech tr"
+    fields:
+      - path: name
+        candidates:
+          - css: { selector: "th" }
+          - css: { selector: "td:first-child" }
+        pipe:
+          - regex_replace: { pattern: "[\\x{200e}\\x{200f}]", with: "" }
+      - path: value
+        candidates:
+          - css: { selector: "td:last-child" }
+        pipe:
+          - regex_replace: { pattern: "[\\x{200e}\\x{200f}]", with: "" }
+
+  - path: breadcrumbs
+    candidates:
+      - css: { selector: "#wayfinding-breadcrumbs_feature_div li a" }
+
+  - path: variants
+    each: "[id^=inline-twister-expander-content-] li[data-asin]"
+    fields:
+      - path: value
+        candidates:
+          - css: { selector: "img", take: TAKE_ATTRIBUTE, attribute: alt }
+          - css: { selector: ".swatch-title-text-display" }
+      - path: sku
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: data-asin }
+
+  - path: url
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - regex: { pattern: "^(https://[^/]+)/(?:[^/]+/)?(dp|gp/product)/([A-Z0-9]{10})", group: 0 }
+      - regex_replace: { pattern: "^(https://[^/]+)/(?:[^/]+/)?(?:dp|gp/product)/", with: "$1/dp/" }
+
+  - path: description       # Amazon's meta description is a title echo, so the generic fallbacks are dropped
+    replace_inherited: true
+    candidates:
+      - css: { selector: "#productDescription" }

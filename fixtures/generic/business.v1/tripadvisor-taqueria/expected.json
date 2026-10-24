@@ -1,0 +1,116 @@
+{
+  "recipe": {
+    "id": "generic/business.v1",
+    "version": 1,
+    "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+  },
+  "schema": "rex.schema.place.v1.Business",
+  "url": "https://www.tripadvisor.com/Restaurant_Review-g60713-d360056-Reviews-La_Taqueria-San_Francisco_California.html",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:47:59Z",
+  "extractTime": "2026-10-14T05:47:59Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "categories",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "address",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "geo",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "phone",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "price_range",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "cuisines",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.place.v1.Business",
+    "name": "Xx Xxxxxxxx",
+    "description": "Xx Xxxxxxxx, Xxx Xxxxxxxxx: Xxx 816 xxxxxxxx reviews of Xx Xxxxxxxx, xxxxx 4.4 of 5 xx Xxxxxxxxxxx xxx xxxxxx #50 of 3,444 xxxxxxxxxxx in Xxx Xxxxxxxxx.",
+    "categories": [
+      "FoodEstablishment"
+    ],
+    "address": {
+      "street": "2889 Xxxxxxx St",
+      "locality": "Xxx Xxxxxxxxx",
+      "region": "California",
+      "postalCode": "94110-3907",
+      "country": "US"
+    },
+    "geo": {
+      "latitude": 37.750828,
+      "longitude": -122.41827
+    },
+    "phone": "+1 415-285-7117",
+    "url": "https://www.tripadvisor.com/Restaurant_Review-g60713-d360056-Reviews-La_Taqueria-San_Francisco_California.html",
+    "priceRange": "$",
+    "rating": 4.4,
+    "reviewCount": "816",
+    "cuisines": [
+      "Mexican",
+      "Latin",
+      "Xxxx Xxxx",
+      "Xxxxxxx Xxxxxxxx"
+    ],
+    "images": [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/cc/95/6c/mission-street-taqueria.jpg?w=500&h=-1&s=1"
+    ]
+  },
+  "chain": [
+    {
+      "id": "generic/business.v1",
+      "version": 1,
+      "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+    }
+  ]
+}

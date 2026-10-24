@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html data-theme="auto" lang="en"><head>
+
+<link href="https://www.googletagmanager.com" rel="preconnect">
+<script></script>
+  
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta content="#00xxx8" name="theme-color">
+<link href="https://go.dev/blog/go1.23" rel="canonical">
+<link href="https://fonts.googleapis.com/css?family=Xxxxxxxx+Xxxxx" rel="stylesheet">
+<link href="/css/styles.css" rel="stylesheet">
+<link href="/images/favicon-gopher.png" rel="icon" sizes="any">
+<link href="/images/favicon-gopher-plain.png" rel="apple-touch-icon">
+<link href="/images/favicon-gopher.svg" rel="icon" type="image/svg+xml">
+<link href="https://hachyderm.io/@golang" rel="me">
+
+<link href="/blog/feed.atom" rel="alternate" title="Xxx Xx Xxxx" type="application/atom+xml">
+
+  
+  <script></script>
+  
+<script src="/js/site.js"></script>
+<meta content="https://go.dev/blog/go1.23" name="og:url">
+<meta content="Xx 1.23 xx xxxxxxxx - Xxx Xx Xxxxxxxxxxx Xxxxxxxx" name="og:title">
+<title>Xx 1.23 xx xxxxxxxx - Xxx Xx Xxxxxxxxxxx Xxxxxxxx</title>
+
+<meta content="Xx 1.23 xxxx xxxxxxxxx, xxxxxxxxx xxxx xxxxxxxxxxxx, xxxxxxxx xxxxxxxxxxxxx, xxx xxxx." name="og:description">
+<meta content="Xx 1.23 xxxx xxxxxxxxx, xxxxxxxxx xxxx xxxxxxxxxxxx, xxxxxxxx xxxxxxxxxxxxx, xxx xxxx." name="description">
+
+<meta content="https://go.dev/doc/gopher/gopher5logo.jpg" name="og:image">
+<meta content="https://go.dev/doc/gopher/runningsquare.jpg" name="twitter:image">
+<meta content="summary" name="twitter:card">
+<meta content="@xxxxxx" name="twitter:site">
+</head>
+<body class="Site">
+  
+<noscript></noscript>
+  
+
+
+<header class="Site-header js-siteHeader">
+  <div class="Header Header--dark">
+    <nav class="Header-nav">
+      <a href="/">
+        <img alt="Xx" class="js-headerLogo Header-logo" src="/images/go-logo-white.svg">
+      </a>
+      <div class="skip-navigation-wrapper">
+        <a aria-label="Xxxx xx xxxx xxxxxxx" class="skip-to-content-link" href="#main-content"> Xxxx xx Xxxx Xxxxxxx </a>
+      </div>
+      <div class="Header-rightContent">
+        <ul class="Header-menu">
+          <li class="Header-menuItem ">
+            <a aria-describedby="dropdown-description" aria-label="Xxx Xx" class="js-desktop-menu-hover" href="#">
+              Xxx Xx <i aria-hidden="true" class="material-icons">xxxxx_xxxx_xxxx</i>
+            </a>
+            <div class="screen-reader-only" hidden="" id="dropdown-description">
+              Xxxxx Xxxxx xx xxxxxxxx/xxxxxxxxxx xxxxxxxx
+            </div>
+              <ul aria-label="xxxxxxx" class="Header-submenu js-desktop-submenu-hover">
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/solutions/case-studies">
+                          Xxxx Xxxxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxxxx xxxxxxxx xxxxxxxxx xxxxx xxxx Xx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/solutions/use-cases">
+                          Xxx Xxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxxxxx xxxxx xxx xxx xxx xxxxxxxxx xxx Xx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/security/">
+                          Xxxxxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxx Xx xxx xxxx xxxx xxx xxxxxx xx xxxxxxx</p>
+                  </li>
+              </ul>
+          </li>
+          <li class="Header-menuItem ">
+            <a aria-describedby="dropdown-description" aria-label="Xxxxx" href="/learn/">
+              Xxxxx 
+            </a>
+            <div class="screen-reader-only" hidden="" id="dropdown-description">
+              Xxxxx Xxxxx xx xxxxxxxx/xxxxxxxxxx xxxxxxxx
+            </div>
+          </li>
+          <li class="Header-menuItem ">
+            <a aria-describedby="dropdown-description" aria-label="Xxxx" class="js-desktop-menu-hover" href="#">
+              Xxxx <i aria-hidden="true" class="material-icons">xxxxx_xxxx_xxxx</i>
+            </a>
+            <div class="screen-reader-only" hidden="" id="dropdown-description">
+              Xxxxx Xxxxx xx xxxxxxxx/xxxxxxxxxx xxxxxxxx
+            </div>
+              <ul aria-label="xxxxxxx" class="Header-submenu js-desktop-submenu-hover">
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/ref/spec">
+                          Xx Xxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxx xxxxxxxx Xx xxxxxxxx xxxxxxxxxxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/doc">
+                          Xx Xxxx Xxxxxx
+                          
+                        </a>
+                    </div>
+                    <p>A xxxxxxxx xxxxxxxxxxxx xx xxxxxxxx xxxxxxxx xxxx Xx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="https://pkg.go.dev/std">
+                          Xxxxxxxx xxxxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxxxxxxx xxxxxxxxxxxxx xxx Xx'x xxxxxxxx xxxxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/doc/devel/release">
+                          Xxxxxxx Xxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxxx xxxx'x xxx xx xxxx Xx xxxxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/doc/effective_go">
+                          Xxxxxxxxx Xx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxx xxx xxxxxxx xxxxx, xxxxxxxxxx, xxx xxxxxxxxx Xx xxxx</p>
+                  </li>
+              </ul>
+          </li>
+          <li class="Header-menuItem ">
+            <a aria-describedby="dropdown-description" aria-label="Xxxxxxxx" href="https://pkg.go.dev">
+              Xxxxxxxx 
+            </a>
+            <div class="screen-reader-only" hidden="" id="dropdown-description">
+              Xxxxx Xxxxx xx xxxxxxxx/xxxxxxxxxx xxxxxxxx
+            </div>
+          </li>
+          <li class="Header-menuItem ">
+            <a aria-describedby="dropdown-description" aria-label="Xxxxxxxxx" class="js-desktop-menu-hover" href="#">
+              Xxxxxxxxx <i aria-hidden="true" class="material-icons">xxxxx_xxxx_xxxx</i>
+            </a>
+            <div class="screen-reader-only" hidden="" id="dropdown-description">
+              Xxxxx Xxxxx xx xxxxxxxx/xxxxxxxxxx xxxxxxxx
+            </div>
+              <ul aria-label="xxxxxxx" class="Header-submenu js-desktop-submenu-hover">
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/talks/">
+                          Xxxxxxxx Xxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxxxxx xxxx xxxxx xxxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="https://www.meetup.com/pro/go">
+                          Xxxxxxx
+                           <i class="material-icons">xxxx_xx_xxx</i>
+                        </a>
+                    </div>
+                    <p>Xxxx xxxxx xxxxx Xx xxxxxxxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/wiki/Conferences">
+                          Xxxxxxxxxxx
+                           <i class="material-icons">xxxx_xx_xxx</i>
+                        </a>
+                    </div>
+                    <p>Xxxxx xxx xxxxxxx xxxx Xx xxxxxxxxxx xxxx xxxxxx xxx xxxxx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/blog">
+                          Xx xxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxx Xx xxxxxxx'x xxxxxxxx xxxx.</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        <a href="/help">
+                          Xx xxxxxxx
+                          
+                        </a>
+                    </div>
+                    <p>Xxx xxxx xxx xxxx xxxxxxxx xxxx Xx</p>
+                  </li>
+                  <li class="Header-submenuItem">
+                    <div>
+                        Xxx xxxxxxxxx
+                    </div>
+                    <p></p>
+                      <div class="Header-socialIcons">
+                        
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxx-xxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://groups.google.com/g/golang-nuts"><img src="/images/logos/social/google-groups.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://github.com/golang"><img src="/images/logos/social/github.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://bsky.app/profile/golang.org"><img src="/images/logos/social/bluesky.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://hachyderm.io/@golang"><img src="/images/logos/social/mastodon.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://twitter.com/golang"><img src="/images/logos/social/twitter.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://www.reddit.com/r/golang/"><img src="/images/logos/social/reddit.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://invite.slack.golangbridge.org/"><img src="/images/logos/social/slack.svg"></a>
+                        <a aria-label="Xxx xxxxxxxxx xxxx xxxxx-xxxxxxxx (Xxxxx xx xxx xxxxxx)" class="Header-socialIcon" href="https://stackoverflow.com/tags/go"><img src="/images/logos/social/stack-overflow.svg"></a>
+                      </div>
+                  </li>
+              </ul>
+          </li>
+        </ul>
+        <button aria-label="Xxxx xxxxxxxxxx." class="Header-navOpen js-headerMenuButton Header-navOpen--white">
+        </button>
+      </div>
+    </nav>
+    
+  </div>
+</header>
+<aside class="NavigationDrawer js-header">
+  <nav class="NavigationDrawer-nav">
+    <div class="NavigationDrawer-header">
+      <a href="/">
+        <img alt="Xx." class="NavigationDrawer-logo" src="/images/go-logo-blue.svg">
+      </a>
+    </div>
+    <ul class="NavigationDrawer-list">
+        
+          <li class="NavigationDrawer-listItem js-mobile-subnav-trigger  NavigationDrawer-hasSubnav">
+            <a href="#"><span>Xxx Xx</span> <i class="material-icons">xxxxxxxx_xxxx</i></a>
+
+            <div class="NavigationDrawer NavigationDrawer-submenuItem">
+              <nav class="NavigationDrawer-nav">
+                <div class="NavigationDrawer-header">
+                  <a href="#"><i class="material-icons">xxxxxxxx_xxxxxx</i>Xxx Xx</a>
+                </div>
+                <ul class="NavigationDrawer-list">
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/solutions/case-studies">
+                          Xxxx Xxxxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/solutions/use-cases">
+                          Xxx Xxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/security/">
+                          Xxxxxxxx
+                          
+                        </a>
+                      
+                    </li>
+                </ul>
+              </nav></div>
+            
+          </li>
+
+        
+        
+          <li class="NavigationDrawer-listItem ">
+            <a href="/learn/">Xxxxx</a>
+          </li>
+        
+        
+          <li class="NavigationDrawer-listItem js-mobile-subnav-trigger  NavigationDrawer-hasSubnav">
+            <a href="#"><span>Xxxx</span> <i class="material-icons">xxxxxxxx_xxxx</i></a>
+
+            <div class="NavigationDrawer NavigationDrawer-submenuItem">
+              <nav class="NavigationDrawer-nav">
+                <div class="NavigationDrawer-header">
+                  <a href="#"><i class="material-icons">xxxxxxxx_xxxxxx</i>Xxxx</a>
+                </div>
+                <ul class="NavigationDrawer-list">
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/ref/spec">
+                          Xx Xxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/doc">
+                          Xx Xxxx Xxxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="https://pkg.go.dev/std">
+                          Xxxxxxxx xxxxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/doc/devel/release">
+                          Xxxxxxx Xxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/doc/effective_go">
+                          Xxxxxxxxx Xx
+                          
+                        </a>
+                      
+                    </li>
+                </ul>
+              </nav></div>
+            
+          </li>
+
+        
+        
+          <li class="NavigationDrawer-listItem ">
+            <a href="https://pkg.go.dev">Xxxxxxxx</a>
+          </li>
+        
+        
+          <li class="NavigationDrawer-listItem js-mobile-subnav-trigger  NavigationDrawer-hasSubnav">
+            <a href="#"><span>Xxxxxxxxx</span> <i class="material-icons">xxxxxxxx_xxxx</i></a>
+
+            <div class="NavigationDrawer NavigationDrawer-submenuItem">
+              <nav class="NavigationDrawer-nav">
+                <div class="NavigationDrawer-header">
+                  <a href="#"><i class="material-icons">xxxxxxxx_xxxxxx</i>Xxxxxxxxx</a>
+                </div>
+                <ul class="NavigationDrawer-list">
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/talks/">
+                          Xxxxxxxx Xxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="https://www.meetup.com/pro/go">
+                          Xxxxxxx
+                           <i class="material-icons">xxxx_xx_xxx</i>
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/wiki/Conferences">
+                          Xxxxxxxxxxx
+                           <i class="material-icons">xxxx_xx_xxx</i>
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/blog">
+                          Xx xxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <a href="/help">
+                          Xx xxxxxxx
+                          
+                        </a>
+                      
+                    </li>
+                    <li class="NavigationDrawer-listItem">
+                        <div>Xxx xxxxxxxxx</div>
+                        <div class="Header-socialIcons">
+                          
+                            <a class="Header-socialIcon" href="https://groups.google.com/g/golang-nuts"><img src="/images/logos/social/google-groups.svg"></a>
+                            <a class="Header-socialIcon" href="https://github.com/golang"><img src="/images/logos/social/github.svg"></a>
+                            <a class="Header-socialIcon" href="https://bsky.app/profile/golang.org"><img src="/images/logos/social/bluesky.svg"></a>
+                            <a class="Header-socialIcon" href="https://hachyderm.io/@golang"><img src="/images/logos/social/mastodon.svg"></a>
+                            <a class="Header-socialIcon" href="https://twitter.com/golang"><img src="/images/logos/social/twitter.svg"></a>
+                            <a class="Header-socialIcon" href="https://www.reddit.com/r/golang/"><img src="/images/logos/social/reddit.svg"></a>
+                            <a class="Header-socialIcon" href="https://invite.slack.golangbridge.org/"><img src="/images/logos/social/slack.svg"></a>
+                            <a class="Header-socialIcon" href="https://stackoverflow.com/tags/go"><img src="/images/logos/social/stack-overflow.svg"></a>
+                        </div>
+                    </li>
+                </ul>
+              </nav></div>
+            
+          </li>
+
+        
+    </ul>
+  </nav>
+</aside>
+<div class="NavigationDrawer-scrim js-scrim" role="presentation"></div>
+<main class="SiteContent SiteContent--default" id="main-content">
+  
+<div id="blog"><div id="content">
+  <div id="content">
+
+    <div class="Article" data-slug="/blog/go1.23">
+    
+    <h1 class="small"><a href="/blog/">Xxx Xx Xxxx</a></h1>
+    
+
+    <h1>Xx 1.23 xx xxxxxxxx</h1>
+      
+      <p class="author">
+      Xxxxxx Xxxxxxxxx, xx xxxxxx xx xxx Xx xxxx<br>
+      13 August 2024
+      </p>
+      
+      <div class="markdown">
+<p>Today xxx Xx xxxx xx xxxxx xx xxxxxxx Xx 1.23,
+xxxxx xxx xxx xxx xx xxxxxxxx xxx <a href="/dl/">xxxxxxxx xxxx</a>.</p>
+<p>Xx xxx xxxxxxx xxxx Xx 1.22 xx Xx 1.21 xxxxxxxxx xx xxxx xxxxxxx,
+xxx xxx xxxx xxx <code>xx xxx xxxxxxxxx@xx1.23.0</code> xx xx xxxxxxxx xxxxxx.
+Xxxx xxxx xxxxxxxx xxx xxx xxxxxxxxx xxx xxx xxx xxxxx xxxxx xx
+xx xxxx xxxxxx xxxxx xxxx. Xx xxxx xxxxx point, xxx xxx xxxxxx xx
+xxxx <code>xx xxx xx@1.23.0</code> xxxx xxx’xx xxxxx xx xxxxx xxxxxx xx Xx 1.23
+xxx xxxx xxxx xx xxxx xxxxxx’x xxxxxxx xxxxxxxx Xx xxxxxxx.
+Xxx <a href="/doc/toolchain#get">Xxxxxxxx Xx xxxxxxx xxxxxx xxxxxxxxxxxx xxxx xx xxx</a>
+xxx xxxx xxxxxxxxxxx xx xxxx xxxxxxxxxxxxx.</p>
+<p>Xx 1.23 xxxxx xxxx xxxx xxxxxxxxxxxx xxxx Xx 1.22. Xxxx xx xxx xxxxxxxxxx xxxxxxx:</p>
+<h2 id="language-changes">Xxxxxxxx xxxxxxx</h2>
+<ul>
+<li>
+
+<p>Xxxxx xxxxxxxxxxx xx a “xxx-xxxxx” xxxx may now xx xxxxxxxx xxxxxxxxx,
+xxxx xx <code>xxxx(xxxx(X) xxxx)</code>.
+Xxxx xxxxxxxx xxxx-xxxxxxx xxxxxxxxx xxxx xxxxxxxxx xxxxxxxxx.
+Xxxxx xxx xxxxxxx xxxxxxxxx xx xxx xxxxxxxx <code>xxxxxx</code> xxx <code>xxxx</code>
+xxxxxxxx xxxx xxxx xxxx xxxxxxxxx, xx xxxx xx a xxx <code>xxxx</code> xxxxxxx.
+Xx xx xxxxxxx, xx xxx xxxx xx xxxxxxx xxx xxxx xx a xxx <code>m</code> xxxx a xxxxx
+xxx xxxx xxxx xxx xxxxxx, xxx xxx xx xxxx xx Xx 1.23 xxxx <code>xxxxxx.Xxxxxx(xxxx.Xxxx(m))</code>.</p>
+<p>Xx 1.23 xxxx xxxxxxxx xxxxxxx xxxxxxx xxx xxxxxxx xxxx xxxxxxx.</p>
+<p>Xxxx xxxx xxxxx <a href="/doc/go1.23#language">xxxxxxxx xxxxxxx</a> xxx <a href="/doc/go1.23#iterators">xxxxxxxxx</a>
+xx xxx xxxxxxx xxxxx.</p>
+</li>
+</ul>
+<h2 id="tool-improvements">Xxxx xxxxxxxxxxxx</h2>
+<ul>
+<li>
+
+Xxxxxxxx xxxx Xx 1.23, xx’x xxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxxxxx xxxxx xxx xxxxxxxx
+xxxxxxxxxx xx xxxx xxxxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxx, xxx xxx xxxx xx xx xxxxxxx.
+Xxxx xx Xx xxxxxxxxx, xx <em>xxx-xx xxxxxx</em>. Xxxxxx xxxxxxxx xxxxxx xx xx xxxx xx xxxx Xx
+xxxxxxx xxxx xxx xxxxxx xxxxxxxxxx Xx xxxxx.
+Xxxx xxxx xx <a href="/doc/go1.23#telemetry">Xx xxxxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+<li>Xxx <code>xx</code> xxxxxxx xxx xxx xxxxxxxxxxxx. Xxx xxxxxxx, xxxxxxx <code>xx xxx -xxxxxxx</code> xxxxx xx xxxxxx xx
+xxx xxxx xxxxx xxxxxxxx xxxxx xxxxxxxxx xxxxx xxxxxxx xxxx xxx xxxxxxx xxxxx, xxx
+<code>xx xxx xxxx -xxxx</code> xxxxx xxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxx xx.xxx xxx xx.xxx xxxxx
+xxxxxxx xxxxxxxxx xxxx.
+Xxxx xxxx xx xxx <a href="/doc/go1.23#go-command">Xx xxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+<li>Xxx <code>xx xxx</code> xxxxxxxxxx now xxxxxxx xxxxxxx xxxx xxx xxx xxx xxx xxx xxxxxxxx Xx xxxxxxx.
+Xxxx xxxx xx <a href="/doc/go1.23#tools">xxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+</ul>
+<h2 id="standard-library-improvements">Xxxxxxxx xxxxxxx xxxxxxxxxxxx</h2>
+<ul>
+<li>Xx 1.23 xxxxxxxx xxx xxxxxxxxxxxxxx xx <code>xxxx.Xxxxx</code> xxx <code>xxxx.Xxxxxx</code>.
+Xxxx xxxx xx <a href="/doc/go1.23#timer-changes">xxxxx xxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+<li>Xxxxx xxx a xxxxx xx 3 xxx xxxxxxxx xx xxx Xx 1.23 xxxxxxxx xxxxxxx: <code>xxxx</code>, <code>xxxxxxx</code>, xxx <code>xxxxxx</code>.
+Xxxxxxx <code>xxxx</code> xx xxxxxxxxx xxxxx.
+Xxxxxxx <code>xxxxxxx</code> xxxxxxx xxxxxx xxxxx xx xxxxxx xxx xxxxxxxxxx xx a xxxxxx.
+Xxxxxxx <code>xxxxxx</code> xxxxxxxx xxxxxxxxxx xxx xxxxxxxxxxxxxx (“xxxxxxxxx”) xxxxxxxxxx
+xxxxxx.
+Xxxx xxxx xx <a href="/doc/go1.23#new-unique-package">xxx xxxxxxxx xxxxxxx xxxxxxxx</a>
+xx xxx xxxxxxx xxxxx.</li>
+<li>Xxxxx xxx xxxx xxxxxxxxxxxx xxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxx xxxxxxxxxx
+xx xxx <a href="/doc/go1.23#minor_library_changes">xxxxx xxxxxxx xx xxx xxxxxxx</a>
+xxxxxxx xx xxx xxxxxxx xxxxx.
+Xxx “Xx, Xxxxxxxxx Xxxxxxxxxxxxx, xxx XXXXXXX” xxxxxxxxxxxxx
+xxxxxxxxxx <a href="/doc/godebug#go-123">xxx xx Xx 1.23 XXXXXXX xxxxxxxx</a>.</li>
+<li>
+
+Xx 1.23 xxxxxxxx xxx xxx <code>xxxxxxx</code> xxxxxxxxx xx <code>xx.xxx</code> xxx <code>xx.xxxx</code> xxxxx xx
+xxxxx xxxxxxxx xxxxxxx xx xxx xxxxxxx XXXXXXXx xxx xxx “xx” xxxxxxxxx xx <code>xx.xxx</code>,
+xx xxxxxxxx xx <code>//xx:xxxxx</code> xxxxxxxxx comments xxxx xxxxxxxxx xxx xxxxxxxx ago (Xx 1.21).
+Xxx xxx xxxxxxx xxxxxxxxxxxxx xx <a href="/doc/godebug#default">Xxxxxxx XXXXXXX Xxxxxx</a>.</li>
+</ul>
+<h2 id="more-improvements-and-changes">Xxxx xxxxxxxxxxxx xxx xxxxxxx</h2>
+<ul>
+<li>Xx 1.23 xxxx xxxxxxxxxxxx xxxxxxx xxx XxxxXXX xx 64-xxx XXXX-X (<code>xxxxxxx/xxxxx64</code>).
+Xxxxx xxx xxxxxxx xxxxx xxxxxxx xxxxxxxx xx Xxxxx, xxxXX, XXX64, XXXX-X, xxx XXXX.
+Xxxx xxxx xx <a href="/doc/go1.23#ports">xxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+<li>Xxxxx xxxx xxxx xxxxx xxxxxxx-xxxxxx xxxxxxxxxxxx (XXX) xx xxxxxxx, xxx xxxxxxxxxxx
+xxxx XXX xx 386 xxx xxx64 xxxxxxxxxxxxx xx xxxxxxxx.
+Xxxx xxxx xx <a href="/doc/go1.23#runtime">xxxxxxx, xxxxxxxx, xxx xxxxxx</a> xx xxx xxxxxxx xxxxx.</li>
+</ul>
+<p>Xx xxxxxxxxx xxxxxxxx xx xxxx xxx <a href="/doc/go1.23">Xx 1.23 xxxxxxx xxxxx</a> xxx xxx
+xxxxxxxx xxx xxxxxxxx xxxxxxxxxxx xx xxxxx xxxxxxx, xxx xxxxxxxxxx xxxx xxxx’x
+xxx xx Xx 1.23.</p>
+<p>Xxxx xxx xxxx xxx weeks, xxxx xxx xxx xxxxxx-xx xxxx xxxxx xxxx xxxx xx xx xxxx xxxxx
+xx xxxx xx xxx xxxxxx xxxxxxxxx xxxx, xxxxxxxxx “xxxxx-xxxx-xxxx”, xxx xxx <code>xxxxxx</code> xxxxxxx,
+Xx 1.23 xxxxx xxxxxxxxxxxxxx xxxxxxx, xxx xxxx.</p>
+<hr>
+<p>Xxxxx xxx xx xxxxxxxx xxx xxxxxxxxxxx xx xxxx xxxxxxx xx xxxxxxx xxxx xxx
+xxxxxxxxxxxxx, xxxxxxxxx xxxx, xxxxxxx xxxxxxxx, xxx xxxxxxx xxx xxxxxxx
+xxxxxxxxxx. Xxxx xxxxxxx xxxxxx xx xxxxxx xxxx Xx 1.23 xx xx xxxxxx xx xxxxxxxx.
+Xx xxxxxx, xx xxx xxxxxx xxx xxxxxxxx, xxxxxx <a href="/issue/new">xxxx xx xxxxx</a>.</p>
+<p>Xxxxx Xx 1.23!</p>
+</div>
+
+    </div>
+
+    
+    <div class="Article prevnext">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <p>
+        
+          
+            <b>Xxxx xxxxxxx: </b><a href="/blog/range-functions">Xxxxx Xxxx Xxxxxxxx Xxxxx</a><br>
+          
+        
+        
+          
+            <b>Xxxxxxxx xxxxxxx: </b><a href="/blog/chacha8rand">Xxxxxx Xxxxxxxxxx xx Xx 1.22</a><br>
+          
+        
+        <b><a href="/blog/all">Xxxx Xxxxx</a></b>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    </p></div>
+    
+
+  </div>
+</div>
+
+<script src="/js/play.js"></script>
+
+</div></main>
+<footer class="Site-footer">
+  <div class="Footer">
+    <div class="Container">
+      <div class="Footer-links">
+          <div class="Footer-linkColumn">
+            <a aria-describedby="footer-description" class="Footer-link Footer-link--primary" href="/solutions/">
+              Xxx Xx
+            </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/solutions/use-cases">
+                Xxx Xxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/solutions/case-studies">
+                Xxxx Xxxxxxx
+              </a>
+          </div>
+          <div class="Footer-linkColumn">
+            <a aria-describedby="footer-description" class="Footer-link Footer-link--primary" href="/learn/">
+              Xxx Xxxxxxx
+            </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/play">
+                Xxxxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/tour/">
+                Xxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://stackoverflow.com/questions/tagged/go?tab=Newest">
+                Xxxxx Xxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/help/">
+                Xxxx
+              </a>
+          </div>
+          <div class="Footer-linkColumn">
+            <a aria-describedby="footer-description" class="Footer-link Footer-link--primary" href="https://pkg.go.dev">
+              Xxxxxxxx
+            </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/pkg/">
+                Xxxxxxxx Xxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://pkg.go.dev/about">
+                Xxxxx Xx Xxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://pkg.go.dev/api">
+                xxx.xx.xxx XXX
+              </a>
+          </div>
+          <div class="Footer-linkColumn">
+            <a aria-describedby="footer-description" class="Footer-link Footer-link--primary" href="/project">
+              Xxxxx
+            </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/dl/">
+                Xxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/blog/">
+                Xxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://github.com/golang/go/issues">
+                Xxxxx Xxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/doc/devel/release">
+                Xxxxxxx Xxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/brand">
+                Xxxxx Xxxxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="/conduct">
+                Xxxx xx Xxxxxxx
+              </a>
+          </div>
+          <div class="Footer-linkColumn">
+            <a aria-describedby="footer-description" class="Footer-link Footer-link--primary" href="/wiki/#the-go-community">
+              Xxxxxxx
+            </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://bsky.app/profile/golang.org">
+                Xxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://hachyderm.io/@golang">
+                Xxxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://www.twitter.com/golang">
+                Xxxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://github.com/golang">
+                XxxXxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://invite.slack.golangbridge.org/">
+                Xxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://reddit.com/r/golang">
+                x/xxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://www.meetup.com/pro/go">
+                Xxxxxx
+              </a>
+              <a aria-describedby="footer-description" class="Footer-link" href="https://golangweekly.com/">
+                Xxxxxx Xxxxxx
+              </a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="screen-reader-only" hidden="" id="footer-description">
+          Xxxxx xx xxx xxxxxx.
+  </div>
+  <div class="Footer">
+    <div class="Container Container--fullBleed">
+      <div class="Footer-bottom">
+        <img alt="Xxx Xx Xxxxxx" class="Footer-gopher" src="/images/gophers/pilot-bust.svg">
+        <ul class="Footer-listRow">
+          <li class="Footer-listItem">
+            <a aria-describedby="footer-description" href="/copyright">Xxxxxxxxx</a>
+          </li>
+          <li class="Footer-listItem">
+            <a aria-describedby="footer-description" href="/tos">Xxxxx xx Xxxxxxx</a>
+          </li>
+          <li class="Footer-listItem">
+            <a aria-describedby="footer-description" href="http://www.google.com/intl/en/policies/privacy/" rel="noopener" target="_blank">
+              Xxxxxxx Xxxxxx
+            </a>
+            </li>
+          <li class="Footer-listItem">
+            <a aria-describedby="footer-description" href="/s/website-issue" rel="noopener" target="_blank">
+              Xxxxxx xx Xxxxx
+            </a>
+          </li>
+          <li class="Footer-listItem go-Footer-listItem">
+            <button aria-label="Xxxxxx xxxxx" class="go-Button go-Button--text go-Footer-toggleTheme js-toggleTheme">
+              <img alt="Xxxxxx xxxxx" class="go-Icon go-Icon--inverted" data-value="auto" height="24" src="/images/icons/brightness_6_gm_grey_24dp.svg" width="24">
+              <img alt="Xxxx xxxxx" class="go-Icon go-Icon--inverted" data-value="dark" height="24" src="/images/icons/brightness_2_gm_grey_24dp.svg" width="24">
+              <img alt="Xxxxx xxxxx" class="go-Icon go-Icon--inverted" data-value="light" height="24" src="/images/icons/light_mode_gm_grey_24dp.svg" width="24">
+            </button>
+          </li>
+        </ul>
+        <a class="Footer-googleLogo" href="https://google.com" rel="noopener" target="_blank">
+          <img alt="Xxxxxx xxxx" class="Footer-googleLogoImg" src="/images/google-white.png">
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/carousels.js"></script>
+  <script src="/js/searchBox.js"></script>
+  <script src="/js/misc.js"></script>
+  <script src="/js/hats.js"></script>
+  <script src="/js/playground.js"></script>
+  <script src="/js/godocs.js"></script>
+  <script async="" src="/js/copypaste.js"></script>
+</footer>
+<section class="Cookie-notice js-cookieNotice">
+  <div>xx.xxx xxxx xxxxxxx xxxx Xxxxxx xx xxxxxxx xxx xxxxxxx xxx xxxxxxx xx xxx xxxxxxxx xxx xx
+  xxxxxxx xxxxxxx. <a href="https://policies.google.com/technologies/cookies" target="_blank">Xxxxx xxxx.</a></div>
+  <div><button class="go-Button">Xxxx</button></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

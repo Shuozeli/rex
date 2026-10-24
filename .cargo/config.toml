@@ -1,0 +1,4 @@
+[env]
+# Time zones compiled into the engine (engine spec §8.4, §11 size budget). Native and wasm builds use the
+# same list so their outputs stay identical. A recipe naming another zone fails to compile.
+CHRONO_TZ_TIMEZONE_FILTER = "^(UTC|GMT|Etc/(UTC|GMT)|America/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Halifax|Toronto|Vancouver|Mexico_City|Sao_Paulo|Buenos_Aires|Bogota|Lima|Santiago|Caracas)|Europe/(London|Dublin|Lisbon|Paris|Berlin|Madrid|Rome|Amsterdam|Brussels|Zurich|Vienna|Stockholm|Oslo|Copenhagen|Helsinki|Warsaw|Prague|Budapest|Athens|Istanbul|Moscow|Kyiv|Kiev)|Asia/(Shanghai|Hong_Kong|Taipei|Tokyo|Seoul|Singapore|Kolkata|Calcutta|Dubai|Jakarta|Bangkok|Manila|Kuala_Lumpur|Ho_Chi_Minh|Jerusalem|Riyadh|Karachi|Dhaka|Tehran|Kathmandu)|Australia/(Sydney|Melbourne|Brisbane|Perth|Adelaide)|Pacific/(Auckland|Honolulu)|Africa/(Cairo|Johannesburg|Lagos|Nairobi|Casablanca))$"

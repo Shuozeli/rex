@@ -1,0 +1,37 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/corriere.it/_/a3.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: corriere.it/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - corriere.it
+    include:
+    - ^/[a-z0-9-]+/?$
+  page:
+    any:
+    - exists: main#l-main
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: h1
+      take: TAKE_TEXT
+  expect: true
+- path: authors
+  candidates:
+  - css:
+      selector: span.author-art
+      take: TAKE_TEXT
+  each: span.author-art
+  fields:
+  - path: name
+    candidates:
+    - css:
+        selector: span.author-art
+        take: TAKE_TEXT
+    expect: true

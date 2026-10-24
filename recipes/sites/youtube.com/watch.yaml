@@ -1,0 +1,97 @@
+# YouTube watch page -> rex.schema.media.v1.Video (decisions.md U32). The rendered page does not always keep
+# YouTube's microdata (it depends on how the page was reached), so the visible metadata is read too; exact
+# microdata values win where both exist. View/publish text is compact ("443M views", "21 years ago").
+id: youtube.com/watch
+version: 1
+schema: rex.schema.media.v1.Video
+extends: generic/video.v1
+requires: [relative_dates]
+match:
+  urls:
+    hosts: ["youtube.com", "m.youtube.com"]
+    include: ["^/watch\\?(?:.*&)?v=", "^/shorts/"]
+  page:
+    any:
+      - exists: "ytd-watch-metadata"
+      - exists: "[itemtype$=VideoObject]"
+fields:
+  - path: id
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: v }
+      - url: { part: URL_PART_PATH_SEGMENT, segment: -1 }
+
+  - path: title             # rendered heading first; microdata / og:title for the server HTML (liveness)
+    expect: true
+    candidates:
+      - css: { selector: "ytd-watch-metadata #title h1", scope: CSS_SCOPE_DOCUMENT }
+      - microdata: { path: "name" }
+      - meta: { key: "og:title" }
+
+  - path: url
+    replace_inherited: true
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - url: { strip_query: ["pp", "t", "list", "index", "feature", "si"] }
+
+  - path: channel.name
+    candidates:
+      - css: { selector: "ytd-watch-metadata #owner #channel-name a", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: channel.url
+    candidates:
+      - css: { selector: "ytd-watch-metadata #owner #channel-name a", take: TAKE_ATTRIBUTE, attribute: href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: published_at
+    replace_inherited: true
+    candidates:
+      - microdata: { path: "uploadDate" }
+      - json_ld: { path: "uploadDate" }
+      - css: { selector: "#info-container #info span", scope: CSS_SCOPE_DOCUMENT }
+        pipe:
+          - filter: { pattern: "ago$" }
+          - datetime: { relative: true }
+
+  - path: duration_seconds
+    replace_inherited: true
+    candidates:
+      - microdata: { path: "duration" }
+      - json_ld: { path: "duration" }
+      - css: { selector: ".ytp-time-duration", scope: CSS_SCOPE_DOCUMENT }
+        pipe:
+          - filter: { pattern: "^0:00$", invert: true }
+    pipe:
+      - duration: {}
+
+  - path: views
+    replace_inherited: true
+    candidates:
+      - css: { selector: "meta[itemprop=interactionType][content$=WatchAction] + meta[itemprop=userInteractionCount]", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
+      - css: { selector: "#info-container #info span", scope: CSS_SCOPE_DOCUMENT }
+        pipe:
+          - filter: { pattern: "views?$" }
+          - number: {}
+
+  - path: likes
+    candidates:
+      # Not scoped to ytd-watch-metadata: YouTube nests buttons in ways HTML parsers repair differently, and
+      # the like button can land outside that element in a re-parsed page.
+      - css: { selector: "like-button-view-model button[aria-label*=like]", take: TAKE_ATTRIBUTE, attribute: aria-label, scope: CSS_SCOPE_DOCUMENT }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}
+
+  - path: tags              # the page-level keywords meta is YouTube's site-wide list, not the video's
+    replace_inherited: true
+    candidates:
+      - json_ld: { path: "keywords" }
+      - microdata: { path: "keywords" }
+    pipe:
+      - split: { pattern: "\\s*,\\s*" }
+
+  - path: description
+    replace_inherited: true
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - css: { selector: "ytd-watch-metadata ytd-text-inline-expander #attributed-snippet-text", scope: CSS_SCOPE_DOCUMENT }

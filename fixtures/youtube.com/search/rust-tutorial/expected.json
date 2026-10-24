@@ -1,0 +1,158 @@
+{
+  "recipe": {
+    "id": "youtube.com/search",
+    "version": 2,
+    "sha256": "6e3399d997a9dddfed9e9995b799bfd9c9dd6a3aeb843a06f12408a278e230f4"
+  },
+  "schema": "rex.schema.media.v1.VideoList",
+  "url": "https://www.youtube.com/results?search_query=rust+tutorial",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:34:24Z",
+  "extractTime": "2026-10-14T02:34:24Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].channel_name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].channel_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    },
+    {
+      "path": "items[0].thumbnail",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/search@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.VideoList",
+    "query": "rust tutorial",
+    "items": [
+      {
+        "id": "BpPEoZW5IiY",
+        "title": "Xxxxx Xxxx Xxxxxxxxxxx - Xxxxxxxx Xxxxxx 🦀",
+        "url": "https://www.youtube.com/watch?v=BpPEoZW5IiY",
+        "channelName": "xxxxXxxxXxxx.xxx",
+        "channelUrl": "https://www.youtube.com/@freecodecamp",
+        "views": "1200000",
+        "thumbnail": "https://i.ytimg.com/vi/BpPEoZW5IiY/hq720.jpg",
+        "rank": 1
+      },
+      {
+        "id": "tS1PFlTmpuU",
+        "title": "Xxxx Xxxxxx 2026 – Xxxxxxxx Xxxx Xxxxxxxxxxx xxx Xxxxxxxxx",
+        "url": "https://www.youtube.com/watch?v=tS1PFlTmpuU",
+        "channelName": "Xxxxxx",
+        "channelUrl": "https://www.youtube.com/@codynn",
+        "views": "27",
+        "thumbnail": "https://i.ytimg.com/vi/tS1PFlTmpuU/hq720.jpg",
+        "rank": 2
+      },
+      {
+        "id": "5C_HPTJg5ek",
+        "title": "Xxxx in 100 Seconds",
+        "url": "https://www.youtube.com/watch?v=5C_HPTJg5ek",
+        "channelName": "Xxxxxxxx",
+        "channelUrl": "https://www.youtube.com/@Fireship",
+        "views": "2500000",
+        "thumbnail": "https://i.ytimg.com/vi/5C_HPTJg5ek/hq720.jpg",
+        "rank": 3
+      },
+      {
+        "id": "Wc0ZJo06oAw",
+        "title": "Xxx Xxxxxxxx Xxxx Xxxxxxxxx Xxxxx (2026)",
+        "url": "https://www.youtube.com/watch?v=Wc0ZJo06oAw",
+        "channelName": "XXXxxx",
+        "channelUrl": "https://www.youtube.com/@SBJake",
+        "views": "558",
+        "thumbnail": "https://i.ytimg.com/vi/Wc0ZJo06oAw/hq720.jpg",
+        "rank": 4
+      },
+      {
+        "id": "rQ_J9WH6CGk",
+        "title": "Xxxx Xxxxxxxxxxx Xxxx Xxxxxx | Xxxxx ⚙️ in 2024 | #xxxxxxxxxxxxxxx #xxxx",
+        "url": "https://www.youtube.com/watch?v=rQ_J9WH6CGk",
+        "channelName": "XxxXxxxx",
+        "channelUrl": "https://www.youtube.com/@BekBrace",
+        "views": "643",
+        "rank": 5
+      },
+      {
+        "id": "br3GIIQeefY",
+        "title": "Xxxx xxx xxx xxxxxxxxx",
+        "url": "https://www.youtube.com/watch?v=br3GIIQeefY&t=83s",
+        "channelName": "Xx Xxxxxxxxxxx",
+        "channelUrl": "https://www.youtube.com/@NoBoilerplate",
+        "views": "1000000",
+        "rank": 6
+      },
+      {
+        "id": "qP7LzZqGh30",
+        "title": "Xxxx Xxxxxxxx xxx Xxxxxxxxx - Xxxx Xxxxxx (Xxxx Xxxxx xxx Xxxxxxx Xxxxx)",
+        "url": "https://www.youtube.com/watch?v=qP7LzZqGh30",
+        "channelName": "Xxxxxxxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@harkirat1",
+        "views": "365",
+        "rank": 7
+      },
+      {
+        "id": "0y6RKiIk6cs",
+        "title": "Xxxx xxx Xxxxxxx in 12 Minutes",
+        "url": "https://www.youtube.com/watch?v=0y6RKiIk6cs&t=57s",
+        "channelName": "Xxx'x Xxx Xxxxx",
+        "channelUrl": "https://www.youtube.com/@letsgetrusty",
+        "views": "418",
+        "rank": 8
+      },
+      {
+        "id": "TB2wqzGSsqM",
+        "title": "Xxx Xxxx Xxxxxxxxx Xx Xxxx Xxxxx Xxxx? - Xxxxxxx",
+        "url": "https://www.youtube.com/watch?v=TB2wqzGSsqM",
+        "channelName": "Xxxxxxx Xxxxxxxxxx",
+        "channelUrl": "https://www.youtube.com/@TsodingHighlights",
+        "views": "97",
+        "rank": 9
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "youtube.com/search",
+      "version": 2,
+      "sha256": "6e3399d997a9dddfed9e9995b799bfd9c9dd6a3aeb843a06f12408a278e230f4"
+    }
+  ]
+}

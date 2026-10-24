@@ -1,0 +1,88 @@
+{
+  "recipe": {
+    "id": "generic/app.v1",
+    "version": 1,
+    "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+  },
+  "schema": "rex.schema.app.v1.App",
+  "url": "https://zapier.com/pricing",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:48:45Z",
+  "extractTime": "2026-10-14T05:48:45Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "developer",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "category",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "platforms",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "icon",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/app.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.app.v1.App",
+    "name": "Zapier",
+    "developer": {
+      "name": "Zapier",
+      "url": "https://facebook.com/ZapierApp",
+      "logo": "https://res.cloudinary.com/zapier-media/image/upload/f_png,h_224/v1757453971/Zapier_Logo_yjhvbo"
+    },
+    "category": "Automation",
+    "platforms": [
+      "Web"
+    ],
+    "price": "0",
+    "currency": "USD",
+    "description": "Xxxxxxx xxx xxxx xxxxxx xxxxxxxxxxxx xx xxxxxxx xxxxxxxxx, Xxxxxx xxxxxx xxxxxx xxx xxxxxxxx xxxxxxxxxx xx xxx xxxxx. View xxx xxxxxxx xxxxx today.",
+    "icon": "https://images.ctfassets.net/27w7hkots21d/4U3dN28vCOS6InmYHj2xKo/2710cf09764060f0df741cd138ae7dc8/z-night_kpbcnw.png",
+    "url": "https://zapier.com/pricing"
+  },
+  "chain": [
+    {
+      "id": "generic/app.v1",
+      "version": 1,
+      "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+    }
+  ]
+}

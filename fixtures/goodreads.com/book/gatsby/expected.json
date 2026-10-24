@@ -1,0 +1,135 @@
+{
+  "recipe": {
+    "id": "goodreads.com/book",
+    "version": 1,
+    "sha256": "fe10c8a2e7659e9925f3a62811ef15461e547ccfba12d80be6ab638bccad2926"
+  },
+  "schema": "rex.schema.creative.v1.Book",
+  "url": "https://www.goodreads.com/book/show/4671.The_Great_Gatsby",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:41Z",
+  "extractTime": "2026-10-14T05:35:41Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "goodreads.com/book@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "isbn",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "published_date",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "goodreads.com/book@1"
+    },
+    {
+      "path": "pages",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "language",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "format",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "genres",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "goodreads.com/book@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "goodreads.com/book@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/book.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 966,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Book",
+    "id": "4671",
+    "name": "Xxx Xxxxx Xxxxxx",
+    "authors": [
+      {
+        "name": "X. Xxxxx Xxxxxxxxxx",
+        "url": "https://www.goodreads.com/author/show/3190.F_Scott_Fitzgerald"
+      }
+    ],
+    "isbn": "9780743273565",
+    "publishedDate": "1925-04-10",
+    "pages": 180,
+    "language": "English",
+    "format": "Paperback",
+    "genres": [
+      "Xxxxxxxx",
+      "Xxxxxxx",
+      "Xxxxxx",
+      "Xxxxxxxxxx Xxxxxxx",
+      "Xxxxxxx",
+      "Xxxxxxxxxx",
+      "Xxxxxx",
+      "...xxxx"
+    ],
+    "rating": 3.93,
+    "ratingCount": "6164300",
+    "reviewCount": "140429",
+    "description": "Xxxxxxxxx xxxxxx of xxxx XXXX xxx xx xxxxx xxxx, xxxx xxx xxxx.\nXxx xxxx xxxxxxx of xxx xxxxxxx xxxxxxx xxxx is xxxxxxxxxx xx Xxxxxxxxxx’x xxxxxx xxx xxxx xxx xxxxxxxx xxxxxxxxx.\nXxxx xxxxxxx is xxx xxxxxxxx xxxxxxxx xxxx, updated with xxx xxxxxx’x xxx xxxxxxxxx, a xxxxxxxx xx xxx xxxxxxxxxxxxx, xxx with a xxx xxxxxxxxxxxx xx Xxxxxxxx Xxxx Xxxxx xxxxxx Xxxxxx Xxxx.\nXxx Xxxxx Xxxxxx, X. Xxxxx Xxxxxxxxxx’x xxxxx xxxx, xxxxxx xx xxx xxxxxxx xxxxxxxxxxx of xxx xxxxxx. Xxxxx xxxxxxxxx xx Xxxxxxxx in 1925, xxxx xxxxxxxxxxxxxx xxxxx of xxx Xxxx Xxx xxx xxxx xxxxxxxxx xx xxxxxxxxxxx of xxxxxxx. Xxx xxxxx of xxx xxxxxxxxxxxx xxxxxxx Xxx Xxxxxx xxx xxx xxxx xxx xxx xxxxxxxxx Xxxxx Xxxxxxxx is xx xxxxxxxxxxx xxxxxxx xxxx of Xxxxxxx in xxx 1920s.",
+    "image": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1738790966i/4671.jpg",
+    "url": "https://www.goodreads.com/book/show/41733839-the-great-gatsby"
+  },
+  "chain": [
+    {
+      "id": "goodreads.com/book",
+      "version": 1,
+      "sha256": "fe10c8a2e7659e9925f3a62811ef15461e547ccfba12d80be6ab638bccad2926"
+    },
+    {
+      "id": "generic/book.v1",
+      "version": 1,
+      "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+    }
+  ]
+}

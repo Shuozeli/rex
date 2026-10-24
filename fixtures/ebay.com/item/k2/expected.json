@@ -1,0 +1,196 @@
+{
+  "recipe": {
+    "id": "ebay.com/item",
+    "version": 1,
+    "sha256": "c1d4f3a02047c8b661bc59ce9a548dad69888313bb61e61c0811c27b79819205"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.ebay.com/itm/227491491183",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:44:23Z",
+  "extractTime": "2026-10-14T04:44:23Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "list_price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "seller",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "specs",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "specs[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "specs[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/product.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "227491491183",
+    "title": "Xxxxxxx X65 XXXX Xxxxxxxx 75% XXX Xxx-Xxxx Xxxxxx Xxxxxxxx Xxxxxxxxx Xxxxxx",
+    "brand": "Corsair",
+    "price": "56.99",
+    "currency": "USD",
+    "listPrice": "119",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "seller": "Xxxxxxx Xxxxxx",
+    "images": [
+      "https://i.ebayimg.com/images/g/5ncAAeSwieZqjgfC/s-l1600.png",
+      "https://i.ebayimg.com/images/g/u-IAAeSwiX1qjgfB/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/DVcAAeSwIK1qjgfB/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/6twAAeSwUxNqjgfB/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/LWYAAeSwS7ZqjgfB/s-l1600.jpg"
+    ],
+    "specs": [
+      {
+        "name": "Xxxxxxxxx",
+        "value": "Xxxxxxxxx - Xxxxxxxxxxx"
+      },
+      {
+        "name": "Xxxx",
+        "value": "Xxxxxx Xxxxxxxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxxxx"
+      },
+      {
+        "name": "Xxxx Xxxxx",
+        "value": "136"
+      },
+      {
+        "name": "Xxxxxxxx",
+        "value": "Xxx-Xxxx XXX Xxx, 2.4XXx Xxxxxxxx, Xxxxxxxxx, 266hr Xxxxxxx"
+      },
+      {
+        "name": "XXX",
+        "value": "XX-91D401X-XX"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "35"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "320"
+      },
+      {
+        "name": "Xxxxxxxxxx Xxxxx",
+        "value": "Xxxxxxxxx - Xxx XXX-X, Xxxxxxxxx, xx 2.4XXx Xxxxxxx XX xx Xxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "X65 XXXX XXXXXXXX"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxx/Xxxx"
+      },
+      {
+        "name": "Xxxxxxxxxxxx",
+        "value": "2.4XXx Xxxxxxxx, Xxxxxxxxx, xx XXX-X Xxxxx"
+      },
+      {
+        "name": "Xxxxxxxx Xxxxxx",
+        "value": "75% XX (Xxxxx Xxxxxxx) XXXXXX"
+      },
+      {
+        "name": "Xxxxxxx Xxxxxxxx",
+        "value": "XXX Xxxxxxxx Xxxxxxxx xxx XXX Xxxxxxxx/Xxxx Xxxxx Xxxxxxxx"
+      },
+      {
+        "name": "Xxxxxxxx Xxxxxxxx",
+        "value": "Xxxxxxx (XX Xxxxxx)"
+      },
+      {
+        "name": "Xxxx Xxxxxx",
+        "value": "0.918 xx"
+      },
+      {
+        "name": "Xxxxxxxxxx Xxxxxxx",
+        "value": "Xxxxxxxxx - Xxx XXX-X, Xxxxxxxxx, xx 2.4XXx Xxxxxxx XX xx Xxx"
+      },
+      {
+        "name": "XXX",
+        "value": "840006665366"
+      },
+      {
+        "name": "Xxxxxxx of Xxxxxx",
+        "value": "Xxxxx"
+      }
+    ],
+    "url": "https://www.ebay.com/itm/227491491183",
+    "description": "Xxxxx Xxxxxxx. Xxxxxxxx Xxxxxxxx Xxxxxxxxxxxx: Xxx point xxxx xxxxxxxxx xxxxxxxx, Xxxxxxxxx, xxx xxxxx XXX xxxxxxxxxx xxxxx xxxxx xxxxxx, xxxxxx, xxx xxxxx xxxxxx xxx xxxxxxxxxx, Xxxxxxxx xxxxxx xxxxxx."
+  },
+  "chain": [
+    {
+      "id": "ebay.com/item",
+      "version": 1,
+      "sha256": "c1d4f3a02047c8b661bc59ce9a548dad69888313bb61e61c0811c27b79819205"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

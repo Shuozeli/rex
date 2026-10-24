@@ -1,0 +1,81 @@
+{
+  "recipe": {
+    "id": "tiktok.com/video",
+    "version": 1,
+    "sha256": "d7e5e43d2cc2f6ba7bec6d93ea020bb9d3128552dcf6f8f86847d084338ed247"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.tiktok.com/@nasa/video/7695090484124929293",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:45:51Z",
+  "extractTime": "2026-10-14T04:45:51Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "7695090484124929293",
+    "title": "XXXX’x xxxxxxx xxxxxxx xxxxxx xxx xxxxx xxx xxxxxx xxxx week 🚀 ❄️ Xxxxxxxxxxx Xxxx xxxxx to Xxxxxx 🌎 XXXX xxxxx xx XXX in Xxxxxxx 🧑‍🚀 Xxxx-12 xxxxxxx xxxx 🌕 Xxxxxxx XX xxxxxxx xxxx xxxxxxxx Xxxx’x xxxx'x xxx in xxxx XXXX Minute!",
+    "url": "https://www.tiktok.com/@nasa/video/7695090484124929293",
+    "channel": {
+      "name": "XXXX xx XxxXxx",
+      "url": "https://www.tiktok.com/@nasa"
+    },
+    "publishedAt": "2026-10-11T04:45:51Z",
+    "durationSeconds": 122,
+    "likes": "6592",
+    "description": "XXXX’x xxxxxxx xxxxxxx xxxxxx xxx xxxxx xxx xxxxxx xxxx week 🚀 ❄️ Xxxxxxxxxxx Xxxx xxxxx to Xxxxxx 🌎 XXXX xxxxx xx XXX in Xxxxxxx 🧑‍🚀 Xxxx-12 xxxxxxx xxxx 🌕 Xxxxxxx XX xxxxxxx xxxx xxxxxxxx Xxxx’x xxxx'x xxx in xxxx XXXX Minute!"
+  },
+  "chain": [
+    {
+      "id": "tiktok.com/video",
+      "version": 1,
+      "sha256": "d7e5e43d2cc2f6ba7bec6d93ea020bb9d3128552dcf6f8f86847d084338ed247"
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "recipe": {
+    "id": "xueqiu.com/stock",
+    "version": 1,
+    "sha256": "f473410c3b1009055b45fc04305a8ba7461a2a846d5b56a572eaed69a4af0b4e"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://www.xueqiu.com/S/TSLA",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:37:22Z",
+  "extractTime": "2026-10-15T01:37:22Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "pe_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "eps",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "xueqiu.com/stock@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "XXXX",
+    "name": "字字字",
+    "type": "INSTRUMENT_TYPE_STOCK",
+    "exchange": "XXXXXX",
+    "currency": "XXX",
+    "price": "367.16",
+    "change": "-8.07",
+    "changePercent": "-2.15",
+    "marketState": "MARKET_STATE_CLOSED",
+    "previousClose": "375.23",
+    "open": "371.16",
+    "dayLow": "363.82",
+    "dayHigh": "371.39",
+    "yearLow": "297.38",
+    "yearHigh": "498.83",
+    "volume": "31001400",
+    "marketCap": "1450000000000",
+    "peRatio": "381.21",
+    "eps": "0.96",
+    "stats": [
+      {
+        "name": "最高",
+        "value": "371.39"
+      },
+      {
+        "name": "今开",
+        "value": "371.16"
+      },
+      {
+        "name": "成交量",
+        "value": "3100.14万股"
+      },
+      {
+        "name": "换手",
+        "value": "0.78%"
+      },
+      {
+        "name": "最低",
+        "value": "363.82"
+      },
+      {
+        "name": "昨收",
+        "value": "375.23"
+      },
+      {
+        "name": "成交额",
+        "value": "113.70亿"
+      },
+      {
+        "name": "振幅",
+        "value": "2.02%"
+      },
+      {
+        "name": "52周最高",
+        "value": "498.83"
+      },
+      {
+        "name": "量比",
+        "value": "1.17"
+      },
+      {
+        "name": "市盈率(TTM)",
+        "value": "381.21"
+      },
+      {
+        "name": "市净率",
+        "value": "16.68"
+      },
+      {
+        "name": "52周最低",
+        "value": "297.38"
+      },
+      {
+        "name": "字比",
+        "value": "0.00%"
+      },
+      {
+        "name": "市盈率(静)",
+        "value": "382.21"
+      },
+      {
+        "name": "市字率",
+        "value": "14.06"
+      },
+      {
+        "name": "每股收益",
+        "value": "0.96"
+      },
+      {
+        "name": "股息(TTM)",
+        "value": "--"
+      },
+      {
+        "name": "每手股字",
+        "value": "1"
+      },
+      {
+        "name": "总市值",
+        "value": "1.45万亿"
+      },
+      {
+        "name": "每股净字字",
+        "value": "22.01"
+      },
+      {
+        "name": "股息率(TTM)",
+        "value": "--"
+      },
+      {
+        "name": "最小字字",
+        "value": "0.01"
+      },
+      {
+        "name": "总股字",
+        "value": "39.50亿"
+      },
+      {
+        "name": "字字字股",
+        "value": "--"
+      },
+      {
+        "name": "Xxxx",
+        "value": "--"
+      },
+      {
+        "name": "字字字字天字",
+        "value": "--"
+      },
+      {
+        "name": "货币单位",
+        "value": "XXX"
+      }
+    ],
+    "url": "https://www.xueqiu.com/S/TSLA"
+  },
+  "chain": [
+    {
+      "id": "xueqiu.com/stock",
+      "version": 1,
+      "sha256": "f473410c3b1009055b45fc04305a8ba7461a2a846d5b56a572eaed69a4af0b4e"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "recipe": {
+    "id": "finance.yahoo.com/quote",
+    "version": 1,
+    "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://finance.yahoo.com/quote/VFIAX/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:03:58Z",
+  "extractTime": "2026-10-15T01:03:58Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "dividend_yield",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "expense_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "net_assets",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "finance.yahoo.com/quote@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "VFIAX",
+    "name": "Xxxxxxxx 500 Xxxxx Xxxxxxx",
+    "type": "INSTRUMENT_TYPE_FUND",
+    "exchange": "Xxxxxx",
+    "currency": "XXX",
+    "price": "712.52",
+    "change": "-7.98",
+    "changePercent": "-1.11",
+    "marketState": "MARKET_STATE_CLOSED",
+    "previousClose": "720.5",
+    "dividendYield": "1.05",
+    "expenseRatio": "0.04",
+    "netAssets": "1730000000000",
+    "stats": [
+      {
+        "name": "Previous Close",
+        "value": "720.50"
+      },
+      {
+        "name": "XXX Xxxxxx",
+        "value": "12.71%"
+      },
+      {
+        "name": "Expense Ratio",
+        "value": "0.04%"
+      },
+      {
+        "name": "Xxxxxxxx",
+        "value": "Xxxxx Xxxxx"
+      },
+      {
+        "name": "Last Cap Xxxx",
+        "value": "29.00"
+      },
+      {
+        "name": "Xxxxxxxxxxx Rating",
+        "value": "★★★★ ★"
+      },
+      {
+        "name": "Xxxxxxxxxxx Xxxx Rating",
+        "value": "Xxxxx Average"
+      },
+      {
+        "name": "Net Assets",
+        "value": "1.73T"
+      },
+      {
+        "name": "Xxxx (5Y Xxxxxxx)",
+        "value": "1.00"
+      },
+      {
+        "name": "Yield",
+        "value": "1.05%"
+      },
+      {
+        "name": "5y Average Xxxxxx",
+        "value": "--"
+      },
+      {
+        "name": "Xxxxxxxx Xxxxxxxx",
+        "value": "2.00%"
+      },
+      {
+        "name": "Last Dividend",
+        "value": "5.65"
+      },
+      {
+        "name": "Xxxxxxxxx Xxxx",
+        "value": "Sep 7, 2010"
+      }
+    ],
+    "url": "https://finance.yahoo.com/quote/VFIAX/"
+  },
+  "chain": [
+    {
+      "id": "finance.yahoo.com/quote",
+      "version": 1,
+      "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+    }
+  ]
+}

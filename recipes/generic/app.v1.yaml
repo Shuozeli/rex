@@ -1,0 +1,87 @@
+# Baseline for rex.schema.app.v1.App: any app listing with schema.org SoftwareApplication data (App Store,
+# Google Play, extension and game stores). Site recipes `extends` this.
+id: generic/app.v1
+version: 1
+schema: rex.schema.app.v1.App
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: developer
+    candidates:
+      - json_ld: { path: "author" }
+      - json_ld: { path: "publisher" }
+      - microdata: { path: "author" }
+
+  - path: category
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+    pipe:
+      - regex_replace: { pattern: "^https?://schema\\.org/", with: "" }
+
+  - path: platforms          # as given; stores phrase it differently ("ANDROID", "Requires iOS 17.0 or later ...")
+    candidates:
+      - json_ld: { path: "operatingSystem" }
+      - microdata: { path: "operatingSystem" }
+
+  - path: price
+    candidates:
+      - json_ld: { path: "offers.price" }
+      - microdata: { path: "offers.price" }
+
+  - path: currency
+    candidates:
+      - json_ld: { path: "offers.priceCurrency" }
+      - microdata: { path: "offers.priceCurrency" }
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+      - microdata: { path: "aggregateRating.ratingValue" }
+
+  - path: rating_count
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - json_ld: { path: "aggregateRating.reviewCount" }
+      - microdata: { path: "aggregateRating.ratingCount" }
+
+  - path: content_rating
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: version
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: updated_at
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: icon
+    candidates:
+      - json_ld: { path: "image" }
+      - meta: { key: "og:image" }
+
+  - path: screenshots
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

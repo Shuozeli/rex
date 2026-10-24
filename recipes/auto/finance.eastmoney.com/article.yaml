@@ -1,0 +1,72 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/eastmoney.com/_/a1.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: finance.eastmoney.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - finance.eastmoney.com
+    include:
+    - ^/a/[^/]+\.html/?$
+  page:
+    any:
+    - exists: div#ContentBody.txtinfos
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: div#topbox.topbox div.title
+      take: TAKE_TEXT
+  expect: true
+- path: published_at
+  candidates:
+  - css:
+      selector: div.tipbox div.infos div.item
+      take: TAKE_TEXT
+    pipe:
+    - regex:
+        pattern: ^(\d{4}年\d{1,2}月\d{1,2}日\s+\d{2}:\d{2})
+        group: 1
+    - datetime:
+        formats:
+        - '%Y年%m月%d日 %H:%M'
+        tz: Asia/Shanghai
+  expect: true
+- path: authors
+  candidates:
+  - css:
+      selector: div.tipbox div.infos
+      take: TAKE_TEXT
+  each: div.tipbox div.infos
+  fields:
+  - path: name
+    candidates:
+    - css:
+        selector: div.item
+        take: TAKE_TEXT
+      pipe:
+      - regex:
+          pattern: 来源[：:]\s*(.*)
+          group: 1
+      - trim: {}
+    expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div#ContentBody.txtinfos
+      take: TAKE_HTML
+      exclude:
+      - div.ad_context3
+  expect: true
+- path: body_text
+  candidates:
+  - css:
+      selector: div#ContentBody.txtinfos
+      take: TAKE_BLOCK_TEXT
+      exclude:
+      - div.ad_context3
+  expect: true

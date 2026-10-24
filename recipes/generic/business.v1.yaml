@@ -1,0 +1,81 @@
+# Baseline for rex.schema.place.v1.Business: any page with schema.org LocalBusiness data (or one of its
+# specific subtypes: Restaurant, Hotel, Dentist, ...). Site recipes `extends` this.
+id: generic/business.v1
+version: 1
+schema: rex.schema.place.v1.Business
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: categories         # the specific type ("Bakery") is the category
+    candidates:
+      - json_ld: { path: "@type" }
+      - microdata: { path: "@type" }
+    pipe:
+      - filter: { pattern: "^LocalBusiness$", invert: true }
+
+  - path: address
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: address.text
+    candidates:
+      - json_ld: { path: "address" }
+
+  - path: geo
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: phone
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }
+
+  - path: price_range
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+      - microdata: { path: "aggregateRating.ratingValue" }
+
+  - path: review_count
+    candidates:
+      - json_ld: { path: "aggregateRating.reviewCount" }
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - microdata: { path: "aggregateRating.reviewCount" }
+
+  - path: opening_hours      # "Mo-Fr 08:00-17:00" strings; structured specs need a site recipe
+    candidates:
+      - json_ld: { path: "openingHours" }
+      - microdata: { path: "openingHours" }
+
+  - path: cuisines
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: images
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:image" }

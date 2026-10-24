@@ -1,0 +1,192 @@
+{
+  "recipe": {
+    "id": "x.com/status",
+    "version": 1,
+    "sha256": "951e95a94d139422266b98c7345f2cc718295e3183c1af826a6d8ae028b7bd10"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://x.com/Tesla/status/2110165104713183485",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:17:43Z",
+  "extractTime": "2026-10-14T03:17:43Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.author.handle",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.author.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.author.verified",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.reposts",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.media",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].author.handle",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "x.com/status@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "url": "https://x.com/Tesla/status/2110165104713183485",
+    "post": {
+      "id": "2110165104713183485",
+      "author": {
+        "name": "Xxxxx",
+        "handle": "Tesla",
+        "url": "https://x.com/Tesla",
+        "verified": true
+      },
+      "text": "Xxxxxxxx xxxxx xxxxxxxxx xxxx xxxx Thursday xx 7:55pm CST",
+      "publishedAt": "2026-10-14T00:25:40Z",
+      "likes": "9882",
+      "reposts": "1574",
+      "replies": "397",
+      "views": "381848",
+      "media": [
+        "https://pbs.twimg.com/media/HUjPAwiW8AAEeUh?format=jpg&name=small"
+      ],
+      "url": "https://x.com/Tesla/status/2110165104713183485"
+    },
+    "replies": [
+      {
+        "id": "2110170195566203009",
+        "author": {
+          "name": "Xxxx Xxxxx",
+          "handle": "JoshMeyer"
+        },
+        "text": "Xx'x xxxxxxxxx",
+        "publishedAt": "2026-10-14T00:45:54Z",
+        "likes": "182",
+        "replies": "4",
+        "url": "https://x.com/JoshMeyer/status/2110170195566203009"
+      },
+      {
+        "id": "2110179537195504016",
+        "author": {
+          "name": "Xxxxxx Xxx",
+          "handle": "XanderSky"
+        },
+        "text": "7:55 PM xx 19:55 in 24-hour xxxx. Xxxx xxxxx xx a xxxxx xxx xx 1955, xxx year Xxxxx xxxx xxxx xx in Xxxx xx xxx Xxxxxx. Xxxxxxxx xxxx xxx xxxxxx “Xxxxx xx’xx xxxxx…” xxxx xxxxxxx in xxx xxxxxx, xx xxxxx like xxxxxxx xxxxxxxxxx Xxxx xx xxx Xxxxxx xxxxxxxxx xxx xxx xxxxxxxx/xxxxx",
+        "publishedAt": "2026-10-14T01:23:01Z",
+        "likes": "93",
+        "replies": "4",
+        "url": "https://x.com/XanderSky/status/2110179537195504016"
+      }
+    ],
+    "replyCount": "397"
+  },
+  "chain": [
+    {
+      "id": "x.com/status",
+      "version": 1,
+      "sha256": "951e95a94d139422266b98c7345f2cc718295e3183c1af826a6d8ae028b7bd10"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/jiangsu.gov.cn/_/a1.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: jiangsu.gov.cn/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - jiangsu.gov.cn
+    include:
+    - ^/art/\d+/\d+/\d+/[^/]+\.html/?$
+  page:
+    any:
+    - exists: '#barrierfree_container'
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: .sp_title
+      take: TAKE_TEXT
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div#zoom
+      take: TAKE_HTML
+  expect: true
+- path: published_at
+  candidates:
+  - meta:
+      key: PubDate

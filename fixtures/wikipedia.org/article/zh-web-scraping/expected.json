@@ -1,0 +1,84 @@
+{
+  "recipe": {
+    "id": "wikipedia.org/article",
+    "version": 1,
+    "sha256": "ed451c20925e117cb0c1926bc4d621e93c86053042ebed2ef6f96eb42d7f7883"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:33:50Z",
+  "extractTime": "2026-10-13T03:33:50Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "wikipedia.org/article@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "candidate": 4,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "wikipedia.org/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 7500,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96",
+    "title": "字字字字",
+    "authors": [
+      {
+        "name": "字字字字字字字字字"
+      }
+    ],
+    "publishedAt": "2016-03-15T14:04:56Z",
+    "updatedAt": "2026-08-09T09:38:16Z",
+    "summary": "字字字字（字字：xxx xxxxxxxx）字一字字字字上字字字字字字字字字字字字字字。字字字字字字字字字字字字字字字字字字字字字人字字字字字字。",
+    "bodyHtml": "<p><b>字字字字</b>（字字：xxx xxxxxxxx）字一字字字字上字字字字字字字字字字字字字字。字字字字字字字字字字字字<a href=\"https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE\" title=\"字字字字字字字\">字字字字字字字</a>字字人字字字字字字。\n</p><p>字字字字字字字字字字字字字，字字字字字字字字字字字字<a href=\"https://zh.wikipedia.org/wiki/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E\" title=\"字字字字\">字字字字</a>字字字字字<a href=\"https://zh.wikipedia.org/wiki/%E6%9C%BA%E5%99%A8%E4%BA%BA\" title=\"字字人\">字字人</a>字<a href=\"https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB\" title=\"字字字字\">字字字字</a>字字字。字字字字，字字字字字字字字字字字字上字字字字字字（字字字字XXXX字字）字字字字一字字字<a href=\"https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E5%BA%93\" title=\"字字字\">字字字</a>字<a href=\"https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E8%A1%A8%E6%A0%BC\" title=\"字字字字\">字字字字</a>字字字字分字字字字字字字。字字字字字字字字字字字字字，字字字字字字字字字字字人字字字。字字字字字字字字字字字字字字字字，字字人字字，字字字字字字，字字字字字字，字字，<a href=\"https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%90%AD_(%E4%BA%92%E8%81%AF%E7%B6%B2)\" title=\"字字 (字字字)\">字字</a>字Xxx字字字字。\n</p>\n<h2>字字字字</h2>\n<p>字字字字字字字字字字字<a href=\"https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91\" title=\"万字字\">万字字</a>上字字字\n</p>\n<ul><li>人字字字字字字：字字字字字字字字字字字字上人字字字字字字字字字，字字字字字字字字字字字字字字字字字字字字字字字字字字下，人字字字字字字字字字字字一字字字字字。</li></ul>\n<ul><li>字字字字字字字字字字：字字字字字字字字字字字字字字字字字字字字字上字字字字字字字。字字字XXXX字字字上字字字字xxxx，字字字字字字字字字字字字（字字<a href=\"https://zh.wikipedia.org/wiki/Perl\" title=\"Xxxx\">Xxxx</a>、<a href=\"https://zh.wikipedia.org/wiki/Python\" title=\"Xxxxxx\">Xxxxxx</a>）字字字字字字字字字字字。</li></ul>\n<ul><li>字字XXXX字字：字论字<a href=\"https://zh.wikipedia.org/w/index.php?title=%E9%9D%99%E5%AD%97%E5%AD%97%E5%AD%97&amp;action=edit&amp;redlink=1\" title=\"字字字字（字字字字字）\">字字字字</a>字字<a href=\"https://zh.wikipedia.org/wiki/%E5%8B%95%E6%85%8B%E7%B6%B2%E9%A0%81\" title=\"字字字字\">字字字字</a>字字字字字字字XXXX字字字字字字字字字，字字字字字字字字字字<a href=\"https://zh.wikipedia.org/w/index.php?title=Xxxxxx%E5%AD%97%E5%AD%97&amp;action=edit&amp;redlink=1\" title=\"Xxxxxx字字（字字字字字）\">xxxxxx字字</a>字字字。</li></ul>\n<ul><li>XXXX字字分字字：字字字字字字字字字字字字字字字字字字字，字字字字字时字字字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字字字字字字字，字字字字字字字字字字字XXXX字字字字字字分字字字字字字分字，字字字字字字字<a href=\"https://zh.wikipedia.org/wiki/HTML%E6%A0%87%E7%AD%BE\" title=\"XXXX字字\">XXXX字字</a>字字字字字字字字。字字XXXX字字分字字字字字字字字字字字字字字字字字字字字字<a href=\"https://zh.wikipedia.org/wiki/%E9%B2%81%E6%A3%92%E6%80%A7_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)\" title=\"字字字 (字字字字字)\">字字</a>，字字字字字字字字字字字字字。</li></ul>\n<h2>字字字字</h2>\n\n<ul><li><a href=\"https://zh.wikipedia.org/wiki/Apache_Camel\" title=\"Xxxxxx Xxxxx\">Xxxxxx Xxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Archive.is\" title=\"Xxxxxxx.xx\">xxxxxxx.xx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Automation_Anywhere&amp;action=edit&amp;redlink=1\" title=\"Xxxxxxxxxx Xxxxxxxx（字字字字字）\">Xxxxxxxxxx Xxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Convertigo\" title=\"Xxxxxxxxxx\">Xxxxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/CURL\" title=\"XXXX\">xXXX</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Data_Toolbar&amp;action=edit&amp;redlink=1\" title=\"Xxxx Xxxxxxx（字字字字字）\">Xxxx Xxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Diffbot&amp;action=edit&amp;redlink=1\" title=\"Xxxxxxx（字字字字字）\">Xxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Firebug\" title=\"Xxxxxxx\">Xxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Greasemonkey\" title=\"Xxxxxxxxxxxx\">Xxxxxxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Heritrix&amp;action=edit&amp;redlink=1\" title=\"Xxxxxxxx（字字字字字）\">Xxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=HtmlUnit&amp;action=edit&amp;redlink=1\" title=\"XxxxXxxx（字字字字字）\">XxxxXxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/HTTrack\" title=\"XXXxxxx\">XXXxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/IMacros\" title=\"XXxxxxx\">xXxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Import.io&amp;action=edit&amp;redlink=1\" title=\"Xxxxxx.xx（字字字字字）\">Xxxxxx.xx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Jaxer&amp;action=edit&amp;redlink=1\" title=\"Xxxxx（字字字字字）\">Xxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Node.js\" title=\"Xxxx.xx\">Xxxx.xx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Nokogiri_(software)&amp;action=edit&amp;redlink=1\" title=\"Xxxxxxxx (xxxxxxxx)（字字字字字）\">xxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/PhantomJS\" title=\"XxxxxxxXX\">XxxxxxxXX</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Playwright&amp;action=edit&amp;redlink=1\" title=\"Xxxxxxxxxx（字字字字字）\">Xxxxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=ScraperWiki&amp;action=edit&amp;redlink=1\" title=\"XxxxxxxXxxx（字字字字字）\">XxxxxxxXxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Scrapy\" title=\"Xxxxxx\">Xxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Selenium_(%E8%BD%AF%E4%BB%B6)\" title=\"Xxxxxxxx (字字)\">Xxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=SimpleTest&amp;action=edit&amp;redlink=1\" title=\"XxxxxxXxxx（字字字字字）\">XxxxxxXxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/UiPath\" title=\"XxXxxx\">XxXxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=Watir&amp;action=edit&amp;redlink=1\" title=\"Xxxxx（字字字字字）\">xxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Wget\" title=\"Xxxx\">Xxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/Wireshark\" title=\"Xxxxxxxxx\">Xxxxxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/w/index.php?title=WSO2_Mashup_Server&amp;action=edit&amp;redlink=1\" title=\"XXX2 Xxxxxx Xxxxxx（字字字字字）\">XXX2 Xxxxxx Xxxxxx</a></li>\n<li><a href=\"https://zh.wikipedia.org/wiki/%E9%9B%85%E8%99%8E%E6%9F%A5%E8%A9%A2%E8%AA%9E%E8%A8%80\" title=\"字字字字字字\">字字字字字字</a> (XXX)</li></ul>\n\n<h2>字字</h2>\n\n<ul><li><a href=\"https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB\" title=\"字字字字\">字字字字</a></li></ul>",
+    "bodyText": "字字字字（字字：xxx xxxxxxxx）字一字字字字上字字字字字字字字字字字字字字。字字字字字字字字字字字字字字字字字字字字字人字字字字字字。\n\n字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字字字字字字人字字字字字字字字。字字字字，字字字字字字字字字字字字上字字字字字字（字字字字XXXX字字）字字字字一字字字字字字字字字字字字字字字分字字字字字字字。字字字字字字字字字字字字字，字字字字字字字字字字字人字字字。字字字字字字字字字字字字字字字字，字字人字字，字字字字字字，字字字字字字，字字，字字字Xxx字字字字。\n\n字字字字\n\n字字字字字字字字字字字万字字上字字字\n\n人字字字字字字：字字字字字字字字字字字字上人字字字字字字字字字，字字字字字字字字字字字字字字字字字字字字字字字字字字下，人字字字字字字字字字字字一字字字字字。\n\n字字字字字字字字字字：字字字字字字字字字字字字字字字字字字字字字上字字字字字字字。字字字XXXX字字字上字字字字xxxx，字字字字字字字字字字字字（字字Xxxx、Xxxxxx）字字字字字字字字字字字。\n\n字字XXXX字字：字论字字字字字字字字字字字字字字字字字字XXXX字字字字字字字字字，字字字字字字字字字字xxxxxx字字字字字。\n\nXXXX字字分字字：字字字字字字字字字字字字字字字字字字字，字字字字字时字字字字字字字字字字字字字字字字字，字字字字字字字字字字字字字字字字字字字字字字字字，字字字字字字字字字字字XXXX字字字字字字分字字字字字字分字，字字字字字字字XXXX字字字字字字字字字字。字字XXXX字字分字字字字字字字字字字字字字字字字字字字字字字字，字字字字字字字字字字字字字。\n\n字字字字\n\nXxxxxx Xxxxx\n\nxxxxxxx.xx\n\nXxxxxxxxxx Xxxxxxxx\n\nXxxxxxxxxx\n\nxXXX\n\nXxxx Xxxxxxx\n\nXxxxxxx\n\nXxxxxxx\n\nXxxxxxxxxxxx\n\nXxxxxxxx\n\nXxxxXxxx\n\nXXXxxxx\n\nxXxxxxx\n\nXxxxxx.xx\n\nXxxxx\n\nXxxx.xx\n\nxxxxxxxx\n\nXxxxxxxXX\n\nXxxxxxxxxx\n\nXxxxxxxXxxx\n\nXxxxxx\n\nXxxxxxxx\n\nXxxxxxXxxx\n\nXxXxxx\n\nxxxxx\n\nXxxx\n\nXxxxxxxxx\n\nXXX2 Xxxxxx Xxxxxx\n\n字字字字字字 (XXX)\n\n字字\n\n字字字字"
+  },
+  "chain": [
+    {
+      "id": "wikipedia.org/article",
+      "version": 1,
+      "sha256": "ed451c20925e117cb0c1926bc4d621e93c86053042ebed2ef6f96eb42d7f7883"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

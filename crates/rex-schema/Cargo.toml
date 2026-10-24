@@ -1,0 +1,16 @@
+[package]
+name = "rex-schema"
+description = "Schema registry for rex: reads rex.schema.v1 annotations from proto descriptors."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+rex-proto = { path = "../rex-proto" }
+prost-reflect = { version = "0.16", features = ["serde"] }
+thiserror = "2"
+prost = "0.14"
+
+[dev-dependencies]
+serde_json = "1"

@@ -1,0 +1,175 @@
+{
+  "recipe": {
+    "id": "ebay.com/item",
+    "version": 1,
+    "sha256": "c1d4f3a02047c8b661bc59ce9a548dad69888313bb61e61c0811c27b79819205"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.ebay.com/itm/307218209972",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:44:02Z",
+  "extractTime": "2026-10-14T04:44:02Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "seller",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "specs",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "specs[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "specs[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/item@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/product.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "307218209972",
+    "title": "Xxxxxxxx X845xx Xxxxxxxxxx Xxxxxxxxxxx Xxxxxxxx Xxxxxx XX Xxxx Xxx In Xxx XXX",
+    "brand": "Logitech",
+    "price": "75",
+    "currency": "USD",
+    "rating": 5.0,
+    "reviewCount": "1",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "seller": "XXX-XXXXXXXXXXX",
+    "images": [
+      "https://i.ebayimg.com/images/g/KRIAAeSwEVFqxXwj/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/4kEAAeSwlyRqxXwj/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/jTcAAeSwv1tqxXwj/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/S6wAAeSwWLdqxXwj/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/OaIAAeSwoyJqxXwk/s-l1600.jpg"
+    ],
+    "specs": [
+      {
+        "name": "Xxxxxxxxx",
+        "value": "Xxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxxxxx"
+      },
+      {
+        "name": "Xxxx",
+        "value": "Xxxxxxxxxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "Xxxxxx XX Xxxx"
+      },
+      {
+        "name": "Xxxxx",
+        "value": "X845xx Xxxxxxxxxx Xxxxxxxxxxx"
+      },
+      {
+        "name": "Xxxxxxxx Xxxxxx",
+        "value": "XXXXXX (Xxxxxxxx)"
+      },
+      {
+        "name": "XXX",
+        "value": "097855161659"
+      },
+      {
+        "name": "Xxxxxxxxxxxx",
+        "value": "Xxxxx, XXX"
+      },
+      {
+        "name": "XXX",
+        "value": "920-009864"
+      },
+      {
+        "name": "Xxxxxxxx",
+        "value": "Xxxxxxxxxxx"
+      },
+      {
+        "name": "Xxxxxxxx Xxxxxxxx",
+        "value": "Xxxxxxx"
+      },
+      {
+        "name": "Xxxxxxx of Xxxxxx",
+        "value": "Xxxxx"
+      }
+    ],
+    "url": "https://www.ebay.com/itm/307218209972",
+    "description": "Xxx Xxxxxxxx X845xx Xxxxxxxxxx Xxxxxxxxxxx Xxxxxxxx is a xxxx-xxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxx xxx xxxxxx xxxxxxxxxxx. Xxxxxxxxx a Xxxxxx XX Xxxx xxxxx with xxxxxxxxxxx xxxx, xxxx xxxxxxxx xxxxxx a xxxxxxxxxxx xxx xxxxxxxx xxxxxxxxx xxxxxxxxxx. With a XXXXXX xxxxxx xxx xxxxx XXX xxxxxxxxxxxx, xx is xxxx to xxx xx xxx xxx. Xxx xxxxxxxx is in xxx in xxx xxxxxxxxx, xxxxxx xx a xxxxx xxxxxx xxx xxxxx xxxxxxx xxx a xxxxxxxx xxx xxxxxxx xxxxxxxx xxx xxxxx xxxxxxxxx xxxxx."
+  },
+  "chain": [
+    {
+      "id": "ebay.com/item",
+      "version": 1,
+      "sha256": "c1d4f3a02047c8b661bc59ce9a548dad69888313bb61e61c0811c27b79819205"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

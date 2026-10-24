@@ -1,0 +1,58 @@
+# WeChat Official Account article -> rex.schema.article.v1.Article (decisions.md U34).
+# Rendered or plain HTTP; the signed temporary links from Sogou search work as well as permanent /s/<id> links.
+id: mp.weixin.qq.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["mp.weixin.qq.com"]
+    include: ["^/s[/?]"]
+  page:
+    all:
+      - exists: "#js_content"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "#activity-name" }
+
+  - path: authors           # the account name; a byline, when present, is the person
+    candidates:
+      - css: { selector: "#js_author_name" }
+      - css: { selector: "#js_name" }
+
+  - path: section
+    candidates:
+      - css: { selector: "#js_name" }
+
+  - path: published_at        # the inline script's `var ct = "<epoch>"`; the visible time is localized
+    candidates:
+      - css: { selector: "script:not([src])", take: TAKE_HTML }
+        pipe:
+          - filter: { pattern: "var ct = \"\\d+\"" }
+          - regex: { pattern: "var ct = \"(\\d+)\"", group: 1 }
+      - css: { selector: "#publish_time" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - datetime: { formats: ["%b %d, %Y, %I:%M %p", "%Y年%m月%d日 %H:%M", "%Y-%m-%d %H:%M"], tz: "Asia/Shanghai" }
+
+  - path: summary           # og:description carries JavaScript-escaped quotes
+    candidates:
+      - meta: { key: "og:description" }
+    pipe:
+      - regex_replace: { pattern: "\\\\x26quot;", with: "\"" }
+      - regex_replace: { pattern: "\\\\x26amp;", with: "&" }
+
+  - path: language
+    candidates:
+      - constant: { value: "zh" }
+
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "#js_content", take: TAKE_HTML }
+
+  - path: body_text
+    candidates:
+      - css: { selector: "#js_content", take: TAKE_BLOCK_TEXT }

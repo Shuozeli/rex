@@ -1,0 +1,169 @@
+{
+  "recipe": {
+    "id": "zhihu.com/question",
+    "version": 1,
+    "sha256": "cb4181417d7bce6beccfd9813150aa334546adb44e38bbc9a6151c78776866f7"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://www.zhihu.com/question/1892955223472960751",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:18:39Z",
+  "extractTime": "2026-10-14T03:18:39Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "post.id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "post.views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].author.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "post.replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "zhihu.com/question@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "title": "字字字人字字字字字字字，字字字字字字字字？",
+    "url": "https://www.zhihu.com/question/1892955223472960751",
+    "post": {
+      "id": "1892955223472960751",
+      "text": "字字字人字字字字字字字，字字字字字字字字？",
+      "replies": "141",
+      "views": "4804640",
+      "url": "https://www.zhihu.com/question/1892955223472960751"
+    },
+    "replies": [
+      {
+        "id": "1893361711924356999",
+        "author": {
+          "name": "字字字",
+          "url": "https://www.zhihu.com/people/90-9-4-66"
+        },
+        "text": "字字字人字字字字字字字，字字字字，字字字——字字字字字字字“字字字字”，字字字字字字？\n\n字字字，字字“字字”字字字时字，字一字字字：“字字字字字字字字？”\n\n字字字人字字，字字字字字字字字字字。\n\n字字字字字，字字字字字字，字期字字字字，字期字字字字字字字，字字字字字字字字？\n\n时字字一字，字字字字字字字字字\n\n2020年《字字字字2》字字字字字字——字点字字，字字字字一字字字。\n\n字字时字字字字字字字字字字，字字字字字字字人字字字字字。\n\n字字字=字字字字字，字字“字字字字字”字字字字字。\n\n字字字字字XXXX字字……字字，字字字字字字字？\n\n字字字字字“字字字字”，字字字字字字字字字。\n\n字字，字字字字字字，字字字字字？字字字字字+字字字字字字。\n\n字字《字字字字》字字字字字字字，字字字字字字字字字字“字字字字字”，字字字字字字下字字字。\n\n字字字字字——2023年字字字字字字字字，字字字字字字字。\n\n字字，字“字字”，字字字前字字。\n\n字字字字字字：字字字字字、字字字、字字字字字，字字字字字字字字字字字字字。\n\n字字，字字字字字字字？\n\n“字字字”+“字字字字”，字字字字字字字字？\n\n字字字，字字字字字字字12年字字，字字字字下7年。\n\n字字字字期字字，字字字字、字字、字字字次字字字字字字字。\n\n字字字字，字字“字字字”，字字字“字字字”。\n\n字字字字：字字字字字字字字字，字字字字字字字字字字。\n\n字字人字字：“字字字字字字字字字字字。”\n\n字字字字字字“字字”字？字字字：字字字、字字字字，字字字字字字字字字。\n\n字字字字字字字字字？字，字字字字字字字字，字“字字字字”字字人。\n\n字字字评字字字字小字分字字字\n\n“字字字字字字字字字字人，字字字字字字人字字。”\n\n“字字字字字，字字字字字，字字字字字字，人字字字字下字字字。”\n\n“字字字字字字字，字字字字。”\n\n字字字字XX字字：“字字字字字字字字字字字年字字字字字字字，字字字字字字字字字？”\n\n字字字字字字字，一字字人字字字字字字字字XX、字字字、字字字字论……字字字字，字字字字。\n\n字字字字“字字”，字字字字“字字字字”\n\n字字一字：字一字字字字字字字字字X字字字字字字，字字人字字字字？\n\n字字字字“字字字字”、“字字字字”，字字字字字字字字字字字字字字字字字、字人字字字字字、字字字字字字字小字字？\n\n字字字字字字字字字字字字，字字字字字，字字字字字字字字字字字字Xxxx X。\n\n字字字点字字字字\n\n字字字字字“字一字字字天字”，字字“字字字，字字字字”。\n\n字字字字字字字字，字字字，字字字字字字，字字字字字字一字字字字字字字字字字。\n\n字字字字字，字字字字字字字字字字字字字字一字。\n\n字年字，字字字字字字字，字字字字字字字。\n\n字字字字字字天字，字字字字字字字字字字字字“人”字字，字字字字字“字时上字字字字字人”。\n\n字字，字字字字“字字时字字字”，字字字字“字字字字”。\n\n一字人字字字字字字，字字字字字字字字字字字字。\n\n字字字字字字字字字字字？字字字？字字字？字字一字字字？\n\n字字字评论字字字，一字字字字字字字字～",
+        "publishedAt": "2025-04-09T09:56:49Z",
+        "likes": "38",
+        "replies": "4",
+        "url": "https://www.zhihu.com/question/1892955223472960751/answer/1893361711924356999"
+      },
+      {
+        "id": "1893235382558098704",
+        "author": {
+          "name": "字字字字字",
+          "url": "https://www.zhihu.com/people/xyojwy"
+        },
+        "text": "4月8日，字字字字字字上字下一字“字字字字字字字”，字字字字字字。字《字字字字2》字“字字字字”字字字字字，字字字字字字字字字字字：字字字字字字字字？\n\n字字，字字字字字字字字字字。\n\n字年字年字字上字字字字字字字字字“字字字”，今年字字字字字字字字字“字字字字”字字，字字字字字字字字字字字字，字字字字、字字字字，字字字字字字，字一字字字字字字字字字“字字字”。\n\n字字字字字字字，字字字字字字字字字。\n\n一、字字字字字字字：字字字字字字字字字人\n\n字字字字字字字字字字字字“字字字字”，字字字字字字字字字：2023年字字字字字时字字字字字字，字字字字字字字“字字字字字”，字字字字字字字次字字字字字。\n\n字字字字字字字字字字字字字，字字上字字字字字字、字字字字字字字，字字字字字。\n\n字字字字字年字字字字字字字，字字字字字字字“字字字字字字字字人”，字字字字字字字字字字人字字字。\n\n二、字字字字字字字：字字字，字字字字\n\n字字字字星字字字字字字，2020年《字字2》字字字字字字，字字字字字字字，字字字二年字字XXXX字字字xxxx。\n\n字字字字字字“字字字字”字字，字字字字字字字字字字字字。\n\n字字字字字，字字字字字字字字字时，字字字字字字字字字字，字字字年字字字字字字字字字字字字字字字字一字一字。\n\n字字字，字字字字字字字字字：字字字字字，字字字字字字，字字字字字字字字字字。\n\n三、字字≠字字，字字字字字字点\n\n字人字字字字字字字下字，字字字字字字字字字字字字字字，前字字字字字字字字字字字，字字字字“字字字字字字”。\n\n字字字字字字“字字字字字，字字字字字字”，字字字字字字字字字字。\n\n字字字字字字字字字字字字，前字字字字字字字时字字“字字字字字字字”，字字字字字字下，字字字字下字字字字人，字字字字字字字字。\n\n字字字字：\n\n字字字字字字字字下，字人字字“字字字字字”，字字人字字“字字字字”。\n\n字字字字字字，字字星字上字字字字字，字字字字字字字字字字字？字字字字字字下字字，字字字字字字，“人字字字字字”。\n\n字字字次，字字字字人字字字字字。",
+        "publishedAt": "2025-04-09T01:34:49Z",
+        "likes": "16",
+        "url": "https://www.zhihu.com/question/1892955223472960751/answer/1893235382558098704"
+      },
+      {
+        "id": "1892967118951134883",
+        "author": {
+          "name": "字字",
+          "url": "https://www.zhihu.com/people/zi-jian-4-7"
+        },
+        "text": "字字字字，字字字字，字字字字字字字字字字，字字字，字字字字字字，字字 XXXX 字字字字字字\n\n字字字字字字字，字字字小字字字字字字字。",
+        "publishedAt": "2025-04-08T07:48:50Z",
+        "likes": "48",
+        "url": "https://www.zhihu.com/question/1892955223472960751/answer/1892967118951134883"
+      }
+    ],
+    "replyCount": "141",
+    "tags": [
+      "字字字",
+      "字人",
+      "字字字字",
+      "字字字字字二字（字字）",
+      "字字字"
+    ]
+  },
+  "chain": [
+    {
+      "id": "zhihu.com/question",
+      "version": 1,
+      "sha256": "cb4181417d7bce6beccfd9813150aa334546adb44e38bbc9a6151c78776866f7"
+    }
+  ]
+}

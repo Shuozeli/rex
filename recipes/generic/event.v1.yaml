@@ -1,0 +1,75 @@
+# Baseline for rex.schema.event.v1.Event: any page with schema.org Event data (ticketing, meetup and venue
+# sites). Site recipes `extends` this.
+id: generic/event.v1
+version: 1
+schema: rex.schema.event.v1.Event
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: start_at
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: end_at             # a date-only end ("2026-10-24") has no zone to place it in: left out
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+    pipe:
+      - filter: { pattern: "T\\d" }
+
+  - path: status
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: attendance
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: venue
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: venue.address.text   # an address given as one string
+    candidates:
+      - json_ld: { path: "location.address" }
+
+  - path: organizer
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: performers
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: tickets
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: image
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:image" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

@@ -1,0 +1,70 @@
+# YouTube search results -> rex.schema.media.v1.VideoList (decisions.md U32). Only the rendered page has the
+# results (the server HTML carries them as JSON for the app), so this recipe is for the extension.
+id: youtube.com/search
+version: 2
+schema: rex.schema.media.v1.VideoList
+requires: [relative_dates]
+match:
+  urls:
+    hosts: ["youtube.com", "m.youtube.com"]
+    include: ["^/results\\?"]
+  page:
+    all:
+      - exists: "ytd-video-renderer"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: search_query }
+
+  - path: items
+    expect: true
+    each: "ytd-video-renderer"
+    each_index: rank
+    fields:
+      - path: id
+        candidates:
+          - css: { selector: "a#video-title", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - regex: { pattern: "v=([\\w-]{11})", group: 1 }
+      - path: title
+        candidates:
+          - css: { selector: "a#video-title", take: TAKE_ATTRIBUTE, attribute: title }
+          - css: { selector: "a#video-title" }
+      - path: url
+        candidates:
+          - css: { selector: "a#video-title", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - url: { strip_query: ["pp"] }
+      - path: channel_name
+        candidates:
+          - css: { selector: "#channel-info #channel-name a" }
+      - path: channel_url
+        candidates:
+          - css: { selector: "#channel-info #channel-name a", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: duration_seconds
+        candidates:
+          - css: { selector: "ytd-thumbnail-overlay-time-status-renderer #text" }
+          - css: { selector: "badge-shape .yt-badge-shape__text" }
+          - css: { selector: "ytd-thumbnail-overlay-time-status-renderer badge-shape" }   # 2026-10 markup: plain text
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "(\\d+(?::\\d{2})+)", group: 1 }
+          - duration: {}
+      - path: views
+        candidates:
+          - css: { selector: "#metadata-line span" }
+        pipe:
+          - filter: { pattern: "ago$", invert: true }
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: published_at
+        candidates:
+          - css: { selector: "#metadata-line span" }
+        pipe:
+          - filter: { pattern: "ago$" }
+          - datetime: { relative: true }
+      - path: thumbnail
+        candidates:
+          - css: { selector: "ytd-thumbnail img", take: TAKE_ATTRIBUTE, attribute: src }
+        pipe:
+          - url: { strip_query: ["sqp", "rs"] }

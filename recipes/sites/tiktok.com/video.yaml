@@ -1,0 +1,78 @@
+# TikTok video page -> rex.schema.media.v1.Video (decisions.md U35). Rendered page only. Logged out, the
+# video opens as the first card of a feed (article[data-scroll-index='0']); later cards are recommendations.
+# The caption doubles as title and description; the post time is relative ("· 3d ago") or a short date
+# ("1-15", "2025-1-15"). TikTok shows no view count on the page.
+id: tiktok.com/video
+version: 1
+schema: rex.schema.media.v1.Video
+requires: [relative_dates]
+match:
+  urls:
+    hosts: ["tiktok.com"]
+    include: ["^/@[^/]+/video/\\d+"]
+  page:
+    all:
+      - exists: "[data-e2e=feed-video], [data-e2e=browse-video]"
+fields:
+  - path: id
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/video/(\\d+)", group: 1 }
+
+  - path: title
+    expect: true
+    candidates:
+      - meta: { key: "og:description" }
+      - css: { selector: "article[data-scroll-index='0'] [data-e2e=video-desc]" }
+
+  - path: url
+    candidates:
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex_replace: { pattern: "\\?.*$", with: "" }
+
+  - path: channel.name      # "NASA on TikTok"
+    candidates:
+      - meta: { key: "og:title" }
+    pipe:
+      - regex_replace: { pattern: "\\s+on TikTok$", with: "" }
+
+  - path: channel.url
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "^(https://[^/]+/@[^/?]+)", group: 1 }
+
+  - path: published_at      # "· 3d ago", "· 1-15", "· 2025-1-15"
+    candidates:
+      - css: { selector: "article[data-scroll-index='0'] [data-e2e=feed-video] span" }
+    pipe:
+      - filter: { pattern: "^·\\s" }
+      - slice: { start: 0, end: 1 }
+      - regex_replace: { pattern: "^·\\s*", with: "" }
+      - datetime: { formats: ["%Y-%m-%d"], relative: true }
+
+  - path: duration_seconds  # the player clock "00:08 / 02:02"
+    candidates:
+      - css: { selector: "article[data-scroll-index='0'] [data-e2e=feed-video] p" }
+    pipe:
+      - filter: { pattern: "^\\d+:\\d+ / \\d+:\\d+" }
+      - slice: { start: 0, end: 1 }
+      - regex: { pattern: "/ (\\d+:\\d+(?::\\d+)?)", group: 1 }
+      - duration: {}
+
+  - path: likes
+    candidates:
+      - css: { selector: "article[data-scroll-index='0'] [data-e2e=like-count]" }
+      - meta: { key: "description" }    # "6592 Likes, 217 Comments. TikTok video from ..."
+        pipe:
+          - regex: { pattern: "^([\\d.,]+[KMB]?) Likes", group: 1 }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: description
+    candidates:
+      - meta: { key: "og:description" }

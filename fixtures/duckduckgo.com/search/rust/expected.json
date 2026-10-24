@@ -1,0 +1,170 @@
+{
+  "recipe": {
+    "id": "duckduckgo.com/search",
+    "version": 1,
+    "sha256": "786a57aa1894d784be95b9ef4f8247671c242a5fa71de0e6dee92b9b1b4cb7c2"
+  },
+  "schema": "rex.schema.search.v1.SearchResults",
+  "url": "https://duckduckgo.com/?q=rust+webassembly&ia=web",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:40:51Z",
+  "extractTime": "2026-10-14T04:40:51Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "engine",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].display_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].snippet",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].sitelinks",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].sitelinks[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    },
+    {
+      "path": "results[0].sitelinks[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "duckduckgo.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.search.v1.SearchResults",
+    "query": "rust webassembly",
+    "engine": "duckduckgo",
+    "results": [
+      {
+        "rank": 1,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XxxXxxxxxxx - Xxxx Xxxxxxxxxxx Xxxxxxxx",
+        "url": "https://rust-lang.org/what/wasm/",
+        "displayUrl": "https://rust-lang.org › xxxx › xxxx",
+        "snippet": "Xxxxx xxx to xxx Xxxx to xxxxx xxxx, xxxx, xxx xxxx XxxXxxxxxxx xxxxxxxxxxxx xxxx xxxx with XxxxXxxxxx xxx xxxxx xxx xxxxx. Xxxxxxx xxx xxxxxxxx of Xxxx'x xxxxxxxxxxx, xxxx xxxx, xxx xxxxxxxxx xxx xxx xxxxxxxxxxx.",
+        "sitelinks": [
+          {
+            "title": "Xxxxxxxxxxx",
+            "url": "https://www.rust-lang.org/zh-CN/what/wasm"
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxxxxxxx xxxx Xxxx to XxxXxxxxxxx - XxxXxxxxxxx | XXX",
+        "url": "https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Rust_to_Wasm",
+        "displayUrl": "https://developer.mozilla.org › xx-XX › xxxx › XxxXxxxxxxx › Xxxxxx › Xxxx_to_Xxxx",
+        "snippet": "Sep 8, 2026Xxxxx xxx to xxx xxxx-xxxx to xxxxx a Xxxx xxxxxxx xxxx xxx xxx in xxx xxxxxxx. Xxx xxx to xxxxx Xxxx xxxx xxxx xxx xxxx XxxxXxxxxx xxxxxxxxx xxx xxxx xxxxx."
+      },
+      {
+        "rank": 3,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxxxxxxxxxx - Xxxx xxx XxxXxxxxxxx",
+        "url": "https://rustwasm.github.io/book/",
+        "displayUrl": "https://rustwasm.github.io › xxxx",
+        "snippet": "Xxxxx xxx to xxx Xxxx xxx XxxXxxxxxxx xxxxxxxx xxx xxxx, xxxxxxxx xxxx xx xxx Xxx. Xxxx xxxx is xxx xxxxxx xxxxxxxxxx in xxxxxxxxx Xxxx to XxxXxxxxxxx, xxx xx is xxx xxx xxxxxxxx xxxxxxxxxxxxx xxxx."
+      },
+      {
+        "rank": 4,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XxxxXxxx",
+        "url": "https://rustwasm.app/en",
+        "displayUrl": "https://rustwasm.app › xx",
+        "snippet": "XxxxXxxx Xxxxx Xxxx + XxxXxxxxxxx xx xxxxx Xxxxxxxxxxx xxxxxxx xxx a xxxx xxxxxxx-xxxxx xxxxxxxxxx to xxxxxx Xxxx xxx XxxXxxxxxxx — xxxx xxxxxx to xxxx-xxxxx xxxxxxxxxxxx."
+      },
+      {
+        "rank": 5,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx XxxXxxxxxxx: Xxxxxxxx Xxxx-Xxxxxxxxxxx Xxx Xxxxxxxxxxxx",
+        "url": "https://andrewodendaal.com/rust-webassembly-high-performance-web-apps/",
+        "displayUrl": "https://andrewodendaal.com › xxxx-xxxxxxxxxxx-xxxx-xxxxxxxxxxx-xxx-xxxx",
+        "snippet": "Apr 18, 2026Xxxxx xxx xxxxxx Xxxx XxxXxxxxxxx xxxxxxx with xxxx-xxxx, xxxx-xxxxxxx, xxx xxxxxxxxxxx xxxxxxxx xxx xxxx-xxxxxxxxxxx xxxxxxx xxx xxxx xxxxxxxxx xxxxxxxxxxxx."
+      },
+      {
+        "rank": 6,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx-Xxxxx Xxx Xxx with Xxxx & XxxXxxxxxxx (2026)",
+        "url": "https://codezup.com/create-full-stack-web-app-rust-webassembly/",
+        "displayUrl": "https://codezup.com › xxxxxx-xxxx-xxxxx-xxx-xxx-xxxx-xxxxxxxxxxx",
+        "snippet": "Jun 1, 2025Xxxxx a xxxx-xxxxx xxx xxx with Xxxx & XxxXxxxxxxx: Xxxxxx Xxxx xxxxxxxx xxxxxxxxxx, Xxxx XXXX XXX xxxxxxx, xxxxxxx XXXX xxxxxxxx, xxx XXXX xxxxxxxxxx."
+      },
+      {
+        "rank": 7,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx xxx XxxXxxxxxxx - Xxxxxxxxxxxx - Xxxx xxx XxxXxxxxxxx",
+        "url": "https://rustwasm.github.io/docs/book/",
+        "displayUrl": "https://rustwasm.github.io › xxxx › xxxx",
+        "snippet": "Xxx't xxxx Xxxx xxx? Xxxxx with Xxx Xxxx Xxxxxxxxxxx Xxxxxxxx xxxxx. Xxx't xxxx XxxxXxxxxx, XXXX, xx XXX? Xxxxx xxxxx xxxx xx XXX. Xxx to xxxx xxxx xxxx Xxx xxxxxx xxxx xxx xxxxxxxxxx xxx xxxxx Xxxx xxx XxxXxxxxxxx xxxxxxxx, xx xxxx xx xxxxxxxxxxx xxxxxxxx with xxx xxxxxxxxxx xxx xxxxxxxx xxxxx. Xxx xxxxxxxx is xxxxxxx to xx xxxx xxxx xxxxx to ..."
+      },
+      {
+        "rank": 8,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "A Xxxxxx Xxxxxxxxxxxx to XxxXxxxxxxx in Xxxx (2025 Xxxxxxx)",
+        "url": "https://dev.to/marktolmacs/a-gentle-introduction-to-webassembly-in-rust-2025-edition-1iac",
+        "displayUrl": "https://dev.to › xxxxxxxxxxx › a-xxxxxx-xxxxxxxxxxxx-to-xxxxxxxxxxx-in-xxxx-2025-xxxxxxx-1xxx",
+        "snippet": "Jan 14, 2025XxxXxxxxxxx xxxxxx xxxxxx xxxxxxxxxxx xxxx X, X++ xxx xxxx xxxx xxxxxxxxx xx xxxxxxxxxxx (xxxxxxxxx Xxxx!) xxxxxxx xxxxx xxxxxxx. Xxx xxxx is a xxxxxxxxxx xxxxxx xxxxxxx Xxx Xxxx! Xxxxxxx xxxxxx xxxxxxxx xxxxxxx xxxxxx xxxxxxx xx'x xxxx a xxxx xxxxxxx xxxx xx xxx xxxxx xxx xxxxxxx xxxxxxxxx xxxxx xxxxxx xxxx XxxxXxxxxx."
+      },
+      {
+        "rank": 9,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XxxXxx - xxxxxxxx/xxx: Xxxx / Xxxx xxxxxxxxx xxx xxxxxxxx xxxxxxxx xxx ...",
+        "url": "https://github.com/yewstack/yew",
+        "displayUrl": "https://github.com › xxxxxxxx › xxx",
+        "snippet": "Xxx is a xxxxxx Xxxx xxxxxxxxx xxx xxxxxxxx xxxxx-xxxxxxxx, xxxxx-xxx xxx xxxx with XxxXxxxxxxx. Xxxxxxxx a xxxxx xxx xxxxxxxxx xxxxxxxxxxx XXXX with Xxxx xxxxxxxxxxx."
+      },
+      {
+        "rank": 10,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx xxx XxxXxxxxxxx in 2026: Xxxx, xxxx-xxxxxxx Xxxxxxxx",
+        "url": "https://sharpskill.dev/en/blog/rust/rust-webassembly-wasm-bindgen-tutorial",
+        "displayUrl": "https://sharpskill.dev › xx › xxxx › xxxx › xxxx-xxxxxxxxxxx-xxxx-xxxxxxx-xxxxxxxx",
+        "snippet": "Aug 7, 2026Xxxx XxxXxxxxxxx (Xxxx) xxxxxx xxxx-xxxxxx xxxxxxxxxxx to xxx xxxxxxxxxxxx xx xxxxxxxxx Xxxx xxxx to a xxxxxx xxxxxx xxxx xxxx in xxxxxxxx xxx xxxxxx xxxxxxxxxxxx. Xxx xxxxxxxxxxx of Xxxx'x xxxxxx xxxxxx xxxxxxxxxx with XxxXxxxxxxx'x xxxxxxxxx xxxxxxxxx xxxxxxx a xxxxxxxx xxxxxxxxxx xxx xxxxxxxxxxx-xxxxxxxx xxx xxxxxxxxxx, xxxx xxxxx xxxxxxxxxx to xxxxxxxxxxxxx xxxxxxxxxx."
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "duckduckgo.com/search",
+      "version": 1,
+      "sha256": "786a57aa1894d784be95b9ef4f8247671c242a5fa71de0e6dee92b9b1b4cb7c2"
+    }
+  ]
+}

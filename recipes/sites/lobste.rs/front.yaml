@@ -1,0 +1,43 @@
+# Lobsters listing pages -> feed.v1.
+id: lobste.rs/front
+version: 1
+schema: rex.schema.feed.v1.Feed
+match:
+  urls:
+    hosts: ["lobste.rs"]
+    include: ["^/$", "^/newest", "^/active", "^/page/\\d+", "^/t/"]
+  page:
+    all:
+      - exists: "ol.stories > li.story"
+fields:
+  - path: title
+    candidates:
+      - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
+  - path: items
+    each: "ol.stories > li.story"
+    fields:
+      - path: id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: data-shortid }
+      - path: title
+        candidates:
+          - css: { selector: "a.u-url" }
+      - path: url
+        candidates:
+          - css: { selector: "a.u-url", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: published_at
+        candidates:
+          - css: { selector: ".byline time", take: TAKE_ATTRIBUTE, attribute: data-at-unix }
+      - path: author
+        candidates:
+          - css: { selector: ".byline a.u-author" }
+      - path: score
+        candidates:
+          - css: { selector: ".voters .upvoter" }
+        pipe:
+          - regex: { pattern: "(\\d+)", group: 1 }
+      - path: comment_count
+        candidates:
+          - css: { selector: ".comments_label a" }
+        pipe:
+          - regex: { pattern: "(\\d+)\\s*comment", group: 1 }

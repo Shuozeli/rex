@@ -1,0 +1,96 @@
+{
+  "recipe": {
+    "id": "news.ycombinator.com/front",
+    "version": 2,
+    "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://news.ycombinator.com/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T08:00:00Z",
+  "extractTime": "2026-10-12T08:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].author",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].comment_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxx Xxxx",
+    "items": [
+      {
+        "id": "41000001",
+        "title": "Xxxx 2026 xxxxxxx xxxxxxxxx",
+        "url": "https://example.org/rust-2026?utm_source=hn",
+        "publishedAt": "2026-10-12T06:00:00Z",
+        "author": "xxxxx",
+        "score": "312",
+        "commentCount": "128"
+      },
+      {
+        "id": "41000002",
+        "title": "Xxx XX: Xxx xx xxx xxxx XXXX xxxxxxxxxx?",
+        "url": "https://news.ycombinator.com/item?id=41000002",
+        "publishedAt": "2026-10-12T07:30:00Z",
+        "author": "xxx",
+        "score": "45"
+      },
+      {
+        "id": "41000003",
+        "title": "Xxxxxxx Xxxx (XX X20) is xxxxxx xxxxxxxxx",
+        "url": "https://jobs.example.com/hiring",
+        "publishedAt": "2026-10-12T05:00:00Z"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "news.ycombinator.com/front",
+      "version": 2,
+      "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+    }
+  ]
+}

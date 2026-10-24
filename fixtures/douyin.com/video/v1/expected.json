@@ -1,0 +1,95 @@
+{
+  "recipe": {
+    "id": "douyin.com/video",
+    "version": 1,
+    "sha256": "45fcc0d68ae9e01349b2b59426b7fd1ac4c96f889a5645b272b4248fa9c311cd"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.douyin.com/video/7664968192621064930",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:36:32Z",
+  "extractTime": "2026-10-14T03:36:32Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "douyin.com/video@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "douyin.com/video@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "7664968192621064930",
+    "title": "字1字 | 字人字字字字字！字字字字字+字字 #字字 #字人字字 #字人字字 #字字 #字字字字",
+    "url": "https://www.douyin.com/video/7664968192621064930",
+    "channel": {
+      "name": "字字字xxxx",
+      "url": "https://www.douyin.com/user/MS4wLjABAAAA5nZ1_SetIGlLBOshwB7DE0HMclw9VplDW_2l_-id9mNiwa--OQ62coSQcPrYXHjX"
+    },
+    "publishedAt": "2026-07-21T13:11:00Z",
+    "likes": "6375",
+    "description": "字1字 | 字人字字字字字！字字字字字+字字 #字字 #字人字字 #字人字字 #字字 #字字字字",
+    "tags": [
+      "字字",
+      "字人字字",
+      "字人字字",
+      "字字",
+      "字字字字",
+      "字字",
+      "字字字字字",
+      "字字字字"
+    ]
+  },
+  "chain": [
+    {
+      "id": "douyin.com/video",
+      "version": 1,
+      "sha256": "45fcc0d68ae9e01349b2b59426b7fd1ac4c96f889a5645b272b4248fa9c311cd"
+    },
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[package]
+name = "rex-dom"
+description = "Read-only HTML document model for rex: parsing, scoped selectors, text semantics, metadata indexes."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+scraper = "0.24"
+ego-tree = "0.10"
+serde_json = "1"
+url = "2"
+unicode-normalization = "0.1"
+thiserror = "2"

@@ -1,0 +1,293 @@
+{
+  "recipe": {
+    "id": "lobste.rs/front",
+    "version": 1,
+    "sha256": "95d4f80647a0a5e9547920b8188bc713f47d4eaec1351bbcae6fd1504a2a8ec0"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://lobste.rs/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:41:58Z",
+  "extractTime": "2026-10-13T03:41:58Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].author",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].comment_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxxxx",
+    "items": [
+      {
+        "id": "lfen2h",
+        "title": "Xxxxxx xx xxx Xxxxxx xxx xx Xxxx",
+        "url": "https://blog.julik.nl/2026/10/the-weimar-of-ruby",
+        "publishedAt": "2026-10-12T10:59:26Z",
+        "author": "xxxxx",
+        "score": "47",
+        "commentCount": "10"
+      },
+      {
+        "id": "iq5xtw",
+        "title": "Xxxxx Xxxxxxxx Xxxxxxx Xx A Xxxxx Xxxxx Xxxxxx Xxxxxxxxxxx Xxxx Xxxxxx Xxxx",
+        "url": "https://www.phoronix.com/news/Linus-Torvalds-Claude-Code",
+        "publishedAt": "2026-10-12T10:11:29Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "49",
+        "commentCount": "67"
+      },
+      {
+        "id": "sozl9e",
+        "title": "(Xxxx-Xxxxxxx) Xxxxxxxxxxxxx Xxxxx Xxxxxxx",
+        "url": "https://words.filippo.io/right-answers/",
+        "publishedAt": "2026-10-12T13:44:38Z",
+        "author": "xxxxxxxx",
+        "score": "52",
+        "commentCount": "3"
+      },
+      {
+        "id": "ikk8ie",
+        "title": "'XX' xx Xxx a Xxxx",
+        "url": "https://www.linkedin.com/pulse/ai-tool-rich-hickey-kjl8e",
+        "publishedAt": "2026-10-12T01:18:09Z",
+        "author": "xxxxxxxxx",
+        "score": "90",
+        "commentCount": "33"
+      },
+      {
+        "id": "mldt0o",
+        "title": "Xxxxxxx a $90,000 Xxxxxx Xxxx Xxxxxxxxx Xxxxxxxxxxxxx xx Xxxxxx",
+        "url": "https://simonkoeck.com/writeups/google-devsite-flask-session-pickle-rce",
+        "publishedAt": "2026-10-12T14:40:35Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "32",
+        "commentCount": "1"
+      },
+      {
+        "id": "ml9xrb",
+        "title": "Xxxxxxxxxxxx xxx xxx xxx xxxxxxx",
+        "url": "https://royfish.dev/fingerprints-are-the-new-cookies",
+        "publishedAt": "2026-10-12T09:05:44Z",
+        "author": "xxxxxx",
+        "score": "31",
+        "commentCount": "19"
+      },
+      {
+        "id": "7vzgsl",
+        "title": "Xxxx xxx xxx xxxxx xxxx week?",
+        "url": "https://lobste.rs/s/7vzgsl/what_are_you_doing_this_week",
+        "publishedAt": "2026-10-12T17:04:52Z",
+        "author": "xxxxx",
+        "score": "12",
+        "commentCount": "15"
+      },
+      {
+        "id": "u4vlin",
+        "title": "Xxxxxx xxxxxxxxxxx xxxxxx xxx xxxxxxxxxxx xxxxxx xxxxxxxxxxxx xxxxxxxx",
+        "url": "https://www.afp.com/en/french-supermarket-chains-say-cyberattack-forced-refrigerator-shutdown",
+        "publishedAt": "2026-10-12T12:23:52Z",
+        "author": "xxxxxxxxxxx",
+        "score": "19",
+        "commentCount": "12"
+      },
+      {
+        "id": "nroajo",
+        "title": "Xxxxxxx a Xxxxxxxxx Xxxxx xxx xxx XX Xxxxxxxx",
+        "url": "https://www.markround.com/blog/2026/zx-spectrum-intro",
+        "publishedAt": "2026-10-12T08:46:10Z",
+        "author": "xxx",
+        "score": "29"
+      },
+      {
+        "id": "iufma5",
+        "title": "Xxxxxxx XXXX xx xxxx xx xxxxxxxxx xxx second… xx Xxxxxx",
+        "url": "https://lemire.me/blog/2026/10/12/parsing-json-at-tens-of-gigabytes-per-second-in-python/",
+        "publishedAt": "2026-10-12T15:24:45Z",
+        "author": "xxxxxx",
+        "score": "11",
+        "commentCount": "9"
+      },
+      {
+        "id": "0aocct",
+        "title": "xxxx x xx xxx xxxxxxxx x",
+        "url": "https://sebsite.pw/w/20261012-notstdc.html",
+        "publishedAt": "2026-10-12T17:17:18Z",
+        "author": "xxxxx",
+        "score": "15",
+        "commentCount": "1"
+      },
+      {
+        "id": "5feguu",
+        "title": "Xxxxxxxx xx xxx Xxxxxx xxxxxx xx… xxx xxxxx xxxxxxxxxxxxx xxxxxx xxxx xxxxxxx",
+        "url": "https://larstofus.com/2026/10/11/speeding-up-the-unreal-editor-by-not-using-unnecessarily-secure-hash-methods/",
+        "publishedAt": "2026-10-12T18:37:55Z",
+        "author": "xxxx",
+        "score": "14"
+      },
+      {
+        "id": "awjqvn",
+        "title": "Xxxx X'xx xxxx xxxxxx xxxxxx (xx xxxxxxxx)",
+        "url": "https://mei.puppycat.house/w/seeing-261010",
+        "publishedAt": "2026-10-12T17:08:00Z",
+        "author": "xxx",
+        "score": "8",
+        "commentCount": "5"
+      },
+      {
+        "id": "k2natg",
+        "title": "X'm xxxxx, xxx xxx xxxxx xxxx xx xxxxx",
+        "url": "https://itsallaboutthebit.com/i-am-sorry-but-you-still-have-to-think/",
+        "publishedAt": "2026-10-11T18:09:49Z",
+        "author": "xxxxxxxxx",
+        "score": "94",
+        "commentCount": "6"
+      },
+      {
+        "id": "dujxbl",
+        "title": "Xxxx-xxxx XXXX xxxxxxxxxx xx Xxx",
+        "url": "https://lalinsky.com/2026/10/11/type-safe-html-templating-in-zig.html",
+        "publishedAt": "2026-10-12T10:39:10Z",
+        "author": "xxxxx",
+        "score": "23"
+      },
+      {
+        "id": "j30pg4",
+        "title": "Xx Xxxx'x Xxx Xxxxxx-Xxxxxx Xxxx",
+        "url": "https://www.patreon.com/vihart/posts/vi-harts-big-171939430",
+        "publishedAt": "2026-10-13T01:29:49Z",
+        "author": "xxxxxxxx",
+        "score": "3",
+        "commentCount": "1"
+      },
+      {
+        "id": "9zcxev",
+        "title": "3-2-1 Xxxxxx Xxxxxxxx xxxx xxxxxx xxx Xxxxxxxxx X2",
+        "url": "https://chuck.is/paranoid/",
+        "publishedAt": "2026-10-12T04:21:09Z",
+        "author": "xx",
+        "score": "20",
+        "commentCount": "8"
+      },
+      {
+        "id": "qgybwb",
+        "title": "X-Xxx Xxxx",
+        "url": "https://dbushell.com/2026/10/11/d-bus-hell/",
+        "publishedAt": "2026-10-11T20:36:07Z",
+        "author": "xxxxxxx",
+        "score": "113",
+        "commentCount": "25"
+      },
+      {
+        "id": "cjdy6d",
+        "title": "A xxxxxx xxx xxx xx x",
+        "url": "https://prophitt.me/writing/a-modern-web-app-in-c",
+        "publishedAt": "2026-10-12T20:52:08Z",
+        "author": "xxxxxx",
+        "score": "2",
+        "commentCount": "5"
+      },
+      {
+        "id": "zziknb",
+        "title": "Xxxxx Xxxxxxxxxx xx X",
+        "url": "https://eliasebner.com/blog/guides/arena-allocators-in-c/",
+        "publishedAt": "2026-10-11T16:59:58Z",
+        "author": "xxxxxxxxxx",
+        "score": "31",
+        "commentCount": "7"
+      },
+      {
+        "id": "4ehrkn",
+        "title": "X'm xxxxx xxxxxx.. X'm just xxx xxxxxxx xxxx",
+        "url": "https://rachelbythebay.com/w/2026/10/08/idle/",
+        "publishedAt": "2026-10-11T14:44:03Z",
+        "author": "xxx",
+        "score": "183",
+        "commentCount": "46"
+      },
+      {
+        "id": "i1lyv7",
+        "title": "512 xxxxx xx a xxxx: xxxxxxxxxxxxxx XXX x xxxx-xxxx xxxxxxxxx",
+        "url": "https://blog.silentsignal.eu/2026/10/06/512-bytes-at-a-time-reconstructing-IBM-i-save-file-checksums/",
+        "publishedAt": "2026-10-12T18:12:46Z",
+        "author": "xxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "x1ucie",
+        "title": "XXX32 Xx Xxxx Xxxxxxxxx Xx’x Xxxxx Xxxxxxxx Xx-xxxxxxxxx",
+        "url": "https://hackaday.com/2026/10/07/esp32-as-your-raspberry-pis-linux-wireless-co-processor/",
+        "publishedAt": "2026-10-12T18:00:48Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "gr0ptb",
+        "title": "Xx Xxx Xxxxxxxx Xxxx Xxxxxxx xx Xxxxx Xxx",
+        "url": "https://www.youtube.com/watch?v=vIt9xua9bLc",
+        "publishedAt": "2026-10-12T08:27:11Z",
+        "author": "xxxxx",
+        "score": "9",
+        "commentCount": "2"
+      },
+      {
+        "id": "dodzdb",
+        "title": "Xxxxxxxxxx xxxx \"X xxxxx 6 years xxxxxxxxxx a xxxx xx Xxxx xxx xx just xxxxxxx, XXX\" (2024)",
+        "url": "https://gamesbymason.com/blog/2024/6-years-in-rust-ama/",
+        "publishedAt": "2026-10-11T23:28:36Z",
+        "author": "XxxxxxXxx",
+        "score": "23",
+        "commentCount": "7"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "lobste.rs/front",
+      "version": 1,
+      "sha256": "95d4f80647a0a5e9547920b8188bc713f47d4eaec1351bbcae6fd1504a2a8ec0"
+    }
+  ]
+}

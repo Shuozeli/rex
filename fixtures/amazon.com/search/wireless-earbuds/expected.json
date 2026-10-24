@@ -1,0 +1,264 @@
+{
+  "recipe": {
+    "id": "amazon.com/search",
+    "version": 1,
+    "sha256": "89d0bd4594d6fc1edb3a054093a72f5d486932632c7d248a85111e49ac06723f"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.amazon.com/s?k=wireless+earbuds",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:33:13Z",
+  "extractTime": "2026-10-14T02:33:13Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].sponsored",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "amazon.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "wireless earbuds",
+    "items": [
+      {
+        "id": "B0HCTKSSQK",
+        "title": "Xxxxxxxx Xxxxxxx, 2026 Xxxxxxxxx 5.4 Xxxxxxxxxx Xxxx Xxxxxx Xxx Xxxx xxxx Xxxxx Xxxxxxxxxx Xxx, XXX Xxxxxxx in Xxx Xxxxxxxxx 50X Xxxxxxxx Xxx Xxxx, XX7 Xxxxxxxxxx xxx Xxxxxx Xxx Xxxxxx Xxxx Xxxxx",
+        "url": "https://www.amazon.com/Bluetooth-Headphones-Cancelling-Earphones-Waterproof/dp/B0HCTKSSQK",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "934",
+        "image": "https://m.media-amazon.com/images/I/61aSuH86kYL._AC_UY218_.jpg",
+        "rank": 1
+      },
+      {
+        "id": "B0FQFB8FMG",
+        "title": "Xxxxx XxxXxxx Xxx 3 Xxxxxxxx Xxxxxxx xxxx Xxxxxx Xxxxx Xxxxxxxxxxxx",
+        "url": "https://www.amazon.com/Apple-Cancellation-Translation-Headphones-High-Fidelity/dp/B0FQFB8FMG",
+        "price": "199",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "16406",
+        "image": "https://m.media-amazon.com/images/I/61solmQSSlL._AC_UY218_.jpg",
+        "rank": 2
+      },
+      {
+        "id": "B0HFZDN1P6",
+        "title": "XXXXXXXX Xxxxxxxx Xxxxxxx, Xxxxxx Xxxxxxxxx Xxxxxxxxxx, Xxxxx Xxxxxxxxx Xxx Xxxx xxxx 80hr Xxxxxxxx, XXX Xxxxx Xxxxxxx, XXX7 Xxxxxxxxxx Xxxxxxxxx xxx Xxx/Xxxxxxx（Xxx）",
+        "url": "https://www.amazon.com/HAOYUYAN-Bluetooth-Headphones-Waterproof-Workout%EF%BC%88Red%EF%BC%89/dp/B0HFZDN1P6",
+        "price": "24.98",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "1621",
+        "image": "https://m.media-amazon.com/images/I/71jCMLAW8-L._AC_UY218_.jpg",
+        "rank": 3
+      },
+      {
+        "id": "B0H711QDF5",
+        "title": "Xxxxxxxx Xxxxxxx xxxx Xxxxx Xxxxxxxxxxx Xxxx, XX Xxxxx Xxxxxxxxxx Xxx Xxxx",
+        "url": "https://www.amazon.com/Wireless-Earbuds-Smart-Touchscreen-Cancelling/dp/B0H711QDF5",
+        "price": "16.99",
+        "currency": "USD",
+        "rating": 5.0,
+        "reviewCount": "27",
+        "image": "https://m.media-amazon.com/images/I/61EghUaizWL._AC_UY218_.jpg",
+        "rank": 4
+      },
+      {
+        "id": "B09FT58QQP",
+        "title": "XXXX A1 Xxxxxxxx Xxxxxxx Xxxxxxxxx 5.3 Xxxxx Xxxxxx in Xxx Xxxxxxxxxx",
+        "url": "https://www.amazon.com/TOZO-Wireless-Earbuds-Bluetooth-Headphones/dp/B09FT58QQP",
+        "price": "14.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "118078",
+        "image": "https://m.media-amazon.com/images/I/81+4jNKVFgL._AC_UY218_.jpg",
+        "rank": 5
+      },
+      {
+        "id": "B0BTYCRJSS",
+        "title": "Xxxxxxxxx xx Xxxxx X20x Xxxx Xxxxxxxx Xxxxxxx, xxxx Xxx Xxxx, 30X Xxxxxxxx",
+        "url": "https://www.amazon.com/soundcore-Anker-Wireless-Earbuds-Playtime/dp/B0BTYCRJSS",
+        "price": "22.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "116778",
+        "image": "https://m.media-amazon.com/images/I/51Yya2WtvkL._AC_UY218_.jpg",
+        "rank": 6
+      },
+      {
+        "id": "B0HJGMVJ99",
+        "title": "Xxxxxxxx Xxxxxxx, Xxxxx Xxxxxxxxxxx Xxx Xxxx, XXX Xxxxx Xxxxx Xxxxxxxxx 5.4",
+        "url": "https://www.amazon.com/Wireless-Earbuds-Smart-Touchscreen-Bluetooth/dp/B0HJGMVJ99",
+        "price": "15.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "3838",
+        "image": "https://m.media-amazon.com/images/I/61BDguPp4OL._AC_UY218_.jpg",
+        "rank": 7
+      },
+      {
+        "id": "B0CXG87GYK",
+        "title": "XXxx Xx Xxx Xxx+ Xxxx Xxxxxxxx Xxxxxxx, in Xxx Xxxxxxxxxx, Xxxxxxxxx Xxxxxxxxx, 35X Xxxxxxxx Xxx Xxxx, Xxxxxxxxx Xxxxxxx xxxx Xxxxxxxxxx, XXX-X Xxxxxxxx Xxxx, Xxxx Xxxxxxx, XX3 Xxxxx, Xxxxxx",
+        "url": "https://www.amazon.com/JLab-Wireless-Bluetooth-Connection-Signature/dp/B0CXG87GYK",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "26339",
+        "image": "https://m.media-amazon.com/images/I/61RVRSD+nhL._AC_UY218_.jpg",
+        "rank": 8
+      },
+      {
+        "id": "B0CRTR3PMF",
+        "title": "Xxxxxxxxx X30x xx Xxxxx Xxxxx Xxxxxxxxxx Xxxxxxx, Xxxxx-Xxxx Xxxxxxx",
+        "url": "https://www.amazon.com/Soundcore-Cancelling-Powerful-Playtime-Bluetooth/dp/B0CRTR3PMF",
+        "price": "26.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "44106",
+        "image": "https://m.media-amazon.com/images/I/51013C6va8L._AC_UY218_.jpg",
+        "rank": 9
+      },
+      {
+        "id": "B0HJ1M7F9Z",
+        "title": "XXXXXXXX Xxxxxxxx Xxxxxxx, Xxxxxx Xxxxxxxxx Xxxxxxxxxx, 80Hrs Xxxxxxxx Xxx Xxxx xxxx XXX Xxxxx Xxxxxxx, Xxxxx Xxxxxxxxx Xxxxxxx, XXX7 Xxxxxxxxxx Xxxxxxxxx xxx Xxxxxxx/Xxxxxxx（Xxxx Xxxx）",
+        "url": "https://www.amazon.com/HAOYUYAN-Bluetooth-Headphones-Waterproof-Running%EF%BC%88Rose/dp/B0HJ1M7F9Z",
+        "price": "23.98",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "1621",
+        "image": "https://m.media-amazon.com/images/I/61oiMqY0BDL._AC_UY218_.jpg",
+        "rank": 10
+      },
+      {
+        "id": "B0HC6XSLMG",
+        "title": "Xxxx Xxx Xxxxxxxx Xxxxxxx Xxxxxxxxx Xxxxxxxxxx, 80X Xxxxxxxx Xxxxxx Xxx Xxxx xxxx XXX Xxxxx Xxxxxxxxxx, Xxxx Xxxxxxxx, XXX7 Xxxxxxxxxx Xxxxxx Xxxxxxxxx xxxx Xxxxxxx xxx Xxxxxxx/Xxxxxxxx (Xxxxx)",
+        "url": "https://www.amazon.com/Bluetooth-Headphones-Cancelling-Waterproof-Earphones/dp/B0HC6XSLMG",
+        "price": "26.98",
+        "currency": "USD",
+        "rating": 5.0,
+        "reviewCount": "48",
+        "image": "https://m.media-amazon.com/images/I/71XjXt2R1lL._AC_UY218_.jpg",
+        "rank": 11
+      },
+      {
+        "id": "B09ZYDRRK2",
+        "title": "XXXX A1 Xxxxxxxx Xxxxxxx Xxxxxxxxx 5.3 Xxxxx Xxxxxx in Xxx Xxxxxxxxxx",
+        "url": "https://www.amazon.com/TOZO-A1-Light-Weight-Headphones-Microphone/dp/B09ZYDRRK2",
+        "price": "16.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "118078",
+        "image": "https://m.media-amazon.com/images/I/616qqrB-8JL._AC_UY218_.jpg",
+        "rank": 12
+      },
+      {
+        "id": "B0HDB173YV",
+        "title": "Xxxxxxxx Xxxxxxx, Xxxxxxxxx 5.3 Xxxxxxxxxx XxXx Xxxxxx 50X Xxxxxxxx XXX Xxxxxxx Xxxxxxx Xxx Xxxx xxxx XXX Xxxxx Xxxxxxxxx Xxxxxxx, XXX7 Xxxxxxxxxx Xxxxxxxxx xxx Xxx/Xxxxxxx/Xxxx（Xxxxx）",
+        "url": "https://www.amazon.com/Fhumsh-Bluetooth-Headphones-Waterproof-Work%EF%BC%88White%EF%BC%89/dp/B0HDB173YV",
+        "price": "19.97",
+        "currency": "USD",
+        "rating": 4.9,
+        "reviewCount": "123",
+        "image": "https://m.media-amazon.com/images/I/61P4QAI28CL._AC_UY218_.jpg",
+        "rank": 13
+      },
+      {
+        "id": "B09DT48V16",
+        "title": "XXXXX Xxxxxxxxx Xxxxxxxxxx Xxxx Xxxxxxxx Xxxxxxx 60X Xxxxxxxx XXX Xxxxx Xxxxxxx Xxxxxxxxx xxxx Xxxxxxxx Xxxxxxxx Xxxx XXX5 Xxxxxxxxxx in-Xxx Xxx xxxx xxxx Xxx xxx XX Xxxxx Xxxxx Xxxxxx Xxxxxxxx Xxxxxx",
+        "url": "https://www.amazon.com/TAGRY-Bluetooth-Headphones-Earphones-Waterproof/dp/B09DT48V16",
+        "price": "25.98",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "89377",
+        "image": "https://m.media-amazon.com/images/I/61uEvVoizoL._AC_UY218_.jpg",
+        "rank": 14
+      },
+      {
+        "id": "B0HJB69GJL",
+        "title": "Xxxxx XxxXxxx 5 Xxxxxxxx Xxxxxxx xxxx Xxxxxx Xxxxx Xxxxxxxxxxxx",
+        "url": "https://www.amazon.com/Apple-AirPods-Wireless-Earbuds-Cancellation/dp/B0HJB69GJL",
+        "price": "129",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "198",
+        "image": "https://m.media-amazon.com/images/I/618C8GA55KL._AC_UY218_.jpg",
+        "rank": 15
+      },
+      {
+        "id": "B0DN45YMP6",
+        "title": "XXX Xxxx Xxxx 2 - Xxxxx Xxxxxxxxxx Xxxxxxx - Xxxxx",
+        "url": "https://www.amazon.com/JBL-Vibe-Beam-Cancelling-Technology/dp/B0DN45YMP6",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "7628",
+        "image": "https://m.media-amazon.com/images/I/618f5yBk26L._AC_UY218_.jpg",
+        "rank": 16
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "amazon.com/search",
+      "version": 1,
+      "sha256": "89d0bd4594d6fc1edb3a054093a72f5d486932632c7d248a85111e49ac06723f"
+    }
+  ]
+}

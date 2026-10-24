@@ -1,0 +1,82 @@
+{
+  "recipe": {
+    "id": "apps.apple.com/app",
+    "version": 1,
+    "sha256": "7d2c7f53f71561df31166cda487732ad1a3b234c6ff240a1cf3078d0016af478"
+  },
+  "schema": "rex.schema.app.v1.App",
+  "url": "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T05:25:11Z",
+  "extractTime": "2026-10-15T05:25:11Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "developer.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "developer.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "platforms",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "apps.apple.com/app@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "apps.apple.com/app@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.app.v1.App",
+    "id": "id324684580",
+    "name": "Xxxxxxx: Xxxxx xxx Xxxxxxxx",
+    "developer": {
+      "name": "Xxxxxxxxx Xxxxxxx",
+      "url": "https://apps.apple.com/us/developer/spotify/id324684583"
+    },
+    "platforms": [
+      "iOS"
+    ],
+    "rating": 4.8,
+    "ratingCount": "43000000",
+    "url": "https://apps.apple.com/us/app/spotify-music-and-podcasts/id324684580"
+  },
+  "chain": [
+    {
+      "id": "apps.apple.com/app",
+      "version": 1,
+      "sha256": "7d2c7f53f71561df31166cda487732ad1a3b234c6ff240a1cf3078d0016af478"
+    },
+    {
+      "id": "generic/app.v1",
+      "version": 1,
+      "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+    }
+  ]
+}

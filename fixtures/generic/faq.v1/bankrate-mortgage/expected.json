@@ -1,0 +1,61 @@
+{
+  "recipe": {
+    "id": "generic/faq.v1",
+    "version": 1,
+    "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+  },
+  "schema": "rex.schema.faq.v1.FaqPage",
+  "url": "https://www.bankrate.com/mortgages/mortgage-rates/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:48:03Z",
+  "extractTime": "2026-10-14T05:48:03Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/faq.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/faq.v1@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/faq.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.faq.v1.FaqPage",
+    "title": "Xxxxxxxx Xxxxx: Xxxxxxx Today'x Xxxxx | Xxxxxxxx",
+    "url": "https://www.bankrate.com/mortgages/mortgage-rates/",
+    "items": [
+      {
+        "question": "Xxx xxxx a xxxxxxxx xxxx?",
+        "answer": "A xxxxxxxx is a xxxx xxxx a xxxx xx xxxxx xxxxxxxxx xxxxxxxxxxx xxxx xxxxx a xxxxxxxx xxxxxxxx a xxxx. Xxx xxxxxxxxxx xxx xxx xxxx is xxx xxxx xxxxxx — xxxx xxxxx xx xxx xxxxxxxx xxxxx’t xxxx xxxxx xxxxxxx xxxxxxxx xxx xxxxxxxx xx xxx xxxx, xxx xxxxxx xxx xxxx xxx xxxx xxx xxxxxx xxx xxxxx. A xxxxxxxx xxxx is xxxxxxxxx a xxxx-xxxx xxxx xxxxx out xxx 30, 20 xx 15 years. Xxxx xxxx xxxx (xxxxx xx xxx xxxx’x “xxxx”), xxx’xx xxxxx xxxx xxx xxxxxx xxx xxxxxxxx xx xxxx xx xxx xxxxxxxx xxxxxxx xxx xxx xxxx. Xxxxx xxxx: Xxxx is a xxxxxxxx?"
+      },
+      {
+        "question": "Xxxxxx xxx xxxx in xxxx xxxxxxxx xxxx?",
+        "answer": "A xxxxxxxx xxxx xxxx xxxxxxxxxx — with a xxx xxxxxxxxxx — xxxx xxx xxxxxxxx xxxx xxxxxxx to xxx xxxx xxxxxx available xxx a xxx xxxxxx of xxxx. With a xxxx, xxx xxx’t xxxx to xxxxx xx xxxxxx xxxxx xx xx xxxxxxx xxx xxxx xxx xxxx a xxxx xxx xxxxx xxx xxxx. Xxxx xxxxxxx xxxxx a 30- to 45-day xxxx xxxx xxxx of xxxxxx; xxxxx, xxx xxx xxx a xxx to xxxxxx xxx xxxx xxxxxx. Xxxx xxxxxxx xxxx xxxxx a “xxxxx xxxx” xxxxxx, xxxxx xxxxxx xxx to xxxxx xxxx xxxxxx xxxx xx xxxxxxxxxx xxxxx xxxx — xxxxxx xxx’xx xxxxxx xxxx to xxx a xxx xxx xxxx xxxx, xxx.Xxxxx xxxx: Xxxx is a xxxxxxxx xxxx xxxx?"
+      },
+      {
+        "question": "Xxx xxxx xxx xxxxxxx xxxxx xx a xxxxxxxx?",
+        "answer": "Xxx xxxxxxx xxxxx xx a xxxxxxxx xxxxxxxxx xxx of xxx xxxx xxxxxxxxxx with xxx xxxx, xxxxxxxxx xxxxxx xxxx, like xxx xxxxxxxxxxx xxx — xxxxx xxxxxxxxx xxxxxx 1% of xxx xxxx xxxxxxxxx — xxx xxxxxxxx points. Xxxxxxx xxxxx xxxx xxxxxxx xxxxx-xxxxx xxxx, like xxx xxxx of xx xxxxxxxxx xxx xxxxx xxxxxxxxx. Xxx xxxx, xxxxx xxxxxxx xxx xxxxxxxx xxxx 2% to 5% of xxx xxxxxx xxx’xx xxxxxxxxx, xxxxx xxx xxxxxx xxxx xxxx xxxxxxx.Xxxxx xxxx: Xxxxxxxx xxxxxxx xxxxx"
+      },
+      {
+        "question": "Xxx xxx xxx xxxx xxxxxxxx xxxxxxx?",
+        "answer": "Xxx answer xxxx xx xxxxxxxxx xxx xxxx xxxxxxxxxx xxxxxxxx. Xx’x xxxxxxx to xxxxxxxxxx xxxx: Xx xxxx xxxxxxxx, xxxx xxxxxx reviews xxx xxx’t xxxxxxxxxxxxx xxxxxxxxx a xxxxxx just xxxxxxx xxx’xx xxxxx xxxxx of xx xxxxxx. Xx xxx xxxx xxxxx, xxx xxxxxxx’t xxxxxx xxx just xxxxxxx xx’x a xxx xxxx xxxxx. Xxx xxxx xxxxxx xxx xxx xxxx xx xxx xxx xxxx xxxxxx xxx xxxx xxxxxxxxxxx of xxx xxxxxx APR, xxxxx xxxx xxxx xxxx xxxxx xxx xxxxxxxxxx xxx xxxxxxx customer xxxxxxx. Xxxxxxxx’x xxxx of xxx xxxx xxxxxxxx xxxxxxx in 2026 is a xxxx xxxxxxxx point."
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "generic/faq.v1",
+      "version": 1,
+      "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+    }
+  ]
+}

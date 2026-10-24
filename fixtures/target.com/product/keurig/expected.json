@@ -1,0 +1,108 @@
+{
+  "recipe": {
+    "id": "target.com/product",
+    "version": 2,
+    "sha256": "f0c11a8c373d778b6ae239004d0dc5b29b34b58df21d62170d72b34f1c95c898"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.target.com/p/keurig-k-mini-mate-single-serve-k-cup-pod-coffee-maker/-/A-94469594",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:45:03Z",
+  "extractTime": "2026-10-14T04:45:03Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "features",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "breadcrumbs",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/product@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "94469594",
+    "title": "Xxxxxx X-Xxxx Xxxx Xxxxxx-Xxxxx X-Xxx Xxx Xxxxxx Xxxxx Xxxxx",
+    "brand": "Xxxx xxx Xxxxxx",
+    "rating": 4.1,
+    "reviewCount": "1171",
+    "images": [
+      "https://target.scene7.com/is/image/Target/GUEST_eeb3b418-73b3-4436-a7e9-e46623d3887c",
+      "https://target.scene7.com/is/image/Target/GUEST_1e5bc027-f3d3-43d5-b75c-6ae884e517bc",
+      "https://target.scene7.com/is/image/Target/GUEST_51c3aa41-d686-4f3a-91d8-132ee8b7285a",
+      "https://target.scene7.com/is/image/Target/GUEST_8e9dca2b-4c00-4629-97df-2350fd1e9bb7",
+      "https://target.scene7.com/is/image/Target/GUEST_b8151f06-27f5-4b34-bc11-b6c622a5aa27",
+      "https://target.scene7.com/is/image/Target/GUEST_11777f75-6c51-46c5-b761-3be480fb13fa"
+    ],
+    "features": [
+      "XXXXX XXXXX XXXXX: Xxxxxxx xx 4\" xxxx xxx xxxxxxx xxx xxxxxxx xxx of xxxxxx in xxxxx xxxxxxxx, xxxx xxxxx, xxxxxxx, xxx xxxxxxxx with xxxxxxx xxxxx.",
+      "12 XX XXX: Xxxxxxxx a Xxx Xxx xxxxxxxxx xxx a xxxxxxx xxxxxx xxx, xx to 12 xx.",
+      "XXXXXX XXX XXXXXXXX: Xxxx xx to a 7.25” to-xx xxxxxx xxx xx xxx xxx xxxx xxx xx!",
+      "XXXXX & XXXXXX: Xxxxxxxxx a xxxxx, xxxxxxx xxxxxx xxxx xxxxxx with xxxx xxxxxxxxx.",
+      "XXXXXXXX XXXXXX: Available in xxxxxxxxx xxxxxx xxxx xxxxx xxxx xxxxx. *Xxx xxx xxxxxxxx*"
+    ],
+    "breadcrumbs": [
+      "Xxxxxxx & Xxxxxx",
+      "Xxxxxxx Xxxxxxxxxx",
+      "Xxxxxx & Xxxxxxxx Xxxxxx",
+      "Xxxxxx-Xxxxx Xxxxxxx"
+    ],
+    "url": "https://www.target.com/p/keurig-k-mini-mate-single-serve-k-cup-pod-coffee-maker/-/A-94469594",
+    "description": "Xxx Xxxxxx X-Xxxx Xxxx Xxxxxx Xxxxx Xxxxxx Xxxxx is xxxx xxx xxxxxx with xxx xxxxxx in xx xxxxxxxxxxxx xxxxx xxxxxxx. Xxx’t xxx xxx xxxx xxxx xxx – xxxx xxxxxx, xxxxxxx xxxxxxxx xxxxxx is a xxx-xxx xxxxxx xxxxx xxxx xxxxx xxx xxxxxxx xxxxxxx xxx. Xxxxxxxx with xxx xxxx xxxxxxx xxxxxxxxxx xx xxxx xxxxxx Xxxxxx xxxxxx xxxxxxxx, xxxx xxxx xxxxxx xxxxxxxxx xxxxx a xxx xx to 12xx with xxx xxxxxx xxx xxxx xxxx xxx of xxx xxxxxxxx of X-Xxx xxx xxxxxxxxx. Xx just 4\" xxxx, xx'x xxx xxxxxxxx Xxxxxx xxxxxx xxxx, xxxxxx xx a xxxxx xxxxx-xxxxx xxxx xx xxxxx to xxxx xxxxx xxx. Xxxxxxx xxx xxxxx xxxxxxxx, xxxx xxxxx, xxx xxxx xxxxxxxxxx, xxx X-Xxxx Xxxx xxxxxx’x xxxxxxx xxxxxx xxxxx xx xxx xxx xxxxxx xxxxxxxx xxx xxxxx xxxx to xxxxx xx. Xxxxxxx xxx’xx xx xxxx xx just xxxx to xxxx xxxxxxxxx xxxx like xxxx, xxx X-Xxxx Xxxx xxxxxx is xxxx xxxxxxx xxxxxx xxxxxxxxx. Just xxxx xx in xxx xxx’xx xxxx xxx xxxxxxxxxxx xxx xxxxxx xxxxxxx xxx xxxx xxxxx Xxxxxx xxxxxxx.*Xxx xxx xxxxxxxx*"
+  },
+  "chain": [
+    {
+      "id": "target.com/product",
+      "version": 2,
+      "sha256": "f0c11a8c373d778b6ae239004d0dc5b29b34b58df21d62170d72b34f1c95c898"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

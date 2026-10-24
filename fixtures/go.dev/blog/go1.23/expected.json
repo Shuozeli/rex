@@ -1,0 +1,84 @@
+{
+  "recipe": {
+    "id": "go.dev/blog",
+    "version": 1,
+    "sha256": "8c6313457b02a2b783876ed6bd864498a4047cfda55d167f00cd2dc23bcc0ce1"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://go.dev/blog/go1.23",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T04:49:21Z",
+  "extractTime": "2026-10-13T04:49:21Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "go.dev/blog@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://go.dev/blog/go1.23",
+    "title": "Xx 1.23 xx xxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxxxxxxx"
+      }
+    ],
+    "publishedAt": "2024-08-13T00:00:00Z",
+    "summary": "Xx 1.23 xxxx xxxxxxxxx, xxxxxxxxx xxxx xxxxxxxxxxxx, xxxxxxxx xxxxxxxxxxxxx, xxx xxxx.",
+    "image": "https://go.dev/doc/gopher/gopher5logo.jpg",
+    "bodyHtml": "<p>Today xxx Xx xxxx xx xxxxx xx xxxxxxx Xx 1.23,\nxxxxx xxx xxx xxx xx xxxxxxxx xxx <a href=\"https://go.dev/dl/\">xxxxxxxx xxxx</a>.</p>\n<p>Xx xxx xxxxxxx xxxx Xx 1.22 xx Xx 1.21 xxxxxxxxx xx xxxx xxxxxxx,\nxxx xxx xxxx xxx <code>xx xxx xxxxxxxxx@xx1.23.0</code> xx xx xxxxxxxx xxxxxx.\nXxxx xxxx xxxxxxxx xxx xxx xxxxxxxxx xxx xxx xxx xxxxx xxxxx xx\nxx xxxx xxxxxx xxxxx xxxx. Xx xxxx xxxxx point, xxx xxx xxxxxx xx\nxxxx <code>xx xxx xx@1.23.0</code> xxxx xxx’xx xxxxx xx xxxxx xxxxxx xx Xx 1.23\nxxx xxxx xxxx xx xxxx xxxxxx’x xxxxxxx xxxxxxxx Xx xxxxxxx.\nXxx <a href=\"https://go.dev/doc/toolchain#get\">Xxxxxxxx Xx xxxxxxx xxxxxx xxxxxxxxxxxx xxxx xx xxx</a>\nxxx xxxx xxxxxxxxxxx xx xxxx xxxxxxxxxxxxx.</p>\n<p>Xx 1.23 xxxxx xxxx xxxx xxxxxxxxxxxx xxxx Xx 1.22. Xxxx xx xxx xxxxxxxxxx xxxxxxx:</p>\n<h2>Xxxxxxxx xxxxxxx</h2>\n<ul>\n<li>\n\n<p>Xxxxx xxxxxxxxxxx xx a “xxx-xxxxx” xxxx may now xx xxxxxxxx xxxxxxxxx,\nxxxx xx <code>xxxx(xxxx(X) xxxx)</code>.\nXxxx xxxxxxxx xxxx-xxxxxxx xxxxxxxxx xxxx xxxxxxxxx xxxxxxxxx.\nXxxxx xxx xxxxxxx xxxxxxxxx xx xxx xxxxxxxx <code>xxxxxx</code> xxx <code>xxxx</code>\nxxxxxxxx xxxx xxxx xxxx xxxxxxxxx, xx xxxx xx a xxx <code>xxxx</code> xxxxxxx.\nXx xx xxxxxxx, xx xxx xxxx xx xxxxxxx xxx xxxx xx a xxx <code>m</code> xxxx a xxxxx\nxxx xxxx xxxx xxx xxxxxx, xxx xxx xx xxxx xx Xx 1.23 xxxx <code>xxxxxx.Xxxxxx(xxxx.Xxxx(m))</code>.</p>\n<p>Xx 1.23 xxxx xxxxxxxx xxxxxxx xxxxxxx xxx xxxxxxx xxxx xxxxxxx.</p>\n<p>Xxxx xxxx xxxxx <a href=\"https://go.dev/doc/go1.23#language\">xxxxxxxx xxxxxxx</a> xxx <a href=\"https://go.dev/doc/go1.23#iterators\">xxxxxxxxx</a>\nxx xxx xxxxxxx xxxxx.</p>\n</li>\n</ul>\n<h2>Xxxx xxxxxxxxxxxx</h2>\n<ul>\n<li>\n\nXxxxxxxx xxxx Xx 1.23, xx’x xxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxxxxx xxxxx xxx xxxxxxxx\nxxxxxxxxxx xx xxxx xxxxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxx, xxx xxx xxxx xx xx xxxxxxx.\nXxxx xx Xx xxxxxxxxx, xx <em>xxx-xx xxxxxx</em>. Xxxxxx xxxxxxxx xxxxxx xx xx xxxx xx xxxx Xx\nxxxxxxx xxxx xxx xxxxxx xxxxxxxxxx Xx xxxxx.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#telemetry\">Xx xxxxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n<li>Xxx <code>xx</code> xxxxxxx xxx xxx xxxxxxxxxxxx. Xxx xxxxxxx, xxxxxxx <code>xx xxx -xxxxxxx</code> xxxxx xx xxxxxx xx\nxxx xxxx xxxxx xxxxxxxx xxxxx xxxxxxxxx xxxxx xxxxxxx xxxx xxx xxxxxxx xxxxx, xxx\n<code>xx xxx xxxx -xxxx</code> xxxxx xxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxx xx.xxx xxx xx.xxx xxxxx\nxxxxxxx xxxxxxxxx xxxx.\nXxxx xxxx xx xxx <a href=\"https://go.dev/doc/go1.23#go-command\">Xx xxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n<li>Xxx <code>xx xxx</code> xxxxxxxxxx now xxxxxxx xxxxxxx xxxx xxx xxx xxx xxx xxx xxxxxxxx Xx xxxxxxx.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#tools\">xxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n</ul>\n<h2>Xxxxxxxx xxxxxxx xxxxxxxxxxxx</h2>\n<ul>\n<li>Xx 1.23 xxxxxxxx xxx xxxxxxxxxxxxxx xx <code>xxxx.Xxxxx</code> xxx <code>xxxx.Xxxxxx</code>.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#timer-changes\">xxxxx xxxxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n<li>Xxxxx xxx a xxxxx xx 3 xxx xxxxxxxx xx xxx Xx 1.23 xxxxxxxx xxxxxxx: <code>xxxx</code>, <code>xxxxxxx</code>, xxx <code>xxxxxx</code>.\nXxxxxxx <code>xxxx</code> xx xxxxxxxxx xxxxx.\nXxxxxxx <code>xxxxxxx</code> xxxxxxx xxxxxx xxxxx xx xxxxxx xxx xxxxxxxxxx xx a xxxxxx.\nXxxxxxx <code>xxxxxx</code> xxxxxxxx xxxxxxxxxx xxx xxxxxxxxxxxxxx (“xxxxxxxxx”) xxxxxxxxxx\nxxxxxx.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#new-unique-package\">xxx xxxxxxxx xxxxxxx xxxxxxxx</a>\nxx xxx xxxxxxx xxxxx.</li>\n<li>Xxxxx xxx xxxx xxxxxxxxxxxx xxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxx xxxxxxxxxx\nxx xxx <a href=\"https://go.dev/doc/go1.23#minor_library_changes\">xxxxx xxxxxxx xx xxx xxxxxxx</a>\nxxxxxxx xx xxx xxxxxxx xxxxx.\nXxx “Xx, Xxxxxxxxx Xxxxxxxxxxxxx, xxx XXXXXXX” xxxxxxxxxxxxx\nxxxxxxxxxx <a href=\"https://go.dev/doc/godebug#go-123\">xxx xx Xx 1.23 XXXXXXX xxxxxxxx</a>.</li>\n<li>\n\nXx 1.23 xxxxxxxx xxx xxx <code>xxxxxxx</code> xxxxxxxxx xx <code>xx.xxx</code> xxx <code>xx.xxxx</code> xxxxx xx\nxxxxx xxxxxxxx xxxxxxx xx xxx xxxxxxx XXXXXXXx xxx xxx “xx” xxxxxxxxx xx <code>xx.xxx</code>,\nxx xxxxxxxx xx <code>//xx:xxxxx</code> xxxxxxxxx comments xxxx xxxxxxxxx xxx xxxxxxxx ago (Xx 1.21).\nXxx xxx xxxxxxx xxxxxxxxxxxxx xx <a href=\"https://go.dev/doc/godebug#default\">Xxxxxxx XXXXXXX Xxxxxx</a>.</li>\n</ul>\n<h2>Xxxx xxxxxxxxxxxx xxx xxxxxxx</h2>\n<ul>\n<li>Xx 1.23 xxxx xxxxxxxxxxxx xxxxxxx xxx XxxxXXX xx 64-xxx XXXX-X (<code>xxxxxxx/xxxxx64</code>).\nXxxxx xxx xxxxxxx xxxxx xxxxxxx xxxxxxxx xx Xxxxx, xxxXX, XXX64, XXXX-X, xxx XXXX.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#ports\">xxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n<li>Xxxxx xxxx xxxx xxxxx xxxxxxx-xxxxxx xxxxxxxxxxxx (XXX) xx xxxxxxx, xxx xxxxxxxxxxx\nxxxx XXX xx 386 xxx xxx64 xxxxxxxxxxxxx xx xxxxxxxx.\nXxxx xxxx xx <a href=\"https://go.dev/doc/go1.23#runtime\">xxxxxxx, xxxxxxxx, xxx xxxxxx</a> xx xxx xxxxxxx xxxxx.</li>\n</ul>\n<p>Xx xxxxxxxxx xxxxxxxx xx xxxx xxx <a href=\"https://go.dev/doc/go1.23\">Xx 1.23 xxxxxxx xxxxx</a> xxx xxx\nxxxxxxxx xxx xxxxxxxx xxxxxxxxxxx xx xxxxx xxxxxxx, xxx xxxxxxxxxx xxxx xxxx’x\nxxx xx Xx 1.23.</p>\n<p>Xxxx xxx xxxx xxx weeks, xxxx xxx xxx xxxxxx-xx xxxx xxxxx xxxx xxxx xx xx xxxx xxxxx\nxx xxxx xx xxx xxxxxx xxxxxxxxx xxxx, xxxxxxxxx “xxxxx-xxxx-xxxx”, xxx xxx <code>xxxxxx</code> xxxxxxx,\nXx 1.23 xxxxx xxxxxxxxxxxxxx xxxxxxx, xxx xxxx.</p>\n<hr>\n<p>Xxxxx xxx xx xxxxxxxx xxx xxxxxxxxxxx xx xxxx xxxxxxx xx xxxxxxx xxxx xxx\nxxxxxxxxxxxxx, xxxxxxxxx xxxx, xxxxxxx xxxxxxxx, xxx xxxxxxx xxx xxxxxxx\nxxxxxxxxxx. Xxxx xxxxxxx xxxxxx xx xxxxxx xxxx Xx 1.23 xx xx xxxxxx xx xxxxxxxx.\nXx xxxxxx, xx xxx xxxxxx xxx xxxxxxxx, xxxxxx <a href=\"https://go.dev/issue/new\">xxxx xx xxxxx</a>.</p>\n<p>Xxxxx Xx 1.23!</p>",
+    "bodyText": "Today xxx Xx xxxx xx xxxxx xx xxxxxxx Xx 1.23, xxxxx xxx xxx xxx xx xxxxxxxx xxx xxxxxxxx xxxx.\n\nXx xxx xxxxxxx xxxx Xx 1.22 xx Xx 1.21 xxxxxxxxx xx xxxx xxxxxxx, xxx xxx xxxx xxx xx xxx xxxxxxxxx@xx1.23.0 xx xx xxxxxxxx xxxxxx. Xxxx xxxx xxxxxxxx xxx xxx xxxxxxxxx xxx xxx xxx xxxxx xxxxx xx xx xxxx xxxxxx xxxxx xxxx. Xx xxxx xxxxx point, xxx xxx xxxxxx xx xxxx xx xxx xx@1.23.0 xxxx xxx’xx xxxxx xx xxxxx xxxxxx xx Xx 1.23 xxx xxxx xxxx xx xxxx xxxxxx’x xxxxxxx xxxxxxxx Xx xxxxxxx. Xxx Xxxxxxxx Xx xxxxxxx xxxxxx xxxxxxxxxxxx xxxx xx xxx xxx xxxx xxxxxxxxxxx xx xxxx xxxxxxxxxxxxx.\n\nXx 1.23 xxxxx xxxx xxxx xxxxxxxxxxxx xxxx Xx 1.22. Xxxx xx xxx xxxxxxxxxx xxxxxxx:\n\nXxxxxxxx xxxxxxx\n\nXxxxx xxxxxxxxxxx xx a “xxx-xxxxx” xxxx may now xx xxxxxxxx xxxxxxxxx, xxxx xx xxxx(xxxx(X) xxxx). Xxxx xxxxxxxx xxxx-xxxxxxx xxxxxxxxx xxxx xxxxxxxxx xxxxxxxxx. Xxxxx xxx xxxxxxx xxxxxxxxx xx xxx xxxxxxxx xxxxxx xxx xxxx xxxxxxxx xxxx xxxx xxxx xxxxxxxxx, xx xxxx xx a xxx xxxx xxxxxxx. Xx xx xxxxxxx, xx xxx xxxx xx xxxxxxx xxx xxxx xx a xxx m xxxx a xxxxx xxx xxxx xxxx xxx xxxxxx, xxx xxx xx xxxx xx Xx 1.23 xxxx xxxxxx.Xxxxxx(xxxx.Xxxx(m)).\n\nXx 1.23 xxxx xxxxxxxx xxxxxxx xxxxxxx xxx xxxxxxx xxxx xxxxxxx.\n\nXxxx xxxx xxxxx xxxxxxxx xxxxxxx xxx xxxxxxxxx xx xxx xxxxxxx xxxxx.\n\nXxxx xxxxxxxxxxxx\n\nXxxxxxxx xxxx Xx 1.23, xx’x xxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxxxxx xxxxx xxx xxxxxxxx xxxxxxxxxx xx xxxx xxxxxxxxxx xxx xxx Xx xxxxxxxxx xx xxxx, xxx xxx xxxx xx xx xxxxxxx. Xxxx xx Xx xxxxxxxxx, xx xxx-xx xxxxxx. Xxxxxx xxxxxxxx xxxxxx xx xx xxxx xx xxxx Xx xxxxxxx xxxx xxx xxxxxx xxxxxxxxxx Xx xxxxx. Xxxx xxxx xx Xx xxxxxxxxx xx xxx xxxxxxx xxxxx.\n\nXxx xx xxxxxxx xxx xxx xxxxxxxxxxxx. Xxx xxxxxxx, xxxxxxx xx xxx -xxxxxxx xxxxx xx xxxxxx xx xxx xxxx xxxxx xxxxxxxx xxxxx xxxxxxxxx xxxxx xxxxxxx xxxx xxx xxxxxxx xxxxx, xxx xx xxx xxxx -xxxx xxxxx xxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxx xx.xxx xxx xx.xxx xxxxx xxxxxxx xxxxxxxxx xxxx. Xxxx xxxx xx xxx Xx xxxxxxx xx xxx xxxxxxx xxxxx.\n\nXxx xx xxx xxxxxxxxxx now xxxxxxx xxxxxxx xxxx xxx xxx xxx xxx xxx xxxxxxxx Xx xxxxxxx. Xxxx xxxx xx xxxxx xx xxx xxxxxxx xxxxx.\n\nXxxxxxxx xxxxxxx xxxxxxxxxxxx\n\nXx 1.23 xxxxxxxx xxx xxxxxxxxxxxxxx xx xxxx.Xxxxx xxx xxxx.Xxxxxx. Xxxx xxxx xx xxxxx xxxxxxx xx xxx xxxxxxx xxxxx.\n\nXxxxx xxx a xxxxx xx 3 xxx xxxxxxxx xx xxx Xx 1.23 xxxxxxxx xxxxxxx: xxxx, xxxxxxx, xxx xxxxxx. Xxxxxxx xxxx xx xxxxxxxxx xxxxx. Xxxxxxx xxxxxxx xxxxxxx xxxxxx xxxxx xx xxxxxx xxx xxxxxxxxxx xx a xxxxxx. Xxxxxxx xxxxxx xxxxxxxx xxxxxxxxxx xxx xxxxxxxxxxxxxx (“xxxxxxxxx”) xxxxxxxxxx xxxxxx. Xxxx xxxx xx xxx xxxxxxxx xxxxxxx xxxxxxxx xx xxx xxxxxxx xxxxx.\n\nXxxxx xxx xxxx xxxxxxxxxxxx xxx xxxxxxxxx xx xxx xxxxxxxx xxxxxxx xxxxxxxxxx xx xxx xxxxx xxxxxxx xx xxx xxxxxxx xxxxxxx xx xxx xxxxxxx xxxxx. Xxx “Xx, Xxxxxxxxx Xxxxxxxxxxxxx, xxx XXXXXXX” xxxxxxxxxxxxx xxxxxxxxxx xxx xx Xx 1.23 XXXXXXX xxxxxxxx.\n\nXx 1.23 xxxxxxxx xxx xxx xxxxxxx xxxxxxxxx xx xx.xxx xxx xx.xxxx xxxxx xx xxxxx xxxxxxxx xxxxxxx xx xxx xxxxxxx XXXXXXXx xxx xxx “xx” xxxxxxxxx xx xx.xxx, xx xxxxxxxx xx //xx:xxxxx xxxxxxxxx comments xxxx xxxxxxxxx xxx xxxxxxxx ago (Xx 1.21). Xxx xxx xxxxxxx xxxxxxxxxxxxx xx Xxxxxxx XXXXXXX Xxxxxx.\n\nXxxx xxxxxxxxxxxx xxx xxxxxxx\n\nXx 1.23 xxxx xxxxxxxxxxxx xxxxxxx xxx XxxxXXX xx 64-xxx XXXX-X (xxxxxxx/xxxxx64). Xxxxx xxx xxxxxxx xxxxx xxxxxxx xxxxxxxx xx Xxxxx, xxxXX, XXX64, XXXX-X, xxx XXXX. Xxxx xxxx xx xxxxx xx xxx xxxxxxx xxxxx.\n\nXxxxx xxxx xxxx xxxxx xxxxxxx-xxxxxx xxxxxxxxxxxx (XXX) xx xxxxxxx, xxx xxxxxxxxxxx xxxx XXX xx 386 xxx xxx64 xxxxxxxxxxxxx xx xxxxxxxx. Xxxx xxxx xx xxxxxxx, xxxxxxxx, xxx xxxxxx xx xxx xxxxxxx xxxxx.\n\nXx xxxxxxxxx xxxxxxxx xx xxxx xxx Xx 1.23 xxxxxxx xxxxx xxx xxx xxxxxxxx xxx xxxxxxxx xxxxxxxxxxx xx xxxxx xxxxxxx, xxx xxxxxxxxxx xxxx xxxx’x xxx xx Xx 1.23.\n\nXxxx xxx xxxx xxx weeks, xxxx xxx xxx xxxxxx-xx xxxx xxxxx xxxx xxxx xx xx xxxx xxxxx xx xxxx xx xxx xxxxxx xxxxxxxxx xxxx, xxxxxxxxx “xxxxx-xxxx-xxxx”, xxx xxx xxxxxx xxxxxxx, Xx 1.23 xxxxx xxxxxxxxxxxxxx xxxxxxx, xxx xxxx.\n\nXxxxx xxx xx xxxxxxxx xxx xxxxxxxxxxx xx xxxx xxxxxxx xx xxxxxxx xxxx xxx xxxxxxxxxxxxx, xxxxxxxxx xxxx, xxxxxxx xxxxxxxx, xxx xxxxxxx xxx xxxxxxx xxxxxxxxxx. Xxxx xxxxxxx xxxxxx xx xxxxxx xxxx Xx 1.23 xx xx xxxxxx xx xxxxxxxx. Xx xxxxxx, xx xxx xxxxxx xxx xxxxxxxx, xxxxxx xxxx xx xxxxx.\n\nXxxxx Xx 1.23!"
+  },
+  "chain": [
+    {
+      "id": "go.dev/blog",
+      "version": 1,
+      "sha256": "8c6313457b02a2b783876ed6bd864498a4047cfda55d167f00cd2dc23bcc0ce1"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

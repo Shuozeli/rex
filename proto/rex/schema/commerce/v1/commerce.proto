@@ -1,0 +1,92 @@
+// rex.schema.commerce.v1: shop pages. Product is one product detail page; ProductList is a search or
+// category result list. Prices are decimals in the page's currency (no conversion).
+//
+// Decided 2026-10-14 (decisions.md U32, category schemas; fields as sketched with the user).
+syntax = "proto3";
+
+package rex.schema.commerce.v1;
+
+import "rex/schema/v1/annotations.proto";
+
+message Product {
+  option (rex.schema.v1.record) = {
+    schema_org: "Product"
+    schema_org_also: ["ProductGroup", "IndividualProduct"]
+    primary: ["title"]
+    fallback_rank: 20
+  };
+
+  string sku = 1 [(rex.schema.v1.field) = { schema_org: "sku" }];   // the site's id (Amazon ASIN)
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string brand = 3;
+  string price = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string currency = 5;                     // ISO 4217, e.g. "USD"
+  string list_price = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];   // before discount
+  double rating = 7;                       // average, on the site's scale (usually out of 5)
+  int64 review_count = 8;
+  Availability availability = 9;
+  string seller = 10;
+  repeated string images = 11 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image", max_items: 30 }];
+  repeated string features = 12 [(rex.schema.v1.field) = { max_items: 30 }];       // feature bullets
+  repeated Spec specs = 13 [(rex.schema.v1.field) = { max_items: 200 }];           // spec / details table
+  repeated string breadcrumbs = 14 [(rex.schema.v1.field) = { max_items: 20 }];
+  repeated Variant variants = 15 [(rex.schema.v1.field) = { max_items: 200 }];
+  string url = 16 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  string description = 17 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+}
+
+// One row of a spec table ("Weight" -> "1.2 kg"). Typed rows, not a map: names repeat across products of a
+// category but are not a fixed vocabulary.
+message Spec {
+  option (rex.schema.v1.record) = { schema_org: "PropertyValue" };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string value = 2 [(rex.schema.v1.field) = { schema_org: "value", required: true }];
+}
+
+// One selectable option (size, color, configuration).
+message Variant {
+  option (rex.schema.v1.record) = { schema_org: "Product" };
+
+  string dimension = 1;                    // "Color", "Size"
+  string value = 2 [(rex.schema.v1.field) = { required: true }];
+  string sku = 3;
+  string url = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+}
+
+message ProductList {
+  option (rex.schema.v1.record) = {
+    schema_org: "OfferCatalog"
+    primary: ["items"]
+  };
+
+  string query = 1;                        // search terms, when the list is a search
+  string category = 2;                     // category name, when the list is a category page
+  repeated ProductItem items = 3 [(rex.schema.v1.field) = { max_items: 200 }];
+  int64 total_results = 4;
+  uint32 page = 5;
+}
+
+message ProductItem {
+  option (rex.schema.v1.record) = { schema_org: "ListItem" };
+
+  string id = 1 [(rex.schema.v1.field) = { required: true }];    // the site's id (Amazon ASIN)
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url", required: true }];
+  string price = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string currency = 5;
+  double rating = 6;
+  int64 review_count = 7;
+  string image = 8 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+  bool sponsored = 9;
+  uint32 rank = 10;                        // 1-based position among the extracted items
+}
+
+enum Availability {
+  AVAILABILITY_UNSPECIFIED = 0;
+  AVAILABILITY_IN_STOCK = 1 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/InStock", "InStock", "in stock"] }];
+  AVAILABILITY_OUT_OF_STOCK = 2 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/OutOfStock", "OutOfStock", "out of stock", "currently unavailable"] }];
+  AVAILABILITY_PRE_ORDER = 3 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/PreOrder", "PreOrder", "pre-order"] }];
+  AVAILABILITY_LIMITED = 4 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/LimitedAvailability", "LimitedAvailability"] }];
+  AVAILABILITY_DISCONTINUED = 5 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/Discontinued", "Discontinued"] }];
+}

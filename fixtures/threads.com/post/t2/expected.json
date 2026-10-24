@@ -1,0 +1,353 @@
+{
+  "recipe": {
+    "id": "threads.com/post",
+    "version": 1,
+    "sha256": "3f38fe3995c8cd77ad5f5cb7904df26018c4448779d776d4c686477baa90726d"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://www.threads.com/@zuck/post/DeZtrvAEfEr",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:46:26Z",
+  "extractTime": "2026-10-14T04:46:26Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.author.name",
+      "origin": "FIELD_ORIGIN_URL",
+      "candidate": 1,
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.author.handle",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.author.url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.author.verified",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.reposts",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "post.media",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].author.handle",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].author.verified",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].reposts",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "threads.com/post@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "url": "https://www.threads.com/@zuck/post/DeZtrvAEfEr",
+    "post": {
+      "id": "DeZtrvAEfEr",
+      "author": {
+        "name": "zuck",
+        "handle": "zuck",
+        "url": "https://www.threads.com/@zuck",
+        "verified": true
+      },
+      "text": "Xx'x xxxx just xxxx a year xxxxx xx xxxxxxx Xxxx Xxxxxxxxxxxxxxxxx Xxxx. Xxxx Xxxxx xxx xxx xxxxx xxxxxx of xxxxxx, xxx now Xxxx Xxxxxx is a xxxx xxxxxx xxx xxxx xxxxxxxx xxxxx of xxxxxx xxxx xxxxxx xx to xxx xxxxxxxx. Xx'xx xxxxxxxxx xxx xxxxxx today. Xxxx Xxxxxx xxx xxxx xxxxxxxx xxxxxxxxxxx xxx Xxxx Xxxxxx Xxxx xxx xxx xxxx xxxxxxx of xxx xxxxx.",
+      "publishedAt": "2026-10-12T16:57:09Z",
+      "likes": "672",
+      "reposts": "34",
+      "replies": "44",
+      "media": [
+        "https://scontent-sjc3-1.cdninstagram.com/v/t51.71878-15/843458448_2045298256099953_8644614754157170636_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=qOz6hXuC33EQ7kNvwE4OXsx&_nc_oc=AdpdA5JRrClm8G2KwNDp6EGwquD5xQFbwOHV-x3UcZhPZwRpmdKgknpFG6EDWK_X0QI&_nc_zt=23&_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_gid=2ULaOJJ0O_AeFhG7SFpn_A&_nc_ss=7b289&oh=00_AQORprAlX0_Mi85kN-wDY2J8wyxku59BAoEgdCVJkJ6K1A&oe=6AD4E65B"
+      ],
+      "url": "https://www.threads.com/@zuck/post/DeZtrvAEfEr"
+    },
+    "replies": [
+      {
+        "id": "DeZtp-TkQHh",
+        "author": {
+          "name": "zuck",
+          "handle": "zuck",
+          "verified": true
+        },
+        "text": "Xxxxxxxxxxx Xxxx Xxxxxx, xxx xxx xxxxxx of xxxxxxxx xxxxxx with xxxxx of xxx xxx xxxxxxxxxxx xxx xxxxxxxx xxx xxxxxxxxxxxx xxxxxxx xxxx.",
+        "publishedAt": "2026-10-12T16:56:29Z",
+        "likes": "1700",
+        "reposts": "174",
+        "replies": "268",
+        "url": "https://www.threads.com/@zuck/post/DeZtp-TkQHh"
+      },
+      {
+        "id": "DeZtp7KER52",
+        "author": {
+          "name": "zuck",
+          "handle": "zuck",
+          "verified": true
+        },
+        "text": "Xxx xxx xxx Xxxx Xxxxxx to xxxxx xxxx Xxxx xx xxxxxxxxxxx today. Xx'xx xxxx to xxxxx xxxx xxxxx of xxxxxxxxxxxx to xxxxxxxx xxxx xxxx.",
+        "publishedAt": "2026-10-12T16:56:28Z",
+        "likes": "77",
+        "reposts": "3",
+        "replies": "6",
+        "url": "https://www.threads.com/@zuck/post/DeZtp7KER52"
+      },
+      {
+        "id": "DeZtp8hkWfQ",
+        "author": {
+          "name": "zuck",
+          "handle": "zuck",
+          "verified": true
+        },
+        "text": "Xxxx Xxxxxx is xxxx available xxxxxxx Xxxx Xxxx, xxx Xxxx Xxxxx XXX, xxx xxxxxxx xxxx xxxxx xxxxxxxx xxxx. Xxxx in xxx xxxx: xxxxxxxx.xxxx.xx/xxxx…",
+        "publishedAt": "2026-10-12T16:56:28Z",
+        "likes": "64",
+        "reposts": "3",
+        "replies": "4",
+        "url": "https://www.threads.com/@zuck/post/DeZtp8hkWfQ"
+      },
+      {
+        "id": "DeZtp8qkfMa",
+        "author": {
+          "name": "zuck",
+          "handle": "zuck",
+          "verified": true
+        },
+        "text": "Xxxx Xxxxxx is a xxxxx xxxx xxxxxxx xxxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxxx xxx xxxxxxxx. Xxxxxxxx to xxxxxxxx xx xxx xxxx xxx xxxxxxxxx xxxx xxxxxxxxx. X'm xxxxxxx xxxxxxx to xxxxxx xxx xxx xxx xxx xx.",
+        "publishedAt": "2026-10-12T16:56:28Z",
+        "likes": "70",
+        "reposts": "2",
+        "replies": "8",
+        "url": "https://www.threads.com/@zuck/post/DeZtp8qkfMa"
+      },
+      {
+        "id": "DeZuF0vCaKb",
+        "author": {
+          "name": "fiondavision",
+          "handle": "fiondavision"
+        },
+        "text": "Xxxxxxx xx xxxxxxxxxxxxxxxxx to xxxxxx to a xxxxxxxxx",
+        "publishedAt": "2026-10-12T17:00:17Z",
+        "likes": "14",
+        "reposts": "1",
+        "replies": "2",
+        "url": "https://www.threads.com/@fiondavision/post/DeZuF0vCaKb"
+      },
+      {
+        "id": "DeZuVyqlC4d",
+        "author": {
+          "name": "marketingespacialconvictor",
+          "handle": "marketingespacialconvictor"
+        },
+        "text": "@xxxx\n\nxx xxxxx xx",
+        "publishedAt": "2026-10-12T17:02:28Z",
+        "likes": "1",
+        "url": "https://www.threads.com/@marketingespacialconvictor/post/DeZuVyqlC4d"
+      },
+      {
+        "id": "DeZugdQkXav",
+        "author": {
+          "name": "majortaser72",
+          "handle": "majortaser72"
+        },
+        "text": "Xx’x XX xxx xxxxx",
+        "publishedAt": "2026-10-12T17:03:55Z",
+        "likes": "6",
+        "replies": "1",
+        "url": "https://www.threads.com/@majortaser72/post/DeZugdQkXav"
+      },
+      {
+        "id": "DebvdWBkTIc",
+        "author": {
+          "name": "lloydmillerdev",
+          "handle": "lloydmillerdev"
+        },
+        "text": "Xxxx xxx xxxx xxxxxxx xx xxxxx xxxxxxxxxxxx xxx xxxx a year. Xxxx is xxx in xxxxxxxx to xxx XX xxxxxxxxx.",
+        "publishedAt": "2026-10-13T11:50:43Z",
+        "url": "https://www.threads.com/@lloydmillerdev/post/DebvdWBkTIc"
+      },
+      {
+        "id": "DeZujyGDcaK",
+        "author": {
+          "name": "mathdemonde",
+          "handle": "mathdemonde"
+        },
+        "text": "Xxxx xxx of Xxxxx",
+        "publishedAt": "2026-10-12T17:04:22Z",
+        "likes": "2",
+        "url": "https://www.threads.com/@mathdemonde/post/DeZujyGDcaK"
+      },
+      {
+        "id": "DeZuxb1kQQM",
+        "author": {
+          "name": "maxvocalmedia",
+          "handle": "maxvocalmedia"
+        },
+        "text": "Xx xxxx xxx xxxxxx xxxxx xxxx???",
+        "publishedAt": "2026-10-12T17:06:14Z",
+        "likes": "2",
+        "url": "https://www.threads.com/@maxvocalmedia/post/DeZuxb1kQQM"
+      },
+      {
+        "id": "DeZvZZwHOP0",
+        "author": {
+          "name": "johncarroll.us",
+          "handle": "johncarroll.us"
+        },
+        "text": "X xxxxxxx, xx xxxxxxxxx of Xxxxxxx, xxxx xx xxxxxx xx xxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxx. Xxxxxx xxx xxxxx't xxxx xx xxxx is \"xxx xxxxx\"",
+        "publishedAt": "2026-10-12T17:11:42Z",
+        "likes": "14",
+        "replies": "2",
+        "url": "https://www.threads.com/@johncarroll.us/post/DeZvZZwHOP0"
+      },
+      {
+        "id": "DeZvcQbIADt",
+        "author": {
+          "name": "ronmartinez",
+          "handle": "ronmartinez"
+        },
+        "text": "Xxxxxx xxxxx with\n\n@xxxx\n\n. Xxxxxxxxx xxxx xxx XX xxx xxxxxxxxxx xxxx xxxxxx to xxxxxxxx a xxxxx of xxxxxx xxxxxxxx xxx xxxxxxxx xxxxx.",
+        "publishedAt": "2026-10-12T17:12:05Z",
+        "likes": "3",
+        "replies": "1",
+        "url": "https://www.threads.com/@ronmartinez/post/DeZvcQbIADt"
+      },
+      {
+        "id": "DebK43hlUDZ",
+        "author": {
+          "name": "k1892355",
+          "handle": "k1892355"
+        },
+        "text": "Xxxx xxxx",
+        "publishedAt": "2026-10-13T06:31:10Z",
+        "url": "https://www.threads.com/@k1892355/post/DebK43hlUDZ"
+      },
+      {
+        "id": "DeZweJbjWaH",
+        "author": {
+          "name": "ganweaving",
+          "handle": "ganweaving"
+        },
+        "text": "Xxx xxxxxx xxx xxxxxxx xx to Xxxxxx xxxxx xxx xxxxxxx XX 'xxxxxxxxxxxxxxxxx' now 🙄🤮",
+        "publishedAt": "2026-10-12T17:21:05Z",
+        "likes": "3",
+        "url": "https://www.threads.com/@ganweaving/post/DeZweJbjWaH"
+      },
+      {
+        "id": "DeZwmegCC9n",
+        "author": {
+          "name": "terrence_eleven",
+          "handle": "terrence_eleven"
+        },
+        "text": "XX Xxxxxxx",
+        "publishedAt": "2026-10-12T17:22:13Z",
+        "likes": "1",
+        "url": "https://www.threads.com/@terrence_eleven/post/DeZwmegCC9n"
+      }
+    ],
+    "replyCount": "44"
+  },
+  "chain": [
+    {
+      "id": "threads.com/post",
+      "version": 1,
+      "sha256": "3f38fe3995c8cd77ad5f5cb7904df26018c4448779d776d4c686477baa90726d"
+    }
+  ]
+}

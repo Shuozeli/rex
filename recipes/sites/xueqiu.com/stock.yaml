@@ -1,0 +1,160 @@
+# Xueqiu (雪球) stock page -> rex.schema.finance.v1.Quote (decisions.md U37). Covers A-shares, Hong Kong and US
+# listings. The quote table cells read "最高： 1297.60"; the currency is the "货币单位" cell. Volume is in 手
+# (lots of 100) for A-shares and in 股 (shares) elsewhere. The status line names the market state.
+id: xueqiu.com/stock
+version: 1
+schema: rex.schema.finance.v1.Quote
+match:
+  urls:
+    hosts: ["xueqiu.com"]
+    include: ["^/S/[A-Z0-9.]+"]
+  page:
+    all:
+      - exists: ".stock-current"
+fields:
+  - path: symbol             # "贵州茅台(SH:600519)" -> 600519, "特斯拉(NASDAQ:TSLA)" -> TSLA
+    candidates:
+      - css: { selector: ".stock-name" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex: { pattern: "\\([^:)]*:([^)]+)\\)$", group: 1 }
+
+  - path: exchange
+    candidates:
+      - css: { selector: ".stock-name" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex: { pattern: "\\(([^:)]+):[^)]+\\)$", group: 1 }
+      - map: { entries: [ { from: "SH", to: "SSE" }, { from: "SZ", to: "SZSE" }, { from: "BJ", to: "BSE" } ] }
+
+  - path: name
+    candidates:
+      - css: { selector: ".stock-name" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex_replace: { pattern: "\\([^)]*\\)$", with: "" }
+
+  - path: type
+    candidates:
+      - constant: { value: "INSTRUMENT_TYPE_STOCK" }
+
+  - path: currency
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^货币单位：\\s*([A-Z]{3})", group: 1 }
+
+  - path: price              # "¥1297.20", "$367.16"
+    expect: true
+    candidates:
+      - css: { selector: ".stock-current" }
+
+  - path: change             # "+11.20  +0.87%"
+    candidates:
+      - css: { selector: ".stock-change" }
+    pipe:
+      - regex: { pattern: "^([-+]?[\\d.]+)", group: 1 }
+
+  - path: change_percent
+    candidates:
+      - css: { selector: ".stock-change" }
+    pipe:
+      - regex: { pattern: "([-+]?[\\d.]+)%", group: 1 }
+
+  - path: market_state       # "交易中 10-15 09:37:05 北京时间", "已收盘 ...", "盘前交易 ...", "盘后交易 ...", "休市 ..."
+    candidates:
+      - css: { selector: ".quote-market-status" }
+    pipe:
+      - regex: { pattern: "^(\\S+)", group: 1 }
+      - map: { entries: [ { from: "交易中", to: "MARKET_STATE_OPEN" }, { from: "已收盘", to: "MARKET_STATE_CLOSED" }, { from: "休市", to: "MARKET_STATE_CLOSED" }, { from: "盘前交易", to: "MARKET_STATE_PRE" }, { from: "盘后交易", to: "MARKET_STATE_POST" } ], drop_unmapped: true }
+
+  - path: previous_close
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^昨收：\\s*([\\d.]+)", group: 1 }
+
+  - path: open
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^今开：\\s*([\\d.]+)", group: 1 }
+
+  - path: day_high
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^最高：\\s*([\\d.]+)", group: 1 }
+
+  - path: day_low
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^最低：\\s*([\\d.]+)", group: 1 }
+
+  - path: year_high
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^52周最高：\\s*([\\d.]+)", group: 1 }
+
+  - path: year_low
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^52周最低：\\s*([\\d.]+)", group: 1 }
+
+  - path: volume             # "5346手" (lots of 100) or "3100.14万股" (shares)
+    candidates:
+      - css: { selector: ".quote-info td" }
+        pipe:
+          - regex: { pattern: "^成交量：\\s*([\\d.]+[万亿]?)手$", group: 1 }
+          - number: { cjk_units: true }
+          - regex_replace: { pattern: "^(\\d+)$", with: "${1}00" }
+      - css: { selector: ".quote-info td" }
+        pipe:
+          - regex: { pattern: "^成交量：\\s*([\\d.]+[万亿]?)股$", group: 1 }
+          - number: { cjk_units: true }
+
+  - path: market_cap
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^总市值：\\s*([\\d.]+[万亿]*)", group: 1 }
+      - number: { cjk_units: true }
+
+  - path: pe_ratio
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^市盈率\\(TTM\\)：\\s*([-\\d.]+)", group: 1 }
+
+  - path: eps
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^每股收益：\\s*([-\\d.]+)", group: 1 }
+
+  - path: dividend_yield
+    candidates:
+      - css: { selector: ".quote-info td" }
+    pipe:
+      - regex: { pattern: "^股息率\\(TTM\\)：\\s*([\\d.]+)%", group: 1 }
+
+  - path: stats
+    each: ".quote-info td"
+    fields:
+      - path: name
+        candidates:
+          - css: {}
+        pipe:
+          - regex: { pattern: "^([^：]+)：", group: 1 }
+      - path: value
+        candidates:
+          - css: {}
+        pipe:
+          - regex: { pattern: "：\\s*(.+)$", group: 1 }
+
+  - path: url
+    candidates:
+      - url: { part: URL_PART_HREF }

@@ -1,0 +1,213 @@
+{
+  "recipe": {
+    "id": "finance.yahoo.com/quote",
+    "version": 1,
+    "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://finance.yahoo.com/quote/BTC-USD/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:03:37Z",
+  "extractTime": "2026-10-15T01:03:37Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "circulating_supply",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "rank",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "finance.yahoo.com/quote@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "BTC-USD",
+    "name": "Xxxxxxx XXX Xxxxx",
+    "type": "INSTRUMENT_TYPE_CRYPTO",
+    "currency": "XXX",
+    "price": "81710.56",
+    "change": "-1537.97",
+    "changePercent": "-1.85",
+    "marketState": "MARKET_STATE_OPEN",
+    "previousClose": "81573.1",
+    "open": "81573.1",
+    "dayLow": "81377.14",
+    "dayHigh": "81773.47",
+    "yearLow": "57747.77",
+    "yearHigh": "116273.31",
+    "volume": "33800000000",
+    "marketCap": "1644000000000",
+    "circulatingSupply": "20100000",
+    "rank": 1,
+    "stats": [
+      {
+        "name": "Market Cap",
+        "value": "1.644T"
+      },
+      {
+        "name": "Xxxxx Xxxxxxx Xxxxxxxxx",
+        "value": "1.72T"
+      },
+      {
+        "name": "Volume (24hr)",
+        "value": "33.80B"
+      },
+      {
+        "name": "Previous Close",
+        "value": "81,573.10"
+      },
+      {
+        "name": "Open",
+        "value": "81,573.10"
+      },
+      {
+        "name": "Day'x Xxxxx",
+        "value": "81,377.14 - 81,773.47"
+      },
+      {
+        "name": "52 Week Xxxxx",
+        "value": "57,747.77 - 116,273.31"
+      },
+      {
+        "name": "Xxxxx Xxxx",
+        "value": "2010-07-13"
+      },
+      {
+        "name": "Xxx/Market cap (24hr)",
+        "value": "2.06%"
+      },
+      {
+        "name": "Circulating Supply",
+        "value": "20.10M"
+      },
+      {
+        "name": "Xxxxx Supply",
+        "value": "20.10M"
+      },
+      {
+        "name": "Xxx Supply",
+        "value": "21.00M"
+      },
+      {
+        "name": "Xxx-xxxx high",
+        "value": "126,198.07"
+      },
+      {
+        "name": "Xxx-xxxx low",
+        "value": "171.51"
+      }
+    ],
+    "url": "https://finance.yahoo.com/quote/BTC-USD/"
+  },
+  "chain": [
+    {
+      "id": "finance.yahoo.com/quote",
+      "version": 1,
+      "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+    }
+  ]
+}

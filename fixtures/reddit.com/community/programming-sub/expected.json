@@ -1,0 +1,401 @@
+{
+  "recipe": {
+    "id": "reddit.com/community",
+    "version": 1,
+    "sha256": "a221648a123b1f483116d230fe59e3cfe5ccab4178c158422075333b932b4579"
+  },
+  "schema": "rex.schema.social.v1.PostList",
+  "url": "https://www.reddit.com/r/programming/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:23:30Z",
+  "extractTime": "2026-10-14T03:23:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "community",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].link",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.PostList",
+    "title": "xxxxxxxxxxx",
+    "community": "x/xxxxxxxxxxx",
+    "posts": [
+      {
+        "id": "t3_1x4sw6i",
+        "author": {
+          "name": "xxxxxxxxxxx"
+        },
+        "text": "Xxxx, Xxxxxx, Xxxxxx: Xxx xx xxxxxxxx Xxxxxxxx xxxxxxxx",
+        "publishedAt": "2026-10-13T10:19:42.150Z",
+        "likes": "36",
+        "replies": "10",
+        "url": "https://www.reddit.com/r/programming/comments/1x4sw6i/more_better_faster_how_we_automate_metabase/",
+        "link": "https://www.metabase.com/blog/how-we-automate-metabase-releases"
+      },
+      {
+        "id": "t3_1wq8nbw",
+        "author": {
+          "name": "Xxxxxxx__"
+        },
+        "text": "Xxxxxxxxxxxxx xxx xxxxxxxxxxxxxx xxxx xxxxxxxxx xx xxxxxxxxxxxx.",
+        "publishedAt": "2026-09-25T21:35:37.103Z",
+        "likes": "1708",
+        "replies": "352",
+        "url": "https://www.reddit.com/r/programming/comments/1wq8nbw/microservices_are_organizational_debt_disguised/",
+        "link": "https://martinfowler.com/bliki/MonolithFirst.html"
+      },
+      {
+        "id": "t3_1x4eiym",
+        "author": {
+          "name": "Xx_Xxxxxxx6651"
+        },
+        "text": "Xxxxxxxxxx Xxx X2X Xxxxxxxx",
+        "publishedAt": "2026-10-12T21:28:20.251Z",
+        "likes": "61",
+        "replies": "34",
+        "url": "https://www.reddit.com/r/programming/comments/1x4eiym/optimizing_our_e2e_pipeline/",
+        "link": "https://slack.engineering/speedup-e2e-testing/"
+      },
+      {
+        "id": "t3_1x5cwtc",
+        "author": {
+          "name": "xxxxxxxxxxxx"
+        },
+        "text": "A xxxxxxxxxxx XXX xxxxx in Xxxxxx. Xxx xx xxxx xx Xx A Xxxxxxxx",
+        "publishedAt": "2026-10-14T00:07:57.632Z",
+        "replies": "5",
+        "url": "https://www.reddit.com/r/programming/comments/1x5cwtc/a_declarative_waf_built_in_prolog_try_to_hack_it/",
+        "link": "https://prologwaf.site/"
+      },
+      {
+        "id": "t3_1x0j559",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxxxxxxx Xxxxxxxx, xxxxxxxxx xxxxxxx xxx xxx xxxxxxxx xxxxxxxxxxx xxx xxx Xxxxxx xxxxxxx, xxxx xx 90",
+        "publishedAt": "2026-10-08T05:55:59.002Z",
+        "likes": "3799",
+        "replies": "118",
+        "url": "https://www.reddit.com/r/programming/comments/1x0j559/margaret_hamilton_computing_pioneer_who_led/",
+        "link": "https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007"
+      },
+      {
+        "id": "t3_1x4x5b4",
+        "author": {
+          "name": "xxxxxxxxx"
+        },
+        "text": "Xxxxx-in xxxxxxxxxxxx xx xxx-xxxxxx-xxxxx in xxxx xxx xx",
+        "publishedAt": "2026-10-13T13:49:13.961Z",
+        "likes": "1",
+        "url": "https://www.reddit.com/r/programming/comments/1x4x5b4/builtin_alternatives_to_precommithooks_in_prek/",
+        "link": "https://thanoslefteris.com/blog/buildin-alts-2-pre-commit-hooks-in-prek-hk/"
+      },
+      {
+        "id": "t3_1ww842a",
+        "author": {
+          "name": "xxxxx47"
+        },
+        "text": "<xxxxx xxxx=\"xxxxxxxx\" xxxxxxxxx=\"20\"> xx xxxxxxxxxx xxxxxxx, xxx xxx X xxxxxx't xxxxx xxxx Xxxxxxxx",
+        "publishedAt": "2026-10-02T23:14:57.779Z",
+        "likes": "1067",
+        "replies": "298",
+        "url": "https://www.reddit.com/r/programming/comments/1ww842a/input_typepassword_maxlength20_is_considered/",
+        "link": "https://tanin.nanakorn.com/input-type-password-maxlength-20-is-considered-harmful-and-why-i-couldnt-login-into-vanguard/"
+      },
+      {
+        "id": "t3_1x4cr91",
+        "author": {
+          "name": "Xxxxx"
+        },
+        "text": "X3 0.8.5 - A xxxxxxxxx xxxxxxx xxx a X xxxxxxx??",
+        "publishedAt": "2026-10-12T20:19:16.812Z",
+        "likes": "24",
+        "replies": "1",
+        "url": "https://www.reddit.com/r/programming/comments/1x4cr91/c3_085_a_windowing_library_and_a_c_backend/",
+        "link": "https://c3-lang.org/blog/c3_0_8_5_windowing_c_backend/"
+      },
+      {
+        "id": "t3_1x32log",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxxxxxxx xxxxxxxxxx xxx xxx xxxx | Xxxxxxxxx",
+        "publishedAt": "2026-10-11T08:11:52.488Z",
+        "likes": "709",
+        "replies": "378",
+        "url": "https://www.reddit.com/r/programming/comments/1x32log/software_developers_are_not_okay_bjarnason/",
+        "link": "https://www.youtube.com/watch?v=KsEpW03gxKg"
+      },
+      {
+        "id": "t3_1x37b3z",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "Xxxxx'x Xxxxxx Xxxxxx: A Xxx Xxxx of Xxxxxx Xxxxxxxx",
+        "publishedAt": "2026-10-11T12:44:54.983Z",
+        "likes": "64",
+        "replies": "13",
+        "url": "https://www.reddit.com/r/programming/comments/1x37b3z/valens_memory_safety_a_new_kind_of_borrow_checking/",
+        "link": "https://verdagon.dev/blog/valen-group-borrowing"
+      },
+      {
+        "id": "t3_1x56pba",
+        "author": {
+          "name": "XxxxXxx"
+        },
+        "text": "Xxxx Xxxxxx 3.15 xx Xxxxxx 3.6: Xxxxx Xxxxxxxxxx Xxxxxxx xxx Years",
+        "publishedAt": "2026-10-13T19:46:09.261Z",
+        "replies": "2",
+        "url": "https://www.reddit.com/r/programming/comments/1x56pba/from_python_315_to_python_36_speed_comparison/",
+        "link": "https://www.youtube.com/watch?v=Hw5W1bgJKbc"
+      },
+      {
+        "id": "t3_1wftm95",
+        "author": {
+          "name": "xxxxxxxxxxx"
+        },
+        "text": "Xxxxxxxx: 7.0.0 - xxxxxx xxxxxxxxxxxxx xxx xxxxxxxx, xxxxxxxx xxxxxxxxxx, a xxxxxx xxxXX xxx, xxxxx-in xxxxxxxxxxxxx xxxxxx xxx xx xxxxxxxx xxxxxxxx, xxx xxx of xxxXX 10.15 xxxxxxx xxx Xxxxx Xxxx xxxxxx xx Xxxx 3.",
+        "publishedAt": "2026-09-14T04:38:39.156Z",
+        "likes": "863",
+        "replies": "108",
+        "url": "https://www.reddit.com/r/programming/comments/1wftm95/homebrew_700_faster_installations_and_upgrades/",
+        "link": "https://brew.sh/2026/09/13/homebrew-7.0.0/"
+      },
+      {
+        "id": "t3_1x39o47",
+        "author": {
+          "name": "xxxxxxxxxx"
+        },
+        "text": "Xxxxxx xxxxxxxx X xxxx in xx xxxx-xxxxxx xxxxxxx xxx-xxx in 2022",
+        "publishedAt": "2026-10-11T14:31:13.834Z",
+        "likes": "40",
+        "replies": "12",
+        "url": "https://www.reddit.com/r/programming/comments/1x39o47/design_mistakes_i_made_in_my_opensource_project/",
+        "link": "https://initialcommit.com/blog/git-sim-mistakes-and-fixes"
+      },
+      {
+        "id": "t3_1x1pypx",
+        "author": {
+          "name": "XxxxxxXxxxxxx"
+        },
+        "text": "Xxxxxx Xxxxxxx Xxxxxx 3.15.0",
+        "publishedAt": "2026-10-09T16:30:13.973Z",
+        "likes": "541",
+        "replies": "35",
+        "url": "https://www.reddit.com/r/programming/comments/1x1pypx/python_release_python_3150/",
+        "link": "https://www.python.org/downloads/release/python-3150/"
+      },
+      {
+        "id": "t3_1x30ctj",
+        "author": {
+          "name": "xxxxxxxxx"
+        },
+        "text": "Xxxxx-Xxxxxxxxxxxxx Xxxxxxxxxx Xxxxxxx XXXX xx Xxxxxxxxxxx Xxxxxxx-XXX Xxxxxxxxxxx Xxxxxx Xxxxx Xxxxxxxx Xxxxxxxx",
+        "publishedAt": "2026-10-11T05:55:25.945Z",
+        "likes": "11",
+        "url": "https://www.reddit.com/r/programming/comments/1x30ctj/multiinstitutional_consortium_expands_qrmi_to/",
+        "link": "https://quantumcomputingreport.com/multi-institutional-consortium-expands-qrmi-to-standardize-quantum-hpc-integration-across-major-workload-managers/amp/"
+      },
+      {
+        "id": "t3_1wzw4cw",
+        "author": {
+          "name": "xxxxxxx"
+        },
+        "text": "Xxxx-Xxxxxxxx in Xxxxxxxx Xxxxxxxx",
+        "publishedAt": "2026-10-07T13:10:04.240Z",
+        "likes": "373",
+        "replies": "67",
+        "url": "https://www.reddit.com/r/programming/comments/1wzw4cw/antipatterns_in_software_blogging/",
+        "link": "https://refactoringenglish.com/blog/anti-patterns-software-blogging/"
+      },
+      {
+        "id": "t3_1x2fowp",
+        "author": {
+          "name": "xxxxxxxxx"
+        },
+        "text": "Xxxxxxxxxxx - a xxxxxxxxx xxxx xx a Xxxxxxxxx, xxxxxxxxx xx a xxxxxxxx xxxx",
+        "publishedAt": "2026-10-10T13:45:29.853Z",
+        "likes": "12",
+        "replies": "6",
+        "url": "https://www.reddit.com/r/programming/comments/1x2fowp/speedticket_a_different_take_on_a_semaphore/",
+        "link": "https://github.com/wcgw/speedticket/blob/main/swim-caps.md"
+      },
+      {
+        "id": "t3_1wo7amj",
+        "author": {
+          "name": "Xxxxxx"
+        },
+        "text": "Xx xxxxxx xxx xxxxxxxx Xxxx xx XXX",
+        "publishedAt": "2026-09-23T14:18:17.261Z",
+        "likes": "852",
+        "replies": "88",
+        "url": "https://www.reddit.com/r/programming/comments/1wo7amj/we_ported_the_original_doom_to_sql/",
+        "link": "https://cedardb.com/blog/sqldoom/"
+      },
+      {
+        "id": "t3_1x2et1j",
+        "author": {
+          "name": "XxxxxxxXxxxx_"
+        },
+        "text": "Xxxxxxxxx xx xxxxxx XX in Xxxx",
+        "publishedAt": "2026-10-10T13:03:29.396Z",
+        "likes": "12",
+        "replies": "9",
+        "url": "https://www.reddit.com/r/programming/comments/1x2et1j/rewriting_an_entire_ui_in_rust/",
+        "link": "https://gitcherrytree.com/blog/rewriting-the-ui-in-rust/"
+      },
+      {
+        "id": "t3_1wzbo9p",
+        "author": {
+          "name": "xxxxx-xxxxxxx-xxxx"
+        },
+        "text": "Xxxxxx a Xxxxxx xxx Xxxxxxxxxxxx",
+        "publishedAt": "2026-10-06T19:23:31.492Z",
+        "likes": "25",
+        "replies": "1",
+        "url": "https://www.reddit.com/r/programming/comments/1wzbo9p/tuning_a_server_for_benchmarking/",
+        "link": "https://david.alvarezrosa.com/posts/tuning-a-server-for-benchmarking/"
+      },
+      {
+        "id": "t3_1wk4lod",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "\"xxx xxxx xxxxxxx of xxxx xxxxx xx xxxxxxx xxxx xxxx xxxx xxxxx xxxxxxxxx xx*t xx xx xxxxxx\"",
+        "publishedAt": "2026-09-18T22:32:43.410Z",
+        "likes": "741",
+        "replies": "136",
+        "url": "https://www.reddit.com/r/programming/comments/1wk4lod/the_main_purpose_of_unit_tests_is_keeping_your/",
+        "link": "https://yosefk.com/blog/unit-tests-mark-territory-more-than-squash-bugs.html"
+      },
+      {
+        "id": "t3_1x0asww",
+        "author": {
+          "name": "XxxxxxXxxxxxx"
+        },
+        "text": "Xxxxx of Xxxx 2026",
+        "publishedAt": "2026-10-07T22:48:04.437Z",
+        "likes": "342",
+        "replies": "36",
+        "url": "https://www.reddit.com/r/programming/comments/1x0asww/state_of_devs_2026/",
+        "link": "https://2026.stateofdevs.com/en-US/"
+      },
+      {
+        "id": "t3_1x23sn2",
+        "author": {
+          "name": "xxxxxxxxX"
+        },
+        "text": "Xxxx xx xxxxxxx Xxxxxxxxxx",
+        "publishedAt": "2026-10-10T02:26:04.722Z",
+        "likes": "325",
+        "replies": "112",
+        "url": "https://www.reddit.com/r/programming/comments/1x23sn2/deno_is_joining_cloudflare/",
+        "link": "https://blog.cloudflare.com/deno-joins-cloudflare/"
+      },
+      {
+        "id": "t3_1x3djbz",
+        "author": {
+          "name": "XxxxXxx"
+        },
+        "text": "Xxxxxx 3.15 xx Xxxxxx 3.14 – xxxxxxxxxxx xxxxxxx",
+        "publishedAt": "2026-10-11T17:07:25.164Z",
+        "likes": "302",
+        "replies": "58",
+        "url": "https://www.reddit.com/r/programming/comments/1x3djbz/python_315_vs_python_314_performance_testing/",
+        "link": "https://en.lewoniewski.info/2026/python-3-14-vs-python-3-15-performance-testing/"
+      },
+      {
+        "id": "t3_1wyx8ce",
+        "author": {
+          "name": "xxxxxxxxxxxxxx"
+        },
+        "text": "Xxxxxx Xxxxxxxxxx, Xxxxxxxxx Xxxxxx (Xxxx 2)",
+        "publishedAt": "2026-10-06T08:25:21.686Z",
+        "likes": "38",
+        "replies": "7",
+        "url": "https://www.reddit.com/r/programming/comments/1wyx8ce/memory_management_explained_simply_part_2/",
+        "link": "https://youtu.be/7mYWbTgEGb8"
+      },
+      {
+        "id": "t3_1x52f4n",
+        "author": {
+          "name": "Xxxxx_Xxxxxxx"
+        },
+        "text": "Xx XXX a Xxxxx xxxxxxxx?",
+        "publishedAt": "2026-10-13T17:08:47.072Z",
+        "url": "https://www.reddit.com/r/programming/comments/1x52f4n/is_php_a_rusty_language/",
+        "link": "https://www.reddit.com/r/PHP/comments/1x52exd/is_php_a_rusty_language/"
+      },
+      {
+        "id": "t3_1wz5hwg",
+        "author": {
+          "name": "xxxxxxx2300000"
+        },
+        "text": "Xxx Xxxxxxx of Xxxxxxxxxxxxx",
+        "publishedAt": "2026-10-06T15:26:46.552Z",
+        "likes": "7",
+        "url": "https://www.reddit.com/r/programming/comments/1wz5hwg/the_problem_of_communication/",
+        "link": "https://shrub.industries/words/problem.html"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "reddit.com/community",
+      "version": 1,
+      "sha256": "a221648a123b1f483116d230fe59e3cfe5ccab4178c158422075333b932b4579"
+    }
+  ]
+}

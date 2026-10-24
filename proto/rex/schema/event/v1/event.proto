@@ -1,0 +1,72 @@
+// rex.schema.event.v1: one event page (concert, meetup, conference, match). Times are normalized to UTC from
+// the page's offset. A date-only start (an all-day event) is midnight UTC; a date-only end is left out.
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.event.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/common/v1/common.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Event {
+  option (rex.schema.v1.record) = {
+    schema_org: "Event"
+    schema_org_also: [
+      "MusicEvent", "SportsEvent", "TheaterEvent", "BusinessEvent", "EducationEvent", "Festival",
+      "ComedyEvent", "SocialEvent", "ScreeningEvent", "ExhibitionEvent", "FoodEvent", "LiteraryEvent",
+      "DanceEvent", "ChildrensEvent", "CourseInstance", "Hackathon", "SaleEvent", "VisualArtsEvent"
+    ]
+    primary: ["start_at"]
+    fallback_rank: 20
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string description = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  google.protobuf.Timestamp start_at = 3 [(rex.schema.v1.field) = { schema_org: "startDate" }];
+  google.protobuf.Timestamp end_at = 4 [(rex.schema.v1.field) = { schema_org: "endDate" }];
+  EventStatus status = 5 [(rex.schema.v1.field) = { schema_org: "eventStatus" }];
+  AttendanceMode attendance = 6 [(rex.schema.v1.field) = { schema_org: "eventAttendanceMode" }];
+  Venue venue = 7 [(rex.schema.v1.field) = { schema_org: "location" }];
+  rex.schema.common.v1.Organization organizer = 8 [(rex.schema.v1.field) = { schema_org: "organizer" }];
+  repeated rex.schema.common.v1.Person performers = 9 [(rex.schema.v1.field) = { schema_org: "performer", max_items: 50 }];
+  repeated Ticket tickets = 10 [(rex.schema.v1.field) = { schema_org: "offers", max_items: 50 }];
+  string image = 11 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 12 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+message Venue {
+  option (rex.schema.v1.record) = { schema_org: "Place", schema_org_also: ["VirtualLocation", "EventVenue"] };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name" }];
+  rex.schema.common.v1.PostalAddress address = 2 [(rex.schema.v1.field) = { schema_org: "address" }];
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];   // online events: the join page
+}
+
+message Ticket {
+  option (rex.schema.v1.record) = { schema_org: "Offer", schema_org_also: ["AggregateOffer"] };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name" }];
+  string price = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "price" }];
+  string low_price = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "lowPrice" }];
+  string high_price = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "highPrice" }];
+  string currency = 5 [(rex.schema.v1.field) = { schema_org: "priceCurrency" }];
+  string url = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+enum EventStatus {
+  EVENT_STATUS_UNSPECIFIED = 0;
+  EVENT_STATUS_SCHEDULED = 1 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/EventScheduled", "EventScheduled"] }];
+  EVENT_STATUS_CANCELLED = 2 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/EventCancelled", "EventCancelled"] }];
+  EVENT_STATUS_POSTPONED = 3 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/EventPostponed", "EventPostponed"] }];
+  EVENT_STATUS_RESCHEDULED = 4 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/EventRescheduled", "EventRescheduled"] }];
+  EVENT_STATUS_MOVED_ONLINE = 5 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/EventMovedOnline", "EventMovedOnline"] }];
+}
+
+enum AttendanceMode {
+  ATTENDANCE_MODE_UNSPECIFIED = 0;
+  ATTENDANCE_MODE_OFFLINE = 1 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/OfflineEventAttendanceMode", "OfflineEventAttendanceMode"] }];
+  ATTENDANCE_MODE_ONLINE = 2 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/OnlineEventAttendanceMode", "OnlineEventAttendanceMode"] }];
+  ATTENDANCE_MODE_MIXED = 3 [(rex.schema.v1.enum_value) = { schema_org: ["https://schema.org/MixedEventAttendanceMode", "MixedEventAttendanceMode"] }];
+}

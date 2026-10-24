@@ -1,0 +1,19 @@
+# Ars Technica: the body is split across post-content columns.
+id: arstechnica.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["arstechnica.com"]
+    include: ["^/[a-z-]+/\\d{4}/\\d{2}/[a-z0-9-]+/?$"]
+  page:
+    any:
+      - json_ld_type: { types: [NewsArticle] }
+fields:
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "article .post-content", take: TAKE_HTML, exclude: [".ad", "[class*=ad-wrapper]", ".author-mini-bio"] }
+        pipe:
+          - join: { separator: "\n" }

@@ -1,0 +1,96 @@
+# CoinMarketCap coin page -> rex.schema.finance.v1.Quote (decisions.md U37). Prices are in USD. The 24h change
+# is shown unsigned ("1.92% (24h)"); its direction is the data-change attribute. Statistic rows are
+# dl > div pairs ("Market cap" -> "$1.64T 2.25%", where the trailing percent is the 24h change of that stat).
+id: coinmarketcap.com/coin
+version: 1
+schema: rex.schema.finance.v1.Quote
+match:
+  urls:
+    hosts: ["coinmarketcap.com"]
+    include: ["^/currencies/[^/]+/?$"]
+  page:
+    all:
+      - exists: "[data-test=text-cdp-price-display]"
+fields:
+  - path: symbol
+    candidates:
+      - css: { selector: "[data-role=coin-symbol]" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: name
+    candidates:
+      - css: { selector: "[data-role=coin-name]", take: TAKE_ATTRIBUTE, attribute: title }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: type
+    candidates:
+      - constant: { value: "INSTRUMENT_TYPE_CRYPTO" }
+
+  - path: currency
+    candidates:
+      - css: { selector: "[data-test=text-cdp-price-display]" }
+        pipe:
+          - regex: { pattern: "^(\\$)", group: 1 }
+          - map: { entries: [ { from: "$", to: "USD" } ] }
+
+  - path: price
+    expect: true
+    candidates:
+      - css: { selector: "[data-test=text-cdp-price-display]" }
+
+  - path: change_percent
+    candidates:
+      - css: { selector: "[data-role=percentage-value] [data-change=down]" }
+        pipe:
+          - regex: { pattern: "([\\d.]+)%", group: 1 }
+          - regex_replace: { pattern: "^", with: "-" }
+      - css: { selector: "[data-role=percentage-value] [data-change]" }
+        pipe:
+          - regex: { pattern: "([\\d.]+)%", group: 1 }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: market_state
+    candidates:
+      - constant: { value: "MARKET_STATE_CONTINUOUS" }
+
+  - path: rank               # "#1"
+    candidates:
+      - css: { selector: "h1 [data-role=chip-content-item]" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: market_cap
+    candidates:
+      - css: { selector: "dl > div" }
+    pipe:
+      - regex: { pattern: "^Market cap\\s*\\$?([\\d.,]+[KMBT]?)", group: 1 }
+
+  - path: volume
+    candidates:
+      - css: { selector: "dl > div" }
+    pipe:
+      - regex: { pattern: "^Volume \\(24h\\)\\s*\\$?([\\d.,]+[KMBT]?)", group: 1 }
+
+  - path: circulating_supply
+    candidates:
+      - css: { selector: "dl > div" }
+    pipe:
+      - regex: { pattern: "^Circulating supply\\s*([\\d.,]+[KMBT]?)", group: 1 }
+
+  - path: stats
+    each: "dl > div:has(> dt)"
+    fields:
+      - path: name
+        candidates:
+          - css: { selector: "dt" }
+      - path: value
+        candidates:
+          - css: { selector: "dd" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - url: { part: URL_PART_HREF }

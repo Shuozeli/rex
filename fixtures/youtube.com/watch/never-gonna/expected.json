@@ -1,0 +1,139 @@
+{
+  "recipe": {
+    "id": "youtube.com/watch",
+    "version": 1,
+    "sha256": "ff5b16b1b25b6c5303284fb15558a006d87a2d1a6631c805d56c369c043c1d39"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:34:40Z",
+  "extractTime": "2026-10-14T02:34:40Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "channel",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_MICRODATA",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_MICRODATA",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_MICRODATA",
+      "candidate": 1,
+      "recipe": "youtube.com/watch@1"
+    },
+    {
+      "path": "thumbnail",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "dQw4w9WgXcQ",
+    "title": "Xxxx Xxxxxx - Xxxxx Xxxxx Xxxx Xxx Xx (Xxxxxxxx Xxxxx) (4X Xxxxxxxx)",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "channel": {
+      "name": "Xxxx Xxxxxx",
+      "url": "https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw"
+    },
+    "publishedAt": "2009-10-25T06:57:33Z",
+    "durationSeconds": 214,
+    "views": "1826369249",
+    "likes": "19488117",
+    "description": "Xxx xxxxxxxx xxxxx xxx “Xxxxx Xxxxx Xxxx Xxx Xx” xx Xxxx Xxxxxx.\n\nXxxxx: Xxx Xxxxxxxxxxxxx 📚 OUT NOW!\nXxxxxx xxxx xxxx xx xxx xxxx xxxx xxx xxxxxx xx Xxxx’x ‘Xxxxx’ xxxxxxxx ❤️ #XxxxXxxxxxXxxxx\nhttps://linktr.ee/rickastleynever\n\n“Xxxxx Xxxxx Xxxx Xxx Xx” xxx a xxxxxx xxxxx xx xxx xxxxxxx in July 1987, xxxxxxx xxx xxxxxx in 25 xxxxxxxxx xxxxxxxxx Xxxx’x xxxxxx XX xxx xxx XX Xxxxxxxxx Xxx 100. Xx xxxx xxx xxx Xxxx Xxxxx xxx Xxxx xxxxxx in 1988. Stock Xxxxxx xxx Xxxxxxxx xxxxx xxx xxxxxxxx xxx xxxxx xxxxx xxx xxx xxxx-xxx xxxxxx xxx xxxx xxxxx xxxx Xxxx’x xxxxx XX “Xxxxxxxx Xxx Xxxx Xxxxxxxx”. Xxx xxxxx xxx xxxxxx a XX xxxxxx xxx xxx xxxxx xx xx xx xxxx xxxx 15 xxxxxxx xxxxxx xxxxxxxxx.\n\nXxx xxxxxxxxx xxxxx xxx xxxxxxxx xx Xxxxx Xxxx – xxx xxxxx xxxx xx xx xxxx Xxxxxxxxx xxxxxxxxxxxx xxxx xx Xxx Xxx, Xxxx Xxxxx – Xxxx Xxxxxx xxx Xxx Xxxxxxxxxxx 2. Xxx xxxxx xxxxxx xxx 1xx XxxXxxx views xxxxxxxxx xx 28 July 2021.\n\nXxxxxxxxx xx xxx xxxxxxxx Xxxx Xxxxxx XxxXxxx xxxxxxx: https://RickAstley.lnk.to/YTSubID\n\nXxxxxx Xxxx Xxxxxx:\nXxxxxxxx: https://RickAstley.lnk.to/FBFollowID\nXxxxxxx: https://RickAstley.lnk.to/TwitterID\nXxxxxxxxx: https://RickAstley.lnk.to/InstagramID\nXxxxxxx: https://RickAstley.lnk.to/storeID\nXxxXxx: https://RickAstley.lnk.to/TikTokID\n\nXxxxxx xx Xxxx Xxxxxx:\nXxxxxxx: https://RickAstley.lnk.to/SpotifyID\nXxxxx Xxxxx: https://RickAstley.lnk.to/AppleMusicID\nXxxxxx Xxxxx: https://RickAstley.lnk.to/AmazonMusicID\nXxxxxx: https://RickAstley.lnk.to/DeezerID\n\nXxxxxx:\nXx’xx xx xxxxxxxxx xx xxxx\nXxx xxxx xxx xxxxx xxx xx xx X\nA xxxx xxxxxxxxxx’x xxxx X’m xxxxxxxx of\nXxx xxxxxx’t xxx xxxx xxxx xxx xxxxx xxx\n\nX just xxxxx xxxx xxx xxx X’m xxxxxxx\nXxxxx xxxx xxx xxxxxxxxxx\n\nXxxxx xxxxx xxxx xxx xx\nXxxxx xxxxx xxx xxx xxxx\nXxxxx xxxxx xxx xxxxxx xxx xxxxxx xxx\nXxxxx xxxxx xxxx xxx xxx\nXxxxx xxxxx xxx xxxxxxx\nXxxxx xxxxx xxxx a xxx xxx xxxx xxx\n\nXx’xx xxxxx xxxx xxxxx xxx xx xxxx\nXxxx xxxxx’x xxxx xxxxxx xxx xxx’xx xxx xxx xx xxx xx\nXxxxxx xx xxxx xxxx xxxx’x xxxx xxxxx xx\nXx xxxx xxx xxxx xxx xx’xx xxxxx xxxx xx\n\nXxx xx xxx xxx xx xxx X’m xxxxxxx\nXxx’t xxxx xx xxx’xx xxx xxxxx xx xxx\n\nXxxxx xxxxx xxxx xxx xx\nXxxxx xxxxx xxx xxx xxxx\nXxxxx xxxxx xxx xxxxxx xxx xxxxxx xxx\nXxxxx xxxxx xxxx xxx xxx\nXxxxx xxxxx xxx xxxxxxx\nXxxxx xxxxx xxxx a xxx xxx xxxx xxx\n\n#XxxxXxxxxx #XxxxxXxxxxXxxxXxxXx #XxxxxxxxXxxXxxxXxxxxxxx #XxxxxxxxXxxxxXxxxx",
+    "tags": [
+      "xxxx xxxxxx",
+      "Xxxxx Xxxxx Xxxx Xxx Xx",
+      "xxxxx",
+      "xxxxx xxxxx xxxx xxx xx xxxxxx",
+      "xxxx xxxxxx",
+      "Xxxx Xxxx",
+      "xxxx xxxxxx xxxxxxxx",
+      "xxxxxxxxxx",
+      "Xxxxxxxx xxxx",
+      "Xxxxxxxx xxxxx",
+      "Xxxxxxxx xxxxx",
+      "xxxxxxxx xxxxx xxxxx xxxx xxx xx",
+      "xxxx xxxx",
+      "xxxxxxxxxxx",
+      "xxxx xxxxxxx",
+      "xxxxx xxxxx xxxx xxx xx",
+      "80x xxxxx",
+      "xxxx xxxxxx xxx",
+      "xxxxxxxx xxxxx",
+      "xxxxxxxx",
+      "xxxx xxxxx",
+      "xxxxx xxxxx xxxx x xx xxxxxx",
+      "Xxxx Xxxxxx 2022",
+      "xxxxx xxxxx xxx xxx xxxx",
+      "xxxxxxxx",
+      "xxxx xxxxx 2022",
+      "xxxxx xxxxx xxxx xxx xx xxxxxxx"
+    ],
+    "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+  },
+  "chain": [
+    {
+      "id": "youtube.com/watch",
+      "version": 1,
+      "sha256": "ff5b16b1b25b6c5303284fb15558a006d87a2d1a6631c805d56c369c043c1d39"
+    },
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

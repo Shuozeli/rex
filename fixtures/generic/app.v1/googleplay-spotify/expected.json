@@ -1,0 +1,101 @@
+{
+  "recipe": {
+    "id": "generic/app.v1",
+    "version": 1,
+    "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+  },
+  "schema": "rex.schema.app.v1.App",
+  "url": "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:44Z",
+  "extractTime": "2026-10-14T05:35:44Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "developer",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "category",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "platforms",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "content_rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "icon",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/app.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/app.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.app.v1.App",
+    "name": "Xxxxxxx: Xxxxx xxx Xxxxxxxx",
+    "developer": {
+      "name": "Xxxxxxx XX"
+    },
+    "category": "XXXXX_XXX_XXXXX",
+    "platforms": [
+      "ANDROID"
+    ],
+    "price": "0",
+    "currency": "USD",
+    "rating": 4.347912311553955,
+    "ratingCount": "36476185",
+    "contentRating": "Teen",
+    "description": "Xxxxxx to xxxxx, xxxx xxxxxxxx, xxxxxx xxxxxxxxx xxx xxxxxxxx xxxxx xxx'xx xxxx",
+    "icon": "https://play-lh.googleusercontent.com/IzQgYCcnCFCD08GR-3bdtcT8xzOvrNkC84avGT5CwTX2VIqmTmKKJcP_Cd4JoBOdmCMlTndlOzV6hrthg2fOWA",
+    "url": "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US"
+  },
+  "chain": [
+    {
+      "id": "generic/app.v1",
+      "version": 1,
+      "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+    }
+  ]
+}

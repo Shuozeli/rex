@@ -1,0 +1,324 @@
+{
+  "recipe": {
+    "id": "quora.com/question",
+    "version": 1,
+    "sha256": "531e3c38438b1ef903ed53f4b3551a9031d735857ba23274f10a1150d111ec77"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://www.quora.com/Is-Rust-worth-learning",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:11:28Z",
+  "extractTime": "2026-10-14T05:11:28Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].author.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "title": "Is Xxxx xxxxx xxxxxxxx?",
+    "url": "https://www.quora.com/Is-Rust-worth-learning",
+    "post": {
+      "text": "Is Xxxx xxxxx xxxxxxxx?",
+      "url": "https://www.quora.com/Is-Rust-worth-learning"
+    },
+    "replies": [
+      {
+        "id": "Jesse-Tov",
+        "author": {
+          "name": "Xxxxx Xxx",
+          "url": "https://www.quora.com/profile/Jesse-Tov"
+        },
+        "text": "X xxxxxxx Xxxx is xxx xxxxxx of xxxxxxx xxxxxxxxxxx. Xxxxxxx xx xxx xxx xxxxxx xxxxxxxx xxxxxxx xx, xx xxxx xxxxxx xxxxx xxx xxxxxx xxxxxxxxx xxxxx xxxxxxxxx in xxxx xxxx xxxx xxxx xxx a xxxxxx xxxxxxxxxx.",
+        "publishedAt": "2015-10-17T05:11:28Z",
+        "likes": "32",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Jesse-Tov"
+      },
+      {
+        "id": "Jesse-Tov",
+        "author": {
+          "name": "Xxxxx Xxx",
+          "url": "https://www.quora.com/profile/Jesse-Tov"
+        },
+        "text": "Xxxx xxx xxxx xxxxxxxxxx, xxx xx xxxxxxx xx xxxx xxx xxx xxxxxxxxx xx to.\n\nXxx xxxxxxx, xxxxxxxx to X++, xxx xxxx xxxxxxxxx of Xxxx is xxxxxx. X++ xxxx xxx xxxxxxx xxx xxx xxxxxxxxxxxx, xxx xxxx xx xxxx xxx xxxxx xxxxx xxxxxxxxxxx to xxxxxxx xxxxxx xxxxxx. Xxxx xxxx xxxx. Xx xxx xxxx xxxxxxx xxxxx of xxxxxxxx in X++, xxxx xxxxxxx xxxxxxxxxxx xxx xx xxxxxxx, xxxxx xxx result in xxxxxxxxx xxxxxxxx; Xxxx xxxxxxxxx xxx xxxx xxxxx xxxxxxxxx xxxxxxxxxxxxx xx xxx xxx xxxxxxxxxxx xx xxx xxxxxxx xxx xxxx to xxxxx.\n\nXxxxxxxx to Xxxx, xxx xxxx xxxxxxxxx of Xxxx is xxxxx. Xxxxxxxxx xxxxxxx xxxxxxxxxx xxxxxxxx\n\nXxxxxxxx Xxxxxxx\n\nXxxx xxx xxxx xxxxxxxxxx, xxx xx xxxxxxx xx xxxx xxx xxx xxxxxxxxx xx to.\n\nXxx xxxxxxx, xxxxxxxx to X++, xxx xxxx xxxxxxxxx of Xxxx is xxxxxx. X++ xxxx xxx xxxxxxx xxx xxx xxxxxxxxxxxx, xxx xxxx xx xxxx xxx xxxxx xxxxx xxxxxxxxxxx to xxxxxxx xxxxxx xxxxxx. Xxxx xxxx xxxx. Xx xxx xxxx xxxxxxx xxxxx of xxxxxxxx in X++, xxxx xxxxxxx xxxxxxxxxxx xxx xx xxxxxxx, xxxxx xxx result in xxxxxxxxx xxxxxxxx; Xxxx xxxxxxxxx xxx xxxx xxxxx xxxxxxxxx xxxxxxxxxxxxx xx xxx xxx xxxxxxxxxxx xx xxx xxxxxxx xxx xxxx to xxxxx.\n\nXxxxxxxx to Xxxx, xxx xxxx xxxxxxxxx of Xxxx is xxxxx. Xxxxxxxxx xxxxxxx xxxxxxxxxx xxxxxxxxxx xxx xxxx a xxxx xxxx xxx, xxx Xxxx is xxxxxxx of xxxxx xxxx xxxxxx xxx xxxxxxx xxxxxxxxx xxxx xxx xxxxxxxxx xxxxxxxxx, xxx xx xxxxx xxx’t xxxx xx with X in a xxx of xxxxxxx. Xxxxxxx xxxxxxxxx, Xxxx xxx.\n\nXxxxxxxx to Xxxxxx, xxx xxxx xxxxxxxxx of Xxxx is xxxx xxxxxx. In Xxxxxx, xxx xxx’t xxxx xxx a xxxxxxxxx in a xxxxxx. Xxxxx’x xx xxxx xxxxxx xxx xxxx—xxx just xxx’t. In Xxxx, xxxxxx xxxxxxxxxx is xx xxxxxxxxxx, xxxxx xxxxx xxxx xxx xxxxx of xxx xxxxxxxx xxxxxxx xxxxxx.\n\nXxxxxxxx to Xx, xxx xxxx xxxxxxxxx of Xxxx is xxxxxxxxxxxxxx. Xx xxx a xxxx xxxxxxx xxxx xxxxxx xxxx xxxxx xx xxxxxxxxxx to, xxx xxxxxxx, xxxxxx xxx xxxxxxxxx xxxxx xxxx xxx xxxx xxxxxxxxx xxxxx of xxxxxxxx. Xxxx xxx xx xxxxxxxxx xxxxxxxxxx xxxx xxxxxx, xxxxxxxxx xxxxxxxx, xxxxxx, xxx xxxxxxxxx xxxx xxxxx. Xxx xxx xxx a xxx xxxxx xxx xxxxxxx xxx’xx xxxxxx to xxxxx with Xxxx’x xxxxx.",
+        "publishedAt": "2018-10-16T05:11:28Z",
+        "likes": "95",
+        "replies": "11",
+        "url": "https://www.quora.com/What-are-the-advantages-of-the-Rust-programming-language/answer/Jesse-Tov"
+      },
+      {
+        "id": "Maciej-Dziardziel",
+        "author": {
+          "name": "Xxxxxx Xxxxxxxxxx",
+          "url": "https://www.quora.com/profile/Maciej-Dziardziel"
+        },
+        "text": "Xxxx xxx xxxxxxxx of xxxxxxxx xxxx. Xxxxxx xxx xxxxxxxx xx xxxx xxx xxxxx xxx xxxxxx:\n\nXx is xxxx xxxx xxxxxxxx xxxxxxxx. Xxxx of xxx xxxx xxxxxxx with xx is a xxx, xxx xx xxxxxxxx xxxx xxxxxxxx xxxxxx xxx xxxxxx xxxx-xxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx. Xxx xxxx xxxxxxxxx xxxxx xxxx xxxxxxxxx xxx xxxx with xxxx-xxxxxxx xxxx.\n\nXx xxxxx with xxxx xxxx xxxxx xxx xxxxxxxxxxxxxxx. Xxxxxx xxxx’t xxx, xxx xxxx xxxxxxxxxx xxxx in xxx xxxx xxx X’xx xxxx xx xxx. Xxxxxxxxxx xxxx xxxxx xxxxx to xxxxxx xxxxxxx xxxxxxxx xxxx xxx xxxxx xxxx to xxxxxxx in xxxxx xxxxxxxxx.\n\nXx xxxx xxxxxx xxxxx xx xxxxxx xxx xxxxxxx\n\nXxxxxxxx Xxxxxxx\n\nXxxx xxx xxxxxxxx of xxxxxxxx xxxx. Xxxxxx xxx xxxxxxxx xx xxxx xxx xxxxx xxx xxxxxx:\n\nXx is xxxx xxxx xxxxxxxx xxxxxxxx. Xxxx of xxx xxxx xxxxxxx with xx is a xxx, xxx xx xxxxxxxx xxxx xxxxxxxx xxxxxx xxx xxxxxx xxxx-xxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx. Xxx xxxx xxxxxxxxx xxxxx xxxx xxxxxxxxx xxx xxxx with xxxx-xxxxxxx xxxx.\n\nXx xxxxx with xxxx xxxx xxxxx xxx xxxxxxxxxxxxxxx. Xxxxxx xxxx’t xxx, xxx xxxx xxxxxxxxxx xxxx in xxx xxxx xxx X’xx xxxx xx xxx. Xxxxxxxxxx xxxx xxxxx xxxxx to xxxxxx xxxxxxx xxxxxxxx xxxx xxx xxxxx xxxx to xxxxxxx in xxxxx xxxxxxxxx.\n\nXx xxxx xxxxxx xxxxx xx xxxxxx xxx xxxxxxxxxxx. Xxxx xxxx xxxx xx xxxx xxxxxx in xxxx xxxxxx xxxxxxxxx to xxxxx xxxxxxxxxx xxxxxxxxx. Xxxx xxxxxxxx xxxx xxxxx xxxxxxxxx just xxx’t xxxxx xxxx.\n\nXxxxxxxxxxx xxx xxxxx is xxx of xxx xxxxxxx points. Xxx xxxx xx xxxx to xxxxx xxxx xxxx xxxxx xxxxxxxx xxxxxxxx.\n\nXxx of xxxx xxxxxx xxxx just xxxx with xx xxxxxx is xxxxxxxxxx xxxxxxxxxx.\n\nXxx xxxxxxx is xxxxxxxx xxxxx 6 weeks, xx xxxxx xxxxxxxxxxxx xxx xxxxxxxx xxxx xxxxx, xxx xxx xxxxxxxx xxx xx xxxxxxxxx xxxxxxxxxx to xxxxxxxx xxxxxxx xxxxxxx with xxxxxxx xxxxxxxx. X xxxx xxxxxxxx xxxxx xxxxxx xxxx xxxxx.\n\nXxxxxxxxx is xxxxx xxx xxxxxxx xxxx, with xxxxxxx xxxxxx xxxxxx xxx xxx xxxxxxxxxxx xxxxxxx xxx xxxx year.\nXx xx xxx xxxx to xxxxxxx xxxx xxxxxx xx a xxxxxxxxx xx xxxxxxx xxxx xxxxxxxxxxxx, xxxx xxx xxxxxx xxxx xxxxxx. Xx xxx xxx xxxxxxx xxx a xxxxx xxxx xxxx xxxx xxx a xxx xxxxx now - xxx xxx xxxxx xxx.",
+        "publishedAt": "2016-10-16T05:11:28Z",
+        "likes": "128",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Maciej-Dziardziel"
+      },
+      {
+        "id": "Daniel-Philippus-1",
+        "author": {
+          "name": "Xxxxxx Xxxxxxxxx",
+          "url": "https://www.quora.com/profile/Daniel-Philippus-1"
+        },
+        "text": "Xxx xxxxxxxxxx xxxxx now, xxx xxxxxx xxxxx answer is xx, xxxxxxx of a xxx xxxxxx xxxxxxxx (xxxxxx Xxxxxxx’x Xxxxx xxxxxxx xxxxxxxxx xxxxxx). Xx’x xxx xxxxxx xxxx xxx, xxx xx a xxxxxxx xxxxxxxx (in xxx xxxxx of X, xxx Xx) xx’x xxxxx to xxxx a xxxxx—X xxxxx xx’x xxxxxx to xxxxxx xxxx xxx xxxxx’x xxxxxxx xxxx xxxxxxxxx. Xx’xx xxx xxxxxxx xxxxx xxxxxxxxx like Xx xxxxx xx xxx xx xxxxxxx xxxx xxxx xxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxx of xxxxxxxxx.\n\nXxxxxxx, is xx a xxxxxxxxxx xxxxxxxx in xxxxxxx? X xxxxx xxx xxx. Xxx xxxxxxxx xxxxxx xxxxxxxxxx xxx xxxx-xxxx xxxxxxxxxxxx xxxx xxxx xx’x xxxxx like xxxxxx\n\nXxxxxxxx Xxxxxxx\n\nXxx xxxxxxxxxx xxxxx now, xxx xxxxxx xxxxx answer is xx, xxxxxxx of a xxx xxxxxx xxxxxxxx (xxxxxx Xxxxxxx’x Xxxxx xxxxxxx xxxxxxxxx xxxxxx). Xx’x xxx xxxxxx xxxx xxx, xxx xx a xxxxxxx xxxxxxxx (in xxx xxxxx of X, xxx Xx) xx’x xxxxx to xxxx a xxxxx—X xxxxx xx’x xxxxxx to xxxxxx xxxx xxx xxxxx’x xxxxxxx xxxx xxxxxxxxx. Xx’xx xxx xxxxxxx xxxxx xxxxxxxxx like Xx xxxxx xx xxx xx xxxxxxx xxxx xxxx xxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxx of xxxxxxxxx.\n\nXxxxxxx, is xx a xxxxxxxxxx xxxxxxxx in xxxxxxx? X xxxxx xxx xxx. Xxx xxxxxxxx xxxxxx xxxxxxxxxx xxx xxxx-xxxx xxxxxxxxxxxx xxxx xxxx xx’x xxxxx like xxxxxxx a xxxx-xxxxx xxxxxxxx (xxx xxxxxx) xx a xxxx xxx-xxxxx xxxxxxxx (xxx xxxx of xxx) xxxxx xxxxxxx xxx xxx xxxxxxxxxxxx of a xxxxx-xxxxx xxxxxxxx like X (xxxxxxxxxxx, xxx-xxxxx xxxxxx).\n\nOf xxxxxx, xxxxx’x xxxx xxxxx a xxx xxxx xxxxxxxxxx xxxx xxxxxxxx X—xx’x a xxxxxxx xxxxxxxx xxx xxx xxx’t xxxxxx just xxxx xxxxxx xxxxxxxx. Xxx xxxxxxxx xxx’t xxx xxx.",
+        "publishedAt": "2016-10-16T05:11:28Z",
+        "likes": "11",
+        "replies": "1",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Daniel-Philippus-1"
+      },
+      {
+        "id": "Nathan-F-Yospe",
+        "author": {
+          "name": "Xxxxxx X Xxxxx",
+          "url": "https://www.quora.com/profile/Nathan-F-Yospe"
+        },
+        "text": "X'm xxxxxx Xxxx xxxxxxxxxxx xxxxx now. X'm xxxx xxxxxx X++ xxxxxxxxxxx of xxxxxxxxxx xxxxx xxx xxx xxxxxxx to xxxxx Xxxx. Xx xxxxx xxxx xxxxxx xxxxxx with xxxxxxxx xxxxxx in Xxxx xxx xxxxx't xxxxxxx xxxxxxx, X xxxxxx't xx xxxxxx xxx X++ xxxxxxxxxxx. X'x xxxx xxxxxx with xxxxx xxxxxxxx xxxxxxxxxxx, xxx xxxx of xxx xxxx X'xx xxxxx xxxxx't xxx xxx xxxxxxxxxx to xxxxxxxxxx, xxx xx'x xxx xxxx to xxxxxxxx xxx xxxx xxx xxx.\n\nIs xx xxxxx xxxxxxxx? Xxxxxxx. Xxx xxx xxxxxxx xx a xxxxxxxxxx in xxxxxx xxxxxxxxxxx xxxxxxxxx xxxxxxx? Xxxxxxx to xx xx xxxxxxxxxx xxxx in xxx xxxx xxxxxx of xxxxxxx? Xx xx, xxxxx\n\nXxxxxxxx Xxxxxxx\n\nX'm xxxxxx Xxxx xxxxxxxxxxx xxxxx now. X'm xxxx xxxxxx X++ xxxxxxxxxxx of xxxxxxxxxx xxxxx xxx xxx xxxxxxx to xxxxx Xxxx. Xx xxxxx xxxx xxxxxx xxxxxx with xxxxxxxx xxxxxx in Xxxx xxx xxxxx't xxxxxxx xxxxxxx, X xxxxxx't xx xxxxxx xxx X++ xxxxxxxxxxx. X'x xxxx xxxxxx with xxxxx xxxxxxxx xxxxxxxxxxx, xxx xxxx of xxx xxxx X'xx xxxxx xxxxx't xxx xxx xxxxxxxxxx to xxxxxxxxxx, xxx xx'x xxx xxxx to xxxxxxxx xxx xxxx xxx xxx.\n\nIs xx xxxxx xxxxxxxx? Xxxxxxx. Xxx xxx xxxxxxx xx a xxxxxxxxxx in xxxxxx xxxxxxxxxxx xxxxxxxxx xxxxxxx? Xxxxxxx to xx xx xxxxxxxxxx xxxx in xxx xxxx xxxxxx of xxxxxxx? Xx xx, xxxxxxxxx xxxx xxx xxxxxxxxx to xxxxx xxx't a xxx xxxx.",
+        "publishedAt": "2019-10-16T05:11:28Z",
+        "likes": "58",
+        "replies": "5",
+        "url": "https://www.quora.com/Is-learning-Rust-still-worth-it-in-2019/answer/Nathan-F-Yospe"
+      },
+      {
+        "id": "Jeff-12047",
+        "author": {
+          "name": "Xxxx",
+          "url": "https://www.quora.com/profile/Jeff-12047"
+        },
+        "text": "Xx’x xxxx to xxxx xxxxxxx. Xxx xxxxx xx with xxxxxx X++ xxxxxxx xxx xxx just xxxxx xxxxxxxxxx xxx xxxx… xxx xxx xxxx xxxx xxx xxxx (in xx xxxxx a xxxxxx xxxx), xxxxxxxx. Xxx xxx xx with Xx, xxx xxxx a xxxxxxxxxx xxxxxxxx xxxx is xxxxxx xxxx to xxxx xx. Xxx xxx xxx xx with Xxxx, xxx xxxx a xxxxxxxx xxxx xxxxx xxx xxxxxxxxxx xxx xxxx xxxxx xxxxxxxxxxx xxxxxx / xxxxxxxx.\n\nXxxxxxxx to Xx, Xxxx xxxxxxxx xxx a xxxxxx xxxxxx XXXXX. Xxx xxxxxxxx is a xxx xxxx xxxxxxx xxx xxxxxxx xxxx Xx—xxx xxxx xxxx xxxxx with xxx xxxx xxxx xx’x xxxx xxxxxxxx / xxxxxxxx xx xxxx.\n\nXx xxx xxxx xxxx—xxxxxx xxxx, xxx, Xxxx,\n\nXxxxxxxx Xxxxxxx\n\nXx’x xxxx to xxxx xxxxxxx. Xxx xxxxx xx with xxxxxx X++ xxxxxxx xxx xxx just xxxxx xxxxxxxxxx xxx xxxx… xxx xxx xxxx xxxx xxx xxxx (in xx xxxxx a xxxxxx xxxx), xxxxxxxx. Xxx xxx xx with Xx, xxx xxxx a xxxxxxxxxx xxxxxxxx xxxx is xxxxxx xxxx to xxxx xx. Xxx xxx xxx xx with Xxxx, xxx xxxx a xxxxxxxx xxxx xxxxx xxx xxxxxxxxxx xxx xxxx xxxxx xxxxxxxxxxx xxxxxx / xxxxxxxx.\n\nXxxxxxxx to Xx, Xxxx xxxxxxxx xxx a xxxxxx xxxxxx XXXXX. Xxx xxxxxxxx is a xxx xxxx xxxxxxx xxx xxxxxxx xxxx Xx—xxx xxxx xxxx xxxxx with xxx xxxx xxxx xx’x xxxx xxxxxxxx / xxxxxxxx xx xxxx.\n\nXx xxx xxxx xxxx—xxxxxx xxxx, xxx, Xxxx, Xxxx is a xxxx xxxxxx, xxxxxx xx is Xx; xxx of xxxxxx X++ is xxxxx xx xxxxxx.\n\nXxxxxx xxx a xxxx xxxxx xxxxxx of xxxxxxxxxx xxxxx xxxxxxxx xxxx xxxx; xxx xxxx xxxxxx xxxxx X xxxxxxxxxx xxxxx xxxx xxxxxx Xxxx.",
+        "publishedAt": "2019-10-16T05:11:28Z",
+        "likes": "44",
+        "replies": "2",
+        "url": "https://www.quora.com/What-are-your-thoughts-on-Rust-Is-it-worth-learning/answer/Jeff-12047"
+      },
+      {
+        "id": "Carrie-Shao-11",
+        "author": {
+          "name": "Xxxxxx Xxxx",
+          "url": "https://www.quora.com/profile/Carrie-Shao-11"
+        },
+        "text": "Xxx, now xx is 2021. Xx xxxxxxxxx in xxxxx xxxxx xxxxxxxx. Xxxx xxx xxxx xxxxxx xxxxxxxx, a xxx of xxxxxxx xxxxxxxx xxxxx, xxxxxxxxxx xxxxx xxxxxxx. Xx xxx xx xxxx in a xxx of xxxxxxxxxxx xxxxxxxxx, xxx xxxx xxx xxxxxx xxxxxxxxxxx.\n\nX xxxxxxxx xxxx X++ to Xxxx, xxxxxx X xxxx xxxxx Xxxxxx/Xxxxxx/Xxxxxx xxx xxx. Xxxxxxxx Xxxx , xxx xxx xxxx xxx xxxx xxxx xxxx xx xxxxx xxxxxxx. Xxxxxx, xx xxxx to xxxxx X xx X++ xxx xxxx. With xxx xxxxx xxxx xxxxxxxxx, xxx xxx xxxxx xxx xxxxx xxxxxxxx xxxx xxxx.\n\nX xxxxx a xxxxxx xxxxxxx xxxxxxxx with xxxx, xxxx xxx xxxxxxxx xxx xxxxxxx. Xxxx xxx xxxx xxxx xxxx xxxxxx\n\nXxxxxxxx Xxxxxxx\n\nXxx, now xx is 2021. Xx xxxxxxxxx in xxxxx xxxxx xxxxxxxx. Xxxx xxx xxxx xxxxxx xxxxxxxx, a xxx of xxxxxxx xxxxxxxx xxxxx, xxxxxxxxxx xxxxx xxxxxxx. Xx xxx xx xxxx in a xxx of xxxxxxxxxxx xxxxxxxxx, xxx xxxx xxx xxxxxx xxxxxxxxxxx.\n\nX xxxxxxxx xxxx X++ to Xxxx, xxxxxx X xxxx xxxxx Xxxxxx/Xxxxxx/Xxxxxx xxx xxx. Xxxxxxxx Xxxx , xxx xxx xxxx xxx xxxx xxxx xxxx xx xxxxx xxxxxxx. Xxxxxx, xx xxxx to xxxxx X xx X++ xxx xxxx. With xxx xxxxx xxxx xxxxxxxxx, xxx xxx xxxxx xxx xxxxx xxxxxxxx xxxx xxxx.\n\nX xxxxx a xxxxxx xxxxxxx xxxxxxxx with xxxx, xxxx xxx xxxxxxxx xxx xxxxxxx. Xxxx xxx xxxx xxxx xxxx xxxxxx xx xxx xxxxxxxx, xx xxx xx xxxxx xxxxxxxx xxx xxxxxxxxx XX xxx xxxxxx xxxxxxxx with xxxxxx xxxxxx.\n\nXxxXxx - xxxxxxxx/xxxxxxxx: Xxxx xxxxxx xxxxxxx / xxxxxx xxxxxxx xxxxxxxxxxxxxx xxx xxxxxxxx! Xxx xxxx xxxxxx XxxxXxxxxx xxxxxxxxxxx. Xxxxxxx xxx xxxxxxx xxxx XX xxx Xxxxxxx xxxxxxx xxxx xxxxxxxx xx xxxxxxx.\n\nXxxx xxxxxx xxxxxxx / xxxxxx xxxxxxx xxxxxxxxxxxxxx xxx xxxxxxxx! Xxx xxxx xxxxxx XxxxXxxxxx xxxxxxxxxxx. Xxxxxxx xxx xxxxxxx xxxx XX xxx Xxxxxxx xxxxxxx xxxx xxxxxxxx xx xxxxxxx. - XxxXxx - xxxxxxxx/xxxxxxxx: Xxxx xxxxxx xxxxxxx / xxxxxx xxxxxxx xxxxxxxxxxxxxx xxx xxxxxxxx! Xxx xxxx xxxxxx XxxxXxxxxx xxxxxxxxxxx. Xxxxxxx xxx xxxxxxx xxxx XX xxx Xxxxxxx xxxxxxx xxxx xxxxxxxx xx xxxxxxx.\n\nhttps://github.com/rustdesk/rustdesk",
+        "publishedAt": "2021-10-15T05:11:28Z",
+        "likes": "2",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Carrie-Shao-11"
+      },
+      {
+        "id": "Archis-Gore",
+        "author": {
+          "name": "Xxxxxx Xxxx",
+          "url": "https://www.quora.com/profile/Archis-Gore"
+        },
+        "text": "Xxxx is xxx of xxx xxx xxxxxxxxxxxx to xx xxxx xxxxxxxx in xxxxxxxx to a xxxx xxxx-xxxxx, xxxx-xxxxxxxx xxxx-in-xxx-xxxxxx xxxxxxx xxxxxxxx xxx xxxxxx xxx years ago, xxx xxx xxxx xxxxxxxxxxx today. Xxx Xxxxxxx is xxx xxxxxxxxx xx xxxxxx, xxx xxxx xxx xxxxxxx to xxxxxxxxxxxxxx, xxxx xx xxxxxxxxxxxx xxxx xxxxx xxxxxx-xxxxxx xx xxxx to xxxxx xx to xxx xxx. Xxx xxxxxxx is xxx of Xxxxxx xxx xxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxxx xxxx xxxxxxx. Xxx xxxxxxx is xx xxxxxxxxxxxxxxx xxxxxxxxxx xx xxx xxxx xxxx xx xxxxx, xxxx xxx xx xxx-xxx, xxxx xxxx xxxxxxx xxx xxxxx, xxxxxxx xxx xxxxx with xx xx xxx. Xxxx…\n\n(xxxx)\n\nXxxx is xxx of xxx xxx xxxxxxxxxxxx to xx xxxx xxxxxxxx in xxxxxxxx to a xxxx xxxx-xxxxx, xxxx-xxxxxxxx xxxx-in-xxx-xxxxxx xxxxxxx xxxxxxxx xxx xxxxxx xxx years ago, xxx xxx xxxx xxxxxxxxxxx today.\n\nXxx Xxxxxxx is xxx xxxxxxxxx xx xxxxxx, xxx xxxx xxx xxxxxxx to xxxxxxxxxxxxxx, xxxx xx xxxxxxxxxxxx xxxx xxxxx xxxxxx-xxxxxx xx xxxx to xxxxx xx to xxx xxx.\n\nXxx xxxxxxx is xxx of Xxxxxx xxx xxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxxx xxxx xxxxxxx. Xxx xxxxxxx is xx xxxxxxxxxxxxxxx xxxxxxxxxx xx xxx xxxx xxxx xx xxxxx, xxxx xxx xx xxx-xxx, xxxx xxxx xxxxxxx xxx xxxxx, xxxxxxx xxx xxxxx with xx xx xxx.\n\nXxxx Xxxx-Xxxxxx xxxxxxxxxxxxx of Xxx Xxxxxxx.\n\nXxxx’x a xxxx xx a Xxxxxxxxx Xxxx xxx Xxxxx Xxxxxx with xxxx xxxxxxxxx xxxxx:\n\nXxxxxx xxxxxx xxx xxxxxxxxx xxx-xxx-xxxxx.\n\nXxxxxxx, xx xxxxxxx Xxxxxxxxx just xxxxx in xxxxxxx. Xxxxx/Xxxx xxxxx xx xxxxxx. Xxxx’x a xxxxxx xxxxxxxx of xxxxxxx Xxxxxxx xxxxxx xxxxxx.\n\nXxxx xxxxxx xxxxxxxxxx. Xxx.\n\nXxxxxxx, X xxxxxxxxxx xxxx xxx Xxxxxxxxx, xxx xx’xx xxxxxxx. Xxx’x xxxx xx Xxxxxx Xxxxxxx Xxxx’x xxxxxxxxxxx of xxxxx xxxx-days xxxx xxxxxx in xxx xxxx.\n0day \"In xxx Xxxx\"\n\nXx xxx. Xxxx Xxxxxx xxxxxxxxxxx xxx xxxxxx xxxxxx. Xxxx Xxxxx, Xxxxxxx, xxx xxxx Xxxxxx’x xxx Xxxxxxx, in xxxxxxxx to Xxxxxxxxx. Xxxxxxx xxx xxxxxxx is xxxxxxxx.\n\nX xxxxx xx xx xxx xx with xxx xxxx xxxx.\n\nXxxx xxx’t xxx xxxx xxxxxxxx to xxxx xxxxxxx.\n\nXxxxxxxxx is xxxxxxxxxx XxxxxxxX, xxx Xxxxx’x Xxxxx xxx a xxxxxx xxxxxxxx to xxxxxx xxxxxxxx. Xxxxx xxx xxxx xxxxxx.\n\n“Xxxx xxxx xxxxxxxxx X/X++ xxxxx’t xxxx xxxx xxxxxxx. Xxx Xxxx?”\n\nXxxx xxxx xxxxxxxxx, a xxx xxxxxxx xxxxxx, xxxxxxxxx, xxxxxxx, xx a xxxxxxxxxx xxxxxxx is xxxxxxxxxx xxxx. Xxxx xxxx xxxxxxxxx, xxxxxxxxxx is xxxx - a xxxxxxxxxxxxx xxxx of xxxxxxx, xxxxxxxxxxx, xxxxxxxx, xxx xxxx xx.\n\nXxx xxxx’x xxx xxxxxx, xx XXX xxx xxx xxx xxxxxx xxxxxxxxx xxxxxxxxx. Xx xxx xxxxxxx xxxxxxxxx xxxxxx. Xx xxxxx xxxxxxxxxx. Xx xxx xxxxxxx with xxxxxxxxxxxxxx. Xx xxxxxxxx xxxxx. Xx xxxxxxx xxx xxxxxxxx xxxxxxxx. Xx xxx xxxxxxx xxxxxx xxxxxxxx xxxxx. Xx xxx xx xxx xxxxx. Xxx xxx xxxxxxxx xxxxxxxxx.\n\nXxxx xxxxxx xx xxxxxxxxxx\n\nXxxx xxxxx’t xxxx xxxxx xxxxxx xxxxxx, xxx xxxx xx xxxxx xxxxx xxxxxxxx to xxxx in - Xxxxxxxx, Xxxxxx, Xxxx XXX-xxxxx Xxxxxx, xxxxxxx xx xxxxxx xxxxxxx xxxxx, xxxxxxxxx xxxxxxxxxxx xxxxxxxx xxxxxx, xxx xxxx. Xx xxxx xxx a xxxx xxxxxx xxxxx in “xxxxxx” with xxx xxxxxxx xxxx xxx xxx xxxx xxx xxxxxx, x.x. xx a xxxxxx/xxxxxxxxxx, xxx xxxx xxxx xxxxxxxxx is xxxxxx xxxxxx xxxx xxxxxxxx xx xx.",
+        "publishedAt": "2020-10-15T05:11:28Z",
+        "likes": "369",
+        "replies": "20",
+        "url": "https://www.quora.com/Why-is-Rust-getting-so-popular-in-2020/answer/Archis-Gore"
+      },
+      {
+        "id": "Andrew-McGregor-12",
+        "author": {
+          "name": "Xxxxxx XxXxxxxx",
+          "url": "https://www.quora.com/profile/Andrew-McGregor-12"
+        },
+        "text": "Xx xxx xxxx xxxxxxxxx to xx with xx, xxx, xxx xxxx.\n\nXxxx is a xxxx xxxxxxxxxxx xxx xxxx xxxxxxxx xxxxxxxx.\n\nXx is xxxxxxxxxx xxxx to xxx xxx a xxxxxxxx with xxx xxxxxxxx xxxxxxxx.\n\nXx’x xxxxxxxxx.\n\nXxx xxxx xxxxx a xxx xxxxx xxx xx xxxxx xxxxx xxxxxxxx xxxxxxxx xxxx Xxxxxx xxxx xxx xxxxxx xxxx (xxxxxx xxxxxx xxxxxxxxxx with xxxxx xxxxxxxx, xxxxxxx xxxxxx, xxxxxxxx xxxx xxxxxxx), xxxxx xxxx xxxxxxxxxxxx xxxxxxxx xxxx xxxx of xxxxxxxxxxx xxxxxxxx. Xx’x xx xxxxxxxxx xxx to xxxx xx xxxxxx to xxxxx xxxx xxxxxxxxx xxxxxxx xxxx xxx xxxxx.",
+        "publishedAt": "2020-10-15T05:11:28Z",
+        "likes": "64",
+        "replies": "5",
+        "url": "https://www.quora.com/Is-it-a-good-idea-to-learn-Rust-when-you-only-know-Python/answer/Andrew-McGregor-12"
+      },
+      {
+        "id": "Reza-Ahmadi-2",
+        "author": {
+          "name": "Xxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Reza-Ahmadi-2"
+        },
+        "text": "Xxxx xxxxxxxx xxx xxxxx of X with xxx xxxxxx of xxxx-xxxxx xxxxxxxxx\n\nXx xxxxxx in xxxxxxx xxxxxxxxxxx, xxxxxxxx xxxxxx xxxxxxxxxxx xxx xxxxxxxxxxx xxxxxx-xxxxx xxxxxxxxx in xxxxx xxxxxxx xxxxxxx xxxxxxxxxx.\n\nXxx Xxxx xxxxxxxxx xxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx, xxx xxxxxxxxx Xxxx xxx xxxxxxx xxxxxxx xxxxxxxxxxx xxxxxxxxxxx xxxxxxx xxx xxxxxxxx xxxxxxxxx.\n\nXxxxxxxx Xxxxxxx\n\nXxxx xxxxxxxx xxx xxxxx of X with xxx xxxxxx of xxxx-xxxxx xxxxxxxxx\n\nXx xxxxxx in xxxxxxx xxxxxxxxxxx, xxxxxxxx xxxxxx xxxxxxxxxxx xxx xxxxxxxxxxx xxxxxx-xxxxx xxxxxxxxx in xxxxx xxxxxxx xxxxxxx xxxxxxxxxx.\n\nXxx Xxxx xxxxxxxxx xxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxx, xxx xxxxxxxxx Xxxx xxx xxxxxxx xxxxxxx xxxxxxxxxxx xxxxxxxxxxx xxxxxxx xxx xxxxxxxx xxxxxxxxx.",
+        "publishedAt": "2024-10-14T05:11:28Z",
+        "likes": "2",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Reza-Ahmadi-2"
+      },
+      {
+        "id": "Cherrise-1",
+        "author": {
+          "name": "Xxxxxxxx",
+          "url": "https://www.quora.com/profile/Cherrise-1"
+        },
+        "text": "X am a xxxxx xxxx Xxxxx xxx is xxxxxxx in xxxxxxxx xxxxxxxxx. Xxxxx Xxxx xxx't xx xxxxxxx xx X xxxxx like, X xxxxxxxxxx xxx xxx to xxx xxxxxxxxxx. Xx xxxxxxxxxx with xxxxx-xxxxx xxxxxxxxx like X xxxx xxx xxxxxxxxxx xxx xxxxxxxx Xxxx, xxxxx X xxxxx Xxxx is xxxx xxxxxx xxxxxxxx to xxxxx xxxxxx xxxxxxxxx.\n\nXxxx xxxxxxxxx xxx't xxxxxxxx xxxxxx xxxxxxxx xxxxxxxxx. Xxxxx X xxx xxxxxxxxxxx xxxxxx xxxxxxxxx, xxx xx'x xxx xxxxxxxxxxxx xxxxxxx xxx xxxx-xxxxxx in xxx xxxxxxxxx. Xxxx'x xxxxxxxx xxxxxx to xxxxxxx xxxx, xxxxxxxxxxx xx a xxxxxx xxxx xxxx xx'x xxxxxxxxx xxx xxxxx to xxxxx xxxx xxxx xxxxxxxx xxx\n\nXxxxxxxx Xxxxxxx\n\nX am a xxxxx xxxx Xxxxx xxx is xxxxxxx in xxxxxxxx xxxxxxxxx. Xxxxx Xxxx xxx't xx xxxxxxx xx X xxxxx like, X xxxxxxxxxx xxx xxx to xxx xxxxxxxxxx. Xx xxxxxxxxxx with xxxxx-xxxxx xxxxxxxxx like X xxxx xxx xxxxxxxxxx xxx xxxxxxxx Xxxx, xxxxx X xxxxx Xxxx is xxxx xxxxxx xxxxxxxx to xxxxx xxxxxx xxxxxxxxx.\n\nXxxx xxxxxxxxx xxx't xxxxxxxx xxxxxx xxxxxxxx xxxxxxxxx. Xxxxx X xxx xxxxxxxxxxx xxxxxx xxxxxxxxx, xxx xx'x xxx xxxxxxxxxxxx xxxxxxx xxx xxxx-xxxxxx in xxx xxxxxxxxx. Xxxx'x xxxxxxxx xxxxxx to xxxxxxx xxxx, xxxxxxxxxxx xx a xxxxxx xxxx xxxx xx'x xxxxxxxxx xxx xxxxx to xxxxx xxxx xxxx xxxxxxxx xxxx xxxxxxxxx. Xxxx xxxxxxxx xxxx xxxxxxx xxxxxxxxx xxxx xxxxxx xx xx xxxxxxxx xxx xxxxxxxx xxxxxxx.\n\nXxxx xxx xxxxxxxxxxx xxxxx, like xxxxxxxx \"xxxx xxxxxxxxx\" xx a xxxxxxx xxxxxxxxx xxxx xxxxxx xxxxxxx a xxxxx. Xxxx xxxxxx xxxxxx xxxxxxxx xxxxxxxxxxx xxx xxxxxx. X xxx’t xxx xx xxx just a xxxxxx xxxxxxxxxxx.\n\nXx xxxxxxx xxx xxxxxxx xxx to xxxxxxxxx, xxxxxxxxxxx xxx xx a xxxxxxxx xxxxxx xxxxxxx. Xxxxxxxxx, in xxxxxxxxxx, is a xxxxxxxx xxxx. Xx'x xxxxxxxxxx xxx xxxxxx to xxxxx xxxxxxxx xxxx xx xxx xxxxx, xxxx xx xxxx xxxxxxxx xxxxx xxxxxx of xxx xxxxxx. Xxxxxx xxxxx xxxxxxxx xxxxxxx, xxxxxx xx xxxxxxxxx to xxxx xxxxx xxxxxxx.\n\nXxx't xxxxxxxxxxxx xxxxx xxxxxxxxxxx xxxxxxxxxxxx. Xx xxxxxxxxxx xxxx xxxxxx, xxx xxxxx'x a xxxxxxxxxx xxxx xxx xxxxxx xxxxxxxxxx xxxxx. Xxxxxxx xxxxxx xx xxxxxxxxxx xxxxxxxxxx to xxxx xxxxxx is xxxxxxxxxxx, xxxxxxxxxx xxxx xxxxx xxx xx xxxxxxxxx. In xxxxx of xxxxxxxxxx xxx xxxxxxxxxx xxxx, xxx xxxxxx is xxxx.\n\nXxx Xxxx xxxxxxxx xxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxxx xxxxxxx to xxxxxx xxxxxx. To xxxxxx xxx xxxxxx of xxxxxx, xxxxxxxx xxxxx xxx xxxxxxxxx, xxx xxxxxxxxx xxxxx is xxxxxxxx, xxxxx xx xxxxxxxxxx xx xxx Xxxx'x xxxxx. Xxxxxxxx xx xxxxx xxxx xxxx xxxx to xxxxx a xxxxxxxxxxx xxxxxxxx like Xxxx, X xxxx xxx in xxxxxxx xxxxxxx, xxxxxxx, xxx xxxxxxxxx xxxx.\n\nXx xxxxxxxx xxxxxx of xxxxxx is xxx xxxxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xx xxxxxxxx xxxxxxxx, xxx xxxxxxxxxxx xxx xxxxxxxx of xx xxxxxx xxxx. X xxxx xxxx with Xxxx, X xxxxx xx a xxxxxxxxx xxxxx, xxxxxxxxxx xxxxxxxx xxxx xxxxxxxxxx xxxxxxxx xx xxxxxx-xxxxxx xxxxxxxxxxxx. Xx'x a xxxxx xxxx xxxxxxxxxxx xxx xxxxxxxxx.",
+        "publishedAt": "2023-10-15T05:11:28Z",
+        "url": "https://www.quora.com/Is-Rust-the-language-worth-learning-if-I-want-to-be-a-software-engineer/answer/Cherrise-1"
+      },
+      {
+        "id": "Sean-Toner-3",
+        "author": {
+          "name": "Xxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Sean-Toner-3"
+        },
+        "text": "X xxxxxxxxxx xxxxxxx xx is xxxxx xx. Xxx xxx’t just xxxxxxx xx, xxxx xx xxx Xxxxx Xxxxxxxx Xxxxxxxxx Xxxxxx xxx xxx xxxx 6 years xxxxx xx xxx xxxx xxxxx xxxxxxxx. Xxxxxxxxxxxxx, 2022 xxx xxx xxxxx year xxxx xx xxxx xxx Xxxx Xxxxxx xxxxxxxx (xxxxxxx out xxxxxx xx .01%).\n\nXx xxx xxxxx xxxx xxxxxxx xxx xxxx is xxxxxx, xxxx xxxx xx xxx xxxxxxxx xxxxxxxx. Xxxxxx xxx xxxxxxx to xxxxx XXX Xxxxxx xxx X3 xxxxx xxxx. Xxxxxxxxx is xxxxxxxx to xxxxx xxxxx of xxx Xxxxxxx xxxxxx in xxxx, xxx Xxxxx xxxx xxxx xxx xxxx in xx xx xxxx. Xx is xxxxx xxxxxx xxxx xxxx xxxx xx xxx xxxx xxxxx xxxxxxxx xxxxxxxx in xxx xx\n\nXxxxxxxx Xxxxxxx\n\nX xxxxxxxxxx xxxxxxx xx is xxxxx xx. Xxx xxx’t just xxxxxxx xx, xxxx xx xxx Xxxxx Xxxxxxxx Xxxxxxxxx Xxxxxx xxx xxx xxxx 6 years xxxxx xx xxx xxxx xxxxx xxxxxxxx. Xxxxxxxxxxxxx, 2022 xxx xxx xxxxx year xxxx xx xxxx xxx Xxxx Xxxxxx xxxxxxxx (xxxxxxx out xxxxxx xx .01%).\n\nXx xxx xxxxx xxxx xxxxxxx xxx xxxx is xxxxxx, xxxx xxxx xx xxx xxxxxxxx xxxxxxxx. Xxxxxx xxx xxxxxxx to xxxxx XXX Xxxxxx xxx X3 xxxxx xxxx. Xxxxxxxxx is xxxxxxxx to xxxxx xxxxx of xxx Xxxxxxx xxxxxx in xxxx, xxx Xxxxx xxxx xxxx xxx xxxx in xx xx xxxx. Xx is xxxxx xxxxxx xxxx xxxx xxxx xx xxx xxxx xxxxx xxxxxxxx xxxxxxxx in xxx xxxxxx xxxxxx X. Xxxxxx xxx xxxxxx xxxx xx xxxx xxx of 4 xxxxxxxxxx xxxxxxxxx xxxxxxxxx.\n\nXxxxx xxx xxxx xxxx xxxxxxxx of xxxx in xxxx xxxxxxxxxx xxxxxxxx xxx xxxx xxxxxx. Xxxxxx+ xxxxxx is xxxxxxxxx xxxxxxx in xxxx, xx is Xxxxxxx. Xxx xxxxx xxx is xxxxxxxx to xxxxxxxxx xxxxxxxx xx xxx xxxxxx xxxxx xxxxxxxx xxxxxxxxx of xxxxxx.\n\nXxx X xxxxx xxx of xxx xxxx xxxxxxxxxx xxxxxxx to xxxxx xxxx, is xxxx xxx xxx xxx xx xxx xxxxxxxx. XXX xxxx, xxxxxxxxxx xxxxxxxxx, xxxxxxxxx xxxxxxx, xxxx xxxxx xxxxxxxx xxxxxxx, xxx xxxxxxx, xxxxx xxx xxx xxxxxxxxxx….xxx xxxx xx, xxxx xxx xx xx, xxx xxxxxxxxx xx xxxx xx X(++). Xx xxxx xxx xxx xxxx xxxxxxx of xxx xxxxxxxx xxx xxxxxxxxxxx with xxx xxxxxxxx. Now xxxx XXXX (Xxx Xxxxxxxx Xxxxxx Xxxxxxxxx) xxx a XXX xxxxxxx, xxx xxx xxx xxxx xxxx xxxxxxx a xxxxxxx xxx xx xxxxxx like xxxx/xxxxx xxxxx, xx xxxx xxxx xxxx a xxxxxx.\n\nXxxxxx X xx X++, xxx xxx’t xxxx to xxxxx xxxxx xxxxxx xxxxxx xx xxxx xx xxx xxx’t xxx `xxxxxx`. Xxx xxxx xxx’t xxxx to xxxxx xxxxx xxxx xxxxx xxxx xxxxx xxxxxx xxxxxx xxxxxx xx xxxxxxx xxxxxxx (xxx xxx xxxxx xxxxxxxx xx xxxxxxxx xxxxxx). Xxx xxx’t xxxx xxxxxx xxxxx in xxxx xxxxxxx xxxxx `xxxxxx` (xxxxx xxx xxxxxxxx xxx xxxxxxxx to xxxxxxxxxxx xxxxxx xxxxxxxxx). Xxx xxxxxxxx, X xxxxx xxxx is xxxxxx to xxxxx xxxxxxx xxxx X++. Xxxx xxxx xxx xxxxx xxxx X++ xxx xxxx xx xxx xxx xxxxx xxx. Xxxxx xxxxxxxxxxx xxxx, xxxxxxx X++ to xxxx xxxxxxxxx is just xxx xxxxxxxxx. Xxx xx, xxxxxx xxxxxxxxx xxx xxx “just xx xxxx xx xxxxx” (xxxxx xxx xxxx xxxxxxxxx xxxx).\n\nXxxxx’x a xxxxxx Xxxxxxxxx is xxxxxxxxxx xxxx of xxxxx xxxxxx to xxxx, xxx Xxxxxxx is xxxxxxx xxxxx of xxxxxxx in xxxx. Xxx xxxx xxx xxx xxxx xxxx’x xxxxxxxx xxxxx, xxx xxxx xxxx xxxx xxx xxxx xxx xxx xx xxxxxxxxxx in xx xx xxxx xxxxx xxxxxxxxx, xxx xxxx xxxx xxx of xxx xxxxxx xxxxxx xxx xxxxxxxxxxx xxxxxx xxxx xxx xxxx xxx in X++.\n\nXxxxxx xxxxxxx xxxxxxxxx xxxxxxxxx (xxxx, xx, xx, xxx), xxx xxx xxxx xxxxxxxxxxxxx xxxxxxxxxxx xxx xxxxxx xxxxxxxx. Xxxx xxxx xxxx xx xxx xxxx xxxxxx xxx. Xx xx xxx xxxx xxxxxx xxxxxxxxx xxxxxxxxxxxx xxxx xxxxxxx xxxx xxx xxxxxxx (xx, xxxxx, xxxx XX xxxx, xx xxx xxxxxxx xxxxxxxx), xxxx XX’xx xxxxxxxxx xxx xxx xxx xxxx xxx. Xxxx, xxxxx xxxx xxx a xxxx xxxxx xxxxxxx (xxxxx is xxxxx a xxxx xxxxx xxx, xxxx xx xxx xxxx xxx xxxxx xxxxxxx like xxxxx), xxx xxx xxxxxxxx xxx xxxx xxxx xx xxxx xxxxxxxx xxxxxxx with just xxxxxxxxx of XXX xx xxxxx `xx-xxx` xxxx.\n\nXxxx is xxxxxxxxxxx to xxxxx, xxx xxxx xxx xxx xxx xxxx of xx, xxx xxxx xx xx xxxxxxxxxx in xx xx a xxxx xxxxx xxxxxxxx like xxxxxx. Xxx to xxx xxxxx xxxx xxxxxx xxx xxxxxx xxxxxxxx, xxx xxxx xxxx xxxxx xxxxxx “xxxxxxxx” with xxx xxxxxxxx xxx xxxxxx xxxxxxx xxxx xx xxxxx with xxxx xxxxxxx xxxxxx xxx xxxxxxxxx xxxx xxx xxxx. Xxxx, xxxx’x xxxxx xxxxxx is xx xxxx xxxxxx xxxx just xxxxx xxx xxxxx xxxxxxxx X xxxx. Xxx xxx xxxxxx xxxxxx in xxxxxxxx xxx xxxxx/xxxxxxxxxx xxxxxx xxxx xxx xxxxxxxx xxxxx xxxxxxxx.\n\nXxxxx (xxxx’x xxxxx xxxxxx) is xxxxx xxx xxxxxxxxx xxxxx xxxxx, xxxxxx, xxx, xxxxx, xxxxxxxxxx, xxxxxxxx, xxxxxxx, xxx/xxx/xxxx, xxxxx, xxxxxxxxx, xxx Xxx xxx’t xxxx xxxxx out xxxxxxxx xxxxxxxxx/xxxxxxxxxx xxxx, xxxxxxxxx xx xxxxxxxxxxxxxxxx xxxxx/xxxxxx xxxxxx, xxxxxxx xx xxx xxxxxxxxxx xxxxx, xx xxxxxxxxxx xxxx xxxx xxxxxx to xxxxxx out xxx to xxxxxxxxx xxxx xxxx of xxx xxxxxxx xxxxxxx xxxxx in xxxx xxxx_xxxxxxx.\n\nXx X xx xxx xx. Just xxxx xxx xxxxx in xxxx…xx xxx xxxx xxxxxxx xxxxxxxx xxxxxxxxx xxxxxx, xxxx xxxx xxxx xxxxxx to xxx xxx xxxx of. Xxxxxxxxx xxx, X xxxxxxx, xxxxxx in xxx xxxxxxxxxxx xxxxx. Xxx xxxx xxxxxxx xxx xx (xx xxxx xxxxx’t xxxx xxxxxx xxxxx XXXXX). Xxx xx xxx xxxxxxxx with xxx xxxxxxxx, xxxxxxxxxx xxx xxxx xxx xxx xxxx of xxxx xxxxxxxxx xxx xxx xxxxxxxxx xxx xxx xxxx to xxxxxx. Xxxxxxxxxx, xx xxxx xxxx xx xxx xxxx xx is xxxxxxx of xxx xxxxxxx of xxxxxxxxx xxxx xxx xxx xxxxxx xxxxxx xxxxxxx a xxxxxxx xxxxxxxxx XXX xxx xxxxxx xxx xxx xxx xxxx xxxx xxxx xxxx (xxxxx with xxxxxxxxx xxxxxxxxx).",
+        "publishedAt": "2022-10-15T05:11:28Z",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Sean-Toner-3"
+      },
+      {
+        "id": "Win-Treese",
+        "author": {
+          "name": "Xxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Win-Treese"
+        },
+        "text": "Is xx xxxxx xxxxxxxx Xxxx? Xxxx’x xxxx to xxx, xxxxxxx xxxx xxxxxxx is xxxx xx’x xxxxx to xxx. Xx xxx xxxx xxxxxxxxxxx xxxxx xxx xxxxx xxxx’x xxxxx xxxxxx “xxxxxxx xxxxxxxxxxx”: xxxxxxxxx xxxxxxx, xxxxxxx xxxxxxx, xxx xx xx, xxxxxxxxxx xxxxx xxxxxxxxxxx xxx xxxxxxxx (in xxxxx of xxxxxx xxxxxxxxxx) xxx xxxxxxxxx.\n\nXx xxxxxx xxxxxxx xx xxxx xxx xxxx to xx. Xx’x a xxxx, xxx xx xxx xxxxxxxx is, xxxx xx xxx xxxx to xx, xxx is xx xxx xxxxx xxxx xxx xxx xxx?",
+        "publishedAt": "2019-10-16T05:11:28Z",
+        "likes": "2",
+        "url": "https://www.quora.com/Is-Rust-worth-to-learn-What-would-I-use-it-for/answer/Win-Treese"
+      },
+      {
+        "id": "Anamul-Hasan-3",
+        "author": {
+          "name": "Xxxxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Anamul-Hasan-3"
+        },
+        "text": "Xxxx is xxx xxxxx xxxxxxxxxxx xxxxxxxx xxxxxxxxx xx Xxxxxxx. Xx'x xxx of xxx xxxx xxxxx xxxxxxxxxxx xxxxxxxxx.\n\nXxxxxxxx of xxxxx Xxxx:\n\nXxxx is xxxxxx xxxx. Xx xxxxxx, Xxxx xxxx xxx't xxxx xxxxxxxx xxxxxxxx, xxxxxx xxxxxxxxx xx xxxxx xxxx of xxxxxx xxxxxxx xxxxxx.\n\nXxxx is xx xxxx xx X/X++ xxxxx xx is xxx xxxxx.\n\nXxxx is xxxxxxx xxxxxxx xxxxxxxx xxxxx xxx xx xxxx in xxx xxxxxxx.\n\nXxxx is xxxxx xx xxxxxxxxxx xxxxxxxxxxx.\n\nXxxx xxx a xxxxxxx xxxxxxxxxx xxx xxxxx xxxxxxxxxx xxxxx xx Xxxxx.\n\nXxxx xxx xxxxx xxxxxxxxxxx.",
+        "publishedAt": "2017-10-16T05:11:28Z",
+        "likes": "32",
+        "replies": "3",
+        "url": "https://www.quora.com/What-are-the-advantages-of-the-Rust-programming-language/answer/Anamul-Hasan-3"
+      },
+      {
+        "id": "Joseph-Hopper-4",
+        "author": {
+          "name": "Xxxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Joseph-Hopper-4"
+        },
+        "text": "Xxxx is xxxx X xxxxxxxxx xxx xxx xxxxxxxx xxxxxxxx. Xxxxx xxxxxxxx xxx xxxx a xxxxxxxx xxxxxxxx in. Xxxxx xxxxxxxx xxxx is xxxxxxxx xxxxxxxx of xxx. Xxx't xxxxxx with xxxxxxxx xxxx.\n\nXx is xxx xxxx xxxxxxxxx to xxxxx xxxxxxxxx. Xxxx xxxx't xxxxx xxxxxx. Xxxx xxx't xxxxxxxxxxx xxxx xxx a xxxxxx xxxxxxxxxx. Xxxxxxxxx xxxx't xxxxxxxxxx xxxxxx xx xxxx xxxxxx xxxxxx xxx xxxx xxxxx xxxxxxxxxxx xxxx xxxxx xxxxxxxxxxxx xxxx in xxxx xxxxxxxx.\n\nXx xx xxx xxxx to, xx xxxxx.",
+        "publishedAt": "2017-10-16T05:11:28Z",
+        "likes": "7",
+        "url": "https://www.quora.com/Do-you-recommend-learning-Rust/answer/Joseph-Hopper-4"
+      },
+      {
+        "id": "Benjamin-Sandeen",
+        "author": {
+          "name": "Xxxxxxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Benjamin-Sandeen"
+        },
+        "text": "X’xx add xxxx of xx xxxxxxxx xxxxxxxxxx to Xxxxxx Xxxxx’x xxxxx answer.\n\nXxxxx of xxx, xxx xxxxxxxxx is xx xxxx xxx xxxxxxxx. Xxxxxx XxxxxXxxxxxxx, xxxxx xxxxxx xxx xxxxx xxx xxxx xxxxxx to xxxx xx xxxxx xxxxx xxxxx xxxxxxx a xxxxxxxx, xx Xxxx xxxxxx X xxxx xxxxxxxxxxx xxxxxx to xxxx xxxx xxx-xxxxxxx xxx xxxxxxxx xxxxx xxxxx xxxxxxx X xxxx X xxx’t xx xxxxxxxx xxxxxx xxx xxxxx xx. Xx xxx xxxx xxxxx out to xx a xxx, xxxxxxx xxxx just xxxxxxxx xxxxxxx xxx xx xxxxxxxx xxx’t xxxx.\n\nXxxxxxx xxx xxxxx X’xx xxxxxx xxxxxxx xxxxx Xxxx is xxxx xx xxxxx like a xxxxxx xxxxx xxxxxxxxx of xxxx xxxxx xxx xxx xxxx\n\nXxxxxxxx Xxxxxxx\n\nX’xx add xxxx of xx xxxxxxxx xxxxxxxxxx to Xxxxxx Xxxxx’x xxxxx answer.\n\nXxxxx of xxx, xxx xxxxxxxxx is xx xxxx xxx xxxxxxxx. Xxxxxx XxxxxXxxxxxxx, xxxxx xxxxxx xxx xxxxx xxx xxxx xxxxxx to xxxx xx xxxxx xxxxx xxxxx xxxxxxx a xxxxxxxx, xx Xxxx xxxxxx X xxxx xxxxxxxxxxx xxxxxx to xxxx xxxx xxx-xxxxxxx xxx xxxxxxxx xxxxx xxxxx xxxxxxx X xxxx X xxx’t xx xxxxxxxx xxxxxx xxx xxxxx xx. Xx xxx xxxx xxxxx out to xx a xxx, xxxxxxx xxxx just xxxxxxxx xxxxxxx xxx xx xxxxxxxx xxx’t xxxx.\n\nXxxxxxx xxx xxxxx X’xx xxxxxx xxxxxxx xxxxx Xxxx is xxxx xx xxxxx like a xxxxxx xxxxx xxxxxxxxx of xxxx xxxxx xxx xxx xxxxx xxxxxxxxx (xxx, X xxx Xxxxxx). Xx xxx xxxxxx like xxxxxxx xxx xxxxxxx (xxxxxx with xxxxx xxxxxxxx xxx xxxxx xxxxx) xxxx X xxxxx’t xxxxxx xxxx. Xxx xxxxxxxx xxxxxxx xxxxxxxx a xxx of xxxxxxx xxx xxx to xxx like Xxxxxx xxxx (xxxxx xxxxxx X), xxx xx xxxx xxxxxx xxx to xxx xxxx xxx xxx xxxxx xxxxx xx xxx xxxx/xxxx to xx xx.\n\nXxxx, xxx Xxxxx xxxx is xxxx a xxxxxxxx xxx xxxxxxx xxxxx xxxx to xxx. Xx’x xxxx to Xxxx, xxx xxx xxx’t xxxx to xxxxx a xxxxxxxxxxxxxx to xxx xx. Xx xxx xxxx to xxx a xxxxxxx xxxx xxxxxxx xxxx xxx xxxxxxx (xxx xxxxxxxxx), xxx xxx xxxx to xx is xxxxxxx a xxxx in a `Xxxxx.xxxx` xxxx xxxxxxxxxx xxx xxxxxxx’x xxxx xxx xxx xxxxxxx to xxx. Xxxxx xxxx, xxx xxx xxxxxx xxxxxxx xx xxxxx xxx xxxx xxx xxx xx xx xxxxxxxx. Xxxxx xxxxxxx xxx xxxxxx xxxxx of xxxxxxxxx xxx xxxxxxx xxx xxxxxxxx xx xxxxxxxxx in xxxx xxxxxxx. Xx xxxx xxxxxx xxx to xxxxxx xxx xxx xxxxxxxx xxx xxx in a xxxxxxx with a xxxxxx xxxxxxx.",
+        "publishedAt": "2017-10-16T05:11:28Z",
+        "likes": "14",
+        "url": "https://www.quora.com/What-are-the-advantages-of-the-Rust-programming-language/answer/Benjamin-Sandeen"
+      },
+      {
+        "id": "Adam-Lock-13",
+        "author": {
+          "name": "Xxxx Xxxx",
+          "url": "https://www.quora.com/profile/Adam-Lock-13"
+        },
+        "text": "Xx is xxxxxx a xxxx xxxx to xxxxx xxx xxxxxxxxxxx xxxxxxxxx xxxxxx to xxxxxxx xxxx xxxxxxxxxx. Xxxxxxx Xxxx xxx’t xxxxx xxxx xxxx xxx xxxx xxxxxxxx is.\n\nXxx xx xxx xxx xx xxxxxxxx X xx X++ xxxxxxxxxx xxxx X xxxxxxx Xxxx is xxxxx xxxxxxxx xxx xxxx is xxx.\n\nXxxx xxxxxxx xxxxxxxxxx\n\nXxxxxxxx xxxxxxx xxxxxxxxxx (x.x. xxxxxxx a xxxxxxx xx xxxxxxxxx to xx xxxxxx xxxxxxx of xxx xxxxxxxx)\n\nXxxxxx xxxxxxxxx\n\nXxxx xxxxx (xxx xxxxxxxxxx xxxx xxxxxx xxxxxxx xxxxxxx)\n\nXxxxxx xxxxx (xxxxxxx xxxx xxxxx)\n\nXxxxxx xxxxx (xxxxxxxxxx to xxxx xxxxxx)\n\nXxxxx xxx xxx xxxxxxxxx xxxxxx in X xxx X++. Xxxxxxxx xxxx of xxx xxx xxxx in x\n\nXxxxxxxx Xxxxxxx\n\nXx is xxxxxx a xxxx xxxx to xxxxx xxx xxxxxxxxxxx xxxxxxxxx xxxxxx to xxxxxxx xxxx xxxxxxxxxx. Xxxxxxx Xxxx xxx’t xxxxx xxxx xxxx xxx xxxx xxxxxxxx is.\n\nXxx xx xxx xxx xx xxxxxxxx X xx X++ xxxxxxxxxx xxxx X xxxxxxx Xxxx is xxxxx xxxxxxxx xxx xxxx is xxx.\n\nXxxx xxxxxxx xxxxxxxxxx\n\nXxxxxxxx xxxxxxx xxxxxxxxxx (x.x. xxxxxxx a xxxxxxx xx xxxxxxxxx to xx xxxxxx xxxxxxx of xxx xxxxxxxx)\n\nXxxxxx xxxxxxxxx\n\nXxxx xxxxx (xxx xxxxxxxxxx xxxx xxxxxx xxxxxxx xxxxxxx)\n\nXxxxxx xxxxx (xxxxxxx xxxx xxxxx)\n\nXxxxxx xxxxx (xxxxxxxxxx to xxxx xxxxxx)\n\nXxxxx xxx xxx xxxxxxxxx xxxxxx in X xxx X++. Xxxxxxxx xxxx of xxx xxx xxxx in xxxx xxxx xxxx xx xxx to xxx of xxx xxxxx xxxxxx.\n\nXxxx xxxxx xxxx xxx xxxxxxx xxx xxxxxx of xxx xxxxxxxx xxx xxxxxxx xxxxxxxx xxxxxxxxxxx. Xx xxxx xxxx xxxxxxxx xxxx xx xxxxx’t xxxx xxx of xxxxx xxxxxxxx. 50% of xxxx xxxx just xxxxxxxxx. Xxxxx of xxxx in xxxxx of xxxx xxxxxxx xxx customer xxxxxxx.\n\nXxx xxxxxxxx xxxxxx is X-like in xxxxxxx xxxxxx xxx xxxxx to xxxx a xxx xxxxxxx xxx xxxx xxxxx. Xxxx of xxx xxxxxxxx of xxx xxxxxxxx like xxxxx xxxxxxxxxxx xxx xxxxxxxxx xxx xxxxxxxx xxxxxx xxxx xxx xxxx xxxx xxxx xxxxxx xxxx. Xxxxx xxxx xxx xxxxxxxx of xxx xxxxxxxx xx xxxx xxx a xxxx xxxxxxxxx xxx xxxxxxx xxxxxxxxxx xxxxxx.",
+        "publishedAt": "2019-10-16T05:11:28Z",
+        "likes": "17",
+        "url": "https://www.quora.com/Is-Rust-worth-learning/answer/Adam-Lock-13"
+      },
+      {
+        "id": "Ilyaz-Ziyatdinov",
+        "author": {
+          "name": "Xxxxx Xxxxxxxxxx",
+          "url": "https://www.quora.com/profile/Ilyaz-Ziyatdinov"
+        },
+        "text": "Xx xxxxxx xxx answer is “xx xxxxxxx”.\n\nXxxxx xxx a xxx of xxxxxxx xxxxx XXx xxxxxxxxxx, xxx xxxx xxx xxxxxx xxxxxxxxxx to xxxx xxxxxx xxxxx. Xx xxx xx xxxxx xx to xxxxx Xxxx, xxxxxxx xxxxx xxx xxxxxxxxxxx xxxxxxxx in Xxxx, xxxxx xxx xxx xxxxxxxxxxx in.\n\nXxxx, xx xxx xx xxxxx xxxxxxxx xxxxxxxxx xxxxx xxx xxxxxx of xxx Xxxx Xxxxxxxx, xx xx xxx xx xxxxx xxxxxxxx xxxxx xxx xxxxxx of X++, XXXX xxx xxxxx xxxxxxxxx.\n\nXxxxxxxx xxxxxxxxx xxx to xxxxxxx xxxxx xxx xxxxxxxxx of xxxxxx xxxxxxxx in xxxxxxxx xxxxxx. Xxxxxxxxx xxxxxxxxx xxxx xxxxxxxx xx xxxxxxxxx xxxxxxx (xxxxxxxxxxx, xxxxxxxxxxx, xxxxxxxxxxxxx, et\n\nXxxxxxxx Xxxxxxx\n\nXx xxxxxx xxx answer is “xx xxxxxxx”.\n\nXxxxx xxx a xxx of xxxxxxx xxxxx XXx xxxxxxxxxx, xxx xxxx xxx xxxxxx xxxxxxxxxx to xxxx xxxxxx xxxxx. Xx xxx xx xxxxx xx to xxxxx Xxxx, xxxxxxx xxxxx xxx xxxxxxxxxxx xxxxxxxx in Xxxx, xxxxx xxx xxx xxxxxxxxxxx in.\n\nXxxx, xx xxx xx xxxxx xxxxxxxx xxxxxxxxx xxxxx xxx xxxxxx of xxx Xxxx Xxxxxxxx, xx xx xxx xx xxxxx xxxxxxxx xxxxx xxx xxxxxx of X++, XXXX xxx xxxxx xxxxxxxxx.\n\nXxxxxxxx xxxxxxxxx xxx to xxxxxxx xxxxx xxx xxxxxxxxx of xxxxxx xxxxxxxx in xxxxxxxx xxxxxx. Xxxxxxxxx xxxxxxxxx xxxx xxxxxxxx xx xxxxxxxxx xxxxxxx (xxxxxxxxxxx, xxxxxxxxxxx, xxxxxxxxxxxxx, xxx.). Xx, xx xxxxxxxx Xxxx xxx xxxx xxx xxxxxxxx xxxxxxxx with xxx xxxxxxxxxx of xxxxxxxx xxxxxxxxxxx. Xx xxx xx xxxxxx xxxx xx xxx xxx’t xxx Xxxx in xxxxxx. Of xxxxxx xxx xxxx xxxx xxxxxxx of xxxxxxxxxxx, with xxxx xxxxxxxxxxxxx xx xxxxxx xxx xxxx xx xxxxxxx xxxxx.",
+        "publishedAt": "2021-10-15T05:11:28Z",
+        "likes": "1",
+        "url": "https://www.quora.com/Is-it-worth-it-to-learn-Rust-now/answer/Ilyaz-Ziyatdinov"
+      },
+      {
+        "id": "Scott-Draper-4",
+        "author": {
+          "name": "Xxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Scott-Draper-4"
+        },
+        "text": "Xxxxxxxx to xxx Xxxx is xxxxxx-xxx-xxx-xxxxx xx xxx xx xxxxx xxx xxxxx xxxxxx xxx xxx a xxxxxxxxx. Xxx xxx xxx xxxxx to xxxx? Xxxxxxxx, xx xxx xxxxx xxxxxxxx xxx xxxxxx, xx’x a xxx xxxxxxxxxxxxx to xxx a xxxxxxxx xxxx xx xxx xxxx xxxxx xxx xxxxx xxxxxxxxx in a xxx years.\n\nXxxxx xxxxx xxxx to xx a xxxxx xxxx in xxx xxxxx xxx xxx xxxxxxxx to xxx xxxxxxxxxx xxxxxxxx xxxx to xxxxxxx xxx X xxx’t xxxxxxx xxxx xxxx xxxxx xx.",
+        "publishedAt": "2019-10-16T05:11:28Z",
+        "likes": "1",
+        "url": "https://www.quora.com/Is-Rust-worth-to-learn-What-would-I-use-it-for/answer/Scott-Draper-4"
+      },
+      {
+        "id": "Jawaid-21",
+        "author": {
+          "name": "Xxxxxx",
+          "url": "https://www.quora.com/profile/Jawaid-21"
+        },
+        "text": "Xxxx Xxxxxxxxx\n\n“Xxxx xxx xxxxx xxxxx xxx \"xxxx xxxxx xxxxxxxxxxx xxxxxxxx\" in xxx Xxxxx Xxxxxxxx Xxxxxxxxx Xxxxxx in 2016, 2017, xxx 2018.”\n\nXxxx xxxxx to xxxxxxx X/X++ xx a xxxxxxx xxxxxxxxxxx xxxxxxxx.\n\nXxxx XxxXxx :\n\n“X xxxx to xxxxx of Xxxx xx a xxxxxxxx in xxx xxxxx. Xx'xx xx xxxxxx xxxx xxxxx xxxxx xxxxxx xxxxxx'x xxxx xxxxx xxxxx week (like xxxxxx 1.0), xxx xxx xxxxxxxx xxx xxx xxxxxx xxxxxxxxxx xxxxxx. Xx xxxx xxxx xxxxx xxxxxx in xxxxxx: XXX, xxxx Xxxxx, xxxxxxxxxxxxxx, XXX, xxxxxxxxxx xxxxxx, xxx xx xx.”\n\nXxx xxx xxxxxxxx xxxxxxxx xxxx to xxxxxx xxxxxxxxxxxxxxx xxxxxxx xxxxxxxx, xxx xxxxxxxx\n\nXxxxxxxx Xxxxxxx\n\nXxxx Xxxxxxxxx\n\n“Xxxx xxx xxxxx xxxxx xxx \"xxxx xxxxx xxxxxxxxxxx xxxxxxxx\" in xxx Xxxxx Xxxxxxxx Xxxxxxxxx Xxxxxx in 2016, 2017, xxx 2018.”\n\nXxxx xxxxx to xxxxxxx X/X++ xx a xxxxxxx xxxxxxxxxxx xxxxxxxx.\n\nXxxx XxxXxx :\n\n“X xxxx to xxxxx of Xxxx xx a xxxxxxxx in xxx xxxxx. Xx'xx xx xxxxxx xxxx xxxxx xxxxx xxxxxx xxxxxx'x xxxx xxxxx xxxxx week (like xxxxxx 1.0), xxx xxx xxxxxxxx xxx xxx xxxxxx xxxxxxxxxx xxxxxx. Xx xxxx xxxx xxxxx xxxxxx in xxxxxx: XXX, xxxx Xxxxx, xxxxxxxxxxxxxx, XXX, xxxxxxxxxx xxxxxx, xxx xx xx.”\n\nXxx xxx xxxxxxxx xxxxxxxx xxxx to xxxxxx xxxxxxxxxxxxxxx xxxxxxx xxxxxxxx, xxx xxxxxxxx is xxxxxxxx xxxxxxx xxxx, xxxxxxx of xx’x xxxxxxx ‘xxxxxxxx’.\n\nXxxx Xxxxxxxxx:\n\n“In January 2014, xxx xxxxxx-in-xxxxx of Xx Xxxx'x, Xxxxxx Xxxxxxxx, xxxxxxxxx xx Xxxx'x xxxxxxx to xxxxxx a xxxxxxxxxx to X++, xx xxxx xx to xxx xxxxx xxxxxxxx xxxxxxxxx X, Xx xxx Xxx (xxxx Xxxxxx): xxxxxxxxx to Xxxxxxxx, xxxxx Xxxx xxx \"xxxxxx xxxxxx xx a xxxxxxxxxx xxxxxxx xxxxxxxx\", xxxxxxxx xxxxxx xxxxxxx xx xxxxxxx xxxxxxxxxx xxxxxxx xxxxxxxx…”\n\nXxx xxxxxx xxxx xx xxxxxxx xxxx xxxxxxx\n\nXxxxxxxxxxxxxxxx\n\n[1]\n\nXxxxxxxxx\n\n[1] Xxxx (xxxxxxxxxxx xxxxxxxx) - Xxxxxxxxx",
+        "publishedAt": "2018-10-16T05:11:28Z",
+        "likes": "4",
+        "url": "https://www.quora.com/Is-it-worth-to-learn-Rust-programming-language-in-2018/answer/Jawaid-21"
+      }
+    ],
+    "replyCount": "27"
+  },
+  "chain": [
+    {
+      "id": "quora.com/question",
+      "version": 1,
+      "sha256": "531e3c38438b1ef903ed53f4b3551a9031d735857ba23274f10a1150d111ec77"
+    }
+  ]
+}

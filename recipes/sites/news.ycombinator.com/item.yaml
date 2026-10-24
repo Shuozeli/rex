@@ -1,0 +1,97 @@
+# Hacker News discussion page -> rex.schema.social.v1.Thread (decisions.md U33). Comments come in page order
+# with their nesting depth (td.ind@indent).
+id: news.ycombinator.com/item
+version: 1
+schema: rex.schema.social.v1.Thread
+match:
+  urls:
+    hosts: ["news.ycombinator.com"]
+    include: ["^/item\\?id=\\d+"]
+  page:
+    any:
+      - exists: "tr.athing.submission"
+      - exists: "tr.athing.comtr"
+fields:
+  - path: title
+    candidates:
+      - css: { selector: ".titleline > a", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: url
+    candidates:
+      - url: { part: URL_PART_HREF }
+
+  - path: reply_count
+    candidates:
+      - css: { selector: ".subline a[href^='item?id=']", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - filter: { pattern: "comment" }
+      - number: {}
+
+  - path: post.id
+    expect: true
+    candidates:
+      - css: { selector: "tr.athing.submission", take: TAKE_ATTRIBUTE, attribute: id, scope: CSS_SCOPE_DOCUMENT }
+      - url: { part: URL_PART_QUERY_PARAM, query_param: id }
+
+  - path: post.author.name
+    candidates:
+      - css: { selector: ".subline .hnuser", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.author.url
+    candidates:
+      - css: { selector: ".subline .hnuser", take: TAKE_ATTRIBUTE, attribute: href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.text
+    candidates:
+      - css: { selector: ".toptext", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.published_at
+    candidates:
+      - css: { selector: ".subline .age", take: TAKE_ATTRIBUTE, attribute: title, scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - regex: { pattern: "^(\\S+)", group: 1 }
+
+  - path: post.likes
+    candidates:
+      - css: { selector: ".subline .score", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - number: {}
+
+  - path: post.replies
+    candidates:
+      - field: { path: reply_count }
+
+  - path: post.url
+    candidates:
+      - url: { part: URL_PART_HREF }
+
+  - path: post.link
+    candidates:
+      - css: { selector: ".titleline > a", take: TAKE_ATTRIBUTE, attribute: href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: replies
+    each: "tr.athing.comtr"
+    fields:
+      - path: id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: id }
+      - path: author.name
+        candidates:
+          - css: { selector: ".hnuser" }
+      - path: author.url
+        candidates:
+          - css: { selector: ".hnuser", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: published_at
+        candidates:
+          - css: { selector: ".age", take: TAKE_ATTRIBUTE, attribute: title }
+        pipe:
+          - regex: { pattern: "^(\\S+)", group: 1 }
+      - path: text
+        candidates:
+          - css: { selector: ".commtext" }
+      - path: url
+        candidates:
+          - css: { selector: ".age a", take: TAKE_ATTRIBUTE, attribute: href }
+      - path: depth
+        candidates:
+          - css: { selector: "td.ind", take: TAKE_ATTRIBUTE, attribute: indent }

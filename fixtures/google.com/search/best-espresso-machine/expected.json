@@ -1,0 +1,194 @@
+{
+  "recipe": {
+    "id": "google.com/search",
+    "version": 1,
+    "sha256": "cbdfcdfbbc0d9fe96b63fbe4bdbca6015d8b36c1188296bf0fcfbe073d688200"
+  },
+  "schema": "rex.schema.search.v1.SearchResults",
+  "url": "https://www.google.com/search?q=best+espresso+machine&hl=en",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:04:26Z",
+  "extractTime": "2026-10-14T03:04:26Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "engine",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results[0].type",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 2,
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results[0].display_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "results[0].snippet",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "related_searches",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "total_results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "google.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "candidate": 1,
+      "recipe": "google.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.search.v1.SearchResults",
+    "query": "best espresso machine",
+    "engine": "google",
+    "results": [
+      {
+        "rank": 1,
+        "type": "RESULT_TYPE_AD",
+        "title": "XX$1,799 Xxxx Xxxxxx Xxxxxxxx | Xxx Xxxxxxxxxx Xxxxxxxx Xxxxxx",
+        "url": "https://www.merakitech.com/pages/best-espresso-machine",
+        "displayUrl": "https://www.merakitech.com",
+        "snippet": "Xxxx xxxxxxx, xxxxx-in xxxxxxx xxx xxxx xxxxxx. Xxx xxxxxxxx xxxxxxxx xxxxxx. Xxxx xxxxxxxx xxxxxxx xxxx xxxxx-in xxxxxxx xxx xxxx xxxxxx. Xxxx xxx XX$1,799 xxxxxx. Xxxxx-In Xxxxxxx."
+      },
+      {
+        "rank": 2,
+        "type": "RESULT_TYPE_AD",
+        "title": "Xxxxxxxx Xxxxxxxx Xxxxxxxx",
+        "url": "https://www.breville.com/en-us/shop/espresso",
+        "displayUrl": "https://www.breville.com",
+        "snippet": "Xxxxxx Xxxxxxxx Xx Xxxx — Xxxx xxxx xx xxxx, xxxxx xxx xxxxxxx...\n\nXxxx xxxx"
+      },
+      {
+        "rank": 3,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx xxxxxxxx xxxxxxx xxx xxxx xxx xxxxx xxxxxxxx ...",
+        "url": "https://www.reddit.com/r/JamesHoffmann/comments/1rsgpd9/best_espresso_machine_for_home_use_under_moderate/",
+        "snippet": "XXXXXX: Xxxxx xxxxxxxx xxx xxxxxxx xxx comments, xxx #xx Xxxxxxxx Xxxxxxx Xxxxx Xxxxxxxx Xxxxxxx xx xxxxx xxxxxxxxxxx xx a xxxxx xxxxxxx xxxxxxx xxxxxxxxxxx ..."
+      },
+      {
+        "rank": 4,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx 5 Xxxx Xxxxxxxx Xxxxxxxx Xxxxx $500 [Xxxxxx 2026 ]",
+        "url": "https://coffeechronicler.com/gear/espresso-machines/best-under-500/",
+        "displayUrl": "https://coffeechronicler.com › xxxx › xxxx-xxxxx-500",
+        "snippet": "Xxxx Xxxxxxx Xxxxxxxx Xxxxxxx xxxxx $500 · 1: XxxXxxxxx Xxxx · 2: Xxxxxxxx Xxxxxxx Xxxx · 3: Xxxxxx Xxxxxxx Xxxxxxxx Xxxxx · 4: Xxxxxxx Xxxxx.Xxxx xxxx",
+        "publishedAt": "2026-07-18T00:00:00Z"
+      },
+      {
+        "rank": 5,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx Xxxx Xxxx Xxxxxxxx Xxxxxxx",
+        "url": "https://www.nytimes.com/wirecutter/reviews/best-espresso-machine-grinder-and-accessories-for-beginners/",
+        "displayUrl": "https://www.nytimes.com › Xxxxxxx › Xxxxxx",
+        "snippet": "Xxxxx xxxxxx (xxx xxxxxxx) xxxxxx of xxxxxxxxx xxx xxxxxx, xx xxxxx xxx Xxxxxxxx Xx xx xxx xxxx xxxxxxx xxx xxxx xxx xxx xxxxxxx xxxxxxxx ...",
+        "publishedAt": "2026-03-17T00:00:00Z"
+      },
+      {
+        "rank": 6,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx Xxxxxxx: xxx Xxxxx, Xxxxxxxxxx Xxxxxx",
+        "url": "https://www.wholelattelove.com/blogs/reviews/the-best-espresso-machine?srsltid=AU7gw4WYO_dmRugYs3g3xG6pBe75rvSBEzw99E3qkNZE9PL3eJGRiKgz",
+        "displayUrl": "https://www.wholelattelove.com › Xxxxx › Xxxxxxx",
+        "snippet": "Xxx Xxxxx Xxxxxxx Xxxxxxxx Xxxx xx a xxxxx-xxxxxxxxx xxxx xxxxxxxx xxxxxxx xxxx xxxxx't xxxxxxxxxx xx xxxxxxx. Xxxx xxxxxxxx XXX xxxxxxxxxxx ...Xxxx xxxx",
+        "publishedAt": "2025-11-20T00:00:00Z"
+      },
+      {
+        "rank": 7,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx Xxxxxxx: Xxx Xxxxx xxx Xxxxx Xxxxxx xxx ...",
+        "url": "https://coffeekev.com/best-espresso-machine/",
+        "displayUrl": "https://coffeekev.com › xxxx-xxxxxxxx-xxxxxxx",
+        "snippet": "Xxx Xx'Xxxxxx Xxxxxxxxx Xxx Xxxx xx xxxxxx xxx xxxx xxx-xxxxxx xxxxxxxxx xxxxxxxx xxxxxxx xxxxx $1000 xxx xxxx xxxxxx, xxxxxxxxxx xx xxx xxxxx ...Xxxx xxxx",
+        "publishedAt": "2026-09-18T00:00:00Z"
+      },
+      {
+        "rank": 8,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxxxxxx Xxxxxxx Xxxxxxxxxxxxxx, Xxxxxx $2500 ...",
+        "url": "https://www.home-barista.com/advice/home-espresso-machine-recommendation-budget-2500-3000-t100592.html",
+        "displayUrl": "https://www.home-barista.com › xxxxxx › xxxx-xxxxxxx...",
+        "snippet": "Xxx xxxx xxxxxx, xx xxxxx xx xxxxxxxxx xx xxxx xxxxxxxxx like a Xxxxx Xxxxxx X3, XXX Xxxxxxxxxxx XX, xx xxxxxxx xx xxx'xx xxxxxxxxxx in a ...Xxxx xxxx",
+        "publishedAt": "2025-08-16T00:00:00Z"
+      },
+      {
+        "rank": 9,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxx Xxxxx Xxxxxxxx Xxxxxxxx",
+        "url": "https://www.seattlecoffeegear.com/collections/espresso-machines?srsltid=AU7gw4Xt_cilu4ytSnPAshgwJS8CjSPbeW5DLbPjNNQjWdYJNP7SYtJU",
+        "displayUrl": "https://www.seattlecoffeegear.com › xxxxxxxxxxx › xxxxxx...",
+        "snippet": "Xxx Xxx Xxxxxxxx Xxxxxxxx · XXXXX Xxxx Xxxxxxxx Xxxxxxx · Xxxxxxx Xxxx Xxxxxxxx Xxxxxxx · Xxxxxxx Xxx Xxxxxxxx Xxxxxxx · XxXxxxxx Xxxxxxxxx ...Xxxx xxxx"
+      },
+      {
+        "rank": 10,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxxx Xxxxxxxx Xxxxxxxx (Xxxx Xxxxxxx Xxxxxxx)",
+        "url": "https://coffeebros.com/collections/espresso-machines?srsltid=AU7gw4WfivXq4jd5ysA-B8sgDs9OGE2PT8x769RILuiDiAB6DmbzduPb",
+        "displayUrl": "https://coffeebros.com › xxxxxxxxxxx › xxxxxxxx-xxxxxxxx",
+        "snippet": "Xxxxxx Xxxx. xxxxxxxxxx xxxxxxx like xxx Xxxxxxxx Xxxxxxx Xxxx xxx xxx Xxxxxxxx Xxxxxxx Xxxxxxx, xxxx of xxxxx xxx xxxxxxxx xxxx xxxxxxxxx in xxxx xxx xxxxx xx ...Xxxx xxxx"
+      },
+      {
+        "rank": 11,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxxxxxx Xxxxxxx Xxxxxxxxxxxxxxx - Xxxxxx Xxxxxx",
+        "url": "https://www.coffeeforums.com/threads/espresso-machine-recommendations.22999/",
+        "displayUrl": "https://www.coffeeforums.com › xxxxxxx › xxxxxxxx-xx...",
+        "snippet": "Xxx xxxx xxx, in xx xxxxxxx of xxxxxx, xx xxx Xxxxxxx Xxxxx, Xxxxxxx xxxxx a xxxxxx xxxx. Xxxx a xxxx xx Xxxxx, Xxxxxxx, Xxxxxx...",
+        "publishedAt": "2023-03-26T00:00:00Z"
+      }
+    ],
+    "relatedSearches": [
+      "Xxxx xxxxxxxx xxxxxxx xxx xxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxxxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxxxxxxxxxxx",
+      "Xxxxxxxxxxxx xxxxxxxx xxxxxxx xxx xxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxx xxxx xxxxxxxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxx xxxxxxxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxx xxxx xxxxxxxxxx",
+      "Xxxx xxxxxxxx xxxxxxx xxxx xxxxxxx"
+    ],
+    "totalResults": "67000000",
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "google.com/search",
+      "version": 1,
+      "sha256": "cbdfcdfbbc0d9fe96b63fbe4bdbca6015d8b36c1188296bf0fcfbe073d688200"
+    }
+  ]
+}

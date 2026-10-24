@@ -1,0 +1,113 @@
+{
+  "recipe": {
+    "id": "generic/event.v1",
+    "version": 1,
+    "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+  },
+  "schema": "rex.schema.event.v1.Event",
+  "url": "https://www.eventbrite.com/e/petit-biscuit-at-the-foundry-in-san-francisco-tickets-1996742113412",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:44:30Z",
+  "extractTime": "2026-10-14T05:44:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "start_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "status",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "attendance",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "venue",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "organizer",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "performers",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "tickets",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/event.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.event.v1.Event",
+    "name": "Xxxxx Xxxxxxx xx Xxx Xxxxxxx in Xxx Xxxxxxxxx",
+    "description": "A xxxxxxxx Xxxxxx xxxxxxxxxx xxxxx xxxxxxxx, Xxxxx Xxxxxxx xxx a xxxx xxxxxxx to xxxxx xxxxxxx with xxxxx xxxxx.",
+    "startAt": "2026-10-24T04:00:00Z",
+    "status": "EVENT_STATUS_SCHEDULED",
+    "attendance": "ATTENDANCE_MODE_OFFLINE",
+    "venue": {
+      "name": "Xxx Xxxxxxx",
+      "address": {
+        "street": "1425 Xxxxxx St., Xxx Xxxxxxxxx, XX 94103",
+        "locality": "Xxx Xxxxxxxxx",
+        "region": "CA",
+        "country": "US"
+      }
+    },
+    "organizer": {
+      "name": "15Xxxx"
+    },
+    "performers": [
+      {
+        "name": "Xxxxx Xxxxxxx",
+        "url": "http://www.petitbiscuit.fr/"
+      }
+    ],
+    "tickets": [
+      {
+        "lowPrice": "31.05",
+        "highPrice": "48.03",
+        "currency": "USD",
+        "url": "https://www.eventbrite.com/e/petit-biscuit-at-the-foundry-in-san-francisco-tickets-1996742113412"
+      }
+    ],
+    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1190316447%2F2878309472541%2F1%2Foriginal.20260804-195944?w=940&auto=format%2Ccompress&q=75&sharp=10&s=1babd66de12031eb84d07e8ac442cd95",
+    "url": "https://www.eventbrite.com/e/petit-biscuit-at-the-foundry-in-san-francisco-tickets-1996742113412"
+  },
+  "chain": [
+    {
+      "id": "generic/event.v1",
+      "version": 1,
+      "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+    }
+  ]
+}

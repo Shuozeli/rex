@@ -1,0 +1,108 @@
+{
+  "recipe": {
+    "id": "generic/event.v1",
+    "version": 1,
+    "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+  },
+  "schema": "rex.schema.event.v1.Event",
+  "url": "https://www.eventbrite.com/e/the-music-of-ennio-morricone-a-candlelit-piano-strings-experience-tickets-1992045689281",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:44:30Z",
+  "extractTime": "2026-10-14T05:44:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "start_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "end_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "status",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "attendance",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "venue",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "organizer",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "tickets",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/event.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/event.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.event.v1.Event",
+    "name": "Xxx Xxxxx of Xxxxx Xxxxxxxxx: A Xxxxxxxxx Xxxxx & Xxxxxxx Xxxxxxxxxx",
+    "description": "Xxxxxxxxxx xxx xxxxxxxx xxxxx of Xxxxx Xxxxxxxxx, xxxxxxxxx xxx xxxxxxxx xxxxxxxxxxxx xxx xxxxx xxx xxxxxx xxxxxxx.",
+    "startAt": "2026-10-29T02:30:00Z",
+    "endAt": "2026-10-29T03:30:00Z",
+    "status": "EVENT_STATUS_SCHEDULED",
+    "attendance": "ATTENDANCE_MODE_OFFLINE",
+    "venue": {
+      "name": "Xxxxxxxx X. Xxxx Xxxxxxx Xxxx",
+      "address": {
+        "street": "50 Xxx Xxxxxx, Xxx Xxxxxxxxx, XX 94102",
+        "locality": "Xxx Xxxxxxxxx",
+        "region": "CA",
+        "country": "US"
+      }
+    },
+    "organizer": {
+      "name": "Xxxxxxxxx Xxxxxxxxxx"
+    },
+    "tickets": [
+      {
+        "lowPrice": "38.75",
+        "highPrice": "81.31",
+        "currency": "USD",
+        "url": "https://www.eventbrite.com/e/the-music-of-ennio-morricone-a-candlelit-piano-strings-experience-tickets-1992045689281"
+      }
+    ],
+    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1187250951%2F3005477755592%2F1%2Foriginal.20260619-052915?crop=focalpoint&fit=crop&w=940&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.144&fp-y=0.424&s=01058d37bd7a12fd07f77ee5f0e5f30e",
+    "url": "https://www.eventbrite.com/e/the-music-of-ennio-morricone-a-candlelit-piano-strings-experience-tickets-1992045689281"
+  },
+  "chain": [
+    {
+      "id": "generic/event.v1",
+      "version": 1,
+      "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-<!-- agent-updated: 2026-10-12T06:00:00Z -->
+<!-- agent-updated: 2026-10-13T06:00:00Z -->
 
 # rex engine specification (v3)
 
@@ -34,7 +34,7 @@
 | Recipe, match, candidates, transforms | `proto/rex/extract/v1/extraction_recipe.proto` |
 | Bundle (publishing) | `proto/rex/bundle/v1/bundle.proto` |
 | Example recipes | `recipes/generic/article.v1.yaml`, `recipes/sites/<host>/<name>.yaml` |
-| Validator prototype | `scripts/validate_recipes.py` (to become `rex check`) |
+| Validation | `rex check` (crates/rex-cli) |
 
 ## 3. Goals and non-goals
 
@@ -111,6 +111,8 @@ fields:
 - **`json_ld: {}` and `microdata: {}`** take their types from the record's `schema_org` and their path
   from the field's `schema_org`.
 - **Lists of objects:** `each` plus nested rules (DOM), or object coercion (JSON-LD).
+- **`css.exclude`** (U22): descendant subtrees removed before a text or HTML value is taken, e.g.
+  `exclude: [".ad", "[class*=read-next]"]`.
 - **Matching (U2)** is driven by the host, using `match_urls` and `match_page` on the same parse.
 
 ## 7. Evaluation semantics
@@ -157,6 +159,8 @@ extract(compiled, document, ctx{ now, hints, limits, host fields }):
   - `field` → the referenced field's origin.
 - **Determinism:** document order, no hash-map iteration in the output, the injected `now`, and fields
   serialized in field-number order.
+- **M1 semantics (U23):** `expect` is not inherited; `default` lives only in rule pipes; invalid `each`
+  items are dropped; list provenance covers the parent and item 0.
 - **Diagnostics** are returned beside the envelope (`ExtractResult{extraction, diagnostics}`). They are
   not part of the `Extraction` contract, which keeps it stable.
 
@@ -233,19 +237,24 @@ resolves through the same descriptor pool.
 
 ### 10.1 Crates (`crates/` in this repo)
 
+Built in M1:
+
 | Crate | Responsibility |
 |---|---|
-| `rex-dom` | html5ever/scraper parse, read-only Document, scoped matching (`:scope`), lazy indexes |
-| `rex-schema` | Descriptor pool (prost-reflect), annotation reader, coercion targets |
-| `rex-recipe` | ExtractionRecipe compile: merge, path resolution, type-check, DAG, CompiledRecipe |
-| `rex-sources` | css / json_ld / microdata / meta / link / url / const / field / hint / readability |
-| `rex-readability` | Port of company-feed-server `feed-content::process_html` (U12; vendored with attribution, no git dependency) |
-| `rex-transform` | Transforms, §8 semantics, ammonia, chrono(-tz), number parsing |
-| `rex-engine` | Evaluator, fuel and limits, Extraction assembly, `match_urls` / `match_page` |
-| `rex-bundle` | Bundle build, canonicalization, sign, verify (`rex.bundle.v1`) |
-| `rex-redact` | Fixture redaction (U19); also exported to wasm for extension developer mode |
-| `rex-wasm` | wasm-bindgen facade, published as `@rex/engine` |
-| `rex-cli` | The `rex` binary (design.md §7.1) |
+| `rex-proto` | prost types for `proto/rex`, plus the embedded `FileDescriptorSet` |
+| `rex-schema` | Descriptor pool, annotation reader, `RecordSpec`/`FieldSpec`, no-`map<>` validation |
+| `rex-dom` | html5ever/scraper parse, read-only `Document`, scoped and relative selectors (`:scope`), §8.1–8.2 walkers (with `exclude`), meta/link/JSON-LD/microdata indexes, `Limits` and `Budget` |
+| `rex-readability` | Deterministic main-content scorer (U12 as amended) |
+| `rex-engine` | Modules `recipe` (parse, merge, compile), `transform`, `values` (dates, numbers, URLs), `coerce` (incl. ammonia), `eval`, `matching`, `fixtures`; plus the `Engine` API |
+| `rex-cli` | The `rex` binary: `check`, `extract`, `explain`, `match`, `test` |
+
+Planned:
+
+| Crate | Milestone | Responsibility |
+|---|---|---|
+| `rex-wasm` | M2 | wasm-bindgen facade (`@rex/engine`) |
+| `rex-bundle` | M4 | Bundle build, sign, verify |
+| `rex-redact` | M3 | Fixture redaction (U19) |
 
 ### 10.2 Rust API
 
@@ -293,17 +302,26 @@ doc.free(); plan.free();
 ```
 
 - It runs in the extension service worker under `wasm-unsafe-eval`.
-- **Size budget:** ≤ 1.5 MB raw, ≤ 600 KB gzipped. The levers are a trimmed tz set, trimmed regex
-  Unicode tables, and `opt-level="z"` plus LTO plus `wasm-opt -Oz`.
+- **Size budget:** ~~≤ 1.5 MB raw, ≤ 600 KB gzipped~~ **≤ 1.15 MB gzipped** (amended, decisions.md U25).
+  The levers in use: a trimmed tz set, trimmed regex Unicode tables, one html5ever, and the `wasm` profile
+  (`opt-level="s"` plus LTO). `opt-level="z"` was rejected because it runs about 6× slower than native.
+  Measured: about 1.06 MB gzipped.
+- The wasm API as shipped is `verifyIndex`, `sha256Hex`, `engineVersion`, `supportedFeatures`,
+  `redactHtml`, `lintHtml`, `recipeId`, and `RexEngine { new(fds, recipes), recipeIds, matchUrl, extract }`.
+  These are JSON-in/JSON-out wrappers over the same crates, rather than the object-handle API sketched
+  above.
 
-Performance targets:
+Performance targets (original) and measurements on a 1.27 MB real page (2026-10-13):
 
-| Case | Target |
-|---|---|
-| 1 MB page, native | < 60 ms |
-| Same, wasm | < 150 ms |
-| Readability, when it runs | + < 80 ms |
-| Peak memory | < 60 MB |
+| Case | Target | Measured |
+|---|---|---|
+| 1 MB page, native | < 60 ms | parse 9 ms; full extraction ~140 ms (readability included) |
+| Same, wasm | < 150 ms | ~450 ms in Chrome |
+| Readability, when it runs | + < 80 ms | dominates the native time on long pages |
+| Peak memory | < 60 MB | 35 MB RSS (CLI, end to end) |
+
+The native and wasm targets are not met on the largest pages. Readability scoring is the hot spot
+(`examples/profile_stages.rs`). Users perceive a click-to-result time under 0.5 s on typical pages.
 
 ## 12. Integrations (consumer-owned, U21)
 
@@ -329,7 +347,7 @@ They depend on `rex-engine` through a git dependency pinned to a tag.
 
 | Layer | What |
 |---|---|
-| Contract | `rex check` on every recipe; negative fixtures for compile errors |
+| Contract | `rex check` on every recipe (it replaced the Python prototype in M1); negative fixtures for compile errors |
 | Unit (AAA) | Each source, each transform, the §8 walkers (CJK, RTL, `pre`, hidden elements), coercion into messages, merge, DAG |
 | Conformance | `conformance/<case>/{page.html, url, hints.json, recipe.yaml, expected.json}` plus every recipe fixture under `fixtures/`, **natively and under wasm**, byte-identical |
 | Fuzz | `cargo fuzz` nightly |

@@ -1,0 +1,70 @@
+// rex.schema.creative.v1: pages about one creative work: a film or show (IMDb, Rotten Tomatoes, Douban) or a
+// book (Goodreads, Open Library). Watch pages for a video file are rex.schema.media.v1.Video.
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.creative.v1;
+
+import "rex/schema/common/v1/common.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Title {
+  option (rex.schema.v1.record) = {
+    schema_org: "Movie"
+    schema_org_also: ["TVSeries", "TVEpisode", "TVSeason", "CreativeWorkSeries"]
+    primary: ["release_date", "directors", "actors", "description"]
+    fallback_rank: 20
+  };
+
+  string id = 1;                           // the site's id: tt1375666
+  string name = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  TitleType type = 3;
+  string release_date = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_DATE, schema_org: "datePublished" }];
+  uint32 duration_seconds = 5;
+  repeated string genres = 6 [(rex.schema.v1.field) = { schema_org: "genre", max_items: 20 }];
+  repeated rex.schema.common.v1.Person directors = 7 [(rex.schema.v1.field) = { schema_org: "director", max_items: 20 }];
+  repeated rex.schema.common.v1.Person creators = 8 [(rex.schema.v1.field) = { schema_org: "creator", max_items: 20 }];
+  repeated rex.schema.common.v1.Person actors = 9 [(rex.schema.v1.field) = { schema_org: "actor", max_items: 50 }];
+  double rating = 10;                      // on the site's scale (IMDb out of 10)
+  double rating_scale = 11;                // the best rating of that scale: 10, 5, 100
+  int64 rating_count = 12;
+  string content_rating = 13 [(rex.schema.v1.field) = { schema_org: "contentRating" }];   // "PG-13"
+  string description = 14 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  string image = 15 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 16 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+enum TitleType {
+  TITLE_TYPE_UNSPECIFIED = 0;
+  TITLE_TYPE_MOVIE = 1 [(rex.schema.v1.enum_value) = { schema_org: ["Movie"] }];
+  TITLE_TYPE_SERIES = 2 [(rex.schema.v1.enum_value) = { schema_org: ["TVSeries", "CreativeWorkSeries"] }];
+  TITLE_TYPE_EPISODE = 3 [(rex.schema.v1.enum_value) = { schema_org: ["TVEpisode"] }];
+  TITLE_TYPE_SEASON = 4 [(rex.schema.v1.enum_value) = { schema_org: ["TVSeason"] }];
+}
+
+message Book {
+  option (rex.schema.v1.record) = {
+    schema_org: "Book"
+    primary: ["authors", "isbn", "description"]
+    fallback_rank: 20
+  };
+
+  string id = 1;                           // the site's id
+  string name = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  repeated rex.schema.common.v1.Person authors = 3 [(rex.schema.v1.field) = { schema_org: "author", max_items: 20 }];
+  string isbn = 4 [(rex.schema.v1.field) = { schema_org: "isbn" }];
+  string publisher = 5;
+  string published_date = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_DATE, schema_org: "datePublished" }];
+  uint32 pages = 7 [(rex.schema.v1.field) = { schema_org: "numberOfPages" }];
+  string language = 8 [(rex.schema.v1.field) = { schema_org: "inLanguage" }];
+  string format = 9 [(rex.schema.v1.field) = { schema_org: "bookFormat" }];   // "Hardcover", "Paperback", "EBook"
+  repeated string genres = 10 [(rex.schema.v1.field) = { schema_org: "genre", max_items: 20 }];
+  double rating = 11;
+  double rating_scale = 12;
+  int64 rating_count = 13;
+  int64 review_count = 14;
+  string description = 15 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  string image = 16 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 17 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}

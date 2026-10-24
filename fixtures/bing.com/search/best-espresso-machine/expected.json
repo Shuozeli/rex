@@ -1,0 +1,162 @@
+{
+  "recipe": {
+    "id": "bing.com/search",
+    "version": 1,
+    "sha256": "b0a2c4d8b2a9c04f6b2b2e8aaf1d96c397e93f03358bf0a1427e43e19d41ea24"
+  },
+  "schema": "rex.schema.search.v1.SearchResults",
+  "url": "https://www.bing.com/search?q=best+espresso+machine&setlang=en&rdr=1&rdrig=3479A0333F8545A7B2D7A146F93C4B03",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:35:25Z",
+  "extractTime": "2026-10-14T02:35:25Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "engine",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].display_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "results[0].snippet",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "total_results",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bing.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "candidate": 1,
+      "recipe": "bing.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.search.v1.SearchResults",
+    "query": "best espresso machine",
+    "engine": "bing",
+    "results": [
+      {
+        "rank": 1,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx Xxx | Xxxxxxxx Xxxxxx Xxxxx | Xxxx Now & Xxxx",
+        "url": "https://www.bestbuy.com/",
+        "displayUrl": "https://www.bestbuy.com",
+        "snippet": "Xxxx Xxxx Xxx xxx xxxxxxxxxxx, xxxxxxxxx, xxxxxxxxxx, xxxx xxxxxx, xxxxx xxxxx & xxxx xxx xxxx. Xxxxx xxxxxx & xxxx 2-day …"
+      },
+      {
+        "rank": 2,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XXXX Xxxxxxxxxx & Xxxxxxx - Xxxxxxx-Xxxxxxx",
+        "url": "https://www.merriam-webster.com/dictionary/best",
+        "displayUrl": "https://www.merriam-webster.com › xxxxxxxxxx › xxxx",
+        "snippet": "Oct 6, 2026 · In xxx xxxx of xxx xxxxxxxx xxxxxx, xx xxx xxxxx xx xxxxxxx xxxx xxx xxxxx xxxxx. X xxxx a xxxxxxxxx xxxxxx xxx a xxxxx …"
+      },
+      {
+        "rank": 3,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxx - xxxxxxxxxx of xxxx xx Xxx Xxxx Xxxxxxxxxx",
+        "url": "https://www.thefreedictionary.com/best",
+        "displayUrl": "https://www.thefreedictionary.com › xxxx",
+        "snippet": "1. In a xxxx xxxxxxxxx xxx; xxxx xxxxxxxxxx xx xxxxxxxxxxxxxx. 2. Xx xxx xxxxxxxx xxxxxx xx xxxxxx; xxxx: \"Xx xxx xxxxxxxxx xxx xxxx …"
+      },
+      {
+        "rank": 4,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "xxxx - XxxxXxxxxxxxx.xxx Xxxxxxxxxx of Xxxxxxx",
+        "url": "https://www.wordreference.com/definition/best",
+        "displayUrl": "https://www.wordreference.com › xxxxxxxxxx › xxxx",
+        "snippet": "Xxxxxx xx xxxx xxx xxx, in xxx xxxx xxx xxxxxxxx: Xx xxxx X xxx xxxx, xx'xx xxx xxxxx xxxx xxxx. Xxxxxx xx xxxx, xxxx xxxxx xxx xxxx …"
+      },
+      {
+        "rank": 5,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "Xxxxxxxxx & Xxxxxxx - Xxxx Xxx",
+        "url": "https://www.bestbuy.com/site/electronics/computers-pcs/abcat0500000.c?id=abcat0500000%2F",
+        "displayUrl": "https://www.bestbuy.com › xxxx › xxxxxxxxxxx › xxxxxxxxx-xxx",
+        "snippet": "Xxxx xx Xxxx Xxx xxx xxxxxxxxx xxx xxxxxxx. Xxxx xxxxxxx, xxxxxxxx, xxx-in-xxx xxxxxxxxx, xxxxxxxx, xxxxxxx xxx xxxx."
+      },
+      {
+        "rank": 6,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "xxxx - Xxxxxxxxxx, xxx xxxx xxxxxxxxxx",
+        "url": "https://en.m.wiktionary.org/wiki/best",
+        "displayUrl": "https://en.m.wiktionary.org › xxxx › xxxx",
+        "snippet": "Oct 3, 2026 · Xxxxxxxx xx xx xxxxxxxxx xxxxxxxxxx xx xxxxxx, xxxx xx xxxxxxxxx xxxxxxxxxx xxxx xxxxxx in \" Xx xxxx xx xxxxx, \" xxx …"
+      },
+      {
+        "rank": 7,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XXXX | Xxxxxxx xxxxxxx - Xxxxxxxxx Xxxxxxxxxx",
+        "url": "https://dictionary.cambridge.org/dictionary/english/best",
+        "displayUrl": "https://dictionary.cambridge.org › xxxxxxxxxx › xxxxxxx › xxxx",
+        "snippet": "XXXX xxxxxxxxxx: 1. of xxx xxxxxxx xxxxxxx, xx xxxxx xxx xxxx xxxxxxxx, xxxxxxxx, xx xxxxxxxxx xxxx of xxxxx xx…. Xxxxx xxxx."
+      },
+      {
+        "rank": 8,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XXX XXXX 10 XXXXXXXXXXX IN XXXXXXX, XX - XXXXXXX OCTOBER 2026 ... - Xxxx",
+        "url": "https://www.yelp.com/search?cflt=restaurants&find_loc=Vallejo%2C+CA&msockid=03b281044d4c667310e396f64ce567b7",
+        "displayUrl": "https://www.yelp.com › xxxxxx",
+        "snippet": "Xxxx Xxxxxxxxxxx in Xxxxxxx, XX - Xxxx Xxxxxxx October 2026 - Xxxxx Xxxxxxx, X Xxxxx, Xx Xxxxxx Xxxxxxxx, Xxxxxx Xxxxx Xxxxxxx …"
+      },
+      {
+        "rank": 9,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XXXX - Xxxx Xxxxxxxx & Xxxxxx Xxxxxxx Xxxxxxxxx",
+        "url": "https://www.bestaccess.com/",
+        "displayUrl": "https://www.bestaccess.com",
+        "snippet": "XXXX xxxxxxxxxx xxxx xxxxxxxx xxxxxxxx xxx xxxxxx xxxxxxx xxxxxxxxx xxx xxx xxxxxxxx xxx xxxxxxxx, xxxxxxxxxx, xxxxxxxxxxxxx xxx …"
+      },
+      {
+        "rank": 10,
+        "type": "RESULT_TYPE_ORGANIC",
+        "title": "XXXX Xxxxxxxxxx & Xxxxxxx | Xxxxxxxxxx.xxx",
+        "url": "https://www.dictionary.com/browse/best",
+        "displayUrl": "https://www.dictionary.com › xxxxxx › xxxx",
+        "snippet": "XXXX xxxxxxxxxx: of xxx xxxxxxx xxxxxxx, xxxxxxxxxx, xx xxxxxxxx. Xxx xxxxxxxx of xxxx xxxx in a xxxxxxxx."
+      }
+    ],
+    "totalResults": "877000",
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "bing.com/search",
+      "version": 1,
+      "sha256": "b0a2c4d8b2a9c04f6b2b2e8aaf1d96c397e93f03358bf0a1427e43e19d41ea24"
+    }
+  ]
+}

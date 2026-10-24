@@ -1,0 +1,87 @@
+{
+  "recipe": {
+    "id": "generic/article.v1",
+    "version": 1,
+    "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://blog.example.org/2026/10/declarative-recipes",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-09T00:00:00Z",
+  "extractTime": "2026-10-09T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "language",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_READABILITY",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://blog.example.org/2026/10/declarative-recipes",
+    "title": "字字字字字字字字字字",
+    "authors": [
+      {
+        "name": "字字",
+        "url": "https://blog.example.org/about"
+      }
+    ],
+    "publishedAt": "2026-10-08T02:00:00Z",
+    "summary": "字字字字字字字规字字字字字字字字字字字。",
+    "tags": [
+      "字字"
+    ],
+    "language": "zh-CN",
+    "bodyHtml": "<p>字字字字规字字字字成字字，字字字字字字字，字字字字字字计。字规字字成字字，字字字字字字字字字，字字规字字字字时字字。</p>\n  <p>字字字字一字字字：字字字、字字字字字字字字字字字，字字字字字字字一字字字字字字字，字字字字字字字值字。</p>",
+    "bodyText": "字字字字规字字字字成字字，字字字字字字字，字字字字字字计。字规字字成字字，字字字字字字字字字，字字规字字字字时字字。\n\n字字字字一字字字：字字字、字字字字字字字字字字字，字字字字字字字一字字字字字字字，字字字字字字字值字。"
+  },
+  "chain": [
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

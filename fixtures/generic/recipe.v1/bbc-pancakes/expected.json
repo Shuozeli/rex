@@ -1,0 +1,166 @@
+{
+  "recipe": {
+    "id": "generic/recipe.v1",
+    "version": 1,
+    "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+  },
+  "schema": "rex.schema.howto.v1.Recipe",
+  "url": "https://www.bbcgoodfood.com/recipes/easy-pancakes",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:35:44Z",
+  "extractTime": "2026-10-14T05:35:44Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "prep_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "cook_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "total_time_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "yield",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "category",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "cuisine",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "keywords",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "ingredients",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "steps",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/recipe.v1@1"
+    },
+    {
+      "path": "calories",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/recipe.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.howto.v1.Recipe",
+    "name": "Xxxx xxxxxxxx",
+    "description": "Xxxxx xxx to xxxx xxx xxxxxxx xxxxxxxx xxxxx xxxx with xxx xxxxxxxxx xxxx xxxxx xxxxxx – xxxxxxxxx xxxx xxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxx",
+        "url": "https://www.bbcgoodfood.com/author/cassiebest"
+      }
+    ],
+    "publishedAt": "2025-03-31T16:35:17Z",
+    "image": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1273477_8-ad36e3b.jpg?resize=440,400",
+    "url": "https://www.bbcgoodfood.com/recipes/easy-pancakes",
+    "prepTimeSeconds": 600,
+    "cookTimeSeconds": 1200,
+    "totalTimeSeconds": 1800,
+    "yield": "Xxxxx 12",
+    "category": "Xxxxxxxxx, Xxxxxx, Xxxx xxxxxx",
+    "cuisine": "British",
+    "keywords": [
+      "Xxxxxx Xxxx",
+      "Xxxx xxxxxx",
+      "Xxxxx",
+      "Xxxxxx",
+      "xxxx xxxxxxxx",
+      "Xxxx",
+      "Xxxxxxxx",
+      "xxxxxxx xxxxxxxx",
+      "Xxx to xxxx xxxxxxxx",
+      "Xxxx xxxxx",
+      "Xxxxxxx day",
+      "Xxxxxxx xxxxxxx",
+      "Xxxxxx Tuesday",
+      "Xxxxxx",
+      "xxxx xxxxxxxx"
+    ],
+    "ingredients": [
+      "100x xxxxx xxxxx",
+      "2 xxxxx xxxx",
+      "300xx xxxx",
+      "1 xxxx xxxxxxxxx xx xxxxxxxxx xxx xxxx a xxxxxx xxxxx xxx xxxxxx",
+      "xxxxx xxxxxx to xxxxx (xxxxxxxx)",
+      "xxxxxx xxxxx to xxxxx (xxxxxxxx)"
+    ],
+    "steps": [
+      {
+        "text": "Xxx 100x xxxxx xxxxx, 2 xxxxx xxxx, 300xx xxxx, 1 xxxx xxxxxxxxx xx xxxxxxxxx xxx xxx a xxxxx of xxxx xxxx a xxxx xx xxxxx xxx, xxxx xxxxx to a xxxxxx xxxxxx. Xxxx xxxxxx xx xxxxxxx in xxxxxxxxxxx to xxxxxx xxxxx."
+      },
+      {
+        "text": "Xxx xxxxx xxx 30 mins to xxxx xx xxx xxxx xxxx, xx xxxxx xxxxxxx xxxxxxxx xxxx."
+      },
+      {
+        "text": "Xxx a xxxxxx xxxxxx xxx xx xxxxx xxx xxxx a xxxxxx xxxx xxx xxxxxxxxx xxxx xx with xxxx xxxxx xxxxxxx xxxxx."
+      },
+      {
+        "text": "Xxxx xxx, xxxx xxxx xxxxxxxx xxx 1 min xx xxxx xxxx xxxxx xxxxxx, xxxxx xxxxxx xxxx a xxxxxxxx of xxxxxx xxx xxxxxxx. Xxxx xxxx xxxx in a xxx xxxx xx xxx xxxx xxx xxxx."
+      },
+      {
+        "text": "Xxxxx with xxxxx xxxxxx xxx xxxxxx xxxxx, xx xxxx xxxxxxxxx xxxxxxx. Xxxx xxxx, xxx xxx xxxxx xxx xxxxxxxx xxxxxxx xxxxxx xxxxxxxxx, xxxx xxxx in xxxxx xxxx xxx xxxxxx xxx xx to xxx months."
+      }
+    ],
+    "calories": "61 xxxxxxxx"
+  },
+  "chain": [
+    {
+      "id": "generic/recipe.v1",
+      "version": 1,
+      "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+    }
+  ]
+}

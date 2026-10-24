@@ -1,0 +1,22 @@
+# The Cloudflare Blog: JSON-LD has no author, the byline links to /author/<slug>/.
+id: blog.cloudflare.com/post
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["blog.cloudflare.com"]
+    include: ["^/[a-z0-9-]+/?$"]
+  page:
+    any:
+      - json_ld_type: { types: [BlogPosting] }
+fields:
+  - path: authors
+    candidates:
+      - css: { selector: ".post-content header a[href^='/author/']", scope: CSS_SCOPE_DOCUMENT }
+        pipe:
+          - unique: {}
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: ".post-content .article-content", take: TAKE_HTML }

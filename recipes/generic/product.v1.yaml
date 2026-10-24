@@ -1,0 +1,82 @@
+# Baseline for rex.schema.commerce.v1.Product: what any product page with schema.org Product data (JSON-LD or
+# microdata) or Open Graph product tags gets with no site recipe. Site recipes `extends` this.
+id: generic/product.v1
+version: 1
+schema: rex.schema.commerce.v1.Product
+fields:
+  - path: sku
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: title
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+      - css: { selector: "h1", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: brand
+    candidates:
+      - json_ld: { path: "brand.name" }
+      - json_ld: { path: "brand" }
+      - microdata: { path: "brand.name" }
+      - meta: { key: "product:brand" }
+
+  - path: price
+    candidates:
+      - json_ld: { path: "offers.price" }
+      - json_ld: { path: "offers[0].price" }
+      - json_ld: { path: "offers.lowPrice" }
+      - microdata: { path: "offers.price" }
+      - meta: { key: "product:price:amount" }
+      - meta: { key: "og:price:amount" }
+
+  - path: currency
+    candidates:
+      - json_ld: { path: "offers.priceCurrency" }
+      - json_ld: { path: "offers[0].priceCurrency" }
+      - microdata: { path: "offers.priceCurrency" }
+      - meta: { key: "product:price:currency" }
+      - meta: { key: "og:price:currency" }
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+      - microdata: { path: "aggregateRating.ratingValue" }
+
+  - path: review_count
+    candidates:
+      - json_ld: { path: "aggregateRating.reviewCount" }
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - microdata: { path: "aggregateRating.reviewCount" }
+
+  - path: availability
+    candidates:
+      - json_ld: { path: "offers.availability" }
+      - json_ld: { path: "offers[0].availability" }
+      - microdata: { path: "offers.availability" }
+      - meta: { key: "product:availability" }
+
+  - path: seller
+    candidates:
+      - json_ld: { path: "offers.seller.name" }
+
+  - path: images
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:image" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+      - meta: { key: "description" }

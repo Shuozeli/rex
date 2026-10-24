@@ -2,3 +2,6 @@
 fixtures-private/
 # Local tool state
 .pwright/
+/target
+# Node dependencies anywhere (extension/, tools/)
+node_modules/

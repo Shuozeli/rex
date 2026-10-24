@@ -1,0 +1,95 @@
+# Reddit thread (new Reddit, shreddit web components) -> rex.schema.social.v1.Thread (decisions.md U33). Post
+# and comment data are attributes of <shreddit-post> / <shreddit-comment>; text bodies are rich-text divs.
+id: reddit.com/thread
+version: 1
+schema: rex.schema.social.v1.Thread
+match:
+  urls:
+    hosts: ["reddit.com"]
+    include: ["^/r/[^/]+/comments/[a-z0-9]+"]
+  page:
+    all:
+      - exists: "shreddit-post"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: post-title, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: community
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: subreddit-prefixed-name, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: url
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: permalink, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: reply_count
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: comment-count, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.id
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: id, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.author.name
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: author, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.published_at
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: created-timestamp, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.text
+    candidates:
+      - css: { selector: "shreddit-post [id$=-post-rtjson-content]", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.likes
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: score, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.replies
+    candidates:
+      - field: { path: reply_count }
+
+  - path: post.url
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: permalink, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.link            # link posts point elsewhere; self posts point at themselves
+    candidates:
+      - css: { selector: "shreddit-post[post-type=link]", take: TAKE_ATTRIBUTE, attribute: content-href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: post.media
+    candidates:
+      - css: { selector: "shreddit-post[post-type=image]", take: TAKE_ATTRIBUTE, attribute: content-href, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: replies
+    each: "shreddit-comment"
+    fields:
+      - path: id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: thingid }
+      - path: author.name
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: author }
+      - path: published_at
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: created }
+      - path: text             # the comment's own body precedes its nested replies' bodies
+        candidates:
+          - css: { selector: "div[id$=-comment-rtjson-content]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: likes
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: score }
+      - path: depth
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: depth }
+      - path: parent_id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: parentid }
+      - path: url
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: permalink }

@@ -1,0 +1,115 @@
+{
+  "recipe": {
+    "id": "bilibili.com/video",
+    "version": 2,
+    "sha256": "29cc4baf0b79c08b2b0e3ffadca0607a88f2769bab821d91206cd4da1ff58ebd"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.bilibili.com/video/BV1yPp96UEQU/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:35:51Z",
+  "extractTime": "2026-10-14T03:35:51Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/video@2"
+    },
+    {
+      "path": "thumbnail",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "BV1yPp96UEQU",
+    "title": "字字字字字字字字字",
+    "url": "https://www.bilibili.com/video/BV1yPp96UEQU/",
+    "channel": {
+      "name": "字上字字字字字",
+      "url": "https://space.bilibili.com/423895/"
+    },
+    "publishedAt": "2026-10-14T02:00:00Z",
+    "durationSeconds": 4962,
+    "views": "84000",
+    "likes": "5838",
+    "description": "字字字字字字一下。字一人字字字字字字字，xxxx字字一字字字字字",
+    "tags": [
+      "字字",
+      "字一人字",
+      "字字字字",
+      "字"
+    ],
+    "thumbnail": "https://i2.hdslb.com/bfs/archive/f9e2014313d25c4deafba3fcbb663ba14a9222cb.jpg@1280w_720h"
+  },
+  "chain": [
+    {
+      "id": "bilibili.com/video",
+      "version": 2,
+      "sha256": "29cc4baf0b79c08b2b0e3ffadca0607a88f2769bab821d91206cd4da1ff58ebd"
+    },
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

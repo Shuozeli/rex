@@ -1,0 +1,92 @@
+{
+  "recipe": {
+    "id": "generic/business.v1",
+    "version": 1,
+    "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+  },
+  "schema": "rex.schema.place.v1.Business",
+  "url": "https://guide.michelin.com/us/en/california/san-francisco/restaurant/zuni-cafe",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:47:28Z",
+  "extractTime": "2026-10-14T05:47:28Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "categories",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "address",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "phone",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "price_range",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "cuisines",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/business.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.place.v1.Business",
+    "name": "Xxxx Xxxx",
+    "description": "Xxxx Xxxx – a XXXXXXXX xxxxxxxxxx. Xxxx xxxxxx xxxxxxx xx xxx XXXXXXXX Xxxxx'x xxxxxxxx xxxxxxx. Xxx XXXXXXXX xxxxxxxxxx’ point of view, xxxxxxxxxxx xx xxxxxx, xxxxx of xxxxxxx xxx xxxxxxx hours xx xxx XXXXXXXX Xxxxx'x xxxxxxxx xxxxxxx",
+    "categories": [
+      "Restaurant"
+    ],
+    "address": {
+      "street": "1658 Xxxxxx St.",
+      "locality": "Xxx Xxxxxxxxx",
+      "region": "California",
+      "postalCode": "94102",
+      "country": "USA"
+    },
+    "phone": "+1 415-552-2522",
+    "url": "https://guide.michelin.com/us/en/california/san-francisco/restaurant/zuni-cafe",
+    "priceRange": "Xxxxxxx xxxxxxxx",
+    "cuisines": [
+      "Californian"
+    ],
+    "images": [
+      "https://prod-pics.guide.michelin.com/api/public/content/2186b11590e645ed83e1b838993e2856.jpeg?format=jpeg&w=1000&h=1000"
+    ]
+  },
+  "chain": [
+    {
+      "id": "generic/business.v1",
+      "version": 1,
+      "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+    }
+  ]
+}

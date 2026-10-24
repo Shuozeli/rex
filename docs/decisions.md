@@ -1,4 +1,4 @@
-<!-- agent-updated: 2026-10-12T06:45:00Z -->
+<!-- agent-updated: 2026-10-14T03:30:00Z -->
 
 # Decisions log
 
@@ -140,10 +140,32 @@ data, but only inside that integration.
 
 ~~Contracts in crawlc `core/contracts/`, engine in crawlc `extract/`.~~ See U14.
 
-## U12: Readability and sanitizing [delegated], 2026-10-12
+## U12: Readability and sanitizing [delegated], 2026-10-12 (amended during M1)
 
-- The `readability` source is a port of company-feed-server's `feed-content::process_html` (wasm-capable
-  dependencies). Mozilla Readability.js is only a differential benchmark.
+- ~~The `readability` source is a port of company-feed-server's `feed-content::process_html`.~~
+  **Amended:** reading `feed-content` showed it is a whole-page *sanitizer* (it strips nav, header and
+  footer) with no main-content selection. Sanitizing is already ammonia's job. So `rex-readability` is a
+  deterministic, readability-style scorer:
+  - paragraphs vote for their parent and grandparent;
+  - tag and class/id weights adjust the scores;
+  - link density penalizes;
+  - the boilerplate subtrees, headline and byline are dropped from the chosen container;
+  - title, byline and excerpt heuristics provide those parts.
+
+  Mozilla Readability.js remains a differential benchmark only.
+
+  Three further steps were added after real-page testing (Wikipedia, which wraps each section in its own
+  element), all taken from Mozilla Readability:
+  - paragraphs score up to 5 ancestors (dividers 1, 2, then level × 3);
+  - a parent climb switches to a higher-scoring wrapper;
+  - siblings scoring ≥ max(10, 20% of the best) are merged.
+
+  M2 completed the port of Mozilla's selection steps: alternative candidates (≥ 3 of the top 5 within
+  75% share an ancestor, which then wins), the parent climb compares against the *last* score with a
+  threshold of top/3, an only-child climb, and a same-class bonus when merging siblings. Text and link
+  statistics are computed in one pass. **Benchmark** (`tools/readability-bench`, 26 real pages, Mozilla
+  Readability 0.6.0 under jsdom): token-set Jaccard median **0.996**, p25 0.962. The remaining outliers
+  (BBC, Cloudflare blog) are covered by site recipes.
 - HTML output is sanitized with `ammonia`.
 
 ## U13: Normative value semantics and limits [delegated], 2026-10-12
@@ -253,6 +275,21 @@ expected.json (Extraction)}`.
 Recipes therefore keep working on redacted pages. Unredacted captures stay in the gitignored
 `fixtures-private/` for local debugging only.
 
+**Amended in M3** (implemented as `rex-redact`, used by `rex fixture redact` and by the extension's
+"Save as fixture" through wasm):
+
+- **Kept vocabulary**, because recipes legitimately parse it:
+  - month and weekday names, time zones, and relative-date words;
+  - counter words (comment(s), point(s), vote(s), like(s), view(s), reply/replies, star(s), fork(s),
+    share(s), discuss);
+  - the CJK date, time and counter characters (年月日时分秒点前天周昨今刚小钟星期一…七上下午评论赞阅读条次人万亿).
+- **Raw-text elements are emptied.** Inline `<script>` (other than JSON-LD), `<style>`, `<noscript>`,
+  `<iframe>` and similar elements lose their content.
+- **The lint is idempotence:** redacting a committed page again must not change it. `rex fixture lint`
+  enforces this in CI and reports the first changed text.
+- **Consequence for recipes:** a pattern on publisher wording (for example "on behalf of") cannot be tested
+  against fixtures. Prefer structure: positions, separators, letter case (case survives redaction), digits.
+
 ## U20: Drift and feedback [delegated], 2026-10-12
 
 There is **no telemetry**.
@@ -264,6 +301,10 @@ There is **no telemetry**.
   It fetches the public, login-free sample URLs over HTTP, runs extraction, and opens or updates an
   issue on a non-OK status. Paywalled or login-only sites rely on user reports.
 
+  **Amended:** the sidecar list is `liveness.yaml` (recipe → sample URLs). `rex liveness --report` writes a
+  JSON report. `.github/workflows/liveness.yml` runs daily and keeps one open issue labelled `liveness`
+  (it comments when the issue already exists).
+
 ## U21: Integrations are consumer-owned [delegated], 2026-10-12
 
 | Consumer | Uses | Lives in |
@@ -274,9 +315,713 @@ There is **no telemetry**.
 
 rex guarantees only its contracts, the engine semver, and the bundle format.
 
+## U22: `CssSource.exclude` [delegated], 2026-10-12
+
+M1 fixtures showed that article bodies routinely contain ads, "read next" boxes and share bars, and CSS
+cannot express "this element minus those descendants".
+
+`CssSource` gains `repeated string exclude = 5`: descendant selectors whose subtrees are removed before a
+text or HTML value is taken. This is an additive change within `rex.extract.v1`, and it has no effect on
+`TAKE_ATTRIBUTE` or `TAKE_EXISTS`.
+
+## U23: Semantics fixed while implementing M1 [delegated], 2026-10-12
+
+- **`expect` is not inherited.** It only constrains the recipe that states it. A more specific recipe
+  that redefines the rule without `expect` clears it.
+- **`default` only in a rule pipe.** A `default` transform is only allowed in a rule pipe, never in a
+  candidate pipe (compile error). It applies only after every candidate missed, with origin `CONST`.
+- **Required fields in `each` items.** An `each` item missing a required field is dropped, with diagnostic
+  `item_invalid`. Only top-level required fields affect the record status.
+- **List provenance.** Provenance for `each` lists is recorded for the parent path and for item 0's
+  sub-fields (`items[0].title`), not for every item.
+- **Fuel** is charged per DOM node visited (including selector scans), per regex or transform step, and
+  per text node walked. It is not part of the output, so the output stays deterministic.
+- **Crate layout.** The engine-spec crates `rex-recipe`, `rex-sources` and `rex-transform` are modules of
+  `rex-engine` instead of separate crates (fewer crate boundaries, same responsibilities). Generated
+  types and the embedded descriptor set live in `rex-proto`.
+
+## U24: Extension prototype and dev hosting [delegated], 2026-10-12
+
+The extension now runs end to end in Chrome.
+
+| Area | Decision |
+|---|---|
+| Stack | Plain TypeScript (strict) bundled with esbuild. The UI is plain DOM, not WXT/Preact (design.md §3 named WXT/Preact). This is smaller and has fewer moving parts; revisit if the UI grows. |
+| Engine | `rex-wasm` (wasm-bindgen `--target web`) runs in the module service worker under `wasm-unsafe-eval`. It is initialized lazily, because service workers forbid top-level await. |
+| Signature check | Bundle signatures are verified **inside the wasm engine** (`rex-bundle`, ed25519-dalek), not with WebCrypto. One implementation serves the CLI and the extension, with no dependency on a Chrome version for Ed25519. |
+| Storage | v0.1 keeps one `chrome.storage.local` value per source (index, recipes, base64 descriptor set), written in a single atomic `set`. |
+| Dev hosting | Until Cloudflare is set up, the dev bundle is published with `rex bundle build` to `~/.local/share/rex/bundle` and served by serve-lib at `http://shuoze25-yuacx.tail8f3b66.ts.net:8091/rex-bundle/v1/dev/`. The signing key lives in `~/.config/rex/dev-signing-key.json` (never in the repo). The machine-local source URL and public key are in the gitignored `extension/config.local.json`. |
+| e2e build | `REX_E2E=1` adds `<all_urls>` host access and the `rexDebug` hooks, because a toolbar click (which grants `activeTab`) cannot be automated. The normal build has neither (verified). |
+
+## U25: Wasm size and speed budget [delegated], 2026-10-13
+
+The original target (NFR-6: ≤ 600 KB gzipped) was not reachable without dropping features. After trimming,
+the wasm is about **1.06 MB gzipped**. The trims were:
+
+- `chrono-tz` filtered to about 70 zones (`CHRONO_TZ_TIMEZONE_FILTER` in `.cargo/config.toml`);
+- `regex` without the Unicode tables except perl classes and case folding;
+- `ammonia` pinned to the html5ever that `scraper` already uses;
+- the `wasm` cargo profile (`opt-level = "s"`, LTO, `panic = "abort"`, stripped).
+
+`opt-level = "z"` saves about 8% more but runs about 6× slower than native, so it is not used. **Budget:
+≤ 1.15 MB gzipped**, enforced in CI (`WASM_GZ_BUDGET`). The packed extension is about 1.1 MB, inside the
+2 MB limit.
+
+| Metric (1.27 MB real page) | Native | Wasm (Chrome) |
+|---|---|---|
+| Parse | 9 ms | — |
+| Full extraction | ~140 ms | ~450 ms |
+
+Recipe consequences: regex classes like `\p{Lu}` (general categories) are not available; use ASCII
+classes or `\w`.
+
+## U26: Publishing to S3-compatible hosts [delegated], 2026-10-13
+
+`rex bundle publish` and `rex bundle gc` implement U16 against any S3-compatible host. Cloudflare R2 is
+the default; MinIO and AWS S3 also work. A local directory is a host too.
+
+- **Target:** `--to s3://bucket/prefix` (or a directory); `v1/<channel>/` is appended. SigV4 presigned
+  requests (`rusty-s3`) over `ureq`. The endpoint and credentials come from `REX_S3_*` (or `AWS_*`)
+  environment variables; R2 uses region `auto`.
+- **Publish order:**
+  1. read and **verify** the live `index.json`; refuse if it does not verify (`--trust key_id:hex` admits
+     the previous key during a rotation);
+  2. sign `sequence + 1`;
+  3. upload missing content-addressed objects (`Cache-Control: public, max-age=31536000, immutable`);
+  4. upload `index.json` last (`max-age=300`);
+  5. read everything back and verify it.
+
+  Unchanged content is a no-op (no new sequence) unless `--force` is given. `--min-client-version` gates
+  older extensions (they keep their bundle).
+- **GC:** deletion only happens in `rex bundle gc`, against a verified index. An object becomes
+  unreferenced, is recorded in `gc-state.json` with the time it was first seen, and is deleted after
+  `--retention-days` (default 30). Clients holding an older index keep working through the retention
+  window. Two rules close the race with a concurrent publish: gc re-reads the index right before deleting,
+  and publish re-uploads any object that gc has marked. CI also runs both under one concurrency group.
+- **Verified** against MinIO on the tailnet: publish, no-op, incremental publish, mark/delete GC, client
+  `rex bundle verify --url`, refusal of an unpinned key, a clear SigV4 error for bad credentials, and an
+  extension sync with a 304 conditional GET.
+
+## U27: Extension v0.2 [delegated], 2026-10-13
+
+| Area | Decision |
+|---|---|
+| Settings | `rex.settings` in `chrome.storage.local`, defaulting from the build config. Covers sources (ordered, enable/disable, base URL, channel, pinned keys), refresh interval (1 h–7 d), copy format (envelope or record), and developer mode. Validated in the options page and again in the worker. |
+| Source identity | A stored bundle is bound to (base URL, channel, pinned keys). Changing any of them starts that source from scratch instead of trusting a bundle verified under other settings. Removed sources are pruned. |
+| Host permission | The default source's origin is in `host_permissions`. Other origins are `optional_host_permissions` (`https://*/*`, `http://*/*`), requested from the options page on Save, inside the click's user activation. Sync refuses a source without permission and says why. |
+| Several sources | One engine per synced source. For a page, the first enabled source with a stage-1 URL hit is used, otherwise the first source (its generic fallback). Schema sets are never merged across sources. |
+| FR-EX-5 | Entries whose `requires` names a feature this engine lacks are skipped with a reason, and so is everything that `extends` a skipped or absent recipe. The rest of the bundle applies. An index whose `min_client_version` is newer than the extension is rejected as a whole. |
+| Developer mode | A local unsigned recipe in **protojson** (`rex fmt --json`). YAML would need `serde_yaml` in the wasm. It replaces the bundle recipe with the same id, wins when it is confirmed, and is labelled "LOCAL · unsigned". The trace panel opens expanded. |
+| Save as fixture | Redaction runs in the wasm (`rex-redact`). The page is linted and downloaded as one `*.rexfixture.json`; `rex fixture import` re-lints it and writes `page.html` and `meta.json`. This amends design.md §7.3, which said three files: browsers prompt per download, and `expected.json` must come from the native engine and review anyway (`rex test --update`). |
+| Icon state | One `declarativeContent` rule per sync covers the hosts of every usable site recipe, and adds a green dot (`SetIcon`, drawn with `OffscreenCanvas`). The action is never disabled, because the generic fallback works everywhere. Matching is host-level only; stage-1 path filters are not mirrored. |
+| Concurrency | Settings saves and syncs (install, startup, alarm, refresh) run through one queue in the worker. Each reads the settings current when it starts. A real race was found by e2e: an install-time sync clobbered a just-saved source. |
+| i18n | `src/messages.ts` holds typed `en` and `zh_CN` tables; a missing translation is a compile error. The build renders `_locales` from them and fails on unknown `data-i18n` keys. |
+| Icons | Rendered by `tools/icons/make_icons.py` (`{}` on the accent colour) at 16/32/48/128. |
+
+## U28: `rex draft` [delegated], 2026-10-13
+
+Implements design.md §7.2.
+
+- **Endpoints:** any OpenAI-compatible chat-completions URL, or a Gemini `...:generateContent` URL
+  (detected from the URL). The model is set with `--model`; the key with `REX_LLM_API_KEY`.
+  `--inline-system` folds the system prompt into the first user turn, for endpoints and proxies that
+  mishandle system roles.
+- **The prompt:**
+  - the system prompt embeds `extraction_recipe.proto` (with its comments) as the format specification;
+  - the evidence pack holds: the task, the target schema with schema.org bindings, JSON-LD, meta tags,
+    repeating sibling groups, a DOM skeleton (runs of identical siblings collapsed, about 24 KB), and the
+    schema's base recipe and one reviewed example.
+- **Strict parsing:** the reply's JSON object is parsed and compiled together with the existing recipes.
+  The id, version and schema are forced. A site draft must have `match.urls.hosts` and at least one field
+  rule. Up to 2 retries happen, for these structural errors only.
+- **No quality loop:** the draft's status and fields on the page are reported, never iterated on.
+- **Output:** snake_case YAML in `recipes/drafts/<id>.yaml`, with a header naming the API kind and model
+  but **never the endpoint URL** (it can be private). Drafts pass the same gates as any recipe
+  (≥ 2 fixtures, `rex test`, review) and publish to `dev` only.
+- **First use:** `go.dev/blog` was drafted from a captured page (one attempt, status OK), reviewed (author
+  and date rules added), and given 2 redacted fixtures and a liveness URL.
+
+## U29: CI [delegated], 2026-10-13
+
+`.github/workflows/`:
+
+- **`ci.yml`** (push and PR) has four jobs:
+  - fmt;
+  - clippy `-D warnings`, tests, `rex check` (≥ 2 fixtures, version gate against the PR base or the
+    previous push), `rex test`, and the fixture lint;
+  - wasm: size budget and conformance under Node (every case byte-identical to native);
+  - extension: typecheck, a store build checked for leaks (`<all_urls>`, `rexDebug`) and zipped, both
+    e2e suites in Chromium, and screenshots uploaded.
+- **`publish.yml`** (main): stable from `recipes/generic` and `recipes/sites`, dev from all of `recipes/`;
+  client-side verification by public URL; weekly GC. It stays off until `REX_PUBLISH_ENABLED=true` and the
+  R2 secrets exist.
+- **`liveness.yml`:** see U20.
+
+The e2e suites are **hermetic**. Bundles are published by the real CLI with a throwaway key and served
+to the extension's own service-worker fetches through Playwright routing
+(`PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS=1`), so CI needs no server and no network.
+`tests/e2e-sync.mjs` forges every rejection path (bad signature, unpinned key, edited payload, rollback,
+recipe and schema hash mismatch, wrong channel, client-version gate, unsupported `requires`, re-keying,
+invalid settings) and requires the previous bundle to survive each one. `scripts/ci-local.sh` runs the
+same gates locally.
+
+## U30: Operations [delegated], 2026-10-13
+
+Hosting setup, key rotation and GC are documented in [operations.md](operations.md). Key rotation uses
+two pinned keys in the extension (old and new) for one release cycle. `publish --trust old_id:hex` lets the
+new key take over the live index.
+
+## U31: Batch harvesting of surveyed sites [user decisions + delegated], 2026-10-13
+
+The user asked for every site of the survey (4340 candidates from Tranco, Majestic and Chinaz rankings;
+`tools/harvest/`, survey scripts and data in `~/projects/scratch/rex-site-survey`) to get a recipe. The
+user chose:
+- fixtures in a separate repo, `Shuozeli/rex-fixtures`, gzip-compressed;
+- automatic quality gates, publishing to `dev` first and promoting to `stable` after 7 days of liveness;
+- up to 2 repair rounds;
+- articles and feeds first, while the reference/product/video/thread schemas are designed with the user.
+
+**Pipeline** (`tools/harvest/harvest.py`), per site:
+
+1. Capture the homepage. It becomes the negative page: an article recipe must not match it.
+2. Find article URLs, in this order:
+   - RSS items;
+   - homepage links on the site or any subdomain, with articles often on one subdomain (`blog.csdn.net`),
+     so the host with the most article links is targeted;
+   - sitemaps from robots.txt, when the first two give fewer than 3.
+3. Group the URLs by shape (depth plus first segment; one-segment slugs form one group). Try the groups
+   from largest to smallest, and keep the first one that yields at least 2 article-like pages.
+   - A page is article-like if it has a schema.org article type, `og:type=article`, or a publish date
+     (date markup, or a date and time in the text). Product and topic pages are big groups too.
+   - Pages with enough readable text are preferred.
+4. Try a **thin recipe**: `extends: generic/article.v1`, the host, and the page's own article type (or
+   og:type) as the page condition when the homepage lacks it.
+5. Then try a **URL-shape thin recipe**: an `include` regex computed from the sample URLs.
+   - Equal segments stay literal, numbers become `\d+`, and other segments become `[^/]+` with any shared
+     extension kept.
+   - At least one constraining segment is required.
+6. Otherwise **draft** with `rex draft`.
+   - The URL rules are fixed by the tool; the model writes only page conditions and fields.
+   - The evidence pack leads with a focused section: the readability scorer's main container (path and
+     subtree), the headlines, and byline/date candidates. The whole-page skeleton cut off before the article
+     body on big sites.
+   - Gate problems go back to the model for up to 2 repair rounds. For endpoints that cannot handle system
+     roles or multi-turn requests, the conversation is flattened into one message.
+7. Every recipe must pass **`rex gate`** (`crates/rex-cli/src/gate.rs`):
+   - every sample page is matched and chosen, and has status OK;
+   - the title agrees with og:title, the JSON-LD headline or `<title>` (token overlap ≥ 0.6);
+   - the body is at least 300 characters, and agrees with readability at ≥ 50% when reported;
+   - the homepage is not matched.
+   - Pages whose readable text is under 600 characters (paywall teasers, video or live pages) are stubs: they
+     must match, but their body is not judged, and at least 2 full pages are required.
+   - For feeds: at least 5 items, and at least 80% of them with a title and a URL.
+
+**Pilot** (50 P1 article sites): 22 of 46 new sites accepted, 4 already covered.
+- Skips are mostly bot walls or TLS resets (need a real browser; the ARM2 CDP endpoint is down) and sites
+  with no article links.
+- Product-page sites (Zol, PConline) are rejected by the article-like requirement.
+
+**Repo layout:**
+- **Recipes:** `recipes/auto/<id>.yaml`, published to `dev` only, since stable takes `recipes/generic`
+  and `recipes/sites`.
+- **Fixtures:** 2 fixtures per recipe in rex-fixtures as `page.html.gz` (redacted), about 75 KB per page.
+- **Liveness:** one live URL each in `liveness-auto.yaml`.
+- **Promotion** to `recipes/sites/` happens after 7 days of passing liveness.
+- **Tooling:**
+  - `rex check --fixtures` takes several roots;
+  - fixtures may be gzip-compressed (`rex-engine` feature `gz`, off in wasm);
+  - `fixture redact --gzip`;
+  - captures decode the page charset (GBK/GB2312 sites).
+
+This amends U28: the batch flow allows the gate-driven repair loop that U28 excluded for single drafts.
+
+## U32: Category schemas; search, commerce, media [user decisions + delegated], 2026-10-14
+
+The user chose to classify sites by category and give each category one generic schema. The first three
+were requested together, with the field sketches accepted as-is:
+
+| Schema | Messages | Pages | Sites (recipes) |
+|---|---|---|---|
+| `rex.schema.search.v1` | SearchResults, SearchResult, Sitelink, ResultType | search result pages | Google (`google.com/search`), Bing (`bing.com/search`); DuckDuckGo later |
+| `rex.schema.commerce.v1` | Product, Spec, Variant, ProductList, ProductItem, Availability | product detail, search/category lists | Amazon (`amazon.com/product`, `amazon.com/search`) |
+| `rex.schema.media.v1` | Video, Channel, Chapter, VideoList, VideoItem | watch pages, search/channel lists | YouTube (`youtube.com/watch`, `youtube.com/search`) |
+
+- **Generic bases** `generic/product.v1` and `generic/video.v1` read schema.org data (JSON-LD, microdata,
+  Open Graph), so any page with Product or VideoObject markup works without a site recipe. On a YouTube
+  watch page, `generic/video.v1` alone gives the full record.
+- **Spec tables are typed rows** (`Spec {name, value}`), not a map (U1 still holds): the names are not a
+  fixed vocabulary.
+- **Engine additions** (additive within `rex.extract.v1`):
+  - `ParseDuration` (`duration: {}`): ISO 8601 and clock durations to seconds;
+  - `Decode` (`decode: { kind }`): percent, base64 or base64url, to unwrap redirect links (Bing
+    `u=a1<base64url>`, Google `/url?q=`);
+  - `FieldRule.each_index`: an integer item field that receives the 1-based position among kept items
+    (search rank, list position);
+  - compact relative dates ("3y ago", "2mo ago", "4h ago", "3个月前", "1年前"; months 30 days, years 365),
+    truncated to whole seconds.
+- **Redaction keep-list** gains shop and search UI labels: in, out, of, stock, currently, (un)available,
+  rating(s), result(s). Recipes parse them ("In Stock", "4.6 out of 5 stars"); they are UI text, not
+  publisher prose.
+- **Fixtures of rendered pages** come from `extension/scripts/capture.mjs`. It loads the page in Chromium
+  and serializes the DOM exactly like the extension, for YouTube lists and other JavaScript-built pages.
+  Large fixture pages are stored as `page.html.gz` in the main repo too.
+- **Findings:**
+  - Amazon's visible price digits sit inside an `aria-hidden` span, so the recipe selects that span.
+  - YouTube's rendered page sometimes lacks its microdata, so recipes read the visible metadata as well,
+    with exact microdata values first.
+  - YouTube nests buttons in ways that html5ever and Chrome repair differently on re-parse. Selectors avoid
+    depending on those ancestors; the e2e parity check caught this.
+  - Google answers fresh automated browsers from this network with an "unusual traffic" captcha. Its fixtures
+    were captured with `capture.mjs --cdp` from the long-lived Chrome profile on the Alienware Windows host:
+    a new tab is opened and closed, and other tabs are untouched. Google gets no automated liveness
+    (scheduled queries are against its terms).
+
+## U33: Social posts and threads (`rex.schema.social.v1`) [delegated], 2026-10-14
+
+This is the first item of the user-approved order (social → Chinese platforms → schema.org bases →
+quotes → tables and lists). The schema was designed without a unit-by-unit review, at the user's request
+not to be interrupted; it is open to revision.
+
+- **Thread** is one discussion page. Its `post` is the tweet, question or link post. Its `replies` are
+  comments or answers in page order, flattened, with `depth` and `parent_id` keeping the nesting. It also
+  carries `title`, `community`, `url`, `reply_count` (the page's total) and `tags`.
+- **Post** has:
+  - id, author, text/html, published_at;
+  - likes, reposts, replies, views;
+  - media, url (the permalink), and `link` (the URL a link post shares);
+  - depth, parent_id, and `accepted` (Stack Overflow).
+- **Author** has name, handle, url and verified. **PostList** is a timeline (profile or community feed),
+  with an owner and posts.
+- **Recipes**, 2 fixtures each:
+
+  | Recipe | Schema | Captured with | Liveness |
+  |---|---|---|---|
+  | `news.ycombinator.com/item` | Thread | plain HTTP | daily |
+  | `stackoverflow.com/question` (+ Stack Exchange sites) | Thread | CDP | — |
+  | `reddit.com/thread` | Thread | CDP | — |
+  | `reddit.com/community` | PostList | CDP | — |
+  | `x.com/status` | Thread | CDP, logged in | — |
+  | `x.com/profile` | PostList | CDP, logged in | — |
+  | `zhihu.com/question` | Thread | CDP | — |
+
+  - The CDP captures used the Alienware Chrome profile; Stack Overflow answers plain fetches with 403, and
+    X needs a login.
+  - The sites without daily liveness need a browser and are covered by fixtures and the e2e.
+- **Site notes:**
+  - Reddit's data sits in `<shreddit-post>`/`<shreddit-comment>` attributes.
+  - The focal X post is the tweet article with `tabindex="-1"`, and its metrics come from the action bar's
+    aria-label.
+  - Zhihu answers carry microdata.
+  - A Stack Overflow answer's author is the last user link (editors come first).
+- **Redaction keep-list** gains repost(s), retweet(s), bookmark(s) and quote(s), the metric labels that
+  recipes parse.
+- **Build fix:** `rex-proto` now reruns its build script when a proto directory changes, so new schema
+  packages are picked up.
+
+## U34: Chinese platforms on the existing schemas [delegated], 2026-10-14
+
+This is the second item of the approved order. No new schema was needed: every page maps onto an existing
+category schema.
+
+- **Recipes**, 2 fixtures each:
+
+  | Recipe | Schema | Captured with | Liveness |
+  |---|---|---|---|
+  | `mp.weixin.qq.com/article` | Article (extends `generic/article.v1`) | CDP | — |
+  | `bilibili.com/video` | Video (extends `generic/video.v1`) | CDP | daily |
+  | `bilibili.com/search` | VideoList | CDP | daily |
+  | `douyin.com/video` | Video (extends `generic/video.v1`) | CDP | — |
+  | `baidu.com/search` | SearchResults | CDP | daily |
+
+  - The captures used the Alienware Chrome profile, the same as U33.
+  - WeChat answers plain fetches from servers with a verification page, and Douyin renders client-side.
+    Both are covered by fixtures and the e2e only.
+- **Site notes:**
+  - **WeChat:**
+    - The publish time comes from the inline `var ct = "<epoch>"`. The visible `#publish_time` is
+      localized ("Oct 14, 2026, 11:15 AM" / "2026年10月14日 11:15") and is the fallback.
+    - `og:description` carries JavaScript escapes (`\x26quot;`).
+    - Links reached through Sogou search are signed and temporary. They become the canonical URL because
+      the page has no `og:url`.
+  - **Bilibili:**
+    - The video page's JSON-LD already fills most fields through the generic recipe. The site recipe adds
+      the BV id, likes and the visible counters.
+    - In search, ad cards have no `/video/BV` link and drop out because the id is required. Dates are
+      absolute ("2020年10月21日"), this-year ("7月13日") or relative ("14小时前"), so the recipe requires
+      `relative_dates`.
+  - **Douyin:**
+    - There is no view count and no duration in the DOM. The title doubles as the description, after the
+      "第N集 |" series prefix is stripped.
+    - Tags are the page keywords minus Douyin's own site words.
+  - **Baidu:**
+    - Organic results are `#content_left > div.result`. Baidu's own cards (`div.result-op`: AI answers,
+      notes, products) are skipped.
+    - The visible link is a non-decodable `baidu.com/link` redirect, so the destination comes from the
+      result's `mu` attribute.
+    - A leading date in the snippet becomes `published_at`.
+- **Engine fix:** with a `tz` configured, the date preclean stripped a trailing "AM"/"PM" as if it were a
+  zone abbreviation, so `%p` formats never matched. It now leaves the meridiem alone (test
+  `meridiem_survives_zone_abbreviation_stripping`).
+- **Redaction fix:** `data-*` attribute values without spaces were kept as tokens, but CJK prose has no
+  spaces. Bilibili's `data-title="<the video title>"` leaked into the redacted fixture. Values with CJK
+  characters are now redacted, and the lint flags them.
+  - 80 committed fixtures had such leaks: 10 in this repo and 70 in rex-fixtures, mostly Japanese and
+    Chinese sites.
+  - They were re-redacted in place (redaction is idempotent). Their expected outputs did not change.
+- **E2E harness fixes:**
+  - **Hermetic pages:** each fixture page now gets only its own HTML, and every other request is aborted.
+    Before, the external scripts loaded live: Bilibili's re-rendered the page from the network, and
+    Douyin's held up the load event.
+  - **Pinned clock:** the e2e extraction resolves relative dates against the fixture's `fetch_time`, as
+    native `rex test` does, through an e2e-only `nowMs` argument to `rexDebug.extractTab`.
+- **Deferred: JD** (`item.jd.com`).
+  - The desktop product page requires a login, and the mobile page masks prices ("1??9").
+  - It needs a logged-in JD session in a capture browser, then a `jd.com/product` recipe on Product.
+
+## U35: US platforms on the existing schemas [delegated], 2026-10-14
+
+The user asked to continue with US sites after the Chinese platforms (U34). Like U34, every page maps onto
+an existing category schema; schema.org-type sites (IMDb, Yelp, Zillow, Indeed, app stores) wait for the
+schema.org bases step.
+
+- **Recipes**, 2 fixtures each:
+
+  | Recipe | Schema | Liveness | Notes |
+  |---|---|---|---|
+  | `walmart.com/product` | Product | daily | no Product JSON-LD; itemprop price, buy-box seller, variant tiles |
+  | `walmart.com/search` | ProductList | daily | sponsored tiles unwrap the /sp/track `rd=` redirect |
+  | `ebay.com/item` | Product | — | JSON-LD + item number, seller, list price, item specifics |
+  | `ebay.com/search` | ProductList | — | "Shop on eBay" placeholder dropped; obfuscated "Sponsored" not read |
+  | `target.com/product` | Product | daily | price API never answers the capture browser, so price is optional |
+  | `target.com/search` | ProductList | — | cards carry prices; sponsored from the link aria-label |
+  | `bestbuy.com/search` | ProductList | — | product pages reset automated navigation (HTTP/2 error) |
+  | `tiktok.com/video` | Video | — | logged-out feed: the focal video is the first card |
+  | `bsky.app/post` | Thread | — | JSON-LD for the focal post; replies from the DOM |
+  | `threads.com/post` | Thread | — | focal post under pagelet `threads_post_page_1` |
+  | `quora.com/question` | Thread | — | the question is the post, answers are replies |
+  | `duckduckgo.com/search` | SearchResults | — | direct links, sitelinks |
+  | `search.yahoo.com/search` | SearchResults | — | snippet date becomes published_at |
+  | `medium.com/article` | Article | daily | header and byline kept out of the body |
+
+  - The captures used the Alienware Chrome profile, logged out.
+  - Substack posts need no site recipe: generic/article.v1 already extracts them cleanly.
+- **Site notes:**
+  - **Bluesky and Threads** render with generated class names, so the recipes use `data-testid`,
+    `data-pagelet`, aria-labels and `:has()` (supported by the engine's selector library).
+  - **Viewer-local times:** Bluesky's DOM shows times in the viewer's local zone without naming it. The
+    focal post's time comes from JSON-LD (UTC), and replies carry no `published_at` rather than a time
+    that would be silently wrong.
+  - **Threads:** `time@datetime` is exact UTC.
+- **Deferred:**
+  - Vimeo: Cloudflare Turnstile asks for a human click, and rex does not automate challenges.
+  - Etsy: DataDome captcha.
+  - Best Buy product pages: see the table.
+  - LinkedIn, Instagram and Facebook: login walls.
+  - Profile/timeline pages (TikTok, Bluesky, Threads): PostList/VideoList recipes are a follow-up.
+- **Engine:** a month and day without a year ("Sep 23", "Sept. 23", "7月13日") now resolves, under
+  `relative`, to its latest occurrence on or before today. Two Bilibili search expectations gained dates
+  (test `month_day_without_year_is_the_latest_past_occurrence`).
+- **Redaction:**
+  - Units glued to numbers survive ("1.7K", "9.5M", "3d", "2mo", "11y"); before, the unit letter was
+    redacted and compact counts and ages no longer parsed.
+  - The keep-list gains the US shop and social labels recipes parse: "Average customer rating is … with …
+    reviews", "Add to cart", "Sponsored", "Answer (1 of N)", "Updated", "Verified", "verifications",
+    "profile".
+
+## U36: schema.org bases: how-to, FAQ, event, business, job, app, film/TV, book [delegated], 2026-10-14
+
+This is the third item of the approved order. The schemas were designed without a unit-by-unit review, as
+U33-U35 were, and are open to revision.
+
+- **New schema packages**, each with a generic base recipe driven by JSON-LD, then microdata, then meta:
+
+  | Package | Records | Generic recipe | Maps from schema.org |
+  |---|---|---|---|
+  | `howto.v1` | Recipe, HowTo, Step | `generic/recipe.v1`, `generic/howto.v1` | Recipe; HowTo |
+  | `faq.v1` | FaqPage, Faq | `generic/faq.v1` | FAQPage |
+  | `event.v1` | Event, Venue, Ticket | `generic/event.v1` | Event and 17 subtypes |
+  | `place.v1` | Business | `generic/business.v1` | LocalBusiness and about 40 specific subtypes |
+  | `job.v1` | JobPosting, Salary | `generic/job.v1` | JobPosting |
+  | `app.v1` | App | `generic/app.v1` | SoftwareApplication, MobileApplication, WebApplication, VideoGame |
+  | `creative.v1` | Title, Book | `generic/title.v1`, `generic/book.v1` | Movie, TVSeries, TVEpisode, ...; Book |
+  | `common.v1` | Person, Organization, PostalAddress, GeoPoint | — | shared by the packages above |
+
+  - Bare `Organization` and `Place` map to nothing: almost every site declares them as the publisher.
+  - Durations become whole seconds through the `duration` transform.
+  - Dates of films and books are dates (`VALUE_KIND_DATE`), not timestamps.
+  - Ratings carry `rating_scale` (bestRating), because IMDb rates out of 10 and Rotten Tomatoes out of 100.
+- **Fallback ranking (amends U2 and the locked U3 annotations; additive).**
+  - `RecordOptions.fallback_rank` is new. When a page declares several types that map to schemas with a
+    base recipe, the highest rank wins; ties keep the old document order.
+  - Specific entities rank 20: Recipe, HowTo, Event, Business, JobPosting, App, Title, Book and Product.
+    FaqPage ranks -10. Article and Video stay at 0.
+  - Why: BBC Good Food and wikiHow put a hero `VideoObject` first, so the old first-type rule picked
+    generic/video for a recipe page. FAQ blocks also ride along on event pages and how-tos.
+  - All 2044 existing cases are unchanged.
+- **media.v1 Video no longer claims `Movie`.** A film's page is about the work (creative.v1 Title); Video is
+  for watch pages.
+- **Value handling:**
+  - A date-only event end ("2026-10-24") is left out, because it cannot be placed without a zone.
+  - The JSON-LD job description is HTML, so `description_text` goes through `html_to_text`.
+  - IMDb's JSON-LD keeps HTML entities, so the title description is decoded the same way.
+- **Fixtures**, 2 or more per recipe, all plain HTTP except IMDb and Allrecipes (Alienware CDP):
+
+  | Recipe | Fixtures |
+  |---|---|
+  | `generic/recipe.v1` | BBC Good Food, Allrecipes |
+  | `generic/howto.v1` | wikiHow ×2 |
+  | `generic/faq.v1` | Stripe pricing, Bankrate |
+  | `generic/event.v1` | Eventbrite ×2 |
+  | `generic/business.v1` | Michelin Guide, Tripadvisor |
+  | `generic/job.v1` | Lever ×2 |
+  | `generic/app.v1` | App Store, Google Play, Zapier |
+  | `generic/title.v1` | IMDb film and series, Rotten Tomatoes |
+  | `generic/book.v1` | Google Books ×2 |
+
+  - **Site recipe:** only `goodreads.com/book`, because Goodreads truncates og:description and keeps genres
+    and the first-published date out of its JSON-LD. The generic results elsewhere were already complete.
+- **Not covered:**
+  - Yelp, Etsy-style DataDome captchas, and ThriftBooks (one Book node per edition offer, none for the work).
+  - Greenhouse's new job boards, which have no JobPosting JSON-LD (a site recipe is a follow-up).
+  - Liveness skips event and job pages because they expire.
+
+## U37: Market quotes (`rex.schema.finance.v1`) [delegated], 2026-10-15
+
+This is the fourth item of the approved order. The schema was designed without a unit-by-unit review, as
+U33-U36 were, and is open to revision.
+
+- **One record, `Quote`, covers stocks, ETFs, mutual funds, indexes and crypto:**
+  - Identity: symbol, name, instrument type, exchange, currency.
+  - Price: price, change, change_percent, as_of, market_state.
+  - The usual statistics: previous close, open, day and 52-week range, volume, average volume, market cap,
+    P/E, EPS, dividend yield.
+  - Fund fields: nav_date, expense_ratio, net_assets. Crypto fields: circulating_supply, rank.
+  - `stats`: the page's summary table as labelled, so nothing shown is lost.
+  - Values are as displayed, possibly delayed, and never converted. Percentages are percent points.
+  - Volume is in shares. A-share sites show 手 (lots of 100 shares) and are converted.
+- **Recipes** (`generic/quote.v1` reads FinancialQuote JSON-LD):
+
+  | Recipe | Covers | Fixtures | Liveness |
+  |---|---|---|---|
+  | `finance.yahoo.com/quote` | stock, ETF, fund, crypto, index, FX, futures | AAPL, SPY, VFIAX, BTC-USD | daily |
+  | `cnbc.com/quote` (extends generic) | stock, index | AAPL, .SPX | daily |
+  | `coinmarketcap.com/coin` | crypto | BTC, ETH | daily |
+  | `quote.eastmoney.com/stock` | A-shares | 600519, 000001 | — |
+  | `fund.eastmoney.com/fund` (天天基金) | Chinese open-end funds | 110022, 161725 | daily |
+  | `xueqiu.com/stock` | A-shares, HK, US | SH600519, TSLA | — |
+
+  - Eastmoney stock pages and Xueqiu render client-side, so they are covered by fixtures and the e2e.
+- **Site notes:**
+  - Yahoo's live values sit in `fin-streamer[data-field]`. Its EPS row's streamer is mislabelled
+    `trailingPE`, so P/E and EPS go by row label.
+  - The instrument type comes from the symbol form (`-USD`, `=X`, `=F`, `^`) or the expense-ratio label
+    ("Expense Ratio (net)" means an ETF).
+  - Yahoo's time notice has no date, so `as_of` is left out; the notice still gives the market state.
+  - CNBC labels are plain text, so rows are picked by matching their text.
+  - CoinMarketCap gives the 24h change unsigned, with the direction in `data-change`.
+  - Eastmoney shows "-" before the 09:30 open, and the price then drops out.
+- **Engine:** numbers take "T" (trillion) and 万亿 (10^12) suffixes (test `magnitude_suffixes_scale_numbers`).
+- **Redaction:**
+  - The keep-list gains quote-row labels: English (prev/previous, close, open, high, low, volume, market,
+    cap, P/E, EPS, TTM, dividend, yield, expense, ratio, net, assets, circulating, supply, after hours, at,
+    as, by, overnight, pre, cryptocurrency) and the label characters of 今开 / 昨收 / 成交量 / 总市值 /
+    市盈率 / 单位净值 / 规模 / 货币单位 / 交易中 / 已收盘.
+  - `slot` is kept as a structural attribute.
+  - Every new fixture keeps every extracted field after redaction.
+- **Capture:** the Alienware host went offline, so the captures used the ARM Windows Chrome (port 9403/9405;
+  9401 has 63 leaked blank tabs).
+- **Deferred:**
+  - Google Finance: a redesign in beta with no stable hooks.
+  - Morningstar: generated classes only.
+  - CoinGecko: answers plain fetches with 403.
+
+## U38: Live-page test in a real Chrome, and what it found [user decision + delegated], 2026-10-15
+
+**User decision:** test the extension on live pages in a real browser on the ARM Windows host, rather than
+only against fixtures in a local headless Chrome.
+
+- **Set-up** (operations.md, "Live-page test in a real Chrome"):
+  - Chrome for Testing 155 runs in its own profile on `armwinroot-yuacx` (residential network), with the e2e
+    build of the extension loaded. It syncs the real dev bundle from serve-lib over the tailnet.
+  - A scheduled task starts it; CDP sits on 127.0.0.1:9530 behind an SSH tunnel.
+  - The 15 Chrome instances that host runs for other jobs are left alone.
+- **The runner:** `extension/tests/live-remote.mjs` covers one case per site and generic recipe
+  (`extension/tests/live-cases.json`).
+  - It speaks raw CDP to the extension's service worker only. The worker opens the live page in a tab, waits
+    for it to load and settle, and extracts with the extension's own code path (serialize in the tab, wasm
+    in the worker).
+  - It checks the matched recipe, the status, the extraction time, and which fields of the fixture's
+    expected record the live record lacks. Values differ on live pages by design.
+  - A first version drove pages through Playwright, which attached a debugger to every page. It stalled on
+    Yahoo Finance's streaming page and left the browser refusing a second connection.
+- **Findings that fixtures could not show, now fixed:**
+  - **App Store:** after the page renders, its SoftwareApplication JSON-LD and Open Graph tags are gone. The
+    plain-HTTP fixtures had them, so the extension got nothing. New site recipe `apps.apple.com/app`
+    (extends generic/app.v1) reads the DOM. The plain-HTTP fixture moved under it, joined by two rendered
+    captures.
+  - **BBC:** browsers get a new design (data-component layout blocks) while plain HTTP still gets the
+    data-block design. The body expectation failed live; `bbc.co.uk/news-article` v2 reads both.
+  - **YouTube search:** the duration badge is now plain text in the overlay. `youtube.com/search` v2 reads
+    it.
+  - **Target product:** the ratings block loads lazily below the fold; the top summary always has the
+    rating. `target.com/product` v2 reads the summary.
+  - **Extension:** on pages that swap their document after load (Bing's redirect, NPR, GitHub, Xueqiu),
+    Chrome dropped the injected serializer ("Frame with ID 0 was removed"), and a user's click would have
+    shown an error. `readTab` now retries once on that error.
+  - Each recipe fix comes with a fixture captured from the live run.
+- **Findings that are the environment, not recipes:**
+  - X needs a logged-in session.
+  - Bot checks shown to this fresh profile on this IP: WeChat's verification page, Baidu's 百度安全验证,
+    Medium's Cloudflare challenge, Douyin, Target's search API, and eBay's rate limit at times.
+  - Best Buy prices arrive late; some runs have them.
+  - Extraction time on a real click is mostly 0.1-0.7 s. Heavy pages take longer: Yahoo Finance 1.7-2 s,
+    IMDb 2.5 s, CNBC 3.4-5.3 s. That is a performance item.
+- **Result after the fixes** (61 live pages, latest valid run per site, 2026-10-15): 51 OK, 4 partial,
+  5 wrong recipe, 1 error.
+  - Wrong recipe, the environment rather than the recipes: X ×2 (login), WeChat (verification), Douyin (the
+    page did not finish loading for this profile), eBay search (rate-limit error page).
+  - Partial: Best Buy prices load late. YouTube search durations render lazily (present in one run). CNBC
+    has no market state for its ambiguous "Last |" label, by design. The generic article case compares
+    Substack with a synthetic fixture.
+  - Error: Ars Technica, intermittently ("Frame removed" twice; it passed in the previous full run).
+  - The runner re-attaches when Chrome restarts the extension's service worker. Every step in the worker
+    (load, read, extract) has its own timeout, so one slow page cannot stall the run.
+- **Rule from this:** a site whose page is rendered client-side gets fixtures captured in a browser (CDP),
+  not over plain HTTP. When a live run disagrees with a fixture, the live page becomes a new fixture.
+
+## U39: Code-review fixes [user decision + delegated], 2026-10-19
+
+**User decision:** fix every finding of the code review, in the suggested order: engine hardening, redaction,
+publish gate, anti-rollback, then the medium and low findings.
+
+- **Engine hardening** (hostile pages and recipes must cost bounded time and memory):
+  - Pipe transforms are charged per item and per byte, and lists stop at `MAX_PIPE_ITEMS` (10 000);
+    `split` and `unique` stay linear.
+  - JSON-LD `@id` fan-out, microdata paths and repeated fields are charged against the shared budget and capped.
+  - `max_output_bytes` is enforced; candidate collection stops at 4x it.
+  - Pages nested deeper than `max_dom_depth` (256) are pruned at parse time instead of overflowing the stack.
+  - Fallback lookup by schema.org type is O(1) per type; each recipe's match stage gets its own fuel.
+  - Values: checked arithmetic in relative dates and durations (and clock fields below 60); numbers need
+    real 3-digit grouping, and K/M/B suffixes must touch the digits; month names must be exact or 3-letter;
+    a wall time in a DST gap moves forward; Feb 29 without a year looks back to a leap year.
+  - Recipe validation: defaults are coerced at compile time; microdata paths are checked; `relative` needs
+    `requires: [relative_dates]`; `replace_inherited` also replaces `default`, `each` and nested specs.
+  - Readability keeps `<form>` content when the form holds the article (3+ paragraphs, ASP.NET pages).
+  - Schema validation detects self-referencing records instead of recursing forever.
+- **Redaction:**
+  - URLs in text, JSON and URL attributes are redacted per component (prose-shaped path segments and query
+    values); a URL token ends at the first non-URL character.
+  - JSON keeps only `@type`, `@context`, `@language`, `@vocab` and token-shaped `@id`.
+  - Lint flags non-empty comments and `<style>` text.
+  - All 2077 captured fixtures in both repos were re-redacted; 163 expected outputs changed (values only).
+- **Publish gate:**
+  - The publish workflow runs only after CI passed on a push to main, on that commit.
+  - It gates on both fixture repos.
+  - `rex check --git-base` fails on a bad ref or outside a work tree instead of skipping the version gate.
+- **Anti-rollback:**
+  - The extension keeps the highest accepted sequence per (base URL, channel), apart from the stored bundle.
+  - Changing the pinned keys or re-adding a source forgets the bundle but never lowers that floor.
+  - The stored bundle records the engine's features; a different engine re-selects the entries (no
+    conditional GET), so entries skipped for an unsupported feature come back after an update.
+  - operations.md now states what a key compromise really means.
+- **Extension:**
+  - The engine cache key covers the source identity (id, channel, base URL, keys), sequence and schema set.
+  - Engines are leased: one is freed only when no extraction holds it.
+  - A local developer recipe that parses but does not compile falls back to the bundle. The options page
+    shows the compile error.
+  - `parseKeys` keeps a line without `id:` as an invalid key, so validation reports it.
+  - The first sync fetches recipe objects 8 at a time, in index order.
+- **CLI:**
+  - `bundle publish` reads every object back before writing the index, and re-uploads any that is missing
+    or corrupt, also when nothing changed, so a half-published channel heals on the next run.
+  - `bundle gc` refuses a retention shorter than the index cache lifetime (300 s).
+  - `bundle build` refuses to continue from an index it cannot verify; it no longer restarts at sequence 1.
+  - `bundle keygen` creates the key file exclusively with mode 0600.
+  - Gate:
+    - Title tokens cover every script.
+    - Site-name tokens (og:site_name, application-name, JSON-LD publisher) do not count toward the title
+      overlap.
+    - A title that is only the site name fails.
+  - `rex draft`:
+    - `--force` replaces the old draft.
+    - Only reviewed recipes (not drafts or auto recipes) are shown to the model as examples.
+    - "Too few full pages" no longer spends repair rounds.
+    - When repairs stop compiling, the last compiled recipe is kept.
+    - LLM errors never name the endpoint, its host or the API key.
+  - Fetching: the `charset` parameter is case-insensitive; an unknown label falls back to the page's
+    `<meta>`.
+- **Tools:**
+  - `import_results.py` imports each recipe all-or-nothing and parses `rex test` lines by case path, not by
+    splitting on `/`.
+  - `live-remote.mjs` reattaches when Chrome replaced the worker.
+  - `classify.py` retries UNLABELED rows.
+- **Verification (2026-10-19):**
+  - `scripts/ci-local.sh` passes: 107 workspace tests, 2085 fixture cases, wasm parity 143/143, both
+    extension e2e suites.
+  - Both dev channels republished as a no-op (no recipe changed); the new read-back found every object intact.
+  - Live run on the ARM Chrome: 46/61 OK in the full run. Five of the six runner errors passed on a rerun
+    (slow page reads, documents replaced mid-read); Ars Technica still drops its frame.
+  - YouTube search lacks durations: the thumbnail overlays had not rendered, and most results were mixes.
+  - The rest are login and bot walls, as in U38.
+
+## U40: Recorded e2e runs on a Docker Ubuntu desktop [user decision + delegated], 2026-10-23
+
+**User decision:** after the Windows recording worked, build a framework for recorded e2e runs, starting with a
+Docker Ubuntu GUI.
+
+- **Windows first** (CDP screencast, U38's ARM Chrome). It proved the flow but not the capture:
+  - That Chrome runs in session 0, with no visible desktop, so only page and popup frames could be captured.
+    The browser frame and cursor were drawn afterwards.
+  - x64 emulation on ARM gives a frame every 30-50 ms, and the browser had to restart between scenes.
+- **The Docker desktop** (`extension/recorder/`, operations.md):
+  - Xvfb + openbox + a browser with the extension pinned (first Chrome for Testing 155, then Google Chrome; see
+    below).
+  - `xdotool` drives real input; ffmpeg x11grab records the screen at 50 fps (a frame every 20 ms).
+  - CDP only observes.
+  - Scenarios are JSON: scenes with a URL, a label and an `expect`.
+- **First run** of `scenarios/tutorial.json`: 5/7 scenes OK (Wikipedia, HN, Bilibili, Xueqiu, YouTube).
+  Amazon and Zhihu sent this host's IP to their bot checks; the same pages pass from the residential IP (U38).
+- **Recipe fix found by the Windows recording:** this Chrome was sometimes redirected to the English Bilibili site
+  (`/en/video/...`). `bilibili.com/video` v2 matches it and reads the id from the URL by regex, with a new
+  fixture `anji-en-site`.
+- **User decision (same day): Google Chrome stable, not Chrome for Testing.**
+  - Branded Chrome ignores `--load-extension`, so the container installs the extension the way an
+    organization deploys it: a CRX packed from `extension/dist` (key outside the repo), a local update server,
+    and `ExtensionSettings` (`force_installed`, `toolbar_pin: force_pinned`).
+  - `DeveloperToolsAvailability: 1` lets CDP attach to the policy-installed extension.
+- **The runner reads results from the popup,** so it tests the store build through its UI.
+  - The store build has no `<all_urls>`, so the real toolbar click grants `activeTab`, and that path is now
+    covered (the tasks.md gap).
+  - With the e2e build, the extraction behind the popup is also checked against what it shows.
+- **Result:** the tutorial scenario passes 6/7 on Chrome 156 with the store build. Zhihu passes in branded
+  Chrome; Chrome for Testing was sent to `account/unhuman`. Amazon still shows this host's IP an interstitial.
+- **User decision (2026-10-24): a docker e2e.** `scripts/docker-e2e.sh` runs the store build in Google Chrome
+  in a container with no network.
+  - It serves fixture pages at their real URLs and a bundle published from `recipes/` with a throwaway key,
+    over TLS from a local CA.
+  - Each scene must match its fixture's `expected.json`: the recipe and version, the status and the field
+    count.
+  - First run: 7/7 (Wikipedia, Amazon, HN, Bilibili, Zhihu, Xueqiu, YouTube), about 3.5 min without the video.
+  - It is an opt-in last step of `ci-local.sh` (`REX_DOCKER_E2E=1`).
+- **User decision (2026-10-24): run it in GitHub Actions.** The `docker-e2e` job in `ci.yml`:
+  - builds the image with a layer cache, refreshing Chrome weekly;
+  - runs the script on the `rust` and `wasm` artifacts;
+  - uploads the results and the video.
+  - Simulated locally with the same steps: 7/7 with the video, 4.6 min. actionlint is clean.
+  - The job has not run on GitHub yet (nothing is pushed).
+- **Open:**
+  - a residential proxy for the live recordings;
+  - a Windows backend inside the framework (the screencast recorder is still a scratch script);
+  - a scheduled live recording.
+
 ## Open actions (need the user)
 
 | Action | Why it needs you |
 |---|---|
-| Choose the Cloudflare account, R2 bucket, and domain; generate the Ed25519 signing key pair | Accounts and secrets (U16) |
+| Choose the Cloudflare account, R2 bucket, and domain; generate the production Ed25519 key (`rex bundle keygen`); set the publish.yml variables and secrets (operations.md) | Accounts and secrets (U16, U26) |
+| Decide on a Chrome Web Store listing (unlisted or public) | Store account and policy (M7) |
+| Commit and push the M2–M7 work; create the GitHub repo `Shuozeli/rex-fixtures` | Not committed until you say so |
+| Fix the ARM2 browser endpoint (502) or allow another real browser for captures | Bot-walled and TLS-fingerprinting sites (U31) need a real browser |
+| Bring the Alienware host back online (offline since 2026-10-14); clean the 63 leaked tabs on ARM Chrome :9401 | Captures fell back to ARM Chrome :9403/:9405 (U37) |
+| Log the capture browser (Alienware Chrome) into JD | `jd.com/product` needs a logged-in session (U34) |
 | ~~Rename the repo to `Shuozeli/rex`; commit and push~~ | Done 2026-10-12 |

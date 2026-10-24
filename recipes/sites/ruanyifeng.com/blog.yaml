@@ -1,0 +1,30 @@
+# 阮一峰的网络日志 (Movable Type): no JSON-LD, so title, author and date come from the entry markup.
+id: ruanyifeng.com/blog
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["ruanyifeng.com"]
+    include: ["^/blog/\\d{4}/\\d{2}/[a-z0-9-]+\\.html$"]
+  page:
+    all:
+      - exists: "article.hentry #main-content"
+fields:
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1#page-title", scope: CSS_SCOPE_DOCUMENT }
+  - path: authors
+    candidates:
+      - css: { selector: ".asset-meta .vcard.author a.fn", scope: CSS_SCOPE_DOCUMENT }
+  - path: published_at
+    candidates:
+      - css: { selector: ".asset-meta abbr.published", take: TAKE_ATTRIBUTE, attribute: title, scope: CSS_SCOPE_DOCUMENT }
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "#main-content", take: TAKE_HTML }
+  - path: language
+    candidates:
+      - constant: { value: "zh-CN" }

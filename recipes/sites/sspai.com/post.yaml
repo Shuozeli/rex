@@ -1,0 +1,20 @@
+# 少数派 posts.
+id: sspai.com/post
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["sspai.com"]
+    include: ["^/post/\\d+"]
+  page:
+    all:
+      - exists: "div.article-body"
+fields:
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "div.article-body", take: TAKE_HTML }
+  - path: language
+    candidates:
+      - constant: { value: "zh-CN" }

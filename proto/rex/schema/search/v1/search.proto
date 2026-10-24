@@ -1,0 +1,52 @@
+// rex.schema.search.v1: a search engine result page (Google, Bing, Baidu, DuckDuckGo) as a typed list.
+//
+// Decided 2026-10-14 (decisions.md U32, category schemas; fields as sketched with the user).
+syntax = "proto3";
+
+package rex.schema.search.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message SearchResults {
+  option (rex.schema.v1.record) = {
+    schema_org: "SearchResultsPage"
+    primary: ["results"]
+  };
+
+  string query = 1 [(rex.schema.v1.field) = { required: true }];
+  string engine = 2;                       // "google", "bing", ...
+  repeated SearchResult results = 3 [(rex.schema.v1.field) = { max_items: 200 }];
+  repeated string related_searches = 4 [(rex.schema.v1.field) = { max_items: 50 }];
+  int64 total_results = 5;                 // the approximate count the engine shows
+  uint32 page = 6;                         // 1-based result page
+}
+
+message SearchResult {
+  option (rex.schema.v1.record) = { schema_org: "ListItem" };
+
+  uint32 rank = 1;                         // 1-based position among the extracted results
+  ResultType type = 2;
+  string title = 3 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url", required: true }];
+  string display_url = 5;                  // the breadcrumb-style URL shown under the title
+  string snippet = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  repeated Sitelink sitelinks = 7 [(rex.schema.v1.field) = { max_items: 12 }];
+  google.protobuf.Timestamp published_at = 8;
+}
+
+message Sitelink {
+  option (rex.schema.v1.record) = { schema_org: "SiteNavigationElement" };
+
+  string title = 1 [(rex.schema.v1.field) = { required: true }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, required: true }];
+}
+
+enum ResultType {
+  RESULT_TYPE_UNSPECIFIED = 0;
+  RESULT_TYPE_ORGANIC = 1;
+  RESULT_TYPE_AD = 2;
+  RESULT_TYPE_VIDEO = 3;
+  RESULT_TYPE_NEWS = 4;
+  RESULT_TYPE_FEATURED = 5;                // featured snippet / answer box
+}

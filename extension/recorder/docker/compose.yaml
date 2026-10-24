@@ -1,0 +1,51 @@
+# Recording desktop. Host networking: the extension syncs its bundle over the tailnet (MagicDNS), and the
+# CDP relay and noVNC bind to $TAILSCALE_IP only.
+#   export TAILSCALE_IP=$(tailscale ip -4)
+#   pnpm -C extension build:e2e
+#   docker compose -f extension/recorder/docker/compose.yaml up -d --build
+services:
+  desktop:
+    build: .
+    image: rex-recorder-desktop:local
+    network_mode: host
+    environment:
+      BIND: ${TAILSCALE_IP:-127.0.0.1}
+      CDP_PORT: "9541"
+      NOVNC_PORT: "6081"
+      CHROME_ARGS: ${REX_RECORDER_CHROME_ARGS:-}
+    shm_size: 2gb
+    # Chrome's sandbox needs user namespaces, which the default seccomp profile blocks.
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - ../../dist:/ext:ro
+      # CRX signing key for the e2e install (kept out of the repo; `openssl genpkey -algorithm RSA ...`).
+      - ${REX_EXT_KEY:-~/.config/rex/ext-e2e-key.pem}:/keys/ext.pem:ro
+      - ../../..:/repo:ro
+      - ./out:/out
+    restart: unless-stopped
+
+  # Hermetic e2e (scripts/docker-e2e.sh): no network at all (loopback only); every host is answered inside
+  # the container from fixtures. The store build is in ./out/hermetic/ext, the bundle in ./out/hermetic/bundle.
+  e2e:
+    build: .
+    image: rex-recorder-desktop:local
+    profiles: [e2e]
+    network_mode: none
+    environment:
+      REX_HERMETIC: /repo/extension/recorder/scenarios/${REX_E2E_SCENARIO:-fixtures.json}
+    shm_size: 2gb
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - ./out/hermetic/ext:/ext:ro
+      - ./out/hermetic/bundle:/bundle:ro
+      - ${REX_EXT_KEY:-~/.config/rex/ext-e2e-key.pem}:/keys/ext.pem:ro
+      - ../../..:/repo:ro
+      - ./out:/out
+    command:
+      - node
+      - /repo/extension/recorder/run.mjs
+      - /repo/extension/recorder/scenarios/${REX_E2E_SCENARIO:-fixtures.json}
+      - --out
+      - /out/hermetic/run

@@ -1,0 +1,614 @@
+{
+  "recipe": {
+    "id": "ebay.com/search",
+    "version": 1,
+    "sha256": "10597f7665d1838268181379d83064fb871bae9eb899049e9a7169142b3a3141"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.ebay.com/sch/i.html?_nkw=lego+star+wars",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:16:09Z",
+  "extractTime": "2026-10-14T05:16:09Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "ebay.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "ebay.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "lego star wars",
+    "items": [
+      {
+        "id": "206561305643",
+        "title": "XXXX Star Xxxx Xxxx Xxx Xxxxxxxxxxx Xxxxxxxxx Xxxxxxxxx 75405 XXX XXXXXXX",
+        "url": "https://www.ebay.com/itm/206561305643",
+        "price": "39.98",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/l0sAAeSw32NqqsQs/s-l500.webp",
+        "rank": 1
+      },
+      {
+        "id": "800791859405",
+        "title": "Xxx Xxxx Star Xxxx XX-XX Xxxxxx Xxxx Xxx 75440 Xxxx xxx 100% xxxxxxx X xxxxxx",
+        "url": "https://www.ebay.com/itm/800791859405",
+        "price": "29.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/l1kAAeSwajxqzn~z/s-l500.webp",
+        "rank": 2
+      },
+      {
+        "id": "820233563471",
+        "title": "XXXX Star Xxxx: Xxx Xxxx Xxxxxxx Xxxxxxx 75380 Xxx In Xxx XXX Xxxxxx Xxxxxxx",
+        "url": "https://www.ebay.com/itm/820233563471",
+        "price": "46",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/AAwAAeSwR7Vqp4ie/s-l500.webp",
+        "rank": 3
+      },
+      {
+        "id": "168733036738",
+        "title": "XXX 1758 XXX Xxxxxxxx Xxxxxxxx XX-XX Xxxxxx Star Xxxx Xxxxxxx Xxxxxxxx Xxx Xxxx",
+        "url": "https://www.ebay.com/itm/168733036738",
+        "price": "164.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/nGkAAeSwsilqujOo/s-l500.webp",
+        "rank": 4
+      },
+      {
+        "id": "206587439184",
+        "title": "XXXX Star Xxxx: Xxxxxxxx Xxxxxxx (75302) | Xxx | Xxxxxx | Xxxxxxx | Xxxx Xxxx",
+        "url": "https://www.ebay.com/itm/206587439184",
+        "price": "89.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/wH0AAeSwiKpquhRG/s-l500.webp",
+        "rank": 5
+      },
+      {
+        "id": "407203170808",
+        "title": "XXXX Star Xxxx Xxxx Xxxxxx Xxxxxx Xxxxx Xxxxxxxx 75451, 415 Xxxxxx-Xxxx Xxxxxxxx",
+        "url": "https://www.ebay.com/itm/407203170808",
+        "price": "40.49",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/sUoAAeSwD1VqoNhX/s-l500.webp",
+        "rank": 6
+      },
+      {
+        "id": "336833332626",
+        "title": "XXXX Star Xxxx 75342 Xxxxxxxx Xxxxxxx Xxxx 262 Xxxxxx Xxx Xxxxxx 🚀",
+        "url": "https://www.ebay.com/itm/336833332626",
+        "price": "51.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/Ms8AAeSwwoNqxg7T/s-l500.webp",
+        "rank": 7
+      },
+      {
+        "id": "366024061458",
+        "title": "XXXX Star Xxxx: Xxxxxxx XX (75376)- Xxx/xxxxxxx xxxxxx - Xxxxxxxx Xxxx",
+        "url": "https://www.ebay.com/itm/366024061458",
+        "price": "31.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/UUIAAOSwK-Rmy2-w/s-l500.webp",
+        "rank": 8
+      },
+      {
+        "id": "397390038111",
+        "title": "XXXX Star Xxxx: X-19 Xxxxxxx Xxxxxxxxxxx (75432) (Xx Xxxxxxxxxxx) (Xx Xxx)",
+        "url": "https://www.ebay.com/itm/397390038111",
+        "price": "37.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/5a4AAeSw4lZpPj9T/s-l500.webp",
+        "rank": 9
+      },
+      {
+        "id": "920019364812",
+        "title": "XXXX Star Xxxx: Xxxxxxxxxx Xxxxxxxxx Xxxxxx (75336)",
+        "url": "https://www.ebay.com/itm/920019364812",
+        "price": "119.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/KpkAAeSwuVhqliGu/s-l500.webp",
+        "rank": 10
+      },
+      {
+        "id": "407285800581",
+        "title": "XXXX Star Xxxx Xxx Xxxxxxxxxxx Xxx 75382 - Xxxxx Xxx / Xxxxxx Xxxx Xxxxxxxxxxx",
+        "url": "https://www.ebay.com/itm/407285800581",
+        "price": "199.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/e8sAAeSwdENqzVMe/s-l500.webp",
+        "rank": 11
+      },
+      {
+        "id": "407284419376",
+        "title": "XXXX Star Xxxx XXX Xxxxxxx-Xxxxx Xxxxxxxx Xxxxxx Xxxxxxx (Xxx Xxx #75367",
+        "url": "https://www.ebay.com/itm/407284419376",
+        "price": "899.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/FmoAAeSwBk1qzItl/s-l500.webp",
+        "rank": 12
+      },
+      {
+        "id": "860038078890",
+        "title": "XXXX 75389 Xxx Xxxx Xxxxxx - Star Xxxx Xxxxxxx Xxx Xxxxxx - Xxx, Xxxxxx, Xxxxxxx",
+        "url": "https://www.ebay.com/itm/860038078890",
+        "price": "189.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/lQMAAeSwuVdqzVxZ/s-l500.webp",
+        "rank": 13
+      },
+      {
+        "id": "920037673186",
+        "title": "Star Xxxx: Xxxxxxxxxxx XX-XX Xxxxxx #40806 Xxxxx Xxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/920037673186",
+        "price": "64.49",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/zP0AAeSwBrlqvCtx/s-l500.webp",
+        "rank": 14
+      },
+      {
+        "id": "126907416315",
+        "title": "Xxxx 6470426 Star Xxxx Xxxxxxx XX Xxxxx xxx Xxxxxxx Xxxxxxxx Xxxxxxx Xxxxx 75376",
+        "url": "https://www.ebay.com/itm/126907416315",
+        "price": "42",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/9xwAAeSwaclqkU7u/s-l500.webp",
+        "rank": 15
+      },
+      {
+        "id": "376769128209",
+        "title": "XXXX Star Xxxx: Xxxxxxxx XXX Xxxxxxx (75300) Xxxxx Xxx Xxxxxxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/376769128209",
+        "price": "49.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/o7UAAOSwLvlmy3AJ/s-l500.webp",
+        "rank": 16
+      },
+      {
+        "id": "137826429316",
+        "title": "XXXX STAR XXXX 40755 Xxxxxxxx Xxxxxxxx xx Xxxxx Xxxxx Xxxxxxx Xxx Xxxxxx Xxxxxxx",
+        "url": "https://www.ebay.com/itm/137826429316",
+        "price": "55.75",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/oTUAAeSwr4Vqn6gQ/s-l500.webp",
+        "rank": 17
+      },
+      {
+        "id": "377270891240",
+        "title": "XXXX Star Xxxx 327th Star Xxxxx Xxxxx Xxxxxxxx Xxxxxx Xxxxxxxx Xxx 75431 🎁Xxxx",
+        "url": "https://www.ebay.com/itm/377270891240",
+        "price": "28.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/048AAeSw10tqMlZa/s-l500.webp",
+        "rank": 18
+      },
+      {
+        "id": "287593628311",
+        "title": "XXXX Star Xxxx XXXXX Xxxx XX-ST Xxxxxx xx Xxxxx Xxx Xxxxxxxx Xxx 75424 3 xxxxxxx",
+        "url": "https://www.ebay.com/itm/287593628311",
+        "price": "32.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/5pEAAeSw~H9qrPKM/s-l500.webp",
+        "rank": 19
+      },
+      {
+        "id": "257336384289",
+        "title": "XXXX Star Xxxx Xxxxx'x Xxxx Xxxxx 75397",
+        "url": "https://www.ebay.com/itm/257336384289",
+        "price": "635",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/j80AAeSwzFhpfHB9/s-l500.webp",
+        "rank": 20
+      },
+      {
+        "id": "188999725258",
+        "title": "XXXX Star Xxxx: Xxxxxxxx xxx Xxxxxxx XX (75387) (XXX IN XXX)",
+        "url": "https://www.ebay.com/itm/188999725258",
+        "price": "55",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/cVAAAeSwEHhqucSf/s-l500.webp",
+        "rank": 21
+      },
+      {
+        "id": "880013751420",
+        "title": "Xxxx Star Xxxx Xxxxxxxxxx A-Xxxx Xxxxxxxxxxx 75248 Xxx Xxxxxxx Xxxxxx *Xxxxxxx*",
+        "url": "https://www.ebay.com/itm/880013751420",
+        "price": "49.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/cQcAAeSw5DRqovzh/s-l500.webp",
+        "rank": 22
+      },
+      {
+        "id": "227563007770",
+        "title": "Xxxx Star Xxxx Xxxxx Xxxxxx Xxxxxxxxxx 40897 Xxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/227563007770",
+        "price": "74.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/7DIAAeSw8wZqzBgS/s-l500.webp",
+        "rank": 23
+      },
+      {
+        "id": "147620293757",
+        "title": "XXXX Star Xxxx: Xxx Xxxxxx Xxxxxxx (75290) Xxx Xxxxxx Xxxx Xxxxxxxx",
+        "url": "https://www.ebay.com/itm/147620293757",
+        "price": "469.21",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/HlEAAeSw9D1qysJP/s-l500.webp",
+        "rank": 24
+      },
+      {
+        "id": "198708197160",
+        "title": "Xxx XXXX Star Xxxx: Xxxxxxxx Xxxxxxx Xxxxxxxxx #75152 Xxxxxx - 2016 Xxxxxxx Xxx",
+        "url": "https://www.ebay.com/itm/198708197160",
+        "price": "130",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/uiEAAeSwRoVqzE1H/s-l500.webp",
+        "rank": 25
+      },
+      {
+        "id": "168712626068",
+        "title": "XXXX Star Xxxx - Xxxxxxxx Xxxxx Star Xxxxxxxxx Xxx 75356 - Xxx / Xxxxxxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/168712626068",
+        "price": "69",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/rLYAAOSwU85my2~0/s-l500.webp",
+        "rank": 26
+      },
+      {
+        "id": "318817408319",
+        "title": "XXXX 75360 Star Xxxx Xxxx'x Xxxx Xxxxxxxxxxx Xxx Xxxxxx Xxxxxxx",
+        "url": "https://www.ebay.com/itm/318817408319",
+        "price": "34.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/IhgAAeSwuQVqmMTF/s-l500.webp",
+        "rank": 27
+      },
+      {
+        "id": "407285441037",
+        "title": "XXXX Star Xxxx: Xxx Xxxx Xxxxxx (75389) Xxx Xxxxxx Xxxx Xxxxxxxxxxx",
+        "url": "https://www.ebay.com/itm/407285441037",
+        "price": "209.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/rQAAAeSwrtFqymkO/s-l500.webp",
+        "rank": 28
+      },
+      {
+        "id": "820235552564",
+        "title": "XXXX 75440, Star Xxxx XXX XX-XX, XXX Xxxxxx Xxx! In Xxxx Xxxxx to Xxxx!",
+        "url": "https://www.ebay.com/itm/820235552564",
+        "price": "99.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/07cAAeSwLTZqzniC/s-l500.webp",
+        "rank": 29
+      },
+      {
+        "id": "257684609979",
+        "title": "XXXX 75226 Star Xxxx Xxxxxxxxxxx Xxxxxxx Xxxxx Xxxxxx Xxxx xxx xxxxxx",
+        "url": "https://www.ebay.com/itm/257684609979",
+        "price": "67.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/Fv0AAOSwQD1iaOqN/s-l500.webp",
+        "rank": 30
+      },
+      {
+        "id": "198714084748",
+        "title": "XXXX Star Xxxx 7661 Xxxx Xxxxxxxxxxx Xxxxxxxxxx Xxxx Xxx-Xxx X2-X2 575xx",
+        "url": "https://www.ebay.com/itm/198714084748",
+        "price": "70",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/8NIAAeSw6fpqzvde/s-l500.webp",
+        "rank": 31
+      },
+      {
+        "id": "820233569129",
+        "title": "XXXX STAR XXXX 40755 Xxxxxxxx Xxxxxxxx xx Xxxxx Xxxxx Xxxxxxx Xxx Xxxxxx Xxxxxxx",
+        "url": "https://www.ebay.com/itm/820233569129",
+        "price": "49.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/ng8AAeSwN1lqp42B/s-l500.webp",
+        "rank": 32
+      },
+      {
+        "id": "960064208386",
+        "title": "XXXX STAR XXXX XXXXXX XXXX'X T-6 XXXX XXXXXXX 75362..**XXXXXX**XXX**XXXX X/X**",
+        "url": "https://www.ebay.com/itm/960064208386",
+        "price": "67.88",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/5BIAAeSwZHxqubZE/s-l500.webp",
+        "rank": 33
+      },
+      {
+        "id": "128129356679",
+        "title": "XXXX Star Xxxx 75333 Xxx-Xxx Xxxxxx Xxxx Xxxxxxxxxxx XXX Xxxxxx XXXXXXX",
+        "url": "https://www.ebay.com/itm/128129356679",
+        "price": "29.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/q-EAAeSw-k5qzXJm/s-l500.webp",
+        "rank": 34
+      },
+      {
+        "id": "188999145374",
+        "title": "XXXX Star Xxxx XXXXXX Xxx Xxxx Xxxx Xxx 332nd & 501st Xxxxxx Xxxxx",
+        "url": "https://www.ebay.com/itm/188999145374",
+        "price": "45",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/IoIAAeSwPjFquaPi/s-l500.webp",
+        "rank": 35
+      },
+      {
+        "id": "189054201985",
+        "title": "Xxxx 75459 Star Xxxx Xxxxxxxx Xxxxxx Xxxxx Xxxxxxx 2026 Xxxxx Xxxx Xx Xxxxxxxxxx",
+        "url": "https://www.ebay.com/itm/189054201985",
+        "price": "74.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/AAIAAeSwCAxqxdi8/s-l500.webp",
+        "rank": 36
+      },
+      {
+        "id": "336817494430",
+        "title": "XXXX Star Xxxx Xxxx Xxxx’x Xxxxxx Xxxx 75326 Xxx Xxxxxx 732 Xxxxxx 🛸",
+        "url": "https://www.ebay.com/itm/336817494430",
+        "price": "73.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/tMgAAeSwoH1qurpb/s-l500.webp",
+        "rank": 37
+      },
+      {
+        "id": "277622870401",
+        "title": "XXXX Star Xxxx: Xxx Xxxxxxxxxxx 75382 *XXXXX XXXXXXX - XXX XXXXX*",
+        "url": "https://www.ebay.com/itm/277622870401",
+        "price": "179.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/yXQAAeSwjYdqV9G8/s-l500.webp",
+        "rank": 38
+      },
+      {
+        "id": "188630399870",
+        "title": "Xxxx Star Xxxx Xxxx Xxxxxxxxx Xxxxxx 75327 XXXXX XXX",
+        "url": "https://www.ebay.com/itm/188630399870",
+        "price": "84.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/C6AAAeSwAY9qUuXx/s-l500.webp",
+        "rank": 39
+      },
+      {
+        "id": "318921028902",
+        "title": "XXXX Star Xxxx Xxxxxxxxxx Xxxxxx 75426 885 xxx Xxx Xxxxxxxxx Xxx Xxxx",
+        "url": "https://www.ebay.com/itm/318921028902",
+        "price": "65",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/dbMAAeSwsEpqt9Xg/s-l500.webp",
+        "rank": 40
+      },
+      {
+        "id": "920022244594",
+        "title": "XXXX 75367 Star Xxxx XXX Xxxxxxx-Xxxxx Xxxxxxxx Xxxxxx Xxxxxxx (Xxx & Xxxxxx)",
+        "url": "https://www.ebay.com/itm/920022244594",
+        "price": "999.75",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/1NUAAeSw9UZqyFix/s-l500.webp",
+        "rank": 41
+      },
+      {
+        "id": "206625902746",
+        "title": "XXXX Star Xxxx: Xxxxxxxx Xxx Xxxxxxx (75300) Xxx Xxxxxx Xxxx Xxxxxx Xxx",
+        "url": "https://www.ebay.com/itm/206625902746",
+        "price": "40",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/OYAAAeSwkBlqzvOb/s-l500.webp",
+        "rank": 42
+      },
+      {
+        "id": "287629093616",
+        "title": "XXXX 40755 - STAR XXXX - Xxxxxxxx Xxxxxxxx xx. Xxxxx Xxxxx Xxxxxxx (Xxx/Xxxxxx)",
+        "url": "https://www.ebay.com/itm/287629093616",
+        "price": "55.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/iiMAAeSwubhqMwci/s-l500.webp",
+        "rank": 43
+      },
+      {
+        "id": "376773512284",
+        "title": "XXXX Star Xxxx: Xxxxxxxx Xxxxxxx Xxxx (75342) Xxxxx Xxx Xxxxxxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/376773512284",
+        "price": "49.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/8TcAAOSw~cFmy2~p/s-l500.webp",
+        "rank": 44
+      },
+      {
+        "id": "364923014077",
+        "title": "XXXX Star Xxxx Xxxxxxx Xxxxxxxxx Xxxxxxxxxx Xxxxx Xxxxxxx Xxxx Xxxx 75352 XXXXXX",
+        "url": "https://www.ebay.com/itm/364923014077",
+        "price": "16.79",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/9C0AAOSwblhm8imv/s-l500.webp",
+        "rank": 45
+      },
+      {
+        "id": "307210845750",
+        "title": "XXXX Star Xxxx 8014 Xxxxx Xxxxxx Xxxxxx Xxxx Xxx Xxxxxx Xxxxxxx Xxx 72 Xxx",
+        "url": "https://www.ebay.com/itm/307210845750",
+        "price": "109.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/uv8AAeSwXvtqwCka/s-l500.webp",
+        "rank": 46
+      },
+      {
+        "id": "336833574329",
+        "title": "XXXX Star Xxxx 66775 Xxxx Xxxxx Xxxx Xxx 691 Xxxxxx Xxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/336833574329",
+        "price": "89.97",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/Lj4AAeSwG8ZqxTyC/s-l500.webp",
+        "rank": 47
+      },
+      {
+        "id": "800773449997",
+        "title": "2022 XXXX Star Xxxx 75320 Xxxxxxxxxxx Xxxxxx Xxxx 105 Xxxxx Xxx Xxx Xxxxxx",
+        "url": "https://www.ebay.com/itm/800773449997",
+        "price": "34.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/dzgAAeSwEplqyBlJ/s-l500.webp",
+        "rank": 48
+      },
+      {
+        "id": "206615973709",
+        "title": "XXXX Star Xxxx: Xxx Xxxxx Xxxxx (75292) | Xxx | Xxxxxx | Xxxxxxx | Xxxx Xxxx",
+        "url": "https://www.ebay.com/itm/206615973709",
+        "price": "149.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/0ccAAeSwrQBqyfc~/s-l500.webp",
+        "rank": 49
+      },
+      {
+        "id": "366583769238",
+        "title": "XXXX Star Xxxx Xxxxxxxx Xxxxxx Xxxxx Xxxxxxx Xxxxxxxxxx XXX of 5 75413 Xxxx XXX",
+        "url": "https://www.ebay.com/itm/366583769238",
+        "price": "53.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/0m4AAeSw9h1qcM9P/s-l500.webp",
+        "rank": 50
+      },
+      {
+        "id": "127977923275",
+        "title": "XXXX Star Xxxx 66804 3 xxxx in 1 Xxx Xxxxx Xxxx & Xxx Xxxxxxxxxxx Xxxx Xxx",
+        "url": "https://www.ebay.com/itm/127977923275",
+        "price": "62",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/XccAAeSwEOxokR8s/s-l500.webp",
+        "rank": 51
+      },
+      {
+        "id": "880014607417",
+        "title": "XXXX Star Xxxx: Xxx Xxxx Xxxxxx (75389) Xxxxx Xxx in Xxx",
+        "url": "https://www.ebay.com/itm/880014607417",
+        "price": "179.79",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/~HsAAeSwu-NqyoYf/s-l500.webp",
+        "rank": 52
+      },
+      {
+        "id": "298741310083",
+        "title": "Xxx XXXX Star Xxxx: Xxxxx Xxxxx'x Xxxxxxxxxx (40897) - Xxxxxx",
+        "url": "https://www.ebay.com/itm/298741310083",
+        "price": "80",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/M3IAAeSwbItqxsMF/s-l500.webp",
+        "rank": 53
+      },
+      {
+        "id": "267813027606",
+        "title": "XXXX Star Xxxx: Xxxxx Xxxxxxxxx Xxxx Xxxxxx 75350 Xxx in Xxx Xxxxxx Xxxxxxx",
+        "url": "https://www.ebay.com/itm/267813027606",
+        "price": "70",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/dMYAAeSwK8dqzr6J/s-l500.webp",
+        "rank": 54
+      },
+      {
+        "id": "206542771277",
+        "title": "Xxxx Star Xxxx Xxxxxx Xxxx’x Xxxx xx Xxxxxxx 75385 Xxxxxx",
+        "url": "https://www.ebay.com/itm/206542771277",
+        "price": "40",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/zjkAAeSwEZZqn1Gr/s-l500.webp",
+        "rank": 55
+      },
+      {
+        "id": "227498183696",
+        "title": "XXXX Star Xxxx: Xxxxxxx XX (75376)-654 Xxxxxx -Xxx/xxxxxxx xxxxxx- XXXX XXXXXXXX",
+        "url": "https://www.ebay.com/itm/227498183696",
+        "price": "45.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/UUIAAOSwK-Rmy2-w/s-l500.webp",
+        "rank": 56
+      },
+      {
+        "id": "117082216087",
+        "title": "XXXX Star Xxxx Xxxxx of Xxxxxxxxx Xxxxxx Xxxx",
+        "url": "https://www.ebay.com/itm/117082216087",
+        "price": "20",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/nCkAAeSwzkRqkgSn/s-l500.webp",
+        "rank": 57
+      },
+      {
+        "id": "267809417015",
+        "title": "XXX XXXXXX XXXX 75388 Xxxx Xxx'x Xxxxxxxxxxx - XXXXXXX Star Xxxx 2024",
+        "url": "https://www.ebay.com/itm/267809417015",
+        "price": "39.95",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/95sAAeSwH~VqyWr~/s-l500.webp",
+        "rank": 58
+      },
+      {
+        "id": "168790910198",
+        "title": "XXXX Star Xxxx: Xxx Xxxxx Xxxxx (75292) | Xxx | XXXXXX| Xxxxxxx | Xxxx Xxxx",
+        "url": "https://www.ebay.com/itm/168790910198",
+        "price": "186",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/8B4AAeSwB8BqzsdL/s-l500.webp",
+        "rank": 59
+      },
+      {
+        "id": "364851416539",
+        "title": "XXXX Star Xxxx 212th Xxxxx Xxxxxxx Xxxxx 2 Xxxxxxxxxx XXX of 5x - XXXXXX IN XXX!",
+        "url": "https://www.ebay.com/itm/364851416539",
+        "price": "49.99",
+        "currency": "USD",
+        "image": "https://i.ebayimg.com/images/g/swQAAeSwXXdoc00z/s-l500.webp",
+        "rank": 60
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "ebay.com/search",
+      "version": 1,
+      "sha256": "10597f7665d1838268181379d83064fb871bae9eb899049e9a7169142b3a3141"
+    }
+  ]
+}

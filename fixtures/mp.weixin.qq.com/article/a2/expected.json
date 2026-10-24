@@ -1,0 +1,98 @@
+{
+  "recipe": {
+    "id": "mp.weixin.qq.com/article",
+    "version": 1,
+    "sha256": "f679da15b067fc689fe56b929f16500bc0ef23bb86b5b2228804810ef2b7cf6f"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://mp.weixin.qq.com/s?src=11&timestamp=1791948848&ver=7025&signature=asXg-jE5MjQnlZIoQ3l5EzoYOfcirMN1PofyR6e0zF*aCr0aAdhXsVGQfkUX6vjifZK2MRrVuxVp5TViuHigJL8hW*RZBzZtcFM8uH6BWVouUAGnLhOzexZ3rKHDnbIm&new=1",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:34:44Z",
+  "extractTime": "2026-10-14T03:34:44Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_URL",
+      "candidate": 3,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "language",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "mp.weixin.qq.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "mp.weixin.qq.com/article@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://mp.weixin.qq.com/s?src=11&timestamp=1791948848&ver=7025&signature=asXg-jE5MjQnlZIoQ3l5EzoYOfcirMN1PofyR6e0zF*aCr0aAdhXsVGQfkUX6vjifZK2MRrVuxVp5TViuHigJL8hW*RZBzZtcFM8uH6BWVouUAGnLhOzexZ3rKHDnbIm&new=1",
+    "title": "字字80字字字字字字字字字XX字字",
+    "authors": [
+      {
+        "name": "字字字字字字XxxxxXXX"
+      }
+    ],
+    "publishedAt": "2026-10-14T02:59:00Z",
+    "section": "字字字字字字XxxxxXXX",
+    "summary": "分字字20字字字字！",
+    "image": "https://mmbiz.qpic.cn/mmbiz_jpg/cFYf0eIVKm7WVvvyagJeSc712QW9CFk0nu8ZVibWTwgMictCIyq5XbcxtzEJGGXgdH2eictruzmvJLHZICE4NtoakicRU9c8JPAfYJbyHdhmB6w/0?wx_fmt=jpeg",
+    "language": "zh",
+    "bodyHtml": "<img alt=\"Xxxxx\" src=\"https://mmbiz.qpic.cn/sz_mmbiz_gif/cFYf0eIVKm7fETUAiadLAXsvS76oraYMz03YckqN8zsRZftluCBxLs07PPYmu1UbnPcaf4e9sDpV5TjkZeNibZeicb4npRBLvfeicUIf0qL1o6I/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0\"><br>字字字字字字，字字时字12日，《字字时字》、字字字字字《字字字人》字40字字字字字字字一字字字，字字字字人字字字字字字字字字字字字字字字字字字字字字。<br>字字字，今年2月，字字字字字字字字字字字字字字（XXXX）字字字字字字字，字前字字字字80字，分字字20字字字字。字字字字字字字字字字《字字时字》、字字字字字字字字字字字；字字字字字字字《字字字》月字字字字字字字字字字。<br><br>字字字字字字字字字字字字字字字字字字字字字字字字字字，字字XX字字字字字字字字字字字字字字字字字字字。字月字字时字，《今日字字》字字字下字字字字字字字字字人字字字字字XxxxXX，字字字字字字字。XxxxXX字字字字字字字，字字字字字字字字字字字字字（字《字字时字》）字字字字字字字字字。字字字字字字字，XXXX字字字字字字字字字，字字字字字字字字字字字字字字，字字字字字字字、字字XX字字字字字字字字字字字，字字字字字字字字字。<br>字字字字字字字字字字字字字字字字字，字字字字字。——《字字时字》字字字字字字字字字字字字 字字字·字字字字-字字<br><br><br>字字字字字字字字字字字字字时字字字字字字下字字字：字字字字字字XX字字字字字，字字字字字字字字字字字字阅读字字。字字字字字字字字字字Xxxxxxxxx字字字字字字字字，2024年11月字2025年11月，字字字字字字字字字字2500字字字字字字字字字字字字字下字33%。XXXX字字，字期字字字字字字字字字，字字字一XX字字字字字字上字字字字字字字字字字字字，字字字字字字字字字字字。<br><br>XX字字字字字字字字字字字上，XX字字字字“字字”字字字字字字字字字字字字。字前字字字字，字字3字人字字字字字字字字字字字字下字字字字字字“字字”，字字字字字字字字字，字字字字字字字字字字。字字人字字字字字字字字字字字字分字字字字，XX字字日字字字，字字字字字字字字字字。<strong>字 &nbsp;字 | 字字时字</strong><strong>字字阅</strong><strong>读——<br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650552312&amp;idx=5&amp;sn=668c5146635331c5642d662ac0eff734&amp;scene=21#wechat_redirect\">XxxxXX字字字字字一字字字！</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650551580&amp;idx=1&amp;sn=ad0d73f48aba775e93cef9d14dbf6a21&amp;scene=21#wechat_redirect\">XX字字字字字！25字字字字字字字字字字字字字</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650552416&amp;idx=3&amp;sn=5a6fe5bc1b3434278f132b61b44f93a2&amp;scene=21#wechat_redirect\">字字字字字字期字字字字字字字字字！</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650552737&amp;idx=4&amp;sn=a4143643d43afaf2277b7b1ecce12648&amp;scene=21#wechat_redirect\">2026字字前2%字字字字字字字字字！</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650552312&amp;idx=3&amp;sn=a28ac960872de2a6a2ac8bed1700b97b&amp;scene=21#wechat_redirect\">2026年字字期字分字“字字期字”字字！</a></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650552260&amp;idx=3&amp;sn=8840e1add666be39eff6f2037ba61ae3&amp;scene=21#wechat_redirect\">2026年字字字字字字字字“XXX字字字字字”字字字字字字！</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650551618&amp;idx=3&amp;sn=e99e58210c6836d2b23af4b9cbcc3ae4&amp;scene=21#wechat_redirect\">字字字字字期字分字字，字字字字！</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650550858&amp;idx=6&amp;sn=3f16d608c07fce2a249b52addee0db77&amp;scene=21#wechat_redirect\">字字字字字《字字字字字字字字字字字字字字字字》</a><br></strong><strong><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650550620&amp;idx=3&amp;sn=8579c87dd4e80baea2fb3526b8b590a0&amp;scene=21#wechat_redirect\">字字字字字：字字字字字字字43点字字</a></strong><p><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650550470&amp;idx=1&amp;sn=5d83c38ecf3af7e6437841a5b292c8dd&amp;scene=21#wechat_redirect\">字字字字期字字字字字字字字字字字字字字字</a></p><p><a href=\"https://mp.weixin.qq.com/s?__biz=MzA4NjQwNjMwOA==&amp;mid=2650535018&amp;idx=2&amp;sn=e561b801b7feedc88f920333a80f966b&amp;scene=21#wechat_redirect\">字字期字字字字字：一字字字字字XX字字论字，字字字字字字字字字</a></p><img alt=\"字字\" src=\"https://mmbiz.qpic.cn/sz_mmbiz_jpg/cFYf0eIVKm69QLTtXY7SiaYga55KictcEe0VTCb2iaETxtQ5bR8ibedmqmvFZKYIo1y6RsJWQiaq5C8QqpqlKLP4rAdiaY6ibteouNlibs9Eb9jQ69g/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;tp=webp#imgIndex=1\"><p></p>",
+    "bodyText": "字字字字字字，字字时字12日，《字字时字》、字字字字字《字字字人》字40字字字字字字字一字字字，字字字字人字字字字字字字字字字字字字字字字字字字字字。\n\n字字字，今年2月，字字字字字字字字字字字字字字（XXXX）字字字字字字字，字前字字字字80字，分字字20字字字字。字字字字字字字字字字《字字时字》、字字字字字字字字字字字；字字字字字字字《字字字》月字字字字字字字字字字。\n\n字字字字字字字字字\n\n字字字字字字字字字字字字字字字字字，字字XX字字字字字字字字字字字字字字字字字字字。字月字字时字，《今日字字》字字字下字字字字字字字字字人字字字字字XxxxXX，字字字字字字字。XxxxXX字字字字字字字，字字字字字字字字字字字字字（字《字字时字》）字字字字字字字字字。\n\n字字字字字字字，XXXX字字字字字字字字字，字字字字字字字字字字字字字字，字字字字字字字、字字XX字字字字字字字字字字字，字字字字字字字字字。\n\n字字字字字字字字字字字字字字字字字，字字字字字。——《字字时字》字字字字字字字字字字字字字字字·字字字字-字字\n\n字字字字字字字字字\n\n字字字字时字字字字字字下字字字：字字字字字字XX字字字字字，字字字字字字字字字字字字阅读字字。\n\n字字字字字字字字字字Xxxxxxxxx字字字字字字字字，2024年11月字2025年11月，字字字字字字字字字字2500字字字字字字字字字字字字字下字33%。\n\nXXXX字字，字期字字字字字字字字字，字字字一XX字字字字字字上字字字字字字字字字字字字，字字字字字字字字字字字。\n\nXX字字字字字字字字字\n\n字字上，XX字字字字“字字”字字字字字字字字字字字字。字前字字字字，字字3字人字字字字字字字字字字字字下字字字字字字“字字”，字字字字字字字字字，字字字字字字字字字字。\n\n字字人字字字字字字字字字字字字分字字字字，XX字字日字字字，字字字字字字字字字字。\n\n字字 | 字字时字\n\n字字阅读——\n\nXxxxXX字字字字字一字字字！\n\nXX字字字字字！25字字字字字字字字字字字字字\n\n字字字字字字期字字字字字字字字字！\n\n2026字字前2%字字字字字字字字字！\n\n2026年字字期字分字“字字期字”字字！\n\n2026年字字字字字字字字“XXX字字字字字”字字字字字字！\n\n字字字字字期字分字字，字字字字！\n\n字字字字字《字字字字字字字字字字字字字字字字》\n\n字字字字字：字字字字字字字43点字字\n\n字字字字期字字字字字字字字字字字字字字字\n\n字字期字字字字字：一字字字字字XX字字论字，字字字字字字字字字"
+  },
+  "chain": [
+    {
+      "id": "mp.weixin.qq.com/article",
+      "version": 1,
+      "sha256": "f679da15b067fc689fe56b929f16500bc0ef23bb86b5b2228804810ef2b7cf6f"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

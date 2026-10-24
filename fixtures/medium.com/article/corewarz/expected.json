@@ -1,0 +1,103 @@
+{
+  "recipe": {
+    "id": "medium.com/article",
+    "version": 1,
+    "sha256": "c3818467f6ecef776f6d7b79c205f6c5ad13edbf43826029aab1a3b6b08fdda1"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://medium.com/rustaceans/corewarz-core-war-learns-to-call-subroutines-67bd18f45c62",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:09:18Z",
+  "extractTime": "2026-10-14T05:09:18Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "subtitle",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "medium.com/article@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 8148,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://medium.com/rustaceans/corewarz-core-war-learns-to-call-subroutines-67bd18f45c62",
+    "title": "XxxxXxxx: Xxxx Xxx Xxxxxx to Xxxx Xxxxxxxxxxx",
+    "subtitle": "A Xxxx xxxxxxxxxxxxxxxx of xxx 1984 xxxxxxxxxxx xxxx:",
+    "authors": [
+      {
+        "name": "Xxxx Xxxxxxxx"
+      }
+    ],
+    "publishedAt": "2026-10-12T10:02:44.305Z",
+    "summary": "A Xxxx xxxxxxxxxxxxxxxx of xxx 1984 xxxxxxxxxxx xxxx:",
+    "image": "https://miro.medium.com/v2/resize:fit:754/1*n-nVZejWqgiAY9VkWKIfaA.png",
+    "tags": [
+      "Xxxx",
+      "Xxxxxxxxxxx",
+      "Xxxxxxxxxxxxxx",
+      "Xxxxxxxxxxx",
+      "Xxxx Xxxxxxxxxxx"
+    ],
+    "bodyHtml": "<p><em>a second xxxxxxx with xxxx xxxxxxxxxx, xxxxxxxx xxx xx xxxxxxxxxx xxxx xxxxx, xxx a xxxxxxxxxxx xxx xxx xxxxx in a xxxxxxxx xx a xxxxxxx xxx</em></p><p>In May 1984, A. X. Xxxxxxx’x Xxxxxxxx Xxxxxxxxxxx xxxxxx in Xxxxxxxxxx Xxxxxxxx xxxxxxx xxxxxxx to xxxxx xxxxxxxx xxxxx xxxx xxxxxxx xxx to xxxxxxx xxxx xxxxx. Xxx xxxxx xxx xx a xxxx. Xxx xxxxxxxx, xxxxxx xxxxxxxx, xxx xxxxxx xxxx xxx xxxx xxxxxxxx xxxxx of xxxxxx, xxx xxxx, xxx xxxx xxxxx xxxxxxxxx xxx xxxxxxxxxxx xxxx. Xxx xxxxxxx xxxx xxxxx to xxxxxxx a xxxxx of xxxx xxxx. Xxxxx is xx xxxxxxxxx xxxxxx, xx xxxxxx xxxxxxxxxx xxx xx xxxxxxx xxxxxxx: xxxxx xxxx xxxxxx xxxxxxx xxx xxxx, xxx xxxxx xxx xxxxxxxxx. Xxx xxxx xxx Xxxx Xxx, xxx xxx xxxxxxxx xxx xxxxxxxx xxxx xxxxxxx in xxx Xxxxxxx.</p><p>Xxxxx years xx, xxx xxxx is xxxxx xxxxxx, xxxxx xxxxxx xxxx, xxx xxxxx xxxx. A xxxxxxxx xxxxxxx xxx xx a xxxxxx xxxxxxxxxxx xxxx. XxxxXxxx is a xxxxxxxxxxxxxxxx of xx in Xxxx xxxx xxxx xxx xxxxxx. Xx xxxx xxxxxxx Xxxxxxx xxxxxxx xx xxx xx xxxxx xxxxxxxx xxxx xx xxxxxx, xxxxxxx xxxxxx xx xxxxxx xxxxxxx xxx xxxxxxxxx xxxxxxxxx. Xxxx xx xxxx a second xxxxxxx xxxx xxxxx xxxxxxxx xxx xxxxxx xxxx xxxxxxxx xxxx xxx xxxxxxx: xxxxxxx xxxxxxxxxx, a xxxxxxxxxx xxxx xxxxxxxx a xxxxx, xxxxxxxxxxx xxxxxxxx, xxx xxxxxxxxxx xxxxx. Xxx xxxx xxxxx is xxx xxxxxxxxxxx xxxx, xxxxxxx xx xxxxx in xxx xxxx xxxxxxxxx xxxxxx xx xxxxxxxxxx xxxx.</p>",
+    "bodyText": "a second xxxxxxx with xxxx xxxxxxxxxx, xxxxxxxx xxx xx xxxxxxxxxx xxxx xxxxx, xxx a xxxxxxxxxxx xxx xxx xxxxx in a xxxxxxxx xx a xxxxxxx xxx\n\nIn May 1984, A. X. Xxxxxxx’x Xxxxxxxx Xxxxxxxxxxx xxxxxx in Xxxxxxxxxx Xxxxxxxx xxxxxxx xxxxxxx to xxxxx xxxxxxxx xxxxx xxxx xxxxxxx xxx to xxxxxxx xxxx xxxxx. Xxx xxxxx xxx xx a xxxx. Xxx xxxxxxxx, xxxxxx xxxxxxxx, xxx xxxxxx xxxx xxx xxxx xxxxxxxx xxxxx of xxxxxx, xxx xxxx, xxx xxxx xxxxx xxxxxxxxx xxx xxxxxxxxxxx xxxx. Xxx xxxxxxx xxxx xxxxx to xxxxxxx a xxxxx of xxxx xxxx. Xxxxx is xx xxxxxxxxx xxxxxx, xx xxxxxx xxxxxxxxxx xxx xx xxxxxxx xxxxxxx: xxxxx xxxx xxxxxx xxxxxxx xxx xxxx, xxx xxxxx xxx xxxxxxxxx. Xxx xxxx xxx Xxxx Xxx, xxx xxx xxxxxxxx xxx xxxxxxxx xxxx xxxxxxx in xxx Xxxxxxx.\n\nXxxxx years xx, xxx xxxx is xxxxx xxxxxx, xxxxx xxxxxx xxxx, xxx xxxxx xxxx. A xxxxxxxx xxxxxxx xxx xx a xxxxxx xxxxxxxxxxx xxxx. XxxxXxxx is a xxxxxxxxxxxxxxxx of xx in Xxxx xxxx xxxx xxx xxxxxx. Xx xxxx xxxxxxx Xxxxxxx xxxxxxx xx xxx xx xxxxx xxxxxxxx xxxx xx xxxxxx, xxxxxxx xxxxxx xx xxxxxx xxxxxxx xxx xxxxxxxxx xxxxxxxxx. Xxxx xx xxxx a second xxxxxxx xxxx xxxxx xxxxxxxx xxx xxxxxx xxxx xxxxxxxx xxxx xxx xxxxxxx: xxxxxxx xxxxxxxxxx, a xxxxxxxxxx xxxx xxxxxxxx a xxxxx, xxxxxxxxxxx xxxxxxxx, xxx xxxxxxxxxx xxxxx. Xxx xxxx xxxxx is xxx xxxxxxxxxxx xxxx, xxxxxxx xx xxxxx in xxx xxxx xxxxxxxxx xxxxxx xx xxxxxxxxxx xxxx."
+  },
+  "chain": [
+    {
+      "id": "medium.com/article",
+      "version": 1,
+      "sha256": "c3818467f6ecef776f6d7b79c205f6c5ad13edbf43826029aab1a3b6b08fdda1"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "recipe": {
+    "id": "tiktok.com/video",
+    "version": 1,
+    "sha256": "d7e5e43d2cc2f6ba7bec6d93ea020bb9d3128552dcf6f8f86847d084338ed247"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.tiktok.com/@nasa/video/7694283957839400206",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:46:04Z",
+  "extractTime": "2026-10-14T04:46:04Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "id",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "channel.name",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "channel.url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "tiktok.com/video@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "tiktok.com/video@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "id": "7694283957839400206",
+    "title": "A XXX of Xxxxxxx XX xxxx just xxxxxxx! 🌖 814XX of xxxxxxxxxxxx. 996 xxx xxxxxx. 521min of xxxxx-xxxxxx-xxxxxxxx xxxx xxxxx.",
+    "url": "https://www.tiktok.com/@nasa/video/7694283957839400206",
+    "channel": {
+      "name": "XXXX xx XxxXxx",
+      "url": "https://www.tiktok.com/@nasa"
+    },
+    "publishedAt": "2026-10-09T04:46:04Z",
+    "durationSeconds": 89,
+    "likes": "71800",
+    "description": "A XXX of Xxxxxxx XX xxxx just xxxxxxx! 🌖 814XX of xxxxxxxxxxxx. 996 xxx xxxxxx. 521min of xxxxx-xxxxxx-xxxxxxxx xxxx xxxxx."
+  },
+  "chain": [
+    {
+      "id": "tiktok.com/video",
+      "version": 1,
+      "sha256": "d7e5e43d2cc2f6ba7bec6d93ea020bb9d3128552dcf6f8f86847d084338ed247"
+    }
+  ]
+}

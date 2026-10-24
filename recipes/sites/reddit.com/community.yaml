@@ -1,0 +1,50 @@
+# Subreddit front page -> rex.schema.social.v1.PostList (decisions.md U33).
+id: reddit.com/community
+version: 1
+schema: rex.schema.social.v1.PostList
+match:
+  urls:
+    hosts: ["reddit.com"]
+    include: ["^/r/[^/]+/?(?:(?:hot|new|top|rising)/?)?(?:\\?.*)?$"]
+  page:
+    all:
+      - exists: "shreddit-post"
+fields:
+  - path: title
+    candidates:
+      - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
+
+  - path: community
+    candidates:
+      - css: { selector: "shreddit-post", take: TAKE_ATTRIBUTE, attribute: subreddit-prefixed-name, scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: posts
+    expect: true
+    each: "shreddit-post"
+    fields:
+      - path: id
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: id }
+      - path: author.name
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: author }
+      - path: text
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: post-title }
+      - path: published_at
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: created-timestamp }
+      - path: likes
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: score }
+      - path: replies
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: comment-count }
+      - path: url
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: permalink }
+      - path: link
+        candidates:
+          - css: { selector: "", take: TAKE_ATTRIBUTE, attribute: content-href }

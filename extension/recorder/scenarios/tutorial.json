@@ -1,0 +1,67 @@
+{
+  "name": "rex-tutorial",
+  "title": "rex 使用教程：把网页变成结构化数据",
+  "subtitle": [
+    "Ubuntu 桌面里的正式版 Google Chrome · 全程实录，每 20 ms 一帧",
+    "扩展按企业策略从签名的 CRX 安装 · 真实的鼠标、键盘和弹窗"
+  ],
+  "restartBetweenScenes": true,
+  "scenes": [
+    {
+      "name": "wikipedia",
+      "label": "维基百科条目",
+      "url": "https://en.wikipedia.org/wiki/Web_scraping",
+      "expect": {
+        "recipe": "wikipedia.org/article"
+      }
+    },
+    {
+      "name": "amazon",
+      "label": "亚马逊商品页",
+      "url": "https://www.amazon.com/dp/B0D1XD1ZV3",
+      "expect": {
+        "recipe": "amazon.com/product"
+      }
+    },
+    {
+      "name": "hn",
+      "label": "Hacker News 首页",
+      "url": "https://news.ycombinator.com/",
+      "expect": {
+        "recipe": "news.ycombinator.com/front"
+      }
+    },
+    {
+      "name": "bilibili",
+      "label": "B 站视频页",
+      "url": "https://www.bilibili.com/video/BV149WF6zEw2/",
+      "expect": {
+        "recipe": "bilibili.com/video"
+      }
+    },
+    {
+      "name": "zhihu",
+      "label": "知乎问题页",
+      "url": "https://www.zhihu.com/question/1892955223472960751",
+      "expect": {
+        "recipe": "zhihu.com/question"
+      }
+    },
+    {
+      "name": "xueqiu",
+      "label": "雪球个股行情",
+      "url": "https://www.xueqiu.com/S/SH600519",
+      "expect": {
+        "recipe": "xueqiu.com/stock"
+      }
+    },
+    {
+      "name": "youtube",
+      "label": "YouTube 视频页",
+      "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      "expect": {
+        "recipe": "youtube.com/watch"
+      }
+    }
+  ]
+}

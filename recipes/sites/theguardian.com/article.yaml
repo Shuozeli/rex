@@ -1,0 +1,19 @@
+id: theguardian.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["theguardian.com"]
+    include: ["^/[a-z-]+(/[a-z-]+)?/\\d{4}/[a-z]{3}/\\d{2}/[a-z0-9-]+$"]
+  page:
+    any:
+      - json_ld_type: { types: [NewsArticle, Article, LiveBlogPosting, Review] }
+fields:
+  - path: body_html
+    expect: true
+    candidates:
+      - css:
+          selector: "#maincontent .article-body-commercial-selector"
+          take: TAKE_HTML
+          exclude: ["aside", "gu-island", ".ad-slot-container", "figure[data-spacefinder-role=inline] figcaption"]

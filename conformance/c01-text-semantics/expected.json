@@ -1,0 +1,50 @@
+{
+  "recipe": {
+    "id": "conformance/c01-text-semantics",
+    "version": 1,
+    "sha256": "cf3d6f7f2d363d851517891582bec475f878207161a2c5370babd10fe27117d5"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://conformance.example/c01",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T00:00:00Z",
+  "extractTime": "2026-10-12T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c01-text-semantics@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c01-text-semantics@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c01-text-semantics@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c01-text-semantics@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 10000,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "title": "Hello world!",
+    "section": "Own text",
+    "summary": "中文文本 and English",
+    "bodyText": "Intro\n\nFirst linked paragraph, wrapped.\n\nLine one\nLine two\n\nalpha\n\nbeta\n\nk\tv\n\na\t1\n\n  indented\n    code\n\n中文段落继续"
+  },
+  "chain": [
+    {
+      "id": "conformance/c01-text-semantics",
+      "version": 1,
+      "sha256": "cf3d6f7f2d363d851517891582bec475f878207161a2c5370babd10fe27117d5"
+    }
+  ]
+}

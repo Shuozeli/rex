@@ -1,0 +1,506 @@
+{
+  "recipe": {
+    "id": "stackoverflow.com/question",
+    "version": 1,
+    "sha256": "f5fbe7494390c68214ff42d0e25be00bdcbc646716e377f3194239e3d6851aa4"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:11:59Z",
+  "extractTime": "2026-10-14T03:11:59Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].author.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "replies[0].accepted",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "post.replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "stackoverflow.com/question@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "title": "Xxx xx X xxxx xxx xxxx xxxxxx xxxxx xxxxxxx in Xxx?",
+    "url": "https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git",
+    "post": {
+      "id": "927358",
+      "text": "X xxxxxxxxxxxx xxxxxxxxx xxx xxxxx xxxxx xx Xxx xxx xxxxx't xxxxxx xxx xxxxxx xx xxx xxxxxx xxx.\n\nXxx xx X xxxx xxxxx xxxxxxx xxxx xxx xxxxx xxxxxxxxxx?",
+      "html": "<p>X xxxxxxxxxxxx xxxxxxxxx xxx xxxxx xxxxx xx <a href=\"https://en.wikipedia.org/wiki/Git\">Xxx</a> xxx xxxxx't xxxxxx xxx xxxxxx xx xxx xxxxxx xxx.</p>\n<p>Xxx xx X xxxx xxxxx xxxxxxx xxxx xxx <em>xxxxx</em> xxxxxxxxxx?</p>",
+      "likes": "27243",
+      "replies": "105",
+      "url": "https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git"
+    },
+    "replies": [
+      {
+        "id": "927386",
+        "author": {
+          "name": "XxxxXxxxxx",
+          "url": "https://stackoverflow.com/users/1755598"
+        },
+        "text": "Xxxx a xxxxxx & xxxx\n\nXxxx\n\n$ xxx xxxxxx -m \"Xxxxxxxxx xxxxxxxx xxxxxxxxx\" # (0: Xxxx Xxxxxxxx)\n$ xxx xxxxx XXXX~                              # (1)\n# === Xx xxx just xxxx xx xxxx xxx xxxxxx, xxxx xxxx! ===\n[ xxxx xxxxx xx xxxxxxxxx ]                    # (2)\n$ xxx xxx .                                    # (3)\n$ xxx xxxxxx -x XXXX_XXXX                      # (4)\n\nxxx xxxxx xx xxx xxxxxxx xxxxxxxxxxx xxx xxx xxxx. Xx xxxx xxxx xxxx xxxx xxxxxx xxxxx xxxxxxx xxxx xxxxxxx xxxx (xxx xxxxx of xxxx xxxxx xx xxxx) xxxxxxxxx. Xxx'xx xxxx xx xxx xxxx xxxxx xxxxxx xxx xxx xxxxxx xxxx xxxxx.\n\nXxxx xxxxxxxxxxx xx xxxxxxx xxxx xxxxx.\n\nxxx xxx xxxxxxxx xxxx xxx xxxx xx xxxxxxx in xxxx xxx xxxxxx.\n\nXxxxxx xxx xxxxxxx, xxxxxxx xxx xxx xxxxxx xxxxxxx. xxxxx xxxxxx xxx xxx xxxx xx .xxx/XXXX_XXXX; xxxxxx xxxx -x XXXX_XXXX xxxx xxxx xx xxxxxx, xxxxx xxxxxxxxx xxxxxxxx xxx xxx xxxxxxx xxxx xxx xxx xxxxxx xxx xxxxxx xxx xx xxxx xx. Xx xxx xx xxx xxxx xx xxxx xxx xxxxxxx, xxx xxxxx xxx xxx -X xxxxxx.\n\nXxxxxxxxxxxxx, xx xxxx xxx xxxxxxxx xxxxxx (xx just xxx xxxxxx xxxxxxx), xxxxxx --xxxxx xxxx xxx xxxxxxx xxxxxx xxx xxxxxxx xxxxx xx xxx xxxxxxxx xxxxxx.\n\nXx xxxxxx (xxx xxxxxx) a xxxxxx xxxx xxx xxxx xxxxxx xx xxx xxxxxx, xxxxxxxxx xxxxxxx xxxx xxx xxxx xxxxxx xxxx --xxxxx[-xxxx-xxxxx] xx xxxxxxxxx. Xx'x xxxxxx xxxxxx a xxx xxxx xx xxx --xxxxx; xxxxxx --xxxxx-xxxx-xxxxx xxxxxxx, xxx xx xxxxx in xxx xxx xxxxxx:\n\nXxx xxxxxx xxxxxxxxxx xxx xxxxxxxxxxxx of xxxxxxxxx xxxxxxx xx xxx xxxxx a xxxxxx xxxx xxx xxxxxxx xxxx xxxxxxxxx.\n\nXxxxxxx Xxxxxxx\n\nXxx xxx xxx xxx xxxxxx xx xxxxxxxxx xxx XXX-1 xxx xxx xxxxxx xx xxxxx xxx xxxx xx xxxxxx. Xxxx xxx xxxx xxxx xxxxx, xxx xxx xxxxxxxx of xxxxxxxx xx xxxxxxxxx xxxxx.\n\nXXXX~ xx xxx xxxx xx XXXX~1. Xxx xxxxxxx Xxxx xx xxx XXXX in xxx? xx xxxxxxx xx xxx xxxx xx xxxxxxxx xxxxxxxx xxxxxxx.",
+        "html": "<h2>Xxxx a xxxxxx &amp; xxxx</h2>\n<pre>Xxxx<code>$ xxx xxxxxx -m \"Xxxxxxxxx xxxxxxxx xxxxxxxxx\" # (0: Xxxx Xxxxxxxx)\n$ xxx xxxxx XXXX~                              # (1)\n# === Xx xxx just xxxx xx xxxx xxx xxxxxx, xxxx xxxx! ===\n[ xxxx xxxxx xx xxxxxxxxx ]                    # (2)\n$ xxx xxx .                                    # (3)\n$ xxx xxxxxx -x XXXX_XXXX                      # (4)\n</code></pre>\n<ol>\n<li><a href=\"https://git-scm.com/docs/git-reset\"><code>xxx xxxxx</code></a> xx xxx xxxxxxx xxxxxxxxxxx xxx xxx <strong>xxxx</strong>. Xx xxxx xxxx xxxx xxxx xxxxxx xxxxx <strong>xxxxxxx xxxx xxxxxxx xxxx (xxx xxxxx of xxxx xxxxx xx xxxx) xxxxxxxxx.</strong> Xxx'xx xxxx xx xxx xxxx xxxxx xxxxxx xxx xxx xxxxxx xxxx xxxxx.</li>\n<li>Xxxx xxxxxxxxxxx xx <a href=\"https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified#_the_working_directory\">xxxxxxx xxxx</a> xxxxx.</li>\n<li><a href=\"https://git-scm.com/docs/git-add\"><code>xxx xxx</code></a> xxxxxxxx xxxx xxx xxxx xx xxxxxxx in xxxx xxx xxxxxx.</li>\n<li>Xxxxxx xxx xxxxxxx, xxxxxxx xxx xxx xxxxxx xxxxxxx. <code>xxxxx</code> xxxxxx xxx xxx xxxx xx <code>.xxx/XXXX_XXXX</code>; <a href=\"https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--cltcommitgt\"><code>xxxxxx</code> xxxx <code>-x XXXX_XXXX</code></a> xxxx xxxx xx xxxxxx, xxxxx xxxxxxxxx xxxxxxxx xxx xxx xxxxxxx xxxx xxx xxx xxxxxx xxx xxxxxx xxx xx xxxx xx. Xx xxx xx xxx xxxx xx xxxx xxx xxxxxxx, xxx xxxxx xxx xxx <a href=\"https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--Cltcommitgt\"><code>-X</code></a> xxxxxx.</li>\n</ol>\n<p><strong>Xxxxxxxxxxxxx, xx xxxx xxx xxxxxxxx xxxxxx (xx just xxx xxxxxx xxxxxxx)</strong>, <a href=\"https://stackoverflow.com/q/179123/1146608\"><code>xxxxxx --xxxxx</code></a> xxxx xxx xxxxxxx xxxxxx xxx xxxxxxx xxxxx xx xxx xxxxxxxx xxxxxx.</p>\n<p><strong>Xx xxxxxx (xxx xxxxxx) a xxxxxx xxxx xxx xxxx xxxxxx xx xxx xxxxxx</strong>, xxxxxxxxx xxxxxxx xxxx <code>xxx xxxx xxxxxx xxxx --xxxxx[-xxxx-xxxxx]</code> xx xxxxxxxxx. <a href=\"https://stackoverflow.com/q/52823692/4096791\">Xx'x <em>xxxxxx xxxxxx</em> a xxx xxxx xx xxx <code>--xxxxx</code>; xxxxxx <code>--xxxxx-xxxx-xxxxx</code></a> xxxxxxx, xxx xx xxxxx in <a href=\"https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend\" title=\"Xxx - xxx-xxxxxx Xxxxxxxxxxxxx\">xxx xxx xxxxxx</a>:</p>\n<blockquote>\n<p>Xxx xxxxxx xxxxxxxxxx xxx xxxxxxxxxxxx of xxxxxxxxx xxxxxxx xx xxx xxxxx a xxxxxx xxxx xxx xxxxxxx xxxx xxxxxxxxx.</p>\n</blockquote>\n<hr>\n<h3>Xxxxxxx Xxxxxxx</h3>\n<p><a href=\"https://stackoverflow.com/questions/34519665/how-to-move-head-back-to-a-previous-location-detached-head/34519716#34519716\">Xxx xxx xxx <code>xxx xxxxxx</code> xx xxxxxxxxx xxx XXX-1</a> xxx xxx xxxxxx xx xxxxx xxx xxxx xx xxxxxx. Xxxx xxx xxxx xxxx xxxxx, xxx xxx xxxxxxxx of xxxxxxxx xx xxxxxxxxx xxxxx.</p>\n<hr>\n<p><code>XXXX~</code> xx xxx xxxx xx <code>XXXX~1</code>. Xxx xxxxxxx <a href=\"https://stackoverflow.com/a/46350644/5175709\">Xxxx xx xxx XXXX in xxx?</a> xx xxxxxxx xx xxx xxxx xx xxxxxxxx xxxxxxxx xxxxxxx.</p>",
+        "publishedAt": "2009-05-29T18:13:42Z",
+        "likes": "30172",
+        "url": "https://stackoverflow.com/a/927386",
+        "accepted": true
+      },
+      {
+        "id": "6866485",
+        "author": {
+          "name": "Xxxx Xxxxx",
+          "url": "https://stackoverflow.com/users/5486/ryan-lundy"
+        },
+        "text": "Xxxxxxx a xxxxxx xx a xxxxxx xxxxx xx xxx xxx't xxxx xxx xx xxxxx. Xxx xx'x xxxxxxxx xxxxxxxxx xxxx xx xxx xx xxxxxxxxxx. X'xx xxxx xxx xxx 4 xxxxxxxxx xxxx xxx xxx xxxx a xxxxxx.\n\nXxx xxx xxxx xxxx, xxxxx X xx xxxx XXXX xxx (X) xx xxx xxxxx of xxxx xxxxx.\n\n   (X)\nA-X-X\n    ↑\n  xxxxxx\n\nXxxxxx 1: xxx xxxxx --xxxx\n\nXxx xxxx xx xxxxxxx xxxxxx X xxx xxxx xxxxx xxxx xxx xxxxxxxxxxx xxxxxxx. Xxx xx xxxx:\n\nxxx xxxxx --xxxx XXXX~1\n\nXxx result xx:\n\n (X)\nA-X\n  ↑\nxxxxxx\n\nNow X xx xxx XXXX. Xxxxxxx xxx xxxx --xxxx, xxxx xxxxx xxx xxxxx xx xxxxx xxxxx xx xxxxxx X.\n\nXxxxxx 2: xxx xxxxx\n\nXxxxx xxxxxx X xxxx't a xxxxxxxx, xxx just a xxx xxx. Xxx xxxx xx xxxx xxx xxxxxx xxx xxxx xxxx xxxxxxx xxx a xxx of xxxxxxx xxxxxx xxx xx a xxxxxx xxxxxx. Xxxxxxxx xxxxx xxxx xxxx, xxxx X xx xxxx XXXX:\n\n   (X)\nA-X-X\n    ↑\n  xxxxxx\n\nXx xxxx, xxxxxxx xxx xxx --xxxx:\n\nxxx xxxxx XXXX~1\n\nIn xxxx xxxx xxx result xx:\n\n   (X)\nA-X-X\n  ↑\nxxxxxx\n\nIn xxxx xxxxx, XXXX xx just a xxxxxxx xx xxx xxxxxx xxxxxx. Xxxx xxx xx a xxx xxxxx XXXX~1, xxx xxxx Xxx xx xxxx xxx XXXX xxxxxxx xxxx xxx xxxxxx. Xxx (xxxxxx xxx xxx --xxxx) xxx xxxxx xxxx xxxxx xx xxxx xxxx. Xx now xxx xxxxxx xxxxx xxx xxxxxxx xxx xxx xxxxxxx xxxx X. Xxx xxxxx't xxxx a xxxxx!\n\nXxxxxx 3: xxx xxxxx --xxxx\n\nXxx xxx xxxxxxxx xxxxx, xxx xxx xxxx xxxx xxxx xxxxxx xxx xxxxx xxxx xxxxx xxx xxxx xxxxx:\n\nxxx xxxxx --xxxx XXXX~1\n\nXxxx xxx xxxx xxxxxx xxxx xxxxx xxxxx, xx xxxx xxxxxx xxxx xxxxx xxxxx. Xxxx xxx xx xxx xxxxxx, xxx'xx xxx xxxx xxx xxxx xxxxx xxx in xxx xxxxx xx xxxxxx. In xxxx, xxxxx xxxxx xxxx xxxxxxx, xxx xxxxx xx xxx xxxxxx xxx xxx'x xx xxxxxxx xxx xxxx xxxxxx xxx just xxx.\n\nXxxxxx 4: xxx xxx xxx xxxxx --xxxx xxx xxxx xx xxx xxxx xxxx xxxx\n\nXxx xxxx xxxxx: Xxxxxxx xxx xxxxxxx a xxxxxx xx in xxx xxxxx xxxxxxx, xxx xxxx xxxxxxxx xxx xxxxxx xx xxxxx xxx? Xxxxx xxxx, xxxxx?\n\nXxxx, xxxxx'x xxxxx a xxx xx xxx xx xxxx. Xxxx xxxx\n\nxxx xxxxxx\n\nxxx xxx'xx xxx a xxxx of (xxxxxxx) xxxxxx XXXx (xxxx xx, xxxxxx) xxxx xxx'xx xxxxx xxxxxx in. Xxxx xxx xxxxxx xxx xxxxxxxxx, xxx xx xxxx:\n\nxxx xxxxxxxx -x xxxxXxxXxxxxxXxxx xxxXxxXxxxxxxxx\n\nXxx'xx now xxxxxxxxxxx xxxx xxxxxx. Xxxxxxx xxx't xxxxxxxx xxx xxxxxxxxx in Xxx xxx xxxx 90 days, xx xxx xxx xxxxxxx xx xxxx xxx xxxxxx xxx xxx xxxx't xxxx xx xxx xxx of.",
+        "html": "<p>Xxxxxxx a xxxxxx xx a xxxxxx xxxxx xx xxx xxx't xxxx xxx xx xxxxx.  Xxx xx'x xxxxxxxx xxxxxxxxx xxxx xx xxx xx xxxxxxxxxx. X'xx xxxx xxx xxx 4 xxxxxxxxx xxxx xxx xxx xxxx a xxxxxx.</p>\n<p>Xxx xxx xxxx xxxx, xxxxx X xx xxxx XXXX xxx (X) xx xxx xxxxx of xxxx xxxxx.</p>\n<pre><code>   (X)\nA-X-X\n    ↑\n  xxxxxx\n</code></pre>\n<h3>Xxxxxx 1: <code>xxx xxxxx --xxxx</code></h3>\n<p>Xxx xxxx xx <strong>xxxxxxx xxxxxx X xxx xxxx xxxxx xxxx xxx xxxxxxxxxxx xxxxxxx</strong>.  Xxx xx xxxx:</p>\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n<p>Xxx result xx:</p>\n<pre><code> (X)\nA-X\n  ↑\nxxxxxx\n</code></pre>\n<p>Now X xx xxx XXXX.  Xxxxxxx xxx xxxx <code>--xxxx</code>, xxxx xxxxx xxx xxxxx xx xxxxx xxxxx xx xxxxxx X.</p>\n<h3>Xxxxxx 2: <code>xxx xxxxx</code></h3>\n<p>Xxxxx xxxxxx X xxxx't a xxxxxxxx, xxx just a xxx xxx.  Xxx xxxx xx <strong>xxxx xxx xxxxxx xxx xxxx xxxx xxxxxxx</strong> xxx a xxx of xxxxxxx xxxxxx xxx xx a xxxxxx xxxxxx.  Xxxxxxxx xxxxx xxxx xxxx, xxxx X xx xxxx XXXX:</p>\n<pre><code>   (X)\nA-X-X\n    ↑\n  xxxxxx\n</code></pre>\n<p>Xx xxxx, xxxxxxx xxx xxx <code>--xxxx</code>:</p>\n<pre><code>xxx xxxxx XXXX~1\n</code></pre>\n<p>In xxxx xxxx xxx result xx:</p>\n<pre><code>   (X)\nA-X-X\n  ↑\nxxxxxx\n</code></pre>\n<p>In xxxx xxxxx, XXXX xx just a xxxxxxx xx xxx xxxxxx xxxxxx.  Xxxx xxx xx a <code>xxx xxxxx XXXX~1</code>, xxx xxxx Xxx xx xxxx xxx XXXX xxxxxxx xxxx xxx xxxxxx.  Xxx (xxxxxx xxx xxx <code>--xxxx</code>) xxx xxxxx xxxx xxxxx xx xxxx xxxx.  Xx now <code>xxx xxxxxx</code> xxxxx xxx xxxxxxx xxx xxx xxxxxxx xxxx X.  Xxx xxxxx't xxxx a xxxxx!</p>\n<h3>Xxxxxx 3: <code>xxx xxxxx --xxxx</code></h3>\n<p>Xxx xxx xxxxxxxx xxxxx, xxx xxx xxxx <strong>xxxx xxxx xxxxxx xxx xxxxx xxxx xxxxx xxx xxxx <a href=\"https://git.wiki.kernel.org/index.php/WhatIsTheIndex\">xxxxx</a></strong>:</p>\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n<p>Xxxx xxx xxxx xxxxxx xxxx xxxxx xxxxx, xx xxxx xxxxxx xxxx <em>xxxxx</em> xxxxx.  Xxxx xxx xx <code>xxx xxxxxx</code>, xxx'xx xxx xxxx xxx xxxx xxxxx xxx in xxx xxxxx xx xxxxxx.  In xxxx, xxxxx xxxxx xxxx xxxxxxx, xxx xxxxx xx <code>xxx xxxxxx</code> xxx xxx'x xx xxxxxxx xxx xxxx xxxxxx xxx just xxx.</p>\n<h3>Xxxxxx 4: xxx xxx <code>xxx xxxxx --xxxx</code> xxx xxxx xx xxx xxxx xxxx xxxx</h3>\n<p>Xxx xxxx xxxxx: Xxxxxxx xxx <strong>xxxxxxx a xxxxxx</strong> xx in xxx xxxxx xxxxxxx, <strong>xxx xxxx xxxxxxxx xxx xxxxxx xx xxxxx xxx</strong>?  Xxxxx xxxx, xxxxx?</p>\n<p>Xxxx, xxxxx'x <em>xxxxx</em> a xxx xx xxx xx xxxx.  Xxxx xxxx</p>\n<pre><code>xxx xxxxxx\n</code></pre>\n<p>xxx xxx'xx xxx a xxxx of (xxxxxxx) xxxxxx <a href=\"https://en.wikipedia.org/wiki/SHA-1#Data_integrity\">XXXx</a> (xxxx xx, xxxxxx) xxxx xxx'xx xxxxx xxxxxx in.  Xxxx xxx xxxxxx xxx xxxxxxxxx, xxx xx xxxx:</p>\n<pre><code>xxx xxxxxxxx -x xxxxXxxXxxxxxXxxx xxxXxxXxxxxxxxx\n</code></pre>\n<p>Xxx'xx now xxxxxxxxxxx xxxx xxxxxx.  Xxxxxxx xxx't xxxxxxxx xxx xxxxxxxxx in Xxx xxx xxxx 90 days, xx xxx xxx xxxxxxx xx xxxx xxx xxxxxx xxx xxx xxxx't xxxx xx xxx xxx of.</p>",
+        "publishedAt": "2011-07-28T22:22:20Z",
+        "likes": "13013",
+        "url": "https://stackoverflow.com/a/6866485"
+      },
+      {
+        "id": "6376039",
+        "author": {
+          "name": "Xxxxxx",
+          "url": "https://stackoverflow.com/users/48523/andrew"
+        },
+        "text": "Xxxxx xxx xxx xxxx xx \"xxxx\" xxxx xxxx xxxxxx, xxxxxxxxx xx xxxxxxx xx xxx xxx xxxx xxxxxxx xxxx xxxx xxxxxx xxxxxx (xxxxxx xx xxxx xxxxxx xxxxxxxxxx):\n\nXxx xx xxxx a xxxxx xxxxxx\n\nXxx'x xxx X xxxxxxxxx xxxxxxx, xxx now X xxxx xx xxxxxx xxxx xxxxxx.\n\nxxx xxx\n    xxxxxx 101: xxx xxxxxx    # Xxxxxx xxxxxx. Xxxx xxxxx xx xxxxxx 'XXXX'.\n    xxxxxx 100: xxxx xxxxxx   # Second xx xxxx xxxxxx. Xxxx xx xxx xxx xx xxxx.\n\nXx xxxxxxx xxxxxxxxxx xxxx xx xxx xxx xx xxx xxxxx xx xxx xxxx xxxxxx, xx xxxx xx xxxxx xx xxx xxxxxx xxxxxx XXXX:\n\nxxx xxxxx --xxxx XXXX^     # Xxx --xxxx xx xxx xxxx xx xxxx xxxx xxxxxxx\nxxx xxxxx --xxxx XXXX^     # Xxx --xxxx xx xxx xxx't xxxx xxxxx xxxxxxx xxx xxxxxxx xxx xxxx\n\nNow xxx xxx xxxx xxxx xxxx xxx xxxx xxxxxx xxx xxxx xxxxxxx.\n\nXxx xx xxxx a xxxxxx xxxxxx\n\nXx xxx xxxx xxxxxxx xxxx xxxx xxxxxxx xxxxxx, xxx xxxx xxxx xx xxxxxx a xxx xxxxxx xxxxx xxxx \"xxxxxx\" xxx xxxxxxx xxx xxxx in xxxx xxxxxxxx xxxxxx (xxxxxxx XXXX).\n\nxxx xxxxxx XXXX\n\nXxxx xxxxxxx xxxx now xx xxxxxxxx xxx xxxxx xxx xxx xx xxxxxx:\n\nxxx xxxxxx -m 'xxxxxxxxx xxx xxxx X xxxxxxx xx xxxxxxxx'\nxxx xxx\n    xxxxxx 102: xxxxxxxxx xxx xxxx X xxxxxxx xx xxxxxxxx\n    xxxxxx 101: xxxxxxxx a xxxx xx xxx't xxxx\n    xxxxxx 100: xxxxxx a xxxx xxxx xx xxxx\n\nXxx xxxx xxxxxxxxxxx, xxxxx out Xxx Xxxxxx - Xxxxxxx Xxxxxx.",
+        "html": "<p>Xxxxx xxx xxx xxxx xx \"xxxx\" xxxx xxxx xxxxxx, xxxxxxxxx xx xxxxxxx xx xxx xxx xxxx xxxxxxx xxxx xxxx xxxxxx xxxxxx (xxxxxx xx xxxx xxxxxx xxxxxxxxxx):</p>\n<h2>Xxx xx xxxx a xxxxx xxxxxx</h2>\n<p>Xxx'x xxx X xxxxxxxxx xxxxxxx, xxx now X xxxx xx xxxxxx xxxx xxxxxx.</p>\n<pre><code>xxx xxx\n    xxxxxx 101: xxx xxxxxx    # Xxxxxx xxxxxx. Xxxx xxxxx xx xxxxxx 'XXXX'.\n    xxxxxx 100: xxxx xxxxxx   # Second xx xxxx xxxxxx. Xxxx xx xxx xxx xx xxxx.\n</code></pre>\n<p>Xx xxxxxxx xxxxxxxxxx xxxx xx xxx xxx xx xxx xxxxx xx xxx xxxx xxxxxx, xx xxxx xx <code>xxxxx</code> xx xxx xxxxxx xxxxxx <code>XXXX</code>:</p>\n<pre><code>xxx xxxxx --xxxx XXXX^     # Xxx --xxxx xx xxx xxxx xx xxxx xxxx xxxxxxx\nxxx xxxxx --xxxx XXXX^     # Xxx --xxxx xx xxx xxx't xxxx xxxxx xxxxxxx xxx xxxxxxx xxx xxxx\n</code></pre>\n<p>Now <code>xxx xxx</code> xxxx xxxx xxxx xxx xxxx xxxxxx xxx xxxx xxxxxxx.</p>\n<h2>Xxx xx xxxx a xxxxxx xxxxxx</h2>\n<p>Xx xxx xxxx xxxxxxx xxxx xxxx xxxxxxx xxxxxx, xxx xxxx xxxx xx xxxxxx a xxx xxxxxx xxxxx xxxx \"xxxxxx\" xxx xxxxxxx xxx xxxx in xxxx xxxxxxxx xxxxxx (xxxxxxx XXXX).</p>\n<pre><code>xxx xxxxxx XXXX\n</code></pre>\n<p>Xxxx xxxxxxx xxxx now xx xxxxxxxx xxx xxxxx xxx xxx xx xxxxxx:</p>\n<pre><code>xxx xxxxxx -m 'xxxxxxxxx xxx xxxx X xxxxxxx xx xxxxxxxx'\nxxx xxx\n    xxxxxx 102: xxxxxxxxx xxx xxxx X xxxxxxx xx xxxxxxxx\n    xxxxxx 101: xxxxxxxx a xxxx xx xxx't xxxx\n    xxxxxx 100: xxxxxx a xxxx xxxx xx xxxx\n</code></pre>\n<p>Xxx xxxx xxxxxxxxxxx, xxxxx out <em><a href=\"https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things\">Xxx Xxxxxx - Xxxxxxx Xxxxxx</a></em>.</p>",
+        "publishedAt": "2011-06-16T17:27:23Z",
+        "likes": "2805",
+        "url": "https://stackoverflow.com/a/6376039"
+      },
+      {
+        "id": "927397",
+        "author": {
+          "name": "xxxxxxx",
+          "url": "https://stackoverflow.com/users/36723/bdonlan"
+        },
+        "text": "Xxx/xxxxxx xxxxx xx xxx xxxxxx xxx xxx xxx xxxx:\n\nxxx xx xxxxxxxx\nxxx xxx xxxxxxxxx\n\nXxxx xxxxx xxx xxxxxx:\n\nxxx xxxxxx --xxxxx\n\nXxx xxxxxxxx, xxxxxxxxx xxxxxx xxxx xx xxxxxx xx xxxxxxx xxx xxx xxxxx xxxxx - in xxxxx xxxxx, xx'xx xx like xxx xxxxx xxxx xxx xxxxxxx in xxx xxxxx xxxxx.\n\nXxxx xxxx xxx xxxxxx xxxx xx xxxx xx xxx xxxxx't xxxxxx xxx. Xx xxx xxxx xxxxxx, xxxx xxx'xx just xxxx xx xxxxxx a xxx xxxxxxxx.",
+        "html": "<p>Xxx/xxxxxx xxxxx xx xxx xxxxxx xxx xxx xxx xxxx:</p>\n\n<pre><code>xxx xx xxxxxxxx\nxxx xxx xxxxxxxxx\n</code></pre>\n\n<p>Xxxx xxxxx xxx xxxxxx:</p>\n\n<pre><code>xxx xxxxxx --xxxxx\n</code></pre>\n\n<p>Xxx xxxxxxxx, xxxxxxxxx xxxxxx xxxx xx xxxxxx xx xxxxxxx xxx xxx xxxxx xxxxx - in xxxxx xxxxx, xx'xx xx like xxx xxxxx xxxx xxx xxxxxxx in xxx xxxxx xxxxx.</p>\n\n<p>Xxxx xxxx xxx xxxxxx xxxx xx xxxx xx xxx xxxxx't xxxxxx xxx. Xx xxx xxxx xxxxxx, xxxx xxx'xx just xxxx xx xxxxxx a xxx xxxxxxxx.</p>",
+        "publishedAt": "2009-05-29T18:16:26Z",
+        "likes": "1965",
+        "url": "https://stackoverflow.com/a/927397"
+      },
+      {
+        "id": "927378",
+        "author": {
+          "name": "Xxxxxxx Xxxxxxxx",
+          "url": "https://stackoverflow.com/users/66445/lennart-koopmann"
+        },
+        "text": "Xxxx xxxx xxx a xxx xxxxxx xxxxx xxxxxxx xxx xxxxx xxxxx.\n\nXxxx\n\nxxx xx xxxxxxxxx/*.xxxxx\nxxx xxxxxx -a -m \"xxxxxxx xxx xxxxx xxxxx in xxxxxx 'xxxxxxxxx'\"\n\nXx xxx xxx xxxxxxx xxxxxxx xx xxxx xxx xxxx xxxxxx.\n\nXxxxxxx: xxxx xxxxxxx xxxx xxxxxxxxxxx xxxxxx xxx xxxxxxxxxxxxx xx xxx .xxxx xxxxx (xxx xxx xxxxx xxxxx) xxxx xxx xxxxxxxxx -- xxx xxxxxx xxx xxxx xxxxxxx xxxx xxxx xxxxxxx xxxxxxxxx:\n\nxxx xxxxx --xxxx XXXX~1\n\nXxx xxxx xxxxx xx XXXX-1 xxxx xxx xxxx xxxxxxx xxxx xx xxx xxxxx of xxx xxxxxx xxxxxx xxxx xxxxx xxxxxx.",
+        "html": "<p>Xxxx xxxx xxx a xxx xxxxxx xxxxx xxxxxxx xxx xxxxx xxxxx.</p>\n<pre>Xxxx<code>xxx xx xxxxxxxxx/*.xxxxx\nxxx xxxxxx -a -m \"xxxxxxx xxx xxxxx xxxxx in xxxxxx 'xxxxxxxxx'\"\n</code></pre>\n<hr>\n<p>Xx xxx xxx xxxxxxx xxxxxxx xx xxxx xxx xxxx xxxxxx.</p>\n<p><strong>Xxxxxxx</strong>: xxxx xxxxxxx xxxx <strong>xxxxxxxxxxx xxxxxx</strong> xxx xxxxxxxxxxxxx xx xxx <code>.xxxx</code> xxxxx (xxx xxx xxxxx xxxxx) xxxx xxx xxxxxxxxx -- xxx xxxxxx xxx xxxx xxxxxxx xxxx xxxx xxxxxxx xxxxxxxxx:</p>\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n<p>Xxx <code>xxxx xxxxx</code> xx <code>XXXX-1</code> xxxx xxx xxxx xxxxxxx xxxx xx xxx xxxxx of xxx xxxxxx xxxxxx xxxx xxxxx xxxxxx.</p>",
+        "publishedAt": "2009-05-29T18:13:07Z",
+        "likes": "1312",
+        "url": "https://stackoverflow.com/a/927378"
+      },
+      {
+        "id": "3377569",
+        "author": {
+          "name": "Xxx",
+          "url": "https://stackoverflow.com/users/405550/zaz"
+        },
+        "text": "Xx xxxxxx xxx xxxx xxxxxx\n\nXxxxxxx xxx xxxxx in xxx xxxxx:\n\nxxx xx --xxxxxx *.xxxxx\nxxx xxx *.xxxx\n\nXxxx, xx xx'x a xxxxxxx xxxxxx, xxxxx xxx xxxxxx:\n\nxxx xxxxxx --xxxxx\n\nXx, xx xx'x a xxxxxx xxxxxx, xxxx a xxx xxxxxx:\n\nxxx xxxxxx -m 'Xxxxxxx .xxxxx xxxxx xxxx .xxxx xxxxx'\n\n(Xx xxxxxx a xxxxxxxx xxxxxx, xxx xxx xxxxxxx xxxxxxxxxxx xxxxxx.)\n\nXxxXxx™: Xxx *.xxxxx xx a xxxxxxxxx xx xxxx xxxx xxxxxxxxx xxxxx.\n\nXx xxxxxx a xxxxxx\n\nXxxxxxxx a xxxxxx xx xxx xxxxx xxxxxxxx xx xxx xxxx xx xxxxxx xxx xxxx xxxxxx, xxx a xxxx xxxxxxx xxxxxxxx xx xxxxx.\n\nXxx xxx xxxxx Xxx xx xxx xxxxxx xxxx:\n\nxxx xxxxx @~X\n\nXxxxx X xx xxx xxxxxx of xxxxxxx xxxxxx XXXX, xxx @~ xxxxxx xx xxx xxxxxxxx xxxxxx.\n\nXxxxxxx of xxxxxxxx xxx xxxxxx, xxx xxxxx xxx:\n\nxxx xxxxx @~\nxxx xxx *.xxxx\nxxx xxxxxx -m \"Xxx .xxxx xxxxx\"\n\nXxxxx out xxx xxxx xxxxx, xxxxxxxxxxxx xxx xxxxxxxx xx --xxxx --xxxxx xxx --xxxx, xxx a xxxxxx xxxxxxxxxxxxx of xxxx xxxx xxxx.\n\nXxxxxx\n\nXx xxx xxxx xx, xxx xxx xxxxxx xxx xxx xxxxxx xx xxxx xxxxxxx xxxxxxx:\n\n$ xxx xxxxx @~\n$ xxx xxxxxx\nx4x708x XXXX@{0}: xxxxx: xxxxxx xx @~\n2x52489 XXXX@{1}: xxxxxx: xxxxx xxxx .xxxxx xxxxx\n$ xxx xxxxx 2x52489\n... xxx xxx'xx xxxx xxxxx xxx xxxxxxx",
+        "html": "<h2>Xx xxxxxx xxx xxxx xxxxxx</h2>\n<p>Xxxxxxx xxx xxxxx in xxx xxxxx:</p>\n<pre><code>xxx xx --xxxxxx *.xxxxx\nxxx xxx *.xxxx\n</code></pre>\n<p>Xxxx, xx xx'x a xxxxxxx xxxxxx, <strong>xxxxx</strong> xxx xxxxxx:</p>\n<pre><code>xxx xxxxxx --xxxxx\n</code></pre>\n<p>Xx, xx xx'x a xxxxxx xxxxxx, xxxx a xxx xxxxxx:</p>\n<pre><code>xxx xxxxxx -m 'Xxxxxxx .xxxxx xxxxx xxxx .xxxx xxxxx'\n</code></pre>\n<br>\n<p><em>(<strong>Xx xxxxxx a xxxxxxxx xxxxxx</strong>, xxx xxx xxxxxxx <a href=\"https://stackoverflow.com/a/28421811/405550\">xxxxxxxxxxx xxxxxx</a>.)</em></p>\n<hr>\n<p>XxxXxx™: Xxx <code>*.xxxxx</code> xx a <a href=\"https://help.github.com/articles/ignoring-files\">xxxxxxxxx</a> xx xxxx xxxx xxxxxxxxx xxxxx.</p>\n<hr>\n<h2>Xx xxxxxx a xxxxxx</h2>\n<p>Xxxxxxxx a xxxxxx xx xxx xxxxx xxxxxxxx xx xxx xxxx xx xxxxxx xxx xxxx xxxxxx, xxx a xxxx xxxxxxx xxxxxxxx xx <code>xxxxx</code>.</p>\n<p>Xxx xxx xxxxx Xxx xx xxx xxxxxx xxxx:</p>\n<pre><code>xxx xxxxx @~X\n</code></pre>\n<p>Xxxxx <code>X</code> xx xxx xxxxxx of xxxxxxx xxxxxx <code>XXXX</code>, xxx <code>@~</code> xxxxxx xx xxx xxxxxxxx xxxxxx.</p>\n<p>Xxxxxxx of xxxxxxxx xxx xxxxxx, xxx xxxxx xxx:</p>\n<pre><code>xxx xxxxx @~\nxxx xxx *.xxxx\nxxx xxxxxx -m \"Xxx .xxxx xxxxx\"\n</code></pre>\n<p>Xxxxx out <code>xxx xxxx xxxxx</code>, xxxxxxxxxxxx xxx xxxxxxxx xx <code>--xxxx</code> <code>--xxxxx</code> xxx <code>--xxxx</code>, xxx a xxxxxx xxxxxxxxxxxxx of xxxx xxxx xxxx.</p>\n<h2>Xxxxxx</h2>\n<p>Xx xxx xxxx xx, xxx xxx xxxxxx xxx xxx xxxxxx xx xxxx xxxxxxx xxxxxxx:</p>\n<pre><code>$ xxx xxxxx @~\n$ xxx xxxxxx\nx4x708x XXXX@{0}: xxxxx: xxxxxx xx @~\n2x52489 XXXX@{1}: xxxxxx: xxxxx xxxx .xxxxx xxxxx\n$ xxx xxxxx 2x52489\n... xxx xxx'xx xxxx xxxxx xxx xxxxxxx\n</code></pre>\n<br>",
+        "publishedAt": "2010-07-31T09:39:13Z",
+        "likes": "974",
+        "url": "https://stackoverflow.com/a/3377569"
+      },
+      {
+        "id": "10757800",
+        "author": {
+          "name": "Xxxx Xxxxxxxxx",
+          "url": "https://stackoverflow.com/users/121531/jaco-pretorius"
+        },
+        "text": "Xxx xxx xxxxxx <xxxxxx-xx>.\n\nXx xxx xxx xxxxxx XX, just xxx xxx xxx.",
+        "html": "<p>Xxx <code>xxx xxxxxx &lt;xxxxxx-xx&gt;</code>.</p>\n\n<p>Xx xxx xxx xxxxxx XX, just xxx <code>xxx xxx</code>.</p>",
+        "publishedAt": "2012-05-25T16:04:29Z",
+        "likes": "859",
+        "url": "https://stackoverflow.com/a/10757800"
+      },
+      {
+        "id": "14620228",
+        "author": {
+          "name": "Xxxxxx Xxxxxxxx",
+          "url": "https://stackoverflow.com/users/1996609/madhan-ayyasamy"
+        },
+        "text": "Xx xxx xxx xxxxxxxx xx xxxx a xxxxx xxxxxx xxxxxxxx, xxxxxxxx xxx xxxxxx xxx xxx xx xxx xxxxxx, xxx xx xxx xxx't xxxxx xxxxxxxx xxxxx xxxx, just xx xxx xxxxxxxxx xxxxxxx.\n\nxxx xxxxx --xxxx XXXX^1\n\n(Xxxx xxxxxxx xxxx xxxxxx xxxx xxxxxx xxxxxx xxx xxxx xxxxxxx xxxx xx xxxx xxxxxxxxxx xxxx xxxx xxxxx xxxxxxx xxxx). Xx xxx xxxx xx xxxx xxxx xxxxxx, xxx xxx xxxx xxxx xxxxxxx in xxx xxxxxxx xxxx (xxxxxx xxxxxx just like xxxxx xxx xxx) xxxx xx xxx xxxxxxxxx xxxxxxx.\n\nxxx xxxxx --xxxx XXXX^1\n\nNow xxxx xxxxxxxxx xxxxx xxxx xxxx xxx xxxxxxx xxxx. Xxxxxxx xx xxx xxxx xx xxxxxxx xxx xxxxx, xxxxxxx xxx xxxx xx xxxx xxxx xxxxx xxxxxxx, xxxx xx xxx xxxxxxxxx xxxxxxx\n\nxxx xxxxx XXXX\n\nNow xxxxxxxxx xxxxx xx xxxx xxxx xxx xxxxxx xxxx xxxx xxx xxxxxxxx xxxx. Now xxxxx xxx xxxxx xx xxxx, xx xxxxxxxx xxx xxxxxx, xxx xxxx xx xx xxxx xxx xxxxx xx xxx xxxx a xxxxx/xxx xxxxxx.\n\nXxxx (xxxx xxxxxx) (Xxxxxxxx xxxxxxx)",
+        "html": "<p>Xx xxx xxx xxxxxxxx xx xxxx a xxxxx xxxxxx xxxxxxxx, xxxxxxxx xxx xxxxxx xxx xxx xx xxx xxxxxx, xxx xx xxx xxx't xxxxx xxxxxxxx xxxxx xxxx, just xx xxx xxxxxxxxx xxxxxxx.</p>\n<pre><code>xxx xxxxx --xxxx XXXX^1\n</code></pre>\n<p>(Xxxx xxxxxxx xxxx xxxxxx xxxx xxxxxx xxxxxx xxx xxxx xxxxxxx xxxx xx xxxx xxxxxxxxxx xxxx xxxx xxxxx xxxxxxx xxxx). Xx xxx xxxx xx xxxx xxxx xxxxxx, xxx xxx xxxx xxxx xxxxxxx in xxx xxxxxxx xxxx (xxxxxx xxxxxx just like xxxxx <code>xxx xxx</code>) xxxx xx xxx xxxxxxxxx xxxxxxx.</p>\n<pre><code>xxx xxxxx --xxxx XXXX^1\n</code></pre>\n<p>Now xxxx xxxxxxxxx xxxxx xxxx xxxx xxx xxxxxxx xxxx. Xxxxxxx xx xxx xxxx xx xxxxxxx xxx xxxxx, xxxxxxx xxx xxxx xx xxxx xxxx xxxxx xxxxxxx, xxxx xx xxx xxxxxxxxx xxxxxxx</p>\n<pre><code>xxx xxxxx XXXX\n</code></pre>\n<p>Now xxxxxxxxx xxxxx xx xxxx xxxx xxx xxxxxx xxxx xxxx xxx xxxxxxxx xxxx. Now xxxxx xxx xxxxx xx xxxx, xx xxxxxxxx xxx xxxxxx, xxx xxxx xx xx xxxx xxx xxxxx xx xxx xxxx a xxxxx/xxx xxxxxx.</p>\n<p><a href=\"http://madhan-tech-updates.blogspot.in/2013/01/how-to-undo-your-local-git-commit.html\">Xxxx (xxxx xxxxxx)</a> (<a href=\"https://web.archive.org/web/20170410191943/http://madhan-tech-updates.blogspot.in/2013/01/how-to-undo-your-local-git-commit.html\">Xxxxxxxx xxxxxxx</a>)</p>",
+        "publishedAt": "2013-01-31T07:06:10Z",
+        "likes": "710",
+        "url": "https://stackoverflow.com/a/14620228"
+      },
+      {
+        "id": "8487487",
+        "author": {
+          "name": "xxxxx",
+          "url": "https://stackoverflow.com/users/9021/nickf"
+        },
+        "text": "Xx xxx xxxx Xxx Xxxxxx xxxxxxxxx, xxx xxx xxx xxx xxxx xx xxxx xxx xxxxxx xxxxxx. xxx xxxx 3 xxxx xxxx xxx xxxx xxxxx xxxxxxx.",
+        "html": "<p>Xx xxx xxxx <a href=\"https://github.com/visionmedia/git-extras\">Xxx Xxxxxx</a> xxxxxxxxx, xxx xxx xxx <code>xxx xxxx</code> xx xxxx xxx xxxxxx xxxxxx. <code>xxx xxxx 3</code> xxxx xxxx xxx xxxx xxxxx xxxxxxx.</p>",
+        "publishedAt": "2011-12-13T10:18:31Z",
+        "likes": "637",
+        "url": "https://stackoverflow.com/a/8487487"
+      },
+      {
+        "id": "10044540",
+        "author": {
+          "name": "xxxxxxx",
+          "url": "https://stackoverflow.com/users/78336/neoneye"
+        },
+        "text": "X xxxxxx xx xxxx xxx xxxxxx xxxx xxxxxxx in xxx xxxxxx xxxxxxxxxx. X xxxxxx xx xxx xxxxxxxx xx xxxx X xxxxxx xx xxxxxxxx xx. Xxxx X xxxxx in xxx xxxxxxxxx.\n\nxxxxxx> xxx xxxxx --xxxx 5a7404742x85\nXXXX xx now xx 5a74047 Xxxxx xxx xxxx xxxx xx xxxxxxxxx\nxxxxxx> xxx xxxx xxxxxx xxxxxx --xxxxx\nXxxxx 0 (xxxxx 0), xxxxxx 0 (xxxxx 0)\nxxxxxx: xx/xxx: xxxxxxx xx xxxxxxx. xxxxxxxx xxxxxxx.\nXx xxx@xxxxxxxxx.xxx:xxxxxxxxxx/xxxxxxxxxx.xxx\n + 09a6480...5a74047 xxxxxx -> xxxxxx (xxxxxx xxxxxx)\nxxxxxx>",
+        "html": "<p>X xxxxxx xx xxxx xxx xxxxxx xxxx xxxxxxx in xxx xxxxxx xxxxxxxxxx. X xxxxxx xx xxx xxxxxxxx xx xxxx X xxxxxx xx xxxxxxxx xx. Xxxx X xxxxx in xxx xxxxxxxxx.</p>\n\n<pre><code>xxxxxx&gt; xxx xxxxx --xxxx 5a7404742x85\nXXXX xx now xx 5a74047 Xxxxx xxx xxxx xxxx xx xxxxxxxxx\nxxxxxx&gt; xxx xxxx xxxxxx xxxxxx --xxxxx\nXxxxx 0 (xxxxx 0), xxxxxx 0 (xxxxx 0)\nxxxxxx: xx/xxx: xxxxxxx xx xxxxxxx. xxxxxxxx xxxxxxx.\nXx xxx@xxxxxxxxx.xxx:xxxxxxxxxx/xxxxxxxxxx.xxx\n + 09a6480...5a74047 xxxxxx -&gt; xxxxxx (xxxxxx xxxxxx)\nxxxxxx&gt;\n</code></pre>",
+        "publishedAt": "2012-04-06T13:58:52Z",
+        "likes": "595",
+        "url": "https://stackoverflow.com/a/10044540"
+      },
+      {
+        "id": "13061212",
+        "author": {
+          "name": "Xxxxx",
+          "url": "https://stackoverflow.com/users/1002260/zombo"
+        },
+        "text": "X xxxxxx xx xxx xxx xxxxxx -x xxx xxxx xxx, xxxxxxx a xxxx xxxx xxxx xx xxxxx X xxx xxxxxx xxx xxxxxxx xx xxx xxx of. Xx xxxxx xxx xx xx xxxxxx xx xxxx xxxxx xxxxxxx xxxx, xxx xx just xxxxx xxxxx.\n\nXxxxxx xxx xxxx xxxxxxx xxx xxxx xx xxxx, xxxx xxxxxx like xxxx (xx xxxxxx xxxx xxxxx)\n\nxxx xxxxxx -x XXXX~3\n\nXxxxxx xxxx\n\nxxxx xx28xx7 Xxxxxx xxxxx xxx XxxxXxx xxxx\nxxxx x26x541 XxxxXxx xxxxxxx xxxxxx\nxxxx 58x6909 Xxxxxx XXX xxxxxxxx xxxxxxx\n\nXxxx Xxx xxxx xxxxxx xxxxxxx xxx xxx xxxx xxxx xxx xxxxxx.",
+        "html": "<p>X xxxxxx xx xxx <code>xxx xxxxxx -x</code> xxx xxxx xxx, xxxxxxx a xxxx xxxx xxxx xx xxxxx X xxx xxxxxx xxx xxxxxxx xx xxx xxx of. Xx xxxxx xxx xx xx xxxxxx xx xxxx xxxxx xxxxxxx xxxx, xxx xx just <em>xxxxx xxxxx</em>.</p>\n\n<p>Xxxxxx xxx xxxx xxxxxxx xxx xxxx xx xxxx, xxxx xxxxxx like xxxx (xx xxxxxx xxxx xxxxx)</p>\n\n<pre><code>xxx xxxxxx -x XXXX~3\n</code></pre>\n\n<p>Xxxxxx xxxx</p>\n\n<pre><code>xxxx xx28xx7 Xxxxxx xxxxx xxx XxxxXxx xxxx\nxxxx x26x541 XxxxXxx xxxxxxx xxxxxx\nxxxx 58x6909 Xxxxxx XXX xxxxxxxx xxxxxxx\n</code></pre>\n\n<p>Xxxx Xxx xxxx xxxxxx xxxxxxx xxx xxx xxxx xxxx xxx xxxxxx.</p>",
+        "publishedAt": "2012-10-25T03:41:20Z",
+        "likes": "556",
+        "url": "https://stackoverflow.com/a/13061212"
+      },
+      {
+        "id": "16175525",
+        "author": {
+          "name": "xxxxx",
+          "url": "https://stackoverflow.com/users/86967"
+        },
+        "text": "Xxx xx xxx xxx xxxxxxxx xxxxx xxxxxx\n\nXxx xxx-xxx (xx xxxxxxx) xx xxxxxxx a xxx xxxxxx --xxxxx. Xxxx xxx XXX xxx xxx xxx xx xxxxxx xxxxxxxxxx xxxxx xxxx xxx xxxxxx. Xxx xxx xxxx xxxxxx xxx xxxxxx xxxxxxx.\n\nXxx xx xxxx xxx xxxxxxxx xxxxx xxxxxx\n\nJust xxxxx xxxx xxxxxx xx xxx xxxxxxxx xxxxxxxx (xxx xxxxxxx, xxxxx xxxx xx xxx xxxxxx). Xxxx xxxxxxx xxxx xxxxxxx xxxx a xxxxx xxxx. Xxxxx xxxxxxx xxxxxxxxxx in xxxx xxxxx xxxxxxxxxx, xx xxxx xx like xxx xxxxxxxx xxxxxx xxxxx xxxxxxxx. Xx xx xxx of xxxx in a xxxxxx xxxxxxx, xxx xxx xxxxx XXXX~1.\n\nXxxx of xxxxxxx: Xxxxxxxx xxx of xxx xxxxx xx a xxxx xxx xx xxx xxxx xxxxxxx xxxx xxxx a xxxxxxxxx xxxxx. X xxxxxxxxx xxxx Xxx xxxxxxx xxxxx xxxx xx xxxx xxx.\n\nXxx xx xxxx a xxxxxx xxxxxx\n\nXxxxxxx a xxxxxxx xxxxxx xxxx (xxx-xxxxxx) xx xxxx xxx xxxxxxx.\n\nXx xxx xxxxx't xxx xxxxxx xxxxx xxxxxxx xxxx xxxx xxxxxx, xxx xxx xxxxxx xx...\n\nxxx xxxxxx --xx-xxxx XXXX\n\nXxxx xxxx xxxx xxxxxxx xxxxxx xx xxx xxxxxx xxxxxxxxxx.\n\nXxx xxxxxx xxxxxxx xxxx xxxx xxxx xxxxxxx, xxxxxxxxxx.\n\nXxxxxxxx: Xxxxxxxxxx of xxx xxxxxxx xxxxxx in xxxxxx xxxxxxxxxx\n\nXxxx xxx xx xxxxxxxxx -- xx xxxx xxx xxxx a xxxxx xxxx of xxx xxxxxx xx xxxxxx.\n\nXxxx xxxx: Xxx xxx't xxxx xx xx xxxx xx xxxxxxx xxxx may xx xxxxxxx xx xxx xxxxxx.\n\nxxx xxxx --xxxxxx (xxxxxx_xxxx) ## xxxxxx xxxxxx xxxxxxx of xxxxxx\n\nXxxxx xx xxxx xxxxxx xxxxxxx xxxx xxxxxx...\n\nxxx xxxx xxxxxx (xxxxxx_xxxx)\n\nIn xxx xxxxxx xxxx, xxx xxxxxxxx xxxxx't xxxxx xxxxx xxxx xxxxxxx-xxxxxx xxxxxx xxxxxxx xxxxx xxxxxxxx. Just xxxx a xxxxxxxx xxxxxx (xxx 'Xxx xx xxxx a xxxxxx xxxxxx' xxxxx), xxx xxxxx, xx a xxxxxx-xxxxx xx xxxx xxx xxxxxxx.",
+        "html": "<h2>Xxx xx xxx xxx xxxxxxxx xxxxx xxxxxx</h2>\n\n<p>Xxx xxx-xxx (xx xxxxxxx) xx xxxxxxx a <code>xxx xxxxxx --xxxxx</code>. Xxxx xxx XXX xxx xxx xxx xx xxxxxx xxxxxxxxxx xxxxx xxxx xxx xxxxxx. Xxx xxx xxxx xxxxxx xxx xxxxxx xxxxxxx. </p>\n\n<h2>Xxx xx xxxx xxx xxxxxxxx xxxxx xxxxxx</h2>\n\n<p>Just xxxxx xxxx xxxxxx xx xxx xxxxxxxx xxxxxxxx (xxx xxxxxxx, xxxxx <code>xxxx</code> xx <code>xxx xxxxxx</code>). Xxxx xxxxxxx xxxx xxxxxxx xxxx a xxxxx xxxx. Xxxxx xxxxxxx xxxxxxxxxx in xxxx xxxxx xxxxxxxxxx, xx xxxx xx like xxx xxxxxxxx xxxxxx xxxxx xxxxxxxx. Xx xx xxx of xxxx in a xxxxxx xxxxxxx, xxx <code>xxx xxxxx XXXX~1</code>.</p>\n\n<p><strong>Xxxx of xxxxxxx</strong>: <em>Xxxxxxxx xxx of <code>xxx xxxxx</code> xx a xxxx xxx xx xxx xxxx xxxxxxx xxxx xxxx a xxxxxxxxx xxxxx. X xxxxxxxxx xxxx Xxx xxxxxxx xxxxx xxxx xx xxxx xxx.</em></p>\n\n<h2>Xxx xx xxxx a xxxxxx xxxxxx</h2>\n\n<p>Xxxxxxx a <a href=\"https://stackoverflow.com/a/1624724/86967\">xxxxxxx xxxxxx xxxx</a> (<a href=\"http://git-scm.com/docs/git-revert.html\">xxx-xxxxxx</a>) xx xxxx xxx xxxxxxx.</p>\n\n<p>Xx xxx xxxxx't xxx xxxxxx xxxxx xxxxxxx xxxx xxxx xxxxxx, xxx xxx xxxxxx xx...</p>\n\n<pre><code>xxx xxxxxx --xx-xxxx XXXX\n</code></pre>\n\n<p>Xxxx xxxx xxxx xxxxxxx xxxxxx xx xxx xxxxxx xxxxxxxxxx.</p>\n\n<p><em>Xxx xxxxxx xxxxxxx xxxx xxxx xxxx xxxxxxx, xxxxxxxxxx</em>.</p>\n\n<hr>\n\n<h2>Xxxxxxxx: Xxxxxxxxxx of xxx <em>xxxxxxx</em> xxxxxx in xxxxxx xxxxxxxxxx</h2>\n\n<h3><em>Xxxx xxx xx xxxxxxxxx -- xx xxxx xxx xxxx a xxxxx xxxx of xxx xxxxxx xx xxxxxx.</em></h3>\n\n<p><em>Xxxx xxxx: Xxx xxx't xxxx xx xx xxxx xx xxxxxxx xxxx may xx xxxxxxx xx xxx xxxxxx.</em></p>\n\n<pre><code>xxx xxxx --xxxxxx (xxxxxx_xxxx) ## xxxxxx xxxxxx xxxxxxx of xxxxxx\n</code></pre>\n\n<p>Xxxxx xx xxxx xxxxxx xxxxxxx xxxx xxxxxx...</p>\n\n<pre><code>xxx xxxx xxxxxx (xxxxxx_xxxx)\n</code></pre>\n\n<p><em>In xxx xxxxxx xxxx, xxx xxxxxxxx xxxxx't xxxxx xxxxx xxxx xxxxxxx-xxxxxx xxxxxx xxxxxxx xxxxx xxxxxxxx.  Just xxxx a xxxxxxxx xxxxxx (xxx 'Xxx xx xxxx a xxxxxx xxxxxx' xxxxx), xxx xxxxx, xx a <a href=\"https://stackoverflow.com/a/22417539/86967\">xxxxxx-xxxxx</a> xx xxxx xxx xxxxxxx.</em></p>",
+        "publishedAt": "2013-04-23T17:27:45Z",
+        "likes": "518",
+        "url": "https://stackoverflow.com/a/16175525"
+      },
+      {
+        "id": "16609755",
+        "author": {
+          "name": "xxxxxx",
+          "url": "https://stackoverflow.com/users/2349141"
+        },
+        "text": "Xx xxx xxxx xx xxxxxxxxxxx xxxx xx xxx xxx xxxx xxxxxx xxxx xxxxxxxxxx.\n\nXxx xxxxxx xx xxx xx xxxx xx:\n\nxxx xxx\n\nXxxx xxx xxx xx like:\n\nxxx xxxxx --xxxx <xxxxxx_xx>\n\nxxx xxxx xxxxxx <xxxxxx_xxxx> -x",
+        "html": "<p>Xx xxx xxxx xx xxxxxxxxxxx xxxx xx xxx xxx xxxx xxxxxx xxxx xxxxxxxxxx.</p>\n<p>Xxx xxxxxx xx xxx xx xxxx xx:</p>\n<pre><code>xxx xxx \n</code></pre>\n<p>Xxxx xxx xxx xx like:</p>\n<pre><code>xxx xxxxx --xxxx &lt;xxxxxx_xx&gt;\n\nxxx xxxx xxxxxx &lt;xxxxxx_xxxx&gt; -x\n</code></pre>",
+        "publishedAt": "2013-05-17T13:02:13Z",
+        "likes": "430",
+        "url": "https://stackoverflow.com/a/16609755"
+      },
+      {
+        "id": "25638420",
+        "author": {
+          "name": "xxxxxx_xxx",
+          "url": "https://stackoverflow.com/users/3655052"
+        },
+        "text": "Xx xxx xxxx xxxxxxxxx xxxx xxx xxx xxxxxx,\n\nxxx xxxxx --xxxx XXXX~1\n\nXXXX~1 xx a xxxxxxxxx xxx xxx xxxxxx xxxxxx xxxx. Xxxxxxxxxxxxx xxx xxx xxxxx xx xxx XXX-1 of xxx xxxx xx xxx xxxx xx xxxxx xx. --xxxx xxxxxx xxxx xxxxxx xxx xxxxxx xxx xx xxxx xxxxx xxx xxxx xxxxxxx xxxxx \"Xxxxxxx xx xx xxxxxxxxx\", xx xxx xxxxxx xxxxx xxx xx.\n\nXx xxx xxxx xx xxx xxx of xxx xxxxxxx xx xxxxxxx xxxxx in xxx xxxxxxx xxxx xxxxx xxx xxxxxx xxxxxx xxxx xxx \"--xxxx\" xxxxxxx.\n\nXX\n\nXx xxx xxxxxxx xxxxxx xxx xxxxxxx xxxxxx xxxxx xx xxxxxxx xx xxxx, xxx xxx't xxx xxx xxxxx. Xxx xxx xxxxxxx xx a xxx xxxxxx,\n\nxxx xxxxxx XXXX\n\nXxxx xxxx xxxxxx a xxx xxxxxx xxxx xxxxxxxx xxxxxxxxxx xxxxxxxxxx xx xxx xxxxxxxxxx xxxxxx.",
+        "html": "<p>Xx xxx xxxx xxxxxxxxx xxxx xxx xxx xxxxxx,</p>\n\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n\n<blockquote>\n  <p><strong>XXXX~1</strong> xx a xxxxxxxxx xxx xxx xxxxxx xxxxxx xxxx. Xxxxxxxxxxxxx xxx xxx xxxxx xx xxx <strong>XXX-1</strong> of xxx xxxx xx xxx xxxx xx xxxxx xx. <em>--xxxx</em> xxxxxx xxxx xxxxxx xxx xxxxxx xxx xx xxxx xxxxx xxx xxxx xxxxxxx xxxxx \"Xxxxxxx xx xx xxxxxxxxx\", xx xxx xxxxxx xxxxx xxx xx.</p>\n  \n  <p>Xx xxx xxxx xx xxx xxx of xxx xxxxxxx xx xxxxxxx xxxxx in xxx xxxxxxx xxxx xxxxx xxx xxxxxx xxxxxx xxxx xxx \"<strong>--xxxx</strong>\" xxxxxxx.</p>\n</blockquote>\n\n<p>XX</p>\n\n<blockquote>\n  <p>Xx xxx xxxxxxx xxxxxx xxx xxxxxxx xxxxxx xxxxx xx xxxxxxx xx xxxx, xxx xxx't xxx <em>xxx xxxxx</em>. Xxx xxx xxxxxxx xx a <em>xxx xxxxxx</em>,</p>\n</blockquote>\n\n<pre><code>xxx xxxxxx XXXX\n</code></pre>\n\n<blockquote>\n  <p>Xxxx xxxx xxxxxx a xxx xxxxxx xxxx xxxxxxxx xxxxxxxxxx xxxxxxxxxx xx xxx xxxxxxxxxx xxxxxx.</p>\n</blockquote>",
+        "publishedAt": "2014-09-03T07:15:30Z",
+        "likes": "421",
+        "url": "https://stackoverflow.com/a/25638420"
+      },
+      {
+        "id": "17362437",
+        "author": {
+          "name": "Xxxxx Xxxxxx",
+          "url": "https://stackoverflow.com/users/1243378"
+        },
+        "text": "Xx XxxxxxXxxx (XXX xxx XxxXxx), xxx may xxxxx-xxxxx xxx xxxxxx xxx xx a 'Xxxxxxx Xxxxxx'. Xxxx xxxxxx xxxx xxxx xxxxxxx.\n\nXx xxx xxxxxxxx:\n\nXxx may xxxxxxxxxxxxx xxx:\n\nxxx xxxxxx\n\nXx:\n\nXxxx\n\nxxx xxxxx --xxxx XXXX^ # Xxx --xxxx xx xxx xxxx xx xxxx xxxx xxxxxxx.\nxxx xxxxx --xxxx XXXX^ # Xxx --xxxx xx xxx xxx't xxxx xxxxx xxxxxxx xxxx xxxxxxx.",
+        "html": "<p>Xx <a href=\"https://www.atlassian.com/software/sourcetree/overview\">XxxxxxXxxx</a> (XXX xxx XxxXxx), xxx may xxxxx-xxxxx xxx xxxxxx xxx xx a 'Xxxxxxx Xxxxxx'. Xxxx xxxxxx xxxx xxxx xxxxxxx.</p>\n\n<p>Xx xxx xxxxxxxx:</p>\n\n<p>Xxx may xxxxxxxxxxxxx xxx:</p>\n\n<pre><code>xxx xxxxxx\n</code></pre>\n\n<p>Xx:</p>\n\n<pre>Xxxx<code>xxx xxxxx --xxxx XXXX^ # Xxx --xxxx xx xxx xxxx xx xxxx xxxx xxxxxxx.\nxxx xxxxx --xxxx XXXX^ # Xxx --xxxx xx xxx xxx't xxxx xxxxx xxxxxxx xxxx xxxxxxx.\n</code></pre>",
+        "publishedAt": "2013-06-28T10:18:29Z",
+        "likes": "362",
+        "url": "https://stackoverflow.com/a/17362437"
+      },
+      {
+        "id": "22199804",
+        "author": {
+          "name": "Xxxxxx Xxxxxxxxxxx",
+          "url": "https://stackoverflow.com/users/1133932"
+        },
+        "text": "A xxxxxx xxxxxxx:\n\nXxxx\n\nxxx xxxxx --xxxx 'XXXX^'\n\nXx xxxxx xxxxx xx xxxx xxx xxxx xxxxx xxxxxx!",
+        "html": "<p>A xxxxxx xxxxxxx:</p>\n\n<pre>Xxxx<code>xxx xxxxx --xxxx 'XXXX^' \n</code></pre>\n\n<p>Xx xxxxx xxxxx xx xxxx xxx xxxx xxxxx xxxxxx!</p>",
+        "publishedAt": "2014-03-05T13:55:35Z",
+        "likes": "333",
+        "url": "https://stackoverflow.com/a/22199804"
+      },
+      {
+        "id": "44672195",
+        "author": {
+          "name": "Xxxxxxx",
+          "url": "https://stackoverflow.com/users/5423108"
+        },
+        "text": "Just xxxxx xx xxxxx xxx xxxxxxx xxxxx xxxxx xxx:\n\nxxx xxxxx --xxxx XXXX~1\n\nXxxxxxx: xxxx xxx xxxxx xxxx, xx'x xxxxxxxxx xxxxx xx xxx xxxxxx xxx'x like xx xx xxxx xx, xxxx xx xxx xxxxxxx xx xxxx --xxxx xxx, xx xxxx xx xxxx, xxx xxxx xxx xxxxxxx in xxxx xxxx(x), xx xxx xxx xxxx xx xxx xxxxx xxxxx xxx xxxx xxx just xxxxx, XXXX xx xxx xxxx of xxx xxxxxx xxx xx xxx xxxxxxx xxxx ~1 (in xxxx xxxx xxx xxxx xxx XXXX^), xx xxxx xx xxxx xxxx xxx xxxxxx xxxxx xxxx xxx xxxx...\n\nX xxxxxx xxx xxxxx in xxx xxxxx xxxxx in xxxx xxxxxxx xxx xxx, xxxxxxxxx xxx xxxxx xxxx may xxxxxxx in xxxx xxxxxxxxxx xxx xxxxxxxxxx xxx xxxx:",
+        "html": "<p>Just xxxxx xx xxxxx xxx xxxxxxx xxxxx xxxxx <code>xxx</code>:</p>\n\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n\n<p><strong>Xxxxxxx:</strong> xxxx <code>xxx xxxxx</code> xxxx, xx'x xxxxxxxxx <code>xxxxx</code> xx xxx xxxxxx xxx'x like xx xx xxxx xx, xxxx xx xxx xxxxxxx xx xxxx <code>--xxxx</code> xxx, xx xxxx xx xxxx, xxx xxxx xxx  xxxxxxx in xxxx xxxx(x), xx xxx xxx xxxx xx xxx xxxxx xxxxx xxx xxxx xxx just xxxxx, <code>XXXX</code> xx xxx xxxx of xxx xxxxxx xxx xx xxx xxxxxxx xxxx <code>~1</code> (in xxxx xxxx xxx xxxx xxx <code>XXXX^</code>), xx xxxx xx xxxx xxxx xxx xxxxxx xxxxx xxxx xxx xxxx...</p>\n\n<p>X xxxxxx xxx xxxxx in xxx xxxxx xxxxx in xxxx xxxxxxx xxx xxx, xxxxxxxxx xxx xxxxx xxxx may xxxxxxx in xxxx xxxxxxxxxx xxx xxxxxxxxxx xxx xxxx:</p>\n\n<p><a href=\"https://i.sstatic.net/7zrzb.jpg\"><img alt=\"Xxx xx xxxx xxx xxxx xxxxxxx in Xxx?\" src=\"https://i.sstatic.net/7zrzb.jpg\"></a></p>",
+        "publishedAt": "2017-06-21T09:33:19Z",
+        "likes": "316",
+        "url": "https://stackoverflow.com/a/44672195"
+      },
+      {
+        "id": "19159566",
+        "author": {
+          "name": "Xxxx_Xxxxxx",
+          "url": "https://stackoverflow.com/users/1496927"
+        },
+        "text": "\"Xxxxx xxx xxxxxxx xxxx xx xxx xxxx xxxxxx\"\n\nxxx xxxxx --xxxx XXXX^\n\n\"Xxxxx xxxxxxx xxxxx xxxx xxx xxxxxxx xxxx\"\n\nxxx xxxxx\n\nxxx - Xxx Xxxxx Xxxxxxxxx\n\nXXXX: Xxxx xxxxxxx xxxx xxxxxx xxxx xxxxxxxx xxxxxx, xx xxx xxxx xxxxxxx! xxx xxxxx --xxxx xx xxxxx.",
+        "html": "<p>\"Xxxxx xxx xxxxxxx xxxx xx xxx xxxx xxxxxx\"</p>\n<pre><code>xxx xxxxx --xxxx XXXX^ \n</code></pre>\n<p>\"Xxxxx xxxxxxx xxxxx xxxx xxx xxxxxxx xxxx\"</p>\n<pre><code>xxx xxxxx    \n</code></pre>\n<p>xxx - <a href=\"https://web.archive.org/web/20210515091636/http://jonas.nitro.dk/git/quick-reference.html\">Xxx Xxxxx Xxxxxxxxx</a></p>\n<blockquote>\n<p>XXXX: <strong>Xxxx xxxxxxx xxxx xxxxxx xxxx xxxxxxxx xxxxxx</strong>, xx xxx xxxx xxxxxxx! <code>xxx xxxxx --xxxx</code> xx xxxxx.</p>\n</blockquote>",
+        "publishedAt": "2013-10-03T12:43:57Z",
+        "likes": "301",
+        "url": "https://stackoverflow.com/a/19159566"
+      },
+      {
+        "id": "19320941",
+        "author": {
+          "name": "X. Xxx",
+          "url": "https://stackoverflow.com/users/2700225"
+        },
+        "text": "Xxxxx xxx:\n\nxxx xxxxxx\n\nXx xxxx xxxx xxx xxx xxx xxxxxxxx xxxxxxx xxx xxxx xxxxxxxxx xx xxxx xxxxxxxxxx, xxx xxxxxxx, xxxxxx, xxxxx, xxxx, xxx.\n\nXxxx xx:\n\nxxx xxxxx --xxxx XxxxxxXxXxxxXxxXxx",
+        "html": "<p>Xxxxx xxx: </p>\n\n<pre><code>xxx xxxxxx\n</code></pre>\n\n<p>Xx xxxx xxxx xxx xxx xxx xxxxxxxx xxxxxxx xxx xxxx xxxxxxxxx xx xxxx xxxxxxxxxx, xxx xxxxxxx, xxxxxx, xxxxx, xxxx, xxx.</p>\n\n<p>Xxxx xx:</p>\n\n<pre><code>xxx xxxxx --xxxx XxxxxxXxXxxxXxxXxx\n</code></pre>",
+        "publishedAt": "2013-10-11T14:41:16Z",
+        "likes": "204",
+        "url": "https://stackoverflow.com/a/19320941"
+      },
+      {
+        "id": "35826537",
+        "author": {
+          "name": "xxxxxx_xxxxx",
+          "url": "https://stackoverflow.com/users/3996359"
+        },
+        "text": "Xxxx xxxx xxxxxx:\n\nxxx xxxxx --xxxx XXXX^ xx xxx xxxxx --xxxx XXXX~\n\nXxxx xxxx xxxx xxx xxxx xxxxxx.\n\nXxxx --xxxx xxxxx xxxxx xxxx xxxxxxx.\n\nXXXX~ xx XXXX^ xxxxx xx xxxx xx xxxxxx xxxxxx XXXX.\n\nXxxxxxx xxxx xxxxxx xx xxx xxxxxx:\n\nxxx xxxxxx --xxxxx -m \"xxxxxxx\"\n\nXx xxxx xxxxxxx xxx xxxx xxxxxx xxxx xxx xxx xxxxxx.",
+        "html": "<h2>Xxxx xxxx xxxxxx:</h2>\n\n<p><code>xxx xxxxx --xxxx XXXX^</code> xx <code>xxx xxxxx --xxxx XXXX~</code></p>\n\n<p>Xxxx xxxx xxxx xxx xxxx xxxxxx.</p>\n\n<p>Xxxx <code>--xxxx</code> xxxxx xxxxx xxxx xxxxxxx.</p>\n\n<p><code>XXXX~</code> xx <code>XXXX^</code> xxxxx xx xxxx xx xxxxxx xxxxxx XXXX.</p>\n\n<hr>\n\n<h2>Xxxxxxx xxxx xxxxxx xx xxx xxxxxx:</h2>\n\n<pre><code>xxx xxxxxx --xxxxx -m \"xxxxxxx\"\n</code></pre>\n\n<p>Xx xxxx xxxxxxx xxx xxxx xxxxxx xxxx xxx xxx xxxxxx.</p>",
+        "publishedAt": "2016-03-06T11:53:22Z",
+        "likes": "190",
+        "url": "https://stackoverflow.com/a/35826537"
+      },
+      {
+        "id": "16527510",
+        "author": {
+          "name": "XxxxxXxxxx",
+          "url": "https://stackoverflow.com/users/811519"
+        },
+        "text": "Xxxxxxx xxx:\n\nXxxxxxxx xxx xxxxxx xxx xxxx xx xxxxxx, xxxx xxxxx xxxx xxxxx xxxxxxx xxxx xxxx xx xxx xxxxxx xxxx xxx xxxx xx xx xxx xxxxxx xxx xx xxx xxxxxx xxxxxx (xxxxxxxxxx xxxxx xx xxxx xx xxx-xxx). Xx xx xxxx, in XxxxxxXxxx X xxxxx-xxxxxxx xx xxx xxx xxxxxxxx \"Xxxxx XXXXXXXXXX xx xxxx xxxxxx\".\n\nXxxx xxxxxxxx xx xxxx xxxxxxxxxx'x xxxxx xxxxxxxxx xxx xxx xxxx xxxxxxx:\n\nxxx -x xxxx.xxxxxxxxxxxxxx=xxxxx -x xxxx.xxxxxxxxx=xxxxx xxxx -x -x --xxxx XXXXXXXXXX_XXXX XXXXXXXXXX:XXXXXXXXXX\n\nXxxx xxxx xxxxx xxx xxxxxxx xxxxx xxx xxxxxxx xxx in xxxx xxxxx xxxxxxxxxx xxx xxxx xxx xxxx xxx xxxxxx.",
+        "html": "<p>Xxxxxxx xxx:</p>\n\n<p>Xxxxxxxx xxx xxxxxx xxx xxxx xx xxxxxx, xxxx xxxxx xxxx xxxxx xxxxxxx xxxx xxxx xx xxx xxxxxx xxxx xxx xxxx xx xx xxx xxxxxx xxx xx xxx xxxxxx xxxxxx (xxxxxxxxxx xxxxx xx xxxx xx xxx-xxx). Xx xx xxxx, in XxxxxxXxxx X xxxxx-xxxxxxx xx xxx xxx xxxxxxxx \"Xxxxx XXXXXXXXXX xx xxxx xxxxxx\".</p>\n\n<p>Xxxx xxxxxxxx xx xxxx xxxxxxxxxx'x xxxxx xxxxxxxxx xxx xxx xxxx xxxxxxx:</p>\n\n<pre><code>xxx -x xxxx.xxxxxxxxxxxxxx=xxxxx -x xxxx.xxxxxxxxx=xxxxx xxxx -x -x --xxxx XXXXXXXXXX_XXXX XXXXXXXXXX:XXXXXXXXXX\n</code></pre>\n\n<p>Xxxx xxxx xxxxx xxx xxxxxxx xxxxx xxx xxxxxxx xxx in xxxx xxxxx xxxxxxxxxx xxx xxxx xxx xxxx xxx xxxxxx.</p>",
+        "publishedAt": "2013-05-13T17:12:25Z",
+        "likes": "186",
+        "url": "https://stackoverflow.com/a/16527510"
+      },
+      {
+        "id": "16565962",
+        "author": {
+          "name": "Xxxxx Xxxxxxxxx",
+          "url": "https://stackoverflow.com/users/63550"
+        },
+        "text": "Xxxx xxx xxx xxx xxxx xxx xxxx xxxxxx xxxx xxxx xxx xxxx xxxxx:\n\nxxx xxxxx <xxx xxxxxxxx xx>",
+        "html": "<p>Xxxx <code>xxx xxx</code> xxx xxxx xxx xxxx xxxxxx xxxx xxxx xxx xxxx xxxxx:</p>\n\n<pre><code>xxx xxxxx &lt;xxx xxxxxxxx xx&gt;\n</code></pre>",
+        "publishedAt": "2013-05-15T13:12:29Z",
+        "likes": "174",
+        "url": "https://stackoverflow.com/a/16565962"
+      },
+      {
+        "id": "38629666",
+        "author": {
+          "name": "xxx",
+          "url": "https://stackoverflow.com/users/1104402"
+        },
+        "text": "XXXX XX XXX, xxxxx --xxxx xx xxxxx --xxxx?\n\nX am just xxxxxx xxx xxxxx xxx @Xxxxxxxxx'x xxxxxx:\n\nXx xxx xxx xxxxxx xxxx xx xxx xx xxx --xxxx (X xxxx xxxx xxxxxxxxxx xx xxxxxxxx xx --xxxx xxx xxxx).\n\nXxx?\n\nXx xxx xxxxxx --xxxx xx xxxxxxx xxx xxxx XXXX xxxx xxxxxxx xx xx xxxx't xxxxxx. Xx xxx xxxxxx --xxxx xx xxxxxxx xxx xxx xxxxxxx xxx xxxx results of --xxxx xx xxxxxxxx xxxxxxxxxx xxxxxxxx\n\nxxx xxxxx XXXX xxxx.xxxx\nxxx xxxxxxxx -- xxxx.xxxx\n\nXxxx xxxxxxx\n\nxxxx \"xxxx xxxxxxx...\" > xxxx.xxxx\nxxx xxx xxxx.xxxx\nxxx xxxxxx -m \"xxxxx xxxxxx\"\n\n# X xxxx xx xxxxx\nxxx xxxxx --xxxx XXXX~1 (xxxxxx xxxxxxx)\n# XX\nxxx xxxxx --xxxx XXXX~1 # Xxxx xx xxxxxxx\nxxx xxxxx XXXX xxxx.xxxx # xxxx xx xxxxxxx xxxxxxxxx\nxxx xxxxxxxx -- xxxx.xxxx # xxxxxx xxxxxxx\n\nXxxxxxx xxxx xx @Xxxxxxxxx.",
+        "html": "<h2>XXXX XX XXX, <code>xxxxx --xxxx</code> xx <code>xxxxx --xxxx</code>?</h2>\n<p>X am just xxxxxx xxx xxxxx xxx @Xxxxxxxxx'x xxxxxx:</p>\n<p>Xx xxx xxx xxxxxx xxxx xx xxx xx xxx <code>--xxxx</code> (X xxxx xxxx xxxxxxxxxx xx xxxxxxxx xx --<strong>x</strong>xxx xxx xxxx).</p>\n<h3>Xxx?</h3>\n<p>Xx xxx xxxxxx <code>--xxxx</code> xx xxxxxxx xxx xxxx <strong>XXXX</strong> xxxx xxxxxxx xx xx xxxx't xxxxxx.\nXx xxx xxxxxx <code>--xxxx</code> xx xxxxxxx xxx xxx xxxxxxx xxx xxxx results of <code>--xxxx</code> xx xxxxxxxx xxxxxxxxxx xxxxxxxx</p>\n<pre><code>xxx xxxxx XXXX xxxx.xxxx\nxxx xxxxxxxx -- xxxx.xxxx\n</code></pre>\n<h3>Xxxx xxxxxxx</h3>\n<pre><code>xxxx \"xxxx xxxxxxx...\" &gt; xxxx.xxxx\nxxx xxx xxxx.xxxx\nxxx xxxxxx -m \"xxxxx xxxxxx\"\n\n# X xxxx xx xxxxx\nxxx xxxxx --xxxx XXXX~1 (xxxxxx xxxxxxx)\n# XX\nxxx xxxxx --xxxx XXXX~1 # Xxxx xx xxxxxxx\nxxx xxxxx XXXX xxxx.xxxx # xxxx xx xxxxxxx xxxxxxxxx\nxxx xxxxxxxx -- xxxx.xxxx # xxxxxx xxxxxxx\n</code></pre>\n<p>Xxxxxxx xxxx xx @Xxxxxxxxx.</p>",
+        "publishedAt": "2016-07-28T07:24:22Z",
+        "likes": "169",
+        "url": "https://stackoverflow.com/a/38629666"
+      },
+      {
+        "id": "17716319",
+        "author": {
+          "name": "xxxxxxxxx",
+          "url": "https://stackoverflow.com/users/811535"
+        },
+        "text": "In xx xxxx X xxxxxxxxxxxx xxxxxxxxx xxxx xxxxx X xxx xxx xxxx xx. Xx X xxx xxx xxxxxxxxx xxx xx xxxxxx:\n\nxxx xxxxx --xxxx XXXX^\nxxx xx --xxxxxx [xxxxx xxx xx xxx xxxx]\nxxx xxx [xxxxx xxx xxxx]\nxxx xxxxxx -x XXXX_XXXX\n\nXxxxxx xxx results xxxx xxxx xx xxx xxx --xxxx",
+        "html": "<p>In xx xxxx X xxxxxxxxxxxx xxxxxxxxx xxxx xxxxx X xxx xxx xxxx xx. Xx X xxx xxx xxxxxxxxx xxx xx xxxxxx:</p>\n\n<pre><code>xxx xxxxx --xxxx XXXX^\nxxx xx --xxxxxx [xxxxx xxx xx xxx xxxx]\nxxx xxx [xxxxx xxx xxxx]\nxxx xxxxxx -x XXXX_XXXX\n</code></pre>\n\n<p>Xxxxxx xxx results xxxx xxxx xx xxx xxx --xxxx</p>",
+        "publishedAt": "2013-07-18T06:41:16Z",
+        "likes": "168",
+        "url": "https://stackoverflow.com/a/17716319"
+      },
+      {
+        "id": "34635179",
+        "author": {
+          "name": "xxxx",
+          "url": "https://stackoverflow.com/users/4480164"
+        },
+        "text": "Xxxxxx, xxx xxxx in xxxx xxxxxxx xxxx:\n\nxxx xxxxx --xxxx XXXX~",
+        "html": "<p>Xxxxxx, xxx xxxx in xxxx xxxxxxx xxxx:</p>\n\n<pre><code>xxx xxxxx --xxxx XXXX~ \n</code></pre>",
+        "publishedAt": "2016-01-06T14:10:12Z",
+        "likes": "164",
+        "url": "https://stackoverflow.com/a/34635179"
+      },
+      {
+        "id": "35472255",
+        "author": {
+          "name": "Xxxxxx",
+          "url": "https://stackoverflow.com/users/3799762"
+        },
+        "text": "Xxxxx xxx xxxx xxxx xx xx xx:\n\nXxx xxxxxxx xx xxxx xxx xxxx xxxxxx/ xxxxxxxx xxxxxxx:\n\nXxxxxxx: Xx Xxx xxx --xxxx xx xxx xx xxx xxxx xxxx xxx xxx xxxxx. --xxxx xx xxx xxxxxxxxx, xxx xx xxxxx xxxxxx xxxx xxxxx.\n\nXxxxx xxxxxxx xx xxxxxx xxx xxxxxx in Xxx xx:\n\n$ xxx xxxxx --xxxx <XXXXXX -XX>\n\nxx\n\n$ xxx xxxxx --xxxx XXXX~<x>\n\nXXXXXX-XX: XX xxx xxx xxxxxx\n\nx: xx xxx xxxxxx of xxxx xxxxxxx xxx xxxx xx xxxxxx\n\nXxx xxx xxx xxx xxxxxx xx xx xxxxx xxxxx:\n\n$ **xxx xxx --xxxxxxx**\n\nx81x3x1 xxxxxxxx xx xxxxxxxx xxx xxxxxxx\n\nxx20xx8 xxxxxxxx xx xxx xxx xxxxxxx\n\nxxxxxxx xxxxxxxx xx xxxxxxxx xxx xxxxxxx\n\nxxxxx x81x3x1 xxx xx20xx8 xxx xxxxxx xx.\n\nNow, xxx'x xxx xxxx xxxxx:\n\nXxxxxxx xxx xxxx xx xxxxxx xxx xxxx xxxxxx 'x81x3x1'. Xxxx xxx xxx xxxxxxx:\n\n$ xxx xxxxx --xxxx x81x3x1\n\nxx\n\n$ xxx xxxxx --xxxx XXXX~1\n\nXxxxxxx xxx xxxx xx xxxxxx xxx xxxxxx 'xx20xx8':\n\n$ xxx xxxxx --xxxx xx20xx8\n\nXxx xxxx xxxxxxxx xxxxxxxxxxx, xxx xxx xxxxx xx xxx xxx out xxxx xxxxx xxxxxxxx xxx xxx xxxxxxxxx xxx xxxx xx a xxxxxxxxx xxxxx:\n\n$ xxx xxxxx --xxxx",
+        "html": "<p>Xxxxx xxx xxxx xxxx xx xx xx:</p>\n<p>Xxx xxxxxxx xx xxxx xxx xxxx xxxxxx/ xxxxxxxx xxxxxxx:</p>\n<p><strong>Xxxxxxx:</strong> Xx Xxx xxx --xxxx xx xxx xx xxx xxxx xxxx xxx xxx xxxxx.\n--xxxx xx xxx <strong>xxxxxxxxx</strong>, xxx xx xxxxx <strong>xxxxxx xxxx xxxxx.</strong></p>\n<p><strong>Xxxxx xxxxxxx xx xxxxxx xxx xxxxxx in Xxx xx:</strong></p>\n<pre><code>$ xxx xxxxx --xxxx &lt;XXXXXX -XX&gt;\n</code></pre>\n<p>xx</p>\n<pre><code>$ xxx xxxxx --xxxx XXXX~&lt;x&gt;\n</code></pre>\n<p><strong>XXXXXX-XX</strong>: XX xxx xxx xxxxxx</p>\n<p><strong>x:</strong>  xx xxx xxxxxx of xxxx xxxxxxx xxx xxxx xx xxxxxx</p>\n<p>Xxx xxx xxx xxx xxxxxx xx xx xxxxx xxxxx:</p>\n<pre><code>$ **xxx xxx --xxxxxxx**\n\nx81x3x1 xxxxxxxx xx xxxxxxxx xxx xxxxxxx\n\nxx20xx8 xxxxxxxx xx xxx xxx xxxxxxx\n\nxxxxxxx xxxxxxxx xx xxxxxxxx xxx xxxxxxx\n</code></pre>\n<p>xxxxx <strong>x81x3x1</strong> xxx <strong>xx20xx8</strong> xxx xxxxxx xx.</p>\n<p><strong>Now, xxx'x xxx xxxx xxxxx:</strong></p>\n<p><em>Xxxxxxx xxx xxxx xx xxxxxx xxx xxxx xxxxxx 'x81x3x1'.  Xxxx xxx xxx xxxxxxx:</em></p>\n<pre><code>$ xxx xxxxx --xxxx x81x3x1\n</code></pre>\n<p>xx</p>\n<pre><code>$ xxx xxxxx --xxxx XXXX~1\n</code></pre>\n<p><em>Xxxxxxx xxx xxxx xx xxxxxx xxx xxxxxx 'xx20xx8':</em></p>\n<pre><code>$ xxx xxxxx --xxxx xx20xx8\n</code></pre>\n<p>Xxx xxxx xxxxxxxx xxxxxxxxxxx, xxx xxx xxxxx xx xxx xxx out xxxx xxxxx xxxxxxxx xxx xxx xxxxxxxxx xxx xxxx xx a xxxxxxxxx xxxxx:</p>\n<pre><code>$ xxx xxxxx --xxxx\n</code></pre>",
+        "publishedAt": "2016-02-18T03:27:38Z",
+        "likes": "157",
+        "url": "https://stackoverflow.com/a/35472255"
+      },
+      {
+        "id": "22163029",
+        "author": {
+          "name": "xxxxx",
+          "url": "https://stackoverflow.com/users/1911787"
+        },
+        "text": "Xxx a xxxxx xxxxxx\n\nxxx xxxxx --xxxx XXXX~1\n\nxx xx xxx xx xxx xxxxxxxx xxxxxxx in xxxxx xxxxxx xx xx, xxx xxxxx xxx\n\nxxx xx --xxxxxx <xxxx>\n\nXxx a xxxxxx xxxxxx\n\nXxx xxxxxx xxx of xxxxxxxx xxxxx xxxx xxx xxxxxxxxxx xxxxxxx xx xxxxx xxx xxxxxx-xxxxxx. Xxxx xx,\n\nXxxx\n\nxxx xxxxxx-xxxxxx --xxxxx-xxxxxx 'xxx xx --xxxxxx <xxxx>' XXXX\n\nXxx X xxxxxxxxx xxx xxx xxxx xxxxxxx xxxx xxxx. Xxxx xxxx xx xxx-xxxxxx-xxxxxx(1) Xxxxxx Xxxx.",
+        "html": "<h3>Xxx a xxxxx xxxxxx</h3>\n\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n\n<p>xx xx xxx xx xxx xxxxxxxx xxxxxxx in xxxxx xxxxxx xx xx, xxx xxxxx xxx</p>\n\n<pre><code>xxx xx --xxxxxx &lt;xxxx&gt;\n</code></pre>\n\n<h3>Xxx a xxxxxx xxxxxx</h3>\n\n<p>Xxx xxxxxx xxx of xxxxxxxx xxxxx xxxx xxx xxxxxxxxxx xxxxxxx xx xxxxx <code>xxx xxxxxx-xxxxxx</code>. Xxxx xx,</p>\n\n<pre>Xxxx<code>xxx xxxxxx-xxxxxx --xxxxx-xxxxxx 'xxx xx --xxxxxx &lt;xxxx&gt;' XXXX\n</code></pre>\n\n<p>Xxx X xxxxxxxxx xxx xxx xxxx xxxxxxx xxxx xxxx. Xxxx xxxx xx <em><a href=\"https://www.kernel.org/pub/software/scm/git/docs/git-filter-branch.html\">xxx-xxxxxx-xxxxxx(1) Xxxxxx Xxxx</a></em>.</p>",
+        "publishedAt": "2014-03-04T04:35:18Z",
+        "likes": "152",
+        "url": "https://stackoverflow.com/a/22163029"
+      },
+      {
+        "id": "25811069",
+        "author": {
+          "name": "xxxxxxxxx",
+          "url": "https://stackoverflow.com/users/702601"
+        },
+        "text": "Xxxxx xxx xxx xxxx xxxxxxxxx\n\nXxx xxxxx't xxxxxx xxx xxxxxx xxx\n\nXx xxx xxxxxxx xxx xxxxx xxxxx xxx xxxxxxxx (xxx xxx xxx't xxxx xxxxx xx xxxxxxxxxx), xxx xxx xxxxxx xxxx xxxxx xxx xx xxx xxxx xxxxxxxxx xxxx --xxxxx\n\nxxx xx <xxxxXxXxxx>\n\nXxx xxx xxxx xxxxxx xxxxxx xxxxxxxxxxx xxxx -x, xx xxxx xxxxxxx xxxx xxxxx Xxxx xxxxxxxx\n\nxxx xx -x <xxxxXxXxxxxxxxx>\nxxx xx $(xxxx -xxxx '*.xxxxx')\n\nXxxxx xxxxxxxx xxx xxxxx, xxx xxx xxxxxx, xxxx --xxxxx xxxxxx\n\nxxx xxxxxx --xxxxx -X XXXX # xxx -X xxxxxx xx xx xxx xxx xxxx xxxxxx xxxxxxx\n\nXxxx xxxx xxxxxxx xxxx xxxxxx xxxxx xxxxxx xxxxxxxx xxx xxxxx xxxxx, xx, xxxxx xxxxx xxxx xxxxx xx xxxx xx xxxx xxx xxxx xxxx xx xxxxxxx xxxx xxxx xxxxx .xxx xxxxxxxxxx xx XX.\n\nXxx xxxxxxx xxxxxx xxx xxxxxx\n\nXxx xxx xxxxx xxx xxxx xxxxxxxx of xxx xxxxx xxxxxxxx xxx xxxx xxxxx xxx xxxx xxxx xxx -x xxxxxx, xxx xx xx xxx xxxxxxxxxxx xxxxx xx xxxxxxxxxx xxx xxxxxx xxxxxxx xxxx a xxxxxxxxx xxxxxx (xx xxx xxxx xxxx xxxxxxxxxx).\n\nXxxxxxx, xxx xxxx xx xx xxx xxxxxx xxxxxxx --xxxxx (xxxxxxxx xxxx xxxxx -xxxxx`: Xxxx xxxxxx xxxxxxxx xxx xxxxxxx xx xxx xxxx xxxxxx).",
+        "html": "<p>Xxxxx xxx xxx xxxx xxxxxxxxx</p>\n\n<p><strong>Xxx xxxxx't xxxxxx xxx xxxxxx xxx</strong></p>\n\n<p>Xx xxx xxxxxxx xxx xxxxx xxxxx xxx xxxxxxxx (xxx xxx xxx't xxxx xxxxx xx xxxxxxxxxx), xxx xxx xxxxxx xxxx xxxxx <code>xxx xx</code> xxx xxxx xxxxxxxxx xxxx <code>--xxxxx</code></p>\n\n<pre><code>xxx xx &lt;xxxxXxXxxx&gt;\n</code></pre>\n\n<p>Xxx xxx xxxx xxxxxx xxxxxx xxxxxxxxxxx xxxx <code>-x</code>, xx xxxx xxxxxxx xxxx xxxxx <a href=\"http://en.wikipedia.org/wiki/Bash_%28Unix_shell%29\">Xxxx</a> xxxxxxxx</p>\n\n<pre><code>xxx xx -x &lt;xxxxXxXxxxxxxxx&gt;\nxxx xx $(xxxx -xxxx '*.xxxxx')\n</code></pre>\n\n<p>Xxxxx xxxxxxxx xxx xxxxx, xxx xxx xxxxxx, xxxx <strong>--xxxxx</strong> xxxxxx</p>\n\n<pre><code>xxx xxxxxx --xxxxx -X XXXX # xxx -X xxxxxx xx xx xxx xxx xxxx xxxxxx xxxxxxx\n</code></pre>\n\n<p>Xxxx xxxx xxxxxxx xxxx xxxxxx xxxxx xxxxxx xxxxxxxx xxx xxxxx xxxxx, xx, xxxxx xxxxx xxxx xxxxx xx xxxx xx xxxx xxx xxxx xxxx xx xxxxxxx xxxx xxxx xxxxx .xxx xxxxxxxxxx xx XX.</p>\n\n<p><strong>Xxx xxxxxxx xxxxxx xxx xxxxxx</strong></p>\n\n<p>Xxx xxx xxxxx xxx xxxx xxxxxxxx of xxx xxxxx xxxxxxxx xxx xxxx xxxxx <code>xxx xxxx</code> xxxx xxx <code>-x</code> xxxxxx, xxx xx xx <strong>xxx xxxxxxxxxxx</strong> xxxxx xx xxxxxxxxxx xxx xxxxxx xxxxxxx xxxx a xxxxxxxxx xxxxxx (xx xxx xxxx xxxx xxxxxxxxxx).</p>\n\n<p>Xxxxxxx, xxx xxxx xx xx xxx xxxxxx xxxxxxx <code>--xxxxx</code> (xxxxxxxx xxxx xxxxx -xxxxx`: Xxxx xxxxxx xxxxxxxx xxx xxxxxxx xx xxx xxxx xxxxxx).</p>",
+        "publishedAt": "2014-09-12T14:51:01Z",
+        "likes": "150",
+        "url": "https://stackoverflow.com/a/25811069"
+      },
+      {
+        "id": "74748681",
+        "author": {
+          "name": "Xxxx Xxxxx",
+          "url": "https://stackoverflow.com/users/10912122"
+        },
+        "text": "Xxxxxxx a xxxxxx xxx xxxxx xxxx xxx xxxxxxxxxxx xxxxxxx\n\nxxx xxxxx --xxxx XXXX~1\n\nXxxx xxx xxxxxx, xxx xxxx xxxx xxxxxxx\n\nxxx xxxxx XXXX~1\n\nXxxx xxxx xxxxx, xxx xxxxx xxx xxxxxxx xxxx xxxxxxxxxxxxx\n\nxxx xxxxx --xxxx XXXX~1\n\nXxxxxxxxx a xxxxxx xxx xxxxxxxxx\n\nxxx xxxxxx # Xx xxxx xxx xx",
+        "html": "<ul>\n<li><p><strong>Xxxxxxx a xxxxxx xxx xxxxx xxxx xxx xxxxxxxxxxx xxxxxxx</strong></p>\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n</li>\n<li><p><strong>Xxxx xxx xxxxxx, xxx xxxx xxxx xxxxxxx</strong></p>\n<pre><code>xxx xxxxx XXXX~1\n</code></pre>\n</li>\n<li><p><strong>Xxxx xxxx xxxxx, xxx xxxxx xxx xxxxxxx xxxx xxxxxxxxxxxxx</strong></p>\n<pre><code>xxx xxxxx --xxxx XXXX~1\n</code></pre>\n</li>\n<li><p><strong>Xxxxxxxxx a xxxxxx xxx xxxxxxxxx</strong></p>\n<pre><code>xxx xxxxxx # Xx xxxx xxx xx\n</code></pre>\n</li>\n</ul>",
+        "publishedAt": "2022-12-09T22:05:15Z",
+        "likes": "143",
+        "url": "https://stackoverflow.com/a/74748681"
+      },
+      {
+        "id": "18516122",
+        "author": {
+          "name": "Xxxxx Xxxxxxxxx",
+          "url": "https://stackoverflow.com/users/63550"
+        },
+        "text": "Xxx XxxxxxXxxx (xxxxxxxxx xxxx xxx Xxx) xx xxx xxxx xxxxxxx xxx xxxx. Xxx xxx xxxxxxxx xxxxx xx xxxxxxxx xx xxxxx xxxxxxxx xx.",
+        "html": "<p>Xxx <a href=\"https://www.atlassian.com/software/sourcetree/overview\">XxxxxxXxxx</a> (xxxxxxxxx xxxx xxx Xxx) xx xxx xxxx xxxxxxx xxx xxxx. Xxx xxx xxxxxxxx xxxxx xx xxxxxxxx xx xxxxx xxxxxxxx xx.</p>",
+        "publishedAt": "2013-08-29T16:18:39Z",
+        "likes": "137",
+        "url": "https://stackoverflow.com/a/18516122"
+      }
+    ],
+    "replyCount": "105",
+    "tags": [
+      "xxx",
+      "xxxxxxx-xxxxxxx",
+      "xxx-xxxxxx",
+      "xxxx",
+      "xxx-xxxxx"
+    ]
+  },
+  "chain": [
+    {
+      "id": "stackoverflow.com/question",
+      "version": 1,
+      "sha256": "f5fbe7494390c68214ff42d0e25be00bdcbc646716e377f3194239e3d6851aa4"
+    }
+  ]
+}

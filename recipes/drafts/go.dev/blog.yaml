@@ -1,0 +1,55 @@
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from fixtures-private/go.dev/blog/go1.22.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: go.dev/blog
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - go.dev
+    include:
+    - ^/blog/
+  page:
+    any:
+    - exists: div.Article
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: div.Article > h1:not(.small)
+      take: TAKE_TEXT
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div.Article > div.markdown
+      take: TAKE_HTML
+  expect: true
+- path: body_text
+  candidates:
+  - css:
+      selector: div.Article > div.markdown
+      take: TAKE_BLOCK_TEXT
+  expect: true
+# Review (2026-10-13): byline and date come from p.author ("Name[, Name and Name], on behalf of the Go team<br>D Month YYYY").
+- path: authors
+  candidates:
+  - css:
+      selector: div.Article > p.author
+      take: TAKE_BLOCK_TEXT
+    pipe:
+    - regex: { pattern: "^([^\\n]+)", group: 1 }
+    - regex_replace: { pattern: "\\s+and\\s+", with: ", " }
+    - split: { pattern: "\\s*,\\s*" }
+    # Names are capitalized; the trailing "on behalf of the Go team" clause is not (case survives redaction).
+    - filter: { pattern: "^[A-Z]" }
+- path: published_at
+  candidates:
+  - css:
+      selector: div.Article > p.author
+      take: TAKE_TEXT
+    pipe:
+    - regex: { pattern: "(\\d{1,2} [A-Z][a-z]+ \\d{4})", group: 1 }
+    - datetime: { formats: ["%d %B %Y"] }

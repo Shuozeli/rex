@@ -1,0 +1,280 @@
+{
+  "recipe": {
+    "id": "xueqiu.com/stock",
+    "version": 1,
+    "sha256": "f473410c3b1009055b45fc04305a8ba7461a2a846d5b56a572eaed69a4af0b4e"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://www.xueqiu.com/S/SH600519",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:37:15Z",
+  "extractTime": "2026-10-15T01:37:15Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "pe_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "eps",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "dividend_yield",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "xueqiu.com/stock@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "xueqiu.com/stock@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "600519",
+    "name": "字字字字",
+    "type": "INSTRUMENT_TYPE_STOCK",
+    "exchange": "XX",
+    "currency": "XXX",
+    "price": "1297.2",
+    "change": "11.2",
+    "changePercent": "0.87",
+    "marketState": "MARKET_STATE_OPEN",
+    "previousClose": "1286",
+    "open": "1286",
+    "dayLow": "1282",
+    "dayHigh": "1297.6",
+    "yearLow": "1151.01",
+    "yearHigh": "1531.75",
+    "volume": "534600",
+    "marketCap": "1620000000000",
+    "peRatio": "19.91",
+    "eps": "65.14",
+    "dividendYield": "4.01",
+    "stats": [
+      {
+        "name": "最高",
+        "value": "1297.60"
+      },
+      {
+        "name": "今开",
+        "value": "1286.00"
+      },
+      {
+        "name": "涨停",
+        "value": "1414.60"
+      },
+      {
+        "name": "成交量",
+        "value": "5346手"
+      },
+      {
+        "name": "最低",
+        "value": "1282.00"
+      },
+      {
+        "name": "昨收",
+        "value": "1286.00"
+      },
+      {
+        "name": "跌停",
+        "value": "1157.40"
+      },
+      {
+        "name": "成交额",
+        "value": "6.91亿"
+      },
+      {
+        "name": "量比",
+        "value": "6.81"
+      },
+      {
+        "name": "换手",
+        "value": "0.04%"
+      },
+      {
+        "name": "市盈率(动)",
+        "value": "18.21"
+      },
+      {
+        "name": "市盈率(TTM)",
+        "value": "19.91"
+      },
+      {
+        "name": "字比",
+        "value": "31.15%"
+      },
+      {
+        "name": "振幅",
+        "value": "1.21%"
+      },
+      {
+        "name": "市盈率(静)",
+        "value": "19.70"
+      },
+      {
+        "name": "市净率",
+        "value": "6.45"
+      },
+      {
+        "name": "每股收益",
+        "value": "65.14"
+      },
+      {
+        "name": "股息(TTM)",
+        "value": "52.02"
+      },
+      {
+        "name": "总股字",
+        "value": "12.50亿"
+      },
+      {
+        "name": "总市值",
+        "value": "1.62万亿"
+      },
+      {
+        "name": "每股净字字",
+        "value": "200.99"
+      },
+      {
+        "name": "股息率(TTM)",
+        "value": "4.01%"
+      },
+      {
+        "name": "流通股",
+        "value": "12.50亿"
+      },
+      {
+        "name": "流通值",
+        "value": "1.62万亿"
+      },
+      {
+        "name": "52周最高",
+        "value": "1531.75"
+      },
+      {
+        "name": "52周最低",
+        "value": "1151.01"
+      },
+      {
+        "name": "字字字",
+        "value": "字"
+      },
+      {
+        "name": "货币单位",
+        "value": "XXX"
+      }
+    ],
+    "url": "https://www.xueqiu.com/S/SH600519"
+  },
+  "chain": [
+    {
+      "id": "xueqiu.com/stock",
+      "version": 1,
+      "sha256": "f473410c3b1009055b45fc04305a8ba7461a2a846d5b56a572eaed69a4af0b4e"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# Yahoo web results -> rex.schema.search.v1.SearchResults (decisions.md U35). Organic results are #web .algo;
+# the rendered page links straight to the destination. A snippet may start with the page date
+# ("Sep 8, 2026 · ..."), which becomes published_at. Related searches are an experiment and usually absent.
+id: search.yahoo.com/search
+version: 1
+schema: rex.schema.search.v1.SearchResults
+match:
+  urls:
+    hosts: ["search.yahoo.com"]
+    include: ["^/search"]
+  page:
+    all:
+      - exists: "#web .algo"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: p }
+
+  - path: engine
+    candidates:
+      - constant: { value: "yahoo" }
+
+  - path: results
+    expect: true
+    each: "#web .algo"
+    each_index: rank
+    fields:
+      - path: type
+        candidates:
+          - constant: { value: "RESULT_TYPE_ORGANIC" }
+      - path: title
+        candidates:
+          - css: { selector: "h3" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: url
+        candidates:
+          - css: { selector: "a[href^=http]", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: display_url      # "<site name>https://developer.mozilla.org › en-US › docs"
+        candidates:
+          - css: { selector: "a > div > span" }
+        pipe:
+          - filter: { pattern: "https?://" }
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "(https?://.*)$", group: 1 }
+      - path: snippet
+        candidates:
+          - css: { selector: ".compText p" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "^[A-Z][a-z]{2} \\d{1,2}, \\d{4} · ", with: "" }
+      - path: published_at
+        candidates:
+          - css: { selector: ".compText p" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "^([A-Z][a-z]{2} \\d{1,2}, \\d{4}) · ", group: 1 }
+          - datetime: { formats: ["%b %d, %Y"] }

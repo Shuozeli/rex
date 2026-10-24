@@ -1,0 +1,27 @@
+id: conformance/c03-urls-transforms
+version: 1
+schema: rex.schema.article.v1.Article
+fields:
+  - path: canonical_url
+    candidates: [ { link: { rel: canonical } } ]
+    pipe: [ { url: { strip_query: ["utm_*", "fbclid"] } } ]
+  - path: title
+    candidates: [ { meta: { key: "og:title" } } ]
+    pipe: [ { strip: { suffix: " | Conformance Site" } } ]
+  - path: subtitle
+    candidates: [ { css: { selector: ".sub" } } ]
+    pipe: [ { regex_replace: { pattern: "^\\[Updated\\]\\s*", with: "" } } ]
+  - path: image
+    candidates: [ { css: { selector: "img.hero", take: TAKE_ATTRIBUTE, attribute: srcset } } ]
+  - path: tags
+    candidates: [ { css: { selector: ".tags" } } ]
+    pipe: [ { split: { pattern: "\\s*/\\s*" } }, { unique: {} }, { slice: { start: 0, end: 3 } } ]
+  - path: section
+    candidates: [ { url: { part: URL_PART_PATH_SEGMENT, segment: 0 } } ]
+  - path: language
+    candidates: [ { constant: { value: "en" } } ]
+  - path: summary
+    candidates: [ { css: { selector: ".lede" } } ]
+    pipe: [ { truncate: { chars: 20 } }, { trim: {} } ]
+  - path: body_text
+    candidates: [ { css: { selector: ".body" } } ]

@@ -1,0 +1,46 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/nami.org/_/a2.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: nami.org/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - nami.org
+    include:
+    - ^/[a-z0-9-]+/?$
+  page:
+    any:
+    - json_ld_type:
+        types:
+        - WebPage
+        - Article
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: h1.wp-block-post-title
+      take: TAKE_TEXT
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div.entry-content
+      take: TAKE_HTML
+      exclude:
+      - .wp-block-navigation
+      - .wp-block-nami-menu-display
+      - .wp-block-nami-state-selector
+  expect: true
+- path: body_text
+  candidates:
+  - css:
+      selector: div.entry-content
+      take: TAKE_BLOCK_TEXT
+      exclude:
+      - .wp-block-navigation
+      - .wp-block-nami-menu-display
+      - .wp-block-nami-state-selector

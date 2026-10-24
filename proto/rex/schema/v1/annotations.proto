@@ -30,6 +30,10 @@ message RecordOptions {
   repeated string schema_org_also = 2;
   // Field names; if every one of them is missing the record is EMPTY.
   repeated string primary = 3;
+  // Schema.org fallback order (decisions.md U36): when a page declares several types that map to schemas
+  // with a base recipe, the highest rank wins; ties keep document order. Specific entities (Recipe, Event,
+  // JobPosting, Product, ...) rank 20; pages' incidental blocks (FAQPage) rank below 0; 0 is the default.
+  int32 fallback_rank = 4;
 }
 
 // Field-level semantics.

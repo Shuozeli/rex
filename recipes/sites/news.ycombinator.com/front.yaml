@@ -1,7 +1,7 @@
 # Listing page -> rex.schema.feed.v1.Feed. Replaces myfeed's JS hackernews recipe with pure data.
 # Inside `each`, an empty selector means the item element itself; a leading combinator is relative to it.
 id: news.ycombinator.com/front
-version: 1
+version: 2
 schema: rex.schema.feed.v1.Feed
 match:
   urls:
@@ -41,3 +41,11 @@ fields:
           - css: { selector: "+ tr a[href^='item?id=']:last-child" }
         pipe:
           - regex: { pattern: "(\\d+)\\s*comment", group: 1 }
+
+      - path: author
+        candidates:
+          - css: { selector: "+ tr a.hnuser" }
+
+      - path: published_at
+        candidates:
+          - css: { selector: "+ tr span.age", take: TAKE_ATTRIBUTE, attribute: title }

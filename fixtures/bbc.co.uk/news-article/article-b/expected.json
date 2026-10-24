@@ -1,0 +1,99 @@
+{
+  "recipe": {
+    "id": "bbc.co.uk/news-article",
+    "version": 2,
+    "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.bbc.co.uk/news/articles/cr78pe09y05xo?at_medium=RSS&at_campaign=rss",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:33:51Z",
+  "extractTime": "2026-10-13T03:33:51Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bbc.co.uk/news-article@2"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 8333,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.bbc.co.uk/news/articles/cr78pe09y05xo",
+    "title": "XX xxxxxxxx xxxxx xx xx 'xxxxxx' XX'x xxxxx xxxxxxxx xxxx xx xxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxxx Xxxxx"
+      },
+      {
+        "name": "Xxxx Xxxxxxx"
+      }
+    ],
+    "publishedAt": "2026-10-12T12:11:41.141Z",
+    "updatedAt": "2026-10-12T15:03:42.508Z",
+    "section": "Technology",
+    "summary": "Xxxxxxxx Xxxxxxx xxxx xxx xxxxxxxxxx xxxx xxx xxxxxxxx XX xx xxxxxxxxxx xxx XX xxxxxxx xxxxx xxxxxxx.",
+    "image": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/dd68/live/6a2ab470-c646-11f1-bc2e-018d645d8d21.jpg",
+    "bodyHtml": "<p><b>Xxx XX'x XX xxxxxxxx xxx xxxxxx xx xx \"xxxxxx, xx xxx xxxxxxxxxx\" xxx xxxxxxx'x xxxxx xxxxxxxx xxxx xx xxxx point xx xxxxxxxx.</b></p><p>Xxxxxxxx xx a xxxxx xxxxxxxxxx, Xxxxxxxx Xxxxxxx xxxxxxx xx <a href=\"https://www.bbc.co.uk/news/articles/c6vgy0333dppo\">xx xxxxxxxx</a> xx a xxxxx XxxxXX xxxxx xxxxxxx xx Xxxxxxxxxx xxxxxxxxxx xxxxxxx xx June.</p><p>Xx xxxx xxxxx xx xxxxxxx xxxxxxx xxx xxxxx xx xxxx xxxx xxxxxxxx xx xxx xxxxxx, xxx xxxxxxxx xxxxxx xxxxx \"xxxxxxx xx\".</p><p>Xxxxxxx xxxx xxx xxxxxxxxxx xxxxx xx xxx xxxxxxxx XX xx xxxx xx xxxxxx xxx xxxxxx, xx xx xxx xxx xxx xxx xxxxxxxxxx xxxxx xx xxxxxxx xxx xxx xxxxxxx xxxxxx xxxxxxxxx.</p><p>Xxx xxxxxxxx xxxx xxx xxxx xxxxx xxxxx xx xxx xxxxxxxx xxxxxx xxxxx xxxx xxxxxx xxxxxxxx xxx xxx xxxx 1,000 xxxxxxxxxxxxxxx xxxxxx xxxxxxxxxx xxxxxxx.</p><p>Xx xxxx xxx xxxxxxx xx xxx xxxxxxx xxxxxxxxx xxxxxx xxx xxxxx'x xxxx xxxxxxxx XX xxxxxxx xxx: \"Xxxxxx xxxx xxxx xxxxxxxxxx xxxx xx xxxxxxx xxxxxxx. Xxxxxxxxxxx xxxxxxxxxx xxxxxxxxx. Xxx xx xxx xxxxxx xxxxxxxxxx xxxxxxx xxx xxxxx, xx xxx xxxxxxx xxx xxxxxx.\"</p><p>Xx xxx xxxxxx, Xxxxxxx xxxx xxxxxxxxx xxxxxxxxxx xx xxx XX'x XX xxxxxxxx, xxx XX Xxxxxxxx Xxxxxxxxx (XXXX), xxxx xxxxxxxxxx \"xxxxxxxx xxxxxxxxxxx\" xx xxx xxxxxx xxxxxxxxxx xx xxxxxxxx XX xxxxxx xx \"xxxxxxxx xxxxx xxxxx\" xxx \"xx xxxx xxxxxx xxxxxxxxxx xx xxxx xxxx xxxxxx xxxx\".</p>\n<h2>XX xxxxxxx</h2>\n<p>XXXX xxxxx xxxxxxxxxx xxxxx xx xxx xxxxxx xxxxxxxx XX xxxxxx, xxxxx xx xxxxx xxxxxx xxxxxxx, xxxxxxx xxxxx xx xxx xxxxxxxxxxx xx November 2023.</p><p>Xxx xx xxx <a href=\"https://www.politico.com/news/2026/09/24/white-house-asks-openai-and-anthropic-to-hold-new-models-from-uk-testers-until-u-s-review-01091769\">xxxxxxxx xx September, xxxxxxxx</a> xxxx xxx Xxxxx Xxxxx xxx xxxxx xxxx xxxxxxx XX xxxx xxx xx share xxxxx xxxxxx xxxx xxx xxxxxxxx xxxxxxxxxxxx xxxxx xxx xxx xxxxx xxxx xxxxxxxxx.</p><p>Xxx xxxx xxx xxxxxx xx xxx xxxx xx a xxxx xx XXXX - xxxxx xxx xxxx xxxxxxxxxx xx xxx XX xxxxxxxxxx xxx xxx xxxxxxxx xxx xxxxxxxxx xxxx, xxxxxxxxxxxx xxx xxxxxxxxxxxxx XX xxxxxxx. </p><p>Xxxxxxxxx xxxxxxxxx Xxxx Xxxxx <a href=\"https://www.bbc.co.uk/news/articles/c6rmy7zmvx3lo\">xxxxxxxx xxxx xxx XXX</a> xxx xxxxxxxxx xxx xxxxxx xxxxxx xxx XX xx xxx xxxxxxx xxxx-xxxxxx xx xxxxx xxxxxxx xxxxxx xxxxxxxxxx.</p><p>Xx Monday, Xxxxxxx xxxx xxxx xx xxx xxxx xxx weeks, xxx xxxxxxxxxx xxx xxxxxx xxxx xxx XX \"xx xxxxxx xxxxxx xxx Xxxxxxx'x XXXX xx xxx xxxx xxxxxxxx XX xxxxxx xxxxxx xxxx xxx xxxxxxxx\".</p><p>Xx xxxx xxxx xxx XX xxxxx xxxx xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxx xxxxxxx xxx Xxxxx Xxxxxxxx xxx Xxxxxxxxxx xxxx, xxxxxxxxxxxx xx xxx xxxxxxx XX xxxxxxxxx xxx xx xxxxxxxxxx xxx xxxxxxxx.</p><p>Xxxxx Xxxx, XX Xxxxxx Xxxxxx Xxxx xx xxx Xxx Xxxxxxxx Xxxxxxxxx, xxxx xxx xxxxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxx xx \"xxxx xxxxxx\".</p><p>\"Xxxxxxxx xxxxxxxxxxx xxxx xx 'xxxxxxxxxx', xxxxxxxxxxxxx xxx Xxxxx Xxxx 'xxxxxxxx' xxx xxxx-xxxx xxxxxxxxx 'xxxxxx xx', xxxx xxx xxxxxx xx xxxx xxxxx,\" xxx xxxx.</p><p>\"Xxxxx xx xx xxx xxxxxxxxxx xxxxx, xx xxxxxxxxx xxx xx xxxxxxxxxx xx XX xxxxxxxxxx.\"</p>\n<h2>Xxxxxxxxxx</h2>\n<p>Xxx xxxxxxxxxxxx xxxxxxx a xxxxxx xx xxxxxxxxx xxxxxxxxx XX xxxxxx xxxxxx <a href=\"https://www.bbc.co.uk/news/articles/c2el319vzr3o\">xxxxx xxxxx xxxx xx XxxxXX</a> xxx <a href=\"https://www.bbc.co.uk/news/articles/cz7dl7w8y7po\">Xxxxxxxxx</a> xxxxxx xxxxxxx xxxxx xxxxxxx xxx xxxxxxx xxxx xxxxxxxx xxxxxxx.</p><p>Xx 9 September, Xxxx Xxxxxxxx, a xxx xxxxxx xxxxxxxxxx xx Xxxxxxxxx, <a href=\"https://www.bbc.co.uk/news/articles/ckgwy1k42w4o\">xxxxxx</a> xx a xxxx xx X xxxx XX xx xxxxxxxxx xx xxxxxxx xx xxxxxxxx xxxxx xx a xxxxxxx xxxx 10% xxxxxx xx \"xxxxx xxxx xxx xxxxxx\" xxxxxx xxx xxxx xxxxxx.</p><p>Xxx xxxxxx xx xxx XX-xxxxx XX xxxxxx xxxx xx Xxxxxxxxx, XxxxXX xxx Xxxxxx XxxxXxxx xxxx xxx <a href=\"https://www.bbc.co.uk/news/articles/c14dpgm0rg4o\">xxxxxx xxx xxxx xx xx XX xxxxxxxxxxx xxxxxxxx</a>.</p><p>Xxxxxxx, xxxxx xxx xxxxxxxxx xx xxxxxx xxxxxx xxxxx xx xxxxx xx xxxxxxxx xxx xxxxxxxxx xxx xxxxx xxxxxxxxxx. Xxxxxxxxx Xxxxx xxx xxxxxx xxx xxx xxxxxx xx xxxxxxxx xxxxxx xx xxxx XX xxxxx xx xxx xxxx xxx xx Xxxxxxx xxxxxx.</p><p>Xxxxxxxx xx xxx XXX xxxxxxxxx xxx xxxxxxxxxxxx, Xxxxxxx xxxx xxx XX xxxxxx \"xx xx xxxxxxxxx... xx a xxxxxxx\" xxxx xxxxxxxxxx xx xx xxx xxx xxxxxxxxxx xxx xxxx xxxxxxx XX xxxxx xxxxx xx XX xxxxx. </p><p>\"Xx xxxx xxx xxxxxxxxxx, xx xxxx xxx xxxxx, xxx xx xxxx a xxxxxxxxxx xxxx xx xxxxx xx xxx xxxx xx xxx Xxxxxxx xxxxxx xx xxxxxx xxxx xx xxx't just xxxx xxxx xxx xxx xxxxxxx xx xxxxxxx xxxxx xxxx,\" xx xxxx.</p><p>\"Xxxx xx xxx xxxxxxx xx xx xxxxxxxxxx xxx xxxxx xxxxxxx xxx xxx Xxxxxxx xxxxxx, xxxxx xxx xxx xxx xxx xxxxxx.\"</p><p>Xx xxx xxxxxxxx xx xxxxxxx xxx XX xxxxxx xxxx xxx xxx xxxxxxxxx XX xxxxxxxx xxxxx, xxx xxxxxxxx xxxx xx xxx \"xxxxxxx\" xx xxxxxxxx Xxxxxxx xxxxxxxxxxx, xxxxx xxxxx \"xxxxxxx xxx xxxxx xxx xx xxxxxxxxxxx\".</p><p>\"Xx'x Xxxxxxx xxxxx xxxxx xxxx xxxx. Xx'x Xxxxxxx xxxxxx xxxxxxx xx just xxxxxxxx, xxxxxxx xx xxxxxx like xxxx xxxxxxxxx, xxxxxxxxx xxxxxxxxx, xxxxxxxx xxxxxx xxx xxx xxxxx xx xxxxxxxx, xxxxxxxxx XX, xxxxxxxx xxx xxxxx-xxxxxxxx,\" xx xxxx.</p>\n<p><a href=\"https://www.bbc.co.uk/newsletters/zxh6cxs\">Xxxx xx xxx xxx Xxxx Xxxxxxx xxxxxxxxxx</a> xx xxxxxx xxx xxxxx'x xxx xxxx xxxxxxx xxx xxxxxx. <a href=\"https://cloud.email.bbc.com/techdecoded-newsletter-signup\">Xxxxxxx xxx XX? Xxxx xx xxxx</a>.</p>",
+    "bodyText": "Xxx XX'x XX xxxxxxxx xxx xxxxxx xx xx \"xxxxxx, xx xxx xxxxxxxxxx\" xxx xxxxxxx'x xxxxx xxxxxxxx xxxx xx xxxx point xx xxxxxxxx.\n\nXxxxxxxx xx a xxxxx xxxxxxxxxx, Xxxxxxxx Xxxxxxx xxxxxxx xx xx xxxxxxxx xx a xxxxx XxxxXX xxxxx xxxxxxx xx Xxxxxxxxxx xxxxxxxxxx xxxxxxx xx June.\n\nXx xxxx xxxxx xx xxxxxxx xxxxxxx xxx xxxxx xx xxxx xxxx xxxxxxxx xx xxx xxxxxx, xxx xxxxxxxx xxxxxx xxxxx \"xxxxxxx xx\".\n\nXxxxxxx xxxx xxx xxxxxxxxxx xxxxx xx xxx xxxxxxxx XX xx xxxx xx xxxxxx xxx xxxxxx, xx xx xxx xxx xxx xxx xxxxxxxxxx xxxxx xx xxxxxxx xxx xxx xxxxxxx xxxxxx xxxxxxxxx.\n\nXxx xxxxxxxx xxxx xxx xxxx xxxxx xxxxx xx xxx xxxxxxxx xxxxxx xxxxx xxxx xxxxxx xxxxxxxx xxx xxx xxxx 1,000 xxxxxxxxxxxxxxx xxxxxx xxxxxxxxxx xxxxxxx.\n\nXx xxxx xxx xxxxxxx xx xxx xxxxxxx xxxxxxxxx xxxxxx xxx xxxxx'x xxxx xxxxxxxx XX xxxxxxx xxx: \"Xxxxxx xxxx xxxx xxxxxxxxxx xxxx xx xxxxxxx xxxxxxx. Xxxxxxxxxxx xxxxxxxxxx xxxxxxxxx. Xxx xx xxx xxxxxx xxxxxxxxxx xxxxxxx xxx xxxxx, xx xxx xxxxxxx xxx xxxxxx.\"\n\nXx xxx xxxxxx, Xxxxxxx xxxx xxxxxxxxx xxxxxxxxxx xx xxx XX'x XX xxxxxxxx, xxx XX Xxxxxxxx Xxxxxxxxx (XXXX), xxxx xxxxxxxxxx \"xxxxxxxx xxxxxxxxxxx\" xx xxx xxxxxx xxxxxxxxxx xx xxxxxxxx XX xxxxxx xx \"xxxxxxxx xxxxx xxxxx\" xxx \"xx xxxx xxxxxx xxxxxxxxxx xx xxxx xxxx xxxxxx xxxx\".\n\nXX xxxxxxx\n\nXXXX xxxxx xxxxxxxxxx xxxxx xx xxx xxxxxx xxxxxxxx XX xxxxxx, xxxxx xx xxxxx xxxxxx xxxxxxx, xxxxxxx xxxxx xx xxx xxxxxxxxxxx xx November 2023.\n\nXxx xx xxx xxxxxxxx xx September, xxxxxxxx xxxx xxx Xxxxx Xxxxx xxx xxxxx xxxx xxxxxxx XX xxxx xxx xx share xxxxx xxxxxx xxxx xxx xxxxxxxx xxxxxxxxxxxx xxxxx xxx xxx xxxxx xxxx xxxxxxxxx.\n\nXxx xxxx xxx xxxxxx xx xxx xxxx xx a xxxx xx XXXX - xxxxx xxx xxxx xxxxxxxxxx xx xxx XX xxxxxxxxxx xxx xxx xxxxxxxx xxx xxxxxxxxx xxxx, xxxxxxxxxxxx xxx xxxxxxxxxxxxx XX xxxxxxx.\n\nXxxxxxxxx xxxxxxxxx Xxxx Xxxxx xxxxxxxx xxxx xxx XXX xxx xxxxxxxxx xxx xxxxxx xxxxxx xxx XX xx xxx xxxxxxx xxxx-xxxxxx xx xxxxx xxxxxxx xxxxxx xxxxxxxxxx.\n\nXx Monday, Xxxxxxx xxxx xxxx xx xxx xxxx xxx weeks, xxx xxxxxxxxxx xxx xxxxxx xxxx xxx XX \"xx xxxxxx xxxxxx xxx Xxxxxxx'x XXXX xx xxx xxxx xxxxxxxx XX xxxxxx xxxxxx xxxx xxx xxxxxxxx\".\n\nXx xxxx xxxx xxx XX xxxxx xxxx xxxx xxxx xxxxxxxx xxxxxxxx xxxxxxxxxxx xxxxxxx xxx Xxxxx Xxxxxxxx xxx Xxxxxxxxxx xxxx, xxxxxxxxxxxx xx xxx xxxxxxx XX xxxxxxxxx xxx xx xxxxxxxxxx xxx xxxxxxxx.\n\nXxxxx Xxxx, XX Xxxxxx Xxxxxx Xxxx xx xxx Xxx Xxxxxxxx Xxxxxxxxx, xxxx xxx xxxxxxxxxxxx xxxxxxxxx xxx xxxxxxxxxx xx \"xxxx xxxxxx\".\n\n\"Xxxxxxxx xxxxxxxxxxx xxxx xx 'xxxxxxxxxx', xxxxxxxxxxxxx xxx Xxxxx Xxxx 'xxxxxxxx' xxx xxxx-xxxx xxxxxxxxx 'xxxxxx xx', xxxx xxx xxxxxx xx xxxx xxxxx,\" xxx xxxx.\n\n\"Xxxxx xx xx xxx xxxxxxxxxx xxxxx, xx xxxxxxxxx xxx xx xxxxxxxxxx xx XX xxxxxxxxxx.\"\n\nXxxxxxxxxx\n\nXxx xxxxxxxxxxxx xxxxxxx a xxxxxx xx xxxxxxxxx xxxxxxxxx XX xxxxxx xxxxxx xxxxx xxxxx xxxx xx XxxxXX xxx Xxxxxxxxx xxxxxx xxxxxxx xxxxx xxxxxxx xxx xxxxxxx xxxx xxxxxxxx xxxxxxx.\n\nXx 9 September, Xxxx Xxxxxxxx, a xxx xxxxxx xxxxxxxxxx xx Xxxxxxxxx, xxxxxx xx a xxxx xx X xxxx XX xx xxxxxxxxx xx xxxxxxx xx xxxxxxxx xxxxx xx a xxxxxxx xxxx 10% xxxxxx xx \"xxxxx xxxx xxx xxxxxx\" xxxxxx xxx xxxx xxxxxx.\n\nXxx xxxxxx xx xxx XX-xxxxx XX xxxxxx xxxx xx Xxxxxxxxx, XxxxXX xxx Xxxxxx XxxxXxxx xxxx xxx xxxxxx xxx xxxx xx xx XX xxxxxxxxxxx xxxxxxxx.\n\nXxxxxxx, xxxxx xxx xxxxxxxxx xx xxxxxx xxxxxx xxxxx xx xxxxx xx xxxxxxxx xxx xxxxxxxxx xxx xxxxx xxxxxxxxxx. Xxxxxxxxx Xxxxx xxx xxxxxx xxx xxx xxxxxx xx xxxxxxxx xxxxxx xx xxxx XX xxxxx xx xxx xxxx xxx xx Xxxxxxx xxxxxx.\n\nXxxxxxxx xx xxx XXX xxxxxxxxx xxx xxxxxxxxxxxx, Xxxxxxx xxxx xxx XX xxxxxx \"xx xx xxxxxxxxx... xx a xxxxxxx\" xxxx xxxxxxxxxx xx xx xxx xxx xxxxxxxxxx xxx xxxx xxxxxxx XX xxxxx xxxxx xx XX xxxxx.\n\n\"Xx xxxx xxx xxxxxxxxxx, xx xxxx xxx xxxxx, xxx xx xxxx a xxxxxxxxxx xxxx xx xxxxx xx xxx xxxx xx xxx Xxxxxxx xxxxxx xx xxxxxx xxxx xx xxx't just xxxx xxxx xxx xxx xxxxxxx xx xxxxxxx xxxxx xxxx,\" xx xxxx.\n\n\"Xxxx xx xxx xxxxxxx xx xx xxxxxxxxxx xxx xxxxx xxxxxxx xxx xxx Xxxxxxx xxxxxx, xxxxx xxx xxx xxx xxx xxxxxx.\"\n\nXx xxx xxxxxxxx xx xxxxxxx xxx XX xxxxxx xxxx xxx xxx xxxxxxxxx XX xxxxxxxx xxxxx, xxx xxxxxxxx xxxx xx xxx \"xxxxxxx\" xx xxxxxxxx Xxxxxxx xxxxxxxxxxx, xxxxx xxxxx \"xxxxxxx xxx xxxxx xxx xx xxxxxxxxxxx\".\n\n\"Xx'x Xxxxxxx xxxxx xxxxx xxxx xxxx. Xx'x Xxxxxxx xxxxxx xxxxxxx xx just xxxxxxxx, xxxxxxx xx xxxxxx like xxxx xxxxxxxxx, xxxxxxxxx xxxxxxxxx, xxxxxxxx xxxxxx xxx xxx xxxxx xx xxxxxxxx, xxxxxxxxx XX, xxxxxxxx xxx xxxxx-xxxxxxxx,\" xx xxxx.\n\nXxxx xx xxx xxx Xxxx Xxxxxxx xxxxxxxxxx xx xxxxxx xxx xxxxx'x xxx xxxx xxxxxxx xxx xxxxxx. Xxxxxxx xxx XX? Xxxx xx xxxx."
+  },
+  "chain": [
+    {
+      "id": "bbc.co.uk/news-article",
+      "version": 2,
+      "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

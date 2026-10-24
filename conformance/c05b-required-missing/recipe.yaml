@@ -1,0 +1,8 @@
+id: conformance/c05b-required-missing
+version: 1
+schema: rex.schema.article.v1.Article
+fields:
+  - path: title
+    candidates: [ { css: { selector: "h1" } } ]
+  - path: body_text
+    candidates: [ { css: { selector: ".body" } } ]

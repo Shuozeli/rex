@@ -1,0 +1,42 @@
+// rex.schema.place.v1: one local business or venue page (restaurant, shop, hotel, clinic). Only specific
+// business types map here; bare Organization and Place do not (they appear on most sites as the publisher).
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.place.v1;
+
+import "rex/schema/common/v1/common.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Business {
+  option (rex.schema.v1.record) = {
+    schema_org: "LocalBusiness"
+    schema_org_also: [
+      "Restaurant", "FoodEstablishment", "CafeOrCoffeeShop", "Bakery", "BarOrPub", "FastFoodRestaurant",
+      "IceCreamShop", "Winery", "Brewery", "Store", "GroceryStore", "ClothingStore", "BookStore",
+      "Hotel", "LodgingBusiness", "Motel", "BedAndBreakfast", "Resort", "MedicalBusiness", "Dentist",
+      "Physician", "Pharmacy", "MedicalClinic", "HealthAndBeautyBusiness", "BeautySalon", "HairSalon",
+      "DaySpa", "AutomotiveBusiness", "AutoRepair", "ProfessionalService", "LegalService", "Attorney",
+      "RealEstateAgent", "FinancialService", "HomeAndConstructionBusiness", "SportsActivityLocation",
+      "ExerciseGym", "EntertainmentBusiness", "TouristAttraction", "Museum"
+    ]
+    primary: ["address", "phone"]
+    fallback_rank: 20
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string description = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  repeated string categories = 3 [(rex.schema.v1.field) = { max_items: 20 }];   // "Bakery", "Cafe"
+  rex.schema.common.v1.PostalAddress address = 4 [(rex.schema.v1.field) = { schema_org: "address" }];
+  rex.schema.common.v1.GeoPoint geo = 5 [(rex.schema.v1.field) = { schema_org: "geo" }];
+  string phone = 6 [(rex.schema.v1.field) = { schema_org: "telephone" }];
+  string website = 7 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];   // the business's own site
+  string url = 8 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];   // this page
+  string price_range = 9 [(rex.schema.v1.field) = { schema_org: "priceRange" }];          // "$$"
+  double rating = 10;
+  int64 review_count = 11;
+  repeated string opening_hours = 12 [(rex.schema.v1.field) = { max_items: 30 }];   // "Mo-Fr 08:00-17:00", as given
+  repeated string cuisines = 13 [(rex.schema.v1.field) = { schema_org: "servesCuisine", max_items: 20 }];
+  repeated string images = 14 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image", max_items: 30 }];
+}

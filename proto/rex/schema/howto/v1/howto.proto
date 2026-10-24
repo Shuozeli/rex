@@ -1,0 +1,71 @@
+// rex.schema.howto.v1: step-by-step pages. Recipe is a cooking recipe; HowTo is any other instructions page
+// (wikiHow, repair guides). Times are whole seconds, converted from ISO 8601 durations ("PT1H15M").
+//
+// Decided 2026-10-14 (decisions.md U36, schema.org bases; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.howto.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/common/v1/common.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Recipe {
+  option (rex.schema.v1.record) = {
+    schema_org: "Recipe"
+    primary: ["ingredients", "steps"]
+    fallback_rank: 20
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string description = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  repeated rex.schema.common.v1.Person authors = 3 [(rex.schema.v1.field) = { schema_org: "author", max_items: 10 }];
+  google.protobuf.Timestamp published_at = 4 [(rex.schema.v1.field) = { schema_org: "datePublished" }];
+  string image = 5 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  uint32 prep_time_seconds = 7;
+  uint32 cook_time_seconds = 8;
+  uint32 total_time_seconds = 9;
+  string yield = 10 [(rex.schema.v1.field) = { schema_org: "recipeYield" }];        // "4 servings", "24 cookies"
+  string category = 11 [(rex.schema.v1.field) = { schema_org: "recipeCategory" }];  // "Dessert"
+  string cuisine = 12 [(rex.schema.v1.field) = { schema_org: "recipeCuisine" }];    // "Italian"
+  repeated string keywords = 13 [(rex.schema.v1.field) = { max_items: 50 }];
+  repeated string ingredients = 14 [(rex.schema.v1.field) = { schema_org: "recipeIngredient", max_items: 200 }];
+  repeated Step steps = 15 [(rex.schema.v1.field) = { max_items: 200 }];
+  double rating = 16;                      // average, usually out of 5
+  int64 rating_count = 17;
+  string calories = 18;                    // as written: "250 kcal"
+}
+
+message HowTo {
+  option (rex.schema.v1.record) = {
+    schema_org: "HowTo"
+    primary: ["steps"]
+    fallback_rank: 20
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string description = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  repeated rex.schema.common.v1.Person authors = 3 [(rex.schema.v1.field) = { schema_org: "author", max_items: 10 }];
+  google.protobuf.Timestamp published_at = 4 [(rex.schema.v1.field) = { schema_org: "datePublished" }];
+  google.protobuf.Timestamp updated_at = 5 [(rex.schema.v1.field) = { schema_org: "dateModified" }];
+  string image = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 7 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  uint32 total_time_seconds = 8;
+  repeated string supplies = 9 [(rex.schema.v1.field) = { max_items: 50 }];
+  repeated string tools = 10 [(rex.schema.v1.field) = { max_items: 50 }];
+  repeated Step steps = 11 [(rex.schema.v1.field) = { max_items: 300 }];
+  double rating = 12;
+  int64 rating_count = 13;
+}
+
+// One instruction. Steps inside a section ("For the sauce") carry the section name.
+message Step {
+  option (rex.schema.v1.record) = { schema_org: "HowToStep", schema_org_also: ["HowToDirection"] };
+
+  string text = 1 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "text", required: true }];
+  string name = 2 [(rex.schema.v1.field) = { schema_org: "name" }];
+  string section = 3;
+  string image = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "image" }];
+  string url = 5 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}

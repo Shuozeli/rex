@@ -1,0 +1,23 @@
+{
+  "urls": [
+    "https://en.wikipedia.org/wiki/Web_scraping",
+    "https://en.wikipedia.org/wiki/Rust_(programming_language)",
+    "https://en.wikipedia.org/wiki/Protocol_Buffers",
+    "https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96",
+    "https://blog.rust-lang.org/2024/11/28/Rust-1.83.0.html",
+    "https://go.dev/blog/go1.22",
+    "https://martinfowler.com/articles/microservices.html",
+    "https://www.paulgraham.com/greatwork.html",
+    "https://simonwillison.net/2024/Dec/31/llms-in-2024/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+  ],
+  "feeds": [
+    { "url": "https://feeds.bbci.co.uk/news/technology/rss.xml", "take": 3 },
+    { "url": "https://www.theguardian.com/technology/rss", "take": 3 },
+    { "url": "https://feeds.npr.org/1019/rss.xml", "take": 2 },
+    { "url": "https://feeds.arstechnica.com/arstechnica/index", "take": 2 },
+    { "url": "https://www.ruanyifeng.com/blog/atom.xml", "take": 2 },
+    { "url": "https://sspai.com/feed", "take": 2 },
+    { "url": "https://blog.cloudflare.com/rss/", "take": 2 }
+  ]
+}

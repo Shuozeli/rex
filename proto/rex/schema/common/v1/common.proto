@@ -1,0 +1,42 @@
+// rex.schema.common.v1: small records shared by the schema.org-based category schemas (decisions.md U36).
+// They are never extraction targets on their own.
+syntax = "proto3";
+
+package rex.schema.common.v1;
+
+import "rex/schema/v1/annotations.proto";
+
+message Person {
+  option (rex.schema.v1.record) = { schema_org: "Person" };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+message Organization {
+  option (rex.schema.v1.record) = { schema_org: "Organization", schema_org_also: ["Corporation"] };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "sameAs" }];
+  string logo = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "logo" }];
+}
+
+// A postal address, split as schema.org PostalAddress does. A page that gives the address as one string fills
+// `text` only.
+message PostalAddress {
+  option (rex.schema.v1.record) = { schema_org: "PostalAddress" };
+
+  string street = 1 [(rex.schema.v1.field) = { schema_org: "streetAddress" }];
+  string locality = 2 [(rex.schema.v1.field) = { schema_org: "addressLocality" }];   // city
+  string region = 3 [(rex.schema.v1.field) = { schema_org: "addressRegion" }];       // state / province
+  string postal_code = 4 [(rex.schema.v1.field) = { schema_org: "postalCode" }];
+  string country = 5 [(rex.schema.v1.field) = { schema_org: "addressCountry" }];      // name or ISO code, as given
+  string text = 6;                                                                    // one-line form
+}
+
+message GeoPoint {
+  option (rex.schema.v1.record) = { schema_org: "GeoCoordinates" };
+
+  double latitude = 1 [(rex.schema.v1.field) = { schema_org: "latitude" }];
+  double longitude = 2 [(rex.schema.v1.field) = { schema_org: "longitude" }];
+}

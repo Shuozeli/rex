@@ -1,0 +1,90 @@
+{
+  "recipe": {
+    "id": "arstechnica.com/article",
+    "version": 1,
+    "sha256": "45bfab3b369914272daec44bb7e1631d4b054f6adf6eff79a2ebb7cda764d656"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://arstechnica.com/health/2026/10/39-year-old-unvaccinated-woman-becomes-6th-measles-death-in-pennsylvania/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:19:30Z",
+  "extractTime": "2026-10-13T03:19:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "arstechnica.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 7954,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://arstechnica.com/health/2026/10/39-year-old-unvaccinated-woman-becomes-6th-measles-death-in-pennsylvania/",
+    "title": "39-year-xxx xxxxxxxxxxxx xxxxx xxxxxxx 6th xxxxxxx xxxxx xx Xxxxxxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxx Xxxx",
+        "url": "https://arstechnica.com/author/beth/"
+      }
+    ],
+    "publishedAt": "2026-10-12T21:54:35Z",
+    "updatedAt": "2026-10-12T21:54:35Z",
+    "summary": "Xx xx Friday, xxxxx xxxxxx xxxxxxxxx xxxxxxxx 1,136 xxxxx xxxxxx 41 xxxxxxxx.",
+    "image": "https://cdn.arstechnica.net/wp-content/uploads/2024/03/GettyImages-930111236-1152x648.jpeg",
+    "bodyHtml": "<p>A 39-year-xxx xxxxxxxxxxxx xxxxx xx Xxxxxxxx Xxxxxx, Xxxxxxxxxxxx, xxx xxxxxx xxx xxxxx xxxxxx xx xxx xx xxx xxxxxx xxxxxxxxxx xxxxx xxxx a xxxxx xxxxxxxx xxxx xxx xxxxxxxx xxxx a xxxxxxxx xxxxxx xxxxx xx xxxxx xx April.</p>\n<p>Xxx xxxxx xxxx xx Saturday, October 10. Xxx xxx xxxxxxx xxxxxxxxxx xxxxxx xxxxxxxxxx xxx xxx xxxxxxxx xxxxxx xxxxxxxx xxx xxxxxxx, xxxxxxxxx xx <a href=\"https://www.facebook.com/photo?fbid=1080491317953472&amp;set=a.110848738251073\">xx xxxxxxxx xxxxxx xx xxxxxx xxxxx</a> xx Xxxxxxxx Xxxxxx Xxxxxxx Xxxxxx Xxxxxx. Xxx xxxxxxxx xxxxx xxxx xxx xxxxx’x xxxxx xxxxx xxx xxxxxxxxxx xx a xxxxxxx xxxxx xxx xx xxx xxxxx’x xxxxxx xxxxxxxxxx.</p>\n<p>Xx <a href=\"https://www.washingtonpost.com/health/2026/10/12/sixth-person-who-had-measles-died-pennsylvania-local-coroner-says/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzkxNzc3NjAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzkzMTU5OTk5LCJpYXQiOjE3OTE3Nzc2MDAsImp0aSI6Ijc3ZGQ4ZDBhLTdmNTctNGMxNC05MzBlLTY3ZWJhZTU0NzNkOCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9oZWFsdGgvMjAyNi8xMC8xMi9zaXh0aC1wZXJzb24td2hvLWhhZC1tZWFzbGVzLWRpZWQtcGVubnN5bHZhbmlhLWxvY2FsLWNvcm9uZXItc2F5cy8ifQ.2DxvhB4m-VLP-yS4iSDcUFvQYn_1OsaEt7TP-QTvQy4\">xx xxxxxxx xxxxxxxxx xx Xxx Xxxxxxxxxx Xxxx</a>, xxx xxxxxxx’x xxxxxx xxxx xxx xxxxxxx xxxxx xx xxxxx xxx xxxxxx xx “xxxxxxxx xxxxx xxxxxxx xxxxx xxx xx xxxxxxxx xxxxxxxxxxxxx xx xxx xxxxxxx.”</p>\n<p>Xxx xxxxxxxx xxxx xxxxxx xxxx xxx xxxxx’x xxxxxxx xxxxxxxx xxxxxxxx <a href=\"https://arstechnica.com/health/2026/08/rfk-jr-spews-anti-vaccine-rubbish-as-newborn-revealed-to-have-died-from-measles/\">a xxxxxxx</a>, <a href=\"https://arstechnica.com/health/2026/09/measles-killed-6-week-old-baby-coroner-confirms-after-rfk-jr-disputed-deaths/\">a 6-week-xxx</a>, xx <a href=\"https://arstechnica.com/health/2026/09/measles-kills-18-year-old-in-pa-fourth-death-as-state-outbreak-nears-700-cases/\">18-year-xxx</a>, a <a href=\"https://www.inquirer.com/health/measles-death-pennsylvania-outbreak-lancaster-county-20261002.html\">20-year-xxx</a>, xxx a <a href=\"https://arstechnica.com/health/2026/09/unvaccinated-pennsylvania-woman-died-of-measles-complications-coroner-says/\">40-year-xxx</a>. Xxx xxx xxxxxxxx xxxx xxxxxxxxxxxx; xxx xxx xxxxxxx xxxx xxx xxxxx xx xxxx xxxx xxxxxxxxxx.</p>\n<p><a href=\"https://www.pa.gov/agencies/health/diseases-conditions/infectious-disease/measles\">Xx xx xxx xxxxxx xxxxxxx xxxxxx</a> xxxx Xxxxxxxxxxxx’x xxxxxx xxxxxxxxxx xx Friday, October 9, xxxxx xxxx xxxx 1,136 xxxxx xx xxx xxxxx xxxxx xxx xxxxx xx xxx year—1,124 xx xxxxx xxx xxxx xxx xxxxxxx xxxxxxxx. Xxxxxxx, 218 xxxxxx xxxx xxxx xxxxxxxxxxxx. Xxx xxxxxxxx, xxxxx now xxxxx 41 xx xxx xxxxx’x 67 xxxxxxxx, xxxxx xx xxxxx xx xxxxxxx. Xxxxx xxx xxxx 157 xxx xxxxx xxxxxxxx just xx xxx xxxxxxxx week.</p>\n\n          \n                      \n            \n                  \n\n          \n          \n<p>A xxxxxxxxxxxx xxx xxx xxxxx xxxxxx xxxxxxxxxx xxxx xxx Xxxx xxxx xx xx “xxxxx” xx xxx xxx xxxxx xxx xx xxxxxxxxx xxx xxxx. Xx xxxx xxxxxxx xx xxxxxx xxxx xxx xxxxxx xx xxxxxxxx.</p>\n<p>Xxxxxxx, xxxxxxxx xxxxxxxxxx xx xxx XX xx 2000, xx xxxxxxx xxxx xxxx xxxxxxxxxxxxxx xxx xxxxxxxx xxxxxxxxxxx xxxxx. Xxx xxxxxxxxxx xxxxxxx xxxx xxxxx xxx xxx year xxx xxx <a href=\"https://www.cdc.gov/measles/data-research/index.html\">4,080</a>, xxx xxxxxxx xxxxx xxxxx 1991. Xxxxxxxxxxxx’x xxxxxxxx xx xxxx <a href=\"https://arstechnica.com/health/2026/10/pa-measles-outbreak-tops-1000-cases-largest-since-disease-was-eliminated/\">xxx xxxxxxx xx xxxxxx xxxxx xxxx year</a>. Xxx XX xx xxxxxx xxxxxxxx xx xxxx xxx xxxxxxx xxxxxxxxxxx xxxxxx xxxx xxxxxxx xxxx xxx Xxx Xxxxxxxx Xxxxxx Xxxxxxxxxxxx (XXXX) xxxx xx November xx xxxxxx XX xxxxxxx xxxx.</p>\n<p>Xxxxx xxxx-xxxxxxx Xxxxxx Xxxxxxxxx Xxxxxx X. Xxxxxxx Xx., xxx Xxxxxxx xxx Xxxxxxx Xxxxxxx xxx Xxxxxxxxxx xxx xxxx xxxxxxxx xxx xx xxx xxx xxxxxx xx xxx xx xxx xxxxxxxxx. Xxxxx xxxx xxxxx xxxxxxx xxxxxx xxxxxxxx xx xxx XX xx 2025. Xxxxx xx xxxxx xxxxxx, xxxxx xxx xxx xxxx a xxxxxxx xxxxx xxxxxxxx xx xxx xxxxxxx xxxxx 2015.</p>",
+    "bodyText": "A 39-year-xxx xxxxxxxxxxxx xxxxx xx Xxxxxxxx Xxxxxx, Xxxxxxxxxxxx, xxx xxxxxx xxx xxxxx xxxxxx xx xxx xx xxx xxxxxx xxxxxxxxxx xxxxx xxxx a xxxxx xxxxxxxx xxxx xxx xxxxxxxx xxxx a xxxxxxxx xxxxxx xxxxx xx xxxxx xx April.\n\nXxx xxxxx xxxx xx Saturday, October 10. Xxx xxx xxxxxxx xxxxxxxxxx xxxxxx xxxxxxxxxx xxx xxx xxxxxxxx xxxxxx xxxxxxxx xxx xxxxxxx, xxxxxxxxx xx xx xxxxxxxx xxxxxx xx xxxxxx xxxxx xx Xxxxxxxx Xxxxxx Xxxxxxx Xxxxxx Xxxxxx. Xxx xxxxxxxx xxxxx xxxx xxx xxxxx’x xxxxx xxxxx xxx xxxxxxxxxx xx a xxxxxxx xxxxx xxx xx xxx xxxxx’x xxxxxx xxxxxxxxxx.\n\nXx xx xxxxxxx xxxxxxxxx xx Xxx Xxxxxxxxxx Xxxx, xxx xxxxxxx’x xxxxxx xxxx xxx xxxxxxx xxxxx xx xxxxx xxx xxxxxx xx “xxxxxxxx xxxxx xxxxxxx xxxxx xxx xx xxxxxxxx xxxxxxxxxxxxx xx xxx xxxxxxx.”\n\nXxx xxxxxxxx xxxx xxxxxx xxxx xxx xxxxx’x xxxxxxx xxxxxxxx xxxxxxxx a xxxxxxx, a 6-week-xxx, xx 18-year-xxx, a 20-year-xxx, xxx a 40-year-xxx. Xxx xxx xxxxxxxx xxxx xxxxxxxxxxxx; xxx xxx xxxxxxx xxxx xxx xxxxx xx xxxx xxxx xxxxxxxxxx.\n\nXx xx xxx xxxxxx xxxxxxx xxxxxx xxxx Xxxxxxxxxxxx’x xxxxxx xxxxxxxxxx xx Friday, October 9, xxxxx xxxx xxxx 1,136 xxxxx xx xxx xxxxx xxxxx xxx xxxxx xx xxx year—1,124 xx xxxxx xxx xxxx xxx xxxxxxx xxxxxxxx. Xxxxxxx, 218 xxxxxx xxxx xxxx xxxxxxxxxxxx. Xxx xxxxxxxx, xxxxx now xxxxx 41 xx xxx xxxxx’x 67 xxxxxxxx, xxxxx xx xxxxx xx xxxxxxx. Xxxxx xxx xxxx 157 xxx xxxxx xxxxxxxx just xx xxx xxxxxxxx week.\n\nA xxxxxxxxxxxx xxx xxx xxxxx xxxxxx xxxxxxxxxx xxxx xxx Xxxx xxxx xx xx “xxxxx” xx xxx xxx xxxxx xxx xx xxxxxxxxx xxx xxxx. Xx xxxx xxxxxxx xx xxxxxx xxxx xxx xxxxxx xx xxxxxxxx.\n\nXxxxxxx, xxxxxxxx xxxxxxxxxx xx xxx XX xx 2000, xx xxxxxxx xxxx xxxx xxxxxxxxxxxxxx xxx xxxxxxxx xxxxxxxxxxx xxxxx. Xxx xxxxxxxxxx xxxxxxx xxxx xxxxx xxx xxx year xxx xxx 4,080, xxx xxxxxxx xxxxx xxxxx 1991. Xxxxxxxxxxxx’x xxxxxxxx xx xxxx xxx xxxxxxx xx xxxxxx xxxxx xxxx year. Xxx XX xx xxxxxx xxxxxxxx xx xxxx xxx xxxxxxx xxxxxxxxxxx xxxxxx xxxx xxxxxxx xxxx xxx Xxx Xxxxxxxx Xxxxxx Xxxxxxxxxxxx (XXXX) xxxx xx November xx xxxxxx XX xxxxxxx xxxx.\n\nXxxxx xxxx-xxxxxxx Xxxxxx Xxxxxxxxx Xxxxxx X. Xxxxxxx Xx., xxx Xxxxxxx xxx Xxxxxxx Xxxxxxx xxx Xxxxxxxxxx xxx xxxx xxxxxxxx xxx xx xxx xxx xxxxxx xx xxx xx xxx xxxxxxxxx. Xxxxx xxxx xxxxx xxxxxxx xxxxxx xxxxxxxx xx xxx XX xx 2025. Xxxxx xx xxxxx xxxxxx, xxxxx xxx xxx xxxx a xxxxxxx xxxxx xxxxxxxx xx xxx xxxxxxx xxxxx 2015."
+  },
+  "chain": [
+    {
+      "id": "arstechnica.com/article",
+      "version": 1,
+      "sha256": "45bfab3b369914272daec44bb7e1631d4b054f6adf6eff79a2ebb7cda764d656"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

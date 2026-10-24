@@ -1,0 +1,72 @@
+# Baidu web results -> rex.schema.search.v1.SearchResults (decisions.md U34). Organic results are
+# `div.result`; each carries its destination in the `mu` attribute (the visible link is a baidu.com/link
+# redirect). Baidu's own cards (AI answers, notes, products: div.result-op) are skipped. Snippets start with
+# the date ("2025年7月27日" / "4天前").
+id: baidu.com/search
+version: 1
+schema: rex.schema.search.v1.SearchResults
+requires: [relative_dates]
+match:
+  urls:
+    hosts: ["baidu.com"]
+    include: ["^/s\\?"]
+  page:
+    all:
+      - exists: "#content_left"
+fields:
+  - path: query
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: wd }
+      - css: { selector: "#kw", take: TAKE_ATTRIBUTE, attribute: value, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: engine
+    candidates:
+      - constant: { value: "baidu" }
+
+  - path: page                # pn=10 -> page 2
+    candidates:
+      - url: { part: URL_PART_QUERY_PARAM, query_param: pn }
+        pipe:
+          - regex: { pattern: "^(\\d*)0$", group: 1 }
+          - map: { entries: [ { from: "", to: "1" }, { from: "1", to: "2" }, { from: "2", to: "3" }, { from: "3", to: "4" }, { from: "4", to: "5" } ] }
+      - constant: { value: "1" }
+
+  - path: results
+    expect: true
+    each: "#content_left > div.result"
+    each_index: rank
+    fields:
+      - path: type
+        candidates:
+          - constant: { value: "RESULT_TYPE_ORGANIC" }
+      - path: title
+        candidates:
+          - css: { selector: "h3" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: url
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: mu }
+            pipe:
+              - filter: { pattern: "^https?://" }
+              - filter: { pattern: "nourl\\.ubs\\.baidu\\.com", invert: true }
+          - css: { selector: "h3 a", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: snippet
+        candidates:
+          - css: { selector: "[class*=summary]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "^(\\d{4}年\\d{1,2}月\\d{1,2}日|\\d+(天|小时|分钟)前)\\s*", with: "" }
+      - path: published_at
+        candidates:
+          - css: { selector: "[class*=summary]" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "^(\\d{4}年\\d{1,2}月\\d{1,2}日|\\d+(?:天|小时|分钟)前)", group: 1 }
+          - datetime: { formats: ["%Y年%m月%d日"], tz: "Asia/Shanghai", relative: true }
+
+  - path: related_searches
+    candidates:
+      - css: { selector: "#rs_new a", scope: CSS_SCOPE_DOCUMENT }

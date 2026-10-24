@@ -1,0 +1,174 @@
+{
+  "recipe": {
+    "id": "walmart.com/product",
+    "version": 1,
+    "sha256": "c8459d4bff66ca992459feb987e0e41756426b9358f522c5b0d9fceb3d34e315"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.walmart.com/ip/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black/631193073",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:43:23Z",
+  "extractTime": "2026-10-14T04:43:23Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "list_price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "seller",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "features",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "variants",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "variants[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "walmart.com/product@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "walmart.com/product@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "631193073",
+    "title": "XXxx Xx Xxx Xxx Xxxxxxxxx Xxxxxxx, Xxxx Xxxxxxxx with Xxxxxxxx Xxxx, Xxxxx",
+    "brand": "Xxxxx xxx XXxx Xxxxx",
+    "price": "19.88",
+    "currency": "XXX",
+    "listPrice": "25.52",
+    "rating": 4.5,
+    "reviewCount": "42401",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "seller": "Xxxx xxx xxxxxxx xx Xxxxxxx.xxx",
+    "images": [
+      "https://i5.walmartimages.com/seo/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black_ff33d2c3-a615-47f9-b75e-ef4d68b79ea1.25e663d4a5003832488578c263d4f840.jpeg",
+      "https://i5.walmartimages.com/asr/c2d8f171-3d58-4d14-ad2d-9448c58ec2bf.565e7b673b575188c3e8e06171c61bae.jpeg",
+      "https://i5.walmartimages.com/asr/56c00173-433b-4d2c-b823-6cfa97b738ac.7e1666be332c7793d16454d82f469516.jpeg",
+      "https://i5.walmartimages.com/asr/2f3409a9-af21-4ba6-9c70-f230083839bb.2c977bb306dffaa2674f189cd9f03171.jpeg",
+      "https://i5.walmartimages.com/asr/92695d76-0e24-46bf-901b-2155a4b90377.6bd4fec99d5ae4836470408dea092610.jpeg",
+      "https://i5.walmartimages.com/asr/7c82d071-5b5c-4b26-b0f2-2e825c522c1f.3eb7dcd0d53ea2ee0afcb74bbc45c0bc.jpeg",
+      "https://i5.walmartimages.com/asr/5435540b-6836-406a-ba96-510f7cb64578.6c9e819fe3d3dd05ed866a5c3cb9899b.jpeg",
+      "https://i5.walmartimages.com/seo/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black_ff33d2c3-a615-47f9-b75e-ef4d68b79ea1.25e663d4a5003832488578c263d4f840.jpeg"
+    ],
+    "features": [
+      "Xxxxxxxx Xxxxxxxx: Xxxxxxxx 32+ hours xxxxx xxxxxxxx, xxxxxxxxx 8+ hours xxx xxxxxx xxx 24+ xxxxxxxxxx hours xxxx xxx xxxxxxxx xxxx, xxxxx xxxxxxxx xx xxxxxxxxxx XXX xxxxxxxx xxxxx.",
+      "Xxxxxxxxx Xxxxxxxxxxxx: Xxxxxxxx xxxxxxxxxxx xxx of xxxxxx xxxxxx xx xxxx xxxxxxxx, xxxxxxxx with a xxxxx-in XXXX xxxxxxxxxx xxx xxxxx xxxxx xxxxx.",
+      "Xxxxx-Xxxxxxx Xxxxxx: XXxx'x xxxxxxxx xxxxxxx xxx 15% xxxxxxx with a 40% xxxxxxx, xxxxxx-xxxxxxxx xxxx. Xxxxx xxxxxxxx xxx xxxxx xxxxxx a xxxxxxxxxxxx, xxxxxx xxx.",
+      "Xxxxxxxxxxxx Xxxxx: Xxxxxx xxxxx XX xxxxx xxxxxxxx: XXxx Xxxxxxxxx xxx xxx-xxxxxx xxxxxxxxx, Xxxxxxxx xxx xxxxxxxx xxx xxxxxxxxx, xxx Xxxx Xxxxx xxx xxxxxxxx xxx xxxxxx.",
+      "Xxxxxxxxx Xxxxxxxx: Xxxxxxxx xxxxxx xxxxx xxxxxxxx xxx xxxxxxxx xxxxxx, xxxxxx, xxxx/xxxxx, xxxxxxxxx xxxxx, xxx xxxxxxxxxx xxxx xxxxx xxxxxxxxx."
+    ],
+    "variants": [
+      {
+        "value": "Black"
+      },
+      {
+        "value": "Blue"
+      },
+      {
+        "value": "Lilac"
+      },
+      {
+        "value": "Mauve"
+      },
+      {
+        "value": "Mint"
+      },
+      {
+        "value": "Purple"
+      },
+      {
+        "value": "Rose"
+      },
+      {
+        "value": "Slate"
+      },
+      {
+        "value": "Teal"
+      },
+      {
+        "value": "White"
+      },
+      {
+        "value": "Single"
+      }
+    ],
+    "url": "https://www.walmart.com/ip/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black/631193073",
+    "description": "Xxxxx xxxx xxxxxxxx xxxxx with XXxx Xx Xxx Xxx Xxxxxxxxx xxxxxxx, xxxxxxxxx 32+ hours of xxxxxxxx, a xxxxxxx xxxxxxxx xxxx, 3 XX xxxxx xxxxxxxx, xxxxx xxxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "walmart.com/product",
+      "version": 1,
+      "sha256": "c8459d4bff66ca992459feb987e0e41756426b9358f522c5b0d9fceb3d34e315"
+    },
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

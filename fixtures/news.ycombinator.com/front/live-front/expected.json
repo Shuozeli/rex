@@ -1,0 +1,342 @@
+{
+  "recipe": {
+    "id": "news.ycombinator.com/front",
+    "version": 2,
+    "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://news.ycombinator.com/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:41:17Z",
+  "extractTime": "2026-10-13T03:41:17Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].author",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].comment_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxx Xxxx",
+    "items": [
+      {
+        "id": "50041866",
+        "title": "Xxx xxxxxxxx xxxxxxxxxxxx xx a xxxxxx xxxx (2024)",
+        "url": "https://jsomers.net/e-coli-chemotaxis/",
+        "publishedAt": "2026-10-11T11:02:30Z",
+        "author": "xxxxxxx",
+        "score": "110",
+        "commentCount": "3"
+      },
+      {
+        "id": "50058507",
+        "title": "XXX-Xxxxx",
+        "url": "https://z.ai/blog/glm-legal",
+        "publishedAt": "2026-10-12T16:11:45Z",
+        "author": "xxxxx",
+        "score": "471",
+        "commentCount": "264"
+      },
+      {
+        "id": "50065932",
+        "title": "XxxxXX xxxxxxxxx xxx xxx XXX xx xxxx a xxxxxxxxxxxx xxx xxxx a xxxxxxxxx xxxxxxx",
+        "url": "https://www.argmin.net/p/faster-fourier-transforms",
+        "publishedAt": "2026-10-13T02:46:43Z",
+        "author": "xxxxxxxxxx",
+        "score": "11",
+        "commentCount": "3"
+      },
+      {
+        "id": "50058528",
+        "title": "A Xxxxxx Xxx Xxx xx X",
+        "url": "https://prophitt.me/writing/a-modern-web-app-in-c",
+        "publishedAt": "2026-10-12T16:13:10Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "434",
+        "commentCount": "176"
+      },
+      {
+        "id": "50063365",
+        "title": "Xxxxx X270 XXX XX Xxxxxxxxxxx–Xx xx 480 XX XXXXX5X",
+        "url": "https://www.intel.com/content/www/us/en/products/details/discrete-gpus/data-center-gpu/d-series.html",
+        "publishedAt": "2026-10-12T21:35:35Z",
+        "author": "xxxxxxxxxxxxxxx",
+        "score": "103",
+        "commentCount": "44"
+      },
+      {
+        "id": "50063138",
+        "title": "Xxx xx xxxxxxxxx231xx?",
+        "url": "https://purplesyringa.moe/blog/who-is-vfmaddrnd231pd/",
+        "publishedAt": "2026-10-12T21:12:43Z",
+        "author": "xxxxxxxx",
+        "score": "134",
+        "commentCount": "14"
+      },
+      {
+        "id": "50065553",
+        "title": "Xxxxxxxxxxxxx xxx xxxxxxxx xxxxxxx xxxxxxxxxxxx xxxxxxx",
+        "url": "https://www.anthropic.com/research/distillation-defenses",
+        "publishedAt": "2026-10-13T01:46:47Z",
+        "author": "xxxxxxxxxxxxxx",
+        "score": "21",
+        "commentCount": "35"
+      },
+      {
+        "id": "50055304",
+        "title": "Xxxxxxx xxxxxxxx xxxxxxxxx xxxxxxxxxx xx xxxxxxxxxxx xxxxxxx xxxxxx Xxxxxx",
+        "url": "https://www.tomshardware.com/tech-industry/cyber-security/unprecedented-cyberattack-cripples-supermarket-fridges-across-europe-as-hackers-activate-automatic-defrosting-delivery-and-store-prices-also-impacted-by-incident",
+        "publishedAt": "2026-10-12T12:16:42Z",
+        "author": "Xxxxxxx",
+        "score": "494",
+        "commentCount": "691"
+      },
+      {
+        "id": "50065805",
+        "title": "Xxxxx Xxxxxxxxx X.X. Xxx Xxxxx Xxxx xx Xxx Xxxxxxx xx X&X xx 2024",
+        "url": "https://japannews.yomiuri.co.jp/science-nature/science/20260908-347742/",
+        "publishedAt": "2026-10-13T02:25:00Z",
+        "author": "xxxxxxxxx",
+        "score": "51",
+        "commentCount": "27"
+      },
+      {
+        "id": "50063717",
+        "title": "Xxxxx: Xxx XXXx xxxxxx xxxx XXX xx xxxxxxxxx xxxxxxx xxxx XXX",
+        "url": "https://github.com/prabanta-dev/janas",
+        "publishedAt": "2026-10-12T22:05:43Z",
+        "author": "xxxxxxxxxxx",
+        "score": "60",
+        "commentCount": "25"
+      },
+      {
+        "id": "50047664",
+        "title": "Xxxx Xxxxxxxx: Xxxxxxx xxxxxxxxxxxxxx xxxxx x xxx x",
+        "url": "https://app.getsupers.com/auto-research",
+        "publishedAt": "2026-10-11T20:48:30Z",
+        "author": "xxxxxxx",
+        "score": "28",
+        "commentCount": "6"
+      },
+      {
+        "id": "50061791",
+        "title": "Xxxxxx xxx xxxxxxxxx xxxxxxxxx xx Xxxxxxx",
+        "url": "https://lunarwatcher.codeberg.page/til/firefox/resumable-big-downloads.html",
+        "publishedAt": "2026-10-12T19:36:02Z",
+        "author": "xxxxxx",
+        "score": "118",
+        "commentCount": "43"
+      },
+      {
+        "id": "50055593",
+        "title": "Xxxx a XxXx 7 Xxxxxx xxxx a 320Xxxx Xxxxxxxx Xxxxxxx Xxxxx Xxxxxxxx",
+        "url": "https://github.com/h0m3us3r/w1700k-sdr",
+        "publishedAt": "2026-10-12T12:41:58Z",
+        "author": "xxxxxxxx",
+        "score": "289",
+        "commentCount": "75"
+      },
+      {
+        "id": "50059096",
+        "title": "Xxxxxx XX: Xxxxx37 (XX X26) – Xxx-xxxx xxxxx xxxxxxxxx xxx xxxxxxx xxxxxx",
+        "url": "https://news.ycombinator.com/item?id=50059096",
+        "publishedAt": "2026-10-12T16:46:34Z",
+        "author": "xxxxxxxxxx",
+        "score": "119",
+        "commentCount": "79"
+      },
+      {
+        "id": "50065972",
+        "title": "XXXX: Xxxxxxxxx xxxxxx xxxxxxxxxxxxxx xxx xxxxxxxxxxx xx xxxx'x xxxxxxxxxxxx",
+        "url": "https://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film",
+        "publishedAt": "2026-10-13T02:51:50Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "27",
+        "commentCount": "1"
+      },
+      {
+        "id": "50063417",
+        "title": "Xxxxxx.xxx – Xxxxxxxx Xxxxx Xxxxxx",
+        "url": "https://phreak.ing/",
+        "publishedAt": "2026-10-12T21:39:32Z",
+        "author": "xxxxxxxxxxx",
+        "score": "91",
+        "commentCount": "27"
+      },
+      {
+        "id": "50061859",
+        "title": "Xxxxxxx a Xxxxxxxxx Xxxxx xxx xxx XX Xxxxxxxx",
+        "url": "https://www.markround.com/blog/2026/zx-spectrum-intro",
+        "publishedAt": "2026-10-12T19:40:00Z",
+        "author": "xxx",
+        "score": "92",
+        "commentCount": "10"
+      },
+      {
+        "id": "50055220",
+        "title": "Xxxxxxx xxxxxxx xxx 2XX xxx xx xxxxxxxx xxx",
+        "url": "https://www.bbc.com/news/articles/c620r33plgppo",
+        "publishedAt": "2026-10-12T12:09:09Z",
+        "author": "xxxxx",
+        "score": "278",
+        "commentCount": "326"
+      },
+      {
+        "id": "50064536",
+        "title": "Xxxxx xxxxx xxxx 80-year-xxx xxxxx xxxxxx xxxx xxxxx xxxx xxxxxxxxx xxx xxxxx 20",
+        "url": "https://doi.org/10.1111/acel.70751",
+        "publishedAt": "2026-10-12T23:34:22Z",
+        "author": "xxxxx",
+        "score": "117",
+        "commentCount": "73"
+      },
+      {
+        "id": "50056822",
+        "title": "Xxxxx xxxxxx xxxx xxxx xxxx xxxx xxxx",
+        "url": "https://www.nationalgeographic.com/environment/article/balcony-plug-in-solar-panels-renewable-energy",
+        "publishedAt": "2026-10-12T14:19:04Z",
+        "author": "xxxxxx",
+        "score": "140",
+        "commentCount": "128"
+      },
+      {
+        "id": "50065892",
+        "title": "Xxxxxxx Xxxx",
+        "url": "https://ryanbigg.com/2026/10/leaving-tech",
+        "publishedAt": "2026-10-13T02:39:35Z",
+        "author": "xxxxxx",
+        "score": "108",
+        "commentCount": "83"
+      },
+      {
+        "id": "50060694",
+        "title": "Xxxxx XXX xxxxxxxx a xxxxxxxxxx, xxxx-xxxxxxxx xxxxxxxxxx xxxxxx xx xxxxxxx",
+        "url": "https://github.com/openai/codex/issues/48195",
+        "publishedAt": "2026-10-12T18:29:04Z",
+        "author": "xxxxxxxxxx",
+        "score": "489",
+        "commentCount": "252"
+      },
+      {
+        "id": "50037711",
+        "title": "Xxxxxx xx Xxxxxx Xxxx Xxxxxxxx Xxxxx 60-Year Xxxxxx",
+        "url": "https://www.sciencealert.com/secret-of-orange-cats-finally-revealed-after-60-year-search",
+        "publishedAt": "2026-10-10T22:10:57Z",
+        "author": "xxxxxxxxx",
+        "score": "245",
+        "commentCount": "177"
+      },
+      {
+        "id": "50065692",
+        "title": "XX Xxxxxx Xxx Xxxxxxxx Xxxx Xxxxxxxxx Xxxxxxxxxxxx",
+        "url": "https://arxiv.org/abs/2610.13928",
+        "publishedAt": "2026-10-13T02:07:08Z",
+        "author": "xxxxxxx",
+        "score": "10"
+      },
+      {
+        "id": "50036287",
+        "title": "Xxx Xxxxxx Xx Xxxxx Xxxxx 64 – xxxx Xxxxx Xxxxxxx xxxxxxxxx (2001)",
+        "url": "https://pixelatron.com/blog/the-making-of-super-mario-64-full-giles-goddard-interview-ngc/",
+        "publishedAt": "2026-10-10T19:28:41Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "235",
+        "commentCount": "88"
+      },
+      {
+        "id": "50057668",
+        "title": "Xxxxx Xxxxx'x 2016 XX Xxxxxxxxxxx, 10 Years Xxxxx",
+        "url": "https://taylor.town/kk-ai-2026",
+        "publishedAt": "2026-10-12T15:16:45Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "154",
+        "commentCount": "51"
+      },
+      {
+        "id": "50064438",
+        "title": "Xxxx XX: Xx xxxxxxxxxxxx xxxxxxx-xxxxx XXX xxxx xxxxxxxx XXX",
+        "url": "https://github.com/andrewfader/blokkily",
+        "publishedAt": "2026-10-12T23:21:12Z",
+        "author": "xxxxxxxxxx89",
+        "score": "26",
+        "commentCount": "14"
+      },
+      {
+        "id": "50063042",
+        "title": "Xxxx XX: Xxxxxxxxx – A xxxxxxxxxxx xxxxx-xxxxxxxx xxxxx xx xxx xxxxxxx",
+        "url": "https://brickbrag.com/",
+        "publishedAt": "2026-10-12T21:03:36Z",
+        "author": "xxxxxxx",
+        "score": "39",
+        "commentCount": "12"
+      },
+      {
+        "id": "50059115",
+        "title": "Xxxx Xxxxxx",
+        "url": "https://research.meta.ai/blog/muse-wonder",
+        "publishedAt": "2026-10-12T16:48:01Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "557",
+        "commentCount": "305"
+      },
+      {
+        "id": "50063427",
+        "title": "XX xx a xxxx xxx xxxxx xx xxxx xxxxx xxxxx",
+        "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
+        "publishedAt": "2026-10-12T21:40:18Z",
+        "author": "xxxxx8",
+        "score": "265",
+        "commentCount": "227"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "news.ycombinator.com/front",
+      "version": 2,
+      "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+    }
+  ]
+}

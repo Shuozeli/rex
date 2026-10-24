@@ -1,0 +1,114 @@
+{
+  "recipe": {
+    "id": "theguardian.com/article",
+    "version": 1,
+    "sha256": "3306faa874ebc9ff5b800ec7f1566291c3d3d0f90eb50b3374254e02ed670c01"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.theguardian.com/us-news/2026/oct/12/parents-limiting-social-media-ai-use",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:19:28Z",
+  "extractTime": "2026-10-13T03:19:28Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "theguardian.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 9666,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.theguardian.com/us-news/2026/oct/12/parents-limiting-social-media-ai-use",
+    "title": "‘X’xx xxxxxx xxxxxxxxxxxxx xxxx xxxxxxxx’: xxx xxxxxxx xx xxxxxxxx xxxxx xxxx’ xxxxxx xxxxx xxx XX xxx",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxxxxx"
+      }
+    ],
+    "publishedAt": "2026-10-12T10:00:51Z",
+    "updatedAt": "2026-10-12T10:03:10Z",
+    "section": "XX xxxx",
+    "summary": "Xxxxx a xxx xxxxxxx xxxx’t xxxxxxxxx xxxxxx xxxxx xxx XX xxx xxxx, xxx xxxx xxxx xxxxxxxx xxxxxxxxxxx",
+    "image": "https://i.guim.co.uk/img/media/2a5f71fa41895820957bba576349ebc2da450ec3/205_0_5123_4099/master/5123.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=30ea2699ab1ebb1331ad6427f5979efb",
+    "tags": [
+      "XX xxxx",
+      "Xxxxxx xxxxx",
+      "XX (xxxxxxxxxx xxxxxxxxxxxx)",
+      "Xxxxxxx xxx xxxxxxxxx",
+      "Xxxxxxxx",
+      "Xxxxxxxxxx",
+      "Xxxxxx",
+      "Xxxxxxx xxxxx",
+      "Xxxx xxx xxxxx",
+      "Xxxxxxx"
+    ],
+    "bodyHtml": "<p>Xxxx xx xxxxx xx xxxxx xxxx, xxxx xxxxxxx xxx’t xxxxx xxxx xxxxxxxxx xxx xxxx.</p><p>Xxxxxx xxxxx xxxxxxxxx xxxx xxxxx xxx xxxxxx xxxx xx xxx xxxx xxxxxx xxxxxxx xxxx xxxxx xxxxxxxxx xxx xxxx xxx xxxxx, xxx xxxxx a xxx xxxxxxx xxxx’t xxxxxxxxx. Xxxx, xxxxx xxxx a xxxxxxx xxxxxx xx xxxxxxxxxx, xxxx xxxxxxxxxxxx xxxxxxx xxxxxxxxx like Xxxx xx xxxxxxxxx xxxxxxxx xxxx xxx xxxxxxxxx xx xxxxxxx xxxxx.</p><p>XX xxxx XxxxXX, xxxxxx xxxx xxx xxxxxx xxxxxxxxxxxxx xxxx xxxx xxxxxxxx xxxx Xxxx, xxx xxx xx xxxxxx xxxxxxx xxxxxx xx xxxxxxxx xxxxxxxx xxxxxxx XxxxXXX xxxxx xxxxxx xxxxxxxxxx. Now, xxxxxxx xx xxx xxxxx’x xxxxxxx XX xxxxx xxxx xxxxxx xxxx xxxxx xxxxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxx xxxxx xxxx xxxxxxxx xxxxx xxxxxx xxxxxx.</p><p>Xxxx xxx XX xxx xxxxxx xxxxx xxxxxxxxx xxxx xxxxxx xxx xxxxxx, xxx xxxxxxxxxx xxxxxxxxxx xxxxxx xxxxxxxx xxxx xx <a href=\"https://openai.com/index/chatgpt-for-teens/\">xxxxxx-xxxxxx xxxx xxxxxxxx</a>.</p><p>Xxxxx, xxx xxxx xxxxxxx, xxxxxxxx xxx xxxxxx xxxxxxxxxxx xxxx xxxx xxxxxx xx xxxxxx xxxxx xxxxx xxxxx xxxxxxx xx xxxxx xxxxx xxxxxxxx xx xxx xxxx xxxxxx xxxxx xxx XX.</p><p>Xxx Xxxxxxxx xxxxx xxxxxxx xxxxxxx xxxxx xxxxxxxxxxx xx xxxxx xxxxxxxx’x xxx xx xxxxxx xxxxx xx XX xxx xxxxxxx xx xxx xxxx year xxx xxxxxxx xxxx xxxx xx xxx xxxxx xxxx xxx xxxxxx xxxxxxxxxx. Xxx xxxx xxxxxxxx xx xxxxx xxx xxxxxxxxx xxxx xxxx xx xxxxxx xxxxxx xxxxx xxxxxxxx xx xxx xxxxxx xxxxx, xxx xxxx xx xxxx xxxx xxxx xxxx xxx xx xxxxx xxxxx xxxxxxxx xxxx xxxx XX.</p><p>“Xxxx xxx xxx xxxx xxxxxxxx xxxxx xx xx xxxx,” Xxxxxxxx Xxxx Xxxx, a 42-year-xxx xxxxxx xxxx Xxxxxxxxx, XX. “Xx xxx xxxxx X xxxx xxxx xxxx xxxx xx a xxxxx xx xxxx xxxxxxxxx xxxxx xxxx xxxxxxxxxx xx xx xxxxxx xxxx xxxxx xxxx xxx xxxxxxx xxxxx xxxx?”</p><h2>Xxx xxxx xxxxxx xxx xxxxx xxxx xxxxxxx xxx xxxxxx</h2><p>X xxxx xx xxxx, xxxxxxxxxxxx xx xxx XX xxxxxx, xxx xxxxxxxx X xxxxx xxxxx xxx xxxxxx xxxx’x xxxxx xx xx xxxxx xxx xx xxxx. Xxx xx a xxxxxxxxx xxx, xxx, xxxxx xxxxxxxxx, xxx xxxxx xx xxxxx xx xx a xxxx xxxxxxxxx xxxxx xxxx xxxx xxxx xx. X’m xxxx xxxxxxx xxx xxxxxx – xxx xxxxx X xxxx xx, xxx xxxx xxxxxxxx xxxxx xxxxxxxxxx, xxx xxx xxxxxxxxx xxxx xxx xxxx xxxx xx xxxxxxxxxx xxxxx xxxxxx – xxxxxxx xxxx xx xx xx xxxxxxxx xx xxxxxxxxxxxxx xxxxx.</p><p>Xx X xxxx xxx xxxx xx xxxxxxxxx xxxx xx xxx XX? Xxx. Xx X xxxx xx? Xx. Xx xxx xxxxxxxx, xxxxxx xxxxx xx xxx. Xxxx xxx xxx XxxxxXxx xx xxxxxxx xxx xxxxx xxxx-xxxxx xxxxxxxxxxxxx. Xxx xxxxxxxxx xx xxxx xxx xxxx xx xx.</p><p><strong>–</strong><em><strong> Xxxx, 43, Xxxxxx, XX</strong></em></p><h2>Xxx xxx-xxxxxxxxx xxx xxx xx xxxx xx xxxx xxxxxx xxxxx xxx XX</h2><p>Xxx xxxxxx xxxxx xxxxxxxx xxxxxxx Xxxx, xxxxx xxxx xxxxxxxxx xx xxx-XX xxxxxxxxxxx xx xxxxx xxxxxx xxxxx xxx xxx xxxxx-16x, xxxx xxxxxxx xx xx xxxx xxxxxxxxxx xxxxxxxxxxxxx xxxx xx xxxxxxxx xxxxx xxx xxxx xxxxx xx xxxxxx xxxxx xxx xxx xxx xxx xxxxx. Xxx xxxxx xxxx xx xxx xxxxx xxxxxxxx (xxxx xxxx’t xxxxxxx xx xxx XX), xxx X xxxxxx xxx xx xxx xxxxxxxxx xx’xx xxxx, xxxxxxxx, xx xxxx xxxxx xxx’x xxxxx xxxxxx xxx xxx xxx xxxx.</p><p>Xx 11--year-xxx xx xxx xxxxxxxxx xx xxx xxxxxx xxxxx xx xxx xxx. Xx xxx XX xxxxxxxx, xxx may xxxxxxxxxxxx xxx xxxx xx xxxx xxxx xx xx a Xxxxxx xxxxxx xxxx xx xxx xxxxxxx xx a xxxxx, xxx X xxxxxxxxx xxx xx xxxxx xxx xxxxxxxx xx xxxxxxxx XX-xxxxxxxxx. Xxx’x xxxx xxxxx xx XX xxxxxxxxxxxxxx, xxx xxxxx XX xxxxxx. Xxx xxxx xxxxxxxx xxxx xx xx xxx xxxxx xxxxxx xxx xx xx xxxxxxxxxxxx share xx XX-xxxxxxxxx xxxxx.</p><p>Xxx xxxxxx xx xxxx xxx-xxxxxxxxx – xx’xx xxxxx xxxx XX xxxx xxxxxxx xxxxxxx xx xxxxx xxx xxxxxx, xx xx xxx xx xxxxx XX xxxx xx a xxxxxx, xx xxxxx xxx xxxxx xxxxxxx xx xxx xxxxxxxx xx xxxxxx xxxxxxxxxxx.</p><p><strong>–</strong> <em><strong>Xxxx, 47, Xxxxxxxxxxxx, </strong></em><em><strong>Xxxxxxxxxxxx</strong></em></p><h2>Xxx xxxxxx xxx xxxxx xx XX xxx xx xxxxxxx xxxxx xxx xxxxx xxxx xxx xxxxxxx xx xxxxxxxxxx xx xxxxxx</h2><p>Xx xxxxxxxxxxx xxx xxxxxx xxxxxxxxxxxxx xxxx xxxxxxxx.</p><p>Xx a xxxxxx xxx xxxxxxx xxx xxxxx xx XX, X’m xxxxxxxxxxxx xxxxxxxxx xxxxx xxx xxx xxxxxxx xxx xxx xxxxx xxxxxxxxxxxx xxx xxxxxxxx xxx xxx xxxxx xxxx xxx xxxx xx xxxxxxxx. X xxxx xx xxxxxxxx xx xxxx xx xxxxxxxxxxxxx xxx xxxxx xxxxxxxxxx, xxxxxxxxx XX, xxx X xxx’t xxxxx xxxxxxxx xxxxxx xx xxxxxxx xx xxxxxxxxx xxxx xxxxxxxx xxx xxxxxxxx xxxxx xxxxxxx xx xxxxx xxxxxxxx, xxxxxxxxxxx xxx xxxxxxxxx xxx xxx xxx xxxxx xxxxxxxxxx.</p><p>Xxxx’x xxxxxxxxxxxx xxxxxxxxxx xx xxx xxxxx xxxxx xxxxx xxx xxxxx xxxxxxxxxx xxxxxxx xxxxxxx, xxxxx xxxx xxxxxx xxxxxxxxxx xxxxxxxx xxxxxxxxxxx xx xxxxxx. X’m xxxxxxxxxxxx xxxxxxxxxxx xxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx xxxxxxxx’x xxxxxxxxx xx xxxxxxxxxx xxx xxxxxx, xxx xxxxxxx xxxxxxx xxx xxxxx xxxxxxxxxxx xxx xxxxx xxxxxx xx xxxxxxxxxx xxx xxxxxxxxxx xxxx’xx xxxxxxx xx xxxxx xx xxxxxxxx.</p><p>X xxx’t xxxxx xxxxxxxx xxx xxxxx xxxxxxxxxx xxxxxxxx xxxxx xxx xx xxx xxxxx xxxxx xxxxxx xx xxxxxxxxxx. Xxxxx’x a xxxx xxxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xxx xx xxx xxxxxxxxxx xxx xxxxxx xxxxxxx xxxxxxx xxx xxxx xx xxxxx xx xxxx.</p><p>Xxx X xxxx xxxxx xxx xxxxxxxxxxxxxx xxxxxxx’t xxxx xxxxxx xx xxxxxxx. Xxxxxxx xxx xxxxx xxxxxxxxxxx xxxx xx xxxxxx xxxx xxxxxxxx xxx xxxxx xxxxxx xxxxxxx xxxxxxxx xxx xxxxxxxx xxxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx xx xxxxx xxxxx.</p><p><strong>– Xxxxxxxxx, Xxxxxxxx </strong><strong>xxxxxxx</strong></p><figure></figure><h2>Xxx xxxxxxxxxx xxxxxx xxx xxxxx xxxxxxxxxx xxx’t xxxxx xxxxxx</h2><p>Xx’x xxxx xx xxxxxx xxxxx xx xx xxxxxx. X xxx xxxxxxx xxxxxxx xx xxxx xxxx xxxx xxx xxxxxxxx xx xxxx xx X xxxxx xxx xxx xxxx xx xxxxxx xxxx xxxxxxxxxx xxx xxxx xx xxxxxxx xxxxxx xxxxxxxxxx xxx xxxxxxxxxx xx xx xxxxxxxx xxxx xxxx xx xxxx xxxx xx xxxx xx xxx xxx xxxx. X’m xxxx xxxxxxxxxx xxxx xxxxxx xxxx xxxxxxxxxxx xx xxxx xxxxx.</p><p>[Xxxx] xxxxxxxxxx [xxxxxx xxx] xxxxxx xxxxx xxx xxxxx xxxxxxxx. Xxx xxxxx X xxxx xxxx xxxxxxxxx xxxx xxxxx xxxx xxxx xxxxxxxx xxx xxx/xx xxxx xx xxxxxxxxx xxxxxxx?</p><p>Xxxx xxxxxx xx xxxxxxxx xx xxx xxxxxx xxx xxxx xx xxxx xxxx, xxx xxxx xx “xxx xxxx xxxxxx”. Xx xxxxx a xxxx xxx xxx xxxx xx xxxxx??</p><p><strong>–</strong> <strong>Xxxxxxxxx, Xxxx, XX</strong></p><h2>Xxx xxxxxx xxxxx xxx xxxxx xxxx xxxxxxx</h2><p>X xxxx xxxx xxxxxxxxx xxxxx xxxxxx xxxxx xxx XX xxxxx xxx xxxxxxxxx. X xxx xx xx 12-year-xxx xxx xxx xxxxxxxxx xxxx xxxx xxxxxx xxxxx xxx xx xxx. X xxxxxxx xxxxxxxxxxx xxxx, xx xx xxxxx xxxx XxxXxxx xxxxxxxxxxx, xxx xxxxxxxxxxx xxxx xxxxxx xx Xxxxxxx xxxxxxx. Xx xx xxxxxxx xxx xxxxxxxxx xxx xxxxxxxxx xx a xxx xxxx X xxx’t like. X’m xxxxxxxxxxxx xxxxxxxxx xxxxx xxxxxxx xxxxx xxxxxxxx xxx XXX xxxxxxxxxx xxxx xxxx xxx xxxx xx a xxxxxx xxx xxxxxxxxxx xxx xxxxx – like xxxxxxx, xxxxxxxxx, xxxxxxx xxxx xxxxx xxxx xxxx-xx-xxxx ...</p><p>Xx xxx xxx xxxx xxxxx a Xxxxxxxxxx xx xxxxxx (xx xxxxxx xxxxx xx xxxxxxx), xxx xxx a xxxxxx xxx xxxxxx, xxxx xxxx xxxxxx. Xxxxxxxx xxx xxxxxx xxxx xx a xxx-xxx-xxxxx xxxx xxxx xxxxxxxx xxxxx xx xxxx. Xx xxx xxxxx xxxx xx xxxxxxxxxxxxx xxxxxxxxxxxx xx xxxx a xxxxxxxx xxxxx xxx. Xx xx xxxxxx xx xxxxxxx xxx xxxxxxx xx xx xx xxx xxxxxxx – xxxx’x xxxxxxxxx xxxxxx xxx xxxxxx, xxx xxxxx a xxxxx. Xxx xxxx xx xxxxxxxxxx xxx xxxxxxxxxx xx xxxxxxxx’x xxxxxx xx xxxxxxx xxxxxxxxxx xxxxx xxxx xxxxxxxx xx xxxxxxxxxx xxxxxxxxxx xxxx xx xxxxxx xxx xxx xxx xxxxx xxxxxxxxxx. Xx’x xxxxxxxxx xxx xxxxxxx xxx xxxxxxxxxx xx xxxx.</p><p><strong>–</strong> <strong>Xxxxxxxxx, Xxxxxx</strong></p><h2>Xxx xxxxxx xxxxxxx xx xxxxx xxxx xxx xx xxxxxx xxxxx xxx xxx xxxxxxxx</h2><figure><img alt=\"Xxxxxxx xxxxx xxxx xxxxxxx xxx xxxx xxxx xxxxxxx xx a xxxxx xx xxxxxxxx, xxxxx xxxxxxxx xx a xxxxxxx.\" src=\"https://i.guim.co.uk/img/media/62c6325776dd57d2bd249ee0099dfbb4a1a95a0b/0_0_4328_3092/master/4328.jpg?width=445&amp;dpr=1&amp;s=none&amp;crop=none\"><a href=\"https://www.theguardian.com/us-news/2026/oct/12/parents-limiting-social-media-ai-use#img-2\">View xxxxx xx xxxxxxxxxx</a></figure><p>Xxx xxxxx xx xxxxxx xxxxx xxx XX xxx xxxxxxxx xxx xxxxxxxx, xxx xxx xxxxxxxx xx xxxx xx xxx xxxxxx xx. X xxxx xx xxxxxxxxxx xxxx xx xxxx xxxxxxx xxxxxxxxx xx xxxxxxxxx xxxx xxxx xxxxxxx xxxxxxxxx, xxxxx xxxxx xxxxxxx xxxxxx xxxxxxxxxxx xxx now xx xxxxxxxxxx.</p><p>X am, xxxxxxx, xxxx xxxxxxx xxxx xx xxx xx xxx xxxxxxxxx xx xxxxx xxxxxxx xxxxxx. Xxxx xx xx xxxxxx xxxxxxx xxx xx xxxxxxxxx xxxx xxxxxxxxxx xxxxxx xx xxx xxxx xxx xxxxxxx; xxxx xx xx xxxx xxxxxx xx xxxxx xxxxxxxxxxx xxx xxxxxx xxxxx xxx xx xxxx xxx xxxxx xxxx xx xxxxxx xxx xx.</p><p>Xxx xxx xxxx xxxxxxxx xxxxx xxxx xxxxx xxxxxx, xxxxx xx xxx X xxxxx xx xx xx xxxxxxxxx xxx xxxxxxxx xx xxxx xxxxxxxx. Xx xxx’t xxxxxx xx xxxx xxx xxxxx xxxxxxxxx xx xxxxxx. Xx xxxx xx xxxxx xx xxxxx xx xx xxxx, xxxxxxxx xxxx xxxxxxxx xx xx xxxxxxxxx xxx xxxxxx; xx xx xxxxx xxxxxxxxx. Xx xxxx xxxx xxxx xx xxxx xxxx xxx xxxxxx xxxx xxx xxxx xx xxxx xxxxxxxx.</p><p><strong>–</strong> <strong>Xxxxxxxx Xxxx Xxxx, 42, xxxxxx xxx xxxxxxxx xxxxxx xxx Xxxxxxxxxx Xxxx Xxxxxxxxx</strong>,<strong> </strong>a xxxxxxxxxx xxxxxxxx xx xxxxxxxx xxxxxx xxxxxxxx xx xxxxx xxx xxx xx xxxxxxxxxxx xxx xxxxxx xxxxx</p>",
+    "bodyText": "Xxxx xx xxxxx xx xxxxx xxxx, xxxx xxxxxxx xxx’t xxxxx xxxx xxxxxxxxx xxx xxxx.\n\nXxxxxx xxxxx xxxxxxxxx xxxx xxxxx xxx xxxxxx xxxx xx xxx xxxx xxxxxx xxxxxxx xxxx xxxxx xxxxxxxxx xxx xxxx xxx xxxxx, xxx xxxxx a xxx xxxxxxx xxxx’t xxxxxxxxx. Xxxx, xxxxx xxxx a xxxxxxx xxxxxx xx xxxxxxxxxx, xxxx xxxxxxxxxxxx xxxxxxx xxxxxxxxx like Xxxx xx xxxxxxxxx xxxxxxxx xxxx xxx xxxxxxxxx xx xxxxxxx xxxxx.\n\nXX xxxx XxxxXX, xxxxxx xxxx xxx xxxxxx xxxxxxxxxxxxx xxxx xxxx xxxxxxxx xxxx Xxxx, xxx xxx xx xxxxxx xxxxxxx xxxxxx xx xxxxxxxx xxxxxxxx xxxxxxx XxxxXXX xxxxx xxxxxx xxxxxxxxxx. Now, xxxxxxx xx xxx xxxxx’x xxxxxxx XX xxxxx xxxx xxxxxx xxxx xxxxx xxxxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxx xxxxx xxxx xxxxxxxx xxxxx xxxxxx xxxxxx.\n\nXxxx xxx XX xxx xxxxxx xxxxx xxxxxxxxx xxxx xxxxxx xxx xxxxxx, xxx xxxxxxxxxx xxxxxxxxxx xxxxxx xxxxxxxx xxxx xx xxxxxx-xxxxxx xxxx xxxxxxxx.\n\nXxxxx, xxx xxxx xxxxxxx, xxxxxxxx xxx xxxxxx xxxxxxxxxxx xxxx xxxx xxxxxx xx xxxxxx xxxxx xxxxx xxxxx xxxxxxx xx xxxxx xxxxx xxxxxxxx xx xxx xxxx xxxxxx xxxxx xxx XX.\n\nXxx Xxxxxxxx xxxxx xxxxxxx xxxxxxx xxxxx xxxxxxxxxxx xx xxxxx xxxxxxxx’x xxx xx xxxxxx xxxxx xx XX xxx xxxxxxx xx xxx xxxx year xxx xxxxxxx xxxx xxxx xx xxx xxxxx xxxx xxx xxxxxx xxxxxxxxxx. Xxx xxxx xxxxxxxx xx xxxxx xxx xxxxxxxxx xxxx xxxx xx xxxxxx xxxxxx xxxxx xxxxxxxx xx xxx xxxxxx xxxxx, xxx xxxx xx xxxx xxxx xxxx xxxx xxx xx xxxxx xxxxx xxxxxxxx xxxx xxxx XX.\n\n“Xxxx xxx xxx xxxx xxxxxxxx xxxxx xx xx xxxx,” Xxxxxxxx Xxxx Xxxx, a 42-year-xxx xxxxxx xxxx Xxxxxxxxx, XX. “Xx xxx xxxxx X xxxx xxxx xxxx xxxx xx a xxxxx xx xxxx xxxxxxxxx xxxxx xxxx xxxxxxxxxx xx xx xxxxxx xxxx xxxxx xxxx xxx xxxxxxx xxxxx xxxx?”\n\nXxx xxxx xxxxxx xxx xxxxx xxxx xxxxxxx xxx xxxxxx\n\nX xxxx xx xxxx, xxxxxxxxxxxx xx xxx XX xxxxxx, xxx xxxxxxxx X xxxxx xxxxx xxx xxxxxx xxxx’x xxxxx xx xx xxxxx xxx xx xxxx. Xxx xx a xxxxxxxxx xxx, xxx, xxxxx xxxxxxxxx, xxx xxxxx xx xxxxx xx xx a xxxx xxxxxxxxx xxxxx xxxx xxxx xxxx xx. X’m xxxx xxxxxxx xxx xxxxxx – xxx xxxxx X xxxx xx, xxx xxxx xxxxxxxx xxxxx xxxxxxxxxx, xxx xxx xxxxxxxxx xxxx xxx xxxx xxxx xx xxxxxxxxxx xxxxx xxxxxx – xxxxxxx xxxx xx xx xx xxxxxxxx xx xxxxxxxxxxxxx xxxxx.\n\nXx X xxxx xxx xxxx xx xxxxxxxxx xxxx xx xxx XX? Xxx. Xx X xxxx xx? Xx. Xx xxx xxxxxxxx, xxxxxx xxxxx xx xxx. Xxxx xxx xxx XxxxxXxx xx xxxxxxx xxx xxxxx xxxx-xxxxx xxxxxxxxxxxxx. Xxx xxxxxxxxx xx xxxx xxx xxxx xx xx.\n\n– Xxxx, 43, Xxxxxx, XX\n\nXxx xxx-xxxxxxxxx xxx xxx xx xxxx xx xxxx xxxxxx xxxxx xxx XX\n\nXxx xxxxxx xxxxx xxxxxxxx xxxxxxx Xxxx, xxxxx xxxx xxxxxxxxx xx xxx-XX xxxxxxxxxxx xx xxxxx xxxxxx xxxxx xxx xxx xxxxx-16x, xxxx xxxxxxx xx xx xxxx xxxxxxxxxx xxxxxxxxxxxxx xxxx xx xxxxxxxx xxxxx xxx xxxx xxxxx xx xxxxxx xxxxx xxx xxx xxx xxx xxxxx. Xxx xxxxx xxxx xx xxx xxxxx xxxxxxxx (xxxx xxxx’t xxxxxxx xx xxx XX), xxx X xxxxxx xxx xx xxx xxxxxxxxx xx’xx xxxx, xxxxxxxx, xx xxxx xxxxx xxx’x xxxxx xxxxxx xxx xxx xxx xxxx.\n\nXx 11--year-xxx xx xxx xxxxxxxxx xx xxx xxxxxx xxxxx xx xxx xxx. Xx xxx XX xxxxxxxx, xxx may xxxxxxxxxxxx xxx xxxx xx xxxx xxxx xx xx a Xxxxxx xxxxxx xxxx xx xxx xxxxxxx xx a xxxxx, xxx X xxxxxxxxx xxx xx xxxxx xxx xxxxxxxx xx xxxxxxxx XX-xxxxxxxxx. Xxx’x xxxx xxxxx xx XX xxxxxxxxxxxxxx, xxx xxxxx XX xxxxxx. Xxx xxxx xxxxxxxx xxxx xx xx xxx xxxxx xxxxxx xxx xx xx xxxxxxxxxxxx share xx XX-xxxxxxxxx xxxxx.\n\nXxx xxxxxx xx xxxx xxx-xxxxxxxxx – xx’xx xxxxx xxxx XX xxxx xxxxxxx xxxxxxx xx xxxxx xxx xxxxxx, xx xx xxx xx xxxxx XX xxxx xx a xxxxxx, xx xxxxx xxx xxxxx xxxxxxx xx xxx xxxxxxxx xx xxxxxx xxxxxxxxxxx.\n\n– Xxxx, 47, Xxxxxxxxxxxx, Xxxxxxxxxxxx\n\nXxx xxxxxx xxx xxxxx xx XX xxx xx xxxxxxx xxxxx xxx xxxxx xxxx xxx xxxxxxx xx xxxxxxxxxx xx xxxxxx\n\nXx xxxxxxxxxxx xxx xxxxxx xxxxxxxxxxxxx xxxx xxxxxxxx.\n\nXx a xxxxxx xxx xxxxxxx xxx xxxxx xx XX, X’m xxxxxxxxxxxx xxxxxxxxx xxxxx xxx xxx xxxxxxx xxx xxx xxxxx xxxxxxxxxxxx xxx xxxxxxxx xxx xxx xxxxx xxxx xxx xxxx xx xxxxxxxx. X xxxx xx xxxxxxxx xx xxxx xx xxxxxxxxxxxxx xxx xxxxx xxxxxxxxxx, xxxxxxxxx XX, xxx X xxx’t xxxxx xxxxxxxx xxxxxx xx xxxxxxx xx xxxxxxxxx xxxx xxxxxxxx xxx xxxxxxxx xxxxx xxxxxxx xx xxxxx xxxxxxxx, xxxxxxxxxxx xxx xxxxxxxxx xxx xxx xxx xxxxx xxxxxxxxxx.\n\nXxxx’x xxxxxxxxxxxx xxxxxxxxxx xx xxx xxxxx xxxxx xxxxx xxx xxxxx xxxxxxxxxx xxxxxxx xxxxxxx, xxxxx xxxx xxxxxx xxxxxxxxxx xxxxxxxx xxxxxxxxxxx xx xxxxxx. X’m xxxxxxxxxxxx xxxxxxxxxxx xxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx xxxxxxxx’x xxxxxxxxx xx xxxxxxxxxx xxx xxxxxx, xxx xxxxxxx xxxxxxx xxx xxxxx xxxxxxxxxxx xxx xxxxx xxxxxx xx xxxxxxxxxx xxx xxxxxxxxxx xxxx’xx xxxxxxx xx xxxxx xx xxxxxxxx.\n\nX xxx’t xxxxx xxxxxxxx xxx xxxxx xxxxxxxxxx xxxxxxxx xxxxx xxx xx xxx xxxxx xxxxx xxxxxx xx xxxxxxxxxx. Xxxxx’x a xxxx xxxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xxx xx xxx xxxxxxxxxx xxx xxxxxx xxxxxxx xxxxxxx xxx xxxx xx xxxxx xx xxxx.\n\nXxx X xxxx xxxxx xxx xxxxxxxxxxxxxx xxxxxxx’t xxxx xxxxxx xx xxxxxxx. Xxxxxxx xxx xxxxx xxxxxxxxxxx xxxx xx xxxxxx xxxx xxxxxxxx xxx xxxxx xxxxxx xxxxxxx xxxxxxxx xxx xxxxxxxx xxxxxxxx xxxxxxxxx xxx xxxxxxxxxxxx xx xxxxx xxxxx.\n\n– Xxxxxxxxx, Xxxxxxxx xxxxxxx\n\nXxx xxxxxxxxxx xxxxxx xxx xxxxx xxxxxxxxxx xxx’t xxxxx xxxxxx\n\nXx’x xxxx xx xxxxxx xxxxx xx xx xxxxxx. X xxx xxxxxxx xxxxxxx xx xxxx xxxx xxxx xxx xxxxxxxx xx xxxx xx X xxxxx xxx xxx xxxx xx xxxxxx xxxx xxxxxxxxxx xxx xxxx xx xxxxxxx xxxxxx xxxxxxxxxx xxx xxxxxxxxxx xx xx xxxxxxxx xxxx xxxx xx xxxx xxxx xx xxxx xx xxx xxx xxxx. X’m xxxx xxxxxxxxxx xxxx xxxxxx xxxx xxxxxxxxxxx xx xxxx xxxxx.\n\n[Xxxx] xxxxxxxxxx [xxxxxx xxx] xxxxxx xxxxx xxx xxxxx xxxxxxxx. Xxx xxxxx X xxxx xxxx xxxxxxxxx xxxx xxxxx xxxx xxxx xxxxxxxx xxx xxx/xx xxxx xx xxxxxxxxx xxxxxxx?\n\nXxxx xxxxxx xx xxxxxxxx xx xxx xxxxxx xxx xxxx xx xxxx xxxx, xxx xxxx xx “xxx xxxx xxxxxx”. Xx xxxxx a xxxx xxx xxx xxxx xx xxxxx??\n\n– Xxxxxxxxx, Xxxx, XX\n\nXxx xxxxxx xxxxx xxx xxxxx xxxx xxxxxxx\n\nX xxxx xxxx xxxxxxxxx xxxxx xxxxxx xxxxx xxx XX xxxxx xxx xxxxxxxxx. X xxx xx xx 12-year-xxx xxx xxx xxxxxxxxx xxxx xxxx xxxxxx xxxxx xxx xx xxx. X xxxxxxx xxxxxxxxxxx xxxx, xx xx xxxxx xxxx XxxXxxx xxxxxxxxxxx, xxx xxxxxxxxxxx xxxx xxxxxx xx Xxxxxxx xxxxxxx. Xx xx xxxxxxx xxx xxxxxxxxx xxx xxxxxxxxx xx a xxx xxxx X xxx’t like. X’m xxxxxxxxxxxx xxxxxxxxx xxxxx xxxxxxx xxxxx xxxxxxxx xxx XXX xxxxxxxxxx xxxx xxxx xxx xxxx xx a xxxxxx xxx xxxxxxxxxx xxx xxxxx – like xxxxxxx, xxxxxxxxx, xxxxxxx xxxx xxxxx xxxx xxxx-xx-xxxx ...\n\nXx xxx xxx xxxx xxxxx a Xxxxxxxxxx xx xxxxxx (xx xxxxxx xxxxx xx xxxxxxx), xxx xxx a xxxxxx xxx xxxxxx, xxxx xxxx xxxxxx. Xxxxxxxx xxx xxxxxx xxxx xx a xxx-xxx-xxxxx xxxx xxxx xxxxxxxx xxxxx xx xxxx. Xx xxx xxxxx xxxx xx xxxxxxxxxxxxx xxxxxxxxxxxx xx xxxx a xxxxxxxx xxxxx xxx. Xx xx xxxxxx xx xxxxxxx xxx xxxxxxx xx xx xx xxx xxxxxxx – xxxx’x xxxxxxxxx xxxxxx xxx xxxxxx, xxx xxxxx a xxxxx. Xxx xxxx xx xxxxxxxxxx xxx xxxxxxxxxx xx xxxxxxxx’x xxxxxx xx xxxxxxx xxxxxxxxxx xxxxx xxxx xxxxxxxx xx xxxxxxxxxx xxxxxxxxxx xxxx xx xxxxxx xxx xxx xxx xxxxx xxxxxxxxxx. Xx’x xxxxxxxxx xxx xxxxxxx xxx xxxxxxxxxx xx xxxx.\n\n– Xxxxxxxxx, Xxxxxx\n\nXxx xxxxxx xxxxxxx xx xxxxx xxxx xxx xx xxxxxx xxxxx xxx xxx xxxxxxxx\n\nView xxxxx xx xxxxxxxxxx\n\nXxx xxxxx xx xxxxxx xxxxx xxx XX xxx xxxxxxxx xxx xxxxxxxx, xxx xxx xxxxxxxx xx xxxx xx xxx xxxxxx xx. X xxxx xx xxxxxxxxxx xxxx xx xxxx xxxxxxx xxxxxxxxx xx xxxxxxxxx xxxx xxxx xxxxxxx xxxxxxxxx, xxxxx xxxxx xxxxxxx xxxxxx xxxxxxxxxxx xxx now xx xxxxxxxxxx.\n\nX am, xxxxxxx, xxxx xxxxxxx xxxx xx xxx xx xxx xxxxxxxxx xx xxxxx xxxxxxx xxxxxx. Xxxx xx xx xxxxxx xxxxxxx xxx xx xxxxxxxxx xxxx xxxxxxxxxx xxxxxx xx xxx xxxx xxx xxxxxxx; xxxx xx xx xxxx xxxxxx xx xxxxx xxxxxxxxxxx xxx xxxxxx xxxxx xxx xx xxxx xxx xxxxx xxxx xx xxxxxx xxx xx.\n\nXxx xxx xxxx xxxxxxxx xxxxx xxxx xxxxx xxxxxx, xxxxx xx xxx X xxxxx xx xx xx xxxxxxxxx xxx xxxxxxxx xx xxxx xxxxxxxx. Xx xxx’t xxxxxx xx xxxx xxx xxxxx xxxxxxxxx xx xxxxxx. Xx xxxx xx xxxxx xx xxxxx xx xx xxxx, xxxxxxxx xxxx xxxxxxxx xx xx xxxxxxxxx xxx xxxxxx; xx xx xxxxx xxxxxxxxx. Xx xxxx xxxx xxxx xx xxxx xxxx xxx xxxxxx xxxx xxx xxxx xx xxxx xxxxxxxx.\n\n– Xxxxxxxx Xxxx Xxxx, 42, xxxxxx xxx xxxxxxxx xxxxxx xxx Xxxxxxxxxx Xxxx Xxxxxxxxx, a xxxxxxxxxx xxxxxxxx xx xxxxxxxx xxxxxx xxxxxxxx xx xxxxx xxx xxx xx xxxxxxxxxxx xxx xxxxxx xxxxx"
+  },
+  "chain": [
+    {
+      "id": "theguardian.com/article",
+      "version": 1,
+      "sha256": "3306faa874ebc9ff5b800ec7f1566291c3d3d0f90eb50b3374254e02ed670c01"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

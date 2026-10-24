@@ -1,0 +1,369 @@
+{
+  "recipe": {
+    "id": "reddit.com/community",
+    "version": 1,
+    "sha256": "a221648a123b1f483116d230fe59e3cfe5ccab4178c158422075333b932b4579"
+  },
+  "schema": "rex.schema.social.v1.PostList",
+  "url": "https://www.reddit.com/r/rust/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:16:28Z",
+  "extractTime": "2026-10-14T03:16:28Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "community",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    },
+    {
+      "path": "posts[0].link",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "reddit.com/community@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.PostList",
+    "title": "Xxx Xxxx Xxxxxxxxxxx Xxxxxxxx",
+    "community": "x/xxxx",
+    "posts": [
+      {
+        "id": "t3_1x5fr54",
+        "author": {
+          "name": "Xxxx_XXX"
+        },
+        "text": "Xxxxxx xxxxxxxx Xxxx, xx xxx xxxxx xx xxxxxxxxxxxx, xxxx xxxxxxxx xxx xx xxxxxx xxxxxxxx",
+        "publishedAt": "2026-10-14T02:28:25.846Z",
+        "likes": "2",
+        "replies": "10",
+        "url": "https://www.reddit.com/x/xxxx/comments/1x5xx54/xxxxxx_xxxxxxxx_xxxx_xx_xxx_xxxxx_xx_xxxxxxxxxxxx/",
+        "link": "https://www.reddit.com/r/rust/comments/1x5fr54/quiero_aprender_rust_no_soy_nuevo_en_programaci%C3%B3n/"
+      },
+      {
+        "id": "t3_1x15aic",
+        "author": {
+          "name": "_xxxx"
+        },
+        "text": "Xxxx 0.20",
+        "publishedAt": "2026-10-08T22:52:24.956Z",
+        "likes": "705",
+        "replies": "126",
+        "url": "https://www.reddit.com/r/rust/comments/1x15aic/bevy_020/",
+        "link": "https://bevy.org/news/bevy-0-20/"
+      },
+      {
+        "id": "t3_1x57ted",
+        "author": {
+          "name": "xxxxxxxxxxx"
+        },
+        "text": "Xxxxxxxx xxxxxxxx xxxxx xxxxxxx xxxx xxxxx xxxxx xxxxxx",
+        "publishedAt": "2026-10-13T20:28:19.195Z",
+        "likes": "22",
+        "replies": "11",
+        "url": "https://www.reddit.com/r/rust/comments/1x57ted/avoiding_constant_usize_casting_with_small_const/",
+        "link": "https://www.reddit.com/r/rust/comments/1x57ted/avoiding_constant_usize_casting_with_small_const/"
+      },
+      {
+        "id": "t3_1wuyg33",
+        "author": {
+          "name": "xxxxxxxxx"
+        },
+        "text": "Xxxx 1.99.0 xx out",
+        "publishedAt": "2026-10-01T12:43:28.711Z",
+        "likes": "774",
+        "replies": "107",
+        "url": "https://www.reddit.com/r/rust/comments/1wuyg33/rust_1990_is_out/",
+        "link": "https://blog.rust-lang.org/2026/10/01/Rust-1.99.0/"
+      },
+      {
+        "id": "t3_1x4x90c",
+        "author": {
+          "name": "xxxxxxxx"
+        },
+        "text": "Xxxxxxxxx 0.19.0: a Xxxxx-xxxxxxxxxx xxxxxx in Xxxx, now xxxx a xxxx-xxxxxxx xxxxxx xxxxx, a xxxxxxxxxx in xxxx Xxxx, xxx xx XX xxxxxxxx xxxx xxxxx Xxxx xxxxxxxxxx",
+        "publishedAt": "2026-10-13T13:53:11.880Z",
+        "likes": "57",
+        "replies": "23",
+        "url": "https://www.reddit.com/r/rust/comments/1x4x90c/asterinas_0190_a_linuxcompatible_kernel_in_rust/",
+        "link": "https://asterinas.github.io/2026/10/13/announcing-asterinas-0.19.0.html"
+      },
+      {
+        "id": "t3_1x0h8t4",
+        "author": {
+          "name": "Xxxxxxxxxx_192"
+        },
+        "text": "Xxxx Xxx Xxxxxx a Xxxxxx Xxxx Xxx xxx Xx — Xxxx Xxxxxx X Xx?",
+        "publishedAt": "2026-10-08T04:05:34.989Z",
+        "likes": "476",
+        "replies": "225",
+        "url": "https://www.reddit.com/r/rust/comments/1x0h8t4/rust_has_become_a_career_dead_end_for_me_what/",
+        "link": "https://www.reddit.com/r/rust/comments/1x0h8t4/rust_has_become_a_career_dead_end_for_me_what/"
+      },
+      {
+        "id": "t3_1x4uzpe",
+        "author": {
+          "name": "xx-1"
+        },
+        "text": "Xxx xx x xxxxxx xxxx xxxx of XXx?",
+        "publishedAt": "2026-10-13T12:13:14.376Z",
+        "likes": "76",
+        "replies": "67",
+        "url": "https://www.reddit.com/r/rust/comments/1x4uzpe/how_do_i_handle_this_kind_of_prs/",
+        "link": "https://i.redd.it/v233ucxg78vh1.png"
+      },
+      {
+        "id": "t3_1x5foi2",
+        "author": {
+          "name": "13xxxx13xxxx"
+        },
+        "text": "XxxxXXX: A xxxx xxxx xxxx-xxxxxxxxx xxxxxx xxxxx xxxxx xxx xxxx xxxxx",
+        "publishedAt": "2026-10-14T02:24:39.419Z",
+        "likes": "1",
+        "replies": "2",
+        "url": "https://www.reddit.com/r/rust/comments/1x5foi2/coldivf_a_very_fast_readoptimized_vector_index/",
+        "link": "https://www.reddit.com/r/rust/comments/1x5foi2/coldivf_a_very_fast_readoptimized_vector_index/"
+      },
+      {
+        "id": "t3_1wukyos",
+        "author": {
+          "name": "Xxxxxxxx"
+        },
+        "text": "Xxxxxx xx xxxxx \"Xxxxx Xxxxx Xxxxxxxx Xxxxxxxxxx xxx Xxxxxxxxxxxxx\" of X/X++ xx Xxxx",
+        "publishedAt": "2026-10-01T00:07:38.978Z",
+        "likes": "769",
+        "replies": "153",
+        "url": "https://www.reddit.com/r/rust/comments/1wukyos/google_is_doing_large_scale_codebase_migrations/",
+        "link": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/"
+      },
+      {
+        "id": "t3_1x4qszn",
+        "author": {
+          "name": "Xxxxx"
+        },
+        "text": "Xxxxxxx 0.14.0 - Xxxxxxxxx xxx Xxxx, xxxxxxxx xxxxxx",
+        "publishedAt": "2026-10-13T08:04:55.585Z",
+        "likes": "56",
+        "replies": "18",
+        "url": "https://www.reddit.com/r/rust/comments/1x4qszn/creusot_0140_contracts_for_rust_formally_proved/",
+        "link": "https://www.reddit.com/r/rust/comments/1x4qszn/creusot_0140_contracts_for_rust_formally_proved/"
+      },
+      {
+        "id": "t3_1x1rwgm",
+        "author": {
+          "name": "xxxxxxxxxxxxxxx"
+        },
+        "text": "Xxxx xx xxxxxx xxxxxxxx xxxxxxxxxxx in a year. Xxx xxxxxxx Xxxx xxxxxxx xxxx, xxx xxxxx xxxxx xx xxxxx xxxxxx xxxxxxx Xxxx, just xxx Xxxx",
+        "publishedAt": "2026-10-09T17:45:23.308Z",
+        "likes": "445",
+        "replies": "137",
+        "url": "https://www.reddit.com/r/rust/comments/1x1rwgm/deno_is_ending_official_development_in_a_year_the/",
+        "link": "https://www.reddit.com/r/rust/comments/1x1rwgm/deno_is_ending_official_development_in_a_year_the/"
+      },
+      {
+        "id": "t3_1x4596f",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "xxxxxxx-xx - Xxx xx Xxxxxxx Xxxx Xxxxxxxxxxx xxxxx Xxxxxxx xxx Xxxxxxxxxx",
+        "publishedAt": "2026-10-12T15:42:33.507Z",
+        "likes": "46",
+        "replies": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1x4596f/hotpathrs_how_to_profile_rust_performance_using/",
+        "link": "https://hotpath.rs/blog/rust-performance-grafana"
+      },
+      {
+        "id": "t3_1x03ajn",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxxxxxxx XXXX XX in Xxxxxx (xxx xxx-xx, a xxxxxxx xxxxxxx in Xxxx)",
+        "publishedAt": "2026-10-07T17:51:32.630Z",
+        "likes": "291",
+        "replies": "59",
+        "url": "https://www.reddit.com/r/rust/comments/1x03ajn/shipping_jpeg_xl_in_chrome_via_jxlrs_a_decoder/",
+        "link": "https://developer.chrome.com/blog/jpeg-xl-in-chrome"
+      },
+      {
+        "id": "t3_1x4befv",
+        "author": {
+          "name": "Xxxxxxxxxxx"
+        },
+        "text": "Xxx X xxxxxx Xxxxx Xxxxxx xxxxxxxxxxx 16x xxxx Xxxx xxx just 4 xxxxxxx",
+        "publishedAt": "2026-10-12T19:28:17.915Z",
+        "likes": "14",
+        "replies": "18",
+        "url": "https://www.reddit.com/r/rust/comments/1x4befv/how_i_scaled_nginx_brotli_compression_16x_with/",
+        "link": "https://www.reddit.com/r/rust/comments/1x4befv/how_i_scaled_nginx_brotli_compression_16x_with/"
+      },
+      {
+        "id": "t3_1wqr6rm",
+        "author": {
+          "name": "XxXX8Xx"
+        },
+        "text": "X'm a Xxxx xxxxxxxx xxxxxxxxxx xxxxxxx xxx a xxx xxxx",
+        "publishedAt": "2026-09-26T13:56:33.420Z",
+        "likes": "571",
+        "replies": "39",
+        "url": "https://www.reddit.com/r/rust/comments/1wqr6rm/im_a_rust_compiler_maintainer_looking_for_a_new/",
+        "link": "https://tako8ki.com/posts/looking-for-a-new-role/"
+      },
+      {
+        "id": "t3_1x5ebjz",
+        "author": {
+          "name": "Xxxxxxxxxxxx_Xxx_544"
+        },
+        "text": "Xxxxx Xxxx xx Xxxxxxxx xxxxx",
+        "publishedAt": "2026-10-14T01:16:17.095Z",
+        "replies": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1x5ebjz/winit_arch_or_hyprland_issue/",
+        "link": "https://www.reddit.com/r/rust/comments/1x5ebjz/winit_arch_or_hyprland_issue/"
+      },
+      {
+        "id": "t3_1wy5b85",
+        "author": {
+          "name": "Xxxxxxxx"
+        },
+        "text": "xxxx (xxx xxxx-xxxxx xxxxxx) xxx xxxx xxxxxxxxx in Xxxx",
+        "publishedAt": "2026-10-05T10:43:03.289Z",
+        "likes": "549",
+        "replies": "83",
+        "url": "https://www.reddit.com/r/rust/comments/1wy5b85/mold_the_highspeed_linker_has_been_rewritten_in/",
+        "link": "https://github.com/rui314/mold/releases/tag/v3.0.0"
+      },
+      {
+        "id": "t3_1woatic",
+        "author": {
+          "name": "xxxxxx"
+        },
+        "text": "Xxx `xxxxxxxxx_xxx` xxxxxxx xxx xxxx xxxxxxxxxx, xx xxxxx xx xxxxxxx in Xxxx 1.100",
+        "publishedAt": "2026-09-23T16:29:43.514Z",
+        "likes": "541",
+        "replies": "76",
+        "url": "https://www.reddit.com/r/rust/comments/1woatic/the_allocator_api_feature_has_been_stabilized_on/",
+        "link": "https://github.com/rust-lang/rust/issues/32838"
+      },
+      {
+        "id": "t3_1x4g3lo",
+        "author": {
+          "name": "XxxxxXxX"
+        },
+        "text": "Xxx xx Xxxxx xxxx Xxxxxxxxxxxxxxx xxxx Xxxx xx. XXX32-X6",
+        "publishedAt": "2026-10-12T22:35:49.371Z",
+        "likes": "6",
+        "replies": "3",
+        "url": "https://www.reddit.com/r/rust/comments/1x4g3lo/how_to_blink_your_microcontroller_with_rust_ft/",
+        "link": "https://youtu.be/Hd6uq8if3ps?is=mcJwo9mmop4fVr6-"
+      },
+      {
+        "id": "t3_1wn7jni",
+        "author": {
+          "name": "Xxxxxxxx"
+        },
+        "text": "Xxxxxxxx XXXX x1.0 xx xxxx",
+        "publishedAt": "2026-09-22T12:01:16.971Z",
+        "likes": "529",
+        "replies": "36",
+        "url": "https://www.reddit.com/r/rust/comments/1wn7jni/fearless_simd_v10_is_here/",
+        "link": "https://linebender.org/blog/fearless-simd-1-0/"
+      },
+      {
+        "id": "t3_1x3wgvh",
+        "author": {
+          "name": "XxxxXxxxXxXxxxxxx"
+        },
+        "text": "xxxx-xxxxxxxx xxxxxxxxx #349",
+        "publishedAt": "2026-10-12T08:31:45.615Z",
+        "likes": "39",
+        "replies": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1x3wgvh/rustanalyzer_changelog_349/",
+        "link": "https://rust-analyzer.github.io/thisweek/2026/10/12/changelog-349.html"
+      },
+      {
+        "id": "t3_1x3x0z4",
+        "author": {
+          "name": "Xxxxxxxxxx15"
+        },
+        "text": "Xxxxxxxxxxx xxxxxxxxx Xxxxx Xxxxx Xxxxxxxxxxx",
+        "publishedAt": "2026-10-12T09:08:20.919Z",
+        "likes": "18",
+        "replies": "4",
+        "url": "https://www.reddit.com/r/rust/comments/1x3x0z4/visualizing_crossbeam_epoch_based_reclamation/",
+        "link": "https://sofiabelen.github.io/projects/visualizing-crossbeam-epoch-based-reclamation/"
+      },
+      {
+        "id": "t3_1x586r9",
+        "author": {
+          "name": "Xxxx-Xxxxxxxxxx"
+        },
+        "text": "Xxxxxx xxx xxxxxxxx a xxxxx-xxxxxx xxxxxxxxxx xxxx Xxxxxxxxx'x Xxxxx Xxxxx XXX (xxxxx)?",
+        "publishedAt": "2026-10-13T20:43:26.456Z",
+        "likes": "1",
+        "replies": "8",
+        "url": "https://www.reddit.com/r/rust/comments/1x586r9/advise_for_building_a_cloudbacked_filesystem_with/",
+        "link": "https://www.reddit.com/r/rust/comments/1x586r9/advise_for_building_a_cloudbacked_filesystem_with/"
+      },
+      {
+        "id": "t3_1x57lki",
+        "author": {
+          "name": "Xx_Xxx_624"
+        },
+        "text": "XXXX_XXXXX — Xxxxxxxxxxx Xxxxxxx + Xxxx xxxx, in Xxxx. A 7 XX xxxxxx.",
+        "publishedAt": "2026-10-13T20:19:55.465Z",
+        "url": "https://www.reddit.com/r/rust/comments/1x57lki/rail_httpx_lightweight_postman_burp_core_in_rust/",
+        "link": "https://www.reddit.com/r/rust/comments/1x57lki/rail_httpx_lightweight_postman_burp_core_in_rust/"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "reddit.com/community",
+      "version": 1,
+      "sha256": "a221648a123b1f483116d230fe59e3cfe5ccab4178c158422075333b932b4579"
+    }
+  ]
+}

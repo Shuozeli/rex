@@ -1,0 +1,551 @@
+{
+  "recipe": {
+    "id": "bilibili.com/search",
+    "version": 1,
+    "sha256": "6646afa62768bea938ae1dc0d3448064a4d6413fa63988f23091a5f042d32483"
+  },
+  "schema": "rex.schema.media.v1.VideoList",
+  "url": "https://search.bilibili.com/all?keyword=rust%E6%95%99%E7%A8%8B",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T03:36:06Z",
+  "extractTime": "2026-10-14T03:36:06Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].channel_name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].channel_url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].duration_seconds",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].views",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    },
+    {
+      "path": "items[0].thumbnail",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bilibili.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.VideoList",
+    "query": "rust教程",
+    "items": [
+      {
+        "id": "BV1hp4y1k7SV",
+        "title": "Xxxx字字字字字字字字（Xxxx字字/Xxxx字字字字字字）【字字字】",
+        "url": "https://www.bilibili.com/video/BV1hp4y1k7SV/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/361469957",
+        "durationSeconds": 43777,
+        "views": "1716000",
+        "publishedAt": "2020-10-20T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/3bcd51d8e8035931e282079a7a256ec7e1e8e80d.jpg",
+        "rank": 1
+      },
+      {
+        "id": "BV1XXcyeuE7m",
+        "title": "【Xxxx字字字字字字】2026字字字字字字时字字！！！",
+        "url": "https://www.bilibili.com/video/BV1XXcyeuE7m/",
+        "channelName": "Xxxxxx字字字",
+        "channelUrl": "https://space.bilibili.com/35550166",
+        "durationSeconds": 10114,
+        "views": "157000",
+        "publishedAt": "2025-01-12T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/c478a94b3addecd0042d14ec21fb9462b439822c.jpg",
+        "rank": 2
+      },
+      {
+        "id": "BV1zxpq68E5C",
+        "title": "【XXXX字字字字】字字三人字字字人字字字字字字字字字！",
+        "url": "https://www.bilibili.com/video/BV1zxpq68E5C/",
+        "channelName": "字日Xxxx",
+        "channelUrl": "https://space.bilibili.com/1439713986",
+        "durationSeconds": 4519,
+        "views": "4068",
+        "publishedAt": "2026-10-13T13:36:06Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/7ddd398c6570cf876063f7b9c8185a3f8da36dca.jpg",
+        "rank": 3
+      },
+      {
+        "id": "BV13DN36iE2j",
+        "title": "【2026字字】Xxxx字字字字字字",
+        "url": "https://www.bilibili.com/video/BV13DN36iE2j/",
+        "channelName": "天字字字",
+        "channelUrl": "https://space.bilibili.com/2047892303",
+        "durationSeconds": 6343,
+        "views": "10000",
+        "publishedAt": "2026-07-12T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/8faf7a8eec80022c2043234bf264d667ba291795.jpg",
+        "rank": 4
+      },
+      {
+        "id": "BV11TLqzTEe7",
+        "title": "50分钟字字Xxxx字字字字字字字字字字！",
+        "url": "https://www.bilibili.com/video/BV11TLqzTEe7/",
+        "channelName": "字字字",
+        "channelUrl": "https://space.bilibili.com/670537736",
+        "durationSeconds": 3183,
+        "views": "68000",
+        "publishedAt": "2025-04-23T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/6d51bde91f49df9b24c39761c712182aaf7b9a7c.jpg",
+        "rank": 5
+      },
+      {
+        "id": "BV16B4y1q7Sq",
+        "title": "【2025】字字字字Xxxx字字字字字字字字",
+        "url": "https://www.bilibili.com/video/BV16B4y1q7Sq/",
+        "channelName": "字字字字字字",
+        "channelUrl": "https://space.bilibili.com/375038855",
+        "durationSeconds": 19560,
+        "views": "185000",
+        "publishedAt": "2022-06-23T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/9ce66c915008a13fc1202299b8f6eeb62b255086.jpg",
+        "rank": 6
+      },
+      {
+        "id": "BV1QDQrY6EdM",
+        "title": "Xxxx字字字 #1 字字字字字字字，字字字字，字字一字字字",
+        "url": "https://www.bilibili.com/video/BV1QDQrY6EdM/",
+        "channelName": "Xxxxxxxx",
+        "channelUrl": "https://space.bilibili.com/1506223590",
+        "durationSeconds": 340,
+        "views": "71000",
+        "publishedAt": "2025-03-14T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/b530a4859171b24612bc05d24737201672cd7908.jpg",
+        "rank": 7
+      },
+      {
+        "id": "BV1UbmgBFExH",
+        "title": "字字Xxxx字字字字：字字字字字字（字字字字）",
+        "url": "https://www.bilibili.com/video/BV1UbmgBFExH/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/61214429",
+        "durationSeconds": 111687,
+        "views": "88000",
+        "publishedAt": "2025-12-31T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/73304dddf967269aef60aa51a38e3e233ed79342.jpg",
+        "rank": 8
+      },
+      {
+        "id": "BV1JL411h7Rx",
+        "title": "[xxxx 字字]字字字字字字字字字字！",
+        "url": "https://www.bilibili.com/video/BV1JL411h7Rx/",
+        "channelName": "字字字字字字",
+        "channelUrl": "https://space.bilibili.com/28163990",
+        "durationSeconds": 17648,
+        "views": "163000",
+        "publishedAt": "2023-05-10T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/68370c677e9376c4f879e408e4ad3acf67c61482.png",
+        "rank": 9
+      },
+      {
+        "id": "BV1E7ccz9ERD",
+        "title": "Xxxx-字字字字字字字字字【字字字字】【字二字】",
+        "url": "https://www.bilibili.com/video/BV1E7ccz9ERD/",
+        "channelName": "Xxx-xxxxxx",
+        "channelUrl": "https://space.bilibili.com/694576824",
+        "durationSeconds": 2030,
+        "views": "6596",
+        "publishedAt": "2026-02-07T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/3b1a72a1f1dd0663f0077b119785dbbad776f288.jpg",
+        "rank": 10
+      },
+      {
+        "id": "BV1yBxze6Epo",
+        "title": "Xxxx 字字字字字字：字字 Xxxx",
+        "url": "https://www.bilibili.com/video/BV1yBxze6Epo/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/361469957",
+        "durationSeconds": 514,
+        "views": "27000",
+        "publishedAt": "2024-09-28T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/7b3ef1cfcd4a3bf7c890a4d4808615365e162f51.jpg",
+        "rank": 11
+      },
+      {
+        "id": "BV15y421h7j7",
+        "title": "2024 Xxxx字字字字字字",
+        "url": "https://www.bilibili.com/video/BV15y421h7j7/",
+        "channelName": "字字字字",
+        "channelUrl": "https://space.bilibili.com/437860379",
+        "durationSeconds": 38520,
+        "views": "207000",
+        "publishedAt": "2024-02-10T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/05cbf6e5f6456c007b9d0f0b3c5beeb8b5ca68f3.jpg",
+        "rank": 12
+      },
+      {
+        "id": "BV1Ah4y1e7pb",
+        "title": "xxxx字字",
+        "url": "https://www.bilibili.com/video/BV1Ah4y1e7pb/",
+        "channelName": "字字字",
+        "channelUrl": "https://space.bilibili.com/1520286351",
+        "durationSeconds": 256,
+        "views": "4742",
+        "publishedAt": "2023-09-17T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/683e0b55a7d12ec2fbaf3b73443a79db71da4efd.jpg",
+        "rank": 13
+      },
+      {
+        "id": "BV192421T7kW",
+        "title": "XXXX字字字字 （字字字字）",
+        "url": "https://www.bilibili.com/video/BV192421T7kW/",
+        "channelName": "Xxx字字字字",
+        "channelUrl": "https://space.bilibili.com/314592571",
+        "durationSeconds": 869,
+        "views": "2224",
+        "publishedAt": "2024-02-29T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/e132ee02e3f6c3605f4228346e5363bed8e2e547.jpg",
+        "rank": 14
+      },
+      {
+        "id": "BV1Bz4y137oz",
+        "title": "XXXX-Xxxx Xxxx-字字字字字/ 字字字字/",
+        "url": "https://www.bilibili.com/video/BV1Bz4y137oz/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/3493267161221718",
+        "durationSeconds": 854,
+        "views": "5291",
+        "publishedAt": "2023-09-25T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/638b311196b07abed446595909ce7677941d17c4.jpg",
+        "rank": 15
+      },
+      {
+        "id": "BV1redoYGEnT",
+        "title": "xxxx字字字字字字一字字字字字字字字字字字字字字字",
+        "url": "https://www.bilibili.com/video/BV1redoYGEnT/",
+        "channelName": "999字字字字字字",
+        "channelUrl": "https://space.bilibili.com/3546857816984468",
+        "durationSeconds": 359,
+        "views": "9263",
+        "publishedAt": "2025-04-14T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/c0235fa7eaa5ee94a090c53d2284d9e5180e17b8.jpg",
+        "rank": 16
+      },
+      {
+        "id": "BV1ptt66WENJ",
+        "title": "Xxxx字字，字字字字分字字字字上！",
+        "url": "https://www.bilibili.com/video/BV1ptt66WENJ/",
+        "channelName": "字字Xxxxxxx",
+        "channelUrl": "https://space.bilibili.com/1525355",
+        "durationSeconds": 149,
+        "views": "28000",
+        "publishedAt": "2026-09-03T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/58710ce8e14ac526e400011e17c1d2fb8a37c087.jpg",
+        "rank": 17
+      },
+      {
+        "id": "BV1Ww41147Uy",
+        "title": "2024年，Xx字Xxxx字字，字字字字字字",
+        "url": "https://www.bilibili.com/video/BV1Ww41147Uy/",
+        "channelName": "字字字XX",
+        "channelUrl": "https://space.bilibili.com/396803537",
+        "durationSeconds": 387,
+        "views": "49000",
+        "publishedAt": "2023-12-20T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/228555e82c7f068b110fe69ef631d6cf0649ee6e.jpg",
+        "rank": 18
+      },
+      {
+        "id": "BV1qy411h7WH",
+        "title": "字字字评字xxxx",
+        "url": "https://www.bilibili.com/video/BV1qy411h7WH/",
+        "channelName": "字字字字",
+        "channelUrl": "https://space.bilibili.com/17755677",
+        "durationSeconds": 62,
+        "views": "31000",
+        "publishedAt": "2024-06-01T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/d1a9233dfd367d6b6f6183377216c38db92f3a8a.png",
+        "rank": 19
+      },
+      {
+        "id": "BV1jCav6kE3e",
+        "title": "「Xxxx字字」字字字字字字字字！",
+        "url": "https://www.bilibili.com/video/BV1jCav6kE3e/",
+        "channelName": "Xxxx字字字字",
+        "channelUrl": "https://space.bilibili.com/403368159",
+        "durationSeconds": 1904,
+        "views": "34000",
+        "publishedAt": "2026-10-04T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/61c234f8e2b8e613ae0572ca94a8b83e15c37e93.jpg",
+        "rank": 20
+      },
+      {
+        "id": "BV1Dj411D7R6",
+        "title": "【Xxxx字字字字】字六期：字字字字字字字字。（字字字字字）",
+        "url": "https://www.bilibili.com/video/BV1Dj411D7R6/",
+        "channelName": "字字字字字字字",
+        "channelUrl": "https://space.bilibili.com/245833292",
+        "durationSeconds": 714,
+        "views": "124000",
+        "publishedAt": "2023-06-18T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/23dcd216862e59bc97ecc9f413426da946c7c5ec.jpg",
+        "rank": 21
+      },
+      {
+        "id": "BV1bVS4YXEE5",
+        "title": "Xxxx 字字字字字字 xxxx XxxxXxxxx：字字字字字（上）",
+        "url": "https://www.bilibili.com/video/BV1bVS4YXEE5/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/361469957",
+        "durationSeconds": 1558,
+        "views": "23000",
+        "publishedAt": "2024-10-28T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/ada4b72643d68a84fce25eb7fe4a36b71d58cf24.jpg",
+        "rank": 22
+      },
+      {
+        "id": "BV1CHa2ziEf2",
+        "title": "字字Xxxx xxxxxx字字字字字一字天字~~ 字字字字字字字xxxxxxxxx，字字字字字字",
+        "url": "https://www.bilibili.com/video/BV1CHa2ziEf2/",
+        "channelName": "xxxxXxxxxxxx",
+        "channelUrl": "https://space.bilibili.com/3546645627144439",
+        "durationSeconds": 451,
+        "views": "11000",
+        "publishedAt": "2025-09-03T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/60434e108303d5eb5d0f508fda7109772d9f3af0.jpg",
+        "rank": 23
+      },
+      {
+        "id": "BV1voFpzkEke",
+        "title": "Xxxx-字字字字字字字字【字字字字】【字一字】",
+        "url": "https://www.bilibili.com/video/BV1voFpzkEke/",
+        "channelName": "Xxx-xxxxxx",
+        "channelUrl": "https://space.bilibili.com/694576824",
+        "durationSeconds": 1283,
+        "views": "9705",
+        "publishedAt": "2026-02-06T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/0ddc517874126fb57e35afe8074769fb19a15cef.jpg",
+        "rank": 24
+      },
+      {
+        "id": "BV1Nu4y13761",
+        "title": "Xxxx 字字字字",
+        "url": "https://www.bilibili.com/video/BV1Nu4y13761/",
+        "channelName": "xxXxxx",
+        "channelUrl": "https://space.bilibili.com/3546559207705376",
+        "durationSeconds": 261,
+        "views": "7408",
+        "publishedAt": "2023-12-06T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/6ac96e8f48893fd026c25d79568cc98eea994650.jpg",
+        "rank": 25
+      },
+      {
+        "id": "BV1XJx4zyEqn",
+        "title": "字字字字字Xxxx",
+        "url": "https://www.bilibili.com/video/BV1XJx4zyEqn/",
+        "channelName": "xxxxxxx0",
+        "channelUrl": "https://space.bilibili.com/35891473",
+        "durationSeconds": 620,
+        "views": "21000",
+        "publishedAt": "2025-10-05T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/f05a1b90500f972141a87cbf26937e9d62a91822.jpg",
+        "rank": 26
+      },
+      {
+        "id": "BV1z3411f78V",
+        "title": "XXXX字字-字字字字",
+        "url": "https://www.bilibili.com/video/BV1z3411f78V/",
+        "channelName": "字字Xxxx",
+        "channelUrl": "https://space.bilibili.com/39390101",
+        "durationSeconds": 813,
+        "views": "18000",
+        "publishedAt": "2022-11-23T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/a5603618c14a5cb9b9687832df501784ef691cb0.jpg",
+        "rank": 27
+      },
+      {
+        "id": "BV1o3aE68EFp",
+        "title": "Xxxx 字字字字字？字字字字字字字？",
+        "url": "https://www.bilibili.com/video/BV1o3aE68EFp/",
+        "channelName": "字字字字字_",
+        "channelUrl": "https://space.bilibili.com/471578635",
+        "durationSeconds": 195,
+        "views": "4292",
+        "publishedAt": "2026-09-28T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/e0fb31f81ee7efeb5295e6a51d5fb15b69212e1f.jpg",
+        "rank": 28
+      },
+      {
+        "id": "BV1M1zdBqE5s",
+        "title": "字字xxxx字字字字Xxxx字字字字，字字字字字字字字字字字，xxxx字字字字字。字字字字点xxxx字字字字",
+        "url": "https://www.bilibili.com/video/BV1M1zdBqE5s/",
+        "channelName": "字字三字字字字字字字",
+        "channelUrl": "https://space.bilibili.com/3546647726393538",
+        "durationSeconds": 56,
+        "views": "29000",
+        "publishedAt": "2026-01-28T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/322111e1d4992ab35d385b90c721ebfad2d61ada.jpg",
+        "rank": 29
+      },
+      {
+        "id": "BV1MGq5YQE4f",
+        "title": "Xxxx 字字字字字 - 字字字字",
+        "url": "https://www.bilibili.com/video/BV1MGq5YQE4f/",
+        "channelName": "小字字2077",
+        "channelUrl": "https://space.bilibili.com/182687081",
+        "durationSeconds": 35417,
+        "views": "98000",
+        "publishedAt": "2024-12-06T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/5087da93b18d213b29107d96553453062f7a87a1.jpg",
+        "rank": 30
+      },
+      {
+        "id": "BV1Ct421E7js",
+        "title": "【XXXX字字字字】10000小时字字字字字，字字字字字字字字字字！！",
+        "url": "https://www.bilibili.com/video/BV1Ct421E7js/",
+        "channelName": "字字字字字字字",
+        "channelUrl": "https://space.bilibili.com/245833292",
+        "durationSeconds": 1217,
+        "views": "1221000",
+        "publishedAt": "2024-04-05T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/5e00c1cc2c48cb1afe865efc5d404a554c633140.jpg",
+        "rank": 31
+      },
+      {
+        "id": "BV19mWJzsEND",
+        "title": "字字字字字字字字字字字字Xxxx？",
+        "url": "https://www.bilibili.com/video/BV19mWJzsEND/",
+        "channelName": "字字字-字字字字",
+        "channelUrl": "https://space.bilibili.com/3546887147751842",
+        "durationSeconds": 158,
+        "views": "12000",
+        "publishedAt": "2025-10-17T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/68d5f78ad760cf90e3b0a6c6eb10126c23044e5b.jpg",
+        "rank": 32
+      },
+      {
+        "id": "BV1uV411v7t3",
+        "title": "Xxxx字字字字字",
+        "url": "https://www.bilibili.com/video/BV1uV411v7t3/",
+        "channelName": "字字字字",
+        "channelUrl": "https://space.bilibili.com/437860379",
+        "durationSeconds": 10009,
+        "views": "40000",
+        "publishedAt": "2021-02-28T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/ddea9e829bf43210285d93dbd876ec6afeb497ce.jpg",
+        "rank": 33
+      },
+      {
+        "id": "BV1eRHcerEVX",
+        "title": "字字评字字字字字，字字字字字字字字字下一字字字字？",
+        "url": "https://www.bilibili.com/video/BV1eRHcerEVX/",
+        "channelName": "字评字小字",
+        "channelUrl": "https://space.bilibili.com/526562395",
+        "durationSeconds": 36,
+        "views": "92000",
+        "publishedAt": "2024-08-31T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/c03dbaa848db8447384eb4e18a9c0b090509d8ce.jpg",
+        "rank": 34
+      },
+      {
+        "id": "BV14AJNzsEya",
+        "title": "12分钟 Xxxx字字",
+        "url": "https://www.bilibili.com/video/BV14AJNzsEya/",
+        "channelName": "XxxxxXxxxx",
+        "channelUrl": "https://space.bilibili.com/3546761245231384",
+        "durationSeconds": 750,
+        "views": "79000",
+        "publishedAt": "2025-05-16T16:00:00Z",
+        "thumbnail": "https://i1.hdslb.com/bfs/archive/f08cbb08ed2b0f665251c7da9df8a2426d1add80.jpg",
+        "rank": 35
+      },
+      {
+        "id": "BV1RK4y1A7FR",
+        "title": "【XXXX】字字字字字字",
+        "url": "https://www.bilibili.com/video/BV1RK4y1A7FR/",
+        "channelName": "Xxxxxxxx",
+        "channelUrl": "https://space.bilibili.com/35313453",
+        "durationSeconds": 6858,
+        "views": "61000",
+        "publishedAt": "2021-05-17T16:00:00Z",
+        "thumbnail": "https://i0.hdslb.com/bfs/archive/d8e02b601d96af1da2866b90857cf8583de40221.jpg",
+        "rank": 36
+      },
+      {
+        "id": "BV1uUDDBnE5x",
+        "title": "XX 字字 Xxxx 字字字字（字字 Xxxx Xxxx）",
+        "url": "https://www.bilibili.com/video/BV1uUDDBnE5x/",
+        "channelName": "字字字字字",
+        "channelUrl": "https://space.bilibili.com/361469957",
+        "durationSeconds": 36278,
+        "views": "43000",
+        "publishedAt": "2026-04-11T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/d69eaa5fe49c96011c4324922c134132e2b3efbf.jpg",
+        "rank": 37
+      },
+      {
+        "id": "BV1dDG7zsEWC",
+        "title": "Xxxx 2018年字字字 (字字字字字字)",
+        "url": "https://www.bilibili.com/video/BV1dDG7zsEWC/",
+        "channelName": "Xxxx字字字字",
+        "channelUrl": "https://space.bilibili.com/1925745192",
+        "durationSeconds": 924,
+        "views": "20000",
+        "publishedAt": "2025-07-07T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/2afe8440077fa79976a752b0442017e0e4f30831.jpg",
+        "rank": 38
+      },
+      {
+        "id": "BV1Kz4y177uQ",
+        "title": "字字XXXX字字字字字字字字字字XxX~",
+        "url": "https://www.bilibili.com/video/BV1Kz4y177uQ/",
+        "channelName": "字字字字",
+        "channelUrl": "https://space.bilibili.com/79390533",
+        "durationSeconds": 680,
+        "views": "122000",
+        "publishedAt": "2023-07-11T16:00:00Z",
+        "thumbnail": "https://i2.hdslb.com/bfs/archive/0ef5fd21f71887e40c3c6b9bf777efdc7866aa86.jpg",
+        "rank": 39
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "bilibili.com/search",
+      "version": 1,
+      "sha256": "6646afa62768bea938ae1dc0d3448064a4d6413fa63988f23091a5f042d32483"
+    }
+  ]
+}

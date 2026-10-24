@@ -1,0 +1,75 @@
+# App Store listing -> rex.schema.app.v1.App (decisions.md U38). Served over plain HTTP the page carries a
+# SoftwareApplication JSON-LD node (generic/app.v1 reads it); after the page renders in a browser the JSON-LD
+# and Open Graph tags are gone, so the extension needs the DOM: the header section (h1, subtitle, "Free · In-App
+# Purchases"), the rating component, the developer link and the information list (dl > div: dt + dd).
+id: apps.apple.com/app
+version: 1
+schema: rex.schema.app.v1.App
+extends: generic/app.v1
+match:
+  urls:
+    hosts: ["apps.apple.com"]
+    include: ["/app/[^/]+/id\\d+"]
+fields:
+  - path: id
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/(id\\d+)", group: 1 }
+
+  - path: name
+    expect: true
+    candidates:
+      - css: { selector: "[data-testid=default-page-container] section:has(> h1) > h1" }
+
+  - path: developer.name     # the developer link reads "Developer Duolingo"
+    candidates:
+      - css: { selector: "a[href*='/developer/']" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex_replace: { pattern: "^Developer\\s+", with: "" }
+
+  - path: developer.url
+    candidates:
+      - css: { selector: "a[href*='/developer/']", take: TAKE_ATTRIBUTE, attribute: href }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex_replace: { pattern: "\\?.*$", with: "" }
+
+  - path: category
+    candidates:
+      - css: { selector: "dl > div" }
+    pipe:
+      - regex: { pattern: "^Category\\s*(.+)$", group: 1 }
+
+  - path: platforms
+    candidates:
+      - constant: { value: "iOS" }
+
+  - path: price              # "Free · In‑App Purchases" or "$4.99"
+    candidates:
+      - css: { selector: "[data-testid=default-page-container] section:has(> h1) > p" }
+    pipe:
+      - regex: { pattern: "^(Free|[$€£¥][\\d.,]+)", group: 1 }
+      - map: { entries: [ { from: "Free", to: "0" } ] }
+
+  - path: rating
+    candidates:
+      - css: { selector: "[data-testid=amp-rating__average-rating]" }
+
+  - path: rating_count       # "5.5M Ratings"
+    candidates:
+      - css: { selector: "[data-testid=amp-rating__rating-count-text]" }
+
+  - path: content_rating     # shelf badge "Age Rating 4+ Years"
+    candidates:
+      - css: { selector: "[data-testid=shelf-item-list] li" }
+    pipe:
+      - regex: { pattern: "^Age Rating\\s*(\\S+)", group: 1 }
+
+  - path: url
+    replace_inherited: true
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex_replace: { pattern: "\\?.*$", with: "" }

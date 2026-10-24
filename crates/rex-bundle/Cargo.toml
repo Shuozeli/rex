@@ -1,0 +1,22 @@
+[package]
+name = "rex-bundle"
+description = "Build, sign and verify rex recipe bundles (rex.bundle.v1)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+rex-proto = { path = "../rex-proto" }
+rex-schema = { path = "../rex-schema" }
+rex-engine = { path = "../rex-engine", default-features = false }
+prost = "0.14"
+prost-types = "0.14"
+prost-reflect = { version = "0.16", features = ["serde"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+sha2 = "0.10"
+ed25519-dalek = { version = "2", default-features = false, features = ["std"] }
+thiserror = "2"
+
+[dev-dependencies]
+rex-engine = { path = "../rex-engine", features = ["yaml"] }

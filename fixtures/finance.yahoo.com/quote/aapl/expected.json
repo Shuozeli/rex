@@ -1,0 +1,239 @@
+{
+  "recipe": {
+    "id": "finance.yahoo.com/quote",
+    "version": 1,
+    "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://finance.yahoo.com/quote/AAPL/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:03:15Z",
+  "extractTime": "2026-10-15T01:03:15Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "candidate": 2,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "avg_volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "pe_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "eps",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "dividend_yield",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "finance.yahoo.com/quote@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "AAPL",
+    "name": "Xxxxx Xxx.",
+    "type": "INSTRUMENT_TYPE_STOCK",
+    "exchange": "XxxxxxXX",
+    "currency": "XXX",
+    "price": "342.96",
+    "change": "1.69",
+    "changePercent": "0.5",
+    "marketState": "MARKET_STATE_CLOSED",
+    "previousClose": "341.27",
+    "open": "344.61",
+    "dayLow": "341.72",
+    "dayHigh": "347.07",
+    "yearLow": "243.42",
+    "yearHigh": "348.15",
+    "volume": "49893047",
+    "avgVolume": "45038190",
+    "marketCap": "5005000000000",
+    "peRatio": "39.33",
+    "eps": "8.72",
+    "dividendYield": "0.32",
+    "stats": [
+      {
+        "name": "Previous Close",
+        "value": "341.27"
+      },
+      {
+        "name": "Open",
+        "value": "344.61"
+      },
+      {
+        "name": "Xxx",
+        "value": "342.96 x 700"
+      },
+      {
+        "name": "Xxx",
+        "value": "346.70 x 500"
+      },
+      {
+        "name": "Day'x Xxxxx",
+        "value": "341.72 - 347.07"
+      },
+      {
+        "name": "52 Week Xxxxx",
+        "value": "243.42 - 348.15"
+      },
+      {
+        "name": "Volume",
+        "value": "49,893,047"
+      },
+      {
+        "name": "Xxx. Volume",
+        "value": "45,038,190"
+      },
+      {
+        "name": "Market Cap (xxxxxxxx)",
+        "value": "5.005T"
+      },
+      {
+        "name": "Xxxx (5Y Xxxxxxx)",
+        "value": "1.07"
+      },
+      {
+        "name": "PE Ratio (TTM)",
+        "value": "39.33"
+      },
+      {
+        "name": "EPS (TTM)",
+        "value": "8.72"
+      },
+      {
+        "name": "Xxxxxxxx Xxxx",
+        "value": "Nov 2, 2026"
+      },
+      {
+        "name": "Forward Dividend & Yield",
+        "value": "-- (0.32%)"
+      },
+      {
+        "name": "Xx-Dividend Xxxx",
+        "value": "Aug 10, 2026"
+      },
+      {
+        "name": "1y Xxxxxx Est",
+        "value": "329.38"
+      }
+    ],
+    "url": "https://finance.yahoo.com/quote/AAPL/"
+  },
+  "chain": [
+    {
+      "id": "finance.yahoo.com/quote",
+      "version": 1,
+      "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+    }
+  ]
+}

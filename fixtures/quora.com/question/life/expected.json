@@ -1,0 +1,348 @@
+{
+  "recipe": {
+    "id": "quora.com/question",
+    "version": 1,
+    "sha256": "531e3c38438b1ef903ed53f4b3551a9031d735857ba23274f10a1150d111ec77"
+  },
+  "schema": "rex.schema.social.v1.Thread",
+  "url": "https://www.quora.com/What-is-the-meaning-of-life",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:46:52Z",
+  "extractTime": "2026-10-14T04:46:52Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "post.text",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "post.url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].author.name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].author.url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].likes",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].replies",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "replies[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quora.com/question@1"
+    },
+    {
+      "path": "reply_count",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "quora.com/question@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.social.v1.Thread",
+    "title": "Xxxx is xxx xxxxxxx of xxxx?",
+    "url": "https://www.quora.com/What-is-the-meaning-of-life",
+    "post": {
+      "text": "Xxxx is xxx xxxxxxx of xxxx?",
+      "url": "https://www.quora.com/What-is-the-meaning-of-life"
+    },
+    "replies": [
+      {
+        "id": "Ryan-Chew-1",
+        "author": {
+          "name": "Xxxx Xxxx",
+          "url": "https://www.quora.com/profile/Ryan-Chew-1"
+        },
+        "text": "Xxxx.\n\nXxxxxxxxxx X xx, X xx xx xxx xxxx. Xx xxxxxxx is to xxxxxx xxxx, xxxx xxxx, xxxxxxx xxxx, xxxxxxx xxxx, xxx xxx xxxx to xxx point xxxxx X xxx xxxx xxxx out of xxx xxxxx xxx, xx xxx xxxxxx, xxxxxxx xxx xxxxxxx to xxxx. Xxxxx xxxx, X'xx xxxxxxxx xxxx xx xxxxx xxxxxxx.\n\nXxxx is xxx xxxxxxx of xx xxxx.\n\nNow xxx xx xxxxx xxx xxxx xxx xxxxx.\n\nXxxxxxxx Xxxxxxx\n\nXxxx.\n\nXxxxxxxxxx X xx, X xx xx xxx xxxx. Xx xxxxxxx is to xxxxxx xxxx, xxxx xxxx, xxxxxxx xxxx, xxxxxxx xxxx, xxx xxx xxxx to xxx point xxxxx X xxx xxxx xxxx out of xxx xxxxx xxx, xx xxx xxxxxx, xxxxxxx xxx xxxxxxx to xxxx. Xxxxx xxxx, X'xx xxxxxxxx xxxx xx xxxxx xxxxxxx.\n\nXxxx is xxx xxxxxxx of xx xxxx.\n\nNow xxx xx xxxxx xxx xxxx xxx xxxxx.",
+        "publishedAt": "2015-10-17T04:46:52Z",
+        "likes": "193",
+        "replies": "13",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life/answer/Ryan-Chew-1"
+      },
+      {
+        "id": "Mansour-Ansari-1",
+        "author": {
+          "name": "Xxxxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Mansour-Ansari-1"
+        },
+        "text": "X xxx to answer xxxx xxxxxxx. Xx answer may xx xxxxxxx xxxx xx xxxx xx to xx. Xx, xxxx xx Xxxxx xxxxxx xxx xxxx xxx xxxx xxx xx xxxxxx xxx xxx xxxxx xxxxxx xxxxx xxxxxxxx xx xxxxxxx. Xxxxx is a xxxxxxxxx, a xxxxxx of xxxxxxxxx, xxx xxxxxxxxxx xx xxx.\n\nXxxxxx to xxxxxxx xxx xxxxxxxx xxxxxxx xxxxxx xxxx xxxxx xxx xxxxxxxxx xxxx like xxxxxx to xxxxxxx xxx xxx sun xxxxx, xxxxxxx xxx xxx, xxx xxxx xxxxxxxxxx xxxx xxxxxxxx. Xxx xxxxx xxxxxx xxxxxxxxx. X xxxx xxxxx 71 years, xxx xxx xxxxx xxx xxxxxx xxxxxxxxxxxx xxxxx to xx: xxxxxxxxx xxxx xxxxx xx xxxxx, xxx xxxx xxxxx xx xxxxxx xxx xxxxxxx:\n\nXxxx xxxxx\n\nXxxxxxxx Xxxxxxx\n\nX xxx to answer xxxx xxxxxxx. Xx answer may xx xxxxxxx xxxx xx xxxx xx to xx. Xx, xxxx xx Xxxxx xxxxxx xxx xxxx xxx xxxx xxx xx xxxxxx xxx xxx xxxxx xxxxxx xxxxx xxxxxxxx xx xxxxxxx. Xxxxx is a xxxxxxxxx, a xxxxxx of xxxxxxxxx, xxx xxxxxxxxxx xx xxx.\n\nXxxxxx to xxxxxxx xxx xxxxxxxx xxxxxxx xxxxxx xxxx xxxxx xxx xxxxxxxxx xxxx like xxxxxx to xxxxxxx xxx xxx sun xxxxx, xxxxxxx xxx xxx, xxx xxxx xxxxxxxxxx xxxx xxxxxxxx. Xxx xxxxx xxxxxx xxxxxxxxx. X xxxx xxxxx 71 years, xxx xxx xxxxx xxx xxxxxx xxxxxxxxxxxx xxxxx to xx: xxxxxxxxx xxxx xxxxx xx xxxxx, xxx xxxx xxxxx xx xxxxxx xxx xxxxxxx:\n\nXxxx xxxxxxx, to a xxxxx xxxxxx, xxxx xxx xxxx of xx.\n\nXx xxx xxx xxxx xxxx xxxx, xxxx xxxx xxxxxxxxxxxxx xxxxxxxxx, xxxxx xxxx xxxx xxxxxxxx, xxxx xxx xxxx xxxx xxx xxxx, xxx xxxxx xxxxxxxxx xxxxxxxxxx xxxxx xxx xxx, xxx may xxxxx xxx xxx xxx xxxx xxxx with xxxxxxxxxxxx. Xxxxx is xxx xxxxx xxxx of xxxx xxx xxxx: Xx xxx xxxxxxxxxx xxxxx xxx xxxxxxx xxx xxx to xxxxx xxxx xxxx, xxxxx xxx xxxxx a xxxx xxxxxxxxx xxxx of xxxxxxxxxx.\n\nXxxx xx xxx 20, 30, 40, xx xxxx 50, xxxx of xx xx xxx xxxxx xxxxxxxxxx xxx xxxxx of xxx xxxx xxxxx in xxxxx of xx. Xxxx xxxxx xxxxxxxx. Xxxxx is xxxxxx xxxxxxx year, xxxxxxx xxxxxxxxxxx, xxxxxxx xxxxxx to xxxxx. Xxxx, xxxxxxxxx xxxxx xxx xxxx, xxxxx xxxxxxx xxxx xxxxxxxxxxx. Xx xx xxxxx to xxxxxxxxxx xxxx xxxx xxx xxxxx xxxxxxxxx.\n\nXxxx xxxxxxxxxxx is xxx of xxx xxxxxxx xxxxx of xxxxxxx xxxxx. Xxxxxx xxxx xxx xxxxxxxxxxxxx xxxxxx with xxx, xxx xxx xxxx xxxxxx, xxx xxxxxxx xxxxx xx a xxxxx xxxx xxxxx xxxxx xxx xxx.\n\nXxx xxxxxxx xxxx of xxx xxxxxxx of xxxx is xxxx: To xxxxxxxxx xxx xxxxx of xxxx xxxx xxxxxx xxxx xxxxxx xxxxxxx xxx xxx xxxxxx. Xxxx is xxx xxxx xxx X xxx xxxxxxx xxxxxxx xxxx’x xxxxxxx.",
+        "publishedAt": "2026-09-23T00:00:00Z",
+        "likes": "38",
+        "url": "https://www.quora.com/What-is-the-meaning-behind-life-1/answer/Mansour-Ansari-1"
+      },
+      {
+        "id": "Asim-Qureshi-17",
+        "author": {
+          "name": "Xxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Asim-Qureshi-17"
+        },
+        "text": "Xxx xxxx. Xx to a xxxx in a xxxx xxxx of a xxxx xxx xxxx a xxxx xxxx xxxxx xxx a view of xxxxxx xxxxxxx xxxx - xxxxxxx a xxxxx xx xxx xxxxxxxx xxxxxxx.\n\nNow xxxxxxx.\n\nXxxx xxx'xx xxx is xxxxxxxx, xxx, xx xxxx xxxxxxx, xxxxxxxxx, of xxxxxx, xxxxxx xxxxxxx to xxxxx xxxxxxxxxxxx. Xxxx, xxxx, xxx, xxxxx, xxx, xxxxx, xxxx xxx xxxxx, xxx xxxxx xxxx xxxx to xx, xxxxxx to xxx to xxxx xxxxx xxxx xxxx xx xxxx to xx. Xxxx xxxx xxx xxxxx xxxx’xx xxxx xxxx to xx xxxxxxxxx xxxx.\n\nXxx'xx xxx a xxxxxxxx xx xxxx xxxxxx'x xxxxx.\n\nXxx xxxx'x xxxx. Xx'xx xxx xxxxxx to xxx xxxxxxxxx xx'xx xxx. Xx’x a xxxxxxxx, xxxxx xxxx\n\nXxxxxxxx Xxxxxxx\n\nXxx xxxx. Xx to a xxxx in a xxxx xxxx of a xxxx xxx xxxx a xxxx xxxx xxxxx xxx a view of xxxxxx xxxxxxx xxxx - xxxxxxx a xxxxx xx xxx xxxxxxxx xxxxxxx.\n\nNow xxxxxxx.\n\nXxxx xxx'xx xxx is xxxxxxxx, xxx, xx xxxx xxxxxxx, xxxxxxxxx, of xxxxxx, xxxxxx xxxxxxx to xxxxx xxxxxxxxxxxx. Xxxx, xxxx, xxx, xxxxx, xxx, xxxxx, xxxx xxx xxxxx, xxx xxxxx xxxx xxxx to xx, xxxxxx to xxx to xxxx xxxxx xxxx xxxx xx xxxx to xx. Xxxx xxxx xxx xxxxx xxxx’xx xxxx xxxx to xx xxxxxxxxx xxxx.\n\nXxx'xx xxx a xxxxxxxx xx xxxx xxxxxx'x xxxxx.\n\nXxx xxxx'x xxxx. Xx'xx xxx xxxxxx to xxx xxxxxxxxx xx'xx xxx. Xx’x a xxxxxxxx, xxxxx xxxx xxxx xx xxx day xx xxx.",
+        "publishedAt": "2019-10-16T04:46:52Z",
+        "likes": "15700",
+        "replies": "490",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-66/answer/Asim-Qureshi-17"
+      },
+      {
+        "id": "Sorzus",
+        "author": {
+          "name": "Xxxxxx",
+          "url": "https://www.quora.com/profile/Sorzus"
+        },
+        "publishedAt": "2026-03-09T00:00:00Z",
+        "likes": "1100",
+        "replies": "52",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-66/answer/Sorzus"
+      },
+      {
+        "id": "Abhishek-Pathania-14",
+        "author": {
+          "name": "Xxxxxxxx Xxxxxxxx",
+          "url": "https://www.quora.com/profile/Abhishek-Pathania-14"
+        },
+        "text": "X xxx't xxxx.\n\nXxxx'x xxxxxxxx xx xxxx xxxxxx answer to xxxx xxx xxxxxxx of xxxx is.\n\nXxx a xxxx xxxx X xxxxxxx X xxxxxxxxxx xxx xxxxx xxxxxxxxxxx. Xxxx xxxx, xxxx xxxx of xxxxxxxx, xxx't xx xxx xxxx xxxxxx xxxx, xxxxx a xxxx xxxxxx, xxxx xxxx xxxxx, xxxx xxxxxxx, xxxx xxx.\n\nXxx xxxx xxxxxxx xxx xxxxx xxxxxx. X'm xxx xxxx xxxxx.\n\nXxx xxxxxxxxx in xx xxxx xxxxx xxx xxxx xxxxxxxxxx xxxx xx xxx xxx xxxx xxxxxx xxxxx, xxxx xxxxx xxxx xx xxxx xxxx xxxx.\n\nXx xxxxx't.\n\nXxx xxx xx xxxxxxxxxx xxxxx xxx xxxxx xxx xxxxxxxxxx xxxxxxx. Xxxxxxxxx xxxxxxx xxxx xxx xx xxxxxxxxxx xxxxx xxx xxxxxxx xxxx xxxx xxxx.\n\nXx Xxxxxxxx'x Xxxx - Xxxxxxx Xxx Xxxx\n\nXxxxx is\n\nXxxxxxxx Xxxxxxx\n\nX xxx't xxxx.\n\nXxxx'x xxxxxxxx xx xxxx xxxxxx answer to xxxx xxx xxxxxxx of xxxx is.\n\nXxx a xxxx xxxx X xxxxxxx X xxxxxxxxxx xxx xxxxx xxxxxxxxxxx. Xxxx xxxx, xxxx xxxx of xxxxxxxx, xxx't xx xxx xxxx xxxxxx xxxx, xxxxx a xxxx xxxxxx, xxxx xxxx xxxxx, xxxx xxxxxxx, xxxx xxx.\n\nXxx xxxx xxxxxxx xxx xxxxx xxxxxx. X'm xxx xxxx xxxxx.\n\nXxx xxxxxxxxx in xx xxxx xxxxx xxx xxxx xxxxxxxxxx xxxx xx xxx xxx xxxx xxxxxx xxxxx, xxxx xxxxx xxxx xx xxxx xxxx xxxx.\n\nXx xxxxx't.\n\nXxx xxx xx xxxxxxxxxx xxxxx xxx xxxxx xxx xxxxxxxxxx xxxxxxx. Xxxxxxxxx xxxxxxx xxxx xxx xx xxxxxxxxxx xxxxx xxx xxxxxxx xxxx xxxx xxxx.\n\nXx Xxxxxxxx'x Xxxx - Xxxxxxx Xxx Xxxx\n\nXxxxx is xx xxxxxxx xxxxxx to xxxxxxx xxx xxxxx.\n\nXxxx xxxx to xxxxxx xx a xxx. Xx xxxxx xxxx, xxxxxxxx.\n\nXxxxx xxxx'x xxx X xxxxxxxxxx xxx xxxxxxxxx xxxxxx Xxx in Xxxxx Xxxxxxxxxxxx xxxxxxxxxxx now xxxx X xxxxx xxxx xxxx X xxx xxxxxxx.\n\nXx xxxxxx xx xxxx of xxx xxxx xxxxxxxxx xx'x xx xxx xxx xxxxxxxxx. Xxxxxxxx a xxxxxxxxx, xxxxxxx xxxxxx, xxxxxxx Xxxxxxx...xxxxx'x xxxxxx xxxx xxxxxx xxxxxxx of xxx xxxx xxxxx xxxxxxxxxx xxxx xxxxxxx xxxx xxxxx.\n\nXxx xxxx xxxxxx xxxxxxxxxx xx xxxxxxxx xxxxx xxxx xxxxxx xxxxx out to xx xxxxx.\n\nX xxxxx xx xxx xx a xxxxxxx xxxxxxx of xxxx.\n\nX'xx xx xxxxx xxxx X xxx xxxx xxxx xxxxxxx, xxx xxxx xxx xxxx xxx, xxxx xxxx xxxx xxxxx, xxx a xxxxx xxx xx xx.\n\nXxxx xxx xxx xxxxx xxx...Monday xxxxx xxxxx.\n\nXxxx just xxxxxx xxxxxxxxx xx xxx xxxx xxxxx yesterday'x xxxxxxxx xxxx xxxxxxxxxxxxxx xxxxx.\n\nX xxxx xxx't xxx xxx xxxx xxxx xxxxxxxxxx xxxxxxx xxx a xxxxxx.\n\nXxxx xxxxxx xxx just xxxx.\n\nXxxxxxx xxx't xxxxxxxxxxxxx a xxxxxx. Xxxxxxx xxx't xxxx xxxxxxxxx xxxxxxxx xxxx xxxxxx to xxxxx xxxxxxxxx. Xxxxxx xxxxxxx xxxxx't xxxxxxxxxxx xxxx xxx xxxxx.\n\nXxxxxxxxx xxxxx is xx xxxxxx xxxxxx xxxxxxxxxx.\n\nXx xxxxxxxx. Now xxxx?\n\nX xxxxx xxxx “now xxxx?” is xxxxxxxx xxx xxxxxxx X'xx xxxx to xxxxxxxxxxxxx xxxx.\n\nXxxxxxx xxxxxxx xx xxxxxxxx. Xxxx of xxx xxxx xx xxxxx't xxxx like a xxxxx. Xxxxx'x xx xxxxxxx xx xxxxxx in xxxx.\n\nXxx xxxxx. Xxx xxxxxxxx. Xxx xxx xxxxx. Xxx xxxxxx xxx xxxx xxxxxxxx to xxx. Xxxxx xxx xxxx xxxxx xxx xxxxxxxx xxx a xxxxx. Xxxx xxx day xxx'xx xxxxxxxx xx xxxxxxxxx xxxxxx xxxxx.\n\nXxx xxxxx xxxxxxx xxxxxx xxxxx.\n\nXxx xxxx xxxxxxx xxxx xxxx xxxxx xxxxxxxxxxx xxx xxxxxxx xxxxx xxx xxxxxxxxx xx. Xxxx'x xxxx a xxxxxxxxxx xxxxx xxxxx xxxx xxx xxxxx xxxxx xx.\n\nXxx xxxxx xxxx'x xxxxx X xxxx xxxxxxx now?\n\nXxxxxx X xxxx. Xxxxxx X xxxxx xxxx to xxxxxxx. Xxxxxxx a xxxxxx xxxx xxxxx xxx xxxxx xxxx X xxxx yesterday. Xxxxxx, xxxxx, xxxxxxxxxxxxx, xxxxxxxxxx xxxxxxxxx X'xx xxxxx xxxx.\n\nXxxx xxxxxx xxxxxx xxxxxx.\n\nX xxx't xxxxx xxxxxxxxx is xxx xxxxxxx of xxxx xxxxxxx xxxxxxxxx xxxxx xxx xxxx. Xxxxxxxxxxx xxx't xxxxxx xxxxxxx xxxxx is xxxxxx xxxxxxx xxxxxxxxxxx xxxxxxx xxxxxx xx.\n\nXxxxx xxxxxxx is just xxx xxxxxxxxxx of xxxxxx xxxx xxxx xxx xxxx to xxx xxxxxxxx.\n\nX xxxxx xxxx xxxxx, X xxxxx xxxx xxxxxx.\n\nX xxxxxx xxxxxxxxx xxxx xxxx, xxxxxxx xxxxxxx xxxxxxxxx xxxx xxxx xxxx xxx xxxxxxxx xx xxxxxxxxxx xxxxxxx.\n\nXxx xxxxxx, xxxxxxx. Xxx xxxx xxxxx.",
+        "publishedAt": "2026-09-11T00:00:00Z",
+        "likes": "22",
+        "replies": "8",
+        "url": "https://www.quora.com/What-is-the-concept-of-life-What-are-we-here-for/answer/Abhishek-Pathania-14"
+      },
+      {
+        "id": "Andrew-Weill",
+        "author": {
+          "name": "Xxxxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Andrew-Weill"
+        },
+        "text": "Yesterday, xx xxxx xxxxxx to xxxx a xxxx xx xxx xxxxx. Xx xxxxx to xxx xxxxxxxx, xxx xxx xxxx xxx xxxxxxxxxx, xxx X xxxxxx xxx xxxxx a xxxxxxxx xxxx xxx xxxx xxxxxxxx a xxx xxxxxxx, xxxxxxx a xxxxxxxx xxxxxx xxxxxxxxx xxxx xxx xxxxxxxx xxxxx xxxxxxxx xx xxxx xxx xxx.\n\nXxx xxxx xxx xxxx xxxxxxxx, xxxxxx xxxxx with xxxxxxx in xxxxx, xxx xx xxxxxxxxxxx xxxx xxxxxx xxxxxxx xxxxxx with xx.\n\nXx xxxxxx xxxxx xxx xxxxx xxxxx, with xxxxxxxxxx xxxxxxx comments with xxxx xxxxx. X xxxxxxxxxxxx xxxxxxx xxx xxx xxxxxxx xxx xxx xxxxxx xxx xxxxxxxx day, xxx xxx xxxxxxxxx xxx xxxxxxxxx to xxx xxx xxxxxxxx xxxxxxx\n\nXxxxxxxx Xxxxxxx\n\nYesterday, xx xxxx xxxxxx to xxxx a xxxx xx xxx xxxxx. Xx xxxxx to xxx xxxxxxxx, xxx xxx xxxx xxx xxxxxxxxxx, xxx X xxxxxx xxx xxxxx a xxxxxxxx xxxx xxx xxxx xxxxxxxx a xxx xxxxxxx, xxxxxxx a xxxxxxxx xxxxxx xxxxxxxxx xxxx xxx xxxxxxxx xxxxx xxxxxxxx xx xxxx xxx xxx.\n\nXxx xxxx xxx xxxx xxxxxxxx, xxxxxx xxxxx with xxxxxxx in xxxxx, xxx xx xxxxxxxxxxx xxxx xxxxxx xxxxxxx xxxxxx with xx.\n\nXx xxxxxx xxxxx xxx xxxxx xxxxx, with xxxxxxxxxx xxxxxxx comments with xxxx xxxxx. X xxxxxxxxxxxx xxxxxxx xxx xxx xxxxxxx xxx xxx xxxxxx xxx xxxxxxxx day, xxx xxx xxxxxxxxx xxx xxxxxxxxx to xxx xxx xxxxxxxx xxxxxxx to xxxxx xxx xxxxx.\n\nXxxx xx xxx xxxx, xxx xxxxxx xx xxx xxxxxxx xx xxx a xxxx xxxx.\n\nXxx xxxxxxx of xx xxxx, xxxxxx xxxx xxxx, xxx to xxxxxxxxxx xxxx xxxx with xx xxxx.\n\nXxxx xxxxx in xxxx, xxx xxxxxxx is xxx xxxxxxx, xxx xxxxx xx xxxxxxx xxxxxxxxxxx xx xxxxxxxxxxxxx.",
+        "publishedAt": "2026-03-23T00:00:00Z",
+        "likes": "1900",
+        "replies": "68",
+        "url": "https://www.quora.com/What-is-the-purpose-of-life-What-is-the-purpose-of-life/answer/Andrew-Weill"
+      },
+      {
+        "id": "Jos%C3%A9-Manuel-Mu%C3%B1iz-Herrera",
+        "author": {
+          "name": "Xxxx Xxxxxx Xxxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Jos%C3%A9-Manuel-Mu%C3%B1iz-Herrera"
+        },
+        "text": "Xxxx is xxx xxxxxxx of xxxx? Xxxx xxx xx xxxx xxx?\n\nTo xxxx, xxx xxxx xxxxxxxxxxx, to xx xxxx, is xxx xxx xxxxx xx Xxxxxx Xxxxx:\n\nXxxxxxxx Xxxxxxx\n\nXxxx is xxx xxxxxxx of xxxx? Xxxx xxx xx xxxx xxx?\n\nTo xxxx, xxx xxxx xxxxxxxxxxx, to xx xxxx, is xxx xxx xxxxx xx Xxxxxx Xxxxx:",
+        "publishedAt": "2026-06-12T00:00:00Z",
+        "likes": "16",
+        "replies": "1",
+        "url": "https://www.quora.com/What-is-the-concept-of-life-What-are-we-here-for/answer/Jos%C3%A9-Manuel-Mu%C3%B1iz-Herrera"
+      },
+      {
+        "id": "Richard-Muller-3",
+        "author": {
+          "name": "Xxxxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Richard-Muller-3"
+        },
+        "text": "Xxx xx answer xxx xxxxxxx xxxxxxx xxxxxxxx: Xxx xx xx xxxx to xxxx a xxxxxxx in xxxx? Xxx xxxxxxx of xxxxxxx, in xx xxxxxxxxxx, is xxxxx xxxx in xxxxxxxxxxx xxx xxx xxxxxx xxxx-xxxxxxxx. Xxxxxxxxx X xxxx xxxx xxx xxxxxx xxx xxxxxxx in xxxx is Xxx’x xxxxxxxxxx xxx xxxxx xxx xxxx xxxx xxxxx xxxxxxxxxx xxxx xxxxx xxxxxx.\n\nX xxxx xxxxxxxxx to a xxxxxxx xxx xxxx xxx xxxx xxx xxxxxxxxxxx xxxx xx xxxxxxxxx xx a xxxxx xxxxxxx xxxx xxxxx xxx xxxx, just xxx day a week. Xx xxxx xx a xxx; a xxx months xxxxx X xxxxx to xxx, xxx xx xxx xxx xxxxx xxx xxxxxxx in xxxx; xx just xx xxxxxx xxxxx xxxxx xxx xxxxxxxx.\n\nXxxxxxxx Xxxxxxx\n\nXxx xx answer xxx xxxxxxx xxxxxxx xxxxxxxx: Xxx xx xx xxxx to xxxx a xxxxxxx in xxxx? Xxx xxxxxxx of xxxxxxx, in xx xxxxxxxxxx, is xxxxx xxxx in xxxxxxxxxxx xxx xxx xxxxxx xxxx-xxxxxxxx. Xxxxxxxxx X xxxx xxxx xxx xxxxxx xxx xxxxxxx in xxxx is Xxx’x xxxxxxxxxx xxx xxxxx xxx xxxx xxxx xxxxx xxxxxxxxxx xxxx xxxxx xxxxxx.\n\nX xxxx xxxxxxxxx to a xxxxxxx xxx xxxx xxx xxxx xxx xxxxxxxxxxx xxxx xx xxxxxxxxx xx a xxxxx xxxxxxx xxxx xxxxx xxx xxxx, just xxx day a week. Xx xxxx xx a xxx; a xxx months xxxxx X xxxxx to xxx, xxx xx xxx xxx xxxxx xxx xxxxxxx in xxxx; xx just xx xxxxxx xxxxx xxxxx xxx xxxxxxxx.\n\nXxxxxxx xxx xxxxx xx xxxxx xxxxxxxx, xxxxx xxxxxx xxx xxxxxxx (xxxxxx to xxx point xxxx xxxx xxxxx of xxxxxxx xxxxx in xxx xxxxxxx of xxxxxxxx) xxx’t xxxxxx xxx xxxxxxx of xxxx. Xxx xx xxxxxx xxx xxx xxxxxx xxxxxxxxxx in xxxxxx. Xx’x xxx xxxx xxxx’xx xxxxx xxx xxxxxxx, xxx (like xx xxxxxxx) xxx xxxxxxxx xx xxxxxx xxxxxxx xxxx.\n\nXxxx out xxxxxx. Xxx to xxxx xxxx. Xx xxxxx’t xxxx to xx a xxx of xxxxxx, just a xxx xxxx xx. Xxxxxx to xxxx. Xxxxxxxx. Xxxx xxxxx xxxxxxxx xxx xxxxxxxx xxxxxxxxx. Xx a xxxx of a xxxxxx xxxxxxxxx. Xx’x xxxxxxxxxx xxx xxx xxxx xxxxxxxxxxxxx xxx xxxxxxxxxx xxxxxx xxx xxxxxxx in xxxx xxxxx xxx xxxxxx xxxxxxx xxxxxxxxxxx.",
+        "publishedAt": "2018-10-16T04:46:52Z",
+        "likes": "9600",
+        "replies": "268",
+        "url": "https://www.quora.com/What-is-the-purpose-of-life-56/answer/Richard-Muller-3"
+      },
+      {
+        "id": "Robert-Frost-1",
+        "author": {
+          "name": "Xxxxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Robert-Frost-1"
+        },
+        "text": "Xx xxx't xxxx. Xx xxx't xxxx. Xxx...\n\nXxxxx xxxxxxxx xxx xxxxx xxxxxxxxxx xxxxxx xxxxxx xxxxxx xxxxxxxxxx to answer xxxx xxxxxxxx. Xxx xxxx xx xx xx xxxxx xxxxxxx xxxx xxxx't xxxx with a xxxx'x xxxxxx.\n\nXx xxxx xxx xxxxx xxxxxx a xxxxxx with xx xxxxxx xxxxxxx. Is xxxxx xxxxxxxxx xxxxxx? Xxxx xx xxx xxxx xxx a xxxxxxx? Xxxx xxxxxxx xxxx? Xxxx is xxx xxx xxxx? Is xxxxx xx xxx xxxx? Xx xxxxx answers xxxxx xxxx xxx xxxxxx xxxxxxx of xxx xxxxxxxxxx.\n\nXx, xxxx xxx xxxxxx xxxxxxxxxxx, xxxx xx xx xxxx? Xx xxxxx xx xxxx?\n\nXx xxx xx xx xxxx, xx xxx xxx xxxx. Xx xxxxxxx is like a xxxxx xxxx with xxxxx\n\nXxxxxxxx Xxxxxxx\n\nXx xxx't xxxx. Xx xxx't xxxx. Xxx...\n\nXxxxx xxxxxxxx xxx xxxxx xxxxxxxxxx xxxxxx xxxxxx xxxxxx xxxxxxxxxx to answer xxxx xxxxxxxx. Xxx xxxx xx xx xx xxxxx xxxxxxx xxxx xxxx't xxxx with a xxxx'x xxxxxx.\n\nXx xxxx xxx xxxxx xxxxxx a xxxxxx with xx xxxxxx xxxxxxx. Is xxxxx xxxxxxxxx xxxxxx? Xxxx xx xxx xxxx xxx a xxxxxxx? Xxxx xxxxxxx xxxx? Xxxx is xxx xxx xxxx? Is xxxxx xx xxx xxxx? Xx xxxxx answers xxxxx xxxx xxx xxxxxx xxxxxxx of xxx xxxxxxxxxx.\n\nXx, xxxx xxx xxxxxx xxxxxxxxxxx, xxxx xx xx xxxx? Xx xxxxx xx xxxx?\n\nXx xxx xx xx xxxx, xx xxx xxx xxxx. Xx xxxxxxx is like a xxxxx xxxx with xxxxx xxxxx, xx xxx't xxxx xxxx (xxxxx Xxxxxx). Xxxx'x xx xxxx xxxxxxx xx xx xxx xxxxxxxx xx xxxxxxx. Xxx xxxxxx.\n\nXx, xxx xxxxxxxx \"Xx X xxx xxxx xxx xxxx, xxx xxxxx X xxxx xx?\" xxx xxxxx is xxxx xxxxxxx.\n\nXXXXXXX: XXXXXX XXXX XXXXXXXX RESULTS IN XXXX-XXXXXXXX XXXXX XXXX XXX XXXXX IN XXX XXXXXX, XX XXX XXXXX'T XXXXXX XXXXXXX. XXXX IS XXXXXX XX XXX XXXXX'T XXX.\n\nXx xxxxxxx. Xxxxx xxxxx minutes xxxxxx xxxxx X xxxxx xxx xxx xxxxx xxxxxxx of xxxxx day. Xxx xxxx, xxxxxxxx xxxxxxx in xxx xxxxxx xxx xxxx a xxxx xxxx xxx of xxxxxxxxx xxxxxxx with xxxx xx xxxxxxx xx xxxxx xx xx xx xxx xxxx xxx xxxx. Xxx xxxxx xxxxxxx a xxxxxx of xxxx xx xxxxx xxxxxxxxxxxx xx xxxxxxxxx xxxxx.\n\nXxxxx xxxxxx is a xxxxxx xxxxxxx of xxxx. Xxxx xxxxx xx a xxxxxxxxx xxxxxx xx xxxxx xxxxxxx xxx xxxx xxxx xxxxx xxx xxxxx xxxxxxx of xxxxxx. A xxxxxxxxxx of xxxxxxxxx xxx to xxxx xx to xxxxxxx xxxx of xx xx xx xxx. Xxxxxxx xxxx xxx a result of xxxxxxxxxx xx xxxxxx xxxxxxx, xx xxx't xxxx. Xxx xxxx xxxxx't xxxx xx xxx't xxxxxxxxxx xx xxx xx xxxxxxxx xxx xx.\n\nXxx xxxxx xxx xxxxx xx xxxxxxxxx xx xxx xxx xxx xxxxx? XXXX is xxx xxxxxxx of xxxx? Xx xx xxxxxx't xx xxxxxxxxx, xxxx xxxx xxxx xxx xx xxxxxxx. Xxxx xxxxxx xxxxx, xxx xx xxx't xxxx to xxxxx Xxxxx Xxxxxxx in Xx'x a Xxxxxxxxx Xxxx to xxxxxxxxx xxxx xx is xxxx xxxxxxxxxx xxx xx xxxxxxxxxx to xxxx xx xxxxxx xx xxx xxxxx xxxxxx xxxx, xx xxxx in xxx xxxxxxxxx.\n\nXxxx xxxxx xx xxxxxxx xxx xxx xxx xxxxxxx. Xxx xxxxxxx - xxx xxxxx - xxxxxxx xxx xxxxxxx of xxx xxxx. Xxx xxxxxxxx xxx of xxxxxxxx xx xxx xxxxxxxx xxx of xxxxxxx xx xxxxxx xxx xxxx xxxxxxxxx xxxxxx xxxxxxx. Xxxx is xxx xxxxx xxxxxx Xxxx Xxxxxxxx xxxxxxxx xx xxxxx in Xxxxxxxx Xxxx, xxx xx xxx xxx xxxxxxxxx in Xxxxx Xxxxxxx. Xxx xxxxx xxx xxxxxxx xxxxxxxxx xx xx xxxxxxx xxx xxxx xxxxxxx xxxx.\n\nXx xxx xxxxxxxxx, xx may xxxx xxxxxxx, xxx xx xxx't xxxx xxxx xxxxxxx xxxx. Xxx xx xxx xxxx xxxx xxx xxxxxx xxxxxxx xx xxxx a xxxxxxxxxx xxxx xx xxx xx xxxxx of - xxxx is xxx xxxxxxx of xxxx.\n\nXxxxxxx xxxx xxxxxxxxxx is xxx xxxx, xxx xxxxxx, xxx xxxx, xxx xxxxxxxxxxx, xxx xxxxx, xx xxx xxxxxxxxxx is xx to xx.\n\n*xxxxxxx to xxx xx Xxxxxxxx xxxxx xxxxxxxxx.",
+        "publishedAt": "2015-10-17T04:46:52Z",
+        "likes": "1600",
+        "replies": "82",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life/answer/Robert-Frost-1"
+      },
+      {
+        "id": "Jean-Marie-Valheur",
+        "author": {
+          "name": "Xxxx-Xxxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Jean-Marie-Valheur"
+        },
+        "text": "Xx’xx xxx xxxxxx xxxx xxx xxx xxxxxx, xx just xxx.\n\nXxxxx’x xxxx xxx xxxx xx Xxx Xxxxx, Xxxxx, Xxxxx Xxxxx of Xxxx… a xxx is xxxxxxxx of xxx xxxxxx xxxx xx xxxx xx in. Of xxx xxx xxxx xx xxxx to xxxx xx, xxx xxxxxxx xxxxx of xxx xxxxxxx’ xxxxx, xxx xxxx of xxx xxxxxxxxx xxxx. Xxxx xx xxxxxx to xxxx xxxxxxx in a xxxxx xxxx, xxxx xxxx xxxxx xxxxxxxxxxx xxx.\n\nXxx xxx is xxxxxxxx of a xxxxx xxxxx — xx xxx’t xxxx. Xxx xx xxxxx xxxx xx xxxx xxxxx. Xx is a xxxxxxx, xxxxx to xx xxxxxxxx. Xx’x xxx of xxxxx xxxxx xxxx xxxxxxx a xxxxxxx in xx xxxx X xxxxx xxxx xxxxxx xxxxxx xxxx to… xxxx is xxxxx. Xxx xx xxx\n\nXxxxxxxx Xxxxxxx\n\nXx’xx xxx xxxxxx xxxx xxx xxx xxxxxx, xx just xxx.\n\nXxxxx’x xxxx xxx xxxx xx Xxx Xxxxx, Xxxxx, Xxxxx Xxxxx of Xxxx… a xxx is xxxxxxxx of xxx xxxxxx xxxx xx xxxx xx in. Of xxx xxx xxxx xx xxxx to xxxx xx, xxx xxxxxxx xxxxx of xxx xxxxxxx’ xxxxx, xxx xxxx of xxx xxxxxxxxx xxxx. Xxxx xx xxxxxx to xxxx xxxxxxx in a xxxxx xxxx, xxxx xxxx xxxxx xxxxxxxxxxx xxx.\n\nXxx xxx is xxxxxxxx of a xxxxx xxxxx — xx xxx’t xxxx. Xxx xx xxxxx xxxx xx xxxx xxxxx. Xx is a xxxxxxx, xxxxx to xx xxxxxxxx. Xx’x xxx of xxxxx xxxxx xxxx xxxxxxx a xxxxxxx in xx xxxx X xxxxx xxxx xxxxxx xxxxxx xxxx to… xxxx is xxxxx. Xxx xx xxxx xxxxxxx, xxxxxxx xxxx xxxx, xx xxxxx, xxxx-xxxxxxxx. Xxx xxxx’xx xxx. Xxxx’xx xxxxxx. Xxxxx xxxxxxxxxx, xx xxxxxxxxx xxx, xxxxxxxxxxx xxxx. Xxxxxx xxxxxx xx xxxx xxxx, xxx. Xx’xx xxxx xxxxxxx, xxx xxxx xx’xx xxx. Xxx xx xxxx xx xx xxx, X xxx xx xxxxxx xxxx xxx with xx. Xxxx of xx xxxx’t xxxxxxx of xxxx xxxxxxx.\n\nX xxxxx of xxx xxx in xxx xxxxx xxxx, xxxxxxxxxx xx xxxxxxx xxx xxxx xxxxxxxx of a xxxxx xx’xx xxxxx xxxxx xxxxx, xxxx xxxxx xx’xx xxxxx xxxxxxxxxx. Xxx day xxx of xx xxx xxxx xxxx xxxxxxxxx xxxxxx xxx xxxx day, xxxxxxx xx xxxx xx xx xxx. Xxx xxxx xxxx? Xxxxxx xxxxx. Xxxxx xxxx, xxxxx xxxx. Xxxxx xxx, xxxxx xx. Xxxxx Xxxxxxx, xxxxx Xxxxxxxx.",
+        "publishedAt": "2026-06-11T00:00:00Z",
+        "likes": "154",
+        "replies": "13",
+        "url": "https://www.quora.com/What-is-the-concept-of-life-What-are-we-here-for/answer/Jean-Marie-Valheur"
+      },
+      {
+        "id": "Myra-Jones-64",
+        "author": {
+          "name": "Xxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Myra-Jones-64"
+        },
+        "text": "Xx’x xxx xxxxxxxxxxx to xxx to xx xxxx xxxxx xx xx xxx xxxx, xxxxx, xxx xxxxxxx xxx Xxxx xxx Xxxxxx, Xxxxx Xxxxxx, xxx xxx xxxxxxxx xxx xxxxxxxx with Xxx in xxxxxx.",
+        "publishedAt": "2026-06-25T00:00:00Z",
+        "likes": "1",
+        "url": "https://www.quora.com/What-is-the-meaning-of-the-life-of-a-human/answer/Myra-Jones-64"
+      },
+      {
+        "id": "B-Raj-6",
+        "author": {
+          "name": "X Xxx",
+          "url": "https://www.quora.com/profile/B-Raj-6"
+        },
+        "text": "To xxx xx xxxxxx- Xxxxxxx of xxxx : A xxxx with xxxxxxx.\n\nXxxx in xxxxxx is xxxxxxxxxxx xx xxx xxx xxxx a xxxxxxxxx xxxxxxxxxxx. Xxx to xxxxx xx xxxx a view point of xxx xxxxxx xxxxx xx xx xxxxx. Xxx xx xxx xxxxx xxxx, xxxx is xxxx xx xxxxxxxxxxx to xxxxxx xxx xxxxxxx xxx xxxx.\n\nXxx xxxxxxx: X xxx xxxx xxxxxxxxxxx xxxxxxxxx, xxx xxxx xxx a xxxxxx xxxx xxxx x xxx a xxxxxx, xxxxxx xxxx of xxxxxx, xxx xxxxxx xxxxxx xxxx xxxx xxx xxxx xxxxxxxxxxx. Xxx x am xxxx? X xxxxxxx.\n\nX xxx with xxxx xxxx xxxxxx, xxx xx x xxxx xxxxxx, xxxxxxx xxxx xxxxxxx xxxxx xxx xxxxxxxxxx, xxx xxxxx x xxxxxxxx, xxxxxx xxxx xxx\n\nXxxxxxxx Xxxxxxx\n\nTo xxx xx xxxxxx- Xxxxxxx of xxxx : A xxxx with xxxxxxx.\n\nXxxx in xxxxxx is xxxxxxxxxxx xx xxx xxx xxxx a xxxxxxxxx xxxxxxxxxxx. Xxx to xxxxx xx xxxx a view point of xxx xxxxxx xxxxx xx xx xxxxx. Xxx xx xxx xxxxx xxxx, xxxx is xxxx xx xxxxxxxxxxx to xxxxxx xxx xxxxxxx xxx xxxx.\n\nXxx xxxxxxx: X xxx xxxx xxxxxxxxxxx xxxxxxxxx, xxx xxxx xxx a xxxxxx xxxx xxxx x xxx a xxxxxx, xxxxxx xxxx of xxxxxx, xxx xxxxxx xxxxxx xxxx xxxx xxx xxxx xxxxxxxxxxx. Xxx x am xxxx? X xxxxxxx.\n\nX xxx with xxxx xxxx xxxxxx, xxx xx x xxxx xxxxxx, xxxxxxx xxxx xxxxxxx xxxxx xxx xxxxxxxxxx, xxx xxxxx x xxxxxxxx, xxxxxx xxxx xxxxx xxx xxxxxx xxxxxxxx of xxx just a xxxxx xxxxxxxxx/xxxxxxx of xxxx, xxx xxxxxxxx xxxxxx xx xxxx.\n\nLike xxx a xxxxxx 90% xxxxx is xxx xxxxx xxx xxx xxxxx xxx a xxxxxxxx xxxxxxx, xxxxx xxx xxxxxx xxx 95%.\n\nX xxxx now, xxx xxxxx of xxx xxxxxx xxxxxxxxx xxxxxxxxxxx, xxxxxxx xx.\n\nXx xxxxxxx xxx xxxxx xx xxxxxxxx xxxxxx xxxxxxxx xxx xx xxxxx xxx xxxxx xx xxxxxxxxx xxxxxxxx. Xxxx X'xx xxxx in xxxx, with xxxxxx, xxx xxxxxx xxxxxxx with xxxxxxx.",
+        "publishedAt": "2018-10-16T04:46:52Z",
+        "likes": "3",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-207/answer/B-Raj-6"
+      },
+      {
+        "id": "Bradley-Brown-243",
+        "author": {
+          "name": "Xxxxxxx Xxxxx",
+          "url": "https://www.quora.com/profile/Bradley-Brown-243"
+        },
+        "text": "1. Xxx xxxxxxxx xxxxxx xxxxxxxx of xxxxxxxxx. Xx xxx xx xxxxxxx xx xxxxxxx xxxx xx xxx xxxxxx.\n\nXxxxxx xxxxxx xxx xxxxxxxx xxxxxx is xxx xxxxxx of xxxx.\n\n2. Xxxx is xxxxxxxxxx xxxxx xxxx-xxxxxxxx xxxxxxx xxxxxxxxxxx. Xxx xxx xxxx xxx xx xxxxxxx xxxx xx xxx xxxxx of.\n\n3. Xxxxxx xxxxxx xxx xxxxxx of xxxx is xxx xxxxxx of xxx xxxxxxx xx xxxxxxxx - xxxxx xxxxxx. Xx xxxxx. In xxxxx to xxxxxxxx, xx xxxxxx xxxxxxx. Xxxx is xxxx xxxxxxxxxxxxx is xxx. Xx is xxx xxxx xxxxxxx xxxxxxxx xxx xxxxxxxx xxx xxxxxxxx.\n\nXx xxx xxx xxxxxxxxx of xxxxxxx. Xx xx xx xxx xxx xxxx. Xxxx xxxxxxx, xxxx xxxxxxxxx is a xxxxxx xxx\n\nXxxxxxxx Xxxxxxx\n\n1. Xxx xxxxxxxx xxxxxx xxxxxxxx of xxxxxxxxx. Xx xxx xx xxxxxxx xx xxxxxxx xxxx xx xxx xxxxxx.\n\nXxxxxx xxxxxx xxx xxxxxxxx xxxxxx is xxx xxxxxx of xxxx.\n\n2. Xxxx is xxxxxxxxxx xxxxx xxxx-xxxxxxxx xxxxxxx xxxxxxxxxxx. Xxx xxx xxxx xxx xx xxxxxxx xxxx xx xxx xxxxx of.\n\n3. Xxxxxx xxxxxx xxx xxxxxx of xxxx is xxx xxxxxx of xxx xxxxxxx xx xxxxxxxx - xxxxx xxxxxx. Xx xxxxx. In xxxxx to xxxxxxxx, xx xxxxxx xxxxxxx. Xxxx is xxxx xxxxxxxxxxxxx is xxx. Xx is xxx xxxx xxxxxxx xxxxxxxx xxx xxxxxxxx xxx xxxxxxxx.\n\nXx xxx xxx xxxxxxxxx of xxxxxxx. Xx xx xx xxx xxx xxxx. Xxxx xxxxxxx, xxxx xxxxxxxxx is a xxxxxx xxxxxxx. Xxxxxxx is xxxxxxxxxx.\n\nXxx xxxxxxxxxxx xxxxxxxx xxx xxxxxxxxxx. Xxxxxxxxxx of xxxx xxxxxxxx of xxxxxxxx is a xxxxxxx xxxx of xxx xxxxxxx xxx xxx xxxxxxxxxxx. Currently xx xxx xxx xxxxx xx xxxx. Xxx xxxx xxxxxxxxxxx xxxxxxxx.\n\nXxxxx xxx xxxxx xx xxxx xx xxxx xxxx xxxxxxx xxx xx xxxxx xxxxxxxx to xxx xxxxxxx xxx xxxxxxx xxxx xxxx in xxx xxxx of a Xxxxxx Xxxx xxx xxxxx xxxxxxx xx xxxxxxxxx, xxxxxx, xxxxx xx xxxx. Xxxxxxx is xxx xxxxx.",
+        "publishedAt": "2014-10-17T04:46:52Z",
+        "likes": "2",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-18/answer/Bradley-Brown-243"
+      },
+      {
+        "id": "Michael-Laitman-4",
+        "author": {
+          "name": "Xxxxxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Michael-Laitman-4"
+        },
+        "text": "Xxx xxxxxxx of xxxx is to xxxxx xxxx a xxxxxxxxx of xxx xxxxxxxx xxxxxx xxxx xxxxxxxx, xxxx xxxxx xxxx xx xx xxxxxxxxxx xxxxxxx xxxx xxx xxxxx in xxxx xxxxx xxx xxxxxxxxx in xxxxxxx xxxxx—xx xxxxxxx xxxxx, in xxxxxxx xxxxxxxxx—xxxx xxx xxxxxx to xxxxxx xxxx in xxx xxx xxxxxxxxxx, xxx just in xxx’x xxxxxxx xxxxxxxxx.",
+        "publishedAt": "2019-10-16T04:46:52Z",
+        "likes": "16",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-699/answer/Michael-Laitman-4"
+      },
+      {
+        "id": "Adam-Uraynar",
+        "author": {
+          "name": "Xxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Adam-Uraynar"
+        },
+        "text": "Xxxxxxxx xxxxxxxx.\n\n(X xxxxxxx xx a xxxxxxxxx xxxxxxxx of xxx xxxx xxxxxxxx.)",
+        "publishedAt": "2014-10-17T04:46:52Z",
+        "likes": "8",
+        "url": "https://www.quora.com/What-is-the-meaning-of-Life-26/answer/Adam-Uraynar"
+      },
+      {
+        "id": "Dushka-Zapata",
+        "author": {
+          "name": "Xxxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Dushka-Zapata"
+        },
+        "text": "X xxxxxxxx xxxx xxx Xxx Xxxxxxxxx xxxxx xxx day X xxxxxxxx xxx xxxxxxxxx xxxx xxxxxxxxx xxxxxxxxxx xxx xxxx xx xxx xxx xxxx xxxxx xxxxxx xxxx xxxxxx to xxxx xxx xxxx xxxxxx xx xxx xxxxxxxxx of xx xxxx. Xx X xxxx’t xxxx xx xxxx xxxx. Xx xxxx xxxxx xxxx’t xxxxxx xx xxx. Xx xxxx X xxx xxxxxx xx xxx xxxxx xx xxx xxxxx xxxx.\nXxx a xxxx xxxx X xxxxxxxx xxxx xxxxxx xxxxxxxx xxx a xxxxxx xxxxx X xxxxxxxxx xx xxxx xxxxxx’x xxx xxxx xxxx xx xxx xxxxxxx like a xxxxxxxx. Xx xxx xx xxxxx xxx xxx xxxxx xxx just xxxxxxxx xxx X xxxxx xxx to xxx xxx xx xxxxx xxx. X xxxxxxx xxxx xxxxxx xxxxxx xxxxxxx xxxx xx\n\nXxxxxxxx Xxxxxxx\n\nX xxxxxxxx xxxx xxx Xxx Xxxxxxxxx xxxxx xxx day X xxxxxxxx xxx xxxxxxxxx xxxx xxxxxxxxx xxxxxxxxxx xxx xxxx xx xxx xxx xxxx xxxxx xxxxxx xxxx xxxxxx to xxxx xxx xxxx xxxxxx xx xxx xxxxxxxxx of xx xxxx. Xx X xxxx’t xxxx xx xxxx xxxx. Xx xxxx xxxxx xxxx’t xxxxxx xx xxx. Xx xxxx X xxx xxxxxx xx xxx xxxxx xx xxx xxxxx xxxx.\nXxx a xxxx xxxx X xxxxxxxx xxxx xxxxxx xxxxxxxx xxx a xxxxxx xxxxx X xxxxxxxxx xx xxxx xxxxxx’x xxx xxxx xxxx xx xxx xxxxxxx like a xxxxxxxx. Xx xxx xx xxxxx xxx xxx xxxxx xxx just xxxxxxxx xxx X xxxxx xxx to xxx xxx xx xxxxx xxx. X xxxxxxx xxxx xxxxxx xxxxxx xxxxxxx xxxx xxxxxx.\nX xxxxxxxx xxxx X xxx a xxxxxxx; xxxx xx xxx xxx. X xxxx xxxxx xxx xxxx xxxx xxxxxxxx xxxxxx xxxxxxxxxxx xxxxxx to xxxx xxxx xxxxxxx xxxxxxx to xxx point xxxx xxxx xxx xxxxxxx out xx xxx xxx xxxxxx xxxx xxx xxxxx in xxxxx of xxxx. A xxxxxxx xxxx may xx may xxx xxxxx xxxx xxx xxxxx a xxxx xxxx xxx xxxx xxxxxxxxx xxxxxxx xxxx.\nX xxx xxxx xxxx X xxxxx xxxxxxxx xxxx X xxxxxx. Xxx xxxxxxxxx xx xxxx xxxx xxx, xxx xxxxxxxxx xx xxxx’t. Xxxxx X xxxx’t xxxxxxxxxxx xxxxx.\nXx xxx xxx xxxx. Xx xxxxxx xx xxxx xxxxx xxxxx to xxx X xxxxxxxx xx xxx xxxxxxxxxx. X xxx xxxxxxx xxxx xxx xxxx xxxx xxxxxxx to xxxxxxx xxx xxx xxxxx to xxx. Xx xxx xxxxxx xxx xxxx a xxxxxxxx xxxxx xxx X xxxxx xx xxx xxxxxxxxx xxx xxx xxxxxxx of xx xxx xxxxx X xxxxxxxxxx. Xxxxxx xxx.\nXxxxxx xxxxx xxxxxxxxx. Xxxxxx xxxxx xxxxxxx. Xxxxxx xxxxx xxxxxxxxx xxx xxx xxx xxxx. Xxxxxx xxxxx xxxx xxx xxxx xxxxx to xx.\nXxxxxxx, xxxx xxxx xxxxx xxxxx xxx xxxx xx xxxxx. Xxxxxx xxxxxxxx, xxx xxxx xxxx xxx-xxxxxxxx xx xxxx xxx xxxx xxx with xxxxxx. Xx, xx xxxxxxxxxxxx.\n\nXxxx xx in xxx xxxxxxx xxxxxxxxx xxxxxxx xxx xxxxxxx xxx xxxxx in xxxx xxxxxxx. Xxxxx xxxxxx. Xxx xxxx xxxx xxx xxxx xx xxx xxxx xx xxxxxx.\n\nXxxx a xxx xxx xxxx xxxx xxxxx xxx xxxx a xxxxxx xxx xxx xxxxxx xxxx xxx xxxx xxx xx xxxxxx, xxxxxx xxxxxxxxxx.\n\nXxxxx a xxx xx xxxx xx xxxx xx xxxxx xxxx xxxx xx xxxx. Xxxxxxxxxxx. Xx xxxx in xxx.\n\nXx xxx. Xx xxxxxxxxxxx, xxxxxxxxxxx xxx xxx xxxx xxx xxxxx of xxxx xxxxxxx xxxxxxxxxx xxxx xxx xxxxxx xxx xxxx xxxxxxx. Xxxxxxx. Xxxxxxx xxxxx. Xxxxxxx xxxxxxxx.\nX am xxx xxxxxx xxxx xxx xx xxxxxxx. X am xxxxxx xxx xxxx xxxxxxx of xxxx is to xxxx xx.",
+        "publishedAt": "2016-10-16T04:46:52Z",
+        "likes": "1100",
+        "replies": "37",
+        "url": "https://www.quora.com/Whats-the-purpose-of-life-7/answer/Dushka-Zapata"
+      },
+      {
+        "id": "Richard-Cripps-15",
+        "author": {
+          "name": "Xxxxxxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Richard-Cripps-15"
+        },
+        "text": "Xx xxx xxxxxxxxxxx xxxxx xxxx is xxx xxxxx xxxxxxxx. Xx xxx xx xxxxxxx xx xxxxxx, xx just xxxxxxx. xxx xxxxxx. Xxx xxxxxxxx xxxx xxx xxxx xx xx xxxxx xx xxx.\n\nXxxx is xxx to xxx xx xxxxxx xxxxxx xxxx xxxx a xxxxxxx, xxxxxx xx xxx xxx xxxxxxxx xxx xxxx is xxx xxxxxxx to xxxxxx xxx xxxxxxx. Xxxx xx xxx xx xxxx xxxxx to xxxxx xxxxx xxx xxxxxxxx. Xxx a xxxxxxxx xxxxxxx xxx xxxxx’x xxxxxxx xx xxx xx xxxxx xxxx. Xxxxxxxxxx, X xxxx xxxx xxx X am xx xxxxxxxxx to xxxx a xxxxxxxxx xxx.\n\nXxx xxx xx xxxx? Xxxx xxxx’x xxx xxx xxxxx xxx to answer. Xxxx answer - xxx xx xxxxxx xx just xxx.",
+        "publishedAt": "2023-10-15T04:46:52Z",
+        "likes": "5",
+        "replies": "3",
+        "url": "https://www.quora.com/What-is-this-life-really-all-about-Why-are-we-here/answer/Richard-Cripps-15"
+      },
+      {
+        "id": "Krya-M",
+        "author": {
+          "name": "Xxxx M.",
+          "url": "https://www.quora.com/profile/Krya-M"
+        },
+        "text": "Xxxxxxxxx to xxxx xx xxx xxxxxxx, xxxx xxxxx to xxxxx, xx xxxxx a xxxxx xxxxx xxxxx xxxx, xxxxxxx, xxxxxxxxx xxxx xxxxxxxxx, xxxxxxxxxxxx a xxx, xxxxxxx xxxx of xxxxxx, xxx xxxxxxxxxxxx a xxx xxxxx with a xxxxxxx xxx of xxxxxx. Xxxx is xxxxxx xxx, xxxx xxxxxx xxxx xxxxx xxxx. Xx, xx'x xxxxx xxxxxxx xxx xxxxxxxxx xxxxxxxxx xxx xxxxxxxx, xxxx xxxxxxx xx of xxxxxxxxxx xxxxx xx xxx xxxxx xxxxx, xxxxxxxxx to xxx xxxxxxxx xxxxxxxxx.\n\nXxx xxxx xxxx xxxxx'x xxxxxxx xxxxxxxxx in a xxxxxxxx xxxxx xxxxx'x xx xxxxxxxxx xxxx to xxxxxxx xxxx. Xx'x, xxxxxxxxx, xxxxx xxxxxxxx a xxxxxxx xxx a xxxxx xxx xxxxx xxx\n\nXxxxxxxx Xxxxxxx\n\nXxxxxxxxx to xxxx xx xxx xxxxxxx, xxxx xxxxx to xxxxx, xx xxxxx a xxxxx xxxxx xxxxx xxxx, xxxxxxx, xxxxxxxxx xxxx xxxxxxxxx, xxxxxxxxxxxx a xxx, xxxxxxx xxxx of xxxxxx, xxx xxxxxxxxxxxx a xxx xxxxx with a xxxxxxx xxx of xxxxxx. Xxxx is xxxxxx xxx, xxxx xxxxxx xxxx xxxxx xxxx. Xx, xx'x xxxxx xxxxxxx xxx xxxxxxxxx xxxxxxxxx xxx xxxxxxxx, xxxx xxxxxxx xx of xxxxxxxxxx xxxxx xx xxx xxxxx xxxxx, xxxxxxxxx to xxx xxxxxxxx xxxxxxxxx.\n\nXxx xxxx xxxx xxxxx'x xxxxxxx xxxxxxxxx in a xxxxxxxx xxxxx xxxxx'x xx xxxxxxxxx xxxx to xxxxxxx xxxx. Xx'x, xxxxxxxxx, xxxxx xxxxxxxx a xxxxxxx xxx a xxxxx xxx xxxxx xxxx xxx xxxxxxxx xx: xxxxxxxxx, xxxxxx xxxxxxxx, xxxxxxx to xxxx xxx xxxxxxxx, xxx xxxxxxx, xxx xxxxxx, xxx xxxxx a xxx xxxxxxxx. Xxxx'x xxxx xx xxx xxxx xxx: to xxxx a xxxxxxx xxxxxxxxxx.\n\nXx xxx xxxx xxxxxxxx xx a xxxxxxx, xxx xxxxx xxxx xx'x a xxx xxxx. Xxx xxx, xxxx is xxxxxxxx to xx a xxx xxxxxxxxxx. Xxxxxxx, xxx xxxx xxxx xxxx xxx xxxxxxxx xxxxxxx xxx xxx xxxx xxxxxxx, xx xxx'x xxx xxxxx xxx xxxxx xxx xxxxxx in a xxx xxxxxxx with xxx xxxxxxx of xxxxxxx xxxxx xxxxxxxxxxx, xxx xxxx'x xxxx xxxxxxxxx xx xxxxxxxxxxxxx xxxxx. Xxxx'x xxxx xxxx is xx xxxxxx xxx.\n\nTo xxxxx, xxxx is a xxx xxxxxxxxxx in xxx xxxxxxxx xxxxx xx xxxx xx xx is xxx xxx xxxxxxx of xxxxxxx. Xx xxxx xx xxx xxxx xx xxxxx is xxxxxxxx xxxxxxx xxxxxx to xxxx xx xxx xxxx, xx xxxxxx xxxxxx, xxxxxxx, xxx xxxxx xxx xxxxxxxxx.\n\nXxxx xxx xx xx xxxxx xxx? Xx'x to xxx to xxxx xxx xxxxxxxx xxxxx xxxxx xxx 5 xxxxxx xxx xxxxx. Xxxx xxx xxxx xxxxx xxxxx xx xx xxxxxxxx xxxx xx xxx xxxxxxx xxxxxxxxxx. Xxxxxxx xxxx xx xxxxxxxx xxxx xx xxx xxxxxxx to xxxx a xxxxxxxx xx xxxx xxx xxxx to xxxxx xxxxxxxxxx with xxx 5 xxxxxx xxx xxx xxxxxxx xxxxxx. Xxxx xxxx xxxxxxxxx xxx xxxxxxx of xxx xxxxx of xxx xxxxxxxx (xxxxxxx of xxx 5 xxxxxxxx) xxxx xx xxx-xxxxxxx xxx xxxx in xxx xxx.\n\nXx'x xx to xx to xxxx xxxx xxxxxxx a xxxxxxxx xxxxxxx (xxx xxxxx xxxxxxx) xx xxx xxxxxxxxxx xxxxxxxx xxxxxx to xxxxx a xxxxxxx xxxxxxx to xxxxxx xxxxxx.\n\nXx xxxxxxx xx xxxxx xxxx to xxxxxx xxxxxxx of xxx xxxxxxxx xxxxxxxx, like xx xxx xxxxxxx in xxx xxxxxx xxxxx. Xx'x xxxx xxxx to xxxx xxxx xxxxx (xxxxxxxxxxxxxx). Xx xxx xxxxxxxxxxx xxxxxx xxx xxxxxxx xx xxxxxxxx with xxx xxxx xxxxxxx to xxxx xxxxxx xxx xxxxxxxxx xxxxxxxxx.",
+        "publishedAt": "2023-10-15T04:46:52Z",
+        "likes": "10",
+        "replies": "2",
+        "url": "https://www.quora.com/What-is-this-life-really-all-about-Why-are-we-here/answer/Krya-M"
+      },
+      {
+        "id": "Rey-Blanco",
+        "author": {
+          "name": "Xxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Rey-Blanco"
+        },
+        "text": "Xxxxx xxx xxxxxxxx xx xxxx answers to xxxx xxxxxxxx xx xxxxx xxx xxxxxx xxx xxxx in xxxxxxxxx.\n\nXxx X xxxxx xxxxx xxxxx, xxx xx, is xxxx xxxxxxxxxxx Xxxxxx Xxxxxxxx xxxxxxxxx xxxxxx xx xxxxxxxxx with Xxxx Xxxxxx, “xxx to xxxxxx xxx xxxxxxx, xxx to xxxxxx ‘xxxxxxxxxx xxxxxx.’”\n\nXxxxx is xx xxxxx xxxx xxxx xxxxxx xxxx xxxxxxxxxx in xxxx xxxxxxxxx xxxxxxxxxxxxx, xxxx xxxxx xxx xxxx xxxxxxxxx, xxxxxxxxx, xxxxxx, xxx xxxxxxx.\n\n“Xxxxxxx” xxx xx “to point xx.” Xxxxxxx xxxx xx xxxxxxx xxx xxxx, xxxx xx xx point xx? Xx xx xxxx xxxx xxx Xxxxxxx in Xxxx? Is xxx xxxxxxx of a xxxxxx xxx a xxxx xxx xxxx? Xxxx xxx\n\nXxxxxxxx Xxxxxxx\n\nXxxxx xxx xxxxxxxx xx xxxx answers to xxxx xxxxxxxx xx xxxxx xxx xxxxxx xxx xxxx in xxxxxxxxx.\n\nXxx X xxxxx xxxxx xxxxx, xxx xx, is xxxx xxxxxxxxxxx Xxxxxx Xxxxxxxx xxxxxxxxx xxxxxx xx xxxxxxxxx with Xxxx Xxxxxx, “xxx to xxxxxx xxx xxxxxxx, xxx to xxxxxx ‘xxxxxxxxxx xxxxxx.’”\n\nXxxxx is xx xxxxx xxxx xxxx xxxxxx xxxx xxxxxxxxxx in xxxx xxxxxxxxx xxxxxxxxxxxxx, xxxx xxxxx xxx xxxx xxxxxxxxx, xxxxxxxxx, xxxxxx, xxx xxxxxxx.\n\n“Xxxxxxx” xxx xx “to point xx.” Xxxxxxx xxxx xx xxxxxxx xxx xxxx, xxxx xx xx point xx? Xx xx xxxx xxxx xxx Xxxxxxx in Xxxx? Is xxx xxxxxxx of a xxxxxx xxx a xxxx xxx xxxx? Xxxx xxx xxxxx xxxxxx xxx xxxxxx of xxx xxxx xxxx xxx xxxx “xxxxxxx” in xx xxx xx to a xxxx xxxxx?\n\nXx xx is xxxx xxxx xxxx xxxxxxxxxx is xxx xxxxxx of xxx xxxxxxxx, xxx xxxx of xxxxx xxx xxxxx, xxxxx xx xxx xxxx xxxx xxxxxxxx in xxxxx’x xxxxx(x), xxxx xx xxxx xxx xxxxxx. Xxxx xxxxxxxxxx xxx xxxxxxx xxx xxxxxxxxx xxxxx of xxxxxxxxxxxx, xxxxxxxxxxxxx, xxxxxxxxxxx, xxxxxxxx, xxxxxxxxxx xxx xx xx.\n\nXxxxx is “xxxxxx xxxxxxx,” in xxxx xx xxx xxxxxx xxxxxxxxxx xxxx a “xxxxxxxx” a “xxxx” of xxxxxxxxx xxxxxxxx xxx xxx xxxxxxxxx. Xxxxx xxxxxxx, xxxx, xxxx, xxx xxx xxxxxxxxx is xx xx “xxxxxx in” xx xxx xxxxxxxxx xxxxxxxx, xxxxxx xxxxx, in xxxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxx xxxxx.\n\n“In Xxxxxxxx’x xxxxxx, xxx xxxxxxxx is like xx xxxxxxxx in xxxxx xxxx xxxx is xxx xxxxxxxxxxxxx of xxx xxxxx” (Xxxxxxxxxxxxx: Xxx Xxxxxx Xxxxxxx Xxxxxx xxx Xxxx x 76).\n\nXx xxxxxxxx xxx a ‘xxxxx’ xxx “xxxxx,” a ‘xxxxxxxx xxxxx.’ Xx xxx xxxxxxxx of xxxxxxxxx, xxxxx xxx xxxxxxxxx, xxxxx, xxxxxxxx xxx, xxxxxx (xxxxxxxxxxxx) xx a xxxxxx (xxxxx).\n\nXXXXXXX = xxxx\n\nXxxx = xxx\n\n“Xxxxx xxxx xxxxx xxxx ‘xxxx’” Xxxx xxxx xxxx, xxx xx xxxx to xxxx xxxxx xxxx.\n\nXXXXXXX/xxxxxxx\n\nXXXX/xxxx\n\nXx xxx xxx “point xx” xxxx xxxx xxxxxxxx xxxxx xxxx XXXX xxx xxxxxx xxxxx xxxx xxxx, xx xxxx xxxx xxx xxxxxxxxx in a xxx xxxx is xxxxxx xxxxxx xxxxxx xxxx xxxxxxx xxxx xxx xxx xxxxxx xxxxxxx xxx xxxxxxxx xxxxx xx xxxx of xxx xxxx, xxxx xxxxx to xx a “xxxxxxx” xxxxx xxx to “xxxxxxxxxx xxxxxx” xxx xxxx in xxxxxxx, X xxxx.",
+        "publishedAt": "2019-10-16T04:46:52Z",
+        "likes": "1",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-522/answer/Rey-Blanco"
+      },
+      {
+        "id": "Tom-Steele-7",
+        "author": {
+          "name": "Xxx Xxxxxx",
+          "url": "https://www.quora.com/profile/Tom-Steele-7"
+        },
+        "text": "X’xx xxxxx xxxx a xxx of xxxxxxx xxxxxx. X’m xxxxxx xxxx X xxxx xx xxxxxxx out. Xxxxxxxxxxxxx xxxxxxx xxx xxxxxxx of xxxx xxx xxxxx xxxx X xxxx to xx xxxxx xxx xxx xxx xxxx xxxxx.\n\nXxxxx, xxx xx xxxx xxx xxx X xxxxxxx xx xx “xxxxxxxxx.”\n\nX xxxx xxxxx xxxxx. Xxx’t xxxxx. Xxxx xx out.\n\nXxxxxxxx xxxxxxxxx xxxxxx Xxxxxxx Xxxxxxx xxx xxxxxxx to xxxxxx. Xxx xxx xx xxxxxx xxx xxxx xxxxxxxxxxx xxx xxx xxxx xx xx xxx xxxx xxxx xxxxxxxxxxx to xxxxxxx xxxxx.\n\nXxxx xxxxx to xxxxxxxxxxxxx xxxxxxxxx xxxxx xxxxxxx xx xxx xxxxxx in a xxxxxxx xxxxxxx now. Xxx xxxxxxxx xxxx like xxxx: Xxx xxxxxxxx xxxxxx xxxx xxxxx xxx\n\nXxxxxxxx Xxxxxxx\n\nX’xx xxxxx xxxx a xxx of xxxxxxx xxxxxx. X’m xxxxxx xxxx X xxxx xx xxxxxxx out. Xxxxxxxxxxxxx xxxxxxx xxx xxxxxxx of xxxx xxx xxxxx xxxx X xxxx to xx xxxxx xxx xxx xxx xxxx xxxxx.\n\nXxxxx, xxx xx xxxx xxx xxx X xxxxxxx xx xx “xxxxxxxxx.”\n\nX xxxx xxxxx xxxxx. Xxx’t xxxxx. Xxxx xx out.\n\nXxxxxxxx xxxxxxxxx xxxxxx Xxxxxxx Xxxxxxx xxx xxxxxxx to xxxxxx. Xxx xxx xx xxxxxx xxx xxxx xxxxxxxxxxx xxx xxx xxxx xx xx xxx xxxx xxxx xxxxxxxxxxx to xxxxxxx xxxxx.\n\nXxxx xxxxx to xxxxxxxxxxxxx xxxxxxxxx xxxxx xxxxxxx xx xxx xxxxxx in a xxxxxxx xxxxxxx now. Xxx xxxxxxxx xxxx like xxxx: Xxx xxxxxxxx xxxxxx xxxx xxxxx xxxx xxxxxxxxxx xxxxxxx XX xxx xxxxxxxxxx xx xxxx xx xx xxxxxxxxx xxxx xx xxxxxx xx xxxxxxxxxxxxx xxxx xxxxxxx. (Xxxxxx Xxxx is xxxxxxxxx xxxxxxxxx xxxx xxxx xxx xxx in a xxxxxxx xxxxxxx. Xxx xxxxxx xxxxxx xxxxxxx to xxxxxx xx xxxxxxx.) Xxxx xxxxx xxx xxxxx xxxx xxx xxxx of xx (xxxxxxxx) xxxxx xxx xxxxx xxxxxxxx xxxx to xxxxx xxx xxxx xxxxx xxxx xxx xxxx of xx xxxxx xxxxxx xxx xxxxxxx xxxxxxx of a xxxxxxxx xxxx xxxx xxxxxxx xxxxxx, xxxx xxxxx xxxx xxxx is a xxxxxxxxxx. A xxxxx xxxx of xxxxx - xxxx xxxxx is xxxx xxxxxxxxxxx xxxxxxxx xxxxxxxxxxxx xxxx xxx xxxxxxxxx xxxxxxx xxxxxxx to a point xxxxx xx xxxxx xx xxxx - xxxxx to xxxxxxx xxxxxxxxxxxxx xxx a xxxxxxxxxxxx xxxxx xxxxxxxxx xxx xxxx xxxxxxx xxx xxxxxxx is xxx xxxx xxxxxxxxx xxxxxx to xxxxxxxxx xxxx xxxxx is - xx xxxxxx xxxxxx to xxxx xxxxx/xxxxx to xxxx xxx xxxx.\n\nX xxx’t xxxxxxxxxxx xxxxxxx xxxx xxx xxx xxx’t xxxx to xxxxxx. XXX, xx xxxxx xx to xxxxxxx xxxxxxxxxx xxxxxxx. Xx xxx xxxx xx xxx xxxxxx xxxx xxxxx xxxxx xxx xxxx xxxxxxxxxxx to xxxx.\n\nXxxxx xxxxx xxxx to xx xxxxxxxxxxx, xxx xxx XXX xxxxxxxxxxx xx xxxxxx xxx xxxxx. Xxxx is xxx xxxx xxx xxxx xxxxxx.\n\nXxxxx xxxxx xxxx to xx xxxxxxxxxxx, xxx xxx xxx xxxxxxxxxxx xx xxxxxx xxx xxxxx.\n\nXxxxx xxxxx xxxx to xxxx a xxxx xx xxxxxxx in xxxx xxxxx.\n\nX xxxxx xxxx xxx with xxxx. Xxx xxx xxxxxxxx is xxxx xxxx xxxxx xxxx xxxxx xxxxx xxxxxxxxxxx xxx/xx xxxxxxxxxxxx xxx xxx xxxx xxxxxx xxxx xxxx xxxx xxxxxxxxxxxx.\n\nXx xxxx xxxxxxx, xxxx, xxxxxxxxx to xx xxx a xxxxxx to xxx xx xxxx day.\n\nXxxx is xxx xxxxxxx xxxxxxx xxx xxxxxxxxxxx xxxxx xxxx-xxxxxxxx. Xx is like xxxxxxx xxxxx xxxxx to a xxxx xxx xxxxxxx to xxx xxx xxx xxxxxxx. Xx xxx’t xxx. Xxx xxx is in xxxxxxxxxxx xxxxxxxx xxx xxxxxx to xxxxxxxxxx xxxxxx.\n\nXxxx’x a xxxx xxxxxxx xxxxxxx.\n\nXxxxxxx a xxxx xxxxx xxxx - xxx xxxxxx xxxx of xxxxxxx xxx. Xxxx a xxx xx xx. Xxxx xx xxx xx? Xxxx xxxxxx? Xxxxxxxxxx xxx xxxx xxx xxxx xxxxx.\n\nXxxx xxxx xxxx xxxx of xxxxxxxx xxx xxxxx xxxxx xx xx xxx xxx xx xxxx xxxxx xxxxx xxx xxxx a xxxx xxxxx. Xxxxxxxxx, xxxxx, a xxxxx xxxx xxx a xxxxxx xxxx.\n\nNow, WITH XXXXXXXXXX, xx xxxxxxx xxxxxxxxxx. Xxx xxxxxxxxxx xxxx xx xxx xxx xxxxxx. With xx xxxxxxxxxx xx is xxxxxxxxxxx.\n\nXxxx is xxx xxxx, xxxx xxxxxx.\n\nXx xxxx xxxxxxxxxx. Xx xxxx xxxxxxx. Xx xxxx xxxx xxxxxxxxxx. Xx xxxx xxxxx.\n\nXx xxx’t xxxx XXX xx xxx xxxx. Xxx xx is xxxxxxxxxx to xxxxxx xx XXXXX to xx xxxx. Xx xx xxx xxxxxx xx xxxxxx to xx xxxx xx xxxx point.\n\nXx xxxx xxxx xx xxxx to xx to xx xxxxx.\n\nXxxx of xx xxxx xxxx xxxxx xx xxxxx. Xxxxxxx xxxxxxx xxxxxx is xxxx xxxxxxxxx xxxx xxxxxxxx xxxx, xxx xxx xxxx xx is xxxxxxxxxxx xxxxxxxxxx (xxxxxxxx a xxxxxxxx xxx xxxxxxxx) xxx xxx xxxx xx is xxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxxxxx to xxx xxxxx xxxxxx xxxx, xxxx.\n\nXx xxx’t xxxx to xxxx xxx “xxxxxxx” of xxxx. Xx just xxxx to xxxx xxxx xx xxxxxxxx xxxxx to xx xxxx xxx xxxx xxxxx xx xxxxx xxxxx xx xxx xxxx. Xxx xx xxxx.",
+        "publishedAt": "2018-10-16T04:46:52Z",
+        "likes": "32",
+        "replies": "5",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-191/answer/Tom-Steele-7"
+      },
+      {
+        "id": "Sohail-Basheer",
+        "author": {
+          "name": "Xxxxxx Xxxxxxx",
+          "url": "https://www.quora.com/profile/Sohail-Basheer"
+        },
+        "text": "Xxxx’x xxx xxxxxxxx X xxxx xxxx xxxxxx to xxx xx answer xxx a xxxx xxxx xxxx.\nX xxxx xxx xxx xxxx, xxxxxxxx xxx xxxx to xxxx “Xxxxx”. Xx xxxx xxx xxx xxxx a xxxxx xxxxxx xxx xxxxxxx xxx xxxx xxxx xxx xxx. Xxxx xxxx xxxx xxxxx xxxxxxxx xxx xxxxx xx xxxxxx xxx xxxxxxxx. Xxx xxx xxxx xxxxx a xxxxxxxx xxxx. Xxx xxx xxxx. In xxx xxx xxx xxx, xxxxx xx xxxxxx xxxxxxxx of xxxxx xxxxxxx xxx xxxxxx(xxxxx is xxxxx xxx in xxxx xxx xxxx’t xxxxxxx) xxx xxxx xx xxxxxxx. X xxxx xxxxxxx xxx xxx xxxxxxx of xxxxxx xx xxxxxxxxxx is xxxxx to xxx xxxxxx. Xxx xxx xx xxxx.\nXxx xxxx answer xxxx xx xxxxxxxxxxxxxx, xxxx\n\nXxxxxxxx Xxxxxxx\n\nXxxx’x xxx xxxxxxxx X xxxx xxxx xxxxxx to xxx xx answer xxx a xxxx xxxx xxxx.\nX xxxx xxx xxx xxxx, xxxxxxxx xxx xxxx to xxxx “Xxxxx”. Xx xxxx xxx xxx xxxx a xxxxx xxxxxx xxx xxxxxxx xxx xxxx xxxx xxx xxx. Xxxx xxxx xxxx xxxxx xxxxxxxx xxx xxxxx xx xxxxxx xxx xxxxxxxx. Xxx xxx xxxx xxxxx a xxxxxxxx xxxx. Xxx xxx xxxx. In xxx xxx xxx xxx, xxxxx xx xxxxxx xxxxxxxx of xxxxx xxxxxxx xxx xxxxxx(xxxxx is xxxxx xxx in xxxx xxx xxxx’t xxxxxxx) xxx xxxx xx xxxxxxx. X xxxx xxxxxxx xxx xxx xxxxxxx of xxxxxx xx xxxxxxxxxx is xxxxx to xxx xxxxxx. Xxx xxx xx xxxx.\nXxx xxxx answer xxxx xx xxxxxxxxxxxxxx, xxxxxx xxxxx xxxxx xxxx xx with xxx xxxx xx xxx xxxxxxxxx xxxx xxxxxxx of xxxx xxxxxx xxxxx xxxxx xxxx xxxx xxxxxx xxxxxxx xxxxx.",
+        "publishedAt": "2018-10-16T04:46:52Z",
+        "likes": "8",
+        "replies": "2",
+        "url": "https://www.quora.com/What-is-the-meaning-of-life-166/answer/Sohail-Basheer"
+      }
+    ],
+    "replyCount": "422"
+  },
+  "chain": [
+    {
+      "id": "quora.com/question",
+      "version": 1,
+      "sha256": "531e3c38438b1ef903ed53f4b3551a9031d735857ba23274f10a1150d111ec77"
+    }
+  ]
+}

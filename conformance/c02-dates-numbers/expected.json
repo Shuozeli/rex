@@ -1,0 +1,97 @@
+{
+  "recipe": {
+    "id": "conformance/c02-dates-numbers",
+    "version": 1,
+    "sha256": "7c2bc2149ff23163ccd5e787d29cd359f9a2b43d41fd7ed67d0c75856f5ef116"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://conformance.example/c02",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T08:00:00Z",
+  "extractTime": "2026-10-12T08:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    },
+    {
+      "path": "items[0].comment_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c02-dates-numbers@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "items": [
+      {
+        "id": "a1",
+        "title": "Zh date",
+        "url": "https://conformance.example/p/1",
+        "publishedAt": "2026-10-11T13:30:00Z",
+        "score": "12000",
+        "commentCount": "3456"
+      },
+      {
+        "id": "a2",
+        "title": "RFC 2822",
+        "url": "https://conformance.example/p/2",
+        "publishedAt": "2026-10-10T08:00:00Z",
+        "score": "1500"
+      },
+      {
+        "id": "a3",
+        "title": "Epoch millis",
+        "url": "https://conformance.example/p/3",
+        "publishedAt": "2026-10-11T13:30:00Z",
+        "score": "42"
+      },
+      {
+        "id": "a4",
+        "title": "English with zone",
+        "url": "https://conformance.example/p/4",
+        "publishedAt": "2026-10-09T21:30:00Z"
+      },
+      {
+        "id": "a5",
+        "title": "Relative zh",
+        "url": "https://conformance.example/p/5",
+        "publishedAt": "2026-10-12T05:00:00Z"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "conformance/c02-dates-numbers",
+      "version": 1,
+      "sha256": "7c2bc2149ff23163ccd5e787d29cd359f9a2b43d41fd7ed67d0c75856f5ef116"
+    }
+  ]
+}

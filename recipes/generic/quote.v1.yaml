@@ -1,0 +1,39 @@
+# Baseline for rex.schema.finance.v1.Quote: a quote page with a FinancialQuote JSON-LD node (CNBC). Few quote
+# sites publish one; the rest have site recipes (decisions.md U37).
+id: generic/quote.v1
+version: 1
+schema: rex.schema.finance.v1.Quote
+fields:
+  - path: symbol
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: name
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: exchange
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: currency
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: price
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: change
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: change_percent
+    candidates:
+      - json_ld: { types: ["FinancialQuote", "Intangible/FinancialQuote"] }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

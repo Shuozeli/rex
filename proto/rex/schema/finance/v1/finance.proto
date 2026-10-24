@@ -1,0 +1,79 @@
+// rex.schema.finance.v1: market quote pages: one stock, ETF, mutual fund, index or crypto asset as the page
+// shows it at capture time. Values are as displayed (possibly delayed); no conversion between currencies.
+// Percentages are percent points: "-1.23%" is "-1.23".
+//
+// Decided 2026-10-15 (decisions.md U37; delegated, open to revision).
+syntax = "proto3";
+
+package rex.schema.finance.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Quote {
+  option (rex.schema.v1.record) = {
+    schema_org: "FinancialQuote"
+    schema_org_also: ["Intangible/FinancialQuote"]   // CNBC writes the two types as one string
+    primary: ["price"]
+    fallback_rank: 20
+  };
+
+  string symbol = 1 [(rex.schema.v1.field) = { schema_org: "tickerSymbol", required: true }];   // "AAPL", "BTC-USD", "600519"
+  string name = 2 [(rex.schema.v1.field) = { schema_org: "name" }];                              // "Apple Inc."
+  InstrumentType type = 3;
+  string exchange = 4 [(rex.schema.v1.field) = { schema_org: "exchange" }];                      // "NASDAQ", "SSE"
+  string currency = 5 [(rex.schema.v1.field) = { schema_org: "priceCurrency" }];                 // of price, ISO 4217
+  string price = 6 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "price" }];  // last price; NAV for funds
+  string change = 7 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "priceChange" }];
+  string change_percent = 8 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL, schema_org: "priceChangePercent" }];
+  google.protobuf.Timestamp as_of = 9;     // the time the page gives for the price
+  MarketState market_state = 10;
+  string previous_close = 11 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string open = 12 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string day_low = 13 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string day_high = 14 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string year_low = 15 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];   // 52-week
+  string year_high = 16 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string volume = 17 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];     // shares; crypto: 24h volume in currency
+  string avg_volume = 18 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string market_cap = 19 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string pe_ratio = 20 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string eps = 21 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];
+  string dividend_yield = 22 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];   // percent points
+  string nav_date = 23 [(rex.schema.v1.field) = { kind: VALUE_KIND_DATE }];          // funds: date of the NAV
+  string expense_ratio = 24 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];  // funds: percent points
+  string net_assets = 25 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];     // funds: assets under management
+  string circulating_supply = 26 [(rex.schema.v1.field) = { kind: VALUE_KIND_DECIMAL }];   // crypto
+  uint32 rank = 27;                        // crypto: market-cap rank
+  repeated Stat stats = 28 [(rex.schema.v1.field) = { max_items: 100 }];   // the page's summary table, as labelled
+  string url = 29 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+// One row of the quote summary table ("Beta (5Y Monthly)" -> "1.21").
+message Stat {
+  option (rex.schema.v1.record) = { schema_org: "PropertyValue" };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string value = 2 [(rex.schema.v1.field) = { schema_org: "value", required: true }];
+}
+
+enum InstrumentType {
+  INSTRUMENT_TYPE_UNSPECIFIED = 0;
+  INSTRUMENT_TYPE_STOCK = 1;
+  INSTRUMENT_TYPE_ETF = 2;
+  INSTRUMENT_TYPE_FUND = 3;                // mutual fund (open-end, priced by NAV)
+  INSTRUMENT_TYPE_INDEX = 4;
+  INSTRUMENT_TYPE_CRYPTO = 5;
+  INSTRUMENT_TYPE_CURRENCY = 6;
+  INSTRUMENT_TYPE_FUTURE = 7;
+  INSTRUMENT_TYPE_BOND = 8;
+}
+
+enum MarketState {
+  MARKET_STATE_UNSPECIFIED = 0;
+  MARKET_STATE_OPEN = 1;                   // regular session
+  MARKET_STATE_CLOSED = 2;
+  MARKET_STATE_PRE = 3;                    // pre-market
+  MARKET_STATE_POST = 4;                   // after hours
+  MARKET_STATE_CONTINUOUS = 5;             // 24/7 markets (crypto)
+}

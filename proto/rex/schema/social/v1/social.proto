@@ -1,0 +1,75 @@
+// rex.schema.social.v1: posts and discussions. Thread is one discussion page (a tweet with its replies, a
+// Reddit or Hacker News thread, a Stack Overflow or Zhihu question with its answers); PostList is a timeline
+// (a profile, a subreddit, a list of posts).
+//
+// Decided 2026-10-14 (decisions.md U33; delegated design, open to revision by the user).
+syntax = "proto3";
+
+package rex.schema.social.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Thread {
+  option (rex.schema.v1.record) = {
+    schema_org: "DiscussionForumPosting"
+    schema_org_also: ["SocialMediaPosting", "QAPage"]
+    primary: ["post"]
+  };
+
+  string title = 1;                        // thread / question title; empty for tweets
+  string community = 2;                    // subreddit, site section
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+  Post post = 4 [(rex.schema.v1.field) = { required: true }];     // the original post / question / tweet
+  // Comments and answers in page order, flattened; nesting is kept in Post.depth and Post.parent_id.
+  repeated Post replies = 5 [(rex.schema.v1.field) = { max_items: 500 }];
+  int64 reply_count = 6;                   // the total the page shows (can exceed the extracted replies)
+  repeated string tags = 7 [(rex.schema.v1.field) = { max_items: 50 }];
+}
+
+message Post {
+  option (rex.schema.v1.record) = {
+    schema_org: "SocialMediaPosting"
+    schema_org_also: ["Comment", "Answer", "Question", "DiscussionForumPosting"]
+  };
+
+  string id = 1;
+  Author author = 2 [(rex.schema.v1.field) = { schema_org: "author" }];
+  string text = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "text" }];
+  string html = 4 [(rex.schema.v1.field) = { kind: VALUE_KIND_HTML }];
+  google.protobuf.Timestamp published_at = 5 [(rex.schema.v1.field) = { schema_org: "datePublished" }];
+  int64 likes = 6;                         // likes / upvotes / score / 赞同
+  int64 reposts = 7;                       // reposts / retweets / shares
+  int64 replies = 8;                       // replies to this post
+  int64 views = 9;
+  repeated string media = 10 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, max_items: 20 }];   // images, videos
+  string url = 11 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];         // permalink
+  uint32 depth = 12;                       // 0 = top level; nesting level in threaded comments
+  string parent_id = 13;
+  bool accepted = 14;                      // accepted answer (Stack Overflow)
+  string link = 15 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];   // the URL a link post shares (HN, Reddit)
+}
+
+message Author {
+  option (rex.schema.v1.record) = {
+    schema_org: "Person"
+    schema_org_also: ["Organization"]
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string handle = 2;                       // @handle / username
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  bool verified = 4;
+}
+
+message PostList {
+  option (rex.schema.v1.record) = {
+    schema_org: "ProfilePage"
+    primary: ["posts"]
+  };
+
+  string title = 1;
+  Author owner = 2;                        // the profile owner, for a profile timeline
+  string community = 3;                    // the subreddit / section, for a community feed
+  repeated Post posts = 4 [(rex.schema.v1.field) = { max_items: 200 }];
+}

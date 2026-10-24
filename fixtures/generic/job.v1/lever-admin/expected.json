@@ -1,0 +1,83 @@
+{
+  "recipe": {
+    "id": "generic/job.v1",
+    "version": 1,
+    "sha256": "5e1ca7c2850ff92f99b83121108a428a8a392ea5440afb30892bc36a1e7b5918"
+  },
+  "schema": "rex.schema.job.v1.JobPosting",
+  "url": "https://jobs.lever.co/palantir/ac978161-6f46-4f6b-ad9e-a258e642751c",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:44:29Z",
+  "extractTime": "2026-10-14T05:44:29Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "company",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "locations",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "employment_types",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "posted_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "description_html",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "description_text",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/job.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 1,
+      "recipe": "generic/job.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.job.v1.JobPosting",
+    "title": "Xxxxxxxxxxxxxx Xxxxxxxx Xxxxxxx",
+    "company": {
+      "name": "Xxxxxxxx Xxxxxxxxxxxx",
+      "logo": "https://lever-client-logos.s3.us-west-2.amazonaws.com/b8300af6-ed1c-4d0b-8956-cee7839555b9-1599675095718.png"
+    },
+    "locations": [
+      {
+        "locality": "Xxxxxx, Xxxxxx Xxxxxxx"
+      }
+    ],
+    "employmentTypes": [
+      "Xxxx-xxxx"
+    ],
+    "postedAt": "2024-03-25T00:00:00Z",
+    "descriptionHtml": "A Xxxxx-Xxxxxxxx Xxxxxxx\n&amp;xxxx;\nXxxxxxxx xxxxxx xxx xxxxx’x xxxxxxx xxxxxxxx xxx xxxx-xxxxxx xxxxxxxxx xxx xxxxxxxxxx. Xx xxxxxxxx xxx xxxxx xxxx to xxx xxxxxx xxx xxxx xx, xxx xxxxxxxxx xxxxxxx xxx xxxxxxxx to xxxxxxx xxxxxxxxxx xxxxx, xxxxxxxx xxxxxx xxxxx xxxxxxxxxxx, xxxxxx xxxxxxx xxxxxxxx, xxx xxxx.Xxx Xxxx\n&amp;xxxx;\nXxx xxxx of Xxxxxxxxxxxxxx Xxxxxxxx Xxxxxxxx xxxx xxxx xxxx just xxxxxxx xxx xxxxxxx: xx'xx xxx xxxxxxxx of xxx xxxxxxx xxxxxx xx Xxxxxxxx. Xx xxxxx xxxxxxxx xxxxxxxxxxxxx with xxx xxxxxx xx xxxxxxx xxx xxxxxxxxxx xxxxx xxxxx xxxxxxx xxxxx xxxxx. Xxx xxxxxxx xxx xxxxxxx xxxxxx xxxxx xx xx xxxxxxxxxx xxxxxxxx xx Xxxxxxxx!Xx xx Xxxxxxxxxxxxxx Xxxxxxxx Xxxxxxx, xxx xxxx xx xxxxxxxx a xxxxxxx of xxxxxxxxxxxx xxxxxxxxxxxxxxxx, xxxxxxxxx xxxxxxxxxxx, xxxxxx, xxx xxxxxxxx. Xxx xxx xxxx xxxxxxxxx xxx xxxxxx xxx of xxxxxxxx xxx xxxxxx xx xxxxxxx to xx xx xxxxxxxxxx xxx xxxxxxxxx xx xxxxxxxx. Xxx'xx xxxxxxxxxxx xxxx xxxxxxxxx xxxxxxxxxxxxx xxxxxx, xxx xxxxxxxx xxxx xxx xxxxxxxxx in xxxxxxx to xxxxxx xxxxxxxxxxxxx with xxxxxxxx xxx xxxxxxxx xxxxxx xxxx xxxxxxx xx Xxxxxxxx. In xxxx xxxx xxx'xx xxxx xxxxxxxxxxx xxxx xxxxxxxx xxx xxxxxxxx xxxxxxxx xx xxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxxx.\\xXxxxxxxxxxxxxx Xxxxxxxx Xxxxxxx (Xxxxxxx)\nXxxxxxx xxxxxxxxxxxxxx xxxxxxx to a xxxxxxxxx of xxxxxxxxxxx/xxxxx xxxxxx xxx xxxxxxxx.\nXxxxxx xxxxxxxxxxxxx xxxxxxxxx in a xxxx-xxxxx xxxxxxxxxxx, xxx xxxxxxxxxx xxxxxxxxxxx to xxxxxxx xxxx xxx xxxxxxxxxxxx.\nXxxx xxxxxx xxxxxxxxxxxx (xxxxxxxx xxx xxxxxxxxxxxxx).\nXxxxx xxx xxxxxxx xxxxxxx xxxxxxx.\nXxxx xxxx, xxxxxxx, xxx xxxxxxxx xxxxxx xxxxxx xxx xxxxxxxx xxxxxxxxxx.\nXxxx xxxx xxxxxxxxxxxx xxx in xxxxxxxxxxxxx with xxxxxxxxx, xxxxxxxxxx, xxx xxxxxxxx xxxxxxxx.\nXxxx Xx Xxxxx\nXxxxxxx to xxxxxx xxxxxxx, xxxxxxxxxx xxxxx, xxx xxxxxxxxx xxxxxxxxxxxx, with xxxxxx xxxxxxxxx to xxxxxx.\nXxxxxxx to xxxxxxxx with a xxxx xxxxx of xxxxx xxxxxxxxxx xxx xxxxxxxxxx with xxxxxxxxxxxxxx xxx xxxx.\nXxxx xxxxx of xxxxxxxxx, xxxxxxxxxxxxxxx, xxx xxxxxxxxxx in xxxx xxxxxxxx xxx xxxxxxxx xxxxxxxxxxxx.\nXxxx Xx Xxxxxxx\nXx xxxxx xxxxx years of xxxxxxxx xxxxxxxxxxxxxx xx xxxxxxxx xxxxxxx xxxxxxxxxx, xxxxxxxxxx in a xxxx-xxxxx xxxxxxxxxxx.\nXxxxxxxxx xxxxxxx xxxxxxxx, xxxxxxxxx xxxxxxxxxxx with Xxxxxxxxx xxxxxxxx (Xxxxxxx, Xxxxx, Xxxx, XxxxxXxxxx, xxx.).\nXxxxxxxxxx with xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxx xxx xxxxxxxx xxxxxx xxxxxxxxxxx.\nXxxxxxxxxxx with xxxxxx xxxxxxx xxx xxxxxxx xxxxxxxxx xxxxxxxx.\n\\xXxxx xx Xxxxxxxx\n&amp;xxxx;\nXx xxxx xxxxx Xxxxxxxxxxx to xxxxxxx xxxxx xxxx xxxxxxxx, xxxx’x xxx xx xxxxxxxxx xxxxxxxxxxx’ xxxxxxxxx, xxxxxx, xxx xxxxxxxxx, xxxx xxxx xxxxx xxxxxxxxx to xxxx xxxxxxxx xxxxxx, xxxxxx xxxx xxxx xx xxxxxxxxxxx xxxxxx xxxxxxx. Xxxxxx xxxxxxxxx to xxx xxxxx of xxx xxxxxxxxx xxxxxxx xx to xxxxxxxx xxx xxxxxxxxxxxxx to xxxx xxx xxxxx xxxxxx xxxx xxxxxxxx to xxxxxxx xx Xxxxxxxx. Xxxxxxxxx xxxxxx xxx xxxx-xxxxx xxxxxx xxx xxxxx of Xxxxxxxxxxxx’ xxxxx is just xxx of xxx xxxx xx’xx xxxxxxxxx in xxx xxxxxxxxx. Xxxxx xxxx xx <a>Xxxx xx Xxxxxxxx</a> xxx xxxx xxxx xxx xxxxxxxxx may xxxx xx xxxxxx.\n&amp;xxxx;\nIn xxxxxxx xxxxxxxxxx with Xxxxxxxx’x xxxxxx xxx xxxxxxx, xx xxxxxxx xxxxxxxxx xxx “xxxxxx xxxxxxxx” xxx in-xxxxxx xxxx xxxxxxx xxx xxxxxxxxxxx xxx xxxx xxxxxxxx xxxxxxxx. Xxxxxxxxx, xx xxxxxxxxx xxxxxxxxx to xxxx xxxx xxx xxxxxxx to xxxxxx xxxxxxxxxxxx xxx xxxxxxxxxx. Xxxx xxxxx xx xxxxx xxxxxx xxxxxxx (XXX a day xx xxx a week), xxxxxxxx xxx xxxxxxxxx to xxxxxx xxx xxxxx xxxxx-xxx xxx xxxxx xxxxxxxx xxxxxxxxxxxx. Xxxxx xx xxxxxxxx xxxx, xxxxx xxx a xxx xxxxx xxxx xxxxx xxx “Xxxxxx” xxxx xx xx xxxxxxxxxxx xxxxx. Xx xxx xxx xxxxxxxx xxx xxx of xxxxx xxxxx, xxx xxxx xxxx xxxx xxx xxxx xxx xx xxxxxxx in xxxxx xxx xxx xxxxxxxx. Xx xxx xxxxxxx is xxxxxxxxx xx Xxxxxx, xxx xxx xxxxxxxx to xxxx xxxx xx xxxxxx.\n&amp;xxxx;\nXx xxx xxxx to xxxxxxx xxx xxxxx'x xxxx xxxxxxxxx xxxxxxxxxxxx, xxx xxxxxx xxxx. Xxxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx of xxxxxxxxxx. Xx xxx xxxxxxxxx to xxxxxx xxx xxxxxxxxxxx xxx xxxxxx xxxxxxx xxxxxxxxxx to xxxxxxxx xxx xxxx xxxxxxx a xxxxxxxxxx xxxxxxxxxxxxx xxx xxxxx xxxxxx with a xxxxxxxxxx. Xx xxx xxxx xx xxxxxxxxxxxxx xxx xxx xxxxxxxxxxx xx xxxxxx xxxxxxx, xxxxxx <a>xxxxx out</a> xxx xxx xx xxxx xxx xx xxx xxxx.\n&amp;xxxx;\nXxxxxx xxxx xxxx xxx xxxx xxxxx xx xxxxx to xxxxxx a xxxxxxx xx share xxxxxxxxx xxxxxxxxxxx to xxxxxxxxxxx in xxx xxxxxxxxx xxxxxxx. Xx xxx xxxxxxx xxxx xxx'xx xxxx xxxxxxxxx xx a xxxxxxx, xx xxxxxxxxx xxx xxxxx xxx xxxxxxxxxxxxx with xxx xxxxxxxxxx xxx xxxxxxxx xxxxxxxxx xxxx to xxx xxxxxxxx xxxxxxxxxxx, xxxx xx xxx XX <a>XXX Xxxxxxxx Xxxxx Xxxxxxxxx Xxxxxx (XX3)</a>.",
+    "descriptionText": "A Xxxxx-Xxxxxxxx Xxxxxxx &xxxx; Xxxxxxxx xxxxxx xxx xxxxx’x xxxxxxx xxxxxxxx xxx xxxx-xxxxxx xxxxxxxxx xxx xxxxxxxxxx. Xx xxxxxxxx xxx xxxxx xxxx to xxx xxxxxx xxx xxxx xx, xxx xxxxxxxxx xxxxxxx xxx xxxxxxxx to xxxxxxx xxxxxxxxxx xxxxx, xxxxxxxx xxxxxx xxxxx xxxxxxxxxxx, xxxxxx xxxxxxx xxxxxxxx, xxx xxxx.Xxx Xxxx &xxxx; Xxx xxxx of Xxxxxxxxxxxxxx Xxxxxxxx Xxxxxxxx xxxx xxxx xxxx just xxxxxxx xxx xxxxxxx: xx'xx xxx xxxxxxxx of xxx xxxxxxx xxxxxx xx Xxxxxxxx. Xx xxxxx xxxxxxxx xxxxxxxxxxxxx with xxx xxxxxx xx xxxxxxx xxx xxxxxxxxxx xxxxx xxxxx xxxxxxx xxxxx xxxxx. Xxx xxxxxxx xxx xxxxxxx xxxxxx xxxxx xx xx xxxxxxxxxx xxxxxxxx xx Xxxxxxxx!Xx xx Xxxxxxxxxxxxxx Xxxxxxxx Xxxxxxx, xxx xxxx xx xxxxxxxx a xxxxxxx of xxxxxxxxxxxx xxxxxxxxxxxxxxxx, xxxxxxxxx xxxxxxxxxxx, xxxxxx, xxx xxxxxxxx. Xxx xxx xxxx xxxxxxxxx xxx xxxxxx xxx of xxxxxxxx xxx xxxxxx xx xxxxxxx to xx xx xxxxxxxxxx xxx xxxxxxxxx xx xxxxxxxx. Xxx'xx xxxxxxxxxxx xxxx xxxxxxxxx xxxxxxxxxxxxx xxxxxx, xxx xxxxxxxx xxxx xxx xxxxxxxxx in xxxxxxx to xxxxxx xxxxxxxxxxxxx with xxxxxxxx xxx xxxxxxxx xxxxxx xxxx xxxxxxx xx Xxxxxxxx. In xxxx xxxx xxx'xx xxxx xxxxxxxxxxx xxxx xxxxxxxx xxx xxxxxxxx xxxxxxxx xx xxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxxx.\\xXxxxxxxxxxxxxx Xxxxxxxx Xxxxxxx (Xxxxxxx) Xxxxxxx xxxxxxxxxxxxxx xxxxxxx to a xxxxxxxxx of xxxxxxxxxxx/xxxxx xxxxxx xxx xxxxxxxx. Xxxxxx xxxxxxxxxxxxx xxxxxxxxx in a xxxx-xxxxx xxxxxxxxxxx, xxx xxxxxxxxxx xxxxxxxxxxx to xxxxxxx xxxx xxx xxxxxxxxxxxx. Xxxx xxxxxx xxxxxxxxxxxx (xxxxxxxx xxx xxxxxxxxxxxxx). Xxxxx xxx xxxxxxx xxxxxxx xxxxxxx. Xxxx xxxx, xxxxxxx, xxx xxxxxxxx xxxxxx xxxxxx xxx xxxxxxxx xxxxxxxxxx. Xxxx xxxx xxxxxxxxxxxx xxx in xxxxxxxxxxxxx with xxxxxxxxx, xxxxxxxxxx, xxx xxxxxxxx xxxxxxxx. Xxxx Xx Xxxxx Xxxxxxx to xxxxxx xxxxxxx, xxxxxxxxxx xxxxx, xxx xxxxxxxxx xxxxxxxxxxxx, with xxxxxx xxxxxxxxx to xxxxxx. Xxxxxxx to xxxxxxxx with a xxxx xxxxx of xxxxx xxxxxxxxxx xxx xxxxxxxxxx with xxxxxxxxxxxxxx xxx xxxx. Xxxx xxxxx of xxxxxxxxx, xxxxxxxxxxxxxxx, xxx xxxxxxxxxx in xxxx xxxxxxxx xxx xxxxxxxx xxxxxxxxxxxx. Xxxx Xx Xxxxxxx Xx xxxxx xxxxx years of xxxxxxxx xxxxxxxxxxxxxx xx xxxxxxxx xxxxxxx xxxxxxxxxx, xxxxxxxxxx in a xxxx-xxxxx xxxxxxxxxxx. Xxxxxxxxx xxxxxxx xxxxxxxx, xxxxxxxxx xxxxxxxxxxx with Xxxxxxxxx xxxxxxxx (Xxxxxxx, Xxxxx, Xxxx, XxxxxXxxxx, xxx.). Xxxxxxxxxx with xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxxxxx xxx xxxxxxxx xxxxxx xxxxxxxxxxx. Xxxxxxxxxxx with xxxxxx xxxxxxx xxx xxxxxxx xxxxxxxxx xxxxxxxx. \\xXxxx xx Xxxxxxxx &xxxx; Xx xxxx xxxxx Xxxxxxxxxxx to xxxxxxx xxxxx xxxx xxxxxxxx, xxxx’x xxx xx xxxxxxxxx xxxxxxxxxxx’ xxxxxxxxx, xxxxxx, xxx xxxxxxxxx, xxxx xxxx xxxxx xxxxxxxxx to xxxx xxxxxxxx xxxxxx, xxxxxx xxxx xxxx xx xxxxxxxxxxx xxxxxx xxxxxxx. Xxxxxx xxxxxxxxx to xxx xxxxx of xxx xxxxxxxxx xxxxxxx xx to xxxxxxxx xxx xxxxxxxxxxxxx to xxxx xxx xxxxx xxxxxx xxxx xxxxxxxx to xxxxxxx xx Xxxxxxxx. Xxxxxxxxx xxxxxx xxx xxxx-xxxxx xxxxxx xxx xxxxx of Xxxxxxxxxxxx’ xxxxx is just xxx of xxx xxxx xx’xx xxxxxxxxx in xxx xxxxxxxxx. Xxxxx xxxx xx Xxxx xx Xxxxxxxx xxx xxxx xxxx xxx xxxxxxxxx may xxxx xx xxxxxx. &xxxx; In xxxxxxx xxxxxxxxxx with Xxxxxxxx’x xxxxxx xxx xxxxxxx, xx xxxxxxx xxxxxxxxx xxx “xxxxxx xxxxxxxx” xxx in-xxxxxx xxxx xxxxxxx xxx xxxxxxxxxxx xxx xxxx xxxxxxxx xxxxxxxx. Xxxxxxxxx, xx xxxxxxxxx xxxxxxxxx to xxxx xxxx xxx xxxxxxx to xxxxxx xxxxxxxxxxxx xxx xxxxxxxxxx. Xxxx xxxxx xx xxxxx xxxxxx xxxxxxx (XXX a day xx xxx a week), xxxxxxxx xxx xxxxxxxxx to xxxxxx xxx xxxxx xxxxx-xxx xxx xxxxx xxxxxxxx xxxxxxxxxxxx. Xxxxx xx xxxxxxxx xxxx, xxxxx xxx a xxx xxxxx xxxx xxxxx xxx “Xxxxxx” xxxx xx xx xxxxxxxxxxx xxxxx. Xx xxx xxx xxxxxxxx xxx xxx of xxxxx xxxxx, xxx xxxx xxxx xxxx xxx xxxx xxx xx xxxxxxx in xxxxx xxx xxx xxxxxxxx. Xx xxx xxxxxxx is xxxxxxxxx xx Xxxxxx, xxx xxx xxxxxxxx to xxxx xxxx xx xxxxxx. &xxxx; Xx xxx xxxx to xxxxxxx xxx xxxxx'x xxxx xxxxxxxxx xxxxxxxxxxxx, xxx xxxxxx xxxx. Xxxxxxxx xxxxxx xxxxxxxxxx xxxxxxxxxx of xxxxxxxxxx. Xx xxx xxxxxxxxx to xxxxxx xxx xxxxxxxxxxx xxx xxxxxx xxxxxxx xxxxxxxxxx to xxxxxxxx xxx xxxx xxxxxxx a xxxxxxxxxx xxxxxxxxxxxxx xxx xxxxx xxxxxx with a xxxxxxxxxx. Xx xxx xxxx xx xxxxxxxxxxxxx xxx xxx xxxxxxxxxxx xx xxxxxx xxxxxxx, xxxxxx xxxxx out xxx xxx xx xxxx xxx xx xxx xxxx. &xxxx; Xxxxxx xxxx xxxx xxx xxxx xxxxx xx xxxxx to xxxxxx a xxxxxxx xx share xxxxxxxxx xxxxxxxxxxx to xxxxxxxxxxx in xxx xxxxxxxxx xxxxxxx. Xx xxx xxxxxxx xxxx xxx'xx xxxx xxxxxxxxx xx a xxxxxxx, xx xxxxxxxxx xxx xxxxx xxx xxxxxxxxxxxxx with xxx xxxxxxxxxx xxx xxxxxxxx xxxxxxxxx xxxx to xxx xxxxxxxx xxxxxxxxxxx, xxxx xx xxx XX XXX Xxxxxxxx Xxxxx Xxxxxxxxx Xxxxxx (XX3).",
+    "url": "https://jobs.lever.co/palantir/ac978161-6f46-4f6b-ad9e-a258e642751c"
+  },
+  "chain": [
+    {
+      "id": "generic/job.v1",
+      "version": 1,
+      "sha256": "5e1ca7c2850ff92f99b83121108a428a8a392ea5440afb30892bc36a1e7b5918"
+    }
+  ]
+}

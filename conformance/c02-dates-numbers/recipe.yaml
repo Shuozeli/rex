@@ -1,0 +1,27 @@
+id: conformance/c02-dates-numbers
+version: 1
+schema: rex.schema.feed.v1.Feed
+requires: [relative_dates]
+fields:
+  - path: items
+    each: "li.item"
+    fields:
+      - path: id
+        candidates: [ { css: { take: TAKE_ATTRIBUTE, attribute: data-id } } ]
+      - path: title
+        candidates: [ { css: { selector: "a" } } ]
+      - path: url
+        candidates: [ { css: { selector: "a", take: TAKE_ATTRIBUTE, attribute: href } } ]
+      - path: published_at
+        candidates:
+          - css: { selector: ".en-when" }
+            pipe: [ { datetime: { formats: ["%b %d, %Y %I:%M %p"], tz: "America/New_York" } } ]
+          - css: { selector: ".zh-when" }
+            pipe: [ { datetime: { tz: "Asia/Shanghai", locale: zh, relative: true } } ]
+          - css: { selector: "time", take: TAKE_ATTRIBUTE, attribute: datetime }
+      - path: score
+        candidates: [ { css: { selector: ".votes" } } ]
+        pipe: [ { number: { locale: zh, cjk_units: true } } ]
+      - path: comment_count
+        candidates: [ { css: { selector: ".c" } } ]
+        pipe: [ { regex: { pattern: "([\\d,]+)\\s*条", group: 1 } }, { number: {} } ]

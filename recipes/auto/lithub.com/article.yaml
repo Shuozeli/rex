@@ -1,0 +1,69 @@
+# Auto-harvested 2026-10-13 (draft); dev channel until promoted (decisions.md U31).
+# Drafted by `rex draft` with Gemini (flash) on 2026-10-13 from /home/cyuan/projects/scratch/rex-harvest/captures/lithub.com/_/a2.
+# Unreviewed: add >= 2 redacted fixtures, run `rex test`, review the selectors, then move it to
+# recipes/sites/ in a PR.
+id: lithub.com/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts:
+    - lithub.com
+    include:
+    - ^/[a-z0-9-]+/?$
+  page:
+    any:
+    - exists: div.story-content
+fields:
+- path: title
+  candidates:
+  - css:
+      selector: div.story-heads > h1
+      take: TAKE_TEXT
+  expect: true
+- path: subtitle
+  candidates:
+  - css:
+      selector: div.story-heads > h2
+      take: TAKE_TEXT
+- path: authors
+  each: div.byline-date > span.byline > a
+  fields:
+  - path: name
+    candidates:
+    - css:
+        take: TAKE_TEXT
+    expect: true
+  - path: url
+    candidates:
+    - css:
+        take: TAKE_ATTRIBUTE
+        attribute: href
+- path: published_at
+  candidates:
+  - css:
+      selector: div.byline-date > span.date
+      take: TAKE_TEXT
+  - meta:
+      key: article:published_time
+  expect: true
+- path: body_html
+  candidates:
+  - css:
+      selector: div.story-body
+      take: TAKE_HTML
+      exclude:
+      - .pullquote
+      - script
+      - style
+    pipe:
+    - join:
+        separator: |2+
+
+  expect: true
+- path: tags
+  candidates:
+  - css:
+      selector: div.tag-container > a.tag
+      take: TAKE_TEXT

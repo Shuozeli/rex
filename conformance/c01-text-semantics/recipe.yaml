@@ -1,0 +1,13 @@
+id: conformance/c01-text-semantics
+version: 1
+schema: rex.schema.article.v1.Article
+root: article
+fields:
+  - path: title
+    candidates: [ { css: { selector: "h1" } } ]
+  - path: summary
+    candidates: [ { css: { selector: ".sum" } } ]
+  - path: section
+    candidates: [ { css: { selector: ".sec", take: TAKE_OWN_TEXT } } ]
+  - path: body_text
+    candidates: [ { css: { selector: ".body" } } ]

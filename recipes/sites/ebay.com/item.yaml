@@ -1,0 +1,60 @@
+# eBay listing -> rex.schema.commerce.v1.Product (decisions.md U35). The page's Product JSON-LD fills price,
+# brand, rating and availability through generic/product.v1; this adds the item number, the seller, the
+# strike-through list price and the item specifics. The Condition row's value is the condition name only
+# (its definition paragraph is dropped).
+id: ebay.com/item
+version: 1
+schema: rex.schema.commerce.v1.Product
+extends: generic/product.v1
+match:
+  urls:
+    hosts: ["ebay.com"]
+    include: ["^/itm/"]
+  page:
+    all:
+      - exists: "[data-testid=x-item-title]"
+fields:
+  - path: sku               # the eBay item number
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/itm/(?:[^/?]+/)?(\\d+)", group: 1 }
+
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "[data-testid=x-item-title] h1" }
+
+  - path: price
+    expect: true
+    candidates:
+      - css: { selector: ".x-price-primary" }
+        pipe:
+          - number: {}
+
+  - path: list_price
+    candidates:
+      - css: { selector: ".x-price-transparency .ux-textspans--STRIKETHROUGH" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: seller            # "RCH-ELECTRONICS (1248)": the name link, without the feedback score
+    candidates:
+      - css: { selector: ".x-sellercard-atf__info__about-seller a" }
+      - css: { selector: ".x-sellercard-atf__info a" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: specs
+    each: "[data-testid=x-about-this-item] .ux-layout-section-evo__col"
+    fields:
+      - path: name
+        candidates:
+          - css: { selector: "dt" }
+      - path: value
+        candidates:
+          - css: { selector: "dd .ux-textspans" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex_replace: { pattern: "^([^:]{1,40}): [A-Z].{40,}$", with: "$1" }

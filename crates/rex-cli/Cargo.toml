@@ -1,0 +1,38 @@
+[package]
+name = "rex-cli"
+description = "The `rex` command: check, extract, explain, match and test recipes."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[[bin]]
+name = "rex"
+path = "src/main.rs"
+
+[dependencies]
+rex-engine = { path = "../rex-engine" }
+rex-schema = { path = "../rex-schema" }
+rex-dom = { path = "../rex-dom" }
+rex-bundle = { path = "../rex-bundle" }
+rex-readability = { path = "../rex-readability" }
+rex-redact = { path = "../rex-redact" }
+ureq = "3"
+serde_yaml = "0.9"
+prost-types = "0.14"
+getrandom = "0.3"
+clap = { version = "4", features = ["derive", "env"] }
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+url = "2"
+rex-proto = { path = "../rex-proto" }
+prost-reflect = "0.16"
+rusty-s3 = "0.10"
+scraper = "0.24"
+encoding_rs = "0.8"
+flate2 = "1"
+
+[dev-dependencies]
+tempfile = "3"

@@ -1,0 +1,39 @@
+# Goodreads book page -> rex.schema.creative.v1.Book (decisions.md U36). The JSON-LD Book gives authors,
+# ISBN, format, pages and ratings through generic/book.v1; Goodreads truncates og:description, so the full
+# description, the genres and the first-published date come from the page.
+id: goodreads.com/book
+version: 1
+schema: rex.schema.creative.v1.Book
+extends: generic/book.v1
+match:
+  urls:
+    hosts: ["goodreads.com"]
+    include: ["^/book/show/\\d+"]
+  page:
+    all:
+      - json_ld_type: { types: [Book] }
+fields:
+  - path: id
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/book/show/(\\d+)", group: 1 }
+
+  - path: description
+    replace_inherited: true
+    candidates:
+      - css: { selector: "[data-testid=description] .Formatted", take: TAKE_BLOCK_TEXT }
+      - meta: { key: "og:description" }
+
+  - path: genres
+    candidates:
+      - css: { selector: "[data-testid=genresList] .Button__labelItem" }
+    pipe:
+      - filter: { pattern: "^\\.\\.\\.more$", invert: true }
+
+  - path: published_date    # "First published September 21, 1937" / "Published May 1, 2004 by Scribner"
+    candidates:
+      - css: { selector: "[data-testid=publicationInfo]" }
+    pipe:
+      - regex: { pattern: "([A-Z][a-z]+ \\d{1,2}, \\d{4})", group: 1 }
+      - datetime: { formats: ["%B %d, %Y"] }

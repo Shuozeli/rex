@@ -1,4 +1,4 @@
-<!-- agent-updated: 2026-10-12T06:15:00Z -->
+<!-- agent-updated: 2026-10-13T06:00:00Z -->
 
 # Requirements: rex
 
@@ -76,7 +76,7 @@ These are derived from [prd.md](prd.md) and implemented per [design.md](design.m
 | NFR-3 | Privacy | No telemetry. Egress is limited to recipe sources and user-initiated issue links. |
 | NFR-4 | Security | Engine spec §13 and design.md §10. |
 | NFR-5 | Performance | Click to result p95 < 500 ms on a typical page. Engine budgets per engine spec §11. |
-| NFR-6 | Footprint | wasm ≤ 600 KB gzipped; packed extension ≤ 2 MB. |
+| NFR-6 | Footprint | ~~wasm ≤ 600 KB gzipped~~ wasm ≤ 1.15 MB gzipped (amended, decisions.md U25; enforced in CI); packed extension ≤ 2 MB. |
 | NFR-7 | Determinism | Byte-identical native and wasm output on conformance. |
 | NFR-8 | Compatibility | Chrome ≥ 137. Chromium-based browsers best-effort. |
 | NFR-9 | i18n and accessibility | UI in `en` and `zh`, keyboard-navigable. CJK-correct text extraction. |

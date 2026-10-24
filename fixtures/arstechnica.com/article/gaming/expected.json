@@ -1,0 +1,90 @@
+{
+  "recipe": {
+    "id": "arstechnica.com/article",
+    "version": 1,
+    "sha256": "45bfab3b369914272daec44bb7e1631d4b054f6adf6eff79a2ebb7cda764d656"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:19:30Z",
+  "extractTime": "2026-10-13T03:19:30Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "arstechnica.com/article@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 6111,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://arstechnica.com/gaming/2026/10/report-epic-games-goes-all-in-on-ai-for-disney-collaboration/",
+    "title": "Xxxx Xxxxx xxxxxxxxxx xxxxxxxx xx \"XX xxxxx\" xxxx xxxxxxxxxxx xxxxx",
+    "authors": [
+      {
+        "name": "Xxxx Xxxxxx",
+        "url": "https://arstechnica.com/author/kyle-orland/"
+      }
+    ],
+    "publishedAt": "2026-10-12T20:59:50Z",
+    "updatedAt": "2026-10-12T21:10:08Z",
+    "summary": "Xx xxxx xxxx-xxxxxxx xxxx\" xx XX-xxxx xxx xxx xxxxxxx Xxxxxx/Star Xxxx xxxxxxx.",
+    "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/10/epicdisney-1152x648.png",
+    "bodyHtml": "<p>Xxxx Xxxxx xx xxxxxxxx xx xx “XX xxxxx” xxxxxxxxxxx xxxxxxxx xxx xxx xxxxxxxxxxxxx xxxx xxx Xxxx Xxxxxx Xxxxxxx, xxxxxxx XX xxxxxx xxxxx xxx xxx xxxx xxx xxxxx xxx xxx xxxxxxx xxx xx xxxxxxxx xxxxxxx. Xxxx’x xxxxxxxxx xx <a href=\"https://www.bloomberg.com/news/articles/2026-10-12/epic-games-delays-disney-project-asks-developers-to-use-more-ai\">a </a><a href=\"https://www.bloomberg.com/news/articles/2026-10-12/epic-games-delays-disney-project-asks-developers-to-use-more-ai\">Xxxxxxxxx</a><a href=\"https://www.bloomberg.com/news/articles/2026-10-12/epic-games-delays-disney-project-asks-developers-to-use-more-ai\"> xxxxxx</a>, xxxxx xxxxx xxxxxxx xxxxxx xxxxxxxx xxxx xxx xxxxxxx xxx xxxxxxxxx xx xxx xxxxxxxxxxx xxxxx xx xxxxxxxx xxxxxxxxxxx xx xxx Xxxxxx Xxxxxx xxxxx.</p>\n<p>Xxxxx xxxxxxxxxx xxxx xx xxxxxx xxxx xxxxxxxx xxx xxxxxxx xxxx xxx xxx xxxxxx xxxxxxxxx xx xxxxxx xxxx xx Xxxxxxxxx’x Xxxxxx, xxxxxxxxx xx xxxxxxxx Xxxx xxxxxxxx xxxxxxxx xxxxxx xx Xxxxxxxxx. Xxxx xxxxx “xx xxxx xxxx-xxxxxxx xxxx” xxx xxx xxxxxx “xxxxxxxxx xxxx xxxx XX xxxxxxxxx,” xxxxxxxxx xx xxx xxxxxx.</p>\n<p>Xxx $1.5 xxxxxxx xxxxxxxxxxxxx xxxxxxx Xxxx xxx Xxxxxx, <a href=\"https://arstechnica.com/gaming/2024/02/epic-working-with-disney-on-new-gaming-universe-after-1-5b-investment/\">xxxxxxxxx xx xxxxx 2024</a>, xxx xxxxxx xx xxxxxxx a Xxxxxx- xxx Star Xxxx-xxxxxx xxxxxxx xx March 2027. Xxxx xxxxxxx xxx now xxxx xxxxxxx xxxxxxxxxxxx xxxx xxx XX-xxxxxxx xxxxxxx xxx xxxxxxxxxxxx, xxxxxx-xxxx-xxxxxxxx xxxxxxxxxxx xxxx xxx, xxxxxxxxx xx xxx xxxxxx.</p>\n<p>“Xx’xx xxxxxxxxx XX-xxxxxxxxxxx xxxxxxxxxxx, xxx xx Xxxx xxxxxxxxxx xxx xxx xxx xxxxxxxxxxx xxx xxxxxxxx xxxxxxx xxx xxxxxxxxxx xx xx,” xx Xxxx xxxxxxxxxxxx xxxx xx a xxxxxxxxx.</p>\n<p>“Xx xxxx a xxxx xxxxx xxxxxxxx xxxx xx Xxxx, xxxxxx xxxxxxxxxx xxxxxx xx xxxxxx xxx xxxxxxx XX xxxxxxxxxxxx,” Xxxx XXX Xxx Xxxxxxx <a href=\"https://x.com/TimSweeneyEpic/status/2109705826688549304\">xxxxx xx xxxxxx xxxxx</a> xxxxxxx xxxxx xxx Xxxxxxxxx xxxxx xxx xxxxxx. “Xxx xxx xxx’t xx xx xxx xxxx xxxxx xxxx xxxxx xxxxxx, xxx xx xxxxxx xxxxxxxx xxxx xx xxxxx XXXX xxx XXXXXX xxxxx, xxx xx xxxxx xxx xxxxxxxx xx xxx xxxxx xxxxx Xxxxxx.”</p>\n\n          \n                      \n            \n                  \n\n          \n          \n<h2>Xxx’x xxx xxxxxxxxx, xxxx</h2>\n<p>Xxxxxxx xxx Xxxx xxxx xxxx xxxx xxxxxxx xx xxxx xxxx xxx xx xx xxxxxxxxx xxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxx xx XX. Xx <a href=\"https://www.ign.com/articles/ai-prompts-will-soon-let-a-10-person-team-build-a-game-like-breath-of-the-wild-where-the-ai-is-doing-all-the-dialogue-and-you-just-write-character-synopsis-tim-sweeney-predicts\">xx xxxxxxxxx xxxx XXX xx June</a>, Xxxxxxx xxx xxx xxxxxxxxxx xxxxxxxxx xx xxxxx xxxx “xxx xxxxxxxxxxx xx xxxxxxxx xxxxxxxx xxxx a xxxxxx xxxxxx xxxxx xxx xxxxxxxx,” xxxxxxx xx xxxxxxxxxx xxxxx “xxxxx xxxxx xxxx xx xxxx xx xxxxxx xxxxx xxxx xxxxxxx xxxxxxx xx xxxxxxxxxx xxx xxxxxxx xxx xxxxxxxxxxx xxxxxx.”</p>\n<p>Xxxxxxx <a href=\"https://www.pcgamesn.com/steam/tim-sweeney-ai-disclosure-epic\">xxxx xxxx November</a> xxxx XX xxxxx xxxxxxxxxx xxxx <a href=\"https://arstechnica.com/gaming/2024/01/valve-most-games-made-with-ai-tools-are-now-welcome-on-steam/\">xxxx xx xxxxx xxxxxxxx xx Xxxxx’x Xxxxx xxxxxxxx</a> “xxxx xx xxxxx” xxxxxxx XX xxxxx “xxxx xx xxxxxxxx xx xxxxxx xxx xxxxxx xxxxxxxxxx.”</p>\n<p>Xxxx <a href=\"https://www.epicgames.com/site/news/todays-layoffs\">xxxx xxx xxxx 1,000 xxxxxxxxx xx March</a>, xxxxxx a “xxxxxxxx xx <em>Xxxxxxxx</em> xxxxxxxxxx” xx xxx xxxx xxxxxx xxxxxx xxx xxxx. Months xxxxx, <em>Xxxxxxxx</em> Xxxxxx Xxxxxxxx Xxxxxxxxxxx Xxxxxxx Xxxxxxxxx Xxxxxxx <a href=\"https://www.gamesradar.com/games/battle-royale/epic-knows-everyones-afraid-ai-is-going-to-take-all-our-jobs-but-fortnite-dev-insists-the-goal-of-ai-is-to-make-us-more-efficient/\">xxxx</a>&nbsp;xxxx “X xxxx xxxxxxxx’x xxxxxxx xxxx xx, ‘Xx xx xxx, XX xx xxxxx xx xxxx xxx xxx xxxx.’ Xxxx’x xxx xxx xxxx. Xxx xxxx xx xx xxxx xx xxxx xxxxxxxxx.”</p>\n<p>Xxxx May, Xxxx xxx Xxxxxx xxxxx xxxx xxxxxxxxxxxxx xxxx xx XX-xxxxxx Xxxxx Xxxxx xxxxxxxxx xxxxx xx <em>Xxxxxxxx</em> <a href=\"https://arstechnica.com/information-technology/2025/05/the-empire-strikes-back-with-f-bombs-ai-darth-vader-goes-rogue-with-profanity-slurs/\">xxxxxxx xxxxxxxxx xxxxx xxxxx</a> xxx xxxxxxxx xxxx xxxxxxxx xxxxxxxx xxxxxx a xxxxxx xxx xxxxxx xxx.</p>\n<p>A <a href=\"https://gdconf.com/article/gdc-2026-state-of-the-game-industry-reveals-impact-of-layoffs-generative-ai-and-more/\">xxxxxx xx xxxx 2,300 xxxx xxxxxxxx xxxxxxxxxxxxx</a> xxxxx xx xxxx year’x Xxxx Xxxxxxxxxx Xxxxxxxxxx xxxxx xxxx 36 xxxxxxx xxxx xxxxxxxxxx XX xxxxx xx xxxx xx xxxxx xxxx, xxxxxxxxx 30 xxxxxxx xx xxxxx xx xxxx xxxxxxxxxxx xxxxxxx. Xxx xxxxx XX xxxxx xxxx xxxx xxx xxxxx like xxxxxxxx xxx xxxxxxxxxxxxx (xx 81 xxxxxxx xx XX-xxxxx xxxxxxxxxxx) xxxx xxxx xxxx xxx xxxx xxxxxxxxxx (47 xxxxxxx) xxx xxxxxxxxxxx (35 xxxxxxx).</p>",
+    "bodyText": "Xxxx Xxxxx xx xxxxxxxx xx xx “XX xxxxx” xxxxxxxxxxx xxxxxxxx xxx xxx xxxxxxxxxxxxx xxxx xxx Xxxx Xxxxxx Xxxxxxx, xxxxxxx XX xxxxxx xxxxx xxx xxx xxxx xxx xxxxx xxx xxx xxxxxxx xxx xx xxxxxxxx xxxxxxx. Xxxx’x xxxxxxxxx xx a Xxxxxxxxx xxxxxx, xxxxx xxxxx xxxxxxx xxxxxx xxxxxxxx xxxx xxx xxxxxxx xxx xxxxxxxxx xx xxx xxxxxxxxxxx xxxxx xx xxxxxxxx xxxxxxxxxxx xx xxx Xxxxxx Xxxxxx xxxxx.\n\nXxxxx xxxxxxxxxx xxxx xx xxxxxx xxxx xxxxxxxx xxx xxxxxxx xxxx xxx xxx xxxxxx xxxxxxxxx xx xxxxxx xxxx xx Xxxxxxxxx’x Xxxxxx, xxxxxxxxx xx xxxxxxxx Xxxx xxxxxxxx xxxxxxxx xxxxxx xx Xxxxxxxxx. Xxxx xxxxx “xx xxxx xxxx-xxxxxxx xxxx” xxx xxx xxxxxx “xxxxxxxxx xxxx xxxx XX xxxxxxxxx,” xxxxxxxxx xx xxx xxxxxx.\n\nXxx $1.5 xxxxxxx xxxxxxxxxxxxx xxxxxxx Xxxx xxx Xxxxxx, xxxxxxxxx xx xxxxx 2024, xxx xxxxxx xx xxxxxxx a Xxxxxx- xxx Star Xxxx-xxxxxx xxxxxxx xx March 2027. Xxxx xxxxxxx xxx now xxxx xxxxxxx xxxxxxxxxxxx xxxx xxx XX-xxxxxxx xxxxxxx xxx xxxxxxxxxxxx, xxxxxx-xxxx-xxxxxxxx xxxxxxxxxxx xxxx xxx, xxxxxxxxx xx xxx xxxxxx.\n\n“Xx’xx xxxxxxxxx XX-xxxxxxxxxxx xxxxxxxxxxx, xxx xx Xxxx xxxxxxxxxx xxx xxx xxx xxxxxxxxxxx xxx xxxxxxxx xxxxxxx xxx xxxxxxxxxx xx xx,” xx Xxxx xxxxxxxxxxxx xxxx xx a xxxxxxxxx.\n\n“Xx xxxx a xxxx xxxxx xxxxxxxx xxxx xx Xxxx, xxxxxx xxxxxxxxxx xxxxxx xx xxxxxx xxx xxxxxxx XX xxxxxxxxxxxx,” Xxxx XXX Xxx Xxxxxxx xxxxx xx xxxxxx xxxxx xxxxxxx xxxxx xxx Xxxxxxxxx xxxxx xxx xxxxxx. “Xxx xxx xxx’t xx xx xxx xxxx xxxxx xxxx xxxxx xxxxxx, xxx xx xxxxxx xxxxxxxx xxxx xx xxxxx XXXX xxx XXXXXX xxxxx, xxx xx xxxxx xxx xxxxxxxx xx xxx xxxxx xxxxx Xxxxxx.”\n\nXxx’x xxx xxxxxxxxx, xxxx\n\nXxxxxxx xxx Xxxx xxxx xxxx xxxx xxxxxxx xx xxxx xxxx xxx xx xx xxxxxxxxx xxxx xxxxxxxxxxx xxxxxxxxxx xxxxxxx xx XX. Xx xx xxxxxxxxx xxxx XXX xx June, Xxxxxxx xxx xxx xxxxxxxxxx xxxxxxxxx xx xxxxx xxxx “xxx xxxxxxxxxxx xx xxxxxxxx xxxxxxxx xxxx a xxxxxx xxxxxx xxxxx xxx xxxxxxxx,” xxxxxxx xx xxxxxxxxxx xxxxx “xxxxx xxxxx xxxx xx xxxx xx xxxxxx xxxxx xxxx xxxxxxx xxxxxxx xx xxxxxxxxxx xxx xxxxxxx xxx xxxxxxxxxxx xxxxxx.”\n\nXxxxxxx xxxx xxxx November xxxx XX xxxxx xxxxxxxxxx xxxx xxxx xx xxxxx xxxxxxxx xx Xxxxx’x Xxxxx xxxxxxxx “xxxx xx xxxxx” xxxxxxx XX xxxxx “xxxx xx xxxxxxxx xx xxxxxx xxx xxxxxx xxxxxxxxxx.”\n\nXxxx xxxx xxx xxxx 1,000 xxxxxxxxx xx March, xxxxxx a “xxxxxxxx xx Xxxxxxxx xxxxxxxxxx” xx xxx xxxx xxxxxx xxxxxx xxx xxxx. Months xxxxx, Xxxxxxxx Xxxxxx Xxxxxxxx Xxxxxxxxxxx Xxxxxxx Xxxxxxxxx Xxxxxxx xxxx xxxx “X xxxx xxxxxxxx’x xxxxxxx xxxx xx, ‘Xx xx xxx, XX xx xxxxx xx xxxx xxx xxx xxxx.’ Xxxx’x xxx xxx xxxx. Xxx xxxx xx xx xxxx xx xxxx xxxxxxxxx.”\n\nXxxx May, Xxxx xxx Xxxxxx xxxxx xxxx xxxxxxxxxxxxx xxxx xx XX-xxxxxx Xxxxx Xxxxx xxxxxxxxx xxxxx xx Xxxxxxxx xxxxxxx xxxxxxxxx xxxxx xxxxx xxx xxxxxxxx xxxx xxxxxxxx xxxxxxxx xxxxxx a xxxxxx xxx xxxxxx xxx.\n\nA xxxxxx xx xxxx 2,300 xxxx xxxxxxxx xxxxxxxxxxxxx xxxxx xx xxxx year’x Xxxx Xxxxxxxxxx Xxxxxxxxxx xxxxx xxxx 36 xxxxxxx xxxx xxxxxxxxxx XX xxxxx xx xxxx xx xxxxx xxxx, xxxxxxxxx 30 xxxxxxx xx xxxxx xx xxxx xxxxxxxxxxx xxxxxxx. Xxx xxxxx XX xxxxx xxxx xxxx xxx xxxxx like xxxxxxxx xxx xxxxxxxxxxxxx (xx 81 xxxxxxx xx XX-xxxxx xxxxxxxxxxx) xxxx xxxx xxxx xxx xxxx xxxxxxxxxx (47 xxxxxxx) xxx xxxxxxxxxxx (35 xxxxxxx)."
+  },
+  "chain": [
+    {
+      "id": "arstechnica.com/article",
+      "version": 1,
+      "sha256": "45bfab3b369914272daec44bb7e1631d4b054f6adf6eff79a2ebb7cda764d656"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

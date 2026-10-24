@@ -1,0 +1,68 @@
+# Bilibili video page -> rex.schema.media.v1.Video (decisions.md U34). The page's JSON-LD VideoObject already
+# gives most fields through generic/video.v1; this adds the BV id, likes and the visible counters.
+id: bilibili.com/video
+version: 2
+schema: rex.schema.media.v1.Video
+extends: generic/video.v1
+match:
+  urls:
+    hosts: ["bilibili.com", "m.bilibili.com"]
+    include: ["^/(en/)?video/(BV[0-9A-Za-z]+|av\\d+)"]   # /en/video/: the English site (found by the tutorial recording)
+  page:
+    any:
+      - exists: "h1.video-title"
+      - json_ld_type: { types: [VideoObject] }
+fields:
+  - path: id
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - regex: { pattern: "/video/(BV[0-9A-Za-z]+|av\\d+)", group: 1 }
+
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1.video-title" }
+
+  - path: channel.name
+    candidates:
+      - css: { selector: ".up-name" }
+
+  - path: channel.url
+    candidates:
+      - css: { selector: ".up-name", take: TAKE_ATTRIBUTE, attribute: href }
+    pipe:
+      - url: { strip_query: ["spm_id_from"] }
+
+  - path: published_at
+    candidates:
+      - css: { selector: ".pubdate-ip-text" }
+    pipe:
+      - regex: { pattern: "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})", group: 1 }
+      - datetime: { formats: ["%Y-%m-%d %H:%M:%S"], tz: "Asia/Shanghai" }
+
+  - path: duration_seconds
+    candidates:
+      - css: { selector: ".bpx-player-ctrl-time-duration" }
+    pipe:
+      - duration: {}
+
+  - path: views              # "8.4万"
+    candidates:
+      - css: { selector: ".view-text" }
+    pipe:
+      - number: { cjk_units: true }
+
+  - path: likes
+    candidates:
+      - css: { selector: ".video-like-info" }
+    pipe:
+      - number: { cjk_units: true }
+
+  - path: description
+    candidates:
+      - css: { selector: ".basic-desc-info" }
+
+  - path: tags
+    candidates:
+      - css: { selector: ".tag-link" }

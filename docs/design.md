@@ -1,4 +1,4 @@
-<!-- agent-updated: 2026-10-12T06:45:00Z -->
+<!-- agent-updated: 2026-10-13T06:00:00Z -->
 
 # rex: system design
 
@@ -72,12 +72,13 @@ rex/
     extract/v1/extraction.proto
     extract/v1/extraction_recipe.proto
     bundle/v1/bundle.proto
-  crates/                    Rust workspace (engine; see engine spec §10.1)
-    rex-dom  rex-schema  rex-recipe  rex-sources  rex-readability  rex-transform  rex-engine
-    rex-wasm                 wasm-bindgen facade -> npm package @rex/engine
-    rex-cli                  check | extract | explain | test | match | fixture | draft | bundle
-    rex-bundle               bundle build/sign/verify (used by the CLI and by publishing)
-  extension/                 Chrome MV3 app (TypeScript, pnpm, WXT, Preact)
+  crates/                    Rust workspace (engine spec §10.1)
+    rex-proto rex-schema rex-dom rex-readability rex-engine rex-cli     (built in M1)
+    rex-wasm · rex-bundle                                                (built, vertical slice)
+    rex-redact (M3)                                                      (planned)
+  conformance/<case>/        engine-level cases with a case-local recipe.yaml (§8 semantics, statuses)
+  extension/                 Chrome MV3 app: TypeScript + esbuild (U24), src/, static/, tests/e2e.mjs
+  scripts/build-extension.sh wasm build + wasm-bindgen + extension build
   recipes/
     generic/                 base recipes, one per schema (generic/article.v1, ...)
     sites/<host>/<name>.yaml site recipes
@@ -85,7 +86,6 @@ rex/
   fixtures/<recipe-id>/<case>/{page.html, meta.json, expected.json}   redacted (U19)
   fixtures-private/          gitignored, unredacted local captures
   liveness.yaml              recipes eligible for scheduled public liveness checks (U20)
-  scripts/validate_recipes.py   prototype of `rex check` (until rex-cli exists)
   docs/
   .github/workflows/         ci.yml, publish.yml, liveness.yml, extension.yml
 ```
@@ -167,10 +167,16 @@ CI gates on every PR (U17):
 | `rex explain …` | Per-field trace: each candidate's raw value, what each transform did, the coercion result, why it missed |
 | `rex test [ids…]` | Run fixtures; `--update` rewrites `expected.json` (the diff is reviewed in the PR) |
 | `rex match <url> [--html f]` | Run the two-stage match against the local recipe set |
-| `rex fixture capture <url>` | Fetch over plain HTTP and save to `fixtures-private/` (login-gated pages come from the extension instead) |
-| `rex fixture redact <dir>` | Redact (U19) into `fixtures/` |
-| `rex draft --from <fixture> --schema <msg> --llm <endpoint>` | Optional BYO-LLM drafting into `recipes/drafts/` |
-| `rex bundle build/sign/verify` | Used by publishing, and locally for a dev source |
+| `rex fixture capture <url> --id <recipe> --case <name>` | Fetch over plain HTTP and save to `fixtures-private/` (login-gated pages come from the extension instead) |
+| `rex fixture redact <from> <to>` | Redact (U19) into `fixtures/` |
+| `rex fixture import <file.rexfixture.json>` | Add a fixture saved by the extension's developer mode (re-linted) |
+| `rex fixture lint [roots]` | Fail on unredacted prose in non-synthetic fixtures |
+| `rex fmt <file> [--json]` | Canonical form (protojson with `--json`, e.g. for the extension's local recipe) |
+| `rex readability --html f --url U` | Run only the readability source |
+| `rex liveness [--report r.json]` | Check the live pages in `liveness.yaml` (U20) |
+| `rex draft --from <fixture> --schema <msg> --llm <endpoint>` | Optional BYO-LLM drafting into `recipes/drafts/` (U28) |
+| `rex bundle keygen/build/verify [--url]` | Keys, local bundles, and client-side verification of a published channel |
+| `rex bundle publish/gc --to s3://bucket/prefix` | Publish a channel to an S3-compatible host or a directory, and garbage-collect it (U26) |
 
 ### 7.2 The LLM-assisted draft (optional)
 
@@ -180,8 +186,9 @@ CI gates on every PR (U17):
 - JSON-LD, meta tags, and candidate repeating structures;
 - the target schema's descriptor, including its `schema_org` bindings.
 
-It sends the pack to a user-configured OpenAI-compatible endpoint (temperature 0), with the
-`ExtractionRecipe` JSON schema in the prompt. It parses the result strictly, with up to 2 retries for
+It sends the pack to a user-configured endpoint (temperature 0): either OpenAI-compatible chat
+completions or Gemini `generateContent`. The annotated `extraction_recipe.proto` is in the prompt as the
+format specification (U28). It parses the result strictly, with up to 2 retries for
 structural errors only, and writes it to `recipes/drafts/`.
 
 It never activates anything. The draft must pass `rex test` and be reviewed like any other recipe.
@@ -192,10 +199,11 @@ The pipeline has no self-repair loop.
 - **Local recipe:** paste or load an unsigned recipe. It takes precedence for its match and is labeled
   "dev, unsigned".
 - **`explain` trace:** a per-field panel.
-- **"Save as fixture":** runs the U19 redaction in the extension (rex wasm) and downloads
-  `{page.html, meta.json, expected.json}`. This is the main way to get fixtures for login-gated or
-  JS-rendered pages.
-- **Dev channel:** a toggle that also syncs `/v1/dev`.
+- **"Save as fixture":** runs the U19 redaction in the extension (rex wasm), lints it, and downloads one
+  `*.rexfixture.json`. `rex fixture import` turns it into `page.html` + `meta.json`, and
+  `rex test --update` produces the reviewed `expected.json` (U27). This is the main way to get fixtures
+  for login-gated or JS-rendered pages.
+- **Dev channel:** the channel is a per-source setting, so a `dev` source sits next to `stable`.
 
 ## 8. Publishing and hosting
 
@@ -213,8 +221,11 @@ The pipeline has no self-repair loop.
    `REX_SIGNING_KEY` secret, in a protected environment that requires approval).
 6. Upload `r/` and `s/` with `Cache-Control: public, max-age=31536000, immutable`, then upload
    `index.json` with `max-age=300`.
-7. Verify the publish end to end: `rex bundle verify https://…/v1/<channel>/` as a client would.
-8. GC: delete `r/` and `s/` objects that no index has referenced for 30 days.
+7. Verify the publish end to end: `rex bundle verify --url https://…/v1/<channel>/` as a client would.
+8. GC (weekly): delete `r/` and `s/` objects that the live index has not referenced for 30 days.
+
+Implemented by `rex bundle publish` and `rex bundle gc` (U26); setup and rotation are in
+[operations.md](operations.md).
 
 ### 8.2 Hosting
 
@@ -271,15 +282,14 @@ The sync runs on startup, on an alarm (default 6 h, configurable from 1 h to 7 d
    `min_client_version`.
 3. Fetch every missing `r/` and `s/` object (concurrency 4, sha256 verified). The whole bundle is
    fetched eagerly, so per-site fetches never reveal browsing.
-4. Compile-check each new recipe in wasm. An entry that fails is skipped with a diagnostic (for
-   example, an unknown `requires`).
-5. Swap atomically: write the blobs, then switch `{index, sequence, etag}` in one write, then GC.
+4. Skip entries whose `requires` the engine lacks, and everything extending them, each with a reason;
+   then compile-check the rest in wasm.
+5. Swap atomically: the index, recipes and schema set of a source are written as one `storage.local`
+   value, bound to the source's base URL, channel and pinned keys (U27).
 6. Regenerate the `declarativeContent` rules from `urls` (the icon state for supported pages).
 
-Storage:
-
-- the verified bundle lives in IndexedDB (blobs) and `storage.local` (index and metadata);
-- `unlimitedStorage` is only requested if the measured size requires it.
+Settings saves and syncs are serialized in the worker. A failure at any step keeps the previous bundle
+and records the reason, which the options page shows.
 
 ### 9.4 Permissions and manifest
 
@@ -290,7 +300,7 @@ Storage:
   "minimum_chrome_version": "137",
   "permissions": ["activeTab", "scripting", "storage", "alarms", "declarativeContent"],
   "host_permissions": ["https://recipes.<domain>/*"],
-  "optional_host_permissions": ["https://*/*"],
+  "optional_host_permissions": ["https://*/*", "http://*/*"],
   "background": { "service_worker": "background.js", "type": "module" },
   "action": { "default_popup": "popup.html" },
   "options_page": "options.html",
@@ -328,8 +338,7 @@ Storage:
 
 | Workflow | Runs |
 |---|---|
-| `ci.yml` (PRs) | `cargo fmt/clippy/test` (AAA unit tests), conformance natively **and** under wasm (byte-identical), `rex check` + `rex test` on all recipes, the version-bump gate, the wasm size budget, fuzz smoke (short) |
-| `extension.yml` (PRs) | `pnpm` lint, typecheck, Vitest; Playwright e2e loading the unpacked extension against route-intercepted fixture pages and a test-signed bundle (test key only in e2e builds); a build-output check (no `eval`/`new Function`, no recipe data in the package, manifest permissions match the snapshot) |
+| `ci.yml` (push, PR) | `cargo fmt/clippy/test` (AAA unit tests), `rex check` (≥ 2 fixtures, version-bump gate) + `rex test` + fixture lint, the wasm size budget, conformance under wasm (byte-identical); the extension job runs typecheck, a store build checked for e2e leaks, and both Playwright suites against the unpacked e2e build with a CLI-published, test-signed bundle served by route interception (U29) |
 | `publish.yml` (main) | §8.1 |
 | `liveness.yml` (daily) | U20: public sample URLs for `liveness.yaml` recipes; on a non-OK status, open or update an issue |
 | Nightly | `cargo fuzz` (recipe parse, document parse plus extract, transforms), the readability differential against Mozilla on the private corpus |
@@ -360,13 +369,15 @@ retired explicitly in the PR.
 | Milestone | Deliverable |
 |---|---|
 | **M0** | Design complete: contracts, decisions, this document. Repo renamed to `Shuozeli/rex` (done). |
-| **M1** | Engine E1–E3 (DOM, schema registry, compile, the css/meta/link/url/constant/json_ld/microdata/hint sources, transforms, §8 semantics, `each`, `extends`, statuses), `rex check/extract/explain/test`, the first conformance set, `scripts/validate_recipes.py` retired. |
-| **M2** | Engine E4–E5: readability port, wasm build within budget, conformance under wasm, `match_page`. |
-| **M3** | Recipe repo live: generic recipes for article and feed, about 10 site recipes with redacted fixtures, CI gates, `rex fixture`. |
-| **M4** | Publishing: `rex-bundle`, `publish.yml`, R2 and domain, signing keys, `/v1/stable` and `/v1/dev`. |
-| **M5** | Extension **v0.1**: sync, two-stage match, extract, popup, copy and download, report. Unpacked and unlisted distribution. |
-| **M6** | Extension **v0.2**: options (sources, channel), developer mode (local recipe, explain, save as fixture), `declarativeContent` icon state, shortcut. Liveness CI. |
-| **M7** | `rex draft` (BYO-LLM), the first consumer integration (myfeed `feed.v1`), and a Chrome Web Store listing decision. |
+| **M1** ✅ | Engine E1–E3 (DOM, schema registry, compile, the css/meta/link/url/constant/json_ld/microdata/hint sources, transforms, §8 semantics, `each`, `extends`, statuses), `rex check/extract/explain/test/match`, the first conformance set (8 cases) and fixtures (6), `scripts/validate_recipes.py` retired. Done 2026-10-12 (uncommitted at the time of writing). |
+| **M2** ✅ | Engine E4–E5: readability port (benchmarked against Mozilla), wasm build within budget (U25), conformance under wasm. |
+| **M3** ✅ | Recipe repo: generic recipes, 12 site recipes plus one draft with redacted fixtures, CI gates, `rex fixture`, liveness. |
+| **M4** ✅ | Publishing: `rex bundle publish/gc`, `publish.yml`, `/v1/stable` and `/v1/dev`, verified on MinIO. The R2 account, domain and production key are pending (user). |
+| **M5** ✅ | Extension **v0.1**: sync, two-stage match, extract, popup, copy and download, report. |
+| **M6** ✅ | Extension **v0.2**: options (sources, channel, interval, format), developer mode (local recipe, explain, save as fixture), `declarativeContent` icon state, en/zh. |
+| **M7** | `rex draft` (BYO-LLM) ✅; the first consumer integration (myfeed `feed.v1`) and a Chrome Web Store listing decision are pending. |
+
+M2–M7 were implemented on 2026-10-13 and are not committed yet.
 
 ## 15. Open questions
 

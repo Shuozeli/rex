@@ -1,0 +1,287 @@
+{
+  "recipe": {
+    "id": "lobste.rs/front",
+    "version": 1,
+    "sha256": "95d4f80647a0a5e9547920b8188bc713f47d4eaec1351bbcae6fd1504a2a8ec0"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://lobste.rs/newest",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:42:18Z",
+  "extractTime": "2026-10-13T03:42:18Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].author",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    },
+    {
+      "path": "items[0].comment_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "lobste.rs/front@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxx Xxxxxxx | Xxxxxxxx",
+    "items": [
+      {
+        "id": "j30pg4",
+        "title": "Xx Xxxx'x Xxx Xxxxxx-Xxxxxx Xxxx",
+        "url": "https://www.patreon.com/vihart/posts/vi-harts-big-171939430",
+        "publishedAt": "2026-10-13T01:29:49Z",
+        "author": "xxxxxxxx",
+        "score": "3",
+        "commentCount": "1"
+      },
+      {
+        "id": "o7pepp",
+        "title": "XxxxxXxxxxXxx: Xxx xxxxxxx xXxxxx, xXxx xxxxx xxx xXxx xxxxxxxx xx xxxx Xxx (xXxxxx XX 1 xx xXX 7)",
+        "url": "https://github.com/samhenrigold/LightTouchMac",
+        "publishedAt": "2026-10-12T22:27:17Z",
+        "author": "xxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "cisbk4",
+        "title": "Xxxxxx Xxxxxxx – Xxxxxxx: Xxx Xxx xx Xxxxxxxxxxx?",
+        "url": "https://www.youtube.com/watch?v=jlJyuJhDnlc",
+        "publishedAt": "2026-10-12T21:48:46Z",
+        "author": "xxxxx",
+        "score": "1"
+      },
+      {
+        "id": "cjdy6d",
+        "title": "A xxxxxx xxx xxx xx x",
+        "url": "https://prophitt.me/writing/a-modern-web-app-in-c",
+        "publishedAt": "2026-10-12T20:52:08Z",
+        "author": "xxxxxx",
+        "score": "2",
+        "commentCount": "5"
+      },
+      {
+        "id": "rddkyc",
+        "title": "Xxxxxxxxx Xxxxxxxxx (2013)",
+        "url": "https://dl.acm.org/doi/pdf/10.1145/2500128",
+        "publishedAt": "2026-10-12T20:39:00Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "gfviyc",
+        "title": "xxxxxxx: Xxxxxxxxxxxx xxxxxx xx xxx-Xxxxxx xxxxxxxxx",
+        "url": "https://github.com/tom7/noperts",
+        "publishedAt": "2026-10-12T19:08:08Z",
+        "author": "xxxx",
+        "score": "2",
+        "commentCount": "1"
+      },
+      {
+        "id": "5feguu",
+        "title": "Xxxxxxxx xx xxx Xxxxxx xxxxxx xx… xxx xxxxx xxxxxxxxxxxxx xxxxxx xxxx xxxxxxx",
+        "url": "https://larstofus.com/2026/10/11/speeding-up-the-unreal-editor-by-not-using-unnecessarily-secure-hash-methods/",
+        "publishedAt": "2026-10-12T18:37:55Z",
+        "author": "xxxx",
+        "score": "14"
+      },
+      {
+        "id": "zjfvfz",
+        "title": "Xxx Xxxxxxxxx Xxxxxxxxxx",
+        "url": "https://idiomdrottning.org/dumbphone-experience",
+        "publishedAt": "2026-10-12T18:36:48Z",
+        "author": "xxxxxxxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "i1lyv7",
+        "title": "512 xxxxx xx a xxxx: xxxxxxxxxxxxxx XXX x xxxx-xxxx xxxxxxxxx",
+        "url": "https://blog.silentsignal.eu/2026/10/06/512-bytes-at-a-time-reconstructing-IBM-i-save-file-checksums/",
+        "publishedAt": "2026-10-12T18:12:46Z",
+        "author": "xxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "cuxygr",
+        "title": "XXXXX - Xxxxxxxxxxx Xxxxxxxx Xxxxxxx Xxxxxxxxxxx Xxxxxxxxx",
+        "url": "https://tomforsyth1000.github.io/DASHR/paper/DASHR_Paper.html",
+        "publishedAt": "2026-10-12T18:03:40Z",
+        "author": "xxxxxxx",
+        "score": "2"
+      },
+      {
+        "id": "x1ucie",
+        "title": "XXX32 Xx Xxxx Xxxxxxxxx Xx’x Xxxxx Xxxxxxxx Xx-xxxxxxxxx",
+        "url": "https://hackaday.com/2026/10/07/esp32-as-your-raspberry-pis-linux-wireless-co-processor/",
+        "publishedAt": "2026-10-12T18:00:48Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "0aocct",
+        "title": "xxxx x xx xxx xxxxxxxx x",
+        "url": "https://sebsite.pw/w/20261012-notstdc.html",
+        "publishedAt": "2026-10-12T17:17:18Z",
+        "author": "xxxxx",
+        "score": "15",
+        "commentCount": "1"
+      },
+      {
+        "id": "awjqvn",
+        "title": "Xxxx X'xx xxxx xxxxxx xxxxxx (xx xxxxxxxx)",
+        "url": "https://mei.puppycat.house/w/seeing-261010",
+        "publishedAt": "2026-10-12T17:08:00Z",
+        "author": "xxx",
+        "score": "8",
+        "commentCount": "5"
+      },
+      {
+        "id": "7vzgsl",
+        "title": "Xxxx xxx xxx xxxxx xxxx week?",
+        "url": "https://lobste.rs/s/7vzgsl/what_are_you_doing_this_week",
+        "publishedAt": "2026-10-12T17:04:52Z",
+        "author": "xxxxx",
+        "score": "12",
+        "commentCount": "15"
+      },
+      {
+        "id": "31bzbn",
+        "title": "Xxxxxxxx-Xxxxxxxxxx (XX) / Xxxxx Xxxxx Xxxx Xxxxxxxxxxx",
+        "url": "https://www.ortsnetz-auslastung.de/projekt",
+        "publishedAt": "2026-10-12T16:48:28Z",
+        "author": "xxxxx",
+        "score": "4"
+      },
+      {
+        "id": "jhraa2",
+        "title": "xxxxxxx/xxxx - xxxxxxxxx a xxxxxxx xxxx xxxx",
+        "url": "https://nobloat.org/articles/2026-10-11-nobloat-poll.html",
+        "publishedAt": "2026-10-12T16:12:10Z",
+        "author": "xxxxxx",
+        "score": "3"
+      },
+      {
+        "id": "iufma5",
+        "title": "Xxxxxxx XXXX xx xxxx xx xxxxxxxxx xxx second… xx Xxxxxx",
+        "url": "https://lemire.me/blog/2026/10/12/parsing-json-at-tens-of-gigabytes-per-second-in-python/",
+        "publishedAt": "2026-10-12T15:24:45Z",
+        "author": "xxxxxx",
+        "score": "11",
+        "commentCount": "9"
+      },
+      {
+        "id": "mldt0o",
+        "title": "Xxxxxxx a $90,000 Xxxxxx Xxxx Xxxxxxxxx Xxxxxxxxxxxxx xx Xxxxxx",
+        "url": "https://simonkoeck.com/writeups/google-devsite-flask-session-pickle-rce",
+        "publishedAt": "2026-10-12T14:40:35Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "32",
+        "commentCount": "1"
+      },
+      {
+        "id": "sozl9e",
+        "title": "(Xxxx-Xxxxxxx) Xxxxxxxxxxxxx Xxxxx Xxxxxxx",
+        "url": "https://words.filippo.io/right-answers/",
+        "publishedAt": "2026-10-12T13:44:38Z",
+        "author": "xxxxxxxx",
+        "score": "52",
+        "commentCount": "3"
+      },
+      {
+        "id": "u4vlin",
+        "title": "Xxxxxx xxxxxxxxxxx xxxxxx xxx xxxxxxxxxxx xxxxxx xxxxxxxxxxxx xxxxxxxx",
+        "url": "https://www.afp.com/en/french-supermarket-chains-say-cyberattack-forced-refrigerator-shutdown",
+        "publishedAt": "2026-10-12T12:23:52Z",
+        "author": "xxxxxxxxxxx",
+        "score": "19",
+        "commentCount": "12"
+      },
+      {
+        "id": "pirgtp",
+        "title": "Xxx xx xxxxxxxxxxx xxxxx xxxx xxx xx xxxxxx xxxxxxxxxx xxx xxxx",
+        "url": "https://copyconstruct.medium.com/how-to-effectively-debug-when-you-no-longer-understand-the-code-bd3dcb2c5f7b",
+        "publishedAt": "2026-10-12T12:01:18Z",
+        "author": "xxxxxxxxx",
+        "score": "4",
+        "commentCount": "2"
+      },
+      {
+        "id": "lfen2h",
+        "title": "Xxxxxx xx xxx Xxxxxx xxx xx Xxxx",
+        "url": "https://blog.julik.nl/2026/10/the-weimar-of-ruby",
+        "publishedAt": "2026-10-12T10:59:26Z",
+        "author": "xxxxx",
+        "score": "47",
+        "commentCount": "10"
+      },
+      {
+        "id": "dujxbl",
+        "title": "Xxxx-xxxx XXXX xxxxxxxxxx xx Xxx",
+        "url": "https://lalinsky.com/2026/10/11/type-safe-html-templating-in-zig.html",
+        "publishedAt": "2026-10-12T10:39:10Z",
+        "author": "xxxxx",
+        "score": "23"
+      },
+      {
+        "id": "iq5xtw",
+        "title": "Xxxxx Xxxxxxxx Xxxxxxx Xx A Xxxxx Xxxxx Xxxxxx Xxxxxxxxxxx Xxxx Xxxxxx Xxxx",
+        "url": "https://www.phoronix.com/news/Linus-Torvalds-Claude-Code",
+        "publishedAt": "2026-10-12T10:11:29Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "49",
+        "commentCount": "67"
+      },
+      {
+        "id": "ml9xrb",
+        "title": "Xxxxxxxxxxxx xxx xxx xxx xxxxxxx",
+        "url": "https://royfish.dev/fingerprints-are-the-new-cookies",
+        "publishedAt": "2026-10-12T09:05:44Z",
+        "author": "xxxxxx",
+        "score": "31",
+        "commentCount": "19"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "lobste.rs/front",
+      "version": 1,
+      "sha256": "95d4f80647a0a5e9547920b8188bc713f47d4eaec1351bbcae6fd1504a2a8ec0"
+    }
+  ]
+}

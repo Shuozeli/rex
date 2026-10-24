@@ -1,0 +1,74 @@
+// rex.schema.media.v1: video pages. Video is one watch page; VideoList is a search, channel or playlist
+// result list.
+//
+// Decided 2026-10-14 (decisions.md U32, category schemas; fields as sketched with the user).
+syntax = "proto3";
+
+package rex.schema.media.v1;
+
+import "google/protobuf/timestamp.proto";
+import "rex/schema/v1/annotations.proto";
+
+message Video {
+  option (rex.schema.v1.record) = {
+    schema_org: "VideoObject"
+    schema_org_also: ["Clip"]
+    primary: ["title"]
+  };
+
+  string id = 1 [(rex.schema.v1.field) = { schema_org: "identifier" }];   // the site's id (YouTube video id)
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+  Channel channel = 4 [(rex.schema.v1.field) = { schema_org: "author" }];
+  google.protobuf.Timestamp published_at = 5 [(rex.schema.v1.field) = { schema_org: "uploadDate" }];
+  uint32 duration_seconds = 6;             // from ISO 8601 `duration` via the `duration` transform
+  int64 views = 7;
+  int64 likes = 8;
+  string description = 9 [(rex.schema.v1.field) = { kind: VALUE_KIND_TEXT, schema_org: "description" }];
+  repeated string tags = 10 [(rex.schema.v1.field) = { schema_org: "keywords", max_items: 100 }];
+  repeated Chapter chapters = 11 [(rex.schema.v1.field) = { max_items: 200 }];
+  string thumbnail = 12 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "thumbnailUrl" }];
+}
+
+message Channel {
+  option (rex.schema.v1.record) = {
+    schema_org: "Person"
+    schema_org_also: ["Organization"]
+  };
+
+  string name = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 2 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url" }];
+}
+
+message Chapter {
+  option (rex.schema.v1.record) = { schema_org: "Clip" };
+
+  string title = 1 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  uint32 start_seconds = 2;
+}
+
+message VideoList {
+  option (rex.schema.v1.record) = {
+    schema_org: "VideoGallery"
+    primary: ["items"]
+  };
+
+  string query = 1;                        // search terms, when the list is a search
+  string channel = 2;                      // channel name, when the list is a channel or its playlist
+  repeated VideoItem items = 3 [(rex.schema.v1.field) = { max_items: 200 }];
+}
+
+message VideoItem {
+  option (rex.schema.v1.record) = { schema_org: "ListItem" };
+
+  string id = 1 [(rex.schema.v1.field) = { required: true }];
+  string title = 2 [(rex.schema.v1.field) = { schema_org: "name", required: true }];
+  string url = 3 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL, schema_org: "url", required: true }];
+  string channel_name = 4;
+  string channel_url = 5 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+  uint32 duration_seconds = 6;
+  int64 views = 7;
+  google.protobuf.Timestamp published_at = 8;   // often relative on the page ("3 days ago")
+  string thumbnail = 9 [(rex.schema.v1.field) = { kind: VALUE_KIND_URL }];
+  uint32 rank = 10;                        // 1-based position among the extracted items
+}

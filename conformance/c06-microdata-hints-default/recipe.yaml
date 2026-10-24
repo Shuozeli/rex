@@ -1,0 +1,20 @@
+id: conformance/c06-microdata-hints-default
+version: 1
+schema: rex.schema.article.v1.Article
+fields:
+  - path: title
+    candidates: [ { microdata: {} } ]
+  - path: authors
+    candidates: [ { microdata: {} } ]
+  - path: published_at
+    candidates: [ { microdata: {} } ]
+  - path: body_text
+    candidates: [ { microdata: {} } ]
+  - path: section
+    candidates: [ { hint: { key: section } } ]
+  - path: canonical_url
+    candidates: [ { url: { part: URL_PART_HREF } } ]
+    pipe: [ { url: { strip_query: ["ref"] } } ]
+  - path: language
+    candidates: [ { css: { selector: "html[lang]", take: TAKE_ATTRIBUTE, attribute: lang, scope: CSS_SCOPE_DOCUMENT } } ]
+    pipe: [ { default: { value: "und" } } ]

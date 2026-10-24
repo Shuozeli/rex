@@ -1,0 +1,19 @@
+# NPR stories and transcripts: `.storytext` blocks (an intro block plus the story or transcript).
+id: npr.org/article
+version: 1
+schema: rex.schema.article.v1.Article
+extends: generic/article.v1
+match:
+  urls:
+    hosts: ["npr.org"]
+    include: ["^/\\d{4}/\\d{2}/\\d{2}/"]
+  page:
+    any:
+      - json_ld_type: { types: [NewsArticle] }
+fields:
+  - path: body_html
+    expect: true
+    candidates:
+      - css: { selector: "article.story .storytext", take: TAKE_HTML, exclude: [".bucketwrap", ".enlarge-options", "aside"] }
+        pipe:
+          - join: { separator: "\n" }

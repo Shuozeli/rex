@@ -1,0 +1,97 @@
+{
+  "recipe": {
+    "id": "coinmarketcap.com/coin",
+    "version": 1,
+    "sha256": "6d2d32c555f767c656fca94230304f9dad11c2d2375f49df7cd40eb97ad92053"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://coinmarketcap.com/currencies/bitcoin/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:05:15Z",
+  "extractTime": "2026-10-15T01:05:15Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "circulating_supply",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "rank",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "coinmarketcap.com/coin@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "coinmarketcap.com/coin@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "XXX",
+    "name": "Xxxxxxx",
+    "type": "INSTRUMENT_TYPE_CRYPTO",
+    "currency": "USD",
+    "price": "81681.54",
+    "changePercent": "-1.92",
+    "marketState": "MARKET_STATE_CONTINUOUS",
+    "volume": "32910000000",
+    "marketCap": "1640000000000",
+    "circulatingSupply": "20090000",
+    "rank": 1,
+    "url": "https://coinmarketcap.com/currencies/bitcoin/"
+  },
+  "chain": [
+    {
+      "id": "coinmarketcap.com/coin",
+      "version": 1,
+      "sha256": "6d2d32c555f767c656fca94230304f9dad11c2d2375f49df7cd40eb97ad92053"
+    }
+  ]
+}

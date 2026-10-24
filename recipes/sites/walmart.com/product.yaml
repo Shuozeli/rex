@@ -1,0 +1,112 @@
+# Walmart item page -> rex.schema.commerce.v1.Product (decisions.md U35). Walmart ships no Product JSON-LD;
+# the buy box carries itemprop price/currency/ratingCount. The "Best seller" buy-box ad is another product,
+# so nothing is read from it. Specs are a collapsed accordion that is not in the DOM until opened.
+id: walmart.com/product
+version: 1
+schema: rex.schema.commerce.v1.Product
+extends: generic/product.v1
+match:
+  urls:
+    hosts: ["walmart.com"]
+    include: ["^/ip/"]
+  page:
+    all:
+      - exists: "h1[itemprop=name]"
+fields:
+  - path: sku               # the item id, the last path segment
+    candidates:
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/ip/(?:[^/?]+/)?(\\d+)", group: 1 }
+
+  - path: title
+    expect: true
+    candidates:
+      - css: { selector: "h1[itemprop=name]" }
+
+  - path: brand             # "Visit the JLab Store" or the bare brand name
+    candidates:
+      - css: { selector: "a[data-seo-id=brand-name]" }
+    pipe:
+      - regex_replace: { pattern: "^Visit the\\s+(.*)\\s+Store$", with: "$1" }
+
+  - path: price
+    expect: true
+    candidates:
+      - css: { selector: "[itemprop=price]" }
+    pipe:
+      - number: {}
+
+  - path: currency
+    candidates:
+      - css: { selector: "[itemprop=priceCurrency]" }
+      - constant: { value: "USD" }
+
+  - path: list_price
+    candidates:
+      - css: { selector: "[data-seo-id=strike-through-price]" }
+    pipe:
+      - number: {}
+
+  - path: rating            # "4.5 out of 5 stars rating, 42401 ratings"
+    candidates:
+      - css: { selector: "[data-testid=reviews-and-ratings] [aria-label*=stars]", take: TAKE_ATTRIBUTE, attribute: aria-label }
+      - css: { selector: "[aria-label*='out of 5 stars']", take: TAKE_ATTRIBUTE, attribute: aria-label }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - regex: { pattern: "^([\\d.]+) out of", group: 1 }
+
+  - path: review_count
+    candidates:
+      - css: { selector: "[aria-label*='out of 5 stars']", take: TAKE_ATTRIBUTE, attribute: aria-label }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "([\\d,]+) ratings?$", group: 1 }
+      - css: { selector: "[itemprop=ratingCount]" }
+    pipe:
+      - number: {}
+
+  - path: availability
+    candidates:
+      - css: { selector: "[data-testid=add-to-cart-section]" }
+        pipe:
+          - map: { entries: [ { from: "Add to cart", to: "in stock" } ], drop_unmapped: true }
+      - css: { selector: "#maincontent" }
+        pipe:
+          - regex: { pattern: "(?i)\\b(out of stock|currently unavailable)\\b", group: 1 }
+
+  - path: seller            # "Sold and shipped by Walmart.com" / "Sold by Magin Direct"
+    candidates:
+      - css: { selector: "[data-testid=product-seller-info]" }
+    pipe:
+      - regex_replace: { pattern: "^Sold(?: and shipped)? by\\s+", with: "" }
+
+  - path: images            # the first thumbnail is the hero; drop the thumbnail sizing query
+    replace_inherited: true
+    candidates:
+      - css: { selector: "[data-testid=media-thumbnail] img", take: TAKE_ATTRIBUTE, attribute: src }
+      - css: { selector: "img[data-testid=hero-image]", take: TAKE_ATTRIBUTE, attribute: src }
+    pipe:
+      - regex_replace: { pattern: "\\?.*$", with: "" }
+
+  - path: features          # "Generous Playtime : Delivers 32+ hours ..."
+    candidates:
+      - css: { selector: "[data-testid=ui-collapse-panel] li" }
+
+  - path: url
+    candidates:
+      - meta: { key: "og:url" }
+
+  - path: description       # og:description is "Buy <title> at Walmart.com"
+    replace_inherited: true
+    candidates:
+      - meta: { key: "description" }
+
+  - path: variants          # tiles carry the option in their test id: desktop-variant-label-Black
+    each: "[data-testid^=desktop-variant-label-]"
+    fields:
+      - path: value
+        candidates:
+          - css: { take: TAKE_ATTRIBUTE, attribute: data-testid }
+        pipe:
+          - regex_replace: { pattern: "^desktop-variant-label-", with: "" }

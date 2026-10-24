@@ -1,7 +1,7 @@
 # Site recipe: states only what the baseline gets wrong (sparse).
 # Selectors are ILLUSTRATIVE; real ones are authored against fixtures (design.md §7) before activation.
 id: wsj.com/main
-version: 1
+version: 2
 schema: rex.schema.article.v1.Article
 extends: generic/article.v1
 root: article
@@ -26,7 +26,7 @@ fields:
   - path: body_html
     expect: true             # paywall stub / redesign -> FAILED_EXPECTATION even if readability fills it
     candidates:
-      - css: { selector: "section[subscriptions-section=content]", take: TAKE_HTML }
+      - css: { selector: "section[subscriptions-section=content]", take: TAKE_HTML, exclude: [".ad", "[class*=read-next]"] }
 
   - path: published_at
     candidates:

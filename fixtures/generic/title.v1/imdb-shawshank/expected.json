@@ -1,0 +1,144 @@
+{
+  "recipe": {
+    "id": "generic/title.v1",
+    "version": 1,
+    "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+  },
+  "schema": "rex.schema.creative.v1.Title",
+  "url": "https://www.imdb.com/title/tt0111161/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:46:07Z",
+  "extractTime": "2026-10-14T05:46:07Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "release_date",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "genres",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "directors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "creators",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "actors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_scale",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "rating_count",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "content_rating",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/title.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/title.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Title",
+    "name": "Xxx Xxxxxxxxx Xxxxxxxxxx",
+    "type": "TITLE_TYPE_MOVIE",
+    "releaseDate": "1994-10-14",
+    "durationSeconds": 8520,
+    "genres": [
+      "Drama"
+    ],
+    "directors": [
+      {
+        "name": "Xxxxx Xxxxxxxx",
+        "url": "https://www.imdb.com/name/nm0001104/"
+      }
+    ],
+    "creators": [
+      {
+        "name": "Xxxxxxx Xxxx",
+        "url": "https://www.imdb.com/name/nm0000175/"
+      },
+      {
+        "name": "Xxxxx Xxxxxxxx",
+        "url": "https://www.imdb.com/name/nm0001104/"
+      }
+    ],
+    "actors": [
+      {
+        "name": "Xxx Xxxxxxx",
+        "url": "https://www.imdb.com/name/nm0000209/"
+      },
+      {
+        "name": "Xxxxxx Xxxxxxx",
+        "url": "https://www.imdb.com/name/nm0000151/"
+      },
+      {
+        "name": "Xxx Xxxxxx",
+        "url": "https://www.imdb.com/name/nm0348409/"
+      }
+    ],
+    "rating": 9.3,
+    "ratingScale": 10.0,
+    "ratingCount": "3252258",
+    "contentRating": "R",
+    "description": "Xxxxx a xxxxxx is xxxxxxxxx to xxxx in Xxxxxxxxx Xxxxxx, xx xxxxx xx xxxxxxxx xxxxxxxxxx with a xxxxxxxx xxxxxx xxx xxxxxx to xxxx xxxx xxxxxxx xxx xxxxxxxxxx.",
+    "image": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg",
+    "url": "https://www.imdb.com/title/tt0111161/"
+  },
+  "chain": [
+    {
+      "id": "generic/title.v1",
+      "version": 1,
+      "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+    }
+  ]
+}

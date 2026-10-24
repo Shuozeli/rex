@@ -1,0 +1,31 @@
+{
+  "recipe": {
+    "id": "conformance/c05c-empty",
+    "version": 1,
+    "sha256": "1e82326f3cc11a5f5cf21f48826ce31caff868b426b52035bd4b2d78751f4a97"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://conformance.example/c05c",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T00:00:00Z",
+  "extractTime": "2026-10-12T00:00:00Z",
+  "status": "EXTRACTION_STATUS_EMPTY",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c05c-empty@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "title": "Title but no body"
+  },
+  "chain": [
+    {
+      "id": "conformance/c05c-empty",
+      "version": 1,
+      "sha256": "1e82326f3cc11a5f5cf21f48826ce31caff868b426b52035bd4b2d78751f4a97"
+    }
+  ]
+}

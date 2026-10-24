@@ -1,0 +1,52 @@
+{
+  "recipe": {
+    "id": "generic/book.v1",
+    "version": 1,
+    "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+  },
+  "schema": "rex.schema.creative.v1.Book",
+  "url": "https://books.google.com/books/about/The_Great_Gatsby.html?id=iXn5U2IzVH0C",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:49:38Z",
+  "extractTime": "2026-10-14T05:49:38Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 3,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "candidate": 2,
+      "recipe": "generic/book.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/book.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.creative.v1.Book",
+    "name": "Xxx Xxxxx Xxxxxx",
+    "description": "Xxx xxxx xxxxxxx of xxx xxxxxxx xxxxxxx xxxx is xxxxxxxxxx xx Xxxxxxxxxx’x xxxxxx xxx xxxx xxx xxxxxxxx xxxxxxxxx. Xxxx xxxxxxx is xxx xxxxxxxx xxxxxxxx xxxx, updated with xxx xxxxxx’x xxx xxxxxxxxx, a xxxxxxxx xx xxx xxxxxxxxxxxxx, xxx with a xxx xxxxxxxxxxxx xx Xxxxxxxx Xxxx Xxxxx xxxxxx Xxxxxx Xxxx. Xxx Xxxxx Xxxxxx, X. Xxxxx Xxxxxxxxxx’x xxxxx xxxx, xxxxxx xx xxx xxxxxxx xxxxxxxxxxx of xxx xxxxxx. Xxxxx xxxxxxxxx xx Xxxxxxxx in 1925, xxxx xxxxxxxxxxxxxx xxxxx of xxx Xxxx Xxx xxx xxxx xxxxxxxxx xx xxxxxxxxxxx of xxxxxxx. Xxx xxxxx of xxx xxxxxxxxxxxx xxxxxxx Xxx Xxxxxx xxx xxx xxxx xxx xxx xxxxxxxxx Xxxxx Xxxxxxxx is xx xxxxxxxxxxx xxxxxxx xxxx of Xxxxxxx in xxx 1920s.",
+    "image": "https://books.google.com/books/content?id=iXn5U2IzVH0C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73UzCZKNpNrd63IfNwCnece74T4ATwc0JfXH0kyetUbfNPW0zbE3wYhmfqxEMNb913jFkmyQQcc3iDAG0SB9mLEK1wurdA4fz4dRweIbr5DFjkIInECe30xcIegHRxywHWiX1lH",
+    "url": "https://books.google.com/books/about/The_Great_Gatsby.html?id=iXn5U2IzVH0C"
+  },
+  "chain": [
+    {
+      "id": "generic/book.v1",
+      "version": 1,
+      "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "rex-extension",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:e2e": "REX_E2E=1 node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "e2e": "node tests/e2e.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.1.4",
+    "binaryen": "123.0.0",
+    "esbuild": "0.25.10",
+    "playwright-core": "1.62.1",
+    "typescript": "5.9.2"
+  }
+}

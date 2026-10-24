@@ -1,0 +1,44 @@
+[package]
+name = "rex-engine"
+description = "The rex extraction engine: compiles ExtractionRecipes and turns a parsed page into a typed Extraction."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+rex-proto = { path = "../rex-proto" }
+rex-schema = { path = "../rex-schema" }
+rex-dom = { path = "../rex-dom" }
+rex-readability = { path = "../rex-readability" }
+prost = "0.14"
+prost-types = "0.14"
+prost-reflect = { version = "0.16", features = ["serde"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+serde_yaml = { version = "0.9", optional = true }
+flate2 = { version = "1", optional = true }
+serde = { version = "1", features = ["derive"] }
+regex = { version = "1", default-features = false, features = ["std", "unicode-perl", "unicode-case"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "alloc"] }
+chrono-tz = { version = "0.10", features = ["filter-by-regex"] }
+ammonia = "=4.1.2"
+url = "2"
+base64 = "0.22"
+percent-encoding = "2"
+sha2 = "0.10"
+thiserror = "2"
+scraper = "0.24"
+
+[features]
+# Read gzip-compressed fixture pages (page.html.gz; the rex-fixtures repo). Off in the wasm build.
+gz = ["dep:flate2"]
+default = ["yaml", "gz"]
+# YAML recipe authoring (CLI). Bundles carry JSON, so the wasm build leaves this off.
+yaml = ["dep:serde_yaml"]
+
+[dev-dependencies]
+criterion = { version = "0.5", default-features = false }
+
+[[bench]]
+name = "extract"
+harness = false

@@ -1,0 +1,71 @@
+# Baseline for rex.schema.howto.v1.HowTo: any page with schema.org HowTo data (wikiHow, repair and craft
+# guides). Site recipes `extends` this.
+id: generic/howto.v1
+version: 1
+schema: rex.schema.howto.v1.HowTo
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: authors
+    candidates:
+      - json_ld: {}
+
+  - path: published_at
+    candidates:
+      - json_ld: {}
+      - meta: { key: "article:published_time" }
+
+  - path: updated_at
+    candidates:
+      - json_ld: {}
+      - meta: { key: "article:modified_time" }
+
+  - path: image
+    candidates:
+      - json_ld: {}
+      - meta: { key: "og:image" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }
+
+  - path: total_time_seconds
+    candidates:
+      - json_ld: { path: "totalTime" }
+    pipe:
+      - duration: {}
+
+  - path: supplies
+    candidates:
+      - json_ld: { path: "supply" }
+
+  - path: tools
+    candidates:
+      - json_ld: { path: "tool" }
+
+  - path: steps              # HowToSection -> itemListElement, else flat steps
+    candidates:
+      - json_ld: { path: "step.itemListElement" }
+      - json_ld: { path: "step" }
+      - microdata: { path: "step" }
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+
+  - path: rating_count
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - json_ld: { path: "aggregateRating.reviewCount" }

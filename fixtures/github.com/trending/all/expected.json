@@ -1,0 +1,126 @@
+{
+  "recipe": {
+    "id": "github.com/trending",
+    "version": 1,
+    "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://github.com/trending",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:42:21Z",
+  "extractTime": "2026-10-13T03:42:21Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].preview",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "github.com/trending@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxxxxxxx xxxxxxxxxxxx xx XxxXxx today · XxxXxx",
+    "items": [
+      {
+        "id": "morluto/rea",
+        "title": "xxxxxxx/xxx",
+        "url": "https://github.com/morluto/rea",
+        "preview": "Xxxxxxx xxxxxxxx xxxxxxxx xxxx xxxxxx, xxxx xxx xxxxxxxx xxxx xx xxxxxx xxxxxxxx.",
+        "score": "45327"
+      },
+      {
+        "id": "bilawalsidhu/gods-eye-view",
+        "title": "xxxxxxxxxxxx/xxxx-xxx-view",
+        "url": "https://github.com/bilawalsidhu/gods-eye-view",
+        "preview": "A xxx xxxxxxxxx xxxxxxxxx xx xxxx xxxxxxx, xxxxxx xxx xxxx xx xxxx. Xxxx xxxx xxxxxx xxxxxxx xxxxxxxxxxxx xx a xxxxxxxxxxxxxx 3X xxxxx.",
+        "score": "1895"
+      },
+      {
+        "id": "mksglu/context-mode",
+        "title": "xxxxxx/xxxxxxx-xxxx",
+        "url": "https://github.com/mksglu/context-mode",
+        "preview": "Xxxxxxx xxxxxx xxxxxxxxxxxx xxx XX xxxxxx xxxxxx. Xxxxxxxxx xxxx xxxxxx (98% xxxxxxxxx), xxxxxxxx xxxxxxx xxxxxx, xxx xxxxxxxx xxxxxxx xxxxxx 17 xxxxxxxxx xxx XXX + xxxxx.",
+        "score": "246"
+      },
+      {
+        "id": "storytold/artcraft",
+        "title": "xxxxxxxxx/xxxxxxxx",
+        "url": "https://github.com/storytold/artcraft",
+        "preview": "XxxXxxxx xx xx xxxxxxxxxxx xxxxxxxx xxxxxx xxx xxxxxxx, xxxxxxxxx, xxx xxxxxxxxxx",
+        "score": "4095"
+      },
+      {
+        "id": "open-webui/open-webui",
+        "title": "xxxx-xxxxx/xxxx-xxxxx",
+        "url": "https://github.com/open-webui/open-webui",
+        "preview": "Xxxx-xxxxxxxx XX Xxxxxxxxx (Xxxxxxxx Xxxxxx, XxxxXX XXX, ...)",
+        "score": "157"
+      },
+      {
+        "id": "cathrynlavery/diagram-design",
+        "title": "xxxxxxxxxxxxx/xxxxxxx-xxxxxx",
+        "url": "https://github.com/cathrynlavery/diagram-design",
+        "preview": "Xxxxxxxxx xxxxxxx xxxxxx xxx Xxxxxx Xxxx, Xxxxx, XxxXxx Xxxxxxx, Xxxxxx, Xxxxxxx Xxxxx, xxx Xx. 44 xxxxxxx xxxxx. Xxxx-xxxxxxxxx XXXX + XXX. Xx xxxxxxx. Xx Xxxxxxx xxxx.",
+        "score": "2081"
+      },
+      {
+        "id": "lyogavin/airllm",
+        "title": "xxxxxxxx/xxxxxx",
+        "url": "https://github.com/lyogavin/airllm",
+        "preview": "XxxXXX 2.8T XXX xxxxxxxxx xxxx xxxxxx 4XX XXX",
+        "score": "879"
+      },
+      {
+        "id": "microsoft/BitNet",
+        "title": "xxxxxxxxx/XxxXxx",
+        "url": "https://github.com/microsoft/BitNet",
+        "preview": "Xxxxxxxx xxxxxxxxx xxxxxxxxx xxx 1-xxx XXXx",
+        "score": "97"
+      },
+      {
+        "id": "Alishahryar1/free-claude-code",
+        "title": "Xxxxxxxxxxx1/xxxx-xxxxxx-xxxx",
+        "url": "https://github.com/Alishahryar1/free-claude-code",
+        "preview": "Xxx Xxxxxx Xxxx, Xxxxx, XXXxxx, Xx, xxx XxxxXxxx (xxx 6 xxxxx xxxxxxxxx) xxx xxxx (1.3X+ xxxx xxxxxx) xxxx xxxx xxxxxxxx, xxx, XXX, xx xxxxx, xxx now xxxx xxx xxxxxxx xxxx xxxxxx xxxxxxx xxxxxxxx (xxxxx-xxxxxxx + xxxxx-xxxxx) like XxxxXxxx (xxxxx xxxxxxxxx + XxX xxxxxxxx)",
+        "score": "626"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "github.com/trending",
+      "version": 1,
+      "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+    }
+  ]
+}

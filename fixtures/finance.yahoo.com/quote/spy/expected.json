@@ -1,0 +1,236 @@
+{
+  "recipe": {
+    "id": "finance.yahoo.com/quote",
+    "version": 1,
+    "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://finance.yahoo.com/quote/SPY/",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:04:18Z",
+  "extractTime": "2026-10-15T01:04:18Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "market_state",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "year_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "avg_volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "pe_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "dividend_yield",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "expense_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "net_assets",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "finance.yahoo.com/quote@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "finance.yahoo.com/quote@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "SPY",
+    "name": "Xxxxx Xxxxxx XXXX X&P 500 XXX Xxxxx",
+    "type": "INSTRUMENT_TYPE_ETF",
+    "exchange": "XXXXXxxx",
+    "currency": "XXX",
+    "price": "769.6",
+    "change": "-8.41",
+    "changePercent": "-1.08",
+    "marketState": "MARKET_STATE_CLOSED",
+    "previousClose": "778.01",
+    "open": "774.92",
+    "dayLow": "766.71",
+    "dayHigh": "776.3",
+    "yearLow": "629.28",
+    "yearHigh": "781.62",
+    "volume": "55376546",
+    "avgVolume": "42937234",
+    "peRatio": "24.43",
+    "dividendYield": "0.99",
+    "expenseRatio": "0.09",
+    "netAssets": "809220000000",
+    "stats": [
+      {
+        "name": "Previous Close",
+        "value": "778.01"
+      },
+      {
+        "name": "Open",
+        "value": "774.92"
+      },
+      {
+        "name": "Xxx",
+        "value": "769.17 x 8000"
+      },
+      {
+        "name": "Xxx",
+        "value": "769.28 x 8000"
+      },
+      {
+        "name": "Day'x Xxxxx",
+        "value": "766.71 - 776.30"
+      },
+      {
+        "name": "52 Week Xxxxx",
+        "value": "629.28 - 781.62"
+      },
+      {
+        "name": "Volume",
+        "value": "55,376,546"
+      },
+      {
+        "name": "Xxx. Volume",
+        "value": "42,937,234"
+      },
+      {
+        "name": "Net Assets",
+        "value": "809.22B"
+      },
+      {
+        "name": "XXX",
+        "value": "777.86"
+      },
+      {
+        "name": "PE Ratio (TTM)",
+        "value": "24.43"
+      },
+      {
+        "name": "Yield",
+        "value": "0.99%"
+      },
+      {
+        "name": "XXX Xxxxx Xxxxx Xxxxxx",
+        "value": "14.98%"
+      },
+      {
+        "name": "Xxxx (5Y Xxxxxxx)",
+        "value": "1.00"
+      },
+      {
+        "name": "Expense Ratio (net)",
+        "value": "0.09%"
+      }
+    ],
+    "url": "https://finance.yahoo.com/quote/SPY/"
+  },
+  "chain": [
+    {
+      "id": "finance.yahoo.com/quote",
+      "version": 1,
+      "sha256": "e015af2eccc26c574554ef98250e855743816f97f056b6e02b05d039f1333c02"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+# Baseline for rex.schema.creative.v1.Book: any book page with schema.org Book data (Goodreads, publishers,
+# bookstores, library catalogs). Site recipes `extends` this.
+id: generic/book.v1
+version: 1
+schema: rex.schema.creative.v1.Book
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: authors
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "books:author" }
+
+  - path: isbn
+    candidates:
+      - json_ld: {}
+      - json_ld: { path: "workExample.isbn" }
+      - microdata: {}
+      - meta: { key: "books:isbn" }
+
+  - path: publisher
+    candidates:
+      - json_ld: { path: "publisher.name" }
+      - json_ld: { path: "publisher" }
+      - microdata: { path: "publisher" }
+
+  - path: published_date
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: pages
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: language
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: format             # "https://schema.org/Hardcover" -> "Hardcover"
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+    pipe:
+      - regex_replace: { pattern: "^https?://schema\\.org/", with: "" }
+
+  - path: genres
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+      - microdata: { path: "aggregateRating.ratingValue" }
+
+  - path: rating_scale
+    candidates:
+      - json_ld: { path: "aggregateRating.bestRating" }
+
+  - path: rating_count
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - microdata: { path: "aggregateRating.ratingCount" }
+
+  - path: review_count
+    candidates:
+      - json_ld: { path: "aggregateRating.reviewCount" }
+      - microdata: { path: "aggregateRating.reviewCount" }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+      - meta: { key: "description" }
+
+  - path: image
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:image" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

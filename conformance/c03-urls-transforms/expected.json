@@ -1,0 +1,84 @@
+{
+  "recipe": {
+    "id": "conformance/c03-urls-transforms",
+    "version": 1,
+    "sha256": "7b92b6c8f5af0d88a8a1d410a48a212e3a806b72cd72c0586a5823e1690b0e49"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://conformance.example/tech/c03",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-12T00:00:00Z",
+  "extractTime": "2026-10-12T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "subtitle",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "language",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "conformance/c03-urls-transforms@1"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "conformance/c03-urls-transforms@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 1904,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://conformance.example/tech/c03?id=9",
+    "title": "Transforms Everywhere",
+    "subtitle": "Pipes, regexes and slices",
+    "section": "tech",
+    "summary": "This summary is deli",
+    "image": "https://cdn.conformance.example/assets/img/large.jpg",
+    "tags": [
+      "rust",
+      "parsing",
+      "extraction"
+    ],
+    "language": "en",
+    "bodyText": "Body text for c03."
+  },
+  "chain": [
+    {
+      "id": "conformance/c03-urls-transforms",
+      "version": 1,
+      "sha256": "7b92b6c8f5af0d88a8a1d410a48a212e3a806b72cd72c0586a5823e1690b0e49"
+    }
+  ]
+}

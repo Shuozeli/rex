@@ -1,0 +1,315 @@
+{
+  "recipe": {
+    "id": "news.ycombinator.com/front",
+    "version": 2,
+    "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+  },
+  "schema": "rex.schema.feed.v1.Feed",
+  "url": "https://news.ycombinator.com/newest",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-13T03:41:37Z",
+  "extractTime": "2026-10-13T03:41:37Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].published_at",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].author",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    },
+    {
+      "path": "items[0].score",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "news.ycombinator.com/front@2"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.feed.v1.Feed",
+    "title": "Xxx Xxxxx | Xxxxxx Xxxx",
+    "items": [
+      {
+        "id": "50066338",
+        "title": "Xxxxx xxxx (Xxxxx) xxxxx xx xxx xxxx",
+        "url": "https://jamespember.substack.com/p/leave-your-apple-watch-at-the-door",
+        "publishedAt": "2026-10-13T03:40:11Z",
+        "author": "xxx888",
+        "score": "1"
+      },
+      {
+        "id": "50066300",
+        "title": "Xxxxx'x Xxxxxxxxx Xxxxxxx Xx Xxxxxxxx a Xxxx Xxxxxxxxxx",
+        "url": "https://www.wsj.com/world/china-economy-gen-z-f9058941",
+        "publishedAt": "2026-10-13T03:33:52Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066288",
+        "title": "X xxxx xx XX XX xxxxx xx xxxx Xxxxxx Xxxx",
+        "url": "https://hitest.ai/blog/demo-hacker-news",
+        "publishedAt": "2026-10-13T03:31:58Z",
+        "author": "xxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066266",
+        "title": "Xxxx XX: Xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxx",
+        "url": "https://weeklywe.com/",
+        "publishedAt": "2026-10-13T03:29:17Z",
+        "author": "xxxxxxxxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066263",
+        "title": "Xxx XX: Now xxxx XX xxxxx xxx xxxxxxxxx xxxx, xx xxxxx xxxxxx xxxx?",
+        "url": "https://news.ycombinator.com/item?id=50066263",
+        "publishedAt": "2026-10-13T03:29:08Z",
+        "author": "xxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066231",
+        "title": "Xx XX xxx Xxx xx Xxxx xx Xx Xxxx Xx?",
+        "url": "https://www.quantamagazine.org/is-ai-the-end-of-math-as-we-know-it-20261005/",
+        "publishedAt": "2026-10-13T03:24:50Z",
+        "author": "xxxxxx4",
+        "score": "1"
+      },
+      {
+        "id": "50066207",
+        "title": "Xxxxxxx Xxxxxxx xxxxxxxxxxxxxx xxxxx xxxxxx xxx xx XX xx xxxxxxxx",
+        "url": "https://www.scmp.com/news/china/science/article/3370492/leading-chinese-mathematicians-unite-behind-use-ai-research",
+        "publishedAt": "2026-10-13T03:21:20Z",
+        "author": "X-Xxxxxxxxx",
+        "score": "2"
+      },
+      {
+        "id": "50066161",
+        "title": "A.X. Xxxxx Xxxxxxxxx Xxx Xxxx Xxxxxxxx xx Xxxxxxxxx Xx Xxxxxxxxx xx 18 Months",
+        "url": "https://www.nytimes.com/2026/10/07/arts/music/ai-music-fraud-royalties-sentence.html",
+        "publishedAt": "2026-10-13T03:15:15Z",
+        "author": "xxx",
+        "score": "1"
+      },
+      {
+        "id": "50066158",
+        "title": "Xxxxxx Xxx Xxxx",
+        "url": "https://terrytao.wordpress.com/2026/10/12/this-is-normal-bad-work/",
+        "publishedAt": "2026-10-13T03:14:49Z",
+        "author": "xxxxxxxxx",
+        "score": "2",
+        "commentCount": "1"
+      },
+      {
+        "id": "50066144",
+        "title": "Xx 5 years, 95% xx xxxxxx xxxx xx XX xxxxxx xxxx xx xxx xxxxx xxxxxx xxxxx xxx",
+        "url": "https://twitter.com/levie/status/1986620885592113218",
+        "publishedAt": "2026-10-13T03:12:59Z",
+        "author": "xxxxxxxxx",
+        "score": "4"
+      },
+      {
+        "id": "50066142",
+        "title": "Xxxxxxxxx now: 0.5 XX xx xxxx xxxxxxxx xxx X300x",
+        "url": "https://ardus.ai/",
+        "publishedAt": "2026-10-13T03:12:47Z",
+        "author": "xxxxx_xxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066099",
+        "title": "Xxxxxxxx XXX",
+        "url": "https://www.palantir.com/docs/foundry/ontology-sdk/overview",
+        "publishedAt": "2026-10-13T03:07:23Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "2"
+      },
+      {
+        "id": "50066074",
+        "title": "Xxxxx XXXX 4 Xxxxxxx Xxxxxxx xx xx xxxx xxxx",
+        "url": "https://adam.math.hhu.de/",
+        "publishedAt": "2026-10-13T03:04:34Z",
+        "author": "xxxxxxx14",
+        "score": "2"
+      },
+      {
+        "id": "50066063",
+        "title": "Xxxx xx Xxx Xxxxxxxxxxxxx Xxxxxxxxxxx, Xxxxxxxxxx, Xxx Xxxxx, xxx Xxx Xxxxxxxx",
+        "url": "https://danielmiessler.com/blog/when-vulnerability-assessments-pentesting-red-team-bug-bounties",
+        "publishedAt": "2026-10-13T03:02:55Z",
+        "author": "xxxxxxxx",
+        "score": "2"
+      },
+      {
+        "id": "50066039",
+        "title": "Xxx Xxxx Xxxxxxxxxx Xxxxx xx xxx Xxxxx [xxxxx]",
+        "url": "https://www.youtube.com/watch?v=zC1v19wfoTA",
+        "publishedAt": "2026-10-13T03:00:20Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "1"
+      },
+      {
+        "id": "50066016",
+        "title": "Xxxxxxxxxxx Xxxx xxxx XXX",
+        "url": "https://antics.gg/ssh",
+        "publishedAt": "2026-10-13T02:57:48Z",
+        "author": "xxxxxxxxx",
+        "score": "3"
+      },
+      {
+        "id": "50065994",
+        "title": "Xx Xxxx Xxxxxx Xxxxxxx – Xxxx Xxxxxxxxx",
+        "url": "https://www.evenrealities.com/blogs/stories/no-more-camera-glasses-by-will-wang-founder-ceo-even-realities",
+        "publishedAt": "2026-10-13T02:54:51Z",
+        "author": "xxxx_2x",
+        "score": "2"
+      },
+      {
+        "id": "50065972",
+        "title": "XXXX: Xxxxxxxxx xxxxxx xxxxxxxxxxxxxx xxx xxxxxxxxxxx xx xxxx'x xxxxxxxxxxxx",
+        "url": "https://www.theguardian.com/film/2026/oct/12/naza-netanyahu-orders-identification-prosecution-interviewees-documentary-film",
+        "publishedAt": "2026-10-13T02:51:50Z",
+        "author": "xxxxxxxxxxxx",
+        "score": "27",
+        "commentCount": "1"
+      },
+      {
+        "id": "50065932",
+        "title": "XxxxXX xxxxxxxxx xxx xxx XXX xx xxxx a xxxxxxxxxxxx xxx xxxx a xxxxxxxxx xxxxxxx",
+        "url": "https://www.argmin.net/p/faster-fourier-transforms",
+        "publishedAt": "2026-10-13T02:46:43Z",
+        "author": "xxxxxxxxxx",
+        "score": "11",
+        "commentCount": "2"
+      },
+      {
+        "id": "50065931",
+        "title": "Xxxxxxx Xxxxxx",
+        "url": "https://weather.theojaffee.net/",
+        "publishedAt": "2026-10-13T02:46:31Z",
+        "author": "xxxxxxxxxxxxx",
+        "score": "3"
+      },
+      {
+        "id": "50065929",
+        "title": "Xxx xxxx xxxxxxxx xxx xxxxxxxx xxxxxxx xxxxx xxxx xx xxxx?",
+        "url": "https://news.ycombinator.com/item?id=50065929",
+        "publishedAt": "2026-10-13T02:45:59Z",
+        "author": "xxxx_",
+        "score": "5",
+        "commentCount": "1"
+      },
+      {
+        "id": "50065922",
+        "title": "Xxxxxx, xx 'xxxx xxxxxxx,' xxxxxx xxxxx xxxxx xx xxxxxxx xxx xxxx xxxx",
+        "url": "https://www.cpr.org/2026/06/24/home-burping-brings-outdoor-air-inside/",
+        "publishedAt": "2026-10-13T02:44:34Z",
+        "author": "xxxxxxxxx",
+        "score": "2"
+      },
+      {
+        "id": "50065892",
+        "title": "Xxxxxxx Xxxx",
+        "url": "https://ryanbigg.com/2026/10/leaving-tech",
+        "publishedAt": "2026-10-13T02:39:35Z",
+        "author": "xxxxxx",
+        "score": "108",
+        "commentCount": "83"
+      },
+      {
+        "id": "50065861",
+        "title": "Xxxxxx, XxxXxxx xxxx xxx xxx xxxx xxxx xxxxx xxxxx xx xx xxxxx 1 XX XXX",
+        "url": "https://www.techradar.com/pro/kioxia-sandisk-show-off-the-tiny-chip-which-could-go-in-worlds-first-1-pb-ssd",
+        "publishedAt": "2026-10-13T02:32:57Z",
+        "author": "xxxxx_x_xxxxxxx",
+        "score": "6"
+      },
+      {
+        "id": "50065859",
+        "title": "Xxxxx xxx xxxxxxx xxxxxxx xxxx xxxxx xxxxxxx 'xxxxx-xxx xxxxx' xxxx xxxxx [xxxxx]",
+        "url": "https://www.youtube.com/watch?v=sjNpfz4UzqU",
+        "publishedAt": "2026-10-13T02:32:53Z",
+        "author": "xxxxxxXxxxxXXXX",
+        "score": "4"
+      },
+      {
+        "id": "50065853",
+        "title": "Xxxx XX: XxxxXxx. Xxxxxxxx Xxxxx Xxxxxxx",
+        "url": "https://bellrun.com/office",
+        "publishedAt": "2026-10-13T02:31:51Z",
+        "author": "xxxxx",
+        "score": "3"
+      },
+      {
+        "id": "50065840",
+        "title": "XxXxxx XXX",
+        "url": "https://isevenapi.xyz/",
+        "publishedAt": "2026-10-13T02:30:07Z",
+        "author": "xxxxxxxxx",
+        "score": "5",
+        "commentCount": "3"
+      },
+      {
+        "id": "50065839",
+        "title": "Xxxx xxxxxxx xx XX xx xxx xxxxx xxxxxxx xxxxxxxxxx xxxxxxx",
+        "url": "https://defensescoop.com/2026/10/12/army-turning-to-ai-in-its-fight-against-biological-threats/",
+        "publishedAt": "2026-10-13T02:29:59Z",
+        "author": "xxxxxx-comments",
+        "score": "4"
+      },
+      {
+        "id": "50065822",
+        "title": "Xxxx Xxxxx M.2 x16 Xxx5 XXXx Xxxx – xx xx xxxx XXXx M.2 XXX'x xx xx xx 512 Xxxx",
+        "url": "https://www.asus.com/us/motherboards-components/motherboards/accessories/hyper-m-2-x16-gen5-card/",
+        "publishedAt": "2026-10-13T02:27:06Z",
+        "author": "xxxxx_x_xxxxxxx",
+        "score": "9"
+      },
+      {
+        "id": "50065810",
+        "title": "Xxxxxxxxxx Xxxxx Xxxxxxxx Xxxxxxxxx XXX Xxxxxxxxxx, Xxxxxxx Xxxxxxxx, Xxxxxxxx",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1002/glia.70213",
+        "publishedAt": "2026-10-13T02:25:32Z",
+        "author": "xxxxxxXxxxxxxxx",
+        "score": "3",
+        "commentCount": "1"
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "news.ycombinator.com/front",
+      "version": 2,
+      "sha256": "096bb77bcfb4819de8458f96af04611092225a6a264d469dc2530b4c3c6c80b1"
+    }
+  ]
+}

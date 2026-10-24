@@ -1,0 +1,265 @@
+{
+  "recipe": {
+    "id": "amazon.com/search",
+    "version": 1,
+    "sha256": "89d0bd4594d6fc1edb3a054093a72f5d486932632c7d248a85111e49ac06723f"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.amazon.com/s?k=mechanical+keyboard",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T02:33:15Z",
+  "extractTime": "2026-10-14T02:33:15Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "items[0].sponsored",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "amazon.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "amazon.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "mechanical keyboard",
+    "items": [
+      {
+        "id": "B08Z6X4NK3",
+        "title": "Xxxxxxxx X413 XX Xxxx-Xxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx - Xxxxx",
+        "url": "https://www.amazon.com/Logitech-Full-Size-Mechanical-Anti-Ghosting-Keys-White/dp/B08Z6X4NK3",
+        "price": "84.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "1665",
+        "image": "https://m.media-amazon.com/images/I/61thTSgqWOL._AC_UY218_.jpg",
+        "rank": 1
+      },
+      {
+        "id": "B0D14N2QZF",
+        "title": "XXXX X75 Xxx Xxxxxxxx Xxxxxxxxxx Xxxxxxxx,75% Xxx Xxxxxxxxx Xxxxxx Xxxxxxxx xxxx Xxxx,XXX Xxxxxxx,Xxx-xxxxx Xxxxxx Xxxxxxxx,Xxxx Xxxxxxx XXX Xxxxxxx,2.4XXx/XXX-X/XX5.0 Xxxxxxxxxx Xxxxxx Xxxxxxxxx",
+        "url": "https://www.amazon.com/F75-Pro/dp/B0D14N2QZF",
+        "price": "64.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "1847",
+        "image": "https://m.media-amazon.com/images/I/61MC8BK0w0L._AC_UY218_.jpg",
+        "rank": 2
+      },
+      {
+        "id": "B0H6LN4SWD",
+        "title": "Xxx 60% Xxxxx Xxxxxxxxxx Xxxxxxxx, Xxxxxx Xxx Xxxxxx xxx Xxxxxx, Xxxxxx",
+        "url": "https://www.amazon.com/Rii-Mechanical-Keyboard-Linear-Switch/dp/B0H6LN4SWD",
+        "price": "29.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "26",
+        "image": "https://m.media-amazon.com/images/I/61wvyX4Z8XL._AC_UY218_.jpg",
+        "rank": 3
+      },
+      {
+        "id": "B09LK1P1RD",
+        "title": "Xxxxxxxx XX Xxxxxxxxxx Xxxxxxxx Xxxxxxxxxxx Xxxxxxxx Xxxxxxx - Xxxxxxxx",
+        "url": "https://www.amazon.com/Logitech-Mechanical-Illuminated-Performance-Bluetooth/dp/B09LK1P1RD",
+        "price": "179.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "2258",
+        "image": "https://m.media-amazon.com/images/I/61++ok6AqtL._AC_UY218_.jpg",
+        "rank": 4
+      },
+      {
+        "id": "B0CDWP1D58",
+        "title": "Xxxxxxxx X668 108-Xxx Xxx-Xxxx Xxxxx XXX Xxxxxx Xxxxxxxx, Xxxxx 4 Xxxxxxx",
+        "url": "https://www.amazon.com/Redragon-K668-Mechanical-Absorbing-Hot-swappable/dp/B0CDWP1D58",
+        "price": "39.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "1592",
+        "image": "https://m.media-amazon.com/images/I/618A+B25MKL._AC_UY218_.jpg",
+        "rank": 5
+      },
+      {
+        "id": "B0DRFGNWV1",
+        "title": "Xxxxxxxx X521 Xxxxxxx Xxxxxxx XXX Xxxxxx Xxxxxxxx, 104 Xxxx Xxxxx Xxxxxxxxxx Xxxxxxx Xxxxxxxx xxxx Xxxxxxxxxx Xxxx, Xxx-Xxxxx Xxxxxxx, Xxxx-Xxxxxxxx, Xxxxxxxxxx xxxx XX, Xxx, XX4/5, Xxxx",
+        "url": "https://www.amazon.com/Redragon-K521-Mechanical-Multimedia-Anti-Ghosting/dp/B0DRFGNWV1",
+        "price": "14.39",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "11401",
+        "image": "https://m.media-amazon.com/images/I/71kp4T3JSIL._AC_UY218_.jpg",
+        "rank": 6
+      },
+      {
+        "id": "B0HJ8YP9HG",
+        "title": "XXXXXXXX X68 Xxxxx Xxxxxx Xxxxxxxx, 68-Xxx XXX Xxxxxx XXX Xxxxxxx-Xxxxxxxxx",
+        "url": "https://www.amazon.com/FREEWOLF-Gaming-Keyboard-68-Key-Backlit-Moonlight/dp/B0HJ8YP9HG",
+        "price": "32.99",
+        "currency": "USD",
+        "rating": 5.0,
+        "reviewCount": "1",
+        "image": "https://m.media-amazon.com/images/I/61o8birLTuL._AC_UY218_.jpg",
+        "rank": 7
+      },
+      {
+        "id": "B07G11G2X8",
+        "title": "Xxxxxxxx X580 Xxxxx XXX Xxxxxxxxxx Xxxxxx Xxxxxxxx, Xxxxx Xxx & Xxxxx Xxxxx",
+        "url": "https://www.amazon.com/Redragon-K580-Mechanical-Anti-ghosting-Dedicated/dp/B07G11G2X8",
+        "price": "52.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "4378",
+        "image": "https://m.media-amazon.com/images/I/71jPClBDPDL._AC_UY218_.jpg",
+        "rank": 8
+      },
+      {
+        "id": "B0DZ28ZGYL",
+        "title": "XXXX X99 Xxxxxx Xxxxxxxx, Xxxxxxxx Xxxxx Xxxxxx Xxxxxxxx Xxxxxxxxx",
+        "url": "https://www.amazon.com/AULA-S99-Keyboards-Bluetooth-Programmable/dp/B0DZ28ZGYL",
+        "price": "35.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "2408",
+        "image": "https://m.media-amazon.com/images/I/61r9aziJGFL._AC_UY218_.jpg",
+        "rank": 9
+      },
+      {
+        "id": "B0CLLHSWRL",
+        "title": "XXXX X99 Xxxxxxxx Xxxxxxxxxx Xxxxxxxx,Xxx-Xxxx XX5.0/2.4XXx/XXX-X Xxx Xxxxxxxxx Xxxxxx Xxxxxxxx,Xxx-xxxxx Xxxxxx Xxxxxxxx,XXX Xxxxxxx Xxxxxxxx Xxxxxx Xxxxxxxxx xxx XX/Xxxxxx/XX/Xxxx",
+        "url": "https://www.amazon.com/AULA-F99-Mechanical-Bluetooth-Swappable/dp/B0CLLHSWRL",
+        "price": "68.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "3153",
+        "image": "https://m.media-amazon.com/images/I/61mB8mL33pL._AC_UY218_.jpg",
+        "rank": 10
+      },
+      {
+        "id": "B09DKQWTNC",
+        "title": "XXXX X2088 Xxxxxxxxxx Xxxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx Xxxxx, 104 Xxxx",
+        "url": "https://www.amazon.com/AULA-F2088-Mechanical-Removable-Keyboards/dp/B09DKQWTNC",
+        "price": "44.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "2746",
+        "image": "https://m.media-amazon.com/images/I/71XcWqobDVL._AC_UY218_.jpg",
+        "rank": 11
+      },
+      {
+        "id": "B0CF3VGQFL",
+        "title": "Xxxxxxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx Xxxxx, 11 Xxxxxxxxxxxx Xxxxxxx Xxxxx, Xxx-Xxxxxxxxx Xxx Xxxxxx, Xxxx-Xxxxxxxx, Xxxxxx-Xxxx XXX Xxxxxxx, Xxxxx Xx Xxxxxxxx xxx XX Xxx",
+        "url": "https://www.amazon.com/Redragon-Programmable-Hot-Swappable-Anti-Ghosting-Double-Shot/dp/B0CF3VGQFL",
+        "price": "29.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "6867",
+        "image": "https://m.media-amazon.com/images/I/71Bk2A2WmOL._AC_UY218_.jpg",
+        "rank": 12
+      },
+      {
+        "id": "B0CDX5XGLK",
+        "title": "Xxxxxxxx X673 XXX Xxxxxxxx 81-Xxx XXX Xxxxxx Xxxxxx Xxxxxxxx, Xxxxxx Xxxx",
+        "url": "https://www.amazon.com/Redragon-K673-Mechanical-Dedicated-Absorbing/dp/B0CDX5XGLK",
+        "price": "46.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "1445",
+        "image": "https://m.media-amazon.com/images/I/61sjetfujxL._AC_UY218_.jpg",
+        "rank": 13
+      },
+      {
+        "id": "B0CQ2MSP2B",
+        "title": "XX XXXXX XXXXXX X98 Xxxxxxxx Xxxxxxxxxx Xxxxxxxx x/Xxxxx Xxxxxxx & Xxxx",
+        "url": "https://www.amazon.com/RK-ROYAL-KLUDGE-Mechanical-Swappable/dp/B0CQ2MSP2B",
+        "price": "75.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "1677",
+        "image": "https://m.media-amazon.com/images/I/61UxZqXGOgL._AC_UY218_.jpg",
+        "rank": 14
+      },
+      {
+        "id": "B09TR4Y91J",
+        "title": "XxxxXxx Xxxxxxxxxx Xxxxxx Xxxxxxxx, XXX 104 Xxxx Xxxxx-Xxxx XXX Xxxxxxx XXX Xxxxx Xxxxxxxx xxxx Xxxx Xxxxxx, Xxxxxxx Xxx Xxxxxxx/Xxxx-Xxxxxxxx/Xxxxx-Xxxxxxxxx Xxxxxxxx Xxxxxxxx xxx XX Xxx Xxxx Xxxxx",
+        "url": "https://www.amazon.com/Mechanical-Keyboard-Ultra-Slim-Anti-Ghosting-Spill-Resistant/dp/B09TR4Y91J",
+        "price": "28.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "3381",
+        "image": "https://m.media-amazon.com/images/I/71T1WQSxp9L._AC_UY218_.jpg",
+        "rank": 15
+      },
+      {
+        "id": "B0G3PTHM36",
+        "title": "XXXX X75 75% Xxxxxxxx Xxxxxxxxxx Xxxxxxxx, Xxx Xxxxxxxxx Xxxxxx Xxxxxxxx, Xxx-xxxxx Xxxxxx Xxxxxxxx, 2.4XXx/Xxxx-X/XX5.0, XXX Xxxxxxx Xxxxxx Xxxxxxxxx(Xxxxx&Xxxxx)",
+        "url": "https://www.amazon.com/AULA-F75-Mechanical-Swappable-Pre-lubed/dp/B0G3PTHM36",
+        "price": "66.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "2647",
+        "image": "https://m.media-amazon.com/images/I/61N2U7DWPjL._AC_UY218_.jpg",
+        "rank": 16
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "amazon.com/search",
+      "version": 1,
+      "sha256": "89d0bd4594d6fc1edb3a054093a72f5d486932632c7d248a85111e49ac06723f"
+    }
+  ]
+}

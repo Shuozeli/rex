@@ -1,0 +1,72 @@
+# Baseline for rex.schema.media.v1.Video: any video page with schema.org VideoObject (JSON-LD or microdata) or
+# Open Graph video tags. Site recipes `extends` this.
+id: generic/video.v1
+version: 1
+schema: rex.schema.media.v1.Video
+fields:
+  - path: id
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: title
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }
+
+  - path: channel          # an object fills Channel field by field; a plain string fills Channel.name
+    candidates:
+      - microdata: { path: "author" }
+      - json_ld: { path: "author" }
+      - meta: { key: "author" }
+
+  - path: published_at
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - json_ld: { path: "datePublished" }
+      - meta: { key: "video:release_date" }
+
+  - path: duration_seconds
+    candidates:
+      - json_ld: { path: "duration" }
+      - microdata: { path: "duration" }
+      - meta: { key: "video:duration" }
+    pipe:
+      - duration: {}
+
+  - path: views            # microdata keeps one counter per action type; JSON-LD often has a single one
+    candidates:
+      - css: { selector: "meta[itemprop=interactionType][content$=WatchAction] + meta[itemprop=userInteractionCount]", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
+      - json_ld: { path: "interactionStatistic.userInteractionCount" }
+
+  - path: likes
+    candidates:
+      - css: { selector: "meta[itemprop=interactionType][content$=LikeAction] + meta[itemprop=userInteractionCount]", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
+
+  - path: description
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: tags
+    candidates:
+      - json_ld: {}
+      - meta: { key: "keywords" }
+      - meta: { key: "og:video:tag" }
+    pipe:
+      - split: { pattern: "\\s*,\\s*" }
+
+  - path: thumbnail
+    candidates:
+      - json_ld: {}
+      - microdata: { path: "thumbnailUrl" }
+      - meta: { key: "og:image" }

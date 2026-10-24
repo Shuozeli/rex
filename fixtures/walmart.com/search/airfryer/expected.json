@@ -1,0 +1,700 @@
+{
+  "recipe": {
+    "id": "walmart.com/search",
+    "version": 1,
+    "sha256": "1f0510c946cc278d34183b043c8b25e1b57dea489247e46bd855511af581c1d9"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.walmart.com/search?q=air+fryer",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:09:53Z",
+  "extractTime": "2026-10-14T05:09:53Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "items[0].sponsored",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "walmart.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "walmart.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "air fryer",
+    "items": [
+      {
+        "id": "14140920286",
+        "title": "Xxxxx & Xxxxx 6 Xxxxx Xxxxxxx-Xxxxxx Xxx Xxxxx, Xxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/Thyme-Table-6QT-Air-Fryer-Sand/14140920286",
+        "price": "79",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Thyme-Table-6QT-Air-Fryer-Sand_4dc1a1f6-9007-4310-aa1f-a8650e8f5626.e70b5f6f2e1250975bc37d02ecc1219b.png",
+        "sponsored": true,
+        "rank": 1
+      },
+      {
+        "id": "14678059894",
+        "title": "Xxxxxxx Xxx Xxxxx 1500W, 6 Xxxxx, 4 Xxxxxxxxx with Xxxxx Xxxxxxxx, Xxxxxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/CHEFMAN-6QT-AIRFRYER/14678059894",
+        "price": "59.98",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "12665",
+        "image": "https://i5.walmartimages.com/seo/CHEFMAN-6QT-AIRFRYER_0ccae75c-daa2-4d52-a1d4-63b5f20f42c3.52b088aed447be6063d85850d455ebd5.jpeg",
+        "sponsored": true,
+        "rank": 2
+      },
+      {
+        "id": "17707154629",
+        "title": "XxxxxXxx 13 XX Xxxxx Xxxxxx Xxxxxx Xxx Xxxxx, Xxxxx Xxxxxx Xxxxxx, 10-in1 Xxx Xxxxx, Xxxxx, Xxxx & Xxxx, Xxxx to Xxxxx, Xxxxxxxxxx Xxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/HoninJoy-12-QT-DoubleStack-2-Basket-Air-Fryer-Space-Saving-Design-Feeds-6-People-8-in1-Air-Fryer-Roast-Bake-More-Easy-Clean-Dishwasher-Safe-Parts/17707154629",
+        "price": "139.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "382",
+        "image": "https://i5.walmartimages.com/seo/HoninJoy-12-QT-DoubleStack-2-Basket-Air-Fryer-Space-Saving-Design-Feeds-6-People-8-in1-Air-Fryer-Roast-Bake-More-Easy-Clean-Dishwasher-Safe-Parts_8a22bb40-fb2d-4727-8b79-d153679e2847.32be01ad86807bb4d91818dc62e752d5.jpeg",
+        "sponsored": true,
+        "rank": 3
+      },
+      {
+        "id": "20223605761",
+        "title": "XXXXXX 5XX Xxx Xxxxx with Xxxxxxx Xxxxxx, 12 Xxxxxxx Xxxxxxx, 1500W Xxxx , Xxxx Xxxxxxx",
+        "url": "https://www.walmart.com/ip/Air-Fryer-6-34-Qt-Digital-Preset-Airfryer-with-Visible-Window/20223605761",
+        "price": "66.36",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "74",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-6-34-Qt-Digital-Preset-Airfryer-with-Visible-Window_d6a0a410-43d0-4929-a9c0-08399d1d49b2.9bd9230739d0bddcde152adcb23bdaf4.jpeg",
+        "sponsored": true,
+        "rank": 4
+      },
+      {
+        "id": "5144605607",
+        "title": "Xxxxx Xxx Xxxxx Xxx XX 5-Xx, 3-in-1, 400°X Xxx Xxxxx Xxxxxxxxxx, Xxxxxxxx Xxxxxxx Xxxxx, XX140 Xxxxx",
+        "url": "https://www.walmart.com/ip/Ninja-Air-Fryer-Pro-XL-5-5-qt-Black-Air-Fry-Roast-Reheat-Dehydrate-Black-AF140/5144605607",
+        "price": "79.97",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Ninja-Pro-XL-5-qt-Air-Fryer-Black-Automatic-Shutoff_17260726-27fd-40a6-b347-67616dc68f04.963b41a992020f3d2d638bae5d43ce7c.jpeg",
+        "rank": 5
+      },
+      {
+        "id": "14869163406",
+        "title": "Xxxxxxxxx Xxx Xxxxx, 2.2 Xxxxx, 1150W, Xxxxxx Xxxxx with Xxx-Xxxxx Xxxxxx",
+        "url": "https://www.walmart.com/ip/MS-2-2QT-AIR-FRYER/14869163406",
+        "price": "29.98",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/MS-2-2QT-AIR-FRYER_febdb09c-4fdd-42fe-bb1a-9a30ee71b20f.a73b397aebcabc4231ab8d1425f36ff9.jpeg",
+        "rank": 6
+      },
+      {
+        "id": "17658322419",
+        "title": "XxxxxXxx 12 XX Xxxxx Xxxx Xxxxxx Xxx Xxxxx, With Xxxxxxx Xxxxxxx Xxxxxx( 50XXX Xxx Xxxxx Xxxxxx Xxxxxxxx)-Xxx",
+        "url": "https://www.walmart.com/ip/HoninJoy-12-QT-Large-Dual-Basket-Air-Fryer-Air-Fryer-Visible-Cooking-Window-50PCS-Air-Fryer-Liners-8-Presets-Cookings-Digital-LED-Touchscreen-Nonstic/17658322419",
+        "price": "139.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/HoninJoy-12-QT-Large-Dual-Basket-Air-Fryer-Air-Fryer-Visible-Cooking-Window-50PCS-Air-Fryer-Liners-8-Presets-Cookings-Digital-LED-Touchscreen-Nonstic_b0e324ed-b3dd-4925-ad06-77f08497eac7.7f48bb9dc0b29b93c59df3a02ad29545.jpeg",
+        "sponsored": true,
+        "rank": 7
+      },
+      {
+        "id": "18683622604",
+        "title": "Xxxxxxx XxxxxXxx Xxx Xxxxx, 450°X Xxx Xxxx, 6 Xxxxxxxxx, xxx 9-Xxxxx Xxxxxxxx - Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-TurboFry-Air-Fryer-450-F-Max-Temp-6-Functions-and-9-Quart-Capacity-Black/18683622604",
+        "price": "94.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "627",
+        "image": "https://i5.walmartimages.com/seo/Chefman-TurboFry-Air-Fryer-450-F-Max-Temp-6-Functions-and-9-Quart-Capacity-Black_0d481534-cefe-4c1b-93ee-d0e6c2faf64d.920264dd96b599e6eb514c2f9017d311.jpeg",
+        "sponsored": true,
+        "rank": 8
+      },
+      {
+        "id": "18794172504",
+        "title": "Xxxxxxxxx 11-xx Xxxx Xxxxxx Xxx Xxxxx Xxx",
+        "url": "https://www.walmart.com/ip/11-qt-Dual-Basket-Air-Fryer-Pro/18794172504",
+        "price": "154.36",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "114",
+        "image": "https://i5.walmartimages.com/seo/11-qt-Dual-Basket-Air-Fryer-Pro_397527f9-869d-46af-92ba-67516bad27d7.66ec9f12c2ff275e7ad831c2088801ed.jpeg",
+        "sponsored": true,
+        "rank": 9
+      },
+      {
+        "id": "17804602221",
+        "title": "Xxxxxxxxx 4.5-xx Xxxxxx Xxx Xxxxx",
+        "url": "https://www.walmart.com/ip/Cuisinart-4-5-qt-Basket-Air-Fryer-AIR-160NAS/17804602221",
+        "price": "79.95",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "544",
+        "image": "https://i5.walmartimages.com/seo/Cuisinart-4-5-qt-Basket-Air-Fryer-AIR-160NAS_d34abf57-8c9d-4c13-af43-f15e72c15e58.9d625b94c5652b9d372427b1b45405a0.jpeg",
+        "sponsored": true,
+        "rank": 10
+      },
+      {
+        "id": "2456325219",
+        "title": "Xxxxxxxxx 3XX Xxx Xxxxx with XxxxxXxxxx Xxxxxxxxxx, Xxxxx Xxxxx xx Xxxx Xxxxxxxxx",
+        "url": "https://www.walmart.com/ip/Beautiful-3-Qt-Air-Fryer-with-TurboCrisp-Technology-White-Icing-by-Drew-Barrymore/2456325219",
+        "price": "44.96",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "24002",
+        "image": "https://i5.walmartimages.com/seo/Beautiful-3-Qt-Air-Fryer-with-TurboCrisp-Technology-White-Icing-by-Drew-Barrymore_da9071e4-9443-4857-a55b-3ec8deaf6124.28c8e93c1153a3c919cae5c930a6a46b.jpeg",
+        "rank": 11
+      },
+      {
+        "id": "16101019328",
+        "title": "Xxxxxxxxx 6 Xx Xxx Xxxxx with XxxxxXxxxx Xxxxxxxxxx, XxxxXxxx Xxxxxxx Xxxxxxxx Xxxxxxx, Xxxxx Xxxxx xx Xxxx Xxxxxxxxx",
+        "url": "https://www.walmart.com/ip/Beautiful-6-0-QT-Air-Fryer-Touchscreen-White-Icing-by-Drew-Barrymore/16101019328",
+        "price": "59",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Beautiful-6-0-QT-Air-Fryer-Touchscreen-White-Icing-by-Drew-Barrymore_6dbe3973-0fe5-4497-af08-440582489049.bdefddc6b03421093f30c77e4fb81dc7.jpeg",
+        "rank": 12
+      },
+      {
+        "id": "20140867612",
+        "title": "Xxxxxxx Xxxxxxxxx Xxx Xxxxx Xxxxxxx Xxxx",
+        "url": "https://www.walmart.com/ip/Compact-Air-Fryer-Toaster-Oven/20140867612",
+        "price": "159",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "25",
+        "image": "https://i5.walmartimages.com/seo/Compact-Air-Fryer-Toaster-Oven_560e7c4d-2d4b-4401-9c51-bf885cd32a5d.f58cfde6d4fed1755c75dd2bffd21126.jpeg",
+        "sponsored": true,
+        "rank": 13
+      },
+      {
+        "id": "19937812797",
+        "title": "Xxxxxxx XxxxxXxx 3-in-1 Xxx Xxxxx, 450°X Xxx Xxxx with 3.5 Xx. Xxxxxxxx Xxxxxx – Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-TurboFry-3-in-1-Air-Fryer-450-F-Max-Temp-with-3-5-Qt-Nonstick-Basket-Black/19937812797",
+        "price": "44.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Chefman-TurboFry-3-in-1-Air-Fryer-450-F-Max-Temp-with-3-5-Qt-Nonstick-Basket-Black_b932a8e8-a98f-4c10-8cda-9ff447af5113.8d3e3a2c7c969d9cdb83529aa986da7c.jpeg",
+        "sponsored": true,
+        "rank": 14
+      },
+      {
+        "id": "18970661098",
+        "title": "Xxxxxxxxx 3 Xx Xxx Xxxxx with XxxxxXxxxx Xxxxxxxxxx, XxxxXxxx Xxx-Xxxxx Xxxxxxx Xxxxxxxx Xxxxxxx, Xxxxxxxxx xx Xxxx Xxxxxxxxx",
+        "url": "https://www.walmart.com/ip/Beautiful-3-0-QT-Air-Fryer-Touchscreen-Chocolate/18970661098",
+        "price": "44.96",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Beautiful-3-0-QT-Air-Fryer-Touchscreen-Chocolate_8918da24-2ad9-4ba5-b914-be543c49d219.237bdab2b7d45e09093eea43a1a3b4c9.jpeg",
+        "rank": 15
+      },
+      {
+        "id": "19381415477",
+        "title": "XXXX 10.6XX Xxxxxxx Xxxx Xxx Xxxxx Xxxxx,1000W Xxx Xxxxx Xxxx Xxxxx ,3-Xxxxx Xxxxxxx,Xxxxx Xxx Xxxxx Xxxxxxx,3 Xxxx Xxxxxxx & Xxxxxxx Xxxxxx",
+        "url": "https://www.walmart.com/ip/MFVV-10-6QT-Toaster-Oven-Air-Fryer-Combo-1000W-Air-Fryer-Oven-Combo-3-Layer-Cooking-Ideal-For-Small-Kitchen-3-Knob-Control-Visible-Window/19381415477",
+        "price": "69.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/MFVV-10-6QT-Toaster-Oven-Air-Fryer-Combo-1000W-Air-Fryer-Oven-Combo-3-Layer-Cooking-Ideal-For-Small-Kitchen-3-Knob-Control-Visible-Window_cc9a2d65-0ece-4f98-831f-cbcd9f35c08d.72910a2f04319610e1c30dab11bddfd5.png",
+        "rank": 16
+      },
+      {
+        "id": "17284765594",
+        "title": "Xxxxxxx XxxxxXxx 2-Xxxxx Xxxxxxx Xxx Xxxxx, Xxxxxxx Xxxxxx xxx Xxxxx Xxxxx, Xxxxxxxxxx-Xxxx – Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-2-Qt-Compact-Air-Fryer-w-Digital-Display-and-Shake-Reminder-Black/17284765594",
+        "price": "44.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Chefman-2-Qt-Compact-Air-Fryer-w-Digital-Display-and-Shake-Reminder-Black_bd65913f-db6c-446e-84bf-dc9d573ee930.155f1ee4d3b140dba15f96ce403d9cc0.jpeg",
+        "rank": 17
+      },
+      {
+        "id": "5466948866",
+        "title": "Xxxxxxx Xxx-in-Xxx 14-Xxxxx Xxx Xxxxx, Xxxx, Xxxxxxxxxx, Xxxxxxxxxx with Xxxxxxxxxxx Xxxxx, Xxx",
+        "url": "https://www.walmart.com/ip/Gourmia-All-in-One-14-Quart-Air-Fryer-Oven-Rotisserie-Dehydrator-with-Temperature-Probe-New/5466948866",
+        "price": "55",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "8434",
+        "image": "https://i5.walmartimages.com/seo/Gourmia-All-in-One-14-Quart-Air-Fryer-Oven-Rotisserie-Dehydrator-with-Temperature-Probe-New_ddede81a-1a1d-4f67-9691-244ba7752d8f.e73ca346184304e370cc829142d9f4f7.jpeg",
+        "rank": 18
+      },
+      {
+        "id": "19304507043",
+        "title": "Xxxxxxx 7.5XX Xxx Xxxxx, 1600W Xxxxxxxxxxxxx Xxxxxxxx with Xxxxxxx Xxxxxx, Xxxxxxxxxx Xxxx＆Xxxxxxxxxxx, Xxxxxxxx, 85% Xxxx Xxx, 100Xxx Xxxxx",
+        "url": "https://www.walmart.com/ip/ANSFIL-Stainless-Steel-6QT-Air-Fryer-with-Visual-Window-8-Preset-Menus-360-Rapid-Air-Circulation-for-Healthy-Oil-Less-Cooking/19304507043",
+        "price": "59.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/ANSFIL-Stainless-Steel-6QT-Air-Fryer-with-Visual-Window-8-Preset-Menus-360-Rapid-Air-Circulation-for-Healthy-Oil-Less-Cooking_bdf0792c-d426-4ecd-ac48-99b53638f10e.fcdf47c37719c70784cab29d215dff64.jpeg",
+        "rank": 19
+      },
+      {
+        "id": "21132668855",
+        "title": "XXXXXX 3.7xx Xxx Xxxxx, Xxxxx-Xxxxxxxx Xxxxxxx Xxxxxxxxx xxx Xxxxxx Xxxxx, Xxxx Xxxxxx Xxx-Xxxx Xxxxxxx, Xx Xxxxxxxxx Xxxxx Xxxxxx, Xxxx, Xxxxx, Xxx Xxx",
+        "url": "https://www.walmart.com/ip/TAZTIR-3-7qt-Air-Fryer-Multi-Function-Kitchen-Appliance-Family-Meals-Fast-Crispy-Oil-Free-Cooking-Parchment-Paper-Needed-Bake-Roast-Air-Fry/21132668855",
+        "price": "23.85",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/TAZTIR-3-7qt-Air-Fryer-Multi-Function-Kitchen-Appliance-Family-Meals-Fast-Crispy-Oil-Free-Cooking-Parchment-Paper-Needed-Bake-Roast-Air-Fry_bb9afcc2-65cf-4b1d-aa70-e9175bf013ca.612508ebaf25e347f828ec82c93a7b69.jpeg",
+        "rank": 20
+      },
+      {
+        "id": "18454506856",
+        "title": "XXXXXXX 6XX Xxx Xxxxx with Xxxxxx Xxxxxx, 8 Xxxxxx Xxxxx & 360° Xxxxx Xxx Xxxxxxxxxxx xxx Xxxxxxx Xxx-Xxxx Xxxxxxx,Xxxxxxxx: Xxxxxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/WHALL-Stainless-Steel-6QT-Air-Fryer-with-Visual-Window-8-Preset-Menus-360-Rapid-Air-Circulation-for-Healthy-Oil-Less-Cooking/18454506856",
+        "price": "59.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/WHALL-Stainless-Steel-6QT-Air-Fryer-with-Visual-Window-8-Preset-Menus-360-Rapid-Air-Circulation-for-Healthy-Oil-Less-Cooking_7afce7e0-c32e-46db-a047-c09e20308272.1a53265d7de8785642679b85379ee8d6.jpeg",
+        "rank": 21
+      },
+      {
+        "id": "17345100807",
+        "title": "8XX Xxx Xxxxx with 8 Xxxx Xxxxxx, XXX Xxxxxxx Xxxxx Xxxxxx, Xxxxx, Xxxxxx, Xxxxxxxxx, Xxxx, Xxxxx, 360 Xxx Xxx, 85% Xxxx Xxx Xxxxxxx Xxxxxx xxx Xxxxxx Xxxx",
+        "url": "https://www.walmart.com/ip/Air-Fryer-10-Qt-Max-450F-for-Cooking-6-Presets-Fry-Touch-Panel-Easy-View-Window/17345100807",
+        "price": "55.96",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "457",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-10-Qt-Max-450F-for-Cooking-6-Presets-Fry-Touch-Panel-Easy-View-Window_7e317356-1f9b-4aa2-877e-6289aa39fec6.bb36b2293e3972b75b86f2a4c74d5b2d.jpeg",
+        "rank": 22
+      },
+      {
+        "id": "14690759935",
+        "title": "Xxxxxx Xxxxxxx 5Xx Xxxxx Xxx Xxxxx, Xxxxx – Xxx-Xxxxx Xxxxxxx Xxx Xxxxx, Xxxxxxxxx Xxxxx Xxxxxx, 5 Xxxxxxx Xxxxxxx, Xxxx Xxxx Xxxxxxxx, Xxxx Xxxxx Xxxx, 1500W Xxxxx Xxx Xxxxx",
+        "url": "https://www.walmart.com/ip/5qt-Air-Fryer/14690759935",
+        "price": "79.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/5qt-Air-Fryer_d7151aed-5887-48ed-a896-703ddb0edec0.77c7aa05fe44619dfecdb1151f6cab3a.png",
+        "sponsored": true,
+        "rank": 23
+      },
+      {
+        "id": "17284765594",
+        "title": "Xxxxxxx XxxxxXxx 2-Xxxxx Xxxxxxx Xxx Xxxxx, Xxxxxxx Xxxxxx xxx Xxxxx Xxxxx, Xxxxxxxxxx-Xxxx – Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-2-Qt-Compact-Air-Fryer-w-Digital-Display-and-Shake-Reminder-Black/17284765594",
+        "price": "44.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Chefman-2-Qt-Compact-Air-Fryer-w-Digital-Display-and-Shake-Reminder-Black_bd65913f-db6c-446e-84bf-dc9d573ee930.155f1ee4d3b140dba15f96ce403d9cc0.jpeg",
+        "sponsored": true,
+        "rank": 24
+      },
+      {
+        "id": "20708618345",
+        "title": "Xxxxxxxx 12XX Xxx Xxxxx Xxxxxxx Xxxx, 24H Xxxxx Xxxxx Xxxxx, 12 Xxxxxx Xxxxx, Xxxx-Xxxxx Xxxxxxxxxxx, 1500W Xxxx, Xxxxxxxxx, Xxxxx, Xxxxxxx xxx Xxxx",
+        "url": "https://www.walmart.com/ip/11QT-Air-Fryer-Toaster-Oven-with-12-Preset-Cooking-Mode-Bake-Roast-Reheat-Broiler-Dehydrate-LED-Digital-Color-Display-and-Visible-Window/20708618345",
+        "price": "69.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/11QT-Air-Fryer-Toaster-Oven-with-12-Preset-Cooking-Mode-Bake-Roast-Reheat-Broiler-Dehydrate-LED-Digital-Color-Display-and-Visible-Window_ce638975-010a-48ac-b2b8-960c6777c110.ad07a0ed99c2caafa6964cd6f4a37b23.jpeg",
+        "rank": 25
+      },
+      {
+        "id": "844320666",
+        "title": "Xxxxx 4-Xx Xxx Xxxxx, 3 Xxxxxxxxx, Xxx Xxx, Xxxxxx, xxx Xxxxxxxxx, Xxxxxxxxxx Xxxx, Xxx-Xxxxx, XX100XX Xxxxx",
+        "url": "https://www.walmart.com/ip/Ninja-4QT-Air-Fryer-Black-AF100WM/844320666",
+        "price": "59",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Ninja-4-Qt-Air-Fryer-Nonstick-Basket-with-Crisper-Plate-1550-Watts-Blak_6bd8f459-df82-4014-9269-ee7707b7bab3.f6e4b822595256ed8a6a8cfe3d44342c.jpeg",
+        "rank": 26
+      },
+      {
+        "id": "20314069460",
+        "title": "1300W Xxxx-Xxxxx Xxx Xxxxx Xxxxxxxx xxx Xxxxxxxx",
+        "url": "https://www.walmart.com/ip/1300W-High-Power-Air-Fryer-Suitable-for-Roasting/20314069460",
+        "price": "55",
+        "currency": "USD",
+        "rating": 5.0,
+        "reviewCount": "2",
+        "image": "https://i5.walmartimages.com/seo/1300W-High-Power-Air-Fryer-Suitable-for-Roasting_3da95d79-7288-45fa-ad2c-bfe80e2e3302.fb0d7cf652603c2b398882cb83573aca.jpeg",
+        "rank": 27
+      },
+      {
+        "id": "19923519078",
+        "title": "13XX Xxxx Xxxxxx Xxx Xxxxx Xxxx, 1700W with Xxxx xxx Xxxxx Xxxx, 10-in-1 Xxxxxxx Xxxxxxxxxxx Xxxxxxxxxx Xxxxxxx Xxxx, Xxxxxxxxxxx Xxxxxxxxxxx Xxxxxxx xxx Xxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/12-7QT-Dual-Basket-Air-Fryer-Oven-Digital-Control-Clear-View-Window-Versatile-Air-Fryer-for-Roasting-Baking-Reheating-Healthy-Meals/19923519078",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "103",
+        "image": "https://i5.walmartimages.com/seo/12-7QT-Dual-Basket-Air-Fryer-Oven-Digital-Control-Clear-View-Window-Versatile-Air-Fryer-for-Roasting-Baking-Reheating-Healthy-Meals_050a103d-a9b0-4b68-b0f9-a353bfeb43ca.f407460186b3c01082b137c6701433e5.png",
+        "rank": 28
+      },
+      {
+        "id": "1438286796",
+        "title": "Xxxxxxx Xxxxxx Xxxx 6-Xxxxx Xxxxxxx Xxxxxxx Xxxx Xxx Xxxxx, 19 Xxx-Xxxxx Xxxxxxx, 24X, Xxxxxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/New-Gourmia-1700W-6-Slice-Digital-Toaster-Oven-Air-Fryer-With-19-One-Touch-Presets-Stainless-Steel/1438286796",
+        "price": "89",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/New-Gourmia-1700W-6-Slice-Digital-Toaster-Oven-Air-Fryer-With-19-One-Touch-Presets-Stainless-Steel_1d44101e-0cbf-458e-83dd-7fb8c6ee2b98.860781dbd69accbee6bda17470d86ba6.jpeg",
+        "rank": 29
+      },
+      {
+        "id": "3298701757",
+        "title": "Xxxxxxx 4-Xxxxx Xxxxxxx Xxx Xxxxx with 12 Xxx-Xxxxx Xxxxxxx, XXX414, Xxxxx",
+        "url": "https://www.walmart.com/ip/Gourmia-4-Quart-Digital-Air-Fryer-with-12-One-Touch-Presets-New-GAF414-12-in-High/3298701757",
+        "price": "56.26",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "4274",
+        "image": "https://i5.walmartimages.com/seo/Gourmia-4-Quart-Digital-Air-Fryer-with-12-One-Touch-Presets-New-GAF414-12-in-High_a23d9af2-f4a4-4988-b690-0577f3808565.05258c1567b4ed0e0c784bf6823c9b67.jpeg",
+        "rank": 30
+      },
+      {
+        "id": "19701400675",
+        "title": "Xxxxxx 7.5 Xx. Xxx Xxxxx 9 Xxxxxxxxx x/ Xxxxx Xxxxxxxx, XX-XXX Xxxxxx, Xxxxxxxxx XxxxxXxxxx",
+        "url": "https://www.walmart.com/ip/Yilush-Multifunctional-Digital-Air-Fryer-Rotisserie-Dehydrator-Convection-Oven-17-Touch-Screen-Presets-Fry-Roast-Dehydrate-Bake-XL-10L-Family-Size-Au/19701400675",
+        "price": "49.99",
+        "currency": "USD",
+        "rating": 3.9,
+        "reviewCount": "76",
+        "image": "https://i5.walmartimages.com/seo/Yilush-Multifunctional-Digital-Air-Fryer-Rotisserie-Dehydrator-Convection-Oven-17-Touch-Screen-Presets-Fry-Roast-Dehydrate-Bake-XL-10L-Family-Size-Au_894303ca-41ca-4fcb-a439-9b6416a2408e.96c2f8d2b970518d0921d62a25c0ab91.jpeg",
+        "rank": 31
+      },
+      {
+        "id": "16412759179",
+        "title": "Xxxxx Xxxxx Xxx Xxxxx 8-Xx, XxxxXxxx XxxxXxxxxx, 4-in-1, Xxxxx Xxxxxx, Xxxx 2 Xxxxx 2 Xxxx, XX100XXXX Xxxx",
+        "url": "https://www.walmart.com/ip/Ninja-Foodi-2-Basket-Air-Fryer/16412759179",
+        "price": "109",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Ninja-Foodi-2-Basket-Air-Fryer_b1feb9f8-80ad-4094-a4c8-353b2144bac6.1962260ceddd6a17ec38fb2913ab3927.png",
+        "rank": 32
+      },
+      {
+        "id": "488588268",
+        "title": "Xxxxxxx XX Xxx Xxxxx Xxxx x/ Xxxxxx Xxxxx, 26 Xx Xxxxxxxx, 5 Xxxxxxxxx - Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-XL-Air-Fryer-Oven-w-French-Doors-26-Qt-Capacity-5-Functions-Black-New/488588268",
+        "price": "119.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "2502",
+        "image": "https://i5.walmartimages.com/seo/Chefman-XL-Air-Fryer-Oven-w-French-Doors-26-Qt-Capacity-5-Functions-Black-New_78d0fd83-e4e0-4715-824f-58964f510072.a04fb804186a71a3865a1489f79b3535.jpeg",
+        "sponsored": true,
+        "rank": 33
+      },
+      {
+        "id": "18305873919",
+        "title": "Xxxx With Xxxxx Xxx Xxxxx, 5.5Xx Xxxxx Xxx Xxxxx, 1400W, 8 Xxxxxxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/Cook-with-Color-Digital-Glass-Air-Fryer-5-5L/18305873919",
+        "price": "129",
+        "currency": "USD",
+        "rating": 3.7,
+        "reviewCount": "357",
+        "image": "https://i5.walmartimages.com/seo/Cook-with-Color-Digital-Glass-Air-Fryer-5-5L_52e0d583-92c2-442a-878f-3b7e3d11ddda.0f3a9f55986b224d50f1e7f69f266f58.jpeg",
+        "sponsored": true,
+        "rank": 34
+      },
+      {
+        "id": "14678059894",
+        "title": "Xxxxxxx Xxx Xxxxx 1500W, 6 Xxxxx, 4 Xxxxxxxxx with Xxxxx Xxxxxxxx, Xxxxxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/CHEFMAN-6QT-AIRFRYER/14678059894",
+        "price": "59.98",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "12665",
+        "image": "https://i5.walmartimages.com/seo/CHEFMAN-6QT-AIRFRYER_0ccae75c-daa2-4d52-a1d4-63b5f20f42c3.52b088aed447be6063d85850d455ebd5.jpeg",
+        "rank": 35
+      },
+      {
+        "id": "17308673682",
+        "title": "9XX Xxx Xxxxx, XXX Xxxxxxx Xxxxx Xxxxxxx with Xxxx-View Xxxxxx, xxx 4-6 Xxxxxx, 1700W Xxxxxxxx Xxxxxxx, Xxxxxxxx & Xxxxxxxxxx Xxxx Xxxxxx Xxxxxx, 85% Xxxx Xxx",
+        "url": "https://www.walmart.com/ip/8-Quart-Digital-Window-Air-Fryer-with-8-One-Touch-Functions-Black/17308673682",
+        "price": "62.96",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "389",
+        "image": "https://i5.walmartimages.com/seo/8-Quart-Digital-Window-Air-Fryer-with-8-One-Touch-Functions-Black_aa28c459-b7c9-42e2-8605-c82ecdf83f73.5da1bf08d3fa8d2ce56d5d79c0c228f4.jpeg",
+        "rank": 36
+      },
+      {
+        "id": "6077911929",
+        "title": "Xxxxx Xxxxxx Xxxxx Xxx Xxxxx 4-Xx, 3-in-1, Xxx Xxx Xxxxxxx, Xxxxxxxx, Xxxxxxxxxx Xxxx, XX100XX Xxxxx",
+        "url": "https://www.walmart.com/ip/Ninja-Crispi-Air-Fryer-White-FN100WH/6077911929",
+        "price": "134",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Ninja-Crispi-Air-Fryer-White-FN100WH_a4a5274c-965c-4d65-95f8-bb748b61231c.c82a49310f96cedf9903b0b035214f32.jpeg",
+        "rank": 37
+      },
+      {
+        "id": "19909372786",
+        "title": "10XX Xxx Xxxxx Xxxx Xxxx Xxxxxx, XXXX Xxxxx Xxxx, Xxxxxxxxxxx Xxxx Xxxxxxxx, 7 Xxxx Xxxxxxx, Xxxxxxxx, Xxxxxx, Xxxxxxxxx, 1700W XXX Xxxxx Xxxxxxx",
+        "url": "https://www.walmart.com/ip/9-5QT-Dual-Basket-Air-Fryer-Oven-Digital-Control-Clear-View-Window-Versatile-Air-Fryer-for-Roasting-Baking-Reheating-Healthy-Meals/19909372786",
+        "price": "83.98",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "82",
+        "image": "https://i5.walmartimages.com/seo/9-5QT-Dual-Basket-Air-Fryer-Oven-Digital-Control-Clear-View-Window-Versatile-Air-Fryer-for-Roasting-Baking-Reheating-Healthy-Meals_554d3a14-cbdd-4b1e-a610-9802a98e135d.2e9946fd1425e826b5e7ac6873bd97e1.jpeg",
+        "rank": 38
+      },
+      {
+        "id": "20241800244",
+        "title": "Xxxxxxxxxxx 3 Xx Xxxxxxx Xxx Xxxxx, 4-in-1 Xxx Xxx Xxxx Xxxxx Xxxxxx, Xxxxxxxxxx-Xxxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/Sweetcrispy-3-Qt-Compact-Air-Fryer-4-in-1-Air-Fry-Bake-Roast-Reheat-Dishwasher-Safe-White/20241800244",
+        "price": "33.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Sweetcrispy-3-Qt-Compact-Air-Fryer-4-in-1-Air-Fry-Bake-Roast-Reheat-Dishwasher-Safe-White_f1d37b72-14ad-43c3-a0f4-472475b4ccf3.c9096fd645884ae5c73ecdc25d9e1359.jpeg",
+        "rank": 39
+      },
+      {
+        "id": "15083954209",
+        "title": "34 XX Xxxxx-Xxxxx Xxx Xxxxx, Xxxxxxxx Xxxxxxx Xxxx Xxxxxxxxxx, Xxxxx, Xxxx, Xxxxx, Xxxxx, Xxxx, Xxx Xxx, 1500W, 5 Xxxxxxxxx, 85% Xxx-Xxxx",
+        "url": "https://www.walmart.com/ip/32L-Toaster-Oven-Even-Toast-4-Cooking-Functions-Bake-Broil-Toast-and-Keep-Warm-Removable-Crumb-Tray/15083954209",
+        "price": "89.99",
+        "currency": "USD",
+        "rating": 4.1,
+        "reviewCount": "1383",
+        "image": "https://i5.walmartimages.com/seo/32L-Toaster-Oven-Even-Toast-4-Cooking-Functions-Bake-Broil-Toast-and-Keep-Warm-Removable-Crumb-Tray_262a8e5f-b9fd-4e15-b6ca-2370bf78727a.ded2db972b0cd988cd32a4ba3fbb54e5.jpeg",
+        "rank": 40
+      },
+      {
+        "id": "19976971506",
+        "title": "XXXxxxxxxxx 24XX Xxxx Xxxx Xxx Xxxxx Xxxx With Xxxxxxxxxx,10-in-1 Xxxx Xxxxxxxxx Xxxxx Xxx Xxxxx Xxxxxxx Xxxx 1800W Xxx Xxxxxx Xxxxxxx",
+        "url": "https://www.walmart.com/ip/HYSapientia-24QT-Dual-Zone-Air-Fryer-Oven-With-Rotisserie-10-in-1-Full-Stainless-Steel-Air-Fryer-Toaster-Oven-1800W-For-Family-Cooking/19976971506",
+        "price": "169.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/HYSapientia-24QT-Dual-Zone-Air-Fryer-Oven-With-Rotisserie-10-in-1-Full-Stainless-Steel-Air-Fryer-Toaster-Oven-1800W-For-Family-Cooking_31f10997-6672-480c-bf6e-a6ca68dd144f.a0e1329b8ecb03d084f157610ad5402d.jpeg",
+        "rank": 41
+      },
+      {
+        "id": "9968867934",
+        "title": "Xxxxxxx 6XX Xxx Xxxxx, 8-in-1 Xxxxxxxx Xxx Xxxx with Xxxxxxx XXX Xxxxxxxxxxx, Xxxxxxx Xxxxxx, 1500W, Xxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/Bluebow-6QT-Air-Fryer-8-in-1-Electric-Hot-Oven-with-Digital-LED-Touchscreen-Visible-Window-1500W-New-Black/9968867934",
+        "price": "51.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Bluebow-6QT-Air-Fryer-8-in-1-Electric-Hot-Oven-with-Digital-LED-Touchscreen-Visible-Window-1500W-New-Black_b2bdce0c-583a-45ec-a684-20a2f6681367.c792eca8794ab31ca42f4ffb52d8bc42.jpeg",
+        "rank": 42
+      },
+      {
+        "id": "20174311982",
+        "title": "XXXXXX Xxx Xxxxx, Xxxxxx Xxxxx, 3.19 xx, Xxxx Xxx-Xxxx Xxxxxxx, Xxxxx Xxxxxx Xxxxxxxxx Xxxxxxxxx",
+        "url": "https://www.walmart.com/ip/Air-Fryer-1300W-Fast-Oil-Free-Cooking-Roast-Reheat-Dehydrate-Functions-Nonstick-Basket-with-Crisper-Plate-Easy-Clean-Glossy-Green-Finish/20174311982",
+        "price": "23.85",
+        "currency": "USD",
+        "rating": 2.6,
+        "reviewCount": "14",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-1300W-Fast-Oil-Free-Cooking-Roast-Reheat-Dehydrate-Functions-Nonstick-Basket-with-Crisper-Plate-Easy-Clean-Glossy-Green-Finish_75e3d34d-c3bd-4fd3-97a0-d19976cbaf7f.08932b79dcfa89d0f7a2f2ce991c1384.jpeg",
+        "rank": 43
+      },
+      {
+        "id": "21075921693",
+        "title": "5 Xx Xxxxx Xxx Xxxxx with Xxx 410X, XXX Xxxxxxx Xxxxxxxxxxx, Xxxxxxxx & Xxxxxxxxxx Xxxx Xxxxxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/5-Qt-Glass-Air-Fryer-with-Max-410-F-LED-Digital-Touchscreen-Nonstick-Dishwasher-Safe-Basket-Black/21075921693",
+        "price": "32.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/5-Qt-Glass-Air-Fryer-with-Max-410-F-LED-Digital-Touchscreen-Nonstick-Dishwasher-Safe-Basket-Black_89c55394-fef7-4f1b-bae3-4cc407352a33.35d9e0f63a2047b4bdff3088b1e9e1a7.jpeg",
+        "rank": 44
+      },
+      {
+        "id": "11084755298",
+        "title": "Xxxxxxx Xxx Xxxxx 8 Xx Xxx 450X xxx Xxxxxxx, 6 Xxxxxxx Xxx Xxxxx Xxxxx Xxxx View Xxxxxx, Xxx Xxxxx",
+        "url": "https://www.walmart.com/ip/Suodoka-Air-Fryer-10-Qt-Max-450F-for-Cooking-6-Presets-Fry-Touch-Panel-Easy-View-Window-New-Black/11084755298",
+        "price": "56.99",
+        "currency": "USD",
+        "rating": 3.0,
+        "reviewCount": "854",
+        "image": "https://i5.walmartimages.com/seo/Suodoka-Air-Fryer-10-Qt-Max-450F-for-Cooking-6-Presets-Fry-Touch-Panel-Easy-View-Window-New-Black_15d378f6-9b88-4950-a3d3-e43ee323699f.13e19dbd0481e9bbdf328ceba0fae52a.jpeg",
+        "rank": 45
+      },
+      {
+        "id": "19937812797",
+        "title": "Xxxxxxx XxxxxXxx 3-in-1 Xxx Xxxxx, 450°X Xxx Xxxx with 3.5 Xx. Xxxxxxxx Xxxxxx – Xxxxx",
+        "url": "https://www.walmart.com/ip/Chefman-TurboFry-3-in-1-Air-Fryer-450-F-Max-Temp-with-3-5-Qt-Nonstick-Basket-Black/19937812797",
+        "price": "44.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Chefman-TurboFry-3-in-1-Air-Fryer-450-F-Max-Temp-with-3-5-Qt-Nonstick-Basket-Black_b932a8e8-a98f-4c10-8cda-9ff447af5113.8d3e3a2c7c969d9cdb83529aa986da7c.jpeg",
+        "rank": 46
+      },
+      {
+        "id": "5220938592",
+        "title": "Xxxxxxx Xxx Xxxxx 12XX Xxxxxxxxxx Xxxx with 10-in-1 Xxxxx Xxxxxxxx, Xxxxxxx Xxxxxx xxx Xxxxxxxxxxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/Bluebow-Air-Fryer-12QT-Convection-Oven-with-10-in-1-Multi-Function-Visible-Window-and-Touchscreen-Black/5220938592",
+        "price": "74.99",
+        "currency": "USD",
+        "rating": 3.5,
+        "reviewCount": "2873",
+        "image": "https://i5.walmartimages.com/seo/Bluebow-Air-Fryer-12QT-Convection-Oven-with-10-in-1-Multi-Function-Visible-Window-and-Touchscreen-Black_5f771e76-c97e-4a6a-a146-0c0c64fe4590.da340f70b7ad44243912383d0cc29c3c.jpeg",
+        "rank": 47
+      },
+      {
+        "id": "5472689862",
+        "title": "Xxxxxxx 8 Xx Xxx Xxxxx, 8 Xxxxxxx with Xxxxxxx Xxxxxxx, XxxXxxxx 360° Xxxxxxxxxx, Xxxx View Xxxxxx & Xxxxxxxx Xxxxx, Xxxxxxxxxx Xxxx Xxxxxx, Xxxxx",
+        "url": "https://www.walmart.com/ip/Gourmia-8-Quart-Digital-Window-Air-Fryer-with-8-One-Touch-Functions-Green-New/5472689862",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "8880",
+        "image": "https://i5.walmartimages.com/seo/Gourmia-8-Quart-Digital-Window-Air-Fryer-with-8-One-Touch-Functions-Green-New_08c6ca1d-43a6-443d-8082-7b2fed9b2b26.b23ae219d903735a13cb411e23cafd28.jpeg",
+        "rank": 48
+      },
+      {
+        "id": "20651661706",
+        "title": "7.5 XX Xxx Xxxxx, 8-in-1 Xxx Xxxxx Xxxx with Xxxxx Xxxxx, Xxxxxxx XXX Xxxxx Xxxxxx, Xxxxxxx Xxxxxx with Xxxxxxxx Xxxxx, Xxxxx Xxxxxxxx Xxx Xxxxx with Xxxxxxx, 95% Xxxx Xxx, Xxxxxxxx Xxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/7-5-QT-Air-Fryer-8-in-1-Air-Fryer-Oven-Grill-Plate-Digital-LED-Touch-Screen-Visible-Window-Interior-Light-Large-Capacity-Air-Fryer-Presets-95-Less-Oi/20651661706",
+        "price": "59.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "27",
+        "image": "https://i5.walmartimages.com/seo/7-5-QT-Air-Fryer-8-in-1-Air-Fryer-Oven-Grill-Plate-Digital-LED-Touch-Screen-Visible-Window-Interior-Light-Large-Capacity-Air-Fryer-Presets-95-Less-Oi_432e5eb6-5aec-489d-9938-9da6216b4d27.dee085f950d34f6b5d4bddbaebe9ee8f.png",
+        "rank": 49
+      },
+      {
+        "id": "5901579739",
+        "title": "xxxxx 4 Xx Xxxx Xxxxxxx Xxx Xxxxx with XxxxXxxx™ Xxxxxxx Xxxxxxxx Xxxxxxx, 6 Xxxxxx Xxxxxxx Xxxxxxx, Xxxxxxx",
+        "url": "https://www.walmart.com/ip/bella-4qt-Slim-Air-Fryer-Oatmilk/5901579739",
+        "price": "59.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/bella-4qt-Slim-Air-Fryer-Oatmilk_dfa6a515-39d4-4ece-a31a-dcca5d98e65f.5b5a2603e0e0ea720c2cec64e6c0ee7d.jpeg",
+        "rank": 50
+      },
+      {
+        "id": "6498656788",
+        "title": "XxxxxXxxx 4.5 Xxxxx Xxx Xxxxx Xxxxxxx Xxxxxxxx, Xxxxxxxx",
+        "url": "https://www.walmart.com/ip/GreenLife-Mechanical-Air-Fryer-Graphite/6498656788",
+        "price": "34.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "271",
+        "image": "https://i5.walmartimages.com/seo/GreenLife-Mechanical-Air-Fryer-Graphite_f76f2387-a826-4189-82f1-a9a2779a4e89.9332feee49d2ec3497729e940125dbf4.jpeg",
+        "rank": 51
+      },
+      {
+        "id": "20226359682",
+        "title": "Xxxxxxxx 35 XX Xxxxx-Xxxxx Xxxxxx Xxxxxxx Xxxx Xxx Xxxxx, 360 Xxxxxxxxxx Xxxxx Xxxxx,12 Xxx-Xxxxx",
+        "url": "https://www.walmart.com/ip/Air-Fryer-Toaster-Oven-Combo-33L-Countertop-Convection-Oven-Rotisserie-Digital-Touch-Control-10-Presets-Dual-Temperature-Control-Pizza-Bake-Toast-Air/20226359682",
+        "price": "109.92",
+        "currency": "USD",
+        "rating": 4.4,
+        "reviewCount": "43",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-Toaster-Oven-Combo-33L-Countertop-Convection-Oven-Rotisserie-Digital-Touch-Control-10-Presets-Dual-Temperature-Control-Pizza-Bake-Toast-Air_655d9c84-13b0-4182-8cb3-929fed81d1c8.ab91147cd6f310c68d47bf0e731b4583.jpeg",
+        "rank": 52
+      },
+      {
+        "id": "16930256702",
+        "title": "xxxxx 6 Xx Xxxx Xxxxxxx Xxx Xxxxx with XxxxXxxx™ Xxxxxxx Xxxxxxxx Xxxxxxx, 6 Xxxxxx Xxxxxxx Xxxxxxx, Xxxxxxxx",
+        "url": "https://www.walmart.com/ip/bella-Slim-6-0-QT-Air-fryer-Seaglass/16930256702",
+        "price": "79.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "397",
+        "image": "https://i5.walmartimages.com/seo/bella-Slim-6-0-QT-Air-fryer-Seaglass_13f26b56-dd04-4923-a095-1de71f1c0375.ee12a78e1ecee31e602d83e3b7806f9c.jpeg",
+        "rank": 53
+      },
+      {
+        "id": "5177126208",
+        "title": "XXXXX 12XX Xxxxxxxxxxx Xxx Xxxxx Xxxxxxx Xxxx, 12 Xxx-xxx Xxxxx, Xxxxx Xxxxxx, Xxxx Xxx",
+        "url": "https://www.walmart.com/ip/Whall-Air-Fryer-Oven-12QT-Touchscreen-Air-Fryer-with-12-Pre-set-Menus-up-to-95-Less-Oil-and-Clearlook-Window-New/5177126208",
+        "price": "94.99",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Whall-Air-Fryer-Oven-12QT-Touchscreen-Air-Fryer-with-12-Pre-set-Menus-up-to-95-Less-Oil-and-Clearlook-Window-New_87958c98-ae27-45bc-928c-9392a13c9734.5b8695222efc64d5f040d91e92438043.png",
+        "rank": 54
+      },
+      {
+        "id": "14838914952",
+        "title": "Xxx Xxxxx Xxxx, 2 in 1 Xxxxxxxx Xxxxxxx Xxx Xxx Xxxxxx with Xxxxxxxx Xxxx Xxxxx xxx Xxxx, Xxxxxxxxxx Xxxx Xxx Xxxxx Xxxxxx xxx Xxxx,Xxxxxxxxx Xxxxx (11\"x11\",Xxxxxx)",
+        "url": "https://www.walmart.com/ip/Air-Fryer-Tray-2-1-Nonstick-Crisper-Air-Fry-Basket-Elevated-Mesh-Great-Oven-Dishwasher-Safe-Air-Fryer-Basket-Oven-Stainless-Steel-11-x11-Silver/14838914952",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 3.5,
+        "reviewCount": "2",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-Tray-2-1-Nonstick-Crisper-Air-Fry-Basket-Elevated-Mesh-Great-Oven-Dishwasher-Safe-Air-Fryer-Basket-Oven-Stainless-Steel-11-x11-Silver_13a8995a-e86c-4afe-8045-4db0e5e82116.b75463058a2828b1af151531f4c3e933.jpeg",
+        "rank": 55
+      },
+      {
+        "id": "20084016872",
+        "title": "Xxxx Xxxxx with Xxxxxx xxx Xxxx, Xxxxxxxx Xxx Xxxxx Xxx, 6 Xxxx Xxxxxxx, Xxxxxxxx Xxxxxxxxxxx, 1H Xxxxx, Xxxx Xxxxxxx, View Xxxxxx, Xxxx, Xxxxxx Xxxxx",
+        "url": "https://www.walmart.com/ip/3L-Stainless-Steel-Deep-Fryer-with-Basket-for-Home-Use-1700W-Deep-Fryer-with-Oil-Filtration-Temp-Control-Digital-Timer/20084016872",
+        "price": "49.93",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "55",
+        "image": "https://i5.walmartimages.com/seo/3L-Stainless-Steel-Deep-Fryer-with-Basket-for-Home-Use-1700W-Deep-Fryer-with-Oil-Filtration-Temp-Control-Digital-Timer_3a17ba84-cb76-45ff-acbd-77d30f7c508f.9720b384b755669af26d8beb2757b585.jpeg",
+        "rank": 56
+      },
+      {
+        "id": "17555472042",
+        "title": "Xxx Xxxxx Xxxxxx xxx Xxxx,Xxxx Xxx Xxxxx Xxxxxx xxx Xxxx with 30 XXX Xxxxxxxxx Xxxxxx,2 Xxx Xxxxxxxxx Xxxxx Xxx Xxxxx Xxx xxx Xxxxxxx Xxxx xxx Xxxxxx Xxxxxxxx (15.6 x 11.6 xxxx)",
+        "url": "https://www.walmart.com/ip/Air-Fryer-Basket-Oven-Oven-Air-Fryer-Basket-Tray-30-PCS-Parchment-Papers-2-Set-Stainless-Steel-Air-Fryer-Pan-Crisper-Tray-Baking-Grilling-15-6-x-11-6/17555472042",
+        "price": "25.45",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "56",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-Basket-Oven-Oven-Air-Fryer-Basket-Tray-30-PCS-Parchment-Papers-2-Set-Stainless-Steel-Air-Fryer-Pan-Crisper-Tray-Baking-Grilling-15-6-x-11-6_4e990a94-1c6d-4876-b14e-28e5ed543274.d23b9c045d4ed318dccfb893e5fcaa5b.jpeg",
+        "rank": 57
+      },
+      {
+        "id": "12291455335",
+        "title": "Xxxxx Xxxxxx: Xxxx Xxx Xxxxx: Xxx xxx Xxxx Xxxxxxxxx Xxxx [Xxxxxxxx Xxxxxxxxxxxx] (Xxxxxxxxx)",
+        "url": "https://www.walmart.com/ip/Easy-Air-Fryer-The-Book-You-ve-Been-Waiting-for-Hardcover-9781250397973/12291455335",
+        "price": "13.98",
+        "currency": "USD",
+        "rating": 3.8,
+        "reviewCount": "8",
+        "image": "https://i5.walmartimages.com/seo/Easy-Air-Fryer-The-Book-You-ve-Been-Waiting-for-Hardcover-9781250397973_a4c20522-99df-467f-bab7-ab76634786f0.0b1a83cc6568c4163f69c9d2fa3db443.jpeg",
+        "rank": 58
+      },
+      {
+        "id": "343575060",
+        "title": "Xxx Xxxxx: Xxxxx & Xxxx Xxxxxxx!, (Xxxxxxxxx)",
+        "url": "https://www.walmart.com/ip/Air-Fryer-Quick-Easy-Recipes-Hardcover-9781645586050/343575060",
+        "price": "13.59",
+        "currency": "USD",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-Quick-Easy-Recipes-Hardcover-9781645586050_8303b261-5bdf-4e43-9359-c0ca13a948e5.ea1f81f9d45812cba2ed171bac75d4b1.jpeg",
+        "rank": 59
+      },
+      {
+        "id": "19332019076",
+        "title": "Xxx Xxxxx Xxxxxx xxx Xxxx,Xxxx Xxx Xxxxx Xxxxxx xxx Xxxx with 50 XXX Xxxxxxxxx Xxxxxx,2 Xxx Xxxxxxxxx Xxxxx Xxx Xxxxx Xxx xxx Xxxxxxx Xxxx xxx Xxxxxx Xxxxxxxx (Xxxxx)",
+        "url": "https://www.walmart.com/ip/Air-Fryer-Basket-Oven-Oven-Air-Fryer-Basket-Tray-30-PCS-Parchment-Papers-2-Set-Stainless-Steel-Air-Fryer-Pan-Crisper-Tray-Baking-Grilling-Black/19332019076",
+        "price": "29.88",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "17",
+        "image": "https://i5.walmartimages.com/seo/Air-Fryer-Basket-Oven-Oven-Air-Fryer-Basket-Tray-30-PCS-Parchment-Papers-2-Set-Stainless-Steel-Air-Fryer-Pan-Crisper-Tray-Baking-Grilling-Black_75f58700-ecaa-4d17-8bf7-dcc448891c3d.1d30c43c71b85d4363078ea122715a79.jpeg",
+        "rank": 60
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "walmart.com/search",
+      "version": 1,
+      "sha256": "1f0510c946cc278d34183b043c8b25e1b57dea489247e46bd855511af581c1d9"
+    }
+  ]
+}

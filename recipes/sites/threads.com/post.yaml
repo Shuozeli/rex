@@ -1,0 +1,165 @@
+# Threads post page -> rex.schema.social.v1.Thread (decisions.md U35). Rendered page only; class names are
+# generated. Posts are div[data-pressable-container=true] inside page pagelets: the focal post under
+# data-pagelet="threads_post_page_1", its ancestors under "threads_post_page_0", and replies under the
+# literal "threads_post_page_{n}". time@datetime is exact UTC. Counts follow their icon: svg[title=Like] + span.
+# Replies show only the @handle, which also serves as the author name.
+id: threads.com/post
+version: 1
+schema: rex.schema.social.v1.Thread
+match:
+  urls:
+    hosts: ["threads.com", "threads.net"]
+    include: ["^/@[^/]+/post/[A-Za-z0-9_-]+"]
+  page:
+    all:
+      - exists: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true]"
+fields:
+  - path: url
+    candidates:
+      - link: { rel: "canonical" }
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "^(https://[^/]+/@[^/]+/post/[A-Za-z0-9_-]+)", group: 1 }
+
+  - path: post.id
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - regex: { pattern: "/post/([A-Za-z0-9_-]+)", group: 1 }
+
+  - path: post.url
+    candidates:
+      - field: { path: url }
+
+  - path: post.author.name   # og:title "Mark Zuckerberg (@zuck) on Threads"
+    expect: true
+    candidates:
+      - meta: { key: "og:title" }
+        pipe:
+          - regex: { pattern: "^(.*?) \\(@[^)]+\\) on Threads$", group: 1 }
+      - url: { part: URL_PART_HREF }
+        pipe:
+          - regex: { pattern: "/@([^/]+)/post/", group: 1 }
+
+  - path: post.author.handle
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - regex: { pattern: "/@([^/]+)/post/", group: 1 }
+
+  - path: post.author.url
+    candidates:
+      - url: { part: URL_PART_HREF }
+    pipe:
+      - regex: { pattern: "^(https://[^/]+/@[^/]+)/post/", group: 1 }
+
+  - path: post.author.verified
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] svg[title=Verified]", take: TAKE_EXISTS }
+    pipe:
+      - default: { value: "false" }
+
+  - path: post.text
+    expect: true
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] div > span[dir=auto]:has(> span)" }
+      - meta: { key: "og:description" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: post.published_at
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] time", take: TAKE_ATTRIBUTE, attribute: datetime }
+    pipe:
+      - slice: { start: 0, end: 1 }
+
+  - path: post.likes
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] svg[title=Like] + span" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: post.replies
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] svg[title=Comment] + span" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: post.reposts
+    candidates:
+      - css: { selector: "[data-pagelet=threads_post_page_1] div[data-pressable-container=true] svg[title=Repost] + span" }
+    pipe:
+      - slice: { start: 0, end: 1 }
+      - number: {}
+
+  - path: post.media
+    candidates:
+      - meta: { key: "og:image" }
+
+  - path: reply_count
+    candidates:
+      - field: { path: post.replies }
+
+  - path: replies
+    each: "[data-pagelet=threads_post_page_0] div[data-pressable-container=true], [data-pagelet='threads_post_page_{n}'] div[data-pressable-container=true]"
+    fields:
+      - path: id
+        candidates:
+          - css: { selector: "a[href*='/post/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "/post/([A-Za-z0-9_-]+)", group: 1 }
+      - path: url
+        candidates:
+          - css: { selector: "a[href*='/post/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "^(/@[^/]+/post/[A-Za-z0-9_-]+)", group: 1 }
+          - url: {}
+      - path: author.name
+        candidates:
+          - css: { selector: "a[href*='/post/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "^/@([^/]+)/", group: 1 }
+      - path: author.handle
+        candidates:
+          - css: { selector: "a[href*='/post/']", take: TAKE_ATTRIBUTE, attribute: href }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - regex: { pattern: "^/@([^/]+)/", group: 1 }
+      - path: author.verified
+        candidates:
+          - css: { selector: "svg[title=Verified]", take: TAKE_EXISTS }
+        pipe:
+          - default: { value: "false" }
+      - path: text
+        candidates:
+          - css: { selector: "div > span[dir=auto]:has(> span)" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: published_at
+        candidates:
+          - css: { selector: "time", take: TAKE_ATTRIBUTE, attribute: datetime }
+        pipe:
+          - slice: { start: 0, end: 1 }
+      - path: likes
+        candidates:
+          - css: { selector: "svg[title=Like] + span" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: replies
+        candidates:
+          - css: { selector: "svg[title=Comment] + span" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}
+      - path: reposts
+        candidates:
+          - css: { selector: "svg[title=Repost] + span" }
+        pipe:
+          - slice: { start: 0, end: 1 }
+          - number: {}

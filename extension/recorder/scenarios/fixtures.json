@@ -1,0 +1,15 @@
+{
+  "name": "rex-e2e-fixtures",
+  "title": "rex e2e：正式版 Chrome 上的 fixture 页面",
+  "subtitle": ["封闭环境：页面和配方包都来自容器内部，不访问外网", "商店构建 · 真实点击工具栏图标 · 结果对照 expected.json"],
+  "restartBetweenScenes": false,
+  "scenes": [
+    { "name": "wikipedia", "fixture": "fixtures/wikipedia.org/article/en-web-scraping" },
+    { "name": "amazon", "fixture": "fixtures/amazon.com/product/airpods-pro-2" },
+    { "name": "hn", "fixture": "fixtures/news.ycombinator.com/front/front-page" },
+    { "name": "bilibili", "fixture": "fixtures/bilibili.com/video/anji-en-site" },
+    { "name": "zhihu", "fixture": "fixtures/zhihu.com/question/q-19581624" },
+    { "name": "xueqiu", "fixture": "fixtures/xueqiu.com/stock/maotai" },
+    { "name": "youtube", "fixture": "fixtures/youtube.com/watch/big-buck-bunny" }
+  ]
+}

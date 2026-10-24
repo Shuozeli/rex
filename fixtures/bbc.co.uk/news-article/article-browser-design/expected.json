@@ -1,0 +1,90 @@
+{
+  "recipe": {
+    "id": "bbc.co.uk/news-article",
+    "version": 2,
+    "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.bbc.co.uk/news/articles/cm9qzwjgnjxlo",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T05:15:07Z",
+  "extractTime": "2026-10-15T05:15:07Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@1"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "candidate": 1,
+      "recipe": "bbc.co.uk/news-article@2"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@1"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 7200,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.bbc.com/news/articles/cm9qzwjgnjxlo",
+    "title": "Xxxxxx xxxxxx xxx $1.3xx in 'xxx xx xxx xxxxxx of xxxxxxxx'",
+    "authors": [
+      {
+        "name": "Xxxxxx Xxxx"
+      }
+    ],
+    "publishedAt": "2026-10-13T01:36:36.784Z",
+    "updatedAt": "2026-10-13T15:59:07.448Z",
+    "summary": "Xxx xxxxxx xxx xxxxx xxxxxxxx xxxxxxx xxx \"xxxxx-xxxxx\" xxxx xxxx xxx xxxx xxxxxx by xx xxxxxxxxxx xxxx.",
+    "image": "https://ichef.bbci.co.uk/news/1024/branded_news/e542/live/77558740-c724-11f1-a64c-550be9e3c66b.jpg",
+    "bodyHtml": "<p>Xxxxxx xxx Xxxxxx xxx xxxx xxxxxx xxx $1.3xx (£980m) in xxxx xxx xxx xxxxxx xxxxxx \"a xxx xx xxx xxxxxx of xxxxxxxx\". </p>\n<p>Xxxxxxxxxx xxxx Xxxxxx Xxxxxxxx is xxxxxx xxxx xxx xxxx-xxxxxx xxxx xxx xx xxxxxxxxx, Xxxx Xxxxx xxx Xxxx Xxxxxxx, xxxx xxxxxx xx-xxxxx xxxxxxxxxx of xxx xxxxxxx xxxxx xxxx xxxxxxxxxxxxxx xxxxxx by xxxxxx a \"xxxxx-xxxxx\" xxxx xxxx.</p>\n<p>Xxxxxx xxxxxxx xxx xxxx in August xxxx year.</p>\n<p>Xxxxxxx Xxxxx Xxxx, Xxxxxx'x xxxxxxx xxx xxxxxxx xxxxx xxxxxxxxx, xxxx xxx xxxxx xxxxxx \"xxxxxxxx xxxxxxxx\" with xxx xxxxxxxx xxx xxx xx 12 years ago.</p>\n<p>Xxxxx xx is xxxxxxx xxxx Xxxxx Xxxx'x xxxx at xxx xxxxxx xxx xxxx xx, xxx xxxx xxx xxxx xxxx xxxxxxx with xxx xxx xxxxxx. </p>\n<p>Xxxxx xxx Xxxxxxx xxxx xxxx xxxxxx to xxx xxxxxxxxxx to \"xxxxx xxx xxxxxxxxxx xxxxxxxxxx...in a xxxxx xxxxxxxxxxx by XX\".</p>\n<p>Xxxx xxxx: \"Xxxxxxxxxx xxxxxx xxxx in xxxxxxx of xxx xxxxxxx xxxxxx of xxxxxxxxxxx, xxxxx xxxxxxxxxx xxx xxxx xxxxxxxxxx is a xxx xx xxx xxxxxx of xxxxxxxx.\"</p>\n<p>Xxxx xxxxxxxxx with a xxxxxx xxxxxx xxxx xxx xxxxxx of XX, with <a href=\"https://www.bbc.co.uk/news/articles/c790xvnzgnno\">xxxx xxxxxxx xxxxxxxx xxx xxxxx of xxx xxxxxxxxxxx xxxxxxxxx xxx xxxxxx of xxxxxxxx</a>.<b> </b></p>\n<p>Xxxxxx'x share xxxxx xxx xxxxxx as xxxx of xxx xxxx xxxxx to xxxxxx. Xxx xxxx xxxxxx xxx xxxxxxx xxxxxxxxx to xxxx $580m xxx xxxx is xxxxx xxx xxxxx a xxxx of xxxx xxxx $14xx xx xxxxxxx <a href=\"https://www.bbc.com/news/business-56031281\">after xx xxxxxxx xxx xxxxxxxx xx xxx Xxxxxx stock xxxxx in 2021</a>.</p>\n<p>Xxxxx xxxxxxxx a xxxxxx xxxxxxx, xx xxx xxxx xx xxxxxx pre-xxx xxxxxx xxxx xxxx, in 2023.</p>\n<p>In xxx xxxxxxxxx xxx years, xx xxxxxxxx xxxxx xxxxxx, xxxxxx xxxxxx xxxx xxxxxx Xxxxxx xxx xxxx xxxxxxx to xxxxxxxxxxx xxx xxxxxxxxxx, xxxxxxxxx XX, xxxx xxx xxx.</p>\n<p>Xxx xxxxx xxxxxxxxx in 2024, Xxxxxxx Xxxxx, xxxx xxx XXX xxx xxxxxxxx XX xxx \"xxxxxxxx xxxxxxxxx\" in xxxxxx xxxx xxxxxxx to xxxxxx, xxx Xxxxxx xxx xxxx xxxxxxx at xxxxxxxx xxxx xxxxx Xxx Z xxx xxxxxxxxxxxx xxxx xxxxxxxxxx in XX xxxxxxxxxx with xxxxxxxx xxxxxxxx.</p>\n<p>Xxxx year, xxx xxxxxx xxx xxxxxxxx xxxxxxx xxx XX xxxxxxxx, xxxxxxxxx profile xxxxxxxx to xxxx xxxxxx xxxxxx xxxxxx xxxxxxxx. </p>\n<p></p>\n<p>Xxxxxx xxx xxxxxxxx in 2014 by Xxxxx Xxxx xxx xxxxx xxx xxxxx xxxxxx a xxxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxx xxxxx to xxxxxxxx xxxxxxxxxxxxx with xxxxxxx.</p>\n<p>Xx <a href=\"https://www.bbc.com/news/articles/cvglzlj81x2o\">xxxxxxxx xxxxxxxxx xxxx xxxx</a>, xxxxxxxxx xxxxxx xxxxx xxxxx xxxx xxxxxxx xxx xxx xxx xxxx xxxx xxx xx xxxxx xxxx xxxxxx.</p>\n<p>\"Today, xxx xxxxxxxxx is xxxxxx xxx xxxx xxxxxxxxxxx, xxxx xxxxxxxx, xxx xxxx xxxxxxxxxxxxx to xxxxxx xxxx, xxxxxxxxxx xxxxxxxxxxx xxx xxxx is xxxx xxxx xxx xxxxxxxxxx xxxxxxxx,\" Xxxxx Xxxx xxxx in August.</p>\n<p>Xxxxxx xxxx like Xxxxxx xxxx xxxx xxxxx xxxxxxxx in xxxxxx years as xxxx xxxxxxx xxxxx xxxx xxxxx xxxxxxxxxxxxx with xxxxxxxx xxx xxxxx.</p>\n<p>Xxxxxx xxxx in 2025 xxxx xx xxxxx xxx xxxxxx a xxxxx of xxx xxxxxxxxx as xxx xxxxxxxx xxxxxxxx with xxxx Xxxxx Xxxx xxxxxxxxx as xx \"xxxxxxxxxx point\" in xxxxxx xxxxxx.</p>\n<p>Xxxxxxxxxxx in xxxxx xxxxxx xxxxxxxxx xxxx xxxx xxxxxx as xxxx xxxx xxxxxxxxx to xxxxxxxx xxxxx to xxx xxx xxxxx xxxxxxxx.</p>\n<p>Xxxxx Xxxxx - xxxxx xxxx xxxx xxxxxxxxx Xxxxxx, XxXxxxx xxx Xxxxx - xxx xxxx xxxx xxx shares xxxx xxxxxxx xxxx xxxxx xxxx in 2021.</p>\n<p>Xxxxxxxxx to a xxxxxx by xxxxx xxxxxxxx Xxxxx in 2025, xxxxxx in xxx XX xxxx xxxxxxxx xxxx xxxx xx xxxxxx xxxx xxxxxxxx to xxxxx years xxxxxxx.</p>\n<p>Xxxx xxxxxx xxxxxx xxx xxxxxxx <a href=\"https://www.bbc.com/news/articles/cjwgll8d4g9o\">xxxxxxx to xxxxx xxxx xxx-xxxxxxxxx</a>, xxxx xxxxx xxx xxxxx xxxxx xxxxxxxxxx in xxx xxxx of xxxxxxx a xxxxxxx.</p>\n<h2>X'xx xxxx xxx xxxx xxx xxxxx - xxx xx xxx't xxxx xxxxxx xxx xxxx. Xxxx xx xxxx out?</h2>\n<h2>Xxxx Xxxx Xxxxxx xxxxx xx xxxxx xxx xxxxxxxx xxxx of xxxxxx</h2>",
+    "bodyText": "Xxxxxx xxx Xxxxxx xxx xxxx xxxxxx xxx $1.3xx (£980m) in xxxx xxx xxx xxxxxx xxxxxx \"a xxx xx xxx xxxxxx of xxxxxxxx\".\n\nXxxxxxxxxx xxxx Xxxxxx Xxxxxxxx is xxxxxx xxxx xxx xxxx-xxxxxx xxxx xxx xx xxxxxxxxx, Xxxx Xxxxx xxx Xxxx Xxxxxxx, xxxx xxxxxx xx-xxxxx xxxxxxxxxx of xxx xxxxxxx xxxxx xxxx xxxxxxxxxxxxxx xxxxxx by xxxxxx a \"xxxxx-xxxxx\" xxxx xxxx.\n\nXxxxxx xxxxxxx xxx xxxx in August xxxx year.\n\nXxxxxxx Xxxxx Xxxx, Xxxxxx'x xxxxxxx xxx xxxxxxx xxxxx xxxxxxxxx, xxxx xxx xxxxx xxxxxx \"xxxxxxxx xxxxxxxx\" with xxx xxxxxxxx xxx xxx xx 12 years ago.\n\nXxxxx xx is xxxxxxx xxxx Xxxxx Xxxx'x xxxx at xxx xxxxxx xxx xxxx xx, xxx xxxx xxx xxxx xxxx xxxxxxx with xxx xxx xxxxxx.\n\nXxxxx xxx Xxxxxxx xxxx xxxx xxxxxx to xxx xxxxxxxxxx to \"xxxxx xxx xxxxxxxxxx xxxxxxxxxx...in a xxxxx xxxxxxxxxxx by XX\".\n\nXxxx xxxx: \"Xxxxxxxxxx xxxxxx xxxx in xxxxxxx of xxx xxxxxxx xxxxxx of xxxxxxxxxxx, xxxxx xxxxxxxxxx xxx xxxx xxxxxxxxxx is a xxx xx xxx xxxxxx of xxxxxxxx.\"\n\nXxxx xxxxxxxxx with a xxxxxx xxxxxx xxxx xxx xxxxxx of XX, with xxxx xxxxxxx xxxxxxxx xxx xxxxx of xxx xxxxxxxxxxx xxxxxxxxx xxx xxxxxx of xxxxxxxx.\n\nXxxxxx'x share xxxxx xxx xxxxxx as xxxx of xxx xxxx xxxxx to xxxxxx. Xxx xxxx xxxxxx xxx xxxxxxx xxxxxxxxx to xxxx $580m xxx xxxx is xxxxx xxx xxxxx a xxxx of xxxx xxxx $14xx xx xxxxxxx after xx xxxxxxx xxx xxxxxxxx xx xxx Xxxxxx stock xxxxx in 2021.\n\nXxxxx xxxxxxxx a xxxxxx xxxxxxx, xx xxx xxxx xx xxxxxx pre-xxx xxxxxx xxxx xxxx, in 2023.\n\nIn xxx xxxxxxxxx xxx years, xx xxxxxxxx xxxxx xxxxxx, xxxxxx xxxxxx xxxx xxxxxx Xxxxxx xxx xxxx xxxxxxx to xxxxxxxxxxx xxx xxxxxxxxxx, xxxxxxxxx XX, xxxx xxx xxx.\n\nXxx xxxxx xxxxxxxxx in 2024, Xxxxxxx Xxxxx, xxxx xxx XXX xxx xxxxxxxx XX xxx \"xxxxxxxx xxxxxxxxx\" in xxxxxx xxxx xxxxxxx to xxxxxx, xxx Xxxxxx xxx xxxx xxxxxxx at xxxxxxxx xxxx xxxxx Xxx Z xxx xxxxxxxxxxxx xxxx xxxxxxxxxx in XX xxxxxxxxxx with xxxxxxxx xxxxxxxx.\n\nXxxx year, xxx xxxxxx xxx xxxxxxxx xxxxxxx xxx XX xxxxxxxx, xxxxxxxxx profile xxxxxxxx to xxxx xxxxxx xxxxxx xxxxxx xxxxxxxx.\n\nXxxxxx xxx xxxxxxxx in 2014 by Xxxxx Xxxx xxx xxxxx xxx xxxxx xxxxxx a xxxxxxxxxxx xxxxxxx xxxx xxxx xxxxxxx xxxxx to xxxxxxxx xxxxxxxxxxxxx with xxxxxxx.\n\nXx xxxxxxxx xxxxxxxxx xxxx xxxx, xxxxxxxxx xxxxxx xxxxx xxxxx xxxx xxxxxxx xxx xxx xxx xxxx xxxx xxx xx xxxxx xxxx xxxxxx.\n\n\"Today, xxx xxxxxxxxx is xxxxxx xxx xxxx xxxxxxxxxxx, xxxx xxxxxxxx, xxx xxxx xxxxxxxxxxxxx to xxxxxx xxxx, xxxxxxxxxx xxxxxxxxxxx xxx xxxx is xxxx xxxx xxx xxxxxxxxxx xxxxxxxx,\" Xxxxx Xxxx xxxx in August.\n\nXxxxxx xxxx like Xxxxxx xxxx xxxx xxxxx xxxxxxxx in xxxxxx years as xxxx xxxxxxx xxxxx xxxx xxxxx xxxxxxxxxxxxx with xxxxxxxx xxx xxxxx.\n\nXxxxxx xxxx in 2025 xxxx xx xxxxx xxx xxxxxx a xxxxx of xxx xxxxxxxxx as xxx xxxxxxxx xxxxxxxx with xxxx Xxxxx Xxxx xxxxxxxxx as xx \"xxxxxxxxxx point\" in xxxxxx xxxxxx.\n\nXxxxxxxxxxx in xxxxx xxxxxx xxxxxxxxx xxxx xxxx xxxxxx as xxxx xxxx xxxxxxxxx to xxxxxxxx xxxxx to xxx xxx xxxxx xxxxxxxx.\n\nXxxxx Xxxxx - xxxxx xxxx xxxx xxxxxxxxx Xxxxxx, XxXxxxx xxx Xxxxx - xxx xxxx xxxx xxx shares xxxx xxxxxxx xxxx xxxxx xxxx in 2021.\n\nXxxxxxxxx to a xxxxxx by xxxxx xxxxxxxx Xxxxx in 2025, xxxxxx in xxx XX xxxx xxxxxxxx xxxx xxxx xx xxxxxx xxxx xxxxxxxx to xxxxx years xxxxxxx.\n\nXxxx xxxxxx xxxxxx xxx xxxxxxx xxxxxxx to xxxxx xxxx xxx-xxxxxxxxx, xxxx xxxxx xxx xxxxx xxxxx xxxxxxxxxx in xxx xxxx of xxxxxxx a xxxxxxx.\n\nX'xx xxxx xxx xxxx xxx xxxxx - xxx xx xxx't xxxx xxxxxx xxx xxxx. Xxxx xx xxxx out?\n\nXxxx Xxxx Xxxxxx xxxxx xx xxxxx xxx xxxxxxxx xxxx of xxxxxx"
+  },
+  "chain": [
+    {
+      "id": "bbc.co.uk/news-article",
+      "version": 2,
+      "sha256": "0c28d645a3b2f97bd9ec297d6005a193b66e416d51506bf4515914e593e64855"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 1,
+      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    }
+  ]
+}

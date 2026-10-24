@@ -1,0 +1,194 @@
+{
+  "recipe": {
+    "id": "quote.eastmoney.com/stock",
+    "version": 1,
+    "sha256": "982280482079d57c0a69a3917f3852c5fbac99bcd7f69f0a5d3f79af20ba6628"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://quote.eastmoney.com/sz000001.html",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-15T01:36:50Z",
+  "extractTime": "2026-10-15T01:36:50Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "type",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "previous_close",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "open",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "day_low",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "day_high",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "volume",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "market_cap",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "pe_ratio",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "stats",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "stats[0].name",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "stats[0].value",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "quote.eastmoney.com/stock@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "quote.eastmoney.com/stock@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "000001",
+    "name": "字字字字",
+    "type": "INSTRUMENT_TYPE_STOCK",
+    "exchange": "SZSE",
+    "currency": "CNY",
+    "price": "11.42",
+    "change": "-0.08",
+    "changePercent": "-0.7",
+    "previousClose": "11.5",
+    "open": "11.5",
+    "dayLow": "11.42",
+    "dayHigh": "11.52",
+    "volume": "12130000",
+    "marketCap": "221600000000",
+    "peRatio": "4.31",
+    "stats": [
+      {
+        "name": "今开",
+        "value": "11.50"
+      },
+      {
+        "name": "最高",
+        "value": "11.52"
+      },
+      {
+        "name": "涨停",
+        "value": "12.65"
+      },
+      {
+        "name": "换手",
+        "value": "0.06%"
+      },
+      {
+        "name": "成交量",
+        "value": "12.13万"
+      },
+      {
+        "name": "市盈(动)",
+        "value": "4.31"
+      },
+      {
+        "name": "总市值",
+        "value": "2216亿"
+      },
+      {
+        "name": "昨收",
+        "value": "11.50"
+      },
+      {
+        "name": "最低",
+        "value": "11.42"
+      },
+      {
+        "name": "跌停",
+        "value": "10.35"
+      },
+      {
+        "name": "量比",
+        "value": "3.72"
+      },
+      {
+        "name": "成交额",
+        "value": "1.391亿"
+      },
+      {
+        "name": "市净",
+        "value": "0.48"
+      },
+      {
+        "name": "流通市值",
+        "value": "2216亿"
+      }
+    ],
+    "url": "https://quote.eastmoney.com/sz000001.html"
+  },
+  "chain": [
+    {
+      "id": "quote.eastmoney.com/stock",
+      "version": 1,
+      "sha256": "982280482079d57c0a69a3917f3852c5fbac99bcd7f69f0a5d3f79af20ba6628"
+    }
+  ]
+}

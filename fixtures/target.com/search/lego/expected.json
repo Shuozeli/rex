@@ -1,0 +1,419 @@
+{
+  "recipe": {
+    "id": "target.com/search",
+    "version": 1,
+    "sha256": "ecc52938266917227b6a556e7b428f9c105147de73a23f54153ae03f0b9d7ef4"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.target.com/s?searchTerm=lego",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T05:10:29Z",
+  "extractTime": "2026-10-14T05:10:29Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    },
+    {
+      "path": "items[0].sponsored",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "target.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "lego",
+    "items": [
+      {
+        "id": "95046358",
+        "title": "XXXX Star Xxxx Xxxxxx Xxxxxxxx 2026 75456",
+        "url": "https://www.target.com/p/lego-star-wars-advent-calendar-2026-75456/-/A-95046358",
+        "price": "30.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "11",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_21c88c64-fee6-4436-8156-1de7bd9cfa39",
+        "sponsored": true,
+        "rank": 1
+      },
+      {
+        "id": "95046327",
+        "title": "XXXX Xxxxxx Xxxxxxxx Xxxxxx Xxxxxxxx 2026 43298",
+        "url": "https://www.target.com/p/lego-disney-princess-advent-calendar-2026-43298/-/A-95046327",
+        "price": "30.99",
+        "currency": "USD",
+        "rating": 3.9,
+        "reviewCount": "8",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_bc7e25c1-30d3-4b3c-b49e-cdb66c85a4b6",
+        "sponsored": true,
+        "rank": 2
+      },
+      {
+        "id": "93730951",
+        "title": "Xxxxxx Xxxxx Xxxx Xxx Xxxxxx Xxxxxx 62 Xxxxx Xxxxxx Xxxxxxxx Xxx Xxx xxx Xxxxxxxxxx - 858xx",
+        "url": "https://www.target.com/p/mattel-brick-shop-hot-wheels-custom-8217-62-chevy-pickup-building-toy-kit-858-pieces-for-collectors/-/A-93730951",
+        "price": "53.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "218",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_e1d47b21-c9aa-478e-9333-15aa7b4e5796",
+        "sponsored": true,
+        "rank": 3
+      },
+      {
+        "id": "95046345",
+        "title": "XXXX Xxxxxxxxxxx Xxxxx Xxxxxx Xxxxxxx Xxx 71053",
+        "url": "https://www.target.com/p/lego-minifigures-shrek-series-mystery-box-71053/-/A-95046345",
+        "price": "4.99",
+        "currency": "USD",
+        "rating": 4.2,
+        "reviewCount": "94",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_21ea0187-dd17-4952-87d9-45e96c075f86",
+        "rank": 4
+      },
+      {
+        "id": "94756752",
+        "title": "XXXX Xxxxxxxxxx Xxxxxxx Xxxxxxxx Xxx xxx Xxxx 11508",
+        "url": "https://www.target.com/p/lego-botanicals-daisies-building-toy-for-kids-11508/-/A-94756752",
+        "price": "9.89",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "203",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_85f8be33-a350-4b98-b307-19cdb990a076",
+        "rank": 5
+      },
+      {
+        "id": "94828796",
+        "title": "XXXX Xxxxxx Xxxxxx-Xxx xx. Xxxx-Xxxxx Xxxxx 30725",
+        "url": "https://www.target.com/p/lego-marvel-spider-man-vs-anti-venom-heist-30725/-/A-94828796",
+        "price": "4.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "76",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_e2022775-47bb-4899-90b1-ffc4797cb833",
+        "rank": 6
+      },
+      {
+        "id": "94982041",
+        "title": "Xxxxxx Xxxxx Xxxx Xxx Xxxxxx '84 Xxxx Xxxxx xxxxxxx Xxxxxxxx Xxx Xxx 864xx xxx Xxxxxxxxxx",
+        "url": "https://www.target.com/p/mattel-brick-shop-hot-wheels-audi-s-building-toy-kit-864pc-for-collectors/-/A-94982041",
+        "price": "59.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "33",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_eda1c45d-70d4-4894-9a16-77f262556ba4",
+        "sponsored": true,
+        "rank": 7
+      },
+      {
+        "id": "94982040",
+        "title": "Xxxxxx Xxxxx Xxxx Xxx Xxxxxx '71 Xxxxxxxxxxx Xxxxx X400 XX Xxxxxxxx Xxx Xxx 1523xx, xxx Xxxxxxxxxx",
+        "url": "https://www.target.com/p/mattel-brick-shop-hot-wheels-39-71-lamborghini-miura-p400-sv-building-toy-kit-1523pc-for-collectors/-/A-94982040",
+        "price": "129.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "30",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_b555006a-ad0e-4acc-9e06-113592e2a5f3",
+        "sponsored": true,
+        "rank": 8
+      },
+      {
+        "id": "95102235",
+        "title": "Xxxxxxx Xxxx Xxxxx Xxxxxxx",
+        "url": "https://www.target.com/p/kinetic-sand-sweet-station/-/A-95102235",
+        "price": "19.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "26",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_38be08f0-2262-4a75-97bc-2be41031e912",
+        "sponsored": true,
+        "rank": 9
+      },
+      {
+        "id": "86216189",
+        "title": "XXXX Xxxxxxx 3 in 1 Xxxxx Xxxxxxx & Xxxxxxxxx Xxxx 31134",
+        "url": "https://www.target.com/p/lego-creator-3-in-1-space-shuttle-38-spaceship-toys-31134/-/A-86216189",
+        "price": "7.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "548",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_3f882c7e-663e-413f-b19a-d05b409870af",
+        "rank": 10
+      },
+      {
+        "id": "95046358",
+        "title": "XXXX Star Xxxx Xxxxxx Xxxxxxxx 2026 75456",
+        "url": "https://www.target.com/p/lego-star-wars-advent-calendar-2026-75456/-/A-95046358",
+        "price": "30.99",
+        "currency": "USD",
+        "rating": 4.3,
+        "reviewCount": "11",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_21c88c64-fee6-4436-8156-1de7bd9cfa39",
+        "rank": 11
+      },
+      {
+        "id": "89144375",
+        "title": "XXXX Xxxx Xxxxxx Xxxxx Xxx Xxxxxxxx Xxx, Xxxxxxx Xxxx Xxx 60404",
+        "url": "https://www.target.com/p/lego-city-burger-truck-toy-building-set-pretend-play-toy-60404/-/A-89144375",
+        "price": "12.79",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "169",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_69318651-87e0-4f31-afe5-b08bb4258bed",
+        "rank": 12
+      },
+      {
+        "id": "95046388",
+        "title": "XXXX Xxxxx Xxxxxxxxx Xxx Xxxxx'x '65 Xxxx Xxxxxxx Xxxxxxxxx X1 77262",
+        "url": "https://www.target.com/p/lego-speed-champions-ken-block-39-s-39-65-ford-mustang-hoonicorn-v1-77262/-/A-95046388",
+        "price": "23.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "42",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_0999a069-06ec-45c1-93d8-f71bed0ad53b",
+        "rank": 13
+      },
+      {
+        "id": "95046258",
+        "title": "XXXX Xxxxxxx Xxxxxxx Xxxx 30729",
+        "url": "https://www.target.com/p/lego-pok-233-mon-premier-ball-30729/-/A-95046258",
+        "price": "4.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "29",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_6e2cc367-12ce-46c3-a775-20c873141b8f",
+        "rank": 14
+      },
+      {
+        "id": "95046359",
+        "title": "XXXX Star Xxxx Xxxxxxxx Xxxxxxx XX-XX Xxxxxx Xxxxxx 75458",
+        "url": "https://www.target.com/p/lego-star-wars-75458/-/A-95046359",
+        "price": "69.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "44",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_f9565912-16f4-4471-a557-1a5202692e63",
+        "rank": 15
+      },
+      {
+        "id": "52699306",
+        "title": "XXXX Xxxxxxx Xxxxxxxx Xxxxxxxx 10713",
+        "url": "https://www.target.com/p/lego-classic-creative-suitcase-10713/-/A-52699306",
+        "price": "11.89",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "801",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_55705823-bfd9-448f-a2f6-a66344d641bd",
+        "rank": 16
+      },
+      {
+        "id": "95046370",
+        "title": "XXXX Xxxxxx Xxxxxxxx: Xxxxxxxx Xxx Xxxxxxxx Xxxxx 76352",
+        "url": "https://www.target.com/p/lego-marvel-avengers-doomsday-new-avengers-tower-76352/-/A-95046370",
+        "price": "109.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "16",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_c6435677-d6b5-40fb-813d-239883e7f5ad",
+        "rank": 17
+      },
+      {
+        "id": "94756831",
+        "title": "XXXX Xxxxxxx 3 in 1 Xxxxxx with a Xxxxx Xxxx Xxxxxx 31377",
+        "url": "https://www.target.com/p/lego-creator-3-in-1-turtle-with-a-water-lily-flower-31377/-/A-94756831",
+        "price": "7.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "134",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_ed526a16-a053-4125-8a18-9018d53e6524",
+        "rank": 18
+      },
+      {
+        "id": "83783439",
+        "title": "XXXX Xxxxxxx Xxxxx Xxxxxxxxx 11026 Xxxxxxxx Xxx",
+        "url": "https://www.target.com/p/lego-classic-white-baseplate-11026-building-kit/-/A-83783439",
+        "price": "4.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "231",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_3c4378d0-e54e-4f25-9a5e-d54f10c7be47",
+        "rank": 19
+      },
+      {
+        "id": "94756840",
+        "title": "XXXX Xxxx Xxxxxx Xxxx Xxx Xxxxxxxx Xxx 60487",
+        "url": "https://www.target.com/p/lego-city-yellow-taxi-car-building-toy-60487/-/A-94756840",
+        "price": "14.99",
+        "currency": "USD",
+        "rating": 4.9,
+        "reviewCount": "42",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_7bc05477-964a-481d-a8bb-ab562d812818",
+        "rank": 20
+      },
+      {
+        "id": "92538318",
+        "title": "XXXX Xxxxxxxxxx Xxxxxx Xxxxxxxxxxx - Xxxx 18+ 10345",
+        "url": "https://www.target.com/p/lego-botanicals-flower-arrangement-ages-18-10345/-/A-92538318",
+        "price": "62.04",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "63",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_e337d8eb-63d2-4363-864a-250784f7f1e3",
+        "rank": 21
+      },
+      {
+        "id": "80130340",
+        "title": "XXXX Xxxxx Xxxxxx Xxxxxxx Xxxxxxxxx Xxxxxxxxxx Xxxxxxxx Xxx xxx Xxxxxx, Xxxxxxxxx Xxxx Xxxx - 10280",
+        "url": "https://www.target.com/p/lego-icons-flower-bouquet-botanical-collection-building-set-10280/-/A-80130340",
+        "price": "57.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "1489",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_d2ff6dcd-f0d0-43a4-8b41-88ed9eebcbf1",
+        "rank": 22
+      },
+      {
+        "id": "92538315",
+        "title": "XXXX Xxxxxxxxx Xxx Xxxx Xxx Xxxxx Xxx Xxxxxxx xxx Xxxxxxxx Xxxxxxx 21268",
+        "url": "https://www.target.com/p/lego-minecraft-the-baby-pig-house-toy-figures-and-building-playset-21268/-/A-92538315",
+        "price": "11.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "172",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_201ae827-753e-4238-92d7-6dce69d27911",
+        "rank": 23
+      },
+      {
+        "id": "92538311",
+        "title": "XXXX Xxxxxxx 3 in 1 Xxxx Xxxxxxx Xxxxxxxxxx Xxxxxx Xxxxxxxx Xxx with 3 Xxxxxxx Xxxxxxxx xx Xxxxx 31159",
+        "url": "https://www.target.com/p/lego-creator-3-in-1-wild-animals-surprising-spider-building-toy-with-3-options-scorpion-or-snake-31159/-/A-92538311",
+        "price": "7.19",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "237",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_9059a800-1983-43ae-8867-78b4027aed3b",
+        "rank": 24
+      },
+      {
+        "id": "94828803",
+        "title": "XXXX XX Xxxxxx: Xxxxx Xxxxx xxx xxx Xxxxxxx 30726",
+        "url": "https://www.target.com/p/lego-dc-batman-bruce-wayne-and-the-batsuit-30726/-/A-94828803",
+        "price": "4.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "88",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_43111681-1a2e-475d-859b-de77f57ec740",
+        "rank": 25
+      },
+      {
+        "id": "94756925",
+        "title": "XXXX Xxxxx Xxxxxx Xxxx Xxxxxxxx’x Xxxxx 76467",
+        "url": "https://www.target.com/p/lego-harry-potter-luna-lovegood-8217-s-house-76467/-/A-94756925",
+        "price": "89.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "44",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_f5d46b13-8572-45be-bf31-9027da72db47",
+        "rank": 26
+      },
+      {
+        "id": "94756940",
+        "title": "XXXX Xxxxxx Xxxx Xxxxxx: Xxxxxxxx: Xxxxxxxx 76348",
+        "url": "https://www.target.com/p/lego-marvel-epic-battle-avengers-doomsday-76348/-/A-94756940",
+        "price": "99.99",
+        "currency": "USD",
+        "rating": 4.9,
+        "reviewCount": "16",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_99d64e16-67cc-46ec-8f8e-f845e88974e2",
+        "rank": 27
+      },
+      {
+        "id": "94756937",
+        "title": "XXXX Xxxxx Xxxxxxxxx Xxxxxxxxx XxXxxxx Xxxx - Xxxxxx Xxxxx Xxxx - 77255",
+        "url": "https://www.target.com/p/lego-speed-champions-lightning-mcqueen-toys-disney-pixar-cars-77255/-/A-94756937",
+        "price": "27.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "171",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_6402f890-fb1b-479c-b494-4a4c55aa9a80",
+        "rank": 28
+      },
+      {
+        "id": "95046386",
+        "title": "XXXX Xxxxx Xxxxxxxxx Xxx Xxxx xxx Xxx Xxxxxxx Xxxxxx Xxxxx XX4 77260",
+        "url": "https://www.target.com/p/lego-speed-champions-the-fast-and-the-furious-toyota-supra-mk4-77260/-/A-95046386",
+        "price": "27.99",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "71",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_02b731db-1a0d-4776-b4fc-fd5e0ab170c1",
+        "rank": 29
+      },
+      {
+        "id": "86216266",
+        "title": "XXXX Xxxx Xxxx Xxxxxx Xxxx Xxx, Xxxxxx xx Xxxxx Xxx 60373",
+        "url": "https://www.target.com/p/lego-city-fire-rescue-boat-toy-floats-on-water-set-60373/-/A-86216266",
+        "price": "23.99",
+        "currency": "USD",
+        "rating": 4.9,
+        "reviewCount": "102",
+        "image": "https://target.scene7.com/is/image/Target/GUEST_127d78e5-c72f-444e-ac80-6450ddda82af",
+        "rank": 30
+      }
+    ]
+  },
+  "chain": [
+    {
+      "id": "target.com/search",
+      "version": 1,
+      "sha256": "ecc52938266917227b6a556e7b428f9c105147de73a23f54153ae03f0b9d7ef4"
+    }
+  ]
+}

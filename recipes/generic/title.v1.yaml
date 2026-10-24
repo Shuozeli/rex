@@ -1,0 +1,89 @@
+# Baseline for rex.schema.creative.v1.Title: any film or TV page with schema.org Movie / TVSeries data (IMDb,
+# Rotten Tomatoes, streaming catalogs). Site recipes `extends` this.
+id: generic/title.v1
+version: 1
+schema: rex.schema.creative.v1.Title
+fields:
+  - path: name
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:title" }
+
+  - path: type
+    candidates:
+      - json_ld: { path: "@type" }
+      - microdata: { path: "@type" }
+
+  - path: release_date
+    candidates:
+      - json_ld: {}
+      - json_ld: { path: "dateCreated" }
+      - microdata: {}
+
+  - path: duration_seconds
+    candidates:
+      - json_ld: { path: "duration" }
+      - microdata: { path: "duration" }
+    pipe:
+      - duration: {}
+
+  - path: genres
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: directors
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: creators
+    candidates:
+      - json_ld: {}
+
+  - path: actors
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: rating
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingValue" }
+      - microdata: { path: "aggregateRating.ratingValue" }
+
+  - path: rating_scale
+    candidates:
+      - json_ld: { path: "aggregateRating.bestRating" }
+      - microdata: { path: "aggregateRating.bestRating" }
+
+  - path: rating_count
+    candidates:
+      - json_ld: { path: "aggregateRating.ratingCount" }
+      - json_ld: { path: "aggregateRating.reviewCount" }
+      - microdata: { path: "aggregateRating.ratingCount" }
+
+  - path: content_rating
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+
+  - path: description        # IMDb's JSON-LD keeps HTML entities ("family&apos;s")
+    candidates:
+      - json_ld: {}
+        pipe:
+          - html_to_text: {}
+      - microdata: {}
+      - meta: { key: "og:description" }
+
+  - path: image
+    candidates:
+      - json_ld: {}
+      - microdata: {}
+      - meta: { key: "og:image" }
+
+  - path: url
+    candidates:
+      - link: { rel: canonical }
+      - meta: { key: "og:url" }
+      - url: { part: URL_PART_HREF }

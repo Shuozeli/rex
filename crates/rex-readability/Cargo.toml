@@ -1,0 +1,12 @@
+[package]
+name = "rex-readability"
+description = "Deterministic main-content detection for rex (the `readability` candidate source)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+rex-dom = { path = "../rex-dom" }
+scraper = "0.24"
+ego-tree = "0.10"

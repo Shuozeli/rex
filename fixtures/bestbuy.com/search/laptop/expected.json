@@ -1,0 +1,203 @@
+{
+  "recipe": {
+    "id": "bestbuy.com/search",
+    "version": 1,
+    "sha256": "f9f3f12c88d061d01895454a590fbee8591260aa4a80cf87242034188a7ca4ae"
+  },
+  "schema": "rex.schema.commerce.v1.ProductList",
+  "url": "https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=laptop",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-14T04:40:42Z",
+  "extractTime": "2026-10-14T04:40:42Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "query",
+      "origin": "FIELD_ORIGIN_URL",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].id",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].url",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].price",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].currency",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].rating",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].review_count",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "items[0].image",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "bestbuy.com/search@1"
+    },
+    {
+      "path": "page",
+      "origin": "FIELD_ORIGIN_CONST",
+      "recipe": "bestbuy.com/search@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.ProductList",
+    "query": "laptop",
+    "items": [
+      {
+        "id": "12349293",
+        "title": "XX - 14\" Xxxxxx - Xxxxx X150 Xxxxxxxxx - 4XX Xxxxxx - 128XX Xxxxxxx - Xxxxx Xxxxxxxx",
+        "url": "https://www.bestbuy.com/product/hp-14-laptop-intel-n150-processor-4gb-memory-128gb-storage-honey-lavender/JJGW3FGFS9",
+        "price": "264.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "98",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/098025f7-8cdf-45d1-9ed6-38fe3a1f39f1.jpg",
+        "rank": 1
+      },
+      {
+        "id": "6668412",
+        "title": "Xxxxxx - XxxxXxx Xxxx 3x 15.6\" Xxxx XX Xxxxxx - Xxxxx Xxxxxxxxx X150 2024- 8XX Xxxxxx 128XX Xxxxxxx - Xxxxxx Xxxx",
+        "url": "https://www.bestbuy.com/product/lenovo-ideapad-slim-3i-15-6-full-hd-laptop-intel-processor-n150-2024-8gb-memory-128gb-storage-arctic-grey/JJGH3R7P6C",
+        "price": "269.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "105",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3200e090-612e-4446-83fc-eb2be0732fe3.jpg",
+        "rank": 2
+      },
+      {
+        "id": "6681674",
+        "title": "Xxx! - XX - 15.6\" Xxxx XX Xxxxxxxxxxx Xxxxxx - XXX Xxxxx 7 (2023) - 16XX Xxxxxx - 512XX XXX - Xxxxxxx Xxxxxx",
+        "url": "https://www.bestbuy.com/product/hp-15-6-full-hd-touchscreen-laptop-amd-ryzen-7-2023-16gb-memory-512gb-ssd-natural-silver/J3KSTFF867/sku/6681674/openbox",
+        "currency": "USD",
+        "rating": 4.8,
+        "reviewCount": "65",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/10848204-eac5-4a17-aa58-c3e32c25957b.jpg",
+        "rank": 3
+      },
+      {
+        "id": "6668953",
+        "title": "Xxxx - 15.6\" 2K Xxxxxxxxxxx Xxxxxx - Xxxxx 13th Xxxxxxxxxx Xxxx x5 1334X 2023 - 8XX Xxxxxx - 512 XX Xxxxxxx - Xxxxxx Xxxxx",
+        "url": "https://www.bestbuy.com/product/dell-15-6-2k-touchscreen-laptop-intel-13th-generation-core-i5-1334u-2023-8gb-memory-512-gb-storage-carbon-black/J3K4L6QW5Y",
+        "price": "449.99",
+        "currency": "USD",
+        "rating": 4.5,
+        "reviewCount": "292",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/12d8df20-f834-486b-bc00-5ddcd1b3dc33.jpg",
+        "rank": 4
+      },
+      {
+        "id": "6615769",
+        "title": "Xxxxxx - Xxxx 7x 2-in-1 - Xxxxxxx+ XX - 16\" 2K Xxxxxxxxxxx Xxxxxx - Xxxxx Xxxx Xxxxx 5 Xxxxxxxxx 2024 - 16XX Xxxxxx - 512XX XXX - Xxxx Xxxx",
+        "url": "https://www.bestbuy.com/product/lenovo-yoga-7i-2-in-1-copilot-pc-16-2k-touchscreen-laptop-intel-core-ultra-5-processor-2024-16gb-memory-512gb-ssd-luna-grey/JJGSHC4F9F",
+        "price": "699.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "752",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4489a829-7d28-4ef4-b4e9-4004105f5d69.jpg",
+        "rank": 5
+      },
+      {
+        "id": "6679017",
+        "title": "Xxxxxx - XxxxXxx Xxxx 3x 15.3\" 2K Xxxxxxxxxxx Xxxxxx - Xxxxx Xxxx 7 350 2026 - 16XX Xxxxxx - 512XX Xxxxxxx - Xxxxxx Xxxx",
+        "url": "https://www.bestbuy.com/product/lenovo-ideapad-slim-3i-15-3-2k-touchscreen-laptop-intel-core-7-350-2026-16gb-memory-512gb-storage-cosmic-blue/JJGH3Q8P38",
+        "price": "649.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "46",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/19026a3e-0ad0-445f-bcea-14b96b60a1a4.jpg",
+        "rank": 6
+      },
+      {
+        "id": "6613865",
+        "title": "XX - XxxxXxxx X Xxxx 2-in-1 - 16\" 2K Xxxxxxxxxxx Xxxxxx - Xxxxx Xxxx Xxxxx 7 (2024) - 16XX Xxxxxx - 1XX XXX - Xxxxxxx+ XX - Xxxxxxx Xxxx",
+        "url": "https://www.bestbuy.com/product/hp-omnibook-x-flip-2-in-1-16-2k-touchscreen-laptop-intel-core-ultra-7-2024-16gb-memory-1tb-ssd-copilot-pc-eclipse-gray/JJGQJRKGR5",
+        "price": "1199.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "2314",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/3909cb40-136f-4a58-b500-4f79b55a0f44.jpg",
+        "rank": 7
+      },
+      {
+        "id": "6615874",
+        "title": "Xxxxx - XxxXxxx Xxx 13-xxxx Xxxxxx - A18 Xxx xxxx with 6‑xxxx XXX xxx 5‑xxxx XXX - 8XX Xxxxxx - 256XX XXX - Xxxxxx",
+        "url": "https://www.bestbuy.com/product/apple-macbook-neo-13-inch-laptop-a18-pro-chip-with-6core-cpu-and-5core-gpu-8gb-memory-256gb-ssd-indigo/JJGCQYXRYZ",
+        "price": "699",
+        "currency": "USD",
+        "rating": 4.9,
+        "reviewCount": "1412",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4a7b5078-44aa-4bec-91d1-a2d3b0ad6b86.jpg",
+        "rank": 8
+      },
+      {
+        "id": "6665780",
+        "title": "XX - XxxxXxxx X – 16” 2K XXXX Xxxxxxxxxxx Xxxxxx – Xxxxx Xxxx Xxxxx X7 (2026) – 32XX Xxxxxx – 1XX XXX – Xxxxxxx+ XX - Xxxxxx Xxxxxx",
+        "url": "https://www.bestbuy.com/product/hp-omnibook-x-16-2k-oled-touchscreen-laptop-intel-core-ultra-x7-2026-32gb-memory-1tb-ssd-copilot-pc-meteor-silver/JJGW34X2K5",
+        "price": "1549.99",
+        "currency": "USD",
+        "rating": 4.6,
+        "reviewCount": "104",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/f66d3db4-8c4b-4fd8-94d6-d26fef36a064.jpg",
+        "rank": 9
+      },
+      {
+        "id": "6619147",
+        "title": "Xxxxxx - XxxxXxx Xxxx 3x - Xxxxxxx+ XX - 15.3\" 2k Xxxxxxxxxxx Xxxxxx - Xxxxxxxxxx X 2025 - 16XX Xxxxxx - 256XX XXX - Xxxx Xxxx",
+        "url": "https://www.bestbuy.com/product/lenovo-ideapad-slim-3x-copilot-pc-15-3-2k-touchscreen-laptop-snapdragon-x-2025-16gb-memory-256gb-ssd-luna-grey/JJGSH82JL5/sku/6619147",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "416",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/adce103f-2378-4a3e-98af-c9e06d3fbdbc.jpg",
+        "rank": 10
+      },
+      {
+        "id": "6672754",
+        "title": "Xxxxxx - Xxxx 7a 2-in-1 16\" 2K XXXX Xxxxxxxxxxx Xxxxxx - XXX Xxxxx XX 7 445 2026 - 24XX Xxxxxx - 512XX Xxxxxxx - Xxxxxxx+ XX - Xxxxxxxx",
+        "url": "https://www.bestbuy.com/product/lenovo-yoga-7a-2-in-1-16-2k-oled-touchscreen-laptop-amd-ryzen-ai-7-445-2026-24gb-memory-512gb-storage-copilot-pc-seashell/JJGH3ZSVQZ/sku/6672754",
+        "price": "999.99",
+        "currency": "USD",
+        "rating": 4.7,
+        "reviewCount": "94",
+        "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/d9c25b4e-b652-4d6a-b57d-665935d7b335.jpg",
+        "rank": 11
+      }
+    ],
+    "page": 1
+  },
+  "chain": [
+    {
+      "id": "bestbuy.com/search",
+      "version": 1,
+      "sha256": "f9f3f12c88d061d01895454a590fbee8591260aa4a80cf87242034188a7ca4ae"
+    }
+  ]
+}
