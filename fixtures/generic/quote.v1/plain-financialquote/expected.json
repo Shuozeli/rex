@@ -1,0 +1,73 @@
+{
+  "recipe": {
+    "id": "generic/quote.v1",
+    "version": 1,
+    "sha256": "45a02b8e65fe7cb6425f3f05f06dcb15c8015d20861039aa643a6fab60df94a7"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://quotes.example.com/stocks/EXMP",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-25T00:00:00Z",
+  "extractTime": "2026-10-25T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/quote.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "EXMP",
+    "name": "Example Holdings Inc.",
+    "exchange": "NYSE",
+    "currency": "USD",
+    "price": "128.45",
+    "change": "-1.25",
+    "changePercent": "-0.96",
+    "url": "https://quotes.example.com/stocks/EXMP"
+  },
+  "chain": [
+    {
+      "id": "generic/quote.v1",
+      "version": 1,
+      "sha256": "45a02b8e65fe7cb6425f3f05f06dcb15c8015d20861039aa643a6fab60df94a7"
+    }
+  ]
+}

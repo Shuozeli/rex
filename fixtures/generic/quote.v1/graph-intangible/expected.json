@@ -1,0 +1,73 @@
+{
+  "recipe": {
+    "id": "generic/quote.v1",
+    "version": 1,
+    "sha256": "45a02b8e65fe7cb6425f3f05f06dcb15c8015d20861039aa643a6fab60df94a7"
+  },
+  "schema": "rex.schema.finance.v1.Quote",
+  "url": "https://markets.example.org/quote/EX500",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-25T00:00:00Z",
+  "extractTime": "2026-10-25T00:00:00Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "symbol",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "name",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "exchange",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "change",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "change_percent",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/quote.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/quote.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.finance.v1.Quote",
+    "symbol": "EX500",
+    "name": "Example 500 Index",
+    "exchange": "INDEX",
+    "currency": "USD",
+    "price": "5812.3",
+    "change": "21.07",
+    "changePercent": "0.36",
+    "url": "https://markets.example.org/quote/EX500"
+  },
+  "chain": [
+    {
+      "id": "generic/quote.v1",
+      "version": 1,
+      "sha256": "45a02b8e65fe7cb6425f3f05f06dcb15c8015d20861039aa643a6fab60df94a7"
+    }
+  ]
+}

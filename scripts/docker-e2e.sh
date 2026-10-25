@@ -6,8 +6,9 @@
 #   4. the e2e container (no network): it installs the CRX by policy, serves the fixture pages and the bundle,
 #      and runs a scenario with real input; each scene must match its fixture's expected.json.
 # Exit code: the runner's (1 if a scene fails). Extra arguments go to run.mjs (e.g. --no-video, --only hn).
-# Env: REX_E2E_SCENARIOS (space-separated, in extension/recorder/scenarios/; default "fixtures.json sites.json":
-#      the 7 tutorial scenes with a video, then one quick scene per site recipe, checks only);
+# Env: REX_E2E_SCENARIOS (space-separated, in extension/recorder/scenarios/; default
+#      "fixtures.json sites.json generic.json": the 7 tutorial scenes with a video, then one quick scene per site
+#      recipe and one per generic recipe, checks only);
 #      REX_E2E_SKIP_BUILD=1 uses the rex-recorder-desktop:local image as it is (CI builds it with a layer cache).
 # Output: extension/recorder/docker/out/hermetic/run/<scenario name>/.
 # Requires: docker, pnpm, target/release/rex. The CRX signing key is $REX_EXT_KEY, else
@@ -18,7 +19,7 @@ cd "$(dirname "$0")/.."
 OUT=extension/recorder/docker/out/hermetic
 COMPOSE=(docker compose -f extension/recorder/docker/compose.yaml --profile e2e)
 SCENARIOS=()
-for s in ${REX_E2E_SCENARIOS:-fixtures.json sites.json}; do SCENARIOS+=("/repo/extension/recorder/scenarios/$s"); done
+for s in ${REX_E2E_SCENARIOS:-fixtures.json sites.json generic.json}; do SCENARIOS+=("/repo/extension/recorder/scenarios/$s"); done
 export REX_E2E_HERMETIC="${SCENARIOS[*]}"
 rm -rf "$OUT" && mkdir -p "$OUT/run"
 # The container runs as uid 1000; a CI runner may be another uid. It writes only to run/.

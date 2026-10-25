@@ -5,8 +5,10 @@
 //   { name, label, url, expect }           a live page; `expect` = { recipe, status, minFields, fields }
 //   { fixture: "fixtures/<id>/<case>" }    a fixture page: URL from meta.json, expectation from expected.json
 //                                          (the exact recipe and version, the status, the top-level field count)
-//   { siteFixtures: "recipes/sites" }      one fixture scene per site recipe under that directory: its first
-//                                          captured (not synthetic) case, else its first case
+//   { recipeFixtures: "recipes/sites" }    one fixture scene per recipe under that directory: its first
+//                                          captured (not synthetic) case, else its first case ("siteFixtures"
+//                                          is the older name). A recipe without fixtures is an error, so every
+//                                          recipe in the directory is covered.
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
@@ -33,11 +35,14 @@ export function fixtureFor(repo, recipeId) {
 }
 
 function expand(repo, s) {
-  if (!s.siteFixtures) return [s];
-  return yamlFiles(join(repo, s.siteFixtures)).flatMap((f) => {
+  const dir = s.recipeFixtures ?? s.siteFixtures;
+  if (!dir) return [s];
+  return yamlFiles(join(repo, dir)).map((f) => {
     const id = readFileSync(f, "utf8").match(/^id:\s*"?([^"\s]+)"?/m)?.[1];
-    const fixture = id && fixtureFor(repo, id);
-    return fixture ? [{ name: id.replaceAll("/", "_"), label: id, fixture }] : [];
+    if (!id) throw new Error(`${relative(repo, f)}: no id`);
+    const fixture = fixtureFor(repo, id);
+    if (!fixture) throw new Error(`${id}: no fixture under fixtures/${id}/ for its e2e scene`);
+    return { name: id.replaceAll("/", "_"), label: id, fixture };
   });
 }
 

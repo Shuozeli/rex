@@ -1,0 +1,95 @@
+{
+  "recipe": {
+    "id": "generic/video.v1",
+    "version": 1,
+    "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+  },
+  "schema": "rex.schema.media.v1.Video",
+  "url": "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-25T10:45:17Z",
+  "extractTime": "2026-10-25T10:45:17Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "channel",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "duration_seconds",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "views",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "tags",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 1,
+      "recipe": "generic/video.v1@1"
+    },
+    {
+      "path": "thumbnail",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/video.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.media.v1.Video",
+    "title": "Xx xxxxxxx xxxx xxxxxxxxxx?",
+    "url": "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity",
+    "channel": {
+      "name": "Xxx Xxx Xxxxxxxx",
+      "url": "https://www.ted.com/speakers/sir_ken_robinson"
+    },
+    "publishedAt": "2006-06-27T00:11:00Z",
+    "durationSeconds": 1151,
+    "views": "80681264",
+    "description": "Xxx Xxx Xxxxxxxx xxxxx xx xxxxxxxxxxxx xxx xxxxxxxxxx xxxxxx xxxx xxx xxxxxxxx xx xxxxxxxxx xxxxxx xxxx xxxxxxxx (xxxxxx xxxx xxxxxxxxxx) xxxxxxxxxx.",
+    "tags": [
+      "XXX",
+      "xxxxx",
+      "xxxxxxxxxx",
+      "xxxxxxx",
+      "xxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxxx",
+      "xxxxxxxx",
+      "xxxx"
+    ],
+    "thumbnail": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6b6eb940bceab359ca676a9b486aae475c1df883_2880x1620.jpg?u%5Br%5D=2&amp;u%5Bs%5D=0.5&amp;u%5Ba%5D=0.8&amp;u%5Bt%5D=0.03&amp;quality=82&amp;w=640"
+  },
+  "chain": [
+    {
+      "id": "generic/video.v1",
+      "version": 1,
+      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    }
+  ]
+}

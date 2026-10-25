@@ -1,0 +1,78 @@
+{
+  "recipe": {
+    "id": "generic/product.v1",
+    "version": 1,
+    "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://kyliecosmetics.com/products/matte-lip-kit",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-25T10:45:01Z",
+  "extractTime": "2026-10-25T10:45:01Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 4,
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 3,
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_META",
+      "candidate": 3,
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "title": "Xxxxx Xxx Xxx",
+    "brand": "Xxxxx Xxxxxxxxx",
+    "price": "35",
+    "currency": "USD",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "images": [
+      "https://kyliecosmetics.com/cdn/shop/products/matte_lip_kit_kylie_friday.jpg?v=1741811444&width=2500"
+    ],
+    "url": "https://kyliecosmetics.com/products/matte-lip-kit",
+    "description": "xx xxxx-xxxxxxx xxxxx xxx xxx is xxxx xxxxx-to-xx xxx xxxxxxx xxx a xxxx-xxxxxxx, xxxxx xxx. xxxx xxxxx xxxxxx xxxxxxxx xxx xxx xxxxx xxx xxxxxxx xxxxxx xxxxxxxxx, 8+ hour xxxx xxxxxxxx xxxx xxxxx xxxx xxxxxxxx xxxxxx with a xxxxxx-xxxxxxxxx xxxxxx."
+  },
+  "chain": [
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}

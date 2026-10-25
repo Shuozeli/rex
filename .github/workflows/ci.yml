@@ -187,11 +187,12 @@ jobs:
     needs: [rust, wasm]
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    # fixtures: the 7 tutorial scenes with a video. sites: one quick scene per site recipe, checks only.
+    # fixtures: the 7 tutorial scenes with a video. sites / generic: one quick scene per site / generic
+    # (schema.org fallback) recipe, checks only.
     strategy:
       fail-fast: false
       matrix:
-        scenario: [fixtures, sites]
+        scenario: [fixtures, sites, generic]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

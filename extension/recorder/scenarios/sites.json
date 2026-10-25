@@ -4,5 +4,5 @@
   "flow": "quick",
   "video": false,
   "restartBetweenScenes": false,
-  "scenes": [{ "siteFixtures": "recipes/sites" }]
+  "scenes": [{ "recipeFixtures": "recipes/sites" }]
 }

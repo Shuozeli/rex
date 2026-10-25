@@ -213,15 +213,17 @@ the status, and the number of top-level fields.
 The scenarios (`extension/recorder/scenarios/`, resolved by `lib/scenario.mjs`):
 
 - **`fixtures.json`:** the 7 tutorial scenes, with the full flow and a video.
-- **`sites.json`:** one scene per site recipe. `{"siteFixtures": "recipes/sites"}` expands to the first
-  captured (not synthetic) fixture of each recipe, so a new site recipe is covered without editing the
-  scenario. It uses the quick flow (type the URL, click the icon, read the popup, close it; about 7.6 s a
-  scene) and is checks only. The raw clips of passing scenes are deleted; failing ones are kept.
+- **`sites.json` / `generic.json`:** one scene per site recipe / generic (schema.org fallback) recipe.
+  - `{"recipeFixtures": "recipes/sites"}` expands to the first captured (not synthetic) fixture of each
+    recipe, so a new recipe is covered without editing the scenario.
+  - A recipe without a fixture is an error.
+  - The quick flow: type the URL, click the icon, read the popup, close it. About 7.6 s a scene.
+  - Checks only. The raw clips of passing scenes are deleted; failing ones are kept.
 - **One page per URL:** two different fixtures at one URL are an error, since they would test each other's
   page.
 
 ```bash
-scripts/docker-e2e.sh                 # fixtures.json + sites.json (59 scenes, about 13 min)
+scripts/docker-e2e.sh                 # fixtures + sites + generic (72 scenes, about 15 min)
 REX_E2E_SCENARIOS=sites.json scripts/docker-e2e.sh --only zhihu.com_question
 scripts/docker-e2e.sh --no-video      # no video for any scenario
 REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
@@ -236,7 +238,7 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
   (read-only)"). To rotate it: make a new ed25519 key, `gh repo deploy-key add` it to rex-fixtures,
   `gh secret set REX_FIXTURES_SSH_KEY -R Shuozeli/rex`, then delete the old deploy key.
 - **CI:** the `docker-e2e` job in `ci.yml` runs after `rust` and `wasm`, using their `rex` and wasm artifacts.
-  It is a matrix over the scenarios (`fixtures`, `sites`), which run in parallel.
+  It is a matrix over the scenarios (`fixtures`, `sites`, `generic`), which run in parallel.
   - It builds the image with buildx and a GitHub Actions layer cache. `CHROME_REFRESH` is the ISO week, so
     the cached Chrome layer is refreshed weekly.
   - It then runs `scripts/docker-e2e.sh` with `REX_E2E_SKIP_BUILD=1`.

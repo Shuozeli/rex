@@ -1030,6 +1030,19 @@ Docker Ubuntu GUI.
   - Local run: 52/52 and 7/7. Site scenes take 7.6 s on average; the popup shows its result after a median
     of 0.9 s.
   - In CI, docker-e2e is a matrix over the two scenarios, run in parallel.
+- **User decision (2026-10-25): the generic (schema.org fallback) recipes as scenes too.**
+  - `scenarios/generic.json` covers all 13 generic recipes. The expansion key is now `recipeFixtures`
+    (`siteFixtures` still works), and a recipe without a fixture is an error.
+  - Three generic recipes had no fixture of their own; they had only served as bases for site recipes.
+  - New fixtures for them:
+    - **Product:** allbirds and kyliecosmetics product pages (Product JSON-LD, no site recipe).
+    - **Video:** two TED talks (VideoObject). A C-SPAN page was tried and dropped: it redirects to a program
+      page, where the fallback rightly picks `generic/article.v1`.
+    - **Quote:** two synthetic pages (`synthetic: true`, example.com/example.org). One has a plain
+      `FinancialQuote` with numeric prices; the other the CNBC-style `Intangible/FinancialQuote` inside
+      `@graph`, with string prices. A search of quote sites found only CNBC publishing FinancialQuote, and
+      CNBC has its own recipe, so no real page reaches this fallback.
+  - Local run: 13/13. CI has a third matrix entry.
 - **Open:**
   - a residential proxy for the live recordings;
   - a Windows backend inside the framework (the screencast recorder is still a scratch script);

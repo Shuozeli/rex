@@ -1,0 +1,8 @@
+{
+  "name": "rex-e2e-generic",
+  "title": "rex e2e：每个通用 recipe（schema.org 兜底）一个 fixture 页面",
+  "flow": "quick",
+  "video": false,
+  "restartBetweenScenes": false,
+  "scenes": [{ "recipeFixtures": "recipes/generic" }]
+}

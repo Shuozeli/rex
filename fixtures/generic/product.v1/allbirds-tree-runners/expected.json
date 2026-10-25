@@ -1,0 +1,84 @@
+{
+  "recipe": {
+    "id": "generic/product.v1",
+    "version": 1,
+    "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+  },
+  "schema": "rex.schema.commerce.v1.Product",
+  "url": "https://www.allbirds.com/products/mens-tree-runners",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-10-25T10:44:36Z",
+  "extractTime": "2026-10-25T10:44:36Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "sku",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "brand",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "price",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "currency",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "availability",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "images",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/product.v1@1"
+    },
+    {
+      "path": "description",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/product.v1@1"
+    }
+  ],
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.commerce.v1.Product",
+    "sku": "XXXX_XXXX_XXXXXXX",
+    "title": "Xxx'x Xxxx Xxxxxx",
+    "brand": "Allbirds",
+    "price": "100",
+    "currency": "USD",
+    "availability": "AVAILABILITY_IN_STOCK",
+    "images": [
+      "https://www.allbirds.com/cdn/shop/files/TR3MJBW080_SHOE_LEFT_GLOBAL_MENS_TREE_RUNNER_JET_BLACK_WHITE.png?v=1751165486&width=100",
+      "https://www.allbirds.com/cdn/shop/files/TR3MJBW080_SHOE_LEFT_GLOBAL_MENS_TREE_RUNNER_JET_BLACK_WHITE.png?v=1751165486&width=300",
+      "https://www.allbirds.com/cdn/shop/files/TR3MJBW080_SHOE_LEFT_GLOBAL_MENS_TREE_RUNNER_JET_BLACK_WHITE.png?v=1751165486&width=600",
+      "https://www.allbirds.com/cdn/shop/files/TR3MJBW080_SHOE_LEFT_GLOBAL_MENS_TREE_RUNNER_JET_BLACK_WHITE.png?v=1751165486&width=900"
+    ],
+    "url": "https://www.allbirds.com/products/mens-tree-runners",
+    "description": "Xxx Xxxxxxxx Xxxx Xxxxxx is a xxxxxxxxxx xxx xxxxxxxxxxx xxxxxxx xxxx with xxxxxxxxxxx xxxxxxx xxxxxxxxxx xxxx xxxxx xxxx xxxxx xxxxx xxxxxx xxx xxxx xx xxxx xxxx. Xxxxx xxxxx xxx xxxxxxx xxx xxxxxxxx xxxxxx xxxx, xxxxxxx, xxx xxxxxx xxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "generic/product.v1",
+      "version": 1,
+      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+    }
+  ]
+}
