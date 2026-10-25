@@ -9,46 +9,30 @@
 // Run inside the container:
 //   docker compose -f extension/recorder/docker/compose.yaml exec desktop \
 //     node /repo/extension/recorder/run.mjs /repo/extension/recorder/scenarios/tutorial.json --out /out/tutorial
-// Options: --only a,b (scene names), --no-video (skip captions and joining; checks only).
-// Exit code 1 when a scene does not meet its `expect`.
+// Several scenario files run one after the other, each into <out>/<scenario name>/.
+// Options: --only a,b (scene names), --no-video (no captions or joined video for any scenario).
+// Scenario keys: "flow": "tutorial" (default; scroll the page and the popup, captions paced for viewing) or
+// "quick" (open, click, read, close: for many scenes); "video": false (checks only; the raw clips of passing
+// scenes are deleted, failing ones are kept). Exit code 1 when a scene does not meet its `expect`.
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { basename, join } from "node:path";
 import { attachWorker, connect, evaluate, sleep } from "./lib/cdp.mjs";
 import * as desk from "./lib/desktop.mjs";
+import { loadScenario } from "./lib/scenario.mjs";
 import { assemble, cardAss, sceneAss } from "./lib/video.mjs";
 
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.indexOf(n) < 0 ? d : args[args.indexOf(n) + 1]);
-const scenarioFile = args.find((a) => a.endsWith(".json"));
-if (!scenarioFile) throw new Error("usage: run.mjs <scenario.json> [--out dir] [--only a,b] [--no-video]");
-const scenario = JSON.parse(readFileSync(scenarioFile, "utf8"));
-const out = opt("--out", "/out/recording");
+const scenarioFiles = args.filter((a) => a.endsWith(".json"));
+if (scenarioFiles.length === 0) throw new Error("usage: run.mjs <scenario.json>... [--out dir] [--only a,b] [--no-video]");
+const outBase = opt("--out", "/out/recording");
 const only = opt("--only", "").split(",").filter(Boolean);
-const video = !args.includes("--no-video");
+const noVideo = args.includes("--no-video");
 const CDP = process.env.REX_CDP ?? "http://127.0.0.1:9222";
 const EXT = readFileSync("/tmp/rex-ext-id", "utf8").trim();
-const ICON = scenario.icon ?? "/ext/icons/icon-16.png";
-mkdirSync(out, { recursive: true });
-
 const REPO = process.env.REX_REPO ?? "/repo";
-// A fixture scene (hermetic mode) takes its URL from meta.json and its expectation from expected.json: the
-// exact recipe and version, the status and the number of top-level fields.
-function resolveScene(s) {
-  if (!s.fixture) return s;
-  const dir = join(REPO, s.fixture);
-  const meta = JSON.parse(readFileSync(join(dir, "meta.json"), "utf8"));
-  const exp = JSON.parse(readFileSync(join(dir, "expected.json"), "utf8"));
-  const fields = Object.keys(exp.record ?? {}).filter((k) => k !== "@type").length;
-  return {
-    name: s.name ?? s.fixture.split("/").slice(-3).join("-"),
-    label: s.label ?? s.fixture.replace(/^fixtures\//, ""),
-    url: meta.url,
-    expect: { recipe: `${exp.recipe.id}@${exp.recipe.version}`, status: exp.status.replace("EXTRACTION_STATUS_", ""), fields },
-    ...s,
-  };
-}
-const scenes = scenario.scenes.map(resolveScene).filter((s) => only.length === 0 || only.includes(s.name));
+const ICON = "/ext/icons/icon-16.png";
 
 async function waitFor(fn, ms, every = 100) {
   const started = Date.now();
@@ -95,7 +79,8 @@ function check(expect, r) {
   return problems;
 }
 
-async function runScene(scene, index) {
+async function runScene(scenario, out, scene, index) {
+  const quick = scenario.flow === "quick";
   const r = { name: scene.name, label: scene.label, url: scene.url };
   if (scenario.restartBetweenScenes !== false || index === 0) await freshChrome();
   const conn = await connect(CDP);
@@ -139,15 +124,17 @@ async function runScene(scene, index) {
     await sleep(300);
     desk.key("Return");
     await waitFor(async () => (await pageEval("location.href")) !== "about:blank" && (await pageEval("document.readyState")) === "complete", 30000, 250);
-    await sleep(scene.settleMs ?? 2500);
+    await sleep(scene.settleMs ?? (quick ? 400 : 2500));
 
     // 2. Look around the page.
-    ev("caption", { text: "浏览页面：rex 只读取你打开的这一页，不会另外请求网站" });
-    await desk.moveTo(960, 620, 500);
-    await desk.wheel(8, 1600);
-    await sleep(800);
-    await desk.wheel(-8, 1200);
-    await sleep(600);
+    if (!quick) {
+      ev("caption", { text: "浏览页面：rex 只读取你打开的这一页，不会另外请求网站" });
+      await desk.moveTo(960, 620, 500);
+      await desk.wheel(8, 1600);
+      await sleep(800);
+      await desk.wheel(-8, 1200);
+      await sleep(600);
+    }
 
     // 3. Click the rex icon on the toolbar (real pointer, real click).
     ev("caption", { text: "第 2 步：点击工具栏上的 rex 图标" });
@@ -156,7 +143,7 @@ async function runScene(scene, index) {
     if (icon.score > 25) throw new Error(`rex icon not found on the toolbar (best match ${JSON.stringify(icon)})`);
     const before = new Set((await conn.send("Target.getTargets")).targetInfos.filter(isPopup).map((t) => t.targetId));
     const clicked = Date.now();
-    await desk.click(icon.x, icon.y, 900);
+    await desk.click(icon.x, icon.y, quick ? 300 : 900);
     ev("click", { x: icon.x, y: icon.y });
     const popupTarget = await waitFor(async () => (await conn.send("Target.getTargets")).targetInfos.find((t) => isPopup(t) && !before.has(t.targetId)), 8000);
     if (!popupTarget) throw new Error("the popup did not open");
@@ -198,14 +185,16 @@ async function runScene(scene, index) {
     }
     r.finalUrl = await pageEval("location.href").catch(() => null);
     ev("caption", { text: r.matched ? `结果：recipe ${r.matched} · 状态 ${r.status} · ${r.fields} 个字段` : `结果：没有可用的 recipe（${r.status}）` });
-    await sleep(2200);
+    await sleep(quick ? 500 : 2200);
 
     // 4. Scroll through the fields in the popup.
-    await desk.moveTo(icon.x - 200, 420, 500);
-    await desk.wheel(6, 2000);
-    await sleep(900);
-    await desk.wheel(6, 1600);
-    await sleep(1500);
+    if (!quick) {
+      await desk.moveTo(icon.x - 200, 420, 500);
+      await desk.wheel(6, 2000);
+      await sleep(900);
+      await desk.wheel(6, 1600);
+      await sleep(1500);
+    }
     desk.key("Escape");
     await sleep(600);
     ev("end");
@@ -222,26 +211,41 @@ async function runScene(scene, index) {
   r.problems = r.error ? [r.error, ...check(scene.expect, r)] : check(scene.expect, r);
   r.pass = r.problems.length === 0;
   writeFileSync(join(out, `${scene.name}.events.json`), JSON.stringify(events, null, 1));
+  const video = !noVideo && scenario.video !== false;
   if (video && rec) writeFileSync(join(out, `${scene.name}.ass`), sceneAss(events));
+  // Checks only: keep the clip of a failing scene for debugging, drop the rest.
+  if (!video && rec && r.pass && scenario.video === false) rmSync(rec.file, { force: true });
   return r;
 }
 
-const results = [];
-for (const [i, scene] of scenes.entries()) {
-  const r = await runScene(scene, i);
-  results.push(r);
-  console.log(`${r.pass ? "ok  " : "FAIL"} ${scene.name.padEnd(12)} ${r.matched ?? "-"} ${r.status} ${r.fields ?? 0} fields${r.popupMs ? `, popup ${r.popupMs} ms` : ""}${r.pass ? "" : ` — ${r.problems.join("; ")}`}`);
-}
-writeFileSync(join(out, "results.json"), JSON.stringify({ scenario: scenario.title, at: new Date().toISOString(), results }, null, 2));
+async function runScenario(file) {
+  const scenario = loadScenario(file, REPO);
+  const name = scenario.name ?? basename(file, ".json");
+  const out = scenarioFiles.length > 1 ? join(outBase, name) : outBase;
+  mkdirSync(out, { recursive: true });
+  const scenes = scenario.scenes.filter((s) => only.length === 0 || only.includes(s.name));
+  console.log(`== ${name}: ${scenes.length} scene(s)${scenario.flow === "quick" ? ", quick flow" : ""}`);
 
-if (video) {
-  writeFileSync(join(out, "intro.ass"), cardAss([{ text: scenario.title, size: 64, bold: true }, ...(scenario.subtitle ?? []).map((s) => ({ text: s, size: 32 }))]));
-  const rows = results.map((r) => `${r.label}    ${r.matched ?? "（无匹配）"}    ${r.status}    ${r.fields ?? 0} 个字段`);
-  writeFileSync(join(out, "outro.ass"), cardAss([{ text: "这次测试的结果", size: 56, bold: true }, ...rows.map((t, i) => ({ text: t, size: 32, ok: results[i].pass }))]));
-  const final = join(out, `${scenario.name ?? "recording"}.mp4`);
-  assemble({ dir: out, scenes: results.map((r) => r.name), file: final });
-  console.log(`video: ${final}`);
+  const results = [];
+  for (const [i, scene] of scenes.entries()) {
+    const r = await runScene(scenario, out, scene, i);
+    results.push(r);
+    console.log(`${r.pass ? "ok  " : "FAIL"} ${scene.name.padEnd(12)} ${r.matched ?? "-"} ${r.status} ${r.fields ?? 0} fields${r.popupMs ? `, popup ${r.popupMs} ms` : ""}${r.pass ? "" : ` — ${r.problems.join("; ")}`}`);
+  }
+  writeFileSync(join(out, "results.json"), JSON.stringify({ scenario: scenario.title, at: new Date().toISOString(), results }, null, 2));
+  if (!noVideo && scenario.video !== false) {
+    writeFileSync(join(out, "intro.ass"), cardAss([{ text: scenario.title, size: 64, bold: true }, ...(scenario.subtitle ?? []).map((s) => ({ text: s, size: 32 }))]));
+    const rows = results.map((r) => `${r.label}    ${r.matched ?? "（无匹配）"}    ${r.status}    ${r.fields ?? 0} 个字段`);
+    writeFileSync(join(out, "outro.ass"), cardAss([{ text: "这次测试的结果", size: 56, bold: true }, ...rows.map((t, i) => ({ text: t, size: 32, ok: results[i].pass }))]));
+    const final = join(out, `${name}.mp4`);
+    assemble({ dir: out, scenes: results.map((r) => r.name), file: final });
+    console.log(`video: ${final}`);
+  }
+  const failed = results.filter((r) => !r.pass);
+  console.log(`${name}: ${results.length - failed.length}/${results.length} scenes passed`);
+  return failed.length;
 }
-const failed = results.filter((r) => !r.pass).length;
-console.log(`${results.length - failed}/${results.length} scenes passed`);
+
+let failed = 0;
+for (const f of scenarioFiles) failed += await runScenario(f);
 process.exit(failed === 0 ? 0 : 1);

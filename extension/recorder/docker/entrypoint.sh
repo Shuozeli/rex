@@ -6,7 +6,7 @@
 #
 # Env: BIND (default 127.0.0.1; compose passes the Tailscale IP), CDP_PORT (9541), VNC_PORT (5941),
 #      NOVNC_PORT (6081), SCREEN (1920x1080), CHROME_ARGS (extra flags, e.g. --proxy-server=socks5://host:port).
-# Hermetic mode (REX_HERMETIC=<scenario.json>): every host resolves to 127.0.0.1, where fixture-server.mjs
+# Hermetic mode (REX_HERMETIC="<scenario.json> [...]"): every host resolves to 127.0.0.1, where fixture-server.mjs
 #      serves the scenario's fixture pages and the bundle in /bundle over TLS from a CA made here and trusted
 #      in the profile's NSS store. Nothing leaves the container.
 # With arguments, the desktop starts in the background, the arguments run as a command once Chrome answers,
@@ -53,7 +53,8 @@ node /usr/local/lib/rex/ext-server.mjs "$PACK/rex.crx" "$EXT_ID" "$EXT_VERSION" 
 HERMETIC_ARGS=()
 if [ -n "${REX_HERMETIC:-}" ]; then
   TLS=/tmp/rex-tls && mkdir -p "$TLS"
-  mapfile -t HOSTS < <(node /usr/local/lib/rex/fixture-server.mjs --hosts "$REX_HERMETIC" /repo)
+  FIXTURE_SERVER=/repo/extension/recorder/docker/fixture-server.mjs
+  mapfile -t HOSTS < <(node "$FIXTURE_SERVER" --hosts "$REX_HERMETIC" /repo)
   SAN=$(printf 'DNS:%s,' "${HOSTS[@]}"); SAN=${SAN%,}
   openssl req -x509 -newkey rsa:2048 -nodes -days 2 -subj "/CN=rex e2e CA" -keyout "$TLS/ca.key" -out "$TLS/ca.pem" \
     -addext basicConstraints=critical,CA:TRUE -addext keyUsage=critical,keyCertSign,cRLSign 2>/dev/null
@@ -64,9 +65,9 @@ if [ -n "${REX_HERMETIC:-}" ]; then
   mkdir -p /home/rec/.pki/nssdb
   certutil -d sql:/home/rec/.pki/nssdb -N --empty-password 2>/dev/null || true
   certutil -d sql:/home/rec/.pki/nssdb -A -n "rex e2e CA" -t "C,," -i "$TLS/ca.pem"
-  node /usr/local/lib/rex/fixture-server.mjs "$REX_HERMETIC" /repo /bundle "$TLS/site.pem" "$TLS/site.key" &
+  node "$FIXTURE_SERVER" "$REX_HERMETIC" /repo /bundle "$TLS/site.pem" "$TLS/site.key" &
   HERMETIC_ARGS=(--host-resolver-rules="MAP * 127.0.0.1, EXCLUDE localhost")
-  echo "hermetic: ${#HOSTS[@]} hosts -> 127.0.0.1 (${HOSTS[*]})"
+  echo "hermetic: ${#HOSTS[@]} hosts -> 127.0.0.1"
 fi
 
 node /usr/local/lib/rex/cdp-relay.mjs "$BIND" "$CDP_PORT" &

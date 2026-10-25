@@ -1021,6 +1021,15 @@ Docker Ubuntu GUI.
        Playwright's own Chromium path.
   - Fixtures repo: `Shuozeli/rex-fixtures` is now a private GitHub repo. CI reads it with a read-only
     deploy key (operations.md).
+- **User decision (2026-10-25): a fixture scene for every site recipe.**
+  - `scenarios/sites.json` expands `{"siteFixtures": "recipes/sites"}` to each recipe's first captured
+    fixture (52 scenes now; new recipes are picked up without editing the scenario). wsj.com has only
+    synthetic fixtures, so it uses one of them.
+  - It runs the quick flow, checks only. The tutorial scenario switched HN to the captured `live-front`,
+    because one URL may serve only one fixture.
+  - Local run: 52/52 and 7/7. Site scenes take 7.6 s on average; the popup shows its result after a median
+    of 0.9 s.
+  - In CI, docker-e2e is a matrix over the two scenarios, run in parallel.
 - **Open:**
   - a residential proxy for the live recordings;
   - a Windows backend inside the framework (the screencast recorder is still a scratch script);

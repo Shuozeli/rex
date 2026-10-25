@@ -6,7 +6,7 @@
   "scenes": [
     { "name": "wikipedia", "fixture": "fixtures/wikipedia.org/article/en-web-scraping" },
     { "name": "amazon", "fixture": "fixtures/amazon.com/product/airpods-pro-2" },
-    { "name": "hn", "fixture": "fixtures/news.ycombinator.com/front/front-page" },
+    { "name": "hn", "fixture": "fixtures/news.ycombinator.com/front/live-front" },
     { "name": "bilibili", "fixture": "fixtures/bilibili.com/video/anji-en-site" },
     { "name": "zhihu", "fixture": "fixtures/zhihu.com/question/q-19581624" },
     { "name": "xueqiu", "fixture": "fixtures/xueqiu.com/stock/maotai" },

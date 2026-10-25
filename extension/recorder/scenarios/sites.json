@@ -1,0 +1,8 @@
+{
+  "name": "rex-e2e-sites",
+  "title": "rex e2e：每个 site recipe 一个 fixture 页面",
+  "flow": "quick",
+  "video": false,
+  "restartBetweenScenes": false,
+  "scenes": [{ "siteFixtures": "recipes/sites" }]
+}

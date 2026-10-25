@@ -41,7 +41,7 @@ RUN mkdir -p /etc/opt/chrome/policies/managed \
 
 # uid 1000, like the host user: the signing key (mode 600) is readable and output files are the host user's.
 RUN userdel -r ubuntu && useradd -m -u 1000 -s /bin/bash rec && chown rec /etc/opt/chrome/policies/managed
-COPY cdp-relay.mjs ext-server.mjs fixture-server.mjs /usr/local/lib/rex/
+COPY cdp-relay.mjs ext-server.mjs /usr/local/lib/rex/
 COPY entrypoint.sh /usr/local/bin/rex-desktop
 RUN chmod +x /usr/local/bin/rex-desktop
 USER rec

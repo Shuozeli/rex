@@ -210,11 +210,23 @@ the status, and the number of top-level fields.
    - `fixture-server.mjs`, which serves each fixture page at its real URL plus the bundle, over TLS from
      a CA made at start and trusted in the profile's NSS store.
 
+The scenarios (`extension/recorder/scenarios/`, resolved by `lib/scenario.mjs`):
+
+- **`fixtures.json`:** the 7 tutorial scenes, with the full flow and a video.
+- **`sites.json`:** one scene per site recipe. `{"siteFixtures": "recipes/sites"}` expands to the first
+  captured (not synthetic) fixture of each recipe, so a new site recipe is covered without editing the
+  scenario. It uses the quick flow (type the URL, click the icon, read the popup, close it; about 7.6 s a
+  scene) and is checks only. The raw clips of passing scenes are deleted; failing ones are kept.
+- **One page per URL:** two different fixtures at one URL are an error, since they would test each other's
+  page.
+
 ```bash
-scripts/docker-e2e.sh                 # scenarios/fixtures.json, with the video
-scripts/docker-e2e.sh --no-video      # checks only (about 3.5 min for 7 scenes)
+scripts/docker-e2e.sh                 # fixtures.json + sites.json (59 scenes, about 13 min)
+REX_E2E_SCENARIOS=sites.json scripts/docker-e2e.sh --only zhihu.com_question
+scripts/docker-e2e.sh --no-video      # no video for any scenario
 REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
-# output: extension/recorder/docker/out/hermetic/run/{results.json,<scene>.raw.mp4,...}
+# output: extension/recorder/docker/out/hermetic/run/<scenario name>/{results.json,...}
+#         (directly in run/ when only one scenario runs)
 ```
 
 - **Signing key:** the CRX key is `REX_EXT_KEY`, else `~/.config/rex/ext-e2e-key.pem`, else a throwaway key
@@ -224,10 +236,12 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
   (read-only)"). To rotate it: make a new ed25519 key, `gh repo deploy-key add` it to rex-fixtures,
   `gh secret set REX_FIXTURES_SSH_KEY -R Shuozeli/rex`, then delete the old deploy key.
 - **CI:** the `docker-e2e` job in `ci.yml` runs after `rust` and `wasm`, using their `rex` and wasm artifacts.
+  It is a matrix over the scenarios (`fixtures`, `sites`), which run in parallel.
   - It builds the image with buildx and a GitHub Actions layer cache. `CHROME_REFRESH` is the ISO week, so
     the cached Chrome layer is refreshed weekly.
   - It then runs `scripts/docker-e2e.sh` with `REX_E2E_SKIP_BUILD=1`.
-  - Artifacts: `docker-e2e` (results, events, the video, about 8 MB), plus the raw clips when it fails.
+  - Artifacts: `docker-e2e-<scenario>` (results, events, and for fixtures the video, about 8 MB), plus
+    `docker-e2e-<scenario>-raw-clips` when it fails.
   - Run dir permissions: the container is uid 1000 and the runner is not, so the script opens `run/` to all
     and makes the throwaway key world-readable.
 - **Command mode:** with arguments, the container runs them once Chrome answers and exits with their status.

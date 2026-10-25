@@ -33,7 +33,8 @@ services:
     profiles: [e2e]
     network_mode: none
     environment:
-      REX_HERMETIC: /repo/extension/recorder/scenarios/${REX_E2E_SCENARIO:-fixtures.json}
+      # Every scenario the run uses (the fixture server serves all of their pages).
+      REX_HERMETIC: ${REX_E2E_HERMETIC:-/repo/extension/recorder/scenarios/fixtures.json /repo/extension/recorder/scenarios/sites.json}
     shm_size: 2gb
     security_opt:
       - seccomp=unconfined
@@ -46,6 +47,7 @@ services:
     command:
       - node
       - /repo/extension/recorder/run.mjs
-      - /repo/extension/recorder/scenarios/${REX_E2E_SCENARIO:-fixtures.json}
+      - /repo/extension/recorder/scenarios/fixtures.json
+      - /repo/extension/recorder/scenarios/sites.json
       - --out
       - /out/hermetic/run

@@ -106,7 +106,8 @@ tested locally but **not yet committed** (see the open actions in decisions.md).
 - [x] Hermetic docker e2e (U40): `scripts/docker-e2e.sh`, store build in Google Chrome, no network, fixtures + locally published bundle, 7/7 against expected.json; opt-in ci-local step (2026-10-24)
 - [x] GitHub Actions `docker-e2e` job (U40): image layer cache with a weekly Chrome refresh, results + video artifacts; first GitHub runs green, 7/7 (2026-10-24)
 - [x] First full CI on GitHub (U40): private `Shuozeli/rex-fixtures` with a read-only deploy key; fixes for clippy 1.99, the version-gate base after a force push, and the Playwright Chromium version (2026-10-24)
-- [ ] Recorder follow-ups: more fixture scenes (one per site recipe?); residential proxy for live recordings (Amazon); Windows backend in the framework; scheduled live run with the video and results published
+- [x] A docker e2e scene for every site recipe (U40): `scenarios/sites.json` (`siteFixtures` expansion), quick flow, 52/52; CI matrix fixtures + sites (2026-10-25)
+- [ ] Recorder follow-ups: generic recipes (schema.org fallback) as scenes (one per site recipe?); residential proxy for live recordings (Amazon); Windows backend in the framework; scheduled live run with the video and results published
 - [ ] Next in the approved order: table/list extraction
 
 ## Known gaps

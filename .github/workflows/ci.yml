@@ -183,10 +183,15 @@ jobs:
           retention-days: 7
 
   docker-e2e:
-    name: Docker e2e (Google Chrome, store build, hermetic)
+    name: Docker e2e (Google Chrome, store build, hermetic, ${{ matrix.scenario }})
     needs: [rust, wasm]
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # fixtures: the 7 tutorial scenes with a video. sites: one quick scene per site recipe, checks only.
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [fixtures, sites]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -222,22 +227,24 @@ jobs:
           cache-from: type=gha,scope=rex-recorder
           cache-to: type=gha,mode=max,scope=rex-recorder
       # No network inside the container: fixture pages and a bundle published from recipes/ (operations.md).
-      - name: Hermetic e2e (real input, policy-installed CRX, results against expected.json)
+      - name: Hermetic e2e (results against expected.json)
         run: scripts/docker-e2e.sh
         env:
           REX_E2E_SKIP_BUILD: "1"
+          REX_E2E_SCENARIOS: ${{ matrix.scenario }}.json
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: docker-e2e
+          name: docker-e2e-${{ matrix.scenario }}
           path: |
-            extension/recorder/docker/out/hermetic/run/results.json
-            extension/recorder/docker/out/hermetic/run/*.events.json
-            extension/recorder/docker/out/hermetic/run/rex-e2e-fixtures.mp4
+            extension/recorder/docker/out/hermetic/run/**/results.json
+            extension/recorder/docker/out/hermetic/run/**/*.events.json
+            extension/recorder/docker/out/hermetic/run/**/rex-e2e-fixtures.mp4
           retention-days: 14
+      # The checks-only scenarios keep the raw clips of failing scenes only.
       - if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: docker-e2e-raw-clips
-          path: extension/recorder/docker/out/hermetic/run/*.raw.mp4
+          name: docker-e2e-${{ matrix.scenario }}-raw-clips
+          path: extension/recorder/docker/out/hermetic/run/**/*.raw.mp4
           retention-days: 7
