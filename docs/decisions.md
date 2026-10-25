@@ -1008,7 +1008,19 @@ Docker Ubuntu GUI.
   - runs the script on the `rust` and `wasm` artifacts;
   - uploads the results and the video.
   - Simulated locally with the same steps: 7/7 with the video, 4.6 min. actionlint is clean.
-  - The job has not run on GitHub yet (nothing is pushed).
+  - **First GitHub runs (2026-10-24):** run 40144649915 is all green. Format 19 s, rust 6 m 48 s,
+    wasm 1 m 8 s, extension 1 m 49 s, docker-e2e 5 m 41 s (9.5 min on the first, uncached image build).
+    docker-e2e matched expected.json on 7/7, the same as locally.
+    The first runs found three problems:
+    1. Clippy on the runner's Rust 1.99 flags `question_mark` (fixed in values.rs).
+    2. After a force push, `github.event.before` is gone, and `rex check --git-base` rightly refused it;
+       the workflow now falls back to the parent.
+    3. The extension job used playwright-core 1.48's Chromium 130, below the manifest's
+       `minimum_chrome_version` 137, so the extension never loaded; local runs had used another
+       project's cached Chromium. playwright-core is pinned to 1.62.1 (Chromium 151), and the harness takes
+       Playwright's own Chromium path.
+  - Fixtures repo: `Shuozeli/rex-fixtures` is now a private GitHub repo. CI reads it with a read-only
+    deploy key (operations.md).
 - **Open:**
   - a residential proxy for the live recordings;
   - a Windows backend inside the framework (the screencast recorder is still a scratch script);

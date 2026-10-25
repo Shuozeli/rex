@@ -104,7 +104,8 @@ tested locally but **not yet committed** (see the open actions in decisions.md).
 - [ ] Review follow-ups: extraction speed on heavy pages (CNBC 3-5 s, IMDb 2.5 s on a real click); restore the 6 synthetic fixtures the re-redaction x'd out (wsj x2, generic article x2, HN front x2) from their sources
 - [x] Recorded e2e on a Docker Ubuntu desktop (U40): `extension/recorder/`, Google Chrome stable with the CRX force-installed by policy, real input via xdotool, 50 fps x11grab, captions, results.json; tutorial scenario 6/7 with the store build (2026-10-23)
 - [x] Hermetic docker e2e (U40): `scripts/docker-e2e.sh`, store build in Google Chrome, no network, fixtures + locally published bundle, 7/7 against expected.json; opt-in ci-local step (2026-10-24)
-- [x] GitHub Actions `docker-e2e` job (U40): image layer cache with a weekly Chrome refresh, results + video artifacts; simulated locally 7/7, first GitHub run pending a push (2026-10-24)
+- [x] GitHub Actions `docker-e2e` job (U40): image layer cache with a weekly Chrome refresh, results + video artifacts; first GitHub runs green, 7/7 (2026-10-24)
+- [x] First full CI on GitHub (U40): private `Shuozeli/rex-fixtures` with a read-only deploy key; fixes for clippy 1.99, the version-gate base after a force push, and the Playwright Chromium version (2026-10-24)
 - [ ] Recorder follow-ups: more fixture scenes (one per site recipe?); residential proxy for live recordings (Amazon); Windows backend in the framework; scheduled live run with the video and results published
 - [ ] Next in the approved order: table/list extraction
 
