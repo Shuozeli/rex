@@ -12,7 +12,9 @@ services:
       BIND: ${TAILSCALE_IP:-127.0.0.1}
       CDP_PORT: "9541"
       NOVNC_PORT: "6081"
-      CHROME_ARGS: ${REX_RECORDER_CHROME_ARGS:-}
+      CHROME_ARGS: ${REX_RECORDER_CHROME_ARGS:---lang=en-US}
+      # The browser's clock zone matches the egress IP (a Sunnyvale residential line), as a local user's would.
+      TZ: ${REX_RECORDER_TZ:-America/Los_Angeles}
     shm_size: 2gb
     # Chrome's sandbox needs user namespaces, which the default seccomp profile blocks.
     security_opt:

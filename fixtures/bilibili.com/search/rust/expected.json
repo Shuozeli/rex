@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "bilibili.com/search",
-    "version": 1,
-    "sha256": "6646afa62768bea938ae1dc0d3448064a4d6413fa63988f23091a5f042d32483"
+    "version": 2,
+    "sha256": "f080a060ae8ae3841802b88e8e6d19e7fc6445f8c44acf35463ffb4391b2dc72"
   },
   "schema": "rex.schema.media.v1.VideoList",
   "url": "https://search.bilibili.com/all?keyword=rust%E6%95%99%E7%A8%8B",
@@ -14,57 +14,57 @@
     {
       "path": "query",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].id",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].title",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].channel_name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].channel_url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].duration_seconds",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].views",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].published_at",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     },
     {
       "path": "items[0].thumbnail",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bilibili.com/search@1"
+      "recipe": "bilibili.com/search@2"
     }
   ],
   "record": {
@@ -544,8 +544,8 @@
   "chain": [
     {
       "id": "bilibili.com/search",
-      "version": 1,
-      "sha256": "6646afa62768bea938ae1dc0d3448064a4d6413fa63988f23091a5f042d32483"
+      "version": 2,
+      "sha256": "f080a060ae8ae3841802b88e8e6d19e7fc6445f8c44acf35463ffb4391b2dc72"
     }
   ]
 }

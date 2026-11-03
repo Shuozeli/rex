@@ -1,13 +1,14 @@
 # Bilibili search results -> rex.schema.media.v1.VideoList (decisions.md U34). Ad cards have no /video/ link
 # and drop out (id is required). Dates are "2020年10月21日", "7月13日" (this year) or relative ("14小时前").
 id: bilibili.com/search
-version: 1
+version: 2
 schema: rex.schema.media.v1.VideoList
 requires: [relative_dates]
 match:
   urls:
     hosts: ["search.bilibili.com"]
-    include: ["^/(all|video)\\?"]
+    # An optional locale segment: plain HTTP is now redirected to /zh-Hans/all?... (found by the liveness run).
+    include: ["^/(?:[a-z]{2}(?:-[A-Za-z]{2,4})?/)?(all|video)\\?"]
   page:
     all:
       - exists: ".bili-video-card"

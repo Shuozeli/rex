@@ -1,6 +1,8 @@
 # Recipes checked daily against live, public, login-free pages (decisions.md U20).
 # A check passes when the page matches the expected recipe and extraction status is OK.
 # Paywalled or login-only sites are not listed; they rely on "Report broken recipe".
+# `datacenter_blocked`: the site refuses datacenter IPs. The workflow (GitHub runners) skips such checks with
+# --skip-datacenter-blocked; `rex liveness` from a residential line checks them.
 checks:
   - recipe: news.ycombinator.com/front
     urls: ["https://news.ycombinator.com/", "https://news.ycombinator.com/newest"]
@@ -12,6 +14,7 @@ checks:
     urls: ["https://en.wikipedia.org/wiki/Web_scraping", "https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E6%8A%93%E5%8F%96"]
   - recipe: ruanyifeng.com/blog
     urls: ["https://www.ruanyifeng.com/blog/2026/10/weekly-issue-414.html"]
+    datacenter_blocked: "HTTP 403 to GitHub runners"
   - recipe: blog.cloudflare.com/post
     urls: ["https://blog.cloudflare.com/the-road-to-quic/"]
   - recipe: go.dev/blog
@@ -30,6 +33,7 @@ checks:
     urls: ["https://www.amazon.com/dp/B0CFPJYX7P"]
   - recipe: amazon.com/search
     urls: ["https://www.amazon.com/s?k=wireless+earbuds"]
+    datacenter_blocked: "intermittent: a 2 KB challenge page to GitHub runners (2 of 3 runs on 2026-11-03)"
   - recipe: youtube.com/watch
     urls: ["https://www.youtube.com/watch?v=dQw4w9WgXcQ"]
   - recipe: bing.com/search
@@ -39,10 +43,12 @@ checks:
   # Chinese platforms (decisions.md U34); WeChat and Douyin need a browser and are covered by fixtures + e2e.
   - recipe: bilibili.com/video
     urls: ["https://www.bilibili.com/video/BV1yPp96UEQU/"]
+    datacenter_blocked: "HTTP 412 to GitHub runners"
   - recipe: bilibili.com/search
     urls: ["https://search.bilibili.com/all?keyword=rust%E6%95%99%E7%A8%8B"]
   - recipe: baidu.com/search
     urls: ["https://www.baidu.com/s?wd=rust%20webassembly"]
+    datacenter_blocked: "GitHub runners get the 百度安全验证 captcha page"
   # US platforms (decisions.md U35); the others need a browser and are covered by fixtures + e2e.
   - recipe: walmart.com/product
     urls: ["https://www.walmart.com/ip/JLab-Go-Air-Pop-True-Wireless-Earbuds-w-Charging-Case-Black/631193073"]
@@ -61,8 +67,12 @@ checks:
     urls: ["https://stripe.com/pricing"]
   - recipe: generic/business.v1
     urls: ["https://guide.michelin.com/us/en/california/san-francisco/restaurant/zuni-cafe"]
+    datacenter_blocked: "an empty 200 response (0 bytes) to GitHub runners"
   - recipe: generic/app.v1
-    urls: ["https://apps.apple.com/us/app/duolingo-language-lessons/id570060128", "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US"]
+    urls: ["https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US"]
+  # App Store pages have their own recipe since U38 (the generic one no longer applies there).
+  - recipe: apps.apple.com/app
+    urls: ["https://apps.apple.com/us/app/duolingo-language-lessons/id570060128"]
   - recipe: generic/title.v1
     urls: ["https://www.rottentomatoes.com/m/inception"]
   - recipe: generic/book.v1

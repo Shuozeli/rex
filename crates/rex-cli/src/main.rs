@@ -79,6 +79,10 @@ enum Command {
         /// Pages fetched in parallel (extraction stays on one thread).
         #[arg(long, default_value_t = 8)]
         jobs: usize,
+        /// Skip the checks marked `datacenter_blocked` (CI runners: the site refuses their IPs), reporting
+        /// them as skipped with the reason.
+        #[arg(long)]
+        skip_datacenter_blocked: bool,
     },
     /// Print a recipe in canonical form (protojson with --json).
     Fmt {
@@ -401,7 +405,8 @@ fn run(cli: Cli) -> Result<ExitCode> {
             recipes,
             report,
             jobs,
-        } => liveness(&file, &recipes, report.as_deref(), jobs),
+            skip_datacenter_blocked,
+        } => liveness(&file, &recipes, report.as_deref(), jobs, skip_datacenter_blocked),
     }
 }
 
@@ -1491,6 +1496,10 @@ struct LivenessFile {
 struct LivenessCheck {
     recipe: String,
     urls: Vec<String>,
+    /// Why the site refuses datacenter IPs (bot wall, HTTP 403/412). Checked from residential lines only;
+    /// `--skip-datacenter-blocked` reports it as skipped.
+    #[serde(default)]
+    datacenter_blocked: Option<String>,
 }
 
 #[derive(serde::Serialize)]
@@ -1498,25 +1507,88 @@ struct LivenessResult {
     recipe: String,
     url: String,
     ok: bool,
+    /// Not fetched (`datacenter_blocked` under `--skip-datacenter-blocked`); `problem` says why.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    skipped: bool,
     matched: Option<String>,
     status: Option<String>,
     problem: Option<String>,
 }
 
+/// The page's `<title>`, trimmed to 80 characters ("" when it has none).
+fn page_title(html: &str) -> String {
+    let doc = scraper::Html::parse_document(html);
+    let sel = scraper::Selector::parse("title").expect("static selector");
+    doc.select(&sel)
+        .next()
+        .map(|t| {
+            t.text()
+                .collect::<String>()
+                .split_whitespace()
+                .collect::<Vec<_>>()
+                .join(" ")
+        })
+        .unwrap_or_default()
+        .chars()
+        .take(80)
+        .collect()
+}
+
+/// How long to wait before retrying after a 429/503: the `Retry-After` seconds (an HTTP date or nothing
+/// means 5 s), at most 30 s.
+fn retry_after(header: Option<&str>) -> std::time::Duration {
+    let secs = header.and_then(|v| v.trim().parse::<u64>().ok()).unwrap_or(5);
+    std::time::Duration::from_secs(secs.min(30))
+}
+
+/// URLs grouped by host, in first-seen order: one worker fetches a host's URLs one after another, so a
+/// site never gets parallel requests from a liveness run (HN answers those with 429).
+fn by_host(work: &[(String, String)]) -> Vec<Vec<(String, String)>> {
+    let mut groups: Vec<(String, Vec<(String, String)>)> = Vec::new();
+    for (recipe, url) in work {
+        let host = url::Url::parse(url)
+            .ok()
+            .and_then(|u| u.host_str().map(str::to_string))
+            .unwrap_or_default();
+        match groups.iter_mut().find(|(h, _)| *h == host) {
+            Some((_, g)) => g.push((recipe.clone(), url.clone())),
+            None => groups.push((host, vec![(recipe.clone(), url.clone())])),
+        }
+    }
+    groups.into_iter().map(|(_, g)| g).collect()
+}
+
 fn fetch_page(url: &str) -> Result<(String, String)> {
+    // IPv4 only: ureq tries the first resolved address without falling back, and the hosts this runs on
+    // (GitHub runners, the workstation) have no IPv6 route, so an AAAA-first site hangs until the timeout.
     let agent: ureq::Agent = ureq::Agent::config_builder()
         .timeout_global(Some(std::time::Duration::from_secs(30)))
+        .ip_family(ureq::config::IpFamily::Ipv4Only)
+        .http_status_as_error(false)
         .build()
         .into();
-    let res = agent
-        .get(url)
-        .header(
-            "User-Agent",
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0 Safari/537.36",
-        )
-        .header("Accept-Language", "en,zh;q=0.8")
-        .call()
-        .with_context(|| format!("GET {url}"))?;
+    let get = || {
+        agent
+            .get(url)
+            .header(
+                "User-Agent",
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0 Safari/537.36",
+            )
+            .header("Accept-Language", "en,zh;q=0.8")
+            .call()
+            .with_context(|| format!("GET {url}"))
+    };
+    let mut res = get()?;
+    // Rate limited or briefly unavailable: wait as asked (capped) and try once more.
+    if matches!(res.status().as_u16(), 429 | 503) {
+        let wait = retry_after(res.headers().get("retry-after").and_then(|v| v.to_str().ok()));
+        std::thread::sleep(wait);
+        res = get()?;
+    }
+    let status = res.status().as_u16();
+    if status >= 400 {
+        bail!("GET {url}: http status: {status}");
+    }
     let final_url = res.get_uri().to_string();
     let content_type = res
         .headers()
@@ -1525,6 +1597,10 @@ fn fetch_page(url: &str) -> Result<(String, String)> {
         .unwrap_or("")
         .to_string();
     let bytes = res.into_body().with_config().limit(10 * 1024 * 1024).read_to_vec()?;
+    // Some CDNs answer clients they refuse with an empty 200; say so rather than "no recipe matched".
+    if bytes.is_empty() {
+        bail!("GET {url}: empty response body (from {final_url})");
+    }
     Ok((final_url, decode_html(&content_type, &bytes)))
 }
 
@@ -1557,7 +1633,13 @@ fn decode_html(content_type: &str, bytes: &[u8]) -> String {
     text.into_owned()
 }
 
-fn liveness(file: &Path, recipes: &[PathBuf], report: Option<&Path>, jobs: usize) -> Result<ExitCode> {
+fn liveness(
+    file: &Path,
+    recipes: &[PathBuf],
+    report: Option<&Path>,
+    jobs: usize,
+    skip_datacenter_blocked: bool,
+) -> Result<ExitCode> {
     let spec: LivenessFile =
         serde_yaml::from_str(&std::fs::read_to_string(file)?).with_context(|| format!("parsing {}", file.display()))?;
     let engine = engine(recipes)?;
@@ -1575,23 +1657,44 @@ fn liveness(file: &Path, recipes: &[PathBuf], report: Option<&Path>, jobs: usize
             bail!("{} names unknown recipe `{}`", file.display(), check.recipe);
         }
     }
-    let work: Vec<(String, String)> = spec
-        .checks
-        .iter()
-        .flat_map(|c| c.urls.iter().map(move |u| (c.recipe.clone(), u.clone())))
-        .collect();
+    let mut results = Vec::new();
+    let mut work: Vec<(String, String)> = Vec::new();
+    for c in &spec.checks {
+        for u in &c.urls {
+            match (&c.datacenter_blocked, skip_datacenter_blocked) {
+                (Some(why), true) => {
+                    println!("skip {} {u} — datacenter IPs refused: {why}", c.recipe);
+                    results.push(LivenessResult {
+                        recipe: c.recipe.clone(),
+                        url: u.clone(),
+                        ok: true,
+                        skipped: true,
+                        matched: None,
+                        status: None,
+                        problem: Some(format!("skipped: datacenter IPs refused ({why})")),
+                    });
+                }
+                _ => work.push((c.recipe.clone(), u.clone())),
+            }
+        }
+    }
+    let groups = by_host(&work);
     let next = std::sync::atomic::AtomicUsize::new(0);
     let (tx, rx) = std::sync::mpsc::channel::<(String, String, Result<(String, String)>)>();
-    let mut results = Vec::new();
     std::thread::scope(|scope| {
         for _ in 0..jobs.max(1) {
             let tx = tx.clone();
-            let (work, next) = (&work, &next);
+            let (groups, next) = (&groups, &next);
             scope.spawn(move || loop {
                 let i = next.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-                let Some((recipe, url)) = work.get(i) else { break };
-                if tx.send((recipe.clone(), url.clone(), fetch_page(url))).is_err() {
-                    break;
+                let Some(group) = groups.get(i) else { break };
+                for (n, (recipe, url)) in group.iter().enumerate() {
+                    if n > 0 {
+                        std::thread::sleep(std::time::Duration::from_secs(1));
+                    }
+                    if tx.send((recipe.clone(), url.clone(), fetch_page(url))).is_err() {
+                        return;
+                    }
                 }
             });
         }
@@ -1601,18 +1704,24 @@ fn liveness(file: &Path, recipes: &[PathBuf], report: Option<&Path>, jobs: usize
                 recipe,
                 url,
                 ok: false,
+                skipped: false,
                 matched: None,
                 status: None,
                 problem: None,
             };
             let check_recipe = r.recipe.clone();
-            match fetched.and_then(|(final_url, html)| Ok(Document::parse(&html, &final_url, engine.limits())?)) {
+            // What the page was, for telling a bot wall or an interstitial from a changed page.
+            let mut seen = String::new();
+            match fetched.and_then(|(final_url, html)| {
+                seen = format!("{} bytes from {final_url}, title {:?}", html.len(), page_title(&html));
+                Ok(Document::parse(&html, &final_url, engine.limits())?)
+            }) {
                 Err(e) => r.problem = Some(format!("{e:#}")),
                 Ok(doc) => {
                     let (plan, result) = engine.extract_auto(&doc, &ctx);
                     r.matched = plan.chosen.clone();
                     match result {
-                        None => r.problem = Some("no recipe matched".into()),
+                        None => r.problem = Some(format!("no recipe matched ({seen})")),
                         Some(res) => {
                             let status = status_name(res.extraction.status).to_string();
                             r.ok = plan.chosen.as_deref() == Some(check_recipe.as_str()) && status == "OK";
@@ -1649,12 +1758,118 @@ fn liveness(file: &Path, recipes: &[PathBuf], report: Option<&Path>, jobs: usize
         std::fs::write(path, serde_json::to_string_pretty(&results)?)?;
     }
     let failed = results.iter().filter(|r| !r.ok).count();
-    println!("\n{} checked, {failed} failing", results.len());
+    let skipped = results.iter().filter(|r| r.skipped).count();
+    println!(
+        "\n{} checked, {failed} failing{}",
+        results.len() - skipped,
+        if skipped > 0 {
+            format!(", {skipped} skipped")
+        } else {
+            String::new()
+        }
+    );
     Ok(if failed == 0 {
         ExitCode::SUCCESS
     } else {
         ExitCode::FAILURE
     })
+}
+
+#[cfg(test)]
+mod liveness_tests {
+    use super::{by_host, page_title, retry_after, LivenessFile};
+
+    #[test]
+    fn urls_of_one_host_go_to_one_group_in_order() {
+        // Arrange
+        let work: Vec<(String, String)> = [
+            ("hn/front", "https://news.ycombinator.com/"),
+            ("lobsters", "https://lobste.rs/"),
+            ("hn/front", "https://news.ycombinator.com/newest"),
+            ("hn/item", "https://news.ycombinator.com/item?id=1"),
+        ]
+        .iter()
+        .map(|(r, u)| (r.to_string(), u.to_string()))
+        .collect();
+
+        // Act
+        let groups = by_host(&work);
+
+        // Assert
+        let urls: Vec<Vec<&str>> = groups
+            .iter()
+            .map(|g| g.iter().map(|(_, u)| u.as_str()).collect())
+            .collect();
+        assert_eq!(
+            urls,
+            vec![
+                vec![
+                    "https://news.ycombinator.com/",
+                    "https://news.ycombinator.com/newest",
+                    "https://news.ycombinator.com/item?id=1"
+                ],
+                vec!["https://lobste.rs/"],
+            ]
+        );
+    }
+
+    #[test]
+    fn retry_after_takes_seconds_capped_at_30_and_defaults_to_5() {
+        // Arrange
+        let cases = [
+            (Some("2"), 2),
+            (Some("120"), 30),
+            (Some("Wed, 21 Oct 2026 07:28:00 GMT"), 5),
+            (None, 5),
+        ];
+
+        // Act
+        let got: Vec<u64> = cases.iter().map(|(h, _)| retry_after(*h).as_secs()).collect();
+
+        // Assert
+        assert_eq!(got, cases.iter().map(|(_, s)| *s).collect::<Vec<u64>>());
+    }
+
+    #[test]
+    fn page_title_is_collapsed_and_cut_to_80_characters() {
+        // Arrange
+        let html = format!(
+            "<html><head><title>\n  Robot   check {}</title></head></html>",
+            "x".repeat(100)
+        );
+
+        // Act
+        let title = page_title(&html);
+
+        // Assert
+        assert!(title.starts_with("Robot check xxx"), "{title}");
+        assert_eq!(title.chars().count(), 80);
+    }
+
+    #[test]
+    fn a_check_may_say_why_datacenter_ips_are_refused() {
+        // Arrange
+        let yaml = "checks:\n  - recipe: a.com/x\n    urls: [\"https://a.com/1\"]\n    datacenter_blocked: \"HTTP 403\"\n  - recipe: b.com/y\n    urls: [\"https://b.com/1\"]\n";
+
+        // Act
+        let spec: LivenessFile = serde_yaml::from_str(yaml).unwrap();
+
+        // Assert
+        assert_eq!(spec.checks[0].datacenter_blocked.as_deref(), Some("HTTP 403"));
+        assert_eq!(spec.checks[1].datacenter_blocked, None);
+    }
+
+    #[test]
+    fn an_unknown_key_in_a_check_is_an_error() {
+        // Arrange
+        let yaml = "checks:\n  - recipe: a.com/x\n    urls: []\n    blocked: true\n";
+
+        // Act
+        let parsed = serde_yaml::from_str::<LivenessFile>(yaml);
+
+        // Assert
+        assert!(parsed.is_err());
+    }
 }
 
 #[cfg(test)]

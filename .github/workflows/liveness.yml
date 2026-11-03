@@ -29,9 +29,11 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: Swatinem/rust-cache@v2
       - run: cargo build --release -p rex-cli
+      # Sites that refuse datacenter IPs are marked `datacenter_blocked` in liveness.yaml; a runner skips them
+      # (reported as skipped). `rex liveness` from a residential line checks them.
       - name: Check live pages
         id: run
-        run: ./target/release/rex liveness --report liveness-report.json
+        run: ./target/release/rex liveness --skip-datacenter-blocked --report liveness-report.json
       # Auto-harvested recipes (dev channel): reported as an artifact for promotion, never an issue.
       - name: Check auto-harvested recipes
         if: always()

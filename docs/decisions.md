@@ -1043,10 +1043,53 @@ Docker Ubuntu GUI.
       `@graph`, with string prices. A search of quote sites found only CNBC publishing FinancialQuote, and
       CNBC has its own recipe, so no real page reaches this fallback.
   - Local run: 13/13. CI has a third matrix entry.
+- **User request (2026-11-03): a residential proxy for the live recordings. Not needed.**
+  - This host and the ARM Windows host leave through the same residential IP (98.42.201.9, Comcast,
+    Sunnyvale, IPv4 only), so the Docker desktop already uses a residential line.
+  - Amazon's interstitial persists with the time zone and language aligned to that location
+    (America/Los_Angeles, en-US, now the defaults), and on a second visit with cookies. It judges the
+    browser environment, not the IP. Getting around it would mean disguising the browser to defeat a bot
+    check, which the recorder does not do.
+  - Amazon is covered by the hermetic e2e (fixtures) instead.
 - **Open:**
-  - a residential proxy for the live recordings;
   - a Windows backend inside the framework (the screencast recorder is still a scratch script);
   - a scheduled live recording.
+
+## U41: Liveness green on GitHub runners [user request + delegated], 2026-11-03
+
+**User request:** fix the GitHub Actions. CI was green, but the daily Liveness run had failed every day since
+its first run (6 of 40 checks; the failures are in issue #1).
+
+- **Real problems, fixed:**
+  - `bilibili.com/search` v2: plain HTTP is now redirected to `/zh-Hans/all?...`. The URL rule takes an
+    optional locale segment, and the redirected page is a new fixture (`rust-zh-hans-locale`, 42 items).
+  - `liveness.yaml` checked `generic/app.v1` on an App Store page, which `apps.apple.com/app` has owned since
+    U38. The App Store URL is now that recipe's own check, and the generic one keeps Google Play.
+  - `rex liveness` / `rex fixture capture` fetch over IPv4 only. ureq used the first (IPv6) address with no
+    fallback and timed out on guide.michelin.com, Google Play and the App Store wherever IPv6 has no route.
+- **Not recipe problems: sites that refuse runner IPs.** Baidu (captcha page), bilibili video (HTTP 412),
+  ruanyifeng.com (HTTP 403) and guide.michelin.com (an empty 200) pass from the residential line.
+  - Michelin was found by the second verification run: the report now gives the page's size, final URL and
+    title when nothing matches, and an empty body is an error of its own.
+  - amazon.com/search failed on 2 of the 3 verification runs: the runner got a 2251-byte page with no
+    title (Amazon's challenge page) instead of results. It had passed every earlier day, so the block is
+    intermittent. It is marked too, since a check that fails at random would make the daily run red for
+    nothing. amazon.com/product still runs on the runners.
+  - They are marked `datacenter_blocked` in `liveness.yaml`. The workflow passes
+    `--skip-datacenter-blocked` and reports them as skipped; a local `rex liveness` checks them.
+- **The first scheduled run after the fix failed:** `news.ycombinator.com/newest` returned HTTP 429. The run
+  fetched the three HN URLs in parallel.
+  - `rex liveness` now fetches one host's URLs in sequence, 1 s apart, with different hosts still in parallel.
+  - A 429/503 is retried once after `Retry-After` (capped at 30 s).
+  - This respects the site's rate limit; it does not work around it.
+- **Local run as CI runs it:** 35 checked, 0 failing, 5 skipped, in 6.4 s.
+- **Not changed:** the "Node.js 20 is deprecated" warnings. The actions are forced to Node 24 already
+  (`FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`); the warnings fail nothing.
+  - Moving to the Node 24 majors (checkout v7, upload-artifact v7, download-artifact v8, setup-node v7,
+    pnpm/action-setup v6, buildx v4, build-push v7) means breaking changes to review.
+  - arduino/setup-protoc has no Node 24 release yet.
+- **Same day: a residential proxy for the live recordings is not needed** (U40): this host and the ARM
+  Windows host share one residential egress IP.
 
 ## Open actions (need the user)
 

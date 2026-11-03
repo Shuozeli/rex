@@ -255,9 +255,16 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
 - **Watch live:** noVNC at `http://shuoze25-yuacx.tail8f3b66.ts.net:6081/vnc.html`.
 - **CDP:** `http://shuoze25-yuacx.tail8f3b66.ts.net:9541`. A small relay rewrites the Host header, which Chrome
   only accepts as an IP or localhost. Both bind to the Tailscale IP only.
-- **Network:** host networking, so the extension reaches the serve-lib bundle by MagicDNS. Pages see this
-  host's IP, and Amazon shows it a "Continue shopping" interstitial.
-- **Proxy:** `REX_RECORDER_CHROME_ARGS="--proxy-server=socks5://<host>:<port>"` passes extra Chrome flags.
+- **Network:** host networking, so the extension reaches the serve-lib bundle by MagicDNS.
+  - Pages see this host's egress IP, a residential Comcast line (Sunnyvale), IPv4 only. The ARM Windows
+    host leaves through the same IP, so proxying through it changes nothing.
+  - The browser's time zone (`REX_RECORDER_TZ`, default `America/Los_Angeles`) and language (`--lang=en-US`)
+    match that location.
+  - Amazon still shows this desktop its "Continue shopping" interstitial, on the first visit and on the
+    second. It judges the browser environment (a fresh Linux profile), not the IP. The recorder does not
+    try to get around bot checks.
+- **Proxy:** `REX_RECORDER_CHROME_ARGS="--lang=en-US --proxy-server=socks5://<host>:<port>"` passes extra
+  Chrome flags. It replaces the default `--lang=en-US`, so keep that flag.
 
 ## Drift
 
@@ -266,5 +273,18 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
   1. run `rex liveness` locally;
   2. capture the page (`rex fixture capture`), then `rex explain` it;
   3. fix the selectors, bump the recipe `version`, and add the capture as a redacted fixture.
+  - **Runner IPs refused:** when a check fails on the runner (HTTP 403/412, a captcha page) but passes from a
+    residential line, mark it `datacenter_blocked: "<why>"` in `liveness.yaml`.
+    - The workflow runs `rex liveness --skip-datacenter-blocked` and reports such checks as skipped.
+    - A plain `rex liveness` here still checks them. Now marked: baidu.com/search, bilibili.com/video,
+      ruanyifeng.com/blog, guide.michelin.com (an empty 200 to runners), amazon.com/search (an
+      intermittent 2 KB challenge page).
+  - **Diagnosing:** when nothing matches, the report says what the page was: its size, final URL and
+    title. An empty body is reported as such.
+  - **Polite fetching:** a host's URLs are fetched one after another, 1 s apart, while different hosts run in
+    parallel. A 429/503 is retried once after its `Retry-After` (default 5 s, at most 30 s). HN answered the
+    parallel requests of a run with 429.
+  - **Fetching uses IPv4 only:** ureq does not fall back from IPv6, and neither the runners nor the
+    workstation route IPv6, so AAAA-first sites (guide.michelin.com, Google Play, the App Store) timed out.
 - **User reports** arrive as "Broken recipe: …" issues from the popup. The page URL is included only when
   the user opted in.
