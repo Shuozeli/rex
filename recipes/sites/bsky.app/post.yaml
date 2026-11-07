@@ -5,7 +5,7 @@
 # time; it lists only the first 10 comments, so replies come from the DOM. The DOM shows times in the viewer's
 # local zone without saying which, so replies carry no published_at.
 id: bsky.app/post
-version: 1
+version: 2
 schema: rex.schema.social.v1.Thread
 match:
   urls:
@@ -71,14 +71,17 @@ fields:
     candidates:
       - json_ld: { types: [WebPage], path: "mainEntity.datePublished" }
 
-  - path: post.likes
+  - path: post.likes          # JSON-LD has the exact count; the page shows "63K"
     candidates:
+      - json_ld: { types: [WebPage], path: "mainEntity.interactionStatistic[interactionType=LikeAction].userInteractionCount" }
       - css: { selector: "[data-testid=likeCount-expanded]" }
     pipe:
       - number: {}
 
   - path: post.reposts
     candidates:
+      # The label/value pair "Reposts"; JSON-LD's ShareAction also counts quotes.
+      - css: { selector: "meta[name^='twitter:label'][content=Reposts] + meta[name^='twitter:value']", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
       - css: { selector: "[data-testid=repostCount-expanded]" }
     pipe:
       - number: {}

@@ -36,7 +36,7 @@ RUN curl -fsSL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-l
 # extension, which DeveloperToolsAvailability 0 (the default) refuses ("Not allowed"). The extension policy (rex-extension.json) is written
 # at start, once the CRX is packed and its id known; the directory is the desktop user's for that.
 RUN mkdir -p /etc/opt/chrome/policies/managed \
-    && printf '{"BrowserSignin": 0, "SyncDisabled": true, "PromotionsEnabled": false, "DefaultBrowserSettingEnabled": false, "PasswordManagerEnabled": false, "AutofillAddressEnabled": false, "TranslateEnabled": false, "MetricsReportingEnabled": false, "DeveloperToolsAvailability": 1}\n' \
+    && printf '{"BrowserSignin": 0, "SyncDisabled": true, "PromotionsEnabled": false, "DefaultBrowserSettingEnabled": false, "PasswordManagerEnabled": false, "AutofillAddressEnabled": false, "TranslateEnabled": false, "MetricsReportingEnabled": false, "DeveloperToolsAvailability": 1, "DefaultNotificationsSetting": 2, "DefaultGeolocationSetting": 2}\n' \
       > /etc/opt/chrome/policies/managed/rex.json
 
 # uid 1000, like the host user: the signing key (mode 600) is readable and output files are the host user's.

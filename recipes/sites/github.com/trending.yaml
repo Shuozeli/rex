@@ -1,6 +1,6 @@
 # GitHub Trending (repositories) -> feed.v1. score = stars gained in the trending period.
 id: github.com/trending
-version: 1
+version: 2
 schema: rex.schema.feed.v1.Feed
 match:
   urls:
@@ -13,6 +13,8 @@ fields:
   - path: title
     candidates:
       - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - strip_site_name: {}    # "Trending repositories on GitHub today · GitHub"
   - path: items
     each: "article.Box-row"
     fields:

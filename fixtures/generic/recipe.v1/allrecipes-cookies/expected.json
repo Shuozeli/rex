@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/recipe.v1",
-    "version": 1,
-    "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+    "version": 2,
+    "sha256": "dd3a2c435add1fa0797d899ed6e77c569e37c443c15f22fa942791677427cf74"
   },
   "schema": "rex.schema.howto.v1.Recipe",
   "url": "https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies/",
@@ -14,93 +14,93 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "authors",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "published_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "prep_time_seconds",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "cook_time_seconds",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "total_time_seconds",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "yield",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "category",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "cuisine",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "keywords",
-      "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "ingredients",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "steps",
       "origin": "FIELD_ORIGIN_JSON_LD",
       "candidate": 1,
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "rating_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     },
     {
       "path": "calories",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/recipe.v1@1"
+      "recipe": "generic/recipe.v1@2"
     }
   ],
   "record": {
@@ -122,7 +122,15 @@
     "category": "Dessert",
     "cuisine": "American",
     "keywords": [
-      "publisher-tested"
+      "Xxxxxxxxx Xxxx Xxxxxx Xxxxxxx",
+      "Xxxx Xxxx Xxxxxxx",
+      "Xxxxxxxxx Xxxxxx Xxxxxxx",
+      "Xxxxxxxxx",
+      "Xxxxxxxx xxx Xxxxxxxxx Xxxxxxx",
+      "Xxxxxxxx",
+      "Xxxxxxx Xxxxxxx Xxxxxxx",
+      "Xxxxxx",
+      "Xxxxxxxxxx Xxxxxxxx Xxxxxxx"
     ],
     "ingredients": [
       "1 xxx xxxxxx, xxxxxxxx",
@@ -182,8 +190,8 @@
   "chain": [
     {
       "id": "generic/recipe.v1",
-      "version": 1,
-      "sha256": "f0eb93322b115ba3a2f457bd0cc9c11b566bb1a28f9eac15de7a88923dea4da1"
+      "version": 2,
+      "sha256": "dd3a2c435add1fa0797d899ed6e77c569e37c443c15f22fa942791677427cf74"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/article.v1",
-    "version": 1,
-    "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+    "version": 2,
+    "sha256": "0ebc402368ef862d6085f01247e5b8460b9081f362b0888f526ebc053aa226da"
   },
   "schema": "rex.schema.article.v1.Article",
   "url": "https://blog.example.org/2026/10/declarative-recipes",
@@ -14,48 +14,48 @@
     {
       "path": "canonical_url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "authors",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "published_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "summary",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "tags",
       "origin": "FIELD_ORIGIN_JSON_LD",
       "candidate": 1,
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "language",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "body_html",
       "origin": "FIELD_ORIGIN_READABILITY",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     },
     {
       "path": "body_text",
       "origin": "FIELD_ORIGIN_READABILITY",
-      "recipe": "generic/article.v1@1"
+      "recipe": "generic/article.v1@2"
     }
   ],
   "record": {
@@ -80,8 +80,8 @@
   "chain": [
     {
       "id": "generic/article.v1",
-      "version": 1,
-      "sha256": "e2aba688b476ce0baad1b6da203a553227045ac4deb7cbb80f1ae727a6a86480"
+      "version": 2,
+      "sha256": "0ebc402368ef862d6085f01247e5b8460b9081f362b0888f526ebc053aa226da"
     }
   ]
 }

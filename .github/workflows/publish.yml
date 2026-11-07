@@ -64,7 +64,7 @@ jobs:
       - run: cargo build --release -p rex-cli
       - name: Gates (never publish what CI would reject)
         run: |
-          ./target/release/rex check recipes --fixtures fixtures --fixtures rex-fixtures
+          ./target/release/rex check recipes --fixtures fixtures --fixtures rex-fixtures --liveness liveness.yaml --liveness liveness-auto.yaml
           ./target/release/rex test --fixtures fixtures --fixtures conformance --fixtures rex-fixtures
       - name: Signing key
         env:

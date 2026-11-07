@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/business.v1",
-    "version": 1,
-    "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+    "version": 2,
+    "sha256": "491c18b92d420b748e1745239d36b9d4f965fea2d9bdaef7bd62446d10b0ffa6"
   },
   "schema": "rex.schema.place.v1.Business",
   "url": "https://www.tripadvisor.com/Restaurant_Review-g60713-d360056-Reviews-La_Taqueria-San_Francisco_California.html",
@@ -14,63 +14,63 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 2,
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "categories",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "address",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "geo",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "phone",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "price_range",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "review_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "cuisines",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     },
     {
       "path": "images",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/business.v1@1"
+      "recipe": "generic/business.v1@2"
     }
   ],
   "record": {
@@ -109,8 +109,8 @@
   "chain": [
     {
       "id": "generic/business.v1",
-      "version": 1,
-      "sha256": "765dc39274710f7806bf6d01e049940d5190119725b48e79bd44627b85378a27"
+      "version": 2,
+      "sha256": "491c18b92d420b748e1745239d36b9d4f965fea2d9bdaef7bd62446d10b0ffa6"
     }
   ]
 }

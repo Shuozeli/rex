@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/howto.v1",
-    "version": 1,
-    "sha256": "0afe2632e9711d147f945dea83d79d746f4f187ece626fc6ba56b8a3dac1c05d"
+    "version": 2,
+    "sha256": "1bb4279a9a9191bb6790b161778f5164a1d53a9df73c016c6afd29eb7dfce01c"
   },
   "schema": "rex.schema.howto.v1.HowTo",
   "url": "https://www.wikihow.com/Boil-Eggs",
@@ -14,42 +14,42 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "authors",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "published_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "updated_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     },
     {
       "path": "steps",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/howto.v1@1"
+      "recipe": "generic/howto.v1@2"
     }
   ],
   "record": {
@@ -151,8 +151,8 @@
   "chain": [
     {
       "id": "generic/howto.v1",
-      "version": 1,
-      "sha256": "0afe2632e9711d147f945dea83d79d746f4f187ece626fc6ba56b8a3dac1c05d"
+      "version": 2,
+      "sha256": "1bb4279a9a9191bb6790b161778f5164a1d53a9df73c016c6afd29eb7dfce01c"
     }
   ]
 }

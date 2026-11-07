@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/faq.v1",
-    "version": 1,
-    "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+    "version": 2,
+    "sha256": "1dc625b2e50dcdb6ed2d2ce2032a5f0041ff1ae7c390208b05cb562ed676d30f"
   },
   "schema": "rex.schema.faq.v1.FaqPage",
   "url": "https://www.bankrate.com/mortgages/mortgage-rates/",
@@ -15,17 +15,17 @@
       "path": "title",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 1,
-      "recipe": "generic/faq.v1@1"
+      "recipe": "generic/faq.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/faq.v1@1"
+      "recipe": "generic/faq.v1@2"
     },
     {
       "path": "items",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/faq.v1@1"
+      "recipe": "generic/faq.v1@2"
     }
   ],
   "record": {
@@ -54,8 +54,8 @@
   "chain": [
     {
       "id": "generic/faq.v1",
-      "version": 1,
-      "sha256": "ad1f4d8a3ba30074d641e528860f0b85c6ee781a4c257c2ea938fd64cf1264da"
+      "version": 2,
+      "sha256": "1dc625b2e50dcdb6ed2d2ce2032a5f0041ff1ae7c390208b05cb562ed676d30f"
     }
   ]
 }

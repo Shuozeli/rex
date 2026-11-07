@@ -102,11 +102,16 @@ pub enum Transform {
         start: i32,
         end: i32,
     },
-    Unique,
+    Unique {
+        ignore_case: bool,
+    },
     Filter {
         re: Regex,
         invert: bool,
+        key: String,
     },
+    NotFuture,
+    StripSiteName,
     HtmlToText,
     JsonPath(String),
     Datetime(DatetimeSpec),
@@ -121,6 +126,7 @@ pub enum Transform {
     },
     Duration,
     Decode(pb::DecodeKind),
+    DropCodes,
 }
 
 /// Compile one proto transform. `Default` is handled by the rule, so it is reported separately.
@@ -169,11 +175,17 @@ pub fn compile(t: &pb::Transform, max_regex_bytes: usize) -> Result<Compiled, St
             start: s.start,
             end: s.end,
         },
-        Op::Unique(_) => Transform::Unique,
+        Op::Unique(u) => Transform::Unique {
+            ignore_case: u.ignore_case,
+        },
+        Op::DropCodes(_) => Transform::DropCodes,
         Op::Filter(f) => Transform::Filter {
             re: re(&f.pattern)?,
             invert: f.invert,
+            key: f.key.clone(),
         },
+        Op::NotFuture(_) => Transform::NotFuture,
+        Op::StripSiteName(_) => Transform::StripSiteName,
         Op::HtmlToText(_) => Transform::HtmlToText,
         Op::Json(j) => {
             rex_dom::jsonld::validate_path(&j.path)?;
@@ -228,6 +240,8 @@ pub struct PipeCtx<'a> {
     pub base: &'a url::Url,
     pub now: chrono::DateTime<chrono::Utc>,
     pub budget: &'a Budget,
+    /// The page (for `strip_site_name`); `None` in unit tests of other transforms.
+    pub doc: Option<&'a rex_dom::Document>,
 }
 
 /// Why a pipe dropped everything.
@@ -276,8 +290,11 @@ fn name(t: &Transform) -> &'static str {
         Transform::Split(_) => "split",
         Transform::Join(_) => "join",
         Transform::Slice { .. } => "slice",
-        Transform::Unique => "unique",
+        Transform::Unique { .. } => "unique",
+        Transform::DropCodes => "drop_codes",
         Transform::Filter { .. } => "filter",
+        Transform::NotFuture => "not_future",
+        Transform::StripSiteName => "strip_site_name",
         Transform::HtmlToText => "html_to_text",
         Transform::JsonPath(_) => "json",
         Transform::Datetime(_) => "datetime",
@@ -350,12 +367,13 @@ fn apply_one(t: &Transform, items: Vec<Item>, ctx: &PipeCtx<'_>) -> Result<Vec<I
             }
         }
         Transform::Slice { start, end } => slice(items, *start, *end),
-        Transform::Unique => {
+        Transform::Unique { ignore_case } => {
             let mut seen: std::collections::HashSet<String> = std::collections::HashSet::new();
             items
                 .into_iter()
                 .filter(|it| {
                     let key = match it {
+                        Item::Str { s, .. } if *ignore_case => s.to_lowercase(),
                         Item::Str { s, .. } => s.clone(),
                         Item::Json(v) => v.to_string(),
                     };
@@ -363,10 +381,37 @@ fn apply_one(t: &Transform, items: Vec<Item>, ctx: &PipeCtx<'_>) -> Result<Vec<I
                 })
                 .collect()
         }
-        Transform::Filter { re, invert } => items
+        Transform::DropCodes => items
             .into_iter()
-            .filter(|it| it.as_str().is_some_and(|s| re.is_match(s) != *invert))
+            .filter(|it| !matches!(it, Item::Str { s, .. } if crate::judge::is_code(s)))
             .collect(),
+        Transform::Filter { re, invert, key } => items
+            .into_iter()
+            .filter(|it| match it {
+                Item::Str { s, .. } => re.is_match(s) != *invert,
+                Item::Json(v) if !key.is_empty() => v
+                    .get(key.as_str())
+                    .and_then(|x| x.as_str())
+                    .is_none_or(|s| re.is_match(s) != *invert),
+                Item::Json(_) => *invert,
+            })
+            .collect(),
+        Transform::StripSiteName => {
+            let names = ctx.doc.map(crate::judge::site_names).unwrap_or_default();
+            map_str(items, |s| Some(crate::judge::strip_site_suffix(s, &names)))
+        }
+        Transform::NotFuture => {
+            let limit = ctx.now + chrono::Duration::days(1);
+            items
+                .into_iter()
+                .filter(|it| {
+                    let Item::Str { s, .. } = it else { return true };
+                    crate::values::parse_datetime(s, &crate::values::DatetimeSpec::default(), ctx.now)
+                        .and_then(|d| d.to_utc(None))
+                        .is_none_or(|t| t <= limit)
+                })
+                .collect()
+        }
         Transform::HtmlToText => items
             .into_iter()
             .filter_map(|it| match it {
@@ -458,7 +503,7 @@ mod tests {
         let hostile: String = (0..200_000).map(|i| format!("t{i},")).collect();
         let pipe = vec![
             Transform::Split(compile_regex(r"\s*,\s*", 1 << 20).unwrap()),
-            Transform::Unique,
+            Transform::Unique { ignore_case: false },
         ];
         let started = std::time::Instant::now();
 
@@ -486,6 +531,7 @@ mod tests {
             base,
             now: chrono::DateTime::from_timestamp(0, 0).unwrap(),
             budget,
+            doc: None,
         }
     }
 
@@ -500,7 +546,7 @@ mod tests {
         let budget = Budget::new(1000);
         let pipe = vec![
             Transform::Split(compile_regex(r"\s*,\s*", 1 << 20).unwrap()),
-            Transform::Unique,
+            Transform::Unique { ignore_case: false },
             Transform::Slice { start: 0, end: 2 },
             Transform::Join(" | ".into()),
         ];

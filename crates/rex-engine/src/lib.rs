@@ -13,6 +13,7 @@ use url::Url;
 pub mod coerce;
 pub mod eval;
 pub mod fixtures;
+pub mod judge;
 pub mod matching;
 pub mod recipe;
 pub mod transform;

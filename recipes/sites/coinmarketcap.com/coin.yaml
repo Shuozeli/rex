@@ -2,7 +2,7 @@
 # is shown unsigned ("1.92% (24h)"); its direction is the data-change attribute. Statistic rows are
 # dl > div pairs ("Market cap" -> "$1.64T 2.25%", where the trailing percent is the 24h change of that stat).
 id: coinmarketcap.com/coin
-version: 1
+version: 2
 schema: rex.schema.finance.v1.Quote
 match:
   urls:
@@ -40,13 +40,13 @@ fields:
     candidates:
       - css: { selector: "[data-test=text-cdp-price-display]" }
 
-  - path: change_percent
+  - path: change_percent     # next to the price: the page lists other coins' changes too (sidebar, "trending")
     candidates:
-      - css: { selector: "[data-role=percentage-value] [data-change=down]" }
+      - css: { selector: "[data-role=el]:has([data-test=text-cdp-price-display]) [data-role=percentage-value] [data-change=down]" }
         pipe:
           - regex: { pattern: "([\\d.]+)%", group: 1 }
           - regex_replace: { pattern: "^", with: "-" }
-      - css: { selector: "[data-role=percentage-value] [data-change]" }
+      - css: { selector: "[data-role=el]:has([data-test=text-cdp-price-display]) [data-role=percentage-value] [data-change]" }
         pipe:
           - regex: { pattern: "([\\d.]+)%", group: 1 }
     pipe:

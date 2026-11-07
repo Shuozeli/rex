@@ -19,6 +19,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { attachWorker, connect, evaluate, sleep } from "./lib/cdp.mjs";
 import * as desk from "./lib/desktop.mjs";
+import { allowedOrigins, selfCheck, startAudit, violations } from "./lib/netaudit.mjs";
 import { loadScenario } from "./lib/scenario.mjs";
 import { assemble, cardAss, sceneAss } from "./lib/video.mjs";
 
@@ -86,9 +87,14 @@ async function runScene(scenario, out, scene, index) {
   const conn = await connect(CDP);
   const events = [];
   let rec = null;
+  let audit = null;
+  let allowed = [];
   try {
     const sw = await attachWorker(conn, EXT);
     const worker = (expr, ms) => evaluate(conn, sw, expr, ms);
+    // Every request the extension makes from here on must go to one of its recipe sources.
+    audit = await startAudit(conn, EXT, sw);
+    allowed = await allowedOrigins(worker);
     // The e2e build exposes rexDebug; the store build does not, and is driven through its UI only.
     r.build = (await worker("typeof globalThis.rexDebug")) === "object" ? "e2e" : "store";
     if (r.build === "e2e") {
@@ -149,7 +155,8 @@ async function runScene(scenario, out, scene, index) {
     if (!popupTarget) throw new Error("the popup did not open");
     const popup = (await conn.send("Target.attachToTarget", { targetId: popupTarget.targetId, flatten: true })).sessionId;
     ev("caption", { text: "第 3 步：rex 用这个网站的 recipe 把页面变成结构化数据" });
-    // The result as the popup shows it: the status badge, "Recipe <id>@<version>", one .field per field.
+    // The result as the popup shows it: #status[data-status], #meta[data-recipe] ("<id>@<version>"), one
+    // [data-field] element per top-level field (both views mark them).
     const shown = await waitFor(
       () =>
         evaluate(
@@ -157,10 +164,10 @@ async function runScene(scenario, out, scene, index) {
           popup,
           `(() => {
             const msg = document.querySelector("#message:not([hidden])");
-            const fields = document.querySelectorAll("#record > .field").length;
+            const fields = document.querySelectorAll("#record [data-field]").length;
             if (!fields && !msg) return null;
-            const meta = document.getElementById("meta")?.innerText ?? "";
-            return { status: document.getElementById("status").textContent.trim(), recipe: (meta.match(/Recipe\\s+(\\S+@\\d+)/) ?? [])[1] ?? null,
+            const recipe = document.getElementById("meta")?.dataset.recipe ?? null;
+            return { status: document.getElementById("status").dataset.status ?? "", recipe,
                      fields, message: msg?.innerText ?? null, text: document.body.innerText.slice(0, 600) };
           })()`,
           5000,
@@ -182,6 +189,10 @@ async function runScene(scenario, out, scene, index) {
       const ext = x.output?.extraction;
       const behind = ext?.recipe ? `${ext.recipe.id}@${ext.recipe.version}` : null;
       if (behind !== r.matched) r.mismatch = `popup shows ${r.matched}, the extraction is ${behind}`;
+    }
+    // Once per scenario: prove the audit records the worker's and the popup's requests and the CSP blocks images.
+    if (index === 0) {
+      r.auditSelfCheck = await selfCheck(audit, worker, (expr) => evaluate(conn, popup, expr, 5000), sleep);
     }
     r.finalUrl = await pageEval("location.href").catch(() => null);
     ev("caption", { text: r.matched ? `结果：recipe ${r.matched} · 状态 ${r.status} · ${r.fields} 个字段` : `结果：没有可用的 recipe（${r.status}）` });
@@ -206,9 +217,19 @@ async function runScene(scenario, out, scene, index) {
     if (rec?.t0) events.push({ t: Date.now() - rec.t0, kind: "end" });
   } finally {
     if (rec) await rec.stop();
+    await sleep(300); // requests still in flight when the scene ends
     conn.close();
   }
-  r.problems = r.error ? [r.error, ...check(scene.expect, r)] : check(scene.expect, r);
+  if (audit) {
+    r.network = { allowed, requests: audit.requests.map(({ url, type, blocked }) => `${type} ${url}${blocked ? ` (blocked: ${blocked})` : ""}`) };
+    r.networkViolations = violations(audit, allowed);
+  }
+  r.problems = [
+    ...(r.error ? [r.error] : []),
+    ...check(scene.expect, r),
+    ...(r.networkViolations ?? []).map((v) => `network: ${v}`),
+    ...(r.auditSelfCheck ?? []),
+  ];
   r.pass = r.problems.length === 0;
   writeFileSync(join(out, `${scene.name}.events.json`), JSON.stringify(events, null, 1));
   const video = !noVideo && scenario.video !== false;
@@ -230,7 +251,8 @@ async function runScenario(file) {
   for (const [i, scene] of scenes.entries()) {
     const r = await runScene(scenario, out, scene, i);
     results.push(r);
-    console.log(`${r.pass ? "ok  " : "FAIL"} ${scene.name.padEnd(12)} ${r.matched ?? "-"} ${r.status} ${r.fields ?? 0} fields${r.popupMs ? `, popup ${r.popupMs} ms` : ""}${r.pass ? "" : ` — ${r.problems.join("; ")}`}`);
+    const net = r.network ? `, ${r.network.requests.length} extension request(s)` : "";
+    console.log(`${r.pass ? "ok  " : "FAIL"} ${scene.name.padEnd(12)} ${r.matched ?? "-"} ${r.status} ${r.fields ?? 0} fields${r.popupMs ? `, popup ${r.popupMs} ms` : ""}${net}${r.pass ? "" : ` — ${r.problems.join("; ")}`}`);
   }
   writeFileSync(join(out, "results.json"), JSON.stringify({ scenario: scenario.title, at: new Date().toISOString(), results }, null, 2));
   if (!noVideo && scenario.video !== false) {

@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "threads.com/post",
-    "version": 1,
-    "sha256": "3f38fe3995c8cd77ad5f5cb7904df26018c4448779d776d4c686477baa90726d"
+    "version": 2,
+    "sha256": "0da4238e67ac6edba849bcbe677d233049ace270604ca3cb50f825adad9167b9"
   },
   "schema": "rex.schema.social.v1.Thread",
   "url": "https://www.threads.com/@zuck/post/DeZtp-TkQHh",
@@ -14,128 +14,128 @@
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.id",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.author.name",
       "origin": "FIELD_ORIGIN_URL",
       "candidate": 1,
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.author.handle",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.author.url",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.author.verified",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.text",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.published_at",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.likes",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.replies",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.reposts",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "post.media",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].id",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].author.name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].author.handle",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].author.verified",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].text",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].published_at",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].likes",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].reposts",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].replies",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "replies[0].url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     },
     {
       "path": "reply_count",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "threads.com/post@1"
+      "recipe": "threads.com/post@2"
     }
   ],
   "record": {
@@ -225,10 +225,6 @@
         "text": "Xxxxxxxxxx xxxxx. Xxxx xx xxxx XxxxXXx Xxxx xxxxxx?",
         "publishedAt": "2026-10-12T16:59:36Z",
         "url": "https://www.threads.com/@_randomdev001/post/DeZuAywDEWf"
-      },
-      {
-        "author": {},
-        "publishedAt": "2026-10-12T16:59:53Z"
       },
       {
         "id": "DeZuDdnkRaH",
@@ -346,8 +342,8 @@
   "chain": [
     {
       "id": "threads.com/post",
-      "version": 1,
-      "sha256": "3f38fe3995c8cd77ad5f5cb7904df26018c4448779d776d4c686477baa90726d"
+      "version": 2,
+      "sha256": "0da4238e67ac6edba849bcbe677d233049ace270604ca3cb50f825adad9167b9"
     }
   ]
 }

@@ -1,7 +1,7 @@
 # Baseline for rex.schema.creative.v1.Title: any film or TV page with schema.org Movie / TVSeries data (IMDb,
 # Rotten Tomatoes, streaming catalogs). Site recipes `extends` this.
 id: generic/title.v1
-version: 1
+version: 2
 schema: rex.schema.creative.v1.Title
 fields:
   - path: name
@@ -9,6 +9,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: type
     candidates:

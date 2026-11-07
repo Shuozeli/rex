@@ -394,7 +394,7 @@ async def harvest_site(row: dict[str, str], args: argparse.Namespace, client: ht
     draft_args = [
         str(REX), "draft", "--from", str(pages[0]), "--id", rid, "--schema", SCHEMAS["article"],
         "--recipes", str(REPO / "recipes"), "--out", str(out_recipes), "--negative", str(home),
-        "--repair-rounds", "2", "--inline-system", "--force",
+        "--repair-rounds", "2", "--review", "--inline-system", "--force",
     ]
     for p in pages[1:]:
         draft_args += ["--also", str(p)]

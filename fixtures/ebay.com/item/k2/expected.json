@@ -24,7 +24,7 @@
     {
       "path": "brand",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     },
     {
       "path": "price",
@@ -34,7 +34,7 @@
     {
       "path": "currency",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     },
     {
       "path": "list_price",
@@ -44,7 +44,7 @@
     {
       "path": "availability",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     },
     {
       "path": "seller",
@@ -54,7 +54,7 @@
     {
       "path": "images",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     },
     {
       "path": "specs",
@@ -74,13 +74,13 @@
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 2,
-      "recipe": "generic/product.v1@1"
+      "recipe": "generic/product.v1@2"
     }
   ],
   "record": {
@@ -189,8 +189,8 @@
     },
     {
       "id": "generic/product.v1",
-      "version": 1,
-      "sha256": "c3a4f5aec815148ad90a15e735d5607d93ee915fe004e59837e729db4af022d3"
+      "version": 2,
+      "sha256": "8eb0ae0d5627e9d01a90c56db04fb28c0e1d751262e88b91ec49b2985e498f6d"
     }
   ]
 }

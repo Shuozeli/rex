@@ -1091,6 +1091,160 @@ its first run (6 of 40 checks; the failures are in issue #1).
 - **Same day: a residential proxy for the live recordings is not needed** (U40): this host and the ARM
   Windows host share one residential egress IP.
 
+## U42: The extension sends nothing but recipe-source fetches [user request + delegated], 2026-11-04
+
+**User request:** make sure the extension does not use network connections (asked while preparing a Chrome
+Web Store listing, whose privacy form needs this answered truthfully).
+
+- **Audit of the source**, every network-capable call:
+  - `sync.ts` fetches the recipe sources: `index.json`, recipe objects, the schema set.
+  - `rules.ts` fetches the extension's own icons (`chrome.runtime.getURL`); no network.
+  - "Report broken recipe" opens a GitHub issue page in a new tab, only on the user's click.
+  - The wasm engine has no network code (no networking crate, no `web_sys` requests).
+  - **One leak:** the popup rendered a record's `image` field as `<img>`, so showing a result made the
+    extension load the page's image from a third-party server (with no referrer, but still a request).
+    It now shows the image URL as a link only.
+- **Enforced by the browser:** the extension CSP now adds `img-src 'self' data:; media-src 'none';
+  font-src 'self'; frame-src 'none'; connect-src 'self' https: http:`. `connect-src` stays open because
+  recipe sources are user-configurable in the options page.
+- **Verified on every e2e run:** `lib/netaudit.mjs` in the recorder records each request the extension
+  makes. A request to anything but the manifest's recipe sources fails the scene.
+  - A self-check per scenario proves the audit sees worker and popup fetches and that the CSP blocks a remote
+    image (it showed up as `blocked: csp`).
+  - First runs: 13 generic scenes, 0 violations. The only requests were the extension syncing its bundle
+    (254 recipe-object fetches to `bundles.rex.test`).
+- **For the store privacy form:**
+  - The page is read on the user's click (`activeTab`), and both the page and the extracted record stay on
+    the device.
+  - The extension's only network use is downloading signed recipe bundles from its configured sources.
+  - The page URL leaves only if the user files a broken-recipe report and ticks "include URL".
+
+## U43: Popup redesign: Reader and Table views, JSON always at the bottom [user decisions + delegated], 2026-11-05
+
+**User:** "currently it is so hard to read". Two mocks were made from real data (popup-mock.png on the
+download page): A, a reader card; B, a data table. **Decision:** support both, chosen by the user, and
+"always display JSON at the bottom".
+
+- **Top (sticky):** rex, a Reader/Table switch (remembered in `chrome.storage.local`), the status in words
+  (● Complete / Check / Incomplete / Empty / No match), and Copy JSON, Download, and the other copy form.
+- **Reader:**
+  - The heading: site · type, the title, the summary. A quote or product puts its price and change there,
+    colored green up / red down; the Chinese UI uses red up / green down.
+  - The facts in two columns with readable values: dates, grouped numbers, large counts shortened
+    (3.1M / 3100万), video lengths as clocks, other durations in words (20 min), and enum values in words.
+  - Long text folds (Show more). Lists show one entry per item: title, then who · numbers · when.
+- **Table:** one row per field: the schema name, the exact value (every digit, UTC), and an origin dot with a
+  legend. This replaces the old per-field `SITE_SELECTOR`/`JSON_LD` badges, which the reader no longer shows.
+- **JSON panel:** at the bottom of both views, exactly what Copy JSON copies (envelope or record, per Options),
+  colored by a small hand-written tokenizer.
+- **No third-party UI code** (user, same day). Plain TypeScript and CSS: `src/format.ts` (pure formatting, 11
+  unit tests in `tests/format.test.mjs`, in CI) and `src/render.ts` (the views). Enum prefixes are read from
+  the protos at build time (`__REX_ENUM_PREFIXES__`).
+- **Test contract:** fields carry `data-field`, `#status` carries `data-status` (the engine's name), and
+  `#meta` carries `data-recipe`. The recorder reads these, not the visible words.
+- **Found while shooting:** identifiers were grouped like numbers (`600,519`), so symbol, id, sku, isbn, year
+  and similar now stay as written. An allrecipes notification prompt closed the popup, so the recorder's Chrome
+  now blocks notification and geolocation prompts by policy.
+- **The user guide** was retaken with both views and the JSON panel (16 screenshots).
+
+## U44: A three-layer recipe judge [user request + delegated], 2026-11-05
+
+The user found that the WSJ recipe put all of WSJ's categories into `tags`, and asked for the recipe system to
+catch this kind of problem itself instead of them pointing out each one. Their decision: build all three layers.
+
+**What was wrong.**
+
+- The old checks proved only that recipes run: they compile, they match their pages, fixtures equal
+  `expected.json`, and liveness returns `OK`. Nothing judged whether the values were right.
+- The WSJ recipe was illustrative. It never matched a real WSJ URL, both of its fixtures were hand-written,
+  and real pages fell through to the generic recipe. That recipe copied WSJ's CMS keyword field into `tags`:
+  Dow Jones codes (`SYND`, `gpol`, `usdc`), taxonomy (`Dragonfly - World`), `LINK|…` keys, and the whole
+  list a second time in lowercase.
+
+**Layer 1: fixed rules, in every check.** `rex_engine::judge` walks a record by its schema.
+
+- Rules: `tag-code`, `tag-duplicate`, `tag-count`, `title-site`, `person-junk`, `text-entity`,
+  `text-untrimmed`, `url-relative`, `time-future`, `time-ancient`, `item-untitled`, `item-duplicate`,
+  `price-negative`. Each one's precise test is in the module docs.
+- Errors fail `rex test`, `rex liveness` and the draft gate. Warnings are only reported.
+- A fixture or a liveness check can allow a finding with `judge_allow: [{rule, path?, reason}]`. For example,
+  Hacker News item 1 really is titled "Y Combinator".
+- The first run failed 80 of 2093 cases, all real problems.
+
+**Layer 2: coverage, in `rex check`.**
+
+- Every site recipe needs at least one captured fixture. Two hand-written ones no longer pass, and this is
+  what would have caught WSJ.
+- With `--liveness <file>…` (CI, publish, ci-local), every site recipe must be in a file's `checks` or in its
+  `exempt: [{recipe, reason}]` list.
+- The probe on 2026-11-05 found that a plain fetch works for Yahoo search only, so Yahoo is now checked daily.
+  The 22 other site recipes are exempt; each is rendered-only, login-only, or refused (403/401).
+
+**Layer 3: an LLM review, `rex judge`.**
+
+- The model gets the page evidence (title, h1, meta tags, JSON-LD, a readability excerpt, the visible text),
+  the schema, the source of each field, and the record. It returns findings against a fixed rubric (code
+  `review.rs`).
+- **Grounding:** an error must quote the evidence verbatim. An error whose quote is not in the page evidence
+  becomes a warning marked `(unproven)`.
+- Verdicts are cached by model plus prompt, so an unchanged page and record is not sent again.
+- `rex draft --review` (harvest uses it) sends the review's errors back as a repair round.
+- `tools/judge/audit.sh` is the periodic audit on this host, because the internal LLM proxy is unreachable
+  from GitHub. It runs `rex liveness --save` (only pages the expected recipe matched), then judges those plus
+  every captured fixture.
+- **Model choice:** on the same 64 live pages, Gemini flash agreed with itself on 42 of 54 verdicts, and flash
+  agreed with pro on 48. Pro's findings quoted the page and were specific, so the audit uses pro.
+- **Verified false positives, now in the rubric:**
+  - a product listed twice, once sponsored and once organic (Walmart);
+  - lazy-loaded placeholders counted as missing items (Best Buy);
+  - numbers paired with the wrong neighbor (bilibili plays / danmaku);
+  - a time-zone conversion it did not do (NPR);
+  - cnbc's regular close against its after-hours price.
+
+**General fixes, added to the engine.**
+
+- **Leftover character references:** decoded in string and URL coercion (`&#8217;`, `&amp;`), only where
+  well-formed (`AT&T` stays as it is). 67 titles changed. L1 now also reports any numeric reference.
+- **New pipes and options:**
+  - `drop_codes` (the `tag-code` test);
+  - `unique { ignore_case }`;
+  - `not_future` (a publication date after the fetch is an event, a forecast or the next issue);
+  - `filter { key }` (test a JSON-LD object's `name`);
+  - `strip_site_name` (" | Site", " - Site", " · Site", using the page's own og:site_name with or without its
+    tagline, application-name, twitter:site, or the host label).
+- **JSON paths:** take `[key=Name]` filters
+  (`interactionStatistic[interactionType=LikeAction].userInteractionCount`).
+- **`replace_inherited` with no candidates:** leaves the field unset, for a site that has no good source.
+
+**Recipe fixes.**
+
+- **Generic recipes (all title/name rules):** `strip_site_name`.
+- **generic/article.v1:**
+  - tags `drop_codes` and case-folded `unique`;
+  - authors skip URLs and e-mail addresses (og `article:author` is a profile URL by spec; WordPress SEO puts
+    the login e-mail in JSON-LD) and dateline bylines;
+  - dates `not_future`.
+- **generic/recipe.v1:** keywords from Parse.ly tags first.
+- **generic/video.v1:** views and likes by `interactionType`.
+- **Sites:**
+  - **wsj.com/main v3:** written from real pages. It matches `/<section>/…/<slug>-<8 hex>` as well as
+    `/articles/`, has `data-testid` selectors, takes the body from the article section (readability also took
+    the print footer), and has no tags. Two real fixtures replace the illustrative one; logged out, WSJ sends a
+    teaser and the fixtures keep it.
+  - **coinmarketcap:** the change came from another coin in the sidebar.
+  - **bsky:** exact like and repost counts, not "63K".
+  - **threads:** no empty items for deleted replies.
+  - **github/trending:** title suffix removed.
+  - **youtube/watch:** tags deduplicated ignoring case.
+- **Result:** `rex test` passes all 2094 cases with no judge errors, and `rex check` is clean.
+
+**Open (tasks.md):**
+
+- A Michelin site recipe: generic/business takes Michelin's site-wide description.
+- A wikiHow site recipe: its JSON-LD step text carries an "EXPERT TIP" block.
+- The redactor rewrites letters inside character references (`&#x10D;` became `&#x10X;`).
+- A schedule for `audit.sh` with a notification.
+
 ## Open actions (need the user)
 
 | Action | Why it needs you |

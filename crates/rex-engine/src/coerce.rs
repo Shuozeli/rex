@@ -153,9 +153,9 @@ impl<'a> Coercer<'a> {
 
     fn coerce_string(&self, item: &Item, kind: StringKind) -> Result<String, String> {
         let out = match kind {
-            StringKind::String => normalize_string(
+            StringKind::String => normalize_string(&rex_dom::text::decode_entities(
                 &scalar_text(item, &["@value", "name", "text", "headline"]).ok_or("object has no text value")?,
-            ),
+            )),
             StringKind::Text => match item {
                 Item::Json(_) => {
                     let s = scalar_text(item, &["@value", "text"]).ok_or("object has no text value")?;
@@ -165,7 +165,9 @@ impl<'a> Coercer<'a> {
             },
             StringKind::Html => self.sanitize_html(&scalar_text(item, &["@value"]).ok_or("object has no HTML value")?),
             StringKind::Url => {
-                let raw = scalar_text(item, &["url", "contentUrl", "@id", "@value"]).ok_or("object has no URL")?;
+                let raw = rex_dom::text::decode_entities(
+                    &scalar_text(item, &["url", "contentUrl", "@id", "@value"]).ok_or("object has no URL")?,
+                );
                 values::normalize_url(&raw, self.doc.base(), &UrlSpec::default())
                     .ok_or_else(|| format!("`{}` is not an http(s) URL", clip(&raw)))?
             }

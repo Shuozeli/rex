@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/event.v1",
-    "version": 1,
-    "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+    "version": 2,
+    "sha256": "5fb3ac53e298435af9bdd8868570a6e0457193014f1cefce92f9f947d828c7e7"
   },
   "schema": "rex.schema.event.v1.Event",
   "url": "https://www.eventbrite.com/e/the-music-of-ennio-morricone-a-candlelit-piano-strings-experience-tickets-1992045689281",
@@ -14,57 +14,57 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "start_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "end_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "status",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "attendance",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "venue",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "organizer",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "tickets",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/event.v1@1"
+      "recipe": "generic/event.v1@2"
     }
   ],
   "record": {
@@ -101,8 +101,8 @@
   "chain": [
     {
       "id": "generic/event.v1",
-      "version": 1,
-      "sha256": "7b67c9d48b07f12c9e22192d236f94c911eb8f4b6034539d4990f124e5f13bc6"
+      "version": 2,
+      "sha256": "5fb3ac53e298435af9bdd8868570a6e0457193014f1cefce92f9f947d828c7e7"
     }
   ]
 }

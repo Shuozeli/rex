@@ -5,6 +5,7 @@
 | File | Covers | Update When |
 |------|--------|-------------|
 | ../README.md | What rex is, status, layout, build and CLI usage, doc links | Scope or status changes, the repo rename, the first runnable build |
+| user-guide.md (+ user-guide/*.png) | How to install and use the extension: the icon, popup, buttons, statuses, generic recipes, trace, options, privacy, troubleshooting; screenshots from `extension/recorder/guide.mjs` | The popup, options or install flow change, or the screenshots go stale (rerun guide.mjs, operations.md) |
 | decisions.md | Every design decision U1–U30 (U1–U5 with the user, U6+ delegated), amendments, superseded items, open actions | A decision is made, reopened, or superseded, or an open action is done |
 | design.md | System design: architecture, repo layout, recipe lifecycle and CI gates, authoring toolchain, publishing and keys, extension (flows, sync, permissions, UI), security, testing, feedback, integrations, milestones | Any component, workflow, permission, hosting, or milestone change |
 | designs/261012-generic-recipe-extractor.md | Engine spec: contract map, evaluation semantics, normative value semantics §8, limits §10.3, crates, wasm API, security §13, testing, versioning | Any proto under `proto/rex/` changes, or engine semantics, limits, or the API change |

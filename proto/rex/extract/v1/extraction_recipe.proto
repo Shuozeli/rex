@@ -34,7 +34,8 @@ message FieldRule {
   repeated Candidate candidates = 2;  // ordered; first success wins
   repeated Transform pipe = 3;        // field-level, applied after each candidate's own pipe
   bool expect = 4;                    // one of THIS recipe's own candidates must win, else FAILED_EXPECTATION
-  bool replace_inherited = 5;         // drop the candidates inherited through `extends`
+  bool replace_inherited = 5;         // drop the candidates inherited through `extends`; with no candidates of its
+                                      // own, the field is left unset (the site has no good source for it)
   string each = 6;                    // repeated message fields only: one item per matched element
   repeated FieldRule fields = 7;      // rules for the item's sub-fields, relative to the `each` element
   string each_index = 8;              // with `each`: an integer item sub-field that receives the item's 1-based
@@ -191,6 +192,9 @@ message Transform {
     DefaultValue default = 19;
     ParseDuration duration = 20;
     Decode decode = 21;
+    DropCodes drop_codes = 22;
+    NotFuture not_future = 23;
+    StripSiteName strip_site_name = 24;
   }
 }
 
@@ -204,8 +208,20 @@ message RegexReplace { string pattern = 1; string with = 2; }
 message Split { string pattern = 1; }                     // RE2 separator; string -> list
 message Join { string separator = 1; }                    // list -> string
 message Slice { int32 start = 1; int32 end = 2; }         // list; negative from the end; end 0 = to the end. first = {0,1}, last = {-1,0}
-message Unique {}
-message Filter { string pattern = 1; bool invert = 2; }   // keep list items matching RE2 (or not)
+message Unique { bool ignore_case = 1; }                   // keep the first of equal items (ignore_case: "AI" = "ai")
+// Keep list items matching RE2 (or not). Objects (JSON-LD) are tested on their `key` text (e.g. "name") and kept
+// when they lack it; without `key`, objects are dropped (invert = false) or kept (invert = true).
+message Filter { string pattern = 1; bool invert = 2; string key = 3; }
+// Drop list items that are publisher codes rather than labels a reader would see ("SYND", "LINK|...", "l1:politics",
+// "n/elx", "wc_401_600", long numeric ids): the same test as the `tag-code` judge rule (decisions.md U44).
+message DropCodes {}
+// Drop dates later than the fetch time (plus a day, for time zones): a publication date in the future is an event's
+// date, a forecast year or the next issue, never this page's (decisions.md U44). Unparseable values are kept.
+message NotFuture {}
+// Remove a trailing " | Site", " - Site", " · Site" (two at most: "Post - Blog | Site") where Site is the page's own
+// name: og:site_name (also without its tagline), application-name, twitter:site, or the host's label. A value that is
+// only the site's name is kept. The `title-site` judge rule's test (decisions.md U44).
+message StripSiteName {}
 message HtmlToText {}
 message JsonPath { string path = 1; }                     // parse the value as JSON, then dotted path
 

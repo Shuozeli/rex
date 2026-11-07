@@ -3,6 +3,8 @@
 # Paywalled or login-only sites are not listed; they rely on "Report broken recipe".
 # `datacenter_blocked`: the site refuses datacenter IPs. The workflow (GitHub runners) skips such checks with
 # --skip-datacenter-blocked; `rex liveness` from a residential line checks them.
+# `exempt`: site recipes that cannot be checked by a plain fetch, each with the reason. `rex check --liveness`
+# requires every site recipe to be in `checks` or here (decisions.md U44).
 checks:
   - recipe: news.ycombinator.com/front
     urls: ["https://news.ycombinator.com/", "https://news.ycombinator.com/newest"]
@@ -40,6 +42,9 @@ checks:
     urls: ["https://www.bing.com/search?q=rust+webassembly&setlang=en"]
   - recipe: news.ycombinator.com/item
     urls: ["https://news.ycombinator.com/item?id=1"]
+    judge_allow:
+      - rule: title-site
+        reason: "HN's first post (item 1) is titled \"Y Combinator\", the site's name"
   # Chinese platforms (decisions.md U34); WeChat and Douyin need a browser and are covered by fixtures + e2e.
   - recipe: bilibili.com/video
     urls: ["https://www.bilibili.com/video/BV1yPp96UEQU/"]
@@ -88,3 +93,30 @@ checks:
     urls: ["https://coinmarketcap.com/currencies/bitcoin/"]
   - recipe: fund.eastmoney.com/fund
     urls: ["https://fund.eastmoney.com/110022.html"]
+  - recipe: search.yahoo.com/search
+    urls: ["https://search.yahoo.com/search?p=rust+webassembly"]
+
+# Probed 2026-11-05 from a residential line; "rendered page only" recipes read DOM that the server never sends.
+exempt:
+  - {recipe: bestbuy.com/search, reason: "fetch times out (bot wall); results are rendered client-side"}
+  - {recipe: bsky.app/post, reason: "rendered page only: the server sends an empty react-native-web shell"}
+  - {recipe: douyin.com/video, reason: "rendered page only; signed requests and a slider captcha"}
+  - {recipe: duckduckgo.com/search, reason: "rendered page only: results load by script after the shell"}
+  - {recipe: ebay.com/item, reason: "HTTP 403 to scripted fetches"}
+  - {recipe: ebay.com/search, reason: "HTTP 403 to scripted fetches"}
+  - {recipe: google.com/search, reason: "rendered page only; scripted fetches get a consent/captcha page"}
+  - {recipe: mp.weixin.qq.com/article, reason: "article links are signed and expire; no stable public URL"}
+  - {recipe: quora.com/question, reason: "HTTP 403 to scripted fetches"}
+  - {recipe: quote.eastmoney.com/stock, reason: "rendered page only: prices are filled by script (static page has placeholders)"}
+  - {recipe: reddit.com/community, reason: "scripted fetches get an 8 KB block page"}
+  - {recipe: reddit.com/thread, reason: "scripted fetches get an 8 KB block page"}
+  - {recipe: stackoverflow.com/question, reason: "HTTP 403 to scripted fetches"}
+  - {recipe: target.com/search, reason: "rendered page only: product cards load by script"}
+  - {recipe: threads.com/post, reason: "rendered page only"}
+  - {recipe: tiktok.com/video, reason: "rendered page only; scripted fetches get a verification page"}
+  - {recipe: wsj.com/main, reason: "HTTP 401 to scripted fetches (paywall)"}
+  - {recipe: x.com/profile, reason: "login-only rendered page"}
+  - {recipe: x.com/status, reason: "login-only rendered page"}
+  - {recipe: xueqiu.com/stock, reason: "rendered page only: the server sends a script shell"}
+  - {recipe: youtube.com/search, reason: "rendered page only: results live in ytInitialData, rendered by script"}
+  - {recipe: zhihu.com/question, reason: "HTTP 403 to scripted fetches"}

@@ -19,17 +19,17 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "authors",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "isbn",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "published_date",
@@ -39,17 +39,17 @@
     {
       "path": "pages",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "language",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "format",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "genres",
@@ -59,17 +59,17 @@
     {
       "path": "rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "rating_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "review_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "description",
@@ -79,12 +79,12 @@
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     }
   ],
   "bodyReadabilityAgreementBps": 966,
@@ -128,8 +128,8 @@
     },
     {
       "id": "generic/book.v1",
-      "version": 1,
-      "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+      "version": 2,
+      "sha256": "78f4d45bffb73b68a7f6c1ea2dbcfba60d70b74442fbdbeb3deeca3483f277e9"
     }
   ]
 }

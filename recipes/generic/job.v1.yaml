@@ -1,7 +1,7 @@
 # Baseline for rex.schema.job.v1.JobPosting: any page with schema.org JobPosting data, as required for Google
 # for Jobs (ATS boards, company career pages, job sites). Site recipes `extends` this.
 id: generic/job.v1
-version: 1
+version: 2
 schema: rex.schema.job.v1.JobPosting
 fields:
   - path: id
@@ -14,6 +14,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: company
     candidates:

@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/video.v1",
-    "version": 1,
-    "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+    "version": 2,
+    "sha256": "da50c5e7abfe53b8e1201d5ed747c658961884781439c7f499c4b147c96f62e4"
   },
   "schema": "rex.schema.media.v1.Video",
   "url": "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity",
@@ -14,50 +14,50 @@
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "channel",
       "origin": "FIELD_ORIGIN_JSON_LD",
       "candidate": 1,
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "published_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "duration_seconds",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "views",
       "origin": "FIELD_ORIGIN_JSON_LD",
       "candidate": 1,
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "tags",
       "origin": "FIELD_ORIGIN_META",
       "candidate": 1,
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "thumbnail",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     }
   ],
   "record": {
@@ -77,19 +77,17 @@
       "xxxxx",
       "xxxxxxxxxx",
       "xxxxxxx",
-      "xxxxx",
-      "xxxxxxxxx",
       "xxxxxxxxx",
       "xxxxxxxx",
       "xxxx"
     ],
-    "thumbnail": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6b6eb940bceab359ca676a9b486aae475c1df883_2880x1620.jpg?u%5Br%5D=2&amp;u%5Bs%5D=0.5&amp;u%5Ba%5D=0.8&amp;u%5Bt%5D=0.03&amp;quality=82&amp;w=640"
+    "thumbnail": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6b6eb940bceab359ca676a9b486aae475c1df883_2880x1620.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82&w=640"
   },
   "chain": [
     {
       "id": "generic/video.v1",
-      "version": 1,
-      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+      "version": 2,
+      "sha256": "da50c5e7abfe53b8e1201d5ed747c658961884781439c7f499c4b147c96f62e4"
     }
   ]
 }

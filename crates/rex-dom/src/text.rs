@@ -93,6 +93,67 @@ pub fn normalize_string(s: &str) -> String {
     remove_cjk_gaps(collapsed.trim())
 }
 
+/// Character references left in a value that was escaped twice upstream (`&amp;amp;` in the HTML, `&#x27;` inside
+/// JSON-LD): decoded once. Only well-formed references are touched (`AT&T`, `a & b` stay as they are).
+pub fn decode_entities(s: &str) -> String {
+    if !s.contains('&') {
+        return s.to_string();
+    }
+    let mut out = String::with_capacity(s.len());
+    let mut rest = s;
+    while let Some(at) = rest.find('&') {
+        out.push_str(&rest[..at]);
+        rest = &rest[at..];
+        let decoded = rest[1..]
+            .find(';')
+            .filter(|&end| end > 0 && end <= 10)
+            .and_then(|end| entity(&rest[1..=end]).map(|c| (c, end + 2)));
+        match decoded {
+            Some((c, len)) => {
+                out.push(c);
+                rest = &rest[len..];
+            }
+            None => {
+                out.push('&');
+                rest = &rest[1..];
+            }
+        }
+    }
+    out.push_str(rest);
+    out
+}
+
+fn entity(name: &str) -> Option<char> {
+    if let Some(num) = name.strip_prefix('#') {
+        let code = match num.strip_prefix(['x', 'X']) {
+            Some(hex) => u32::from_str_radix(hex, 16).ok()?,
+            None => num.parse().ok()?,
+        };
+        return char::from_u32(code).filter(|c| *c != '\0');
+    }
+    Some(match name {
+        "amp" => '&',
+        "lt" => '<',
+        "gt" => '>',
+        "quot" => '"',
+        "apos" => '\'',
+        "nbsp" => '\u{a0}',
+        "ndash" => '–',
+        "mdash" => '—',
+        "hellip" => '…',
+        "lsquo" => '‘',
+        "rsquo" => '’',
+        "ldquo" => '“',
+        "rdquo" => '”',
+        "middot" => '·',
+        "copy" => '©',
+        "reg" => '®',
+        "trade" => '™',
+        "eacute" => 'é',
+        _ => return None,
+    })
+}
+
 /// TEXT normalization of an arbitrary multi-line string.
 pub fn normalize_text(s: &str) -> String {
     let nfc: String = s.nfc().collect();
@@ -427,5 +488,34 @@ mod tests {
 
         // Assert
         assert!(r.is_err());
+    }
+}
+
+#[cfg(test)]
+mod entity_tests {
+    use super::decode_entities;
+
+    #[test]
+    fn leftover_references_are_decoded_once() {
+        // Arrange
+        let cases = ["Xxx&#x27;s talk", "a &amp; b", "&amp;amp;", "q=1&amp;w=640", "&#8212;"];
+
+        // Act
+        let got: Vec<String> = cases.iter().map(|c| decode_entities(c)).collect();
+
+        // Assert
+        assert_eq!(got, ["Xxx's talk", "a & b", "&amp;", "q=1&w=640", "—"]);
+    }
+
+    #[test]
+    fn ampersands_that_are_not_references_stay() {
+        // Arrange
+        let cases = ["AT&T", "a & b", "R&D; next", "&unknown;", "&;"];
+
+        // Act
+        let got: Vec<String> = cases.iter().map(|c| decode_entities(c)).collect();
+
+        // Assert
+        assert_eq!(got, cases);
     }
 }

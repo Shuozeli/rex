@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "github.com/trending",
-    "version": 1,
-    "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+    "version": 2,
+    "sha256": "4a654ee5db1b27c4391f2b8f80a76966b3945866e2c5cf1f0a9aa8dd41110989"
   },
   "schema": "rex.schema.feed.v1.Feed",
   "url": "https://github.com/trending/rust",
@@ -14,37 +14,37 @@
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items[0].id",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items[0].title",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items[0].url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items[0].preview",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     },
     {
       "path": "items[0].score",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "github.com/trending@1"
+      "recipe": "github.com/trending@2"
     }
   ],
   "record": {
@@ -91,8 +91,8 @@
   "chain": [
     {
       "id": "github.com/trending",
-      "version": 1,
-      "sha256": "7fcb68f8014511ec8e065dd4e414cf666c9184a122c267f4c70957081e86682c"
+      "version": 2,
+      "sha256": "4a654ee5db1b27c4391f2b8f80a76966b3945866e2c5cf1f0a9aa8dd41110989"
     }
   ]
 }

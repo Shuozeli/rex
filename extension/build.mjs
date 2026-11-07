@@ -7,7 +7,7 @@
 // REX_E2E=1 adds <all_urls> host access and the rexDebug hooks so automated tests can drive the
 // extension without a toolbar click. REX_DIST puts the build somewhere other than dist/.
 import { build } from "esbuild";
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -27,6 +27,23 @@ rmSync(dist, { recursive: true, force: true });
 mkdirSync(join(dist, "wasm"), { recursive: true });
 cpSync(join(root, "wasm", "rex_wasm_bg.wasm"), join(dist, "wasm", "rex_wasm_bg.wasm"));
 
+// Enum value prefixes of the record schemas ("INSTRUMENT_TYPE_", …): the popup shows enum values without
+// them ("INSTRUMENT_TYPE_STOCK" -> "Stock"). Proto style puts the enum's name in SCREAMING_SNAKE before each value.
+function enumPrefixes(dir) {
+  const out = new Set();
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, e.name);
+    if (e.isDirectory()) for (const x of enumPrefixes(p)) out.add(x);
+    else if (e.name.endsWith(".proto")) {
+      for (const m of readFileSync(p, "utf8").matchAll(/^\s*enum\s+(\w+)\s*\{/gm)) {
+        out.add(`${m[1].replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase()}_`);
+      }
+    }
+  }
+  return [...out].sort();
+}
+const ENUM_PREFIXES = enumPrefixes(join(root, "..", "proto", "rex", "schema"));
+
 await build({
   entryPoints: {
     background: join(root, "src/background.ts"),
@@ -44,6 +61,7 @@ await build({
     __REX_CONFIG__: JSON.stringify(config),
     __REX_VERSION__: JSON.stringify(pkg.version),
     __REX_E2E__: JSON.stringify(e2e),
+    __REX_ENUM_PREFIXES__: JSON.stringify(ENUM_PREFIXES),
   },
   logLevel: "warning",
 });
@@ -95,7 +113,14 @@ const manifest = {
   background: { service_worker: "background.js", type: "module" },
   action: { default_popup: "popup.html", default_title: "__MSG_extName__", default_icon: icons },
   options_page: "options.html",
-  content_security_policy: { extension_pages: "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'" },
+  // The only network the extension uses is fetch() to recipe sources (user-configurable, so any http(s)
+  // origin). Images, media, fonts and frames stay inside the package: the popup never loads a page's
+  // images, so nothing reaches a third party. tests/e2e and the recorder check the requests made.
+  content_security_policy: {
+    extension_pages:
+      "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; img-src 'self' data:; media-src 'none'; " +
+      "font-src 'self'; frame-src 'none'; connect-src 'self' https: http:",
+  },
   commands: { _execute_action: { suggested_key: { default: "Alt+Shift+J" } } },
 };
 writeFileSync(join(dist, "manifest.json"), JSON.stringify(manifest, null, 2));

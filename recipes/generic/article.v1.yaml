@@ -3,7 +3,7 @@
 # Order: JSON-LD -> OpenGraph -> meta -> readability; discovery hints last.
 # `json_ld: {}` = read the field through its schema.org binding (annotations on the schema message).
 id: generic/article.v1
-version: 1
+version: 2
 schema: rex.schema.article.v1.Article
 fields:
   - path: canonical_url
@@ -22,6 +22,8 @@ fields:
       - readability: { part: READABILITY_PART_TITLE }
       - css: { selector: "title", scope: CSS_SCOPE_DOCUMENT }
       - hint: { key: title }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: subtitle
     candidates:
@@ -32,8 +34,14 @@ fields:
       - json_ld: {}
       - meta: { key: "author" }
       - meta: { key: "article:author" }
+      # A byline that carries the date or time is the whole dateline ("Posted by X on Monday October 12, 2026 @04:00PM").
       - readability: { part: READABILITY_PART_BYLINE }
+        pipe: [{ filter: { pattern: "\\b(19|20)\\d\\d\\b|\\d:\\d\\d", invert: true } }]
       - hint: { key: author }
+    # Not names: Open Graph's article:author is a profile URL by spec ("https://x.com/Tesla"), WordPress SEO plugins
+    # put the login email in the JSON-LD Person. Such values are skipped and the next candidate tried (U44).
+    pipe:
+      - filter: { pattern: "^(https?:|www\\.)|^\\S+@\\S+\\.\\w+$", invert: true, key: name }
 
   - path: published_at
     candidates:
@@ -41,11 +49,15 @@ fields:
       - meta: { key: "article:published_time" }
       - css: { selector: "time[datetime]", take: TAKE_ATTRIBUTE, attribute: datetime, scope: CSS_SCOPE_DOCUMENT }
       - hint: { key: published_at }
+    pipe:
+      - not_future: {}
 
   - path: updated_at
     candidates:
       - json_ld: {}
       - meta: { key: "article:modified_time" }
+    pipe:
+      - not_future: {}
 
   - path: section
     candidates:
@@ -69,9 +81,12 @@ fields:
     candidates:
       - meta: { key: "article:tag" }
       - json_ld: {}
+    # JSON-LD keywords are often the CMS's tag field verbatim: publisher codes ("SYND", "LINK|...", "l1:politics")
+    # and the same topic twice in different case (WSJ, decisions.md U44). Codes are dropped, duplicates folded.
     pipe:
       - split: { pattern: "\\s*,\\s*" }
-      - unique: {}
+      - drop_codes: {}
+      - unique: { ignore_case: true }
 
   - path: language
     candidates:

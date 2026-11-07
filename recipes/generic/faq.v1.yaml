@@ -1,7 +1,7 @@
 # Baseline for rex.schema.faq.v1.FaqPage: any page with schema.org FAQPage data. It ranks below every other
 # fallback (decisions.md U36), so it only applies when the FAQ is what the page is.
 id: generic/faq.v1
-version: 1
+version: 2
 schema: rex.schema.faq.v1.FaqPage
 fields:
   - path: title
@@ -9,6 +9,8 @@ fields:
       - json_ld: {}
       - meta: { key: "og:title" }
       - css: { selector: "h1", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: url
     candidates:

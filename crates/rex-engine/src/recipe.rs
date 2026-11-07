@@ -446,6 +446,8 @@ impl<'s> Compiler<'s> {
             default: Option<(usize, String)>,
             each: Option<(usize, String, String)>,
             nested: Vec<(usize, &'a [pb::FieldRule])>,
+            /// `replace_inherited` with nothing of its own: the site has no good source, the field stays unset.
+            omitted: bool,
         }
         let mut order: Vec<String> = Vec::new();
         let mut acc: BTreeMap<String, Acc<'_>> = BTreeMap::new();
@@ -471,6 +473,7 @@ impl<'s> Compiler<'s> {
                         default: None,
                         each: None,
                         nested: Vec::new(),
+                        omitted: false,
                     }
                 });
                 let own: Vec<_> = rule
@@ -480,6 +483,8 @@ impl<'s> Compiler<'s> {
                     .collect();
                 if rule.replace_inherited {
                     // Everything inherited goes: candidates, a default, and an `each` the base declared.
+                    entry.omitted =
+                        own.is_empty() && rule.each.is_empty() && rule.fields.is_empty() && rule.pipe.is_empty();
                     entry.candidates = own;
                     entry.default = None;
                     entry.each = None;
@@ -520,6 +525,9 @@ impl<'s> Compiler<'s> {
             let Some(field) = self.resolve_path(&ids[0], record, &segments, &full) else {
                 continue;
             };
+            if a.omitted && a.candidates.is_empty() {
+                continue;
+            }
             let mut candidates = Vec::new();
             for (index, (owner, cand, rule_pipe)) in a.candidates.iter().enumerate() {
                 let loc = format!("{full}.candidates[{index}]");

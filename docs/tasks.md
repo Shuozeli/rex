@@ -107,7 +107,12 @@ tested locally but **not yet committed** (see the open actions in decisions.md).
 - [x] GitHub Actions `docker-e2e` job (U40): image layer cache with a weekly Chrome refresh, results + video artifacts; first GitHub runs green, 7/7 (2026-10-24)
 - [x] First full CI on GitHub (U40): private `Shuozeli/rex-fixtures` with a read-only deploy key; fixes for clippy 1.99, the version-gate base after a force push, and the Playwright Chromium version (2026-10-24)
 - [x] A docker e2e scene for every site recipe (U40): `scenarios/sites.json` (`siteFixtures` expansion), quick flow, 52/52; CI matrix fixtures + sites (2026-10-25)
-- [x] Generic (schema.org fallback) recipes as docker e2e scenes (U40): `scenarios/generic.json`, 13/13; new fixtures for generic product (allbirds, kylie), video (2 TED talks), quote (2 synthetic, no real page reaches it) (2026-10-25) (one per site recipe?); Windows backend in the framework; scheduled live run with the video and results published
+- [x] Generic (schema.org fallback) recipes as docker e2e scenes (U40): `scenarios/generic.json`, 13/13; new fixtures for generic product (allbirds, kylie), video (2 TED talks), quote (2 synthetic, no real page reaches it) (2026-10-25)
+- [x] Popup redesign (U43): Reader and Table views (user's choice, remembered), JSON panel always at the bottom, readable dates/numbers/enums, no third-party UI code; format.ts unit tests in CI; user guide retaken (2026-11-05)
+- [ ] Options page: the same visual language as the new popup (it still uses the old styles)
+- [ ] Recorder follow-ups: Windows backend in the framework; scheduled live run with the video and results published
+- [x] Three-layer recipe judge (U44): L1 rules in test/liveness/draft gate; L2 coverage in `rex check` (a captured fixture per site recipe, liveness or a written exemption); L3 `rex judge` LLM review with grounding and a cache, `rex draft --review`, `tools/judge/audit.sh`; engine pipes `drop_codes`, `not_future`, `strip_site_name`, `unique.ignore_case`, `filter.key`, JSON path `[key=Name]`; WSJ recipe rewritten from real pages; 2094/2094 with no judge errors (2026-11-05)
+- [ ] Judge follow-ups: schedule `tools/judge/audit.sh` (systemd timer + ntfy) with the pro model; Michelin and wikiHow site recipes; redactor keeps character references intact; a paywall/teaser signal in the Article schema
 - [ ] Next in the approved order: table/list extraction
 
 ## Known gaps

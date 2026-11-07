@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/book.v1",
-    "version": 1,
-    "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+    "version": 2,
+    "sha256": "78f4d45bffb73b68a7f6c1ea2dbcfba60d70b74442fbdbeb3deeca3483f277e9"
   },
   "schema": "rex.schema.creative.v1.Book",
   "url": "https://books.google.com/books/about/The_Hobbit.html?id=pD6arNyKyi8C",
@@ -15,24 +15,24 @@
       "path": "name",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 2,
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_META",
       "candidate": 3,
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 2,
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/book.v1@1"
+      "recipe": "generic/book.v1@2"
     }
   ],
   "record": {
@@ -45,8 +45,8 @@
   "chain": [
     {
       "id": "generic/book.v1",
-      "version": 1,
-      "sha256": "6dc4b4658c6638d56ec0b64009a366ace40ef9af80a250f174fc289e072ba2a0"
+      "version": 2,
+      "sha256": "78f4d45bffb73b68a7f6c1ea2dbcfba60d70b74442fbdbeb3deeca3483f277e9"
     }
   ]
 }

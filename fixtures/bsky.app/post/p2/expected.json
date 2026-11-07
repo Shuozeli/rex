@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "bsky.app/post",
-    "version": 1,
-    "sha256": "1c7d17158a5966d26903636fe18413d0411b6748ca355d4b5ad3b3e0f5067f9b"
+    "version": 2,
+    "sha256": "78d63098627a84af1f9fca1804ff6dfdf9a29772554a32e6e89c98f6569e4531"
   },
   "schema": "rex.schema.social.v1.Thread",
   "url": "https://bsky.app/profile/bsky.app/post/3mxovjfvv4s2f",
@@ -14,112 +14,112 @@
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.id",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.url",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.author.name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.author.handle",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.author.url",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.author.verified",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.text",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.published_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.likes",
-      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.reposts",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "post.replies",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].id",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].author.name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].author.handle",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].text",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].likes",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].reposts",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].replies",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "replies[0].url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     },
     {
       "path": "reply_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "bsky.app/post@1"
+      "recipe": "bsky.app/post@2"
     }
   ],
   "record": {
@@ -135,7 +135,7 @@
       },
       "text": "Xxxx is XXX xx xx xxx @xxxxxxxxxxxxxx.xxxx.xxxxxx’x xxx xxxxxxxxxxx “XXXX” (in xxxxxxxx now). Xx xxx xxxxxxxxx xx xxx xxxx.\n\nXxxx xx xxxxx xxxx xx October 20, 2026 xx 9am Xxxxxxx/xxxx Xxxxxxx xxx a xxxxxxxxxx xxxxxx xx @xxxxxxxxxxx.xxxxxx.\n\n[xxxxxxxx quote xxxx xx xxxxx xxxxxxxx xxxxxxx]",
       "publishedAt": "2026-10-12T16:05:43.953Z",
-      "likes": "3700",
+      "likes": "3776",
       "reposts": "916",
       "replies": "72",
       "url": "https://bsky.app/profile/bsky.app/post/3mxovjfvv4s2f"
@@ -656,8 +656,8 @@
   "chain": [
     {
       "id": "bsky.app/post",
-      "version": 1,
-      "sha256": "1c7d17158a5966d26903636fe18413d0411b6748ca355d4b5ad3b3e0f5067f9b"
+      "version": 2,
+      "sha256": "78d63098627a84af1f9fca1804ff6dfdf9a29772554a32e6e89c98f6569e4531"
     }
   ]
 }

@@ -88,8 +88,8 @@
     },
     {
       "id": "generic/video.v1",
-      "version": 1,
-      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+      "version": 2,
+      "sha256": "da50c5e7abfe53b8e1201d5ed747c658961884781439c7f499c4b147c96f62e4"
     }
   ]
 }

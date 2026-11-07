@@ -25,6 +25,25 @@ pub struct FixtureMeta {
     /// Hand-written page (no publisher content): exempt from the redaction lint.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub synthetic: bool,
+    /// Judge findings accepted for this page, each with the reason (decisions.md U44).
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub judge_allow: Vec<JudgeAllow>,
+}
+
+/// One accepted judge finding: its rule, optionally a path prefix, and why it is right for this page.
+#[derive(Debug, Deserialize, Serialize, Clone)]
+#[serde(deny_unknown_fields)]
+pub struct JudgeAllow {
+    pub rule: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub path: Option<String>,
+    pub reason: String,
+}
+
+impl JudgeAllow {
+    pub fn covers(&self, f: &crate::judge::Finding) -> bool {
+        self.rule == f.rule && self.path.as_deref().is_none_or(|p| f.path.starts_with(p))
+    }
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -80,9 +99,24 @@ fn walk(dir: &Path, out: &mut Vec<PathBuf>) {
 /// Run one fixture. `shared` is the engine over the shared recipe set; `base` is that set (cloned
 /// when a case brings its own recipe).
 pub fn run_case(shared: &Engine, base: &RecipeSet, limits: &Limits, dir: &Path, update: bool) -> Outcome {
-    match produce(shared, base, limits, dir) {
+    match produce_judged(shared, base, limits, dir) {
         Err(e) => Outcome::Error(e),
-        Ok(actual) => {
+        Ok((actual, findings)) => {
+            // The output must also be good, not only unchanged: judge errors fail the case (the expected file
+            // is still written under --update, so the diff can be reviewed).
+            let errors: Vec<String> = findings
+                .iter()
+                .filter(|f| f.level == crate::judge::Level::Error)
+                .map(|f| f.to_string())
+                .collect();
+            if !errors.is_empty() {
+                if update {
+                    let _ = std::fs::write(dir.join("expected.json"), &actual);
+                }
+                return Outcome::Fail {
+                    diff: format!("judge:\n  {}", errors.join("\n  ")),
+                };
+            }
             let expected_path = dir.join("expected.json");
             let expected = std::fs::read_to_string(&expected_path).ok();
             if expected.as_deref() == Some(actual.as_str()) {
@@ -103,6 +137,16 @@ pub fn run_case(shared: &Engine, base: &RecipeSet, limits: &Limits, dir: &Path, 
 
 /// The Extraction protojson a fixture produces (pretty, trailing newline).
 pub fn produce(shared: &Engine, base: &RecipeSet, limits: &Limits, dir: &Path) -> Result<String, String> {
+    produce_judged(shared, base, limits, dir).map(|(json, _)| json)
+}
+
+/// `produce`, plus the judge's findings on the record (those the fixture's `judge_allow` accepts are dropped).
+pub fn produce_judged(
+    shared: &Engine,
+    base: &RecipeSet,
+    limits: &Limits,
+    dir: &Path,
+) -> Result<(String, Vec<crate::judge::Finding>), String> {
     let read = |name: &str| std::fs::read_to_string(dir.join(name)).map_err(|e| format!("{name}: {e}"));
     let meta: FixtureMeta = serde_json::from_str(&read("meta.json")?).map_err(|e| format!("meta.json: {e}"))?;
     let html = read_page(dir)?;
@@ -136,7 +180,16 @@ pub fn produce(shared: &Engine, base: &RecipeSet, limits: &Limits, dir: &Path) -
         None => engine.extract_auto(&doc, &ctx).1.ok_or("no recipe matched the page")?,
     };
     let json = engine.to_json(&result.extraction);
-    Ok(serde_json::to_string_pretty(&json).map_err(|e| e.to_string())? + "\n")
+    let record = engine.record_json(&result.record);
+    let page = crate::judge::PageFacts::of(&doc, now);
+    let findings = crate::judge::judge(engine.recipes().registry(), &result.extraction.schema, &record, &page)
+        .into_iter()
+        .filter(|f| !meta.judge_allow.iter().any(|a| a.covers(f)))
+        .collect();
+    Ok((
+        serde_json::to_string_pretty(&json).map_err(|e| e.to_string())? + "\n",
+        findings,
+    ))
 }
 
 fn diff(expected: &str, actual: &str) -> String {

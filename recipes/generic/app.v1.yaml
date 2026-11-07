@@ -1,7 +1,7 @@
 # Baseline for rex.schema.app.v1.App: any app listing with schema.org SoftwareApplication data (App Store,
 # Google Play, extension and game stores). Site recipes `extends` this.
 id: generic/app.v1
-version: 1
+version: 2
 schema: rex.schema.app.v1.App
 fields:
   - path: name
@@ -9,6 +9,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: developer
     candidates:

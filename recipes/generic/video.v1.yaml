@@ -1,7 +1,7 @@
 # Baseline for rex.schema.media.v1.Video: any video page with schema.org VideoObject (JSON-LD or microdata) or
 # Open Graph video tags. Site recipes `extends` this.
 id: generic/video.v1
-version: 1
+version: 2
 schema: rex.schema.media.v1.Video
 fields:
   - path: id
@@ -14,6 +14,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: url
     candidates:
@@ -42,14 +44,17 @@ fields:
     pipe:
       - duration: {}
 
-  - path: views            # microdata keeps one counter per action type; JSON-LD often has a single one
+  - path: views            # one counter per action type; a bare single counter is taken as views
     candidates:
       - css: { selector: "meta[itemprop=interactionType][content$=WatchAction] + meta[itemprop=userInteractionCount]", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
+      - json_ld: { path: "interactionStatistic[interactionType=WatchAction].userInteractionCount" }
       - json_ld: { path: "interactionStatistic.userInteractionCount" }
+        pipe: [{ slice: { start: 0, end: 1 } }]
 
   - path: likes
     candidates:
       - css: { selector: "meta[itemprop=interactionType][content$=LikeAction] + meta[itemprop=userInteractionCount]", take: TAKE_ATTRIBUTE, attribute: content, scope: CSS_SCOPE_DOCUMENT }
+      - json_ld: { path: "interactionStatistic[interactionType=LikeAction].userInteractionCount" }
 
   - path: description
     candidates:
@@ -64,6 +69,8 @@ fields:
       - meta: { key: "og:video:tag" }
     pipe:
       - split: { pattern: "\\s*,\\s*" }
+      - drop_codes: {}
+      - unique: { ignore_case: true }
 
   - path: thumbnail
     candidates:

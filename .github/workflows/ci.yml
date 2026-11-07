@@ -69,8 +69,8 @@ jobs:
           else
             echo "ref=HEAD~1" >> "$GITHUB_OUTPUT"
           fi
-      - name: rex check (contract, fixtures >= 2, version gate)
-        run: ./target/release/rex check recipes --fixtures fixtures --fixtures rex-fixtures --git-base "${{ steps.base.outputs.ref }}"
+      - name: rex check (contract, fixtures >= 2 with one captured, liveness coverage, version gate)
+        run: ./target/release/rex check recipes --fixtures fixtures --fixtures rex-fixtures --liveness liveness.yaml --liveness liveness-auto.yaml --git-base "${{ steps.base.outputs.ref }}"
       - name: rex test (fixtures + conformance + harvested fixtures)
         run: ./target/release/rex test --fixtures fixtures --fixtures conformance --fixtures rex-fixtures
       - name: Fixture redaction lint
@@ -153,6 +153,7 @@ jobs:
       - run: chmod +x ../target/release/rex
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck
+      - run: pnpm run test:unit
       - name: Store build (no test hooks, no <all_urls>)
         run: |
           pnpm run build

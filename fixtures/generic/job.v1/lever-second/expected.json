@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/job.v1",
-    "version": 1,
-    "sha256": "5e1ca7c2850ff92f99b83121108a428a8a392ea5440afb30892bc36a1e7b5918"
+    "version": 2,
+    "sha256": "da993d7882a092b2e721a9dd1b1951be3012104c780379cfee3a6fed650a8aee"
   },
   "schema": "rex.schema.job.v1.JobPosting",
   "url": "https://jobs.lever.co/palantir/6ed76ce8-4156-4b60-b120-403538bd66cd",
@@ -14,43 +14,43 @@
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "company",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "locations",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "employment_types",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "posted_at",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "description_html",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "description_text",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_OPEN_GRAPH",
       "candidate": 1,
-      "recipe": "generic/job.v1@1"
+      "recipe": "generic/job.v1@2"
     }
   ],
   "record": {
@@ -76,8 +76,8 @@
   "chain": [
     {
       "id": "generic/job.v1",
-      "version": 1,
-      "sha256": "5e1ca7c2850ff92f99b83121108a428a8a392ea5440afb30892bc36a1e7b5918"
+      "version": 2,
+      "sha256": "da993d7882a092b2e721a9dd1b1951be3012104c780379cfee3a6fed650a8aee"
     }
   ]
 }

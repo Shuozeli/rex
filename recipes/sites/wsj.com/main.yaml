@@ -1,14 +1,14 @@
-# Site recipe: states only what the baseline gets wrong (sparse).
-# Selectors are ILLUSTRATIVE; real ones are authored against fixtures (design.md §7) before activation.
+# WSJ article -> rex.schema.article.v1.Article. Sparse: only what the baseline gets wrong or should be held to.
+# Written from real pages (decisions.md U44); v2 was illustrative, matched no real URL and kept WSJ's keywords as tags.
 id: wsj.com/main
-version: 2
+version: 3
 schema: rex.schema.article.v1.Article
 extends: generic/article.v1
-root: article
 match:
   urls:
     hosts: ["wsj.com"]
-    include: ["^/articles/[^/?]+"]
+    # /politics/policy/how-trump-lost-midterms-33cf9fd4: section path, slug, 8-hex id. Older links use /articles/.
+    include: ["^/articles/[^/?]+", "^/[a-z-]+(/[a-z-]+)*/[a-z0-9-]+-[0-9a-f]{8}$"]
     exclude: ["/print(\\?|$)"]
   page:
     any:
@@ -16,18 +16,23 @@ match:
       - meta: { key: "og:type", value: article }
 fields:
   - path: title
+    expect: true             # a redesign shows up here first
     candidates:
-      - css: { selector: "h1" }
+      - css: { selector: "h1[data-testid=headline]" }
 
   - path: subtitle
     candidates:
-      - css: { selector: "h2" }
+      - css: { selector: "h2[data-testid=dek-block]" }
 
+  # The article's own paragraphs (readability also takes the print-only copyright footer). Logged out, WSJ sends the
+  # first few paragraphs only; that teaser is what the page has.
   - path: body_html
-    expect: true             # paywall stub / redesign -> FAILED_EXPECTATION even if readability fills it
+    expect: true
     candidates:
-      - css: { selector: "section[subscriptions-section=content]", take: TAKE_HTML, exclude: [".ad", "[class*=read-next]"] }
+      - css: { selector: "article section:has(> p[data-testid=paragraph])", take: TAKE_HTML }
 
-  - path: published_at
-    candidates:
-      - css: { selector: "time[datetime]", take: TAKE_ATTRIBUTE, attribute: datetime }
+  # No tags: WSJ's keywords are its CMS tag field verbatim — Dow Jones codes (SYND, GCAPI, gpol, usdc), taxonomy
+  # (Dragonfly - World, Political/General News), feature flags (gfx-contrib) and a lowercased copy of the list. Nothing
+  # on the page shows readers topic labels, so the field stays unset rather than filled with categories.
+  - path: tags
+    replace_inherited: true

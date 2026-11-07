@@ -24,6 +24,8 @@ declare global {
   const __REX_CONFIG__: RexConfig;
   const __REX_VERSION__: string;
   const __REX_E2E__: boolean;
+  /** Enum value prefixes of the record schemas ("INSTRUMENT_TYPE_", …), from the protos (build.mjs). */
+  const __REX_ENUM_PREFIXES__: readonly string[];
 }
 
 export interface SourceSetting extends SourceConfig {

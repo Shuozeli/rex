@@ -1,0 +1,110 @@
+{
+  "recipe": {
+    "id": "wsj.com/main",
+    "version": 3,
+    "sha256": "a1013ff01c75e655f76450222f5f4ed79481eae191461b3a68b6aae899a33fa4"
+  },
+  "schema": "rex.schema.article.v1.Article",
+  "url": "https://www.wsj.com/politics/elections/the-voters-who-swung-the-house-away-from-trump-8035c7d1",
+  "extractorVersion": "rex/0.1.0 test",
+  "fetchTime": "2026-11-05T03:52:39Z",
+  "extractTime": "2026-11-05T03:52:39Z",
+  "status": "EXTRACTION_STATUS_OK",
+  "sources": [
+    {
+      "path": "canonical_url",
+      "origin": "FIELD_ORIGIN_META",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "title",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "wsj.com/main@3"
+    },
+    {
+      "path": "subtitle",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "wsj.com/main@3"
+    },
+    {
+      "path": "authors",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "published_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "updated_at",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "section",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "summary",
+      "origin": "FIELD_ORIGIN_JSON_LD",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "image",
+      "origin": "FIELD_ORIGIN_OPEN_GRAPH",
+      "recipe": "generic/article.v1@2"
+    },
+    {
+      "path": "body_html",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "wsj.com/main@3"
+    },
+    {
+      "path": "body_text",
+      "origin": "FIELD_ORIGIN_SITE_SELECTOR",
+      "recipe": "generic/article.v1@2"
+    }
+  ],
+  "bodyReadabilityAgreementBps": 9259,
+  "record": {
+    "@type": "type.googleapis.com/rex.schema.article.v1.Article",
+    "canonicalUrl": "https://www.wsj.com/politics/elections/the-voters-who-swung-the-house-away-from-trump-8035c7d1",
+    "title": "Xxx Xxxxxx Xxx Xxxxx Xxxxxxxx Xxxx Xxxx Xxxxx",
+    "subtitle": "Xxxxxx xxxxxx xxxxxx xxxxxxx xxxxxx xxxxxx Xxxxxxxxx xxx xxxx xxxxxxxxx xxxx xxx years ago xxxxxx xxx xxxxxxxxx",
+    "authors": [
+      {
+        "name": "Xxxxx Xxxxxxxxx",
+        "url": "https://www.wsj.com/news/author/danny-dougherty"
+      },
+      {
+        "name": "Xxxxx Xxxxxx",
+        "url": "https://www.wsj.com/news/author/aaron-zitner"
+      },
+      {
+        "name": "Xxxxxxx XxXxxxxx",
+        "url": "https://www.wsj.com/news/author/anthony-debarros"
+      }
+    ],
+    "publishedAt": "2026-11-04T18:06:00Z",
+    "updatedAt": "2026-11-04T18:06:00Z",
+    "section": "Politics",
+    "summary": "Xxxxxx xxxxxx xxxxxx xxxxxxx xxxxxx xxxxxx Xxxxxxxxx xxx xxxx xxxxxxxxx xxxx xxx years ago xxxxxx xxx xxxxxxxxx",
+    "image": "https://images.wsj.net/im-16515404/social",
+    "bodyHtml": "<p>To xxx xxxxxxx of xxx Xxxxx xxx Xxxxxx, Xxxxxxxxx xx Tuesday xxxxxxxxx xxx xxxxxxxxx xxxx xxx xxxxxxx Xxxxxx Xxxxx to xxx Xxxxx Xxxxx xxx years ago.</p><p>Xxx xxxxxx in xxx xxxxx xxxx xxxxxxx xxxx xxxx Xxxxx xxx xxx xxxxx, xxxxx xxxx xxxxxxxxxxx xxxxxx xxx Xxxxxx xxxxxx, xxxxxxxxxxxx Xxxxxx xxxxx. Xxxxxx xxxxx xxxxx xxx Xxxxxxxxxx xxxxxxxxx xxx Xxxxxxxx by a xxxxxx of 36 xxxxxxxxxx points, xx xxxx 21 points in 2024, xxxxxxxxx to a xxxxxxxx xxxxxx of xxxx xxxx 79,000 xxxxxx xxx xxxxxxxxxxxx in xxx xxxxxxxx.</p>",
+    "bodyText": "To xxx xxxxxxx of xxx Xxxxx xxx Xxxxxx, Xxxxxxxxx xx Tuesday xxxxxxxxx xxx xxxxxxxxx xxxx xxx xxxxxxx Xxxxxx Xxxxx to xxx Xxxxx Xxxxx xxx years ago.\n\nXxx xxxxxx in xxx xxxxx xxxx xxxxxxx xxxx xxxx Xxxxx xxx xxx xxxxx, xxxxx xxxx xxxxxxxxxxx xxxxxx xxx Xxxxxx xxxxxx, xxxxxxxxxxxx Xxxxxx xxxxx. Xxxxxx xxxxx xxxxx xxx Xxxxxxxxxx xxxxxxxxx xxx Xxxxxxxx by a xxxxxx of 36 xxxxxxxxxx points, xx xxxx 21 points in 2024, xxxxxxxxx to a xxxxxxxx xxxxxx of xxxx xxxx 79,000 xxxxxx xxx xxxxxxxxxxxx in xxx xxxxxxxx."
+  },
+  "chain": [
+    {
+      "id": "wsj.com/main",
+      "version": 3,
+      "sha256": "a1013ff01c75e655f76450222f5f4ed79481eae191461b3a68b6aae899a33fa4"
+    },
+    {
+      "id": "generic/article.v1",
+      "version": 2,
+      "sha256": "0ebc402368ef862d6085f01247e5b8460b9081f362b0888f526ebc053aa226da"
+    }
+  ]
+}

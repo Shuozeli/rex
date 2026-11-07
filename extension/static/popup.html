@@ -7,22 +7,34 @@
 <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+<!-- The title, the view switch, the status and the actions stay at the top, next to the toolbar icon the
+     popup opens from, while the record scrolls below them. -->
+<div class="sticky">
 <header class="top">
-  <div class="brand"><img class="logo" src="icons/icon-32.png" alt=""> rex <span class="sub" data-i18n="popupSubtitle"></span></div>
-  <span id="status" class="badge">…</span>
+  <div class="brand"><img class="logo" src="icons/icon-32.png" alt=""> rex</div>
+  <div class="views" id="views" role="tablist">
+    <button id="viewReader" role="tab" data-view="reader" data-i18n="viewReader"></button>
+    <button id="viewTable" role="tab" data-view="table" data-i18n="viewTable"></button>
+  </div>
+  <span id="status" class="state">…</span>
 </header>
-<section id="meta" class="meta"></section>
-<section id="alts" class="alts" hidden></section>
-<section id="message" class="message" hidden></section>
-<section id="record" class="record"></section>
 <section class="actions" id="actions" hidden>
   <button id="copy" class="primary" data-i18n="copyJson"></button>
-  <button id="copyOther"></button>
   <button id="download" data-i18n="download"></button>
-  <button id="fixture" hidden data-i18n="saveFixture"></button>
+  <button id="copyOther" class="quiet"></button>
+  <button id="fixture" class="quiet" hidden data-i18n="saveFixture"></button>
   <button id="report" class="warn" hidden data-i18n="reportBroken"></button>
 </section>
 <label class="optin" id="reportUrlRow" hidden><input type="checkbox" id="reportUrl"> <span data-i18n="reportIncludeUrl"></span></label>
+</div>
+<section id="message" class="message" hidden></section>
+<section id="alts" class="alts" hidden></section>
+<main id="record" class="record"></main>
+<section id="meta" class="meta"></section>
+<section id="json" class="json" hidden>
+  <div class="json-head"><b>JSON</b> <span id="jsonNote"></span></div>
+  <pre id="jsonView"></pre>
+</section>
 <details id="details" class="details" hidden>
   <summary data-i18n="traceSummary"></summary>
   <div id="trace"></div>

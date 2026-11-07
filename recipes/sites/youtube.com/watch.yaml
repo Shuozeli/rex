@@ -2,7 +2,7 @@
 # YouTube's microdata (it depends on how the page was reached), so the visible metadata is read too; exact
 # microdata values win where both exist. View/publish text is compact ("443M views", "21 years ago").
 id: youtube.com/watch
-version: 1
+version: 2
 schema: rex.schema.media.v1.Video
 extends: generic/video.v1
 requires: [relative_dates]
@@ -88,6 +88,7 @@ fields:
       - microdata: { path: "keywords" }
     pipe:
       - split: { pattern: "\\s*,\\s*" }
+      - unique: { ignore_case: true }   # uploaders repeat a tag in another case ("Rick Roll", "rick roll")
 
   - path: description
     replace_inherited: true

@@ -16,6 +16,9 @@ and later products, threads, and more. It does this with declarative, signed, re
   one click. Recipes sync from a signed bundle on an S3-compatible host (Cloudflare R2 by default), so
   sites are added and fixed without an extension release.
 
+**Using the extension:** see the [user guide](docs/user-guide.md) (install, the popup, statuses, options,
+privacy, troubleshooting, with screenshots).
+
 rex is an independent project. Crawlers and apps (crawlc, myfeed, …) can embed the engine, but rex
 depends on none of them.
 
@@ -37,7 +40,7 @@ liveness.yaml   live sample pages checked daily
 tools/          readability-bench (vs Mozilla Readability.js), icons
 scripts/        build-extension.sh, ci-local.sh
 .github/        ci.yml, publish.yml, liveness.yml
-docs/           design docs, operations, index.html (animated explainer)
+docs/           user guide, design docs, operations, index.html (animated explainer)
 ```
 
 ## Build and use
@@ -46,12 +49,13 @@ Requires Rust 1.95+ and `protoc` (the proto contracts are compiled at build time
 
 ```bash
 cargo build --release -p rex-cli           # target/release/rex
-rex check recipes --fixtures fixtures      # contract, >= 2 fixtures per site recipe
+rex check recipes --fixtures fixtures --liveness liveness.yaml  # contract, >= 2 fixtures (one captured) per site recipe, liveness coverage
 rex test                                   # fixtures/ + conformance/ against expected.json
 rex extract --html page.html --url https://www.wsj.com/articles/x       # match + extract
 rex explain --html page.html --url https://… --recipe wsj.com/main      # per-field trace
 rex match --url https://news.ycombinator.com/ --html page.html
-rex liveness                               # live sample pages in liveness.yaml
+rex liveness                               # live sample pages in liveness.yaml (judge rules included)
+rex judge --fixtures fixtures --llm <endpoint>   # LLM review of each record against its page (U44)
 ```
 
 ### Adding a site

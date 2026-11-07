@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "youtube.com/watch",
-    "version": 1,
-    "sha256": "ff5b16b1b25b6c5303284fb15558a006d87a2d1a6631c805d56c369c043c1d39"
+    "version": 2,
+    "sha256": "6034bc75ed4e6f7aa0562c59f92d67db9b5d5ff1afe8805eaaf758c6cc583508"
   },
   "schema": "rex.schema.media.v1.Video",
   "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -14,69 +14,69 @@
     {
       "path": "id",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_URL",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "channel",
       "origin": "FIELD_ORIGIN_JSON_LD",
       "candidate": 1,
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     },
     {
       "path": "channel.name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "channel.url",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "published_at",
       "origin": "FIELD_ORIGIN_MICRODATA",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "duration_seconds",
       "origin": "FIELD_ORIGIN_MICRODATA",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "views",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "likes",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "tags",
       "origin": "FIELD_ORIGIN_MICRODATA",
       "candidate": 1,
-      "recipe": "youtube.com/watch@1"
+      "recipe": "youtube.com/watch@2"
     },
     {
       "path": "thumbnail",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/video.v1@1"
+      "recipe": "generic/video.v1@2"
     }
   ],
   "record": {
@@ -98,27 +98,21 @@
       "Xxxxx Xxxxx Xxxx Xxx Xx",
       "xxxxx",
       "xxxxx xxxxx xxxx xxx xx xxxxxx",
-      "xxxx xxxxxx",
       "Xxxx Xxxx",
       "xxxx xxxxxx xxxxxxxx",
       "xxxxxxxxxx",
       "Xxxxxxxx xxxx",
       "Xxxxxxxx xxxxx",
-      "Xxxxxxxx xxxxx",
       "xxxxxxxx xxxxx xxxxx xxxx xxx xx",
-      "xxxx xxxx",
       "xxxxxxxxxxx",
       "xxxx xxxxxxx",
-      "xxxxx xxxxx xxxx xxx xx",
       "80x xxxxx",
       "xxxx xxxxxx xxx",
-      "xxxxxxxx xxxxx",
       "xxxxxxxx",
       "xxxx xxxxx",
       "xxxxx xxxxx xxxx x xx xxxxxx",
       "Xxxx Xxxxxx 2022",
       "xxxxx xxxxx xxx xxx xxxx",
-      "xxxxxxxx",
       "xxxx xxxxx 2022",
       "xxxxx xxxxx xxxx xxx xx xxxxxxx"
     ],
@@ -127,13 +121,13 @@
   "chain": [
     {
       "id": "youtube.com/watch",
-      "version": 1,
-      "sha256": "ff5b16b1b25b6c5303284fb15558a006d87a2d1a6631c805d56c369c043c1d39"
+      "version": 2,
+      "sha256": "6034bc75ed4e6f7aa0562c59f92d67db9b5d5ff1afe8805eaaf758c6cc583508"
     },
     {
       "id": "generic/video.v1",
-      "version": 1,
-      "sha256": "b03d02727772213fb26777297505e64a8781b650aa79df7c168c70a3f11b2c16"
+      "version": 2,
+      "sha256": "da50c5e7abfe53b8e1201d5ed747c658961884781439c7f499c4b147c96f62e4"
     }
   ]
 }

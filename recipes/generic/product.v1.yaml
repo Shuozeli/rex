@@ -1,7 +1,7 @@
 # Baseline for rex.schema.commerce.v1.Product: what any product page with schema.org Product data (JSON-LD or
 # microdata) or Open Graph product tags gets with no site recipe. Site recipes `extends` this.
 id: generic/product.v1
-version: 1
+version: 2
 schema: rex.schema.commerce.v1.Product
 fields:
   - path: sku
@@ -15,6 +15,8 @@ fields:
       - microdata: {}
       - meta: { key: "og:title" }
       - css: { selector: "h1", scope: CSS_SCOPE_DOCUMENT }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: brand
     candidates:

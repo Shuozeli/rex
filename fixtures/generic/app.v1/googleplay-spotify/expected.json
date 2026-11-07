@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/app.v1",
-    "version": 1,
-    "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+    "version": 2,
+    "sha256": "461649225c5ac196646ca17330aeb9362680737ca8518011b2bec3097368ea42"
   },
   "schema": "rex.schema.app.v1.App",
   "url": "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en_US",
@@ -14,62 +14,62 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "developer",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "category",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "platforms",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "price",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "currency",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "rating_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "content_rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "icon",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/app.v1@1"
+      "recipe": "generic/app.v1@2"
     }
   ],
   "record": {
@@ -94,8 +94,8 @@
   "chain": [
     {
       "id": "generic/app.v1",
-      "version": 1,
-      "sha256": "961dce6e55d18681869f73b45161755b27bdda7ec1041fdf59a4f33d02b501cd"
+      "version": 2,
+      "sha256": "461649225c5ac196646ca17330aeb9362680737ca8518011b2bec3097368ea42"
     }
   ]
 }

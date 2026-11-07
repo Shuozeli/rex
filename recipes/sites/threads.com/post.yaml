@@ -4,7 +4,7 @@
 # literal "threads_post_page_{n}". time@datetime is exact UTC. Counts follow their icon: svg[title=Like] + span.
 # Replies show only the @handle, which also serves as the author name.
 id: threads.com/post
-version: 1
+version: 2
 schema: rex.schema.social.v1.Thread
 match:
   urls:
@@ -103,7 +103,8 @@ fields:
       - field: { path: post.replies }
 
   - path: replies
-    each: "[data-pagelet=threads_post_page_0] div[data-pressable-container=true], [data-pagelet='threads_post_page_{n}'] div[data-pressable-container=true]"
+    # Only containers with a post link: a deleted reply ("This content is unavailable") keeps its slot and time.
+    each: "[data-pagelet=threads_post_page_0] div[data-pressable-container=true]:has(a[href*='/post/']), [data-pagelet='threads_post_page_{n}'] div[data-pressable-container=true]:has(a[href*='/post/'])"
     fields:
       - path: id
         candidates:

@@ -17,7 +17,7 @@ use rex_engine::recipe::RecipeProto;
 use rex_engine::{Ctx, Engine, RecipeSet};
 use rex_schema::{RecordSpec, SchemaRegistry, StringKind, Target};
 
-use crate::gate;
+use crate::{gate, review};
 use scraper::{ElementRef, Html, Node, Selector};
 
 pub const RECIPE_PROTO: &str = include_str!("../../../proto/rex/extract/v1/extraction_recipe.proto");
@@ -340,7 +340,7 @@ fn flatten(system: &str, turns: &[Turn]) -> String {
 
 // ---- evidence pack ---------------------------------------------------------------------------------
 
-fn short(s: &str, n: usize) -> String {
+pub(crate) fn short(s: &str, n: usize) -> String {
     let s = s.split_whitespace().collect::<Vec<_>>().join(" ");
     if s.chars().count() <= n {
         s
@@ -373,7 +373,12 @@ fn kind_name(t: &Target) -> String {
     }
 }
 
-fn describe_record(registry: &SchemaRegistry, spec: &RecordSpec, indent: usize, out: &mut String) -> Result<()> {
+pub(crate) fn describe_record(
+    registry: &SchemaRegistry,
+    spec: &RecordSpec,
+    indent: usize,
+    out: &mut String,
+) -> Result<()> {
     let pad = "  ".repeat(indent);
     for f in &spec.fields {
         let mut notes = Vec::new();
@@ -773,6 +778,9 @@ pub struct DraftRequest<'a> {
     /// Ids that may serve as the prompt's base and example recipe (reviewed ones, not other drafts or auto
     /// recipes); `None` allows every recipe in the set.
     pub reviewed: Option<&'a BTreeSet<String>>,
+    /// After the gate passes, have the model review the records (decisions.md U44, layer 3); its errors are
+    /// repaired like gate problems.
+    pub review: bool,
 }
 
 #[derive(Clone, Debug)]
@@ -851,7 +859,7 @@ pub fn draft(llm: &dyn Llm, set: &RecipeSet, req: &DraftRequest) -> Result<Draft
     let mut repairs = 0;
     // The last recipe that compiled; kept so that a repair round whose replies never compile again still
     // returns it (with its gate problems) instead of nothing.
-    let mut last_compiled: Option<(Engine, RecipeProto, gate::Report)> = None;
+    let mut last_compiled: Option<(Engine, RecipeProto, gate::Report, Vec<String>)> = None;
     loop {
         attempt += 1;
         let reply = llm.complete(&system, &turns)?;
@@ -870,17 +878,36 @@ pub fn draft(llm: &dyn Llm, set: &RecipeSet, req: &DraftRequest) -> Result<Draft
                         role: Role::User,
                         text: repair_prompt(&report, &positives),
                     });
-                    last_compiled = Some((engine, recipe, report));
+                    last_compiled = Some((engine, recipe, report, Vec::new()));
                     continue;
                 }
-                return finish(llm, req, &doc, &engine, &recipe, &report, attempt, repairs);
+                let reviewed = if report.pass && req.review {
+                    review_errors(llm, &engine, req, &positives)
+                } else {
+                    Vec::new()
+                };
+                if !reviewed.is_empty() && repairs < req.repair_rounds {
+                    repairs += 1;
+                    eprintln!("review round {repairs}: {}", reviewed.join("; "));
+                    turns.push(Turn {
+                        role: Role::Assistant,
+                        text: reply,
+                    });
+                    turns.push(Turn {
+                        role: Role::User,
+                        text: review_repair_prompt(&reviewed),
+                    });
+                    last_compiled = Some((engine, recipe, report, reviewed));
+                    continue;
+                }
+                return finish(llm, req, &doc, &engine, &recipe, &report, &reviewed, attempt, repairs);
             }
             Err(e) => {
                 eprintln!("attempt {attempt}: {e:#}");
                 if attempt - repairs >= MAX_ATTEMPTS {
-                    if let Some((engine, recipe, report)) = &last_compiled {
+                    if let Some((engine, recipe, report, reviewed)) = &last_compiled {
                         eprintln!("keeping the last recipe that compiled (it fails the quality gate)");
-                        return finish(llm, req, &doc, engine, recipe, report, attempt, repairs);
+                        return finish(llm, req, &doc, engine, recipe, report, reviewed, attempt, repairs);
                     }
                     bail!("no valid recipe after {MAX_ATTEMPTS} attempts: {e:#}");
                 }
@@ -909,6 +936,7 @@ fn finish(
     engine: &Engine,
     recipe: &RecipeProto,
     report: &gate::Report,
+    reviewed: &[String],
     attempts: usize,
     repairs: usize,
 ) -> Result<Draft> {
@@ -951,7 +979,7 @@ fn finish(
         yaml: header + &serde_yaml::to_string(&value)?,
         attempts,
         repairs,
-        problems: report.problems(),
+        problems: report.problems().into_iter().chain(reviewed.iter().cloned()).collect(),
         confirmed,
         status: ext
             .get("status")
@@ -962,6 +990,61 @@ fn finish(
         filled,
         missing_required: strings("missingRequired"),
     })
+}
+
+/// The model's review of the draft's record on each page: its errors, as "<page>: <finding>". A review that
+/// fails (transport, unparseable) is reported and counts as no findings: the gate already passed.
+fn review_errors(llm: &dyn Llm, engine: &Engine, req: &DraftRequest, positives: &[gate::Page]) -> Vec<String> {
+    let registry = engine.recipes().registry();
+    let Ok(schema) = registry.record(req.schema) else {
+        return Vec::new();
+    };
+    let limits = Limits::default();
+    let ctx = Ctx {
+        now: req.now,
+        fetch_time: Some(req.now),
+        hints: BTreeMap::new(),
+        source_id: String::new(),
+        source_ref: String::new(),
+        host: "rex-draft".into(),
+    };
+    let mut out = Vec::new();
+    for p in positives {
+        let Ok(doc) = Document::parse(&p.html, &p.url, &limits) else {
+            continue;
+        };
+        let Some(result) = engine.extract(req.id, &doc, &ctx) else {
+            continue;
+        };
+        let extraction = engine.to_json(&result.extraction);
+        let case = review::Case {
+            url: &p.url,
+            html: &p.html,
+            schema: &schema,
+            registry,
+            extraction: &extraction,
+        };
+        match review::review(llm, &case) {
+            Ok(found) => out.extend(
+                found
+                    .iter()
+                    .filter(|f| f.severity == review::Severity::Error)
+                    .map(|f| format!("{}: {f}", p.label)),
+            ),
+            Err(e) => eprintln!("review of {} failed: {e:#}", p.label),
+        }
+    }
+    out
+}
+
+fn review_repair_prompt(reviewed: &[String]) -> String {
+    format!(
+        "The recipe passes the mechanical checks, but a review of its records against the pages found wrong \
+         values:\n- {}\n\nFix the field rules that produce them: pick a better source on the page, filter values \
+         with pipes (e.g. regex_replace, or a stricter selector), or leave the field to the base recipe when the \
+         site has no good source. Return the whole corrected recipe as one JSON object.",
+        reviewed.join("\n- ")
+    )
 }
 
 /// Feedback for a recipe that compiles but fails the quality gate: the problems, plus the skeleton of the
@@ -1103,6 +1186,7 @@ mod tests {
             repair_rounds: 0,
             urls: None,
             reviewed: None,
+            review: false,
         }
     }
 
@@ -1190,6 +1274,42 @@ mod tests {
             *llm.seen.borrow(),
             vec![1, 3],
             "the repair turn carries the bad reply and the gate problems"
+        );
+    }
+
+    #[test]
+    fn review_errors_are_sent_back_and_repaired() {
+        // Arrange
+        let good = format!(
+            "{}{}",
+            &GOOD[..GOOD.len() - 2],
+            r#",{"path":"body_html","candidates":[{"css":{"selector":"div.post-body","take":"TAKE_HTML"}}]},{"path":"body_text","candidates":[{"field":{"path":"body_html"}}]}]}"#
+        );
+        let flagged = r#"{"findings": [{"field": "title", "severity": "error", "problem": "site name in the title", "evidence": "Hello world - Example Blog"}]}"#;
+        let clean = r#"{"findings": [{"field": "summary", "severity": "warning", "problem": "could be longer"}]}"#;
+        let llm = FakeLlm::new(&[&good, flagged, clean, &good, clean, clean]);
+        let page1 = long_page("Hello world");
+        let also = [gate::Page {
+            label: "page 2".into(),
+            url: "https://blog.example/2026/second".into(),
+            html: long_page("Second post"),
+        }];
+        let mut req = request();
+        req.html = &page1;
+        req.also = &also;
+        req.repair_rounds = 1;
+        req.review = true;
+
+        // Act
+        let d = draft(&llm, &set(), &req).unwrap();
+
+        // Assert
+        assert_eq!(d.repairs, 1);
+        assert!(d.problems.is_empty(), "warnings do not count: {:?}", d.problems);
+        assert_eq!(
+            *llm.seen.borrow(),
+            vec![1, 1, 1, 3, 1, 1],
+            "each review is its own conversation; the repair turn carries the draft and the findings"
         );
     }
 

@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "coinmarketcap.com/coin",
-    "version": 1,
-    "sha256": "6d2d32c555f767c656fca94230304f9dad11c2d2375f49df7cd40eb97ad92053"
+    "version": 2,
+    "sha256": "c69d0a4e6fc8fef54b877dd3793ffb5c4e8f000d58a1e8b295b10cd88a296b1e"
   },
   "schema": "rex.schema.finance.v1.Quote",
   "url": "https://coinmarketcap.com/currencies/ethereum/",
@@ -14,62 +14,62 @@
     {
       "path": "symbol",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "type",
       "origin": "FIELD_ORIGIN_CONST",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "currency",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "price",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "change_percent",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "market_state",
       "origin": "FIELD_ORIGIN_CONST",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "volume",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "market_cap",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "circulating_supply",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "rank",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "coinmarketcap.com/coin@1"
+      "recipe": "coinmarketcap.com/coin@2"
     }
   ],
   "record": {
@@ -90,8 +90,8 @@
   "chain": [
     {
       "id": "coinmarketcap.com/coin",
-      "version": 1,
-      "sha256": "6d2d32c555f767c656fca94230304f9dad11c2d2375f49df7cd40eb97ad92053"
+      "version": 2,
+      "sha256": "c69d0a4e6fc8fef54b877dd3793ffb5c4e8f000d58a1e8b295b10cd88a296b1e"
     }
   ]
 }

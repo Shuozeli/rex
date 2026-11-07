@@ -1,12 +1,13 @@
 // Popup: extract the active tab and render the typed record (design.md §9.2, §9.5).
 // When opened as a normal tab (e.g. by tests), `?tab=<id>` selects the tab to extract.
 
+import { langOf } from "./format";
 import { localize, t } from "./i18n";
+import { renderJson, renderView, type View } from "./render";
 import type {
   EngineOutput,
   ExtractResponse,
   Extraction,
-  FieldSource,
   FixtureResponse,
   OutputFormat,
   Status,
@@ -34,14 +35,27 @@ function toast(text: string): void {
   setTimeout(() => n.remove(), 1600);
 }
 
-const snake = (camel: string): string => camel.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
-const label = (key: string): string => snake(key).replace(/_/g, " ");
+const lang = langOf(chrome.i18n.getUILanguage());
+document.body.dataset.lang = lang;
 
+/** The status as words; `data-status` keeps the engine's name for tests ("OK", "FAILED_EXPECTATION", …). */
 function statusBadge(status: string | null): void {
   const b = $("status");
   const s = (status ?? "").replace("EXTRACTION_STATUS_", "");
-  b.textContent = s === "" ? "—" : s;
-  b.className = "badge " + (s === "OK" ? "ok" : s === "FAILED_EXPECTATION" ? "warn" : s === "" ? "" : "bad");
+  const [text, cls] =
+    s === "OK"
+      ? [t("statusComplete"), "ok"]
+      : s === "FAILED_EXPECTATION"
+        ? [t("statusCheck"), "warn"]
+        : s === "EMPTY"
+          ? [t("statusEmpty"), "bad"]
+          : s === ""
+            ? [t("statusNone"), ""]
+            : [t("statusIncomplete"), "bad"];
+  b.textContent = text;
+  b.className = `state ${cls}`;
+  b.dataset.status = s || "NONE";
+  b.title = s;
 }
 
 function showMessage(text: string, kind: "info" | "error" | "warn" = "info"): void {
@@ -51,102 +65,25 @@ function showMessage(text: string, kind: "info" | "error" | "warn" = "info"): vo
   m.textContent = text;
 }
 
-function originChip(origins: Map<string, FieldSource>, key: string): HTMLElement | null {
-  const src = origins.get(snake(key));
-  if (!src) return null;
-  const o = src.origin.replace("FIELD_ORIGIN_", "");
-  const chip = el("span", `origin o-${o}`, o);
-  chip.title = `${src.recipe}${src.candidate !== undefined ? ` · candidate ${src.candidate}` : ""}`;
-  return chip;
+// The view (reader or table) is the user's choice, kept across popups.
+const VIEW_KEY = "rex.popupView";
+let view: View = "reader";
+let shown: { ext: Extraction; record: Record<string, unknown> } | null = null;
+
+function showView(next: View): void {
+  view = next;
+  for (const b of document.querySelectorAll<HTMLButtonElement>("#views button")) {
+    b.setAttribute("aria-selected", String(b.dataset["view"] === next));
+  }
+  if (shown) renderView($("record"), view, shown.ext, shown.record, lang);
 }
 
-function textOf(v: unknown): string {
-  if (typeof v === "string") return v;
-  if (typeof v === "number" || typeof v === "boolean") return String(v);
-  if (v && typeof v === "object") {
-    const o = v as Record<string, unknown>;
-    for (const k of ["name", "title", "url", "id"]) {
-      if (typeof o[k] === "string") return o[k] as string;
-    }
-  }
-  return JSON.stringify(v);
-}
-
-function renderValue(key: string, value: unknown): HTMLElement {
-  const lk = key.toLowerCase();
-  if (typeof value === "string") {
-    if (lk === "title") return el("div", "v title", value);
-    if (lk === "bodytext" || lk === "bodyhtml" || value.length > 280) {
-      return el("div", "v body", lk === "bodyhtml" ? `${value.length} chars of sanitized HTML` : value);
-    }
-    if (lk === "image" && /^https?:/.test(value)) {
-      const wrap = el("div", "v");
-      const img = el("img");
-      img.src = value;
-      img.alt = "";
-      img.referrerPolicy = "no-referrer";
-      img.addEventListener("error", () => img.remove());
-      const link = el("a", "", value);
-      link.href = value;
-      link.target = "_blank";
-      wrap.append(img, link);
-      return wrap;
-    }
-    if (/^https?:\/\//.test(value)) {
-      const a = el("a", "v", value);
-      a.href = value;
-      a.target = "_blank";
-      return a;
-    }
-    return el("div", "v", value);
-  }
-  if (Array.isArray(value)) {
-    if (value.every((x) => typeof x === "string")) {
-      const chips = el("div", "v chips");
-      for (const s of value as string[]) chips.appendChild(el("span", "chip", s));
-      return chips;
-    }
-    const list = el("ol", "v items");
-    for (const item of value.slice(0, 50)) {
-      const li = el("li");
-      const o = (item ?? {}) as Record<string, unknown>;
-      const title = textOf(item);
-      if (typeof o["url"] === "string" && title !== o["url"]) {
-        const a = el("a", "", title);
-        a.href = o["url"] as string;
-        a.target = "_blank";
-        li.appendChild(a);
-      } else {
-        li.appendChild(document.createTextNode(title));
-      }
-      const extras = Object.entries(o)
-        .filter(([k]) => !["title", "name", "url", "id"].includes(k))
-        .map(([k, v]) => `${label(k)}: ${textOf(v)}`);
-      if (extras.length > 0) {
-        li.appendChild(el("div", "sub", extras.join(" · ")));
-      }
-      list.appendChild(li);
-    }
-    if (value.length > 50) list.appendChild(el("li", "sub", `… ${value.length - 50} more`));
-    return list;
-  }
-  return el("div", "v", textOf(value));
-}
-
-function renderRecord(ext: Extraction): void {
-  const box = $("record");
-  box.replaceChildren();
-  const origins = new Map((ext.sources ?? []).map((s) => [s.path, s] as const));
-  for (const [key, value] of Object.entries(ext.record)) {
-    if (key === "@type") continue;
-    const f = el("div", "field");
-    const k = el("div", "k", label(key));
-    const chip = originChip(origins, key);
-    if (chip) k.appendChild(chip);
-    if (Array.isArray(value)) k.appendChild(el("span", "", `(${value.length})`));
-    f.append(k, renderValue(key, value));
-    box.appendChild(f);
-  }
+for (const b of document.querySelectorAll<HTMLButtonElement>("#views button")) {
+  b.addEventListener("click", () => {
+    const next = b.dataset["view"] === "table" ? "table" : "reader";
+    showView(next);
+    void chrome.storage.local.set({ [VIEW_KEY]: next }).catch(() => {});
+  });
 }
 
 let fuel = 0;
@@ -237,6 +174,10 @@ async function targetTab(): Promise<number> {
 function copyButtons(format: OutputFormat, ext: Extraction, record: Record<string, unknown> | null): void {
   const envelope = JSON.stringify(ext, null, 2);
   const recordJson = JSON.stringify(record, null, 2);
+  // The JSON panel shows exactly what Copy JSON copies.
+  $("json").hidden = false;
+  $("jsonNote").textContent = `· ${format === "record" ? t("jsonRecord") : t("jsonEnvelope")}`;
+  renderJson($("jsonView"), format === "record" ? recordJson : envelope);
   const copyEnvelope = () => void navigator.clipboard.writeText(envelope).then(() => toast(t("copiedEnvelope")));
   const copyRecord = () => void navigator.clipboard.writeText(recordJson).then(() => toast(t("copiedRecord")));
   switch (format) {
@@ -297,6 +238,7 @@ async function run(recipeId?: string): Promise<void> {
   statusBadge(ext.status);
   const meta = $("meta");
   meta.replaceChildren();
+  meta.dataset.recipe = `${ext.recipe?.id ?? "?"}@${ext.recipe?.version ?? "?"}`;
   const viaFallback = plan?.fallback !== null && plan?.fallback === ext.recipe?.id;
   meta.append(
     el("span", "", `${t("recipeLabel")} `),
@@ -323,7 +265,8 @@ async function run(recipeId?: string): Promise<void> {
   } else if (ext.status !== "EXTRACTION_STATUS_OK") {
     showMessage(t("incomplete", (ext.missingRequired ?? []).join(", ") || t("primaryContent")), "warn");
   }
-  renderRecord(ext);
+  shown = { ext, record: (out.record ?? ext.record) as Record<string, unknown> };
+  renderView($("record"), view, shown.ext, shown.record, lang);
   renderTrace(out);
   renderFooter(resp.status);
   $("actions").hidden = false;
@@ -340,6 +283,7 @@ async function run(recipeId?: string): Promise<void> {
 }
 
 localize();
+showView(view);
 
 $("refresh").addEventListener("click", (e) => {
   e.preventDefault();
@@ -351,4 +295,9 @@ $("refresh").addEventListener("click", (e) => {
   });
 });
 
-void run().catch((e: unknown) => showMessage(e instanceof Error ? e.message : String(e), "error"));
+void chrome.storage.local
+  .get(VIEW_KEY)
+  .then((got) => showView(got[VIEW_KEY] === "table" ? "table" : "reader"))
+  .catch(() => {})
+  .then(() => run())
+  .catch((e: unknown) => showMessage(e instanceof Error ? e.message : String(e), "error"));

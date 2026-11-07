@@ -344,6 +344,13 @@ pub fn check(
                 status = str_field(&ext, "status")
                     .trim_start_matches("EXTRACTION_STATUS_")
                     .to_string();
+                // Field quality (decisions.md U44): the same rules `rex test` and liveness apply.
+                let facts = rex_engine::judge::PageFacts::of(&doc, now);
+                for f in rex_engine::judge::judge(engine.recipes().registry(), schema, &record, &facts) {
+                    if f.level == rex_engine::judge::Level::Error {
+                        problems.push(format!("{} at {}: {}", f.rule, f.path, f.detail));
+                    }
+                }
                 if status != "OK" && !stub {
                     let missing = ext.get("missingRequired").map(|m| m.to_string()).unwrap_or_default();
                     let failed = ext.get("expectationsFailed").map(|m| m.to_string()).unwrap_or_default();

@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "generic/title.v1",
-    "version": 1,
-    "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+    "version": 2,
+    "sha256": "a6c0b7de62211a49816f2e93b5f15a3b2172a11e0daeb87bf7e609834338cbf0"
   },
   "schema": "rex.schema.creative.v1.Title",
   "url": "https://www.imdb.com/title/tt0903747/",
@@ -14,67 +14,67 @@
     {
       "path": "name",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "type",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "release_date",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "genres",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "creators",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "actors",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "rating_scale",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "rating_count",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "content_rating",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "description",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "image",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     },
     {
       "path": "url",
       "origin": "FIELD_ORIGIN_META",
-      "recipe": "generic/title.v1@1"
+      "recipe": "generic/title.v1@2"
     }
   ],
   "record": {
@@ -118,8 +118,8 @@
   "chain": [
     {
       "id": "generic/title.v1",
-      "version": 1,
-      "sha256": "9a2fecf34d0d93c9f24bab5d437f0608c9ac65110da6824d6a2645b1c8ac9e96"
+      "version": 2,
+      "sha256": "a6c0b7de62211a49816f2e93b5f15a3b2172a11e0daeb87bf7e609834338cbf0"
     }
   ]
 }

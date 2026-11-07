@@ -16,6 +16,7 @@ use ureq::ResponseExt;
 mod draft;
 mod gate;
 mod publish;
+mod review;
 
 #[derive(Parser)]
 #[command(
@@ -43,6 +44,10 @@ enum Command {
         /// `version` by exactly 1; an unchanged recipe must keep its version (FR-RC-4).
         #[arg(long)]
         git_base: Option<String>,
+        /// Also require every site recipe to be checked daily: listed in one of these liveness files, or in
+        /// one's `exempt` list with a reason (repeatable: liveness.yaml, liveness-auto.yaml). Decisions U44.
+        #[arg(long)]
+        liveness: Vec<PathBuf>,
     },
     /// Capture, redact and lint fixtures (decisions.md U19).
     #[command(subcommand)]
@@ -83,6 +88,10 @@ enum Command {
         /// them as skipped with the reason.
         #[arg(long)]
         skip_datacenter_blocked: bool,
+        /// Keep each fetched page the expected recipe matched here as a fixture directory (<recipe>/<n>/page.html +
+        /// meta.json), for `rex judge` in the periodic audit (decisions.md U44).
+        #[arg(long)]
+        save: Option<PathBuf>,
     },
     /// Print a recipe in canonical form (protojson with --json).
     Fmt {
@@ -140,12 +149,46 @@ enum Command {
         /// system roles or multi-turn support.
         #[arg(long, env = "REX_LLM_INLINE_SYSTEM")]
         inline_system: bool,
+        /// After the gate passes, have the model review the records against the pages (U44); errors use the
+        /// repair rounds.
+        #[arg(long)]
+        review: bool,
         /// Print the evidence pack and exit without calling the model.
         #[arg(long)]
         pack_only: bool,
         /// Replace an existing draft file.
         #[arg(long)]
         force: bool,
+    },
+    /// LLM review of extracted records against their pages (decisions.md U44, layer 3); exit 1 on errors.
+    Judge {
+        #[arg(long = "recipes", default_value = "recipes")]
+        recipes: Vec<PathBuf>,
+        /// Fixture roots or case directories (any directory with a meta.json below it).
+        #[arg(long, required = true)]
+        fixtures: Vec<PathBuf>,
+        /// Only cases whose path contains one of these substrings.
+        #[arg(long)]
+        filter: Vec<String>,
+        /// Skip hand-made fixtures (`synthetic: true`).
+        #[arg(long)]
+        captured_only: bool,
+        /// Full endpoint URL, as for `rex draft`.
+        #[arg(long, env = "REX_LLM_ENDPOINT")]
+        llm: String,
+        #[arg(long, env = "REX_LLM_MODEL", default_value = "default")]
+        model: String,
+        #[arg(long, env = "REX_LLM_INLINE_SYSTEM")]
+        inline_system: bool,
+        /// Keep verdicts here: a case whose page and record did not change is not sent again.
+        #[arg(long)]
+        cache: Option<PathBuf>,
+        /// Write a JSON report to this path.
+        #[arg(long)]
+        report: Option<PathBuf>,
+        /// Model calls in flight at once.
+        #[arg(long, default_value_t = 4)]
+        jobs: usize,
     },
     /// Quality gate (U31) for one recipe on captured pages; prints a JSON report, exit 1 on failure.
     Gate {
@@ -343,7 +386,8 @@ fn run(cli: Cli) -> Result<ExitCode> {
             paths,
             fixtures,
             git_base,
-        } => check(&paths, &fixtures, git_base.as_deref()),
+            liveness,
+        } => check(&paths, &fixtures, git_base.as_deref(), &liveness),
         Command::Fixture(cmd) => fixture(cmd),
         Command::Extract(args) => extract(&args, false),
         Command::Explain(args) => extract(&args, true),
@@ -371,6 +415,7 @@ fn run(cli: Cli) -> Result<ExitCode> {
             url_include,
             keep_failing,
             inline_system,
+            review,
             pack_only,
             force,
         } => draft_cmd(DraftArgs {
@@ -389,6 +434,7 @@ fn run(cli: Cli) -> Result<ExitCode> {
             url_include,
             keep_failing,
             inline_system,
+            review,
             pack_only,
             force,
         }),
@@ -398,6 +444,33 @@ fn run(cli: Cli) -> Result<ExitCode> {
             page,
             negative,
         } => gate_cmd(&recipes, &id, &page, &negative),
+        Command::Judge {
+            recipes,
+            fixtures,
+            filter,
+            captured_only,
+            llm,
+            model,
+            inline_system,
+            cache,
+            report,
+            jobs,
+        } => {
+            let api_key = std::env::var("REX_LLM_API_KEY").ok().filter(|k| !k.is_empty());
+            let llm = draft::HttpLlm::new(&llm, draft::Api::detect(&llm), &model, api_key, inline_system);
+            judge_cmd(
+                &JudgeArgs {
+                    recipes: &recipes,
+                    roots: &fixtures,
+                    filter: &filter,
+                    captured_only,
+                    cache: cache.as_deref(),
+                    report: report.as_deref(),
+                    jobs,
+                },
+                &llm,
+            )
+        }
         Command::Fmt { file, json } => fmt_recipe(&file, json),
         Command::Readability { html, url } => readability_cmd(&html, &url),
         Command::Liveness {
@@ -406,7 +479,15 @@ fn run(cli: Cli) -> Result<ExitCode> {
             report,
             jobs,
             skip_datacenter_blocked,
-        } => liveness(&file, &recipes, report.as_deref(), jobs, skip_datacenter_blocked),
+            save,
+        } => liveness(
+            &file,
+            &recipes,
+            report.as_deref(),
+            jobs,
+            skip_datacenter_blocked,
+            save.as_deref(),
+        ),
     }
 }
 
@@ -486,9 +567,28 @@ fn engine(paths: &[PathBuf]) -> Result<Engine> {
     })
 }
 
-fn check(paths: &[PathBuf], fixture_roots: &[PathBuf], git_base: Option<&str>) -> Result<ExitCode> {
+fn check(
+    paths: &[PathBuf],
+    fixture_roots: &[PathBuf],
+    git_base: Option<&str>,
+    liveness: &[PathBuf],
+) -> Result<ExitCode> {
     if let Some(base) = git_base {
         verify_git_base(base)?;
+    }
+    // Recipes checked daily, and those exempt with a reason (decisions.md U44).
+    let mut daily: BTreeSet<String> = BTreeSet::new();
+    for f in liveness {
+        let spec: LivenessFile =
+            serde_yaml::from_str(&std::fs::read_to_string(f).with_context(|| format!("reading {}", f.display()))?)
+                .with_context(|| format!("parsing {}", f.display()))?;
+        daily.extend(spec.checks.into_iter().map(|c| c.recipe));
+        for e in spec.exempt {
+            if e.reason.trim().is_empty() {
+                bail!("{}: exempt {} has no reason", f.display(), e.recipe);
+            }
+            daily.insert(e.recipe);
+        }
     }
     let Loaded {
         set,
@@ -540,6 +640,28 @@ fn check(paths: &[PathBuf], fixture_roots: &[PathBuf], git_base: Option<&str>) -
                         .join(" + ")
                 ));
             }
+            // A recipe written against hand-made pages only was never tried on the site (WSJ, U44).
+            let captured = fixture_roots
+                .iter()
+                .flat_map(|r| fixtures::discover(&r.join(id)))
+                .filter(|d| {
+                    std::fs::read_to_string(d.join("meta.json"))
+                        .ok()
+                        .and_then(|m| serde_json::from_str::<fixtures::FixtureMeta>(&m).ok())
+                        .is_some_and(|m| !m.synthetic)
+                })
+                .count();
+            if cases >= 2 && captured == 0 {
+                problems.push(format!(
+                    "{id}: every fixture is synthetic; capture at least one real page (rex fixture capture)"
+                ));
+            }
+        }
+        if !liveness.is_empty() && !base && !daily.contains(id) {
+            problems.push(format!(
+                "{id}: not checked daily: add it to {} (or to its `exempt` list with a reason)",
+                liveness[0].display()
+            ));
         }
         if problems.is_empty() {
             let c = compiled.expect("compiled when no problems");
@@ -1057,6 +1179,7 @@ struct DraftArgs {
     url_include: Vec<String>,
     keep_failing: bool,
     inline_system: bool,
+    review: bool,
     pack_only: bool,
     force: bool,
 }
@@ -1158,6 +1281,7 @@ fn draft_cmd(a: DraftArgs) -> Result<ExitCode> {
             include: a.url_include.clone(),
         }),
         reviewed: Some(&reviewed),
+        review: a.review,
     };
     if a.pack_only {
         println!("{}", draft::pack_for(&set, &req)?);
@@ -1209,6 +1333,172 @@ fn draft_cmd(a: DraftArgs) -> Result<ExitCode> {
     );
     println!("next: capture >= 2 fixtures, `rex test --update`, review, then move it to recipes/sites/");
     Ok(ExitCode::SUCCESS)
+}
+
+struct JudgeArgs<'a> {
+    recipes: &'a [PathBuf],
+    roots: &'a [PathBuf],
+    filter: &'a [String],
+    captured_only: bool,
+    cache: Option<&'a Path>,
+    report: Option<&'a Path>,
+    jobs: usize,
+}
+
+#[derive(serde::Serialize)]
+struct JudgedCase {
+    case: String,
+    url: String,
+    recipe: String,
+    /// Layer 1 (fixed rules) findings, as `rex test` reports them.
+    rules: Vec<String>,
+    findings: Vec<review::Finding>,
+    error: Option<String>,
+}
+
+/// Extraction runs here, one case after another (the engine is single-threaded); the model calls run `jobs` at a
+/// time.
+fn judge_cmd(a: &JudgeArgs, llm: &(impl draft::Llm + Sync)) -> Result<ExitCode> {
+    let Loaded { set, errors, .. } = load_set(a.recipes)?;
+    if let Some((f, e)) = errors.first() {
+        bail!("{}: {e}", f.display());
+    }
+    let limits = Limits::default();
+    let shared =
+        Engine::new(set.clone(), limits.clone()).map_err(|errs| anyhow!("recipes do not compile: {}", errs[0]))?;
+    let registry = set.registry();
+    let mut cases: Vec<(JudgedCase, Option<String>)> = Vec::new();
+    for root in a.roots {
+        for dir in fixtures::discover(root) {
+            let name = dir.display().to_string();
+            if !a.filter.is_empty() && !a.filter.iter().any(|f| name.contains(f.as_str())) {
+                continue;
+            }
+            let meta: fixtures::FixtureMeta = match std::fs::read_to_string(dir.join("meta.json"))
+                .map_err(|e| e.to_string())
+                .and_then(|m| serde_json::from_str(&m).map_err(|e| e.to_string()))
+            {
+                Ok(m) => m,
+                Err(e) => bail!("{name}/meta.json: {e}"),
+            };
+            if a.captured_only && meta.synthetic {
+                continue;
+            }
+            let mut out = JudgedCase {
+                case: name,
+                url: meta.url.clone(),
+                recipe: String::new(),
+                rules: Vec::new(),
+                findings: Vec::new(),
+                error: None,
+            };
+            let built = fixtures::produce_judged(&shared, &set, &limits, &dir).and_then(|(json, rules)| {
+                out.rules = rules.iter().map(ToString::to_string).collect();
+                let html = fixtures::read_page(&dir)?;
+                let ext: serde_json::Value = serde_json::from_str(&json).map_err(|e| e.to_string())?;
+                out.recipe = ext["recipe"]["id"].as_str().unwrap_or_default().to_string();
+                let schema = registry
+                    .record(ext["schema"].as_str().unwrap_or_default())
+                    .map_err(|e| e.to_string())?;
+                review::prompt(&review::Case {
+                    url: &meta.url,
+                    html: &html,
+                    schema: &schema,
+                    registry,
+                    extraction: &ext,
+                })
+                .map_err(|e| e.to_string())
+            });
+            match built {
+                Ok(p) => cases.push((out, Some(p))),
+                Err(e) => {
+                    out.error = Some(e);
+                    cases.push((out, None));
+                }
+            }
+        }
+    }
+    let cache = a.cache.map(review::Cache::new).transpose()?;
+    let next = std::sync::atomic::AtomicUsize::new(0);
+    let done = std::sync::atomic::AtomicUsize::new(0);
+    let total = cases.len();
+    type Verdict = Result<(Vec<review::Finding>, bool)>;
+    let slots: Vec<std::sync::Mutex<Option<Verdict>>> = (0..total).map(|_| std::sync::Mutex::new(None)).collect();
+    std::thread::scope(|s| {
+        for _ in 0..a.jobs.max(1) {
+            s.spawn(|| loop {
+                let i = next.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                let Some((_, Some(user))) = cases.get(i) else {
+                    if i >= total {
+                        break;
+                    }
+                    continue;
+                };
+                let r = match &cache {
+                    Some(c) => c.review(llm, user),
+                    None => review::review_prompt(llm, user).map(|f| (f, false)),
+                };
+                *slots[i].lock().expect("slot lock") = Some(r);
+                let n = done.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
+                if n.is_multiple_of(10) {
+                    eprintln!("judged {n}/{total}");
+                }
+            });
+        }
+    });
+    let (mut ok, mut bad, mut cached) = (0, 0, 0);
+    let mut report = Vec::new();
+    for ((mut out, _), slot) in cases.into_iter().zip(slots) {
+        match slot.into_inner().expect("slot lock") {
+            Some(Ok((found, hit))) => {
+                cached += usize::from(hit);
+                out.findings = found;
+            }
+            Some(Err(e)) => out.error = Some(format!("{e:#}")),
+            None => {}
+        }
+        let errors = out.findings.iter().any(|f| f.severity == review::Severity::Error)
+            || out.error.is_some()
+            || out.rules.iter().any(|r| r.starts_with("error"));
+        if errors {
+            bad += 1;
+        } else {
+            ok += 1;
+        }
+        let warnings = !out.findings.is_empty() || !out.rules.is_empty();
+        println!(
+            "{} {} [{}]",
+            if errors {
+                "FAIL"
+            } else if warnings {
+                "warn"
+            } else {
+                "ok  "
+            },
+            out.case,
+            out.recipe
+        );
+        if let Some(e) = &out.error {
+            println!("     error: {e}");
+        }
+        for r in &out.rules {
+            println!("     rule {r}");
+        }
+        let mut sorted = out.findings.clone();
+        sorted.sort_by_key(|f| f.severity);
+        for f in &sorted {
+            println!("     llm {f}");
+        }
+        report.push(out);
+    }
+    println!(
+        "\n{} judged ({cached} from the cache): {ok} without errors, {bad} with errors",
+        ok + bad
+    );
+    if let Some(path) = a.report {
+        std::fs::write(path, serde_json::to_string_pretty(&report)?)?;
+    }
+    Ok(if bad > 0 { ExitCode::FAILURE } else { ExitCode::SUCCESS })
 }
 
 fn fmt_recipe(file: &Path, json: bool) -> Result<ExitCode> {
@@ -1411,6 +1701,7 @@ fn fixture(cmd: FixtureCmd) -> Result<ExitCode> {
                 recipe: None,
                 hints: BTreeMap::new(),
                 synthetic: false,
+                judge_allow: Vec::new(),
             };
             std::fs::write(dir.join("meta.json"), serde_json::to_string_pretty(&meta)? + "\n")?;
             println!(
@@ -1489,6 +1780,16 @@ fn case_name(url: &str) -> Result<String> {
 #[serde(deny_unknown_fields)]
 struct LivenessFile {
     checks: Vec<LivenessCheck>,
+    /// Site recipes not checked daily, each with the reason (`rex check --liveness` accepts them).
+    #[serde(default)]
+    exempt: Vec<LivenessExempt>,
+}
+
+#[derive(serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+struct LivenessExempt {
+    recipe: String,
+    reason: String,
 }
 
 #[derive(serde::Deserialize)]
@@ -1500,6 +1801,9 @@ struct LivenessCheck {
     /// `--skip-datacenter-blocked` reports it as skipped.
     #[serde(default)]
     datacenter_blocked: Option<String>,
+    /// Judge findings accepted on these pages, each with the reason (decisions.md U44).
+    #[serde(default)]
+    judge_allow: Vec<rex_engine::fixtures::JudgeAllow>,
 }
 
 #[derive(serde::Serialize)]
@@ -1510,6 +1814,9 @@ struct LivenessResult {
     /// Not fetched (`datacenter_blocked` under `--skip-datacenter-blocked`); `problem` says why.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     skipped: bool,
+    /// The judge's findings on the live record (errors fail the check, warnings are reported).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    judge: Vec<String>,
     matched: Option<String>,
     status: Option<String>,
     problem: Option<String>,
@@ -1633,12 +1940,27 @@ fn decode_html(content_type: &str, bytes: &[u8]) -> String {
     text.into_owned()
 }
 
+/// A fetched page as the next free fixture directory `<dir>/<recipe>/<n>`.
+fn save_page(dir: &Path, recipe: &str, url: &str, html: &str, now: DateTime<Utc>) -> Result<()> {
+    let base = dir.join(recipe);
+    let case = (1..)
+        .map(|n| base.join(n.to_string()))
+        .find(|p| !p.exists())
+        .expect("an unused number");
+    std::fs::create_dir_all(&case)?;
+    std::fs::write(case.join("page.html"), html)?;
+    let meta = serde_json::json!({"url": url, "fetch_time": now.to_rfc3339_opts(chrono::SecondsFormat::Secs, true)});
+    std::fs::write(case.join("meta.json"), serde_json::to_string_pretty(&meta)?)?;
+    Ok(())
+}
+
 fn liveness(
     file: &Path,
     recipes: &[PathBuf],
     report: Option<&Path>,
     jobs: usize,
     skip_datacenter_blocked: bool,
+    save: Option<&Path>,
 ) -> Result<ExitCode> {
     let spec: LivenessFile =
         serde_yaml::from_str(&std::fs::read_to_string(file)?).with_context(|| format!("parsing {}", file.display()))?;
@@ -1669,6 +1991,7 @@ fn liveness(
                         url: u.clone(),
                         ok: true,
                         skipped: true,
+                        judge: Vec::new(),
                         matched: None,
                         status: None,
                         problem: Some(format!("skipped: datacenter IPs refused ({why})")),
@@ -1678,6 +2001,11 @@ fn liveness(
             }
         }
     }
+    let allows: BTreeMap<String, Vec<rex_engine::fixtures::JudgeAllow>> = spec
+        .checks
+        .iter()
+        .map(|c| (c.recipe.clone(), c.judge_allow.clone()))
+        .collect();
     let groups = by_host(&work);
     let next = std::sync::atomic::AtomicUsize::new(0);
     let (tx, rx) = std::sync::mpsc::channel::<(String, String, Result<(String, String)>)>();
@@ -1705,6 +2033,7 @@ fn liveness(
                 url,
                 ok: false,
                 skipped: false,
+                judge: Vec::new(),
                 matched: None,
                 status: None,
                 problem: None,
@@ -1712,21 +2041,58 @@ fn liveness(
             let check_recipe = r.recipe.clone();
             // What the page was, for telling a bot wall or an interstitial from a changed page.
             let mut seen = String::new();
+            let mut kept: Option<(String, String)> = None;
             match fetched.and_then(|(final_url, html)| {
                 seen = format!("{} bytes from {final_url}, title {:?}", html.len(), page_title(&html));
-                Ok(Document::parse(&html, &final_url, engine.limits())?)
+                let doc = Document::parse(&html, &final_url, engine.limits())?;
+                if save.is_some() {
+                    kept = Some((final_url, html));
+                }
+                Ok(doc)
             }) {
                 Err(e) => r.problem = Some(format!("{e:#}")),
                 Ok(doc) => {
                     let (plan, result) = engine.extract_auto(&doc, &ctx);
                     r.matched = plan.chosen.clone();
+                    // Only the pages this recipe matched: a bot wall or a login page has nothing to review.
+                    if let (Some(dir), Some((final_url, html))) = (save, &kept) {
+                        if plan.chosen.as_deref() == Some(check_recipe.as_str()) {
+                            if let Err(e) = save_page(dir, &check_recipe, final_url, html, now) {
+                                eprintln!("saving {final_url}: {e:#}");
+                            }
+                        }
+                    }
                     match result {
                         None => r.problem = Some(format!("no recipe matched ({seen})")),
                         Some(res) => {
                             let status = status_name(res.extraction.status).to_string();
-                            r.ok = plan.chosen.as_deref() == Some(check_recipe.as_str()) && status == "OK";
+                            // The live record must also be good (decisions.md U44): judge errors fail the check.
+                            let record = engine.record_json(&res.record);
+                            let page = rex_engine::judge::PageFacts::of(&doc, now);
+                            let allowed = allows.get(&check_recipe).cloned().unwrap_or_default();
+                            let findings: Vec<_> = rex_engine::judge::judge(
+                                engine.recipes().registry(),
+                                &res.extraction.schema,
+                                &record,
+                                &page,
+                            )
+                            .into_iter()
+                            .filter(|f| !allowed.iter().any(|a| a.covers(f)))
+                            .collect();
+                            let errors: Vec<String> = findings
+                                .iter()
+                                .filter(|f| f.level == rex_engine::judge::Level::Error)
+                                .map(|f| f.to_string())
+                                .collect();
+                            r.judge = findings.iter().map(|f| f.to_string()).collect();
+                            r.ok = plan.chosen.as_deref() == Some(check_recipe.as_str())
+                                && status == "OK"
+                                && errors.is_empty();
                             if !r.ok {
                                 let mut why = Vec::new();
+                                if !errors.is_empty() {
+                                    why.push(format!("judge: {}", errors.join("; ")));
+                                }
                                 if plan.chosen.as_deref() != Some(check_recipe.as_str()) {
                                     why.push(format!("matched {:?} instead", plan.chosen));
                                 }

@@ -1,7 +1,7 @@
 # Baseline for rex.schema.howto.v1.Recipe: any page with schema.org Recipe data (JSON-LD or microdata), as
 # required for Google's recipe rich results. Site recipes `extends` this.
 id: generic/recipe.v1
-version: 1
+version: 2
 schema: rex.schema.howto.v1.Recipe
 fields:
   - path: name
@@ -9,6 +9,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: description
     candidates:
@@ -79,10 +81,14 @@ fields:
 
   - path: keywords
     candidates:
+      # Parse.ly's tags are the editors' topic labels; JSON-LD keywords can be CMS flags ("publisher-tested").
+      - meta: { key: "parsely-tags" }
       - json_ld: { path: "keywords" }
       - microdata: { path: "keywords" }
     pipe:
       - split: { pattern: "\\s*,\\s*" }
+      - drop_codes: {}
+      - unique: { ignore_case: true }
 
   - path: ingredients
     candidates:

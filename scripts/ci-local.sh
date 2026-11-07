@@ -25,8 +25,8 @@ rex=target/release/rex
 # Harvested-recipe fixtures (decisions.md U31): a sibling checkout of Shuozeli/rex-fixtures.
 fx="${REX_FIXTURES:-$root/../rex-fixtures}"
 test -d "$fx" || { echo "missing $fx (clone Shuozeli/rex-fixtures next to rex, or set REX_FIXTURES)"; exit 1; }
-step "rex check";          $rex check recipes --fixtures fixtures --fixtures "$fx" --git-base "${GIT_BASE:-HEAD}" | grep -v '^ok' || true
-                           $rex check recipes --fixtures fixtures --fixtures "$fx" --git-base "${GIT_BASE:-HEAD}" >/dev/null
+step "rex check";          $rex check recipes --fixtures fixtures --fixtures "$fx" --liveness liveness.yaml --liveness liveness-auto.yaml --git-base "${GIT_BASE:-HEAD}" | grep -v '^ok' || true
+                           $rex check recipes --fixtures fixtures --fixtures "$fx" --liveness liveness.yaml --liveness liveness-auto.yaml --git-base "${GIT_BASE:-HEAD}" >/dev/null
 step "rex test";           $rex test --fixtures fixtures --fixtures conformance --fixtures "$fx" | tail -1
 step "fixture lint";       $rex fixture lint fixtures "$fx" | tail -1
 
@@ -46,6 +46,7 @@ node crates/rex-wasm/tests/conformance.mjs target/wasm-node target/conformance-b
 
 cd extension
 step "extension typecheck"; pnpm install --silent --frozen-lockfile; pnpm -s run typecheck
+step "extension unit tests"; node --test tests/format.test.mjs 2>&1 | grep -E "^# (pass|fail)"
 step "store build";         pnpm -s run build
 node -e '
   const fs = require("fs");

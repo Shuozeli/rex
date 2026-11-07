@@ -1,7 +1,7 @@
 # Baseline for rex.schema.event.v1.Event: any page with schema.org Event data (ticketing, meetup and venue
 # sites). Site recipes `extends` this.
 id: generic/event.v1
-version: 1
+version: 2
 schema: rex.schema.event.v1.Event
 fields:
   - path: name
@@ -9,6 +9,8 @@ fields:
       - json_ld: {}
       - microdata: {}
       - meta: { key: "og:title" }
+    pipe:
+      - strip_site_name: {}    # og:title is often "Post - Site" (decisions.md U44)
 
   - path: description
     candidates:

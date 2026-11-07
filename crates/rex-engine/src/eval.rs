@@ -367,6 +367,7 @@ impl<'a> Run<'a> {
                         base: self.doc.base(),
                         now: self.ctx.now,
                         budget: &self.budget,
+                        doc: Some(self.doc),
                     };
                     let piped = match apply(&cand.pipe, items, &pctx)? {
                         Ok(v) => v,

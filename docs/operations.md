@@ -178,6 +178,14 @@ run, not Chrome for Testing.
   the scenes and a results card are joined into one MP4.
 - **Checks:** each scene has an `expect` (recipe id prefix, status, optional minimum field count).
   `results.json` lists the outcome, and the exit code is 1 if a scene fails.
+- **Network audit** (`lib/netaudit.mjs`): every request the extension itself makes (service worker, popup,
+  options page) is recorded through CDP. New extension targets are auto-attached and held until recording
+  starts.
+  - A request that leaves the browser for an origin other than the manifest's recipe sources fails the
+    scene. Requests the browser blocks (the CSP) never leave and are listed as `(blocked: csp)`.
+  - The first scene of each scenario self-checks with probes to `rex-audit-probe.invalid`. A worker fetch and
+    a popup fetch must be recorded, and an image the popup tries to load must be blocked by the CSP.
+  - `results.json` has `network.requests` per scene.
 - **Fresh Chrome per scene:** Chrome restarts (SIGTERM, same profile) between scenes.
 - **After rebuilding the extension,** recreate the container (`--force-recreate`). The CRX is packed at start,
   and the version in the manifest does not change between builds.
@@ -190,6 +198,27 @@ docker compose -f extension/recorder/docker/compose.yaml exec desktop \
   node /repo/extension/recorder/run.mjs /repo/extension/recorder/scenarios/tutorial.json --out /out/tutorial
 # --only wikipedia,hn   --no-video (checks only)
 # output: extension/recorder/docker/out/tutorial/{rex-tutorial.mp4,results.json,<scene>.raw.mp4,...}
+```
+
+### Screenshots for the user guide
+
+`extension/recorder/guide.mjs` takes the screenshots in `docs/user-guide/` in the live desktop. On each page
+it does what a user does: types the URL, clicks the rex icon, waits for the popup. It saves the full screen
+and crops of the popup and toolbar.
+
+- The pages are Wikipedia, HN, Bilibili, Xueqiu, a schema.org recipe page, example.com, and the options page.
+  Wikipedia, HN and Xueqiu are also shot in the Table view (`<name>-table.png`). Wikipedia also gets the
+  JSON panel (`-json`), the scrolled popup and the trace. The pointer is moved off the popup before each shot,
+  so no link tooltip shows.
+- The popup's position is measured once on Wikipedia (a static page) and reused, so ads elsewhere do not move
+  the crop.
+
+```bash
+pnpm -C extension build                          # the store build, as users get it
+docker compose -f extension/recorder/docker/compose.yaml up -d --force-recreate desktop
+docker compose -f extension/recorder/docker/compose.yaml exec desktop \
+  node /repo/extension/recorder/guide.mjs --out /out/guide
+# then copy the crops into docs/user-guide/ (names as linked from docs/user-guide.md)
 ```
 
 ### Hermetic docker e2e (CI-safe)
@@ -286,5 +315,28 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
     parallel requests of a run with 429.
   - **Fetching uses IPv4 only:** ureq does not fall back from IPv6, and neither the runners nor the
     workstation route IPv6, so AAAA-first sites (guide.michelin.com, Google Play, the App Store) timed out.
+- **Judge findings** (decisions.md U44) are the third drift signal. A record that runs but holds wrong values
+  shows up in three places:
+  - in `rex test` and the liveness report as `judge:` lines (fixed rules);
+  - in `rex check` when a site recipe has no captured fixture, or is neither checked daily nor exempt;
+  - in the periodic LLM audit.
+- **Running the audit** (from this host; the internal proxy is unreachable from GitHub):
+
+  ```bash
+  REX_LLM_ENDPOINT=<proxy>/v1beta/models/pro:generateContent REX_LLM_INLINE_SYSTEM=1 tools/judge/audit.sh
+  ```
+
+  - The readable report is `~/.cache/rex/audit/<date>/judge.txt`; `judge.json` has every finding with its
+    quoted evidence.
+  - Verdicts are cached in `~/.cache/rex/judge`, so a rerun asks only about pages or records that changed.
+  - Use the pro model. On the same pages, flash disagreed with itself on 12 of 54 verdicts.
+- **Triage:** read the quoted evidence against the page before changing a recipe.
+  - The model still misreads lists, for example by pairing a count with the wrong neighbor.
+  - A misreading that recurs belongs in the rubric (`crates/rex-cli/src/review.rs`): add it and bump
+    `PROMPT_VERSION`.
+  - A real value the fixed rules flag (Hacker News item 1 is titled "Y Combinator") gets
+    `judge_allow: [{rule, path, reason}]` in the fixture's `meta.json` or the liveness check.
+- **New recipes:** `rex draft --review` has the model review its own draft against the pages, and sends the
+  errors back as a repair round.
 - **User reports** arrive as "Broken recipe: …" issues from the popup. The page URL is included only when
   the user opted in.

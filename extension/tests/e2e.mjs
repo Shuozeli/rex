@@ -28,7 +28,7 @@ const hermetic = (process.env.REX_E2E_SOURCE ?? "hermetic") === "hermetic";
 mkdirSync(out, { recursive: true });
 
 const cases = [
-  { name: "wsj-article", url: "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a", fixture: "fixtures/wsj.com/main/article", recipe: "wsj.com/main" },
+  { name: "wsj-article", url: "https://www.wsj.com/politics/policy/how-trump-lost-midterms-33cf9fd4", fixture: "fixtures/wsj.com/main/midterms", recipe: "wsj.com/main" },
   { name: "wsj-paywall", url: "https://www.wsj.com/articles/fed-holds-rates-steady-4f2a", fixture: "fixtures/wsj.com/main/paywall-stub", recipe: "wsj.com/main" },
   { name: "hn-front", url: "https://news.ycombinator.com/", fixture: "fixtures/news.ycombinator.com/front/front-page", recipe: "news.ycombinator.com/front" },
   { name: "generic-blog", url: "https://blog.example.org/2026/10/declarative-recipes", fixture: "fixtures/generic/article.v1/blogposting-jsonld", recipe: "generic/article.v1" },

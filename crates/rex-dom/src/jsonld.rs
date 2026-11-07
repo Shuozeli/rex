@@ -93,6 +93,11 @@ impl JsonLdIndex {
                                     next.push(*x);
                                 }
                             }
+                            Index::Where(ref k, ref want) => next.extend(
+                                spread(child)
+                                    .into_iter()
+                                    .filter(|x| names(self.resolve(x).get(k.as_str()), want)),
+                            ),
                         }
                     }
                 }
@@ -130,6 +135,11 @@ impl JsonLdIndex {
                                     next.push(*x);
                                 }
                             }
+                            Index::Where(ref k, ref want) => next.extend(
+                                spread(child)
+                                    .into_iter()
+                                    .filter(|x| names(self.resolve(x).get(k.as_str()), want)),
+                            ),
                         }
                     }
                 }
@@ -148,6 +158,20 @@ impl JsonLdIndex {
 enum Index {
     All,
     At(usize),
+    /// `[key=Name]`: the items whose `key` names `Name` ("interactionStatistic[interactionType=LikeAction]").
+    Where(String, String),
+}
+
+/// Whether `v` (a string, an object with `@type`, or a list of them) names `want`, ignoring a vocabulary prefix
+/// ("https://schema.org/LikeAction", "schema:LikeAction" and {"@type": "LikeAction"} all name "LikeAction").
+fn names(v: Option<&Value>, want: &str) -> bool {
+    let short = |s: &str| s == want || s.rsplit(['/', '#', ':']).next() == Some(want);
+    match v {
+        Some(Value::String(s)) => short(s),
+        Some(Value::Object(o)) => o.get("@type").is_some_and(|t| names(Some(t), want)),
+        Some(Value::Array(a)) => a.iter().any(|x| names(Some(x), want)),
+        _ => false,
+    }
 }
 
 #[derive(Debug)]
@@ -170,6 +194,11 @@ fn parse_path(path: &str) -> Result<Vec<Step>, String> {
                 .ok_or_else(|| format!("unclosed `[` in `{path}`"))?;
             let index = if rest == "*" {
                 Index::All
+            } else if let Some((k, v)) = rest.split_once('=') {
+                if k.trim().is_empty() || v.trim().is_empty() {
+                    return Err(format!("bad filter `[{rest}]` in `{path}`"));
+                }
+                Index::Where(k.trim().to_string(), v.trim().to_string())
             } else {
                 Index::At(
                     rest.parse::<usize>()
@@ -307,6 +336,37 @@ mod tests {
 
     fn index(html: &str) -> JsonLdIndex {
         JsonLdIndex::build(&Html::parse_document(html))
+    }
+
+    #[test]
+    fn a_filter_step_picks_the_counter_of_one_action_type() {
+        // Arrange
+        let idx = index(
+            r#"<script type="application/ld+json">{"@type":"SocialMediaPosting","interactionStatistic":[
+                {"@type":"InteractionCounter","interactionType":"https://schema.org/CommentAction","userInteractionCount":8712},
+                {"@type":"InteractionCounter","interactionType":{"@type":"LikeAction"},"userInteractionCount":63752},
+                {"@type":"InteractionCounter","interactionType":"schema:ShareAction","userInteractionCount":9549}]}</script>"#,
+        );
+        let types = ["SocialMediaPosting".to_string()];
+        let node = idx.nodes_of_types(&types).next().unwrap();
+
+        // Act
+        let likes = idx
+            .eval_path(
+                node,
+                "interactionStatistic[interactionType=LikeAction].userInteractionCount",
+            )
+            .unwrap();
+        let shares = idx
+            .eval_path(
+                node,
+                "interactionStatistic[interactionType=ShareAction].userInteractionCount",
+            )
+            .unwrap();
+
+        // Assert
+        assert_eq!(likes, vec![serde_json::json!(63752)]);
+        assert_eq!(shares, vec![serde_json::json!(9549)]);
     }
 
     #[test]
