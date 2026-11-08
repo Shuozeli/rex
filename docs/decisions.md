@@ -1361,6 +1361,13 @@ rex discloses **Website content** and needs a privacy policy, although it never 
 - The current docs replace the ARM Windows host's address and user and the tailnet hostnames with variables. The
   history still has them; they are not reachable from the internet.
 
+**First review, 2026-11-08: rejected.**
+
+- Violation "Yellow Argon" (Spam and Placement: excessive keywords). The descriptions listed the sites rex has
+  recipes for: "(Wikipedia, Hacker News, GitHub, …)" and "维基百科、B 站、知乎……".
+- Fix: both descriptions now say "popular sites and hundreds of news sites" without naming any.
+- store/README.md now notes this so later edits keep site names out.
+
 ## Open actions (need the user)
 
 | Action | Why it needs you |

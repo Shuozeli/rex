@@ -55,6 +55,9 @@ What the manifest declares:
 **Detailed description:** [`listing/en.md`](listing/en.md) and [`listing/zh_CN.md`](listing/zh_CN.md). Paste the text
 under "Description" into the field.
 
+- **No site names in the description.** The first review (2026-11-08, violation "Yellow Argon": excessive keywords)
+  rejected a list of the sites rex has recipes for, in both languages. Describe what kinds of pages work instead.
+
 **Graphic assets** (all in `store/assets/`):
 
 | Field | File | Spec |
