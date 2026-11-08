@@ -1,13 +1,14 @@
 # Wikipedia articles in every language. JSON-LD `headline` is Wikipedia's short description, so the
 # title comes from the page heading and the short description becomes the summary.
 id: wikipedia.org/article
-version: 1
+version: 2
 schema: rex.schema.article.v1.Article
 extends: generic/article.v1
 match:
   urls:
     hosts: ["*.wikipedia.org"]
-    include: ["^/wiki/[^:?]+$"]
+    # /zh-cn/<title>, /zh-tw/<title>, /sr-ec/<title>: the language-variant views of the same article.
+    include: ["^/wiki/[^:?]+$", "^/[a-z]{2,3}-[a-z]{2,4}/[^:?/]+$"]
   page:
     any:
       - json_ld_type: { types: [Article] }
@@ -16,7 +17,8 @@ fields:
   - path: title
     expect: true
     candidates:
-      - css: { selector: "h1#firstHeading", scope: CSS_SCOPE_DOCUMENT }
+      # Rendered zh.wikipedia puts the "[编辑]" edit link inside the heading.
+      - css: { selector: "h1#firstHeading", scope: CSS_SCOPE_DOCUMENT, exclude: [".mw-editsection"] }
   - path: summary
     candidates:
       - json_ld: { path: headline }

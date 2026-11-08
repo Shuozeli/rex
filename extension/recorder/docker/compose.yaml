@@ -1,5 +1,5 @@
-# Recording desktop. Host networking: the extension syncs its bundle over the tailnet (MagicDNS), and the
-# CDP relay and noVNC bind to $TAILSCALE_IP only.
+# Recording desktop. Host networking: the recorded pages load from the internet (the extension itself uses no
+# network; its recipes are in the package), and the CDP relay and noVNC bind to $TAILSCALE_IP only.
 #   export TAILSCALE_IP=$(tailscale ip -4)
 #   pnpm -C extension build:e2e
 #   docker compose -f extension/recorder/docker/compose.yaml up -d --build
@@ -13,6 +13,8 @@ services:
       CDP_PORT: "9541"
       NOVNC_PORT: "6081"
       CHROME_ARGS: ${REX_RECORDER_CHROME_ARGS:---lang=en-US}
+      # 1280x800 for the Chrome Web Store screenshots (extension/recorder/store.mjs).
+      SCREEN: ${REX_RECORDER_SCREEN:-1920x1080}
       # The browser's clock zone matches the egress IP (a Sunnyvale residential line), as a local user's would.
       TZ: ${REX_RECORDER_TZ:-America/Los_Angeles}
     shm_size: 2gb
@@ -28,7 +30,7 @@ services:
     restart: unless-stopped
 
   # Hermetic e2e (scripts/docker-e2e.sh): no network at all (loopback only); every host is answered inside
-  # the container from fixtures. The store build is in ./out/hermetic/ext, the bundle in ./out/hermetic/bundle.
+  # the container from fixtures. The store build (recipes included) is in ./out/hermetic/ext.
   e2e:
     build: .
     image: rex-recorder-desktop:local
@@ -42,7 +44,6 @@ services:
       - seccomp=unconfined
     volumes:
       - ./out/hermetic/ext:/ext:ro
-      - ./out/hermetic/bundle:/bundle:ro
       - ${REX_EXT_KEY:-~/.config/rex/ext-e2e-key.pem}:/keys/ext.pem:ro
       - ../../..:/repo:ro
       - ./out:/out

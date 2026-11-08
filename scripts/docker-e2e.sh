@@ -1,10 +1,10 @@
 #!/bin/bash
-# Hermetic e2e of the store build in Google Chrome stable, in Docker (decisions.md U40, operations.md):
-#   1. a throwaway Ed25519 bundle key and a config whose only source is https://bundles.rex.test/v1/dev/;
-#   2. the store build with that config (extension/recorder/docker/out/hermetic/ext; dist/ is untouched);
-#   3. `rex bundle publish` of recipes/ signed with that key;
-#   4. the e2e container (no network): it installs the CRX by policy, serves the fixture pages and the bundle,
-#      and runs a scenario with real input; each scene must match its fixture's expected.json.
+# Hermetic e2e of the store build in Google Chrome stable, in Docker (decisions.md U40, U45; operations.md):
+#   1. the recipes embedded with `rex bundle embed` and the store build with them
+#      (extension/recorder/docker/out/hermetic/ext; dist/ is untouched);
+#   2. the e2e container (no network): it installs the CRX by policy, serves the fixture pages, and runs a
+#      scenario with real input; each scene must match its fixture's expected.json, and the extension must not
+#      make a single network request.
 # Exit code: the runner's (1 if a scene fails). Extra arguments go to run.mjs (e.g. --no-video, --only hn).
 # Env: REX_E2E_SCENARIOS (space-separated, in extension/recorder/scenarios/; default
 #      "fixtures.json sites.json generic.json": the 7 tutorial scenes with a video, then one quick scene per site
@@ -35,24 +35,8 @@ if [ -z "${REX_EXT_KEY:-}" ]; then
   fi
 fi
 
-node --input-type=module - "$OUT" <<'JS'
-import { createPrivateKey, createPublicKey } from "node:crypto";
-import { writeFileSync } from "node:fs";
-const out = process.argv[2];
-const seed = Buffer.alloc(32, 7);
-const der = Buffer.concat([Buffer.from("302e020100300506032b657004220420", "hex"), seed]);
-const pub = createPublicKey(createPrivateKey({ key: der, format: "der", type: "pkcs8" })).export({ format: "der", type: "spki" }).subarray(-32).toString("hex");
-const keyId = "e2e-docker";
-writeFileSync(`${out}/key.json`, JSON.stringify({ key_id: keyId, seed: seed.toString("hex"), public: pub }));
-writeFileSync(`${out}/config.json`, JSON.stringify({
-  sources: [{ id: "e2e", baseUrl: "https://bundles.rex.test/v1/dev/", channel: "dev", keys: [{ keyId, public: pub }] }],
-  refreshMinutes: 360,
-  reportRepo: "Shuozeli/rex",
-}, null, 2));
-JS
-
-REX_CONFIG="$PWD/$OUT/config.json" REX_DIST="$PWD/$OUT/ext" pnpm -s -C extension run build
-target/release/rex bundle publish --recipes recipes --key "$OUT/key.json" --channel dev --to "$OUT/bundle" | tail -1
+target/release/rex bundle embed --out "$OUT/builtin"
+REX_BUILTIN="$PWD/$OUT/builtin" REX_DIST="$PWD/$OUT/ext" pnpm -s -C extension run build
 if [ "${REX_E2E_SKIP_BUILD:-0}" != "1" ]; then
   "${COMPOSE[@]}" build -q e2e
 fi

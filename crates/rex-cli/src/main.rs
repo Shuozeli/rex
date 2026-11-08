@@ -268,6 +268,14 @@ enum BundleCmd {
         #[arg(long)]
         out: PathBuf,
     },
+    /// Write the recipes the extension ships inside its package into OUT: index.json (unsigned Index),
+    /// schemas.fds and recipes.json (decisions.md U45). Drafts are left out.
+    Embed {
+        #[arg(long = "recipes", default_values = ["recipes/generic", "recipes/sites", "recipes/auto"])]
+        recipes: Vec<PathBuf>,
+        #[arg(long)]
+        out: PathBuf,
+    },
     /// Build and sign a bundle for one channel into OUT (r/, s/, index.json).
     Build {
         #[arg(long = "recipes", default_value = "recipes")]
@@ -915,6 +923,32 @@ fn bundle(cmd: BundleCmd) -> Result<ExitCode> {
                 file.key_id,
                 file.public
             );
+            Ok(ExitCode::SUCCESS)
+        }
+        BundleCmd::Embed { recipes, out } => {
+            let Loaded { set, errors, .. } = load_set(&recipes)?;
+            if let Some((f, e)) = errors.first() {
+                bail!("{}: {e}", f.display());
+            }
+            Engine::new(set.clone(), Limits::default())
+                .map_err(|errs| anyhow!("recipes do not compile: {}", errs[0]))?;
+            // SOURCE_DATE_EPOCH makes the package reproducible.
+            let seconds = std::env::var("SOURCE_DATE_EPOCH")
+                .ok()
+                .and_then(|v| v.parse::<i64>().ok())
+                .unwrap_or_else(|| Utc::now().timestamp());
+            let opts = rex_bundle::BuildOptions {
+                channel: "embedded".into(),
+                sequence: 1,
+                generated_at: prost_types::Timestamp { seconds, nanos: 0 },
+                min_client_version: String::new(),
+            };
+            let files = rex_bundle::embedded(&set, &opts)?;
+            std::fs::create_dir_all(&out)?;
+            for f in &files {
+                std::fs::write(out.join(&f.path), &f.bytes)?;
+            }
+            println!("embedded {} recipes -> {}", set.ids().count(), out.display());
             Ok(ExitCode::SUCCESS)
         }
         BundleCmd::Build {

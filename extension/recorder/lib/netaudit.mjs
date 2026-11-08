@@ -1,19 +1,17 @@
-// Records every network request the extension itself makes (its service worker, popup and options page) and
-// checks it against the recipe sources the manifest grants: rex reads the page the user opened and sends it
-// nowhere, so the only network it may use is fetching recipe bundles.
+// Records every network request the extension itself makes (its service worker, popup and options page). It
+// may make none (decisions.md U45): the recipes are in the package, and rex reads the page the user opened and
+// sends it nowhere.
 //
 // New extension targets are caught at start (browser-level auto-attach, paused until Network is enabled), so
 // a popup's first request is not missed. The page itself is not audited: its requests are the site's own.
 
-/** The origins the extension may contact: its manifest host permissions, without <all_urls> (e2e builds). */
-export async function allowedOrigins(evaluateInWorker) {
-  const hosts = await evaluateInWorker("chrome.runtime.getManifest().host_permissions ?? []");
-  return hosts.filter((h) => h !== "<all_urls>").map((h) => new URL(h.replace("/*", "/")).origin);
-}
-
 /** Starts auditing. `audit.requests` collects { url, type, target } for every non-local request. */
 export async function startAudit(conn, extId, workerSession) {
-  const audit = { requests: [], sessions: new Set(), seen: new Set() };
+  // `localBy`: the kinds of target ("worker", "page": the popup or options) that made a request into the package,
+  // which proves the audit sees them at all. A target can be attached twice, so kinds are kept, not sessions.
+  const audit = { requests: [], sessions: new Set(), seen: new Set(), localBy: new Set() };
+  const kind = new Map();
+  const kindOf = (info) => (info.type === "service_worker" ? "worker" : "page");
   const prefix = `chrome-extension://${extId}/`;
   const local = (url) => /^(chrome-extension|data|blob|chrome|about):/.test(url);
 
@@ -24,6 +22,7 @@ export async function startAudit(conn, extId, workerSession) {
       (async () => {
         if (ours) {
           audit.sessions.add(sessionId);
+          kind.set(sessionId, kindOf(targetInfo));
           await conn.send("Network.enable", {}, sessionId).catch(() => {});
         }
         if (waitingForDebugger) await conn.send("Runtime.runIfWaitingForDebugger", {}, sessionId).catch(() => {});
@@ -33,7 +32,8 @@ export async function startAudit(conn, extId, workerSession) {
       const { url } = msg.params.request;
       // A target can be attached twice (the runner's own session and auto-attach): count a request once.
       const key = `${msg.params.requestId}|${url}`;
-      if (!local(url) && !audit.seen.has(key)) {
+      if (local(url)) audit.localBy.add(kind.get(msg.sessionId) ?? "page");
+      else if (!audit.seen.has(key)) {
         audit.seen.add(key);
         audit.requests.push({ id: msg.params.requestId, url, type: msg.params.type ?? "", target: msg.sessionId, blocked: null });
       }
@@ -45,36 +45,53 @@ export async function startAudit(conn, extId, workerSession) {
   });
   // The worker already runs; new targets (the popup, a restarted worker) are attached as they start.
   audit.sessions.add(workerSession);
+  kind.set(workerSession, "worker");
   await conn.send("Network.enable", {}, workerSession);
   await conn.send("Target.setAutoAttach", { autoAttach: true, waitForDebuggerOnStart: true, flatten: true });
   return audit;
 }
 
-/** Requests that left the browser for an origin outside the allowed ones, as "type url" lines. */
-export function violations(audit, allowed) {
-  return audit.requests
-    .filter((r) => !r.blocked && !allowed.includes(new URL(r.url).origin))
-    .map((r) => `${r.type || "request"} ${r.url}`);
+/** Requests that left the browser, as "type url" lines: every one is a violation. */
+export function violations(audit) {
+  return audit.requests.filter((r) => !r.blocked).map((r) => `${r.type || "request"} ${r.url}`);
 }
 
 const PROBE = "https://rex-audit-probe.invalid";
 
+/** Runs in a target: starts `probe` and resolves to the CSP directive that blocked it, or null after 2 s. */
+const violation = (scope, probe) => `new Promise((done) => {
+  const on = (e) => { ${scope}.removeEventListener("securitypolicyviolation", on); done(e.effectiveDirective || e.violatedDirective); };
+  ${scope}.addEventListener("securitypolicyviolation", on);
+  ${probe};
+  setTimeout(() => done(null), 2000);
+})`;
+
 /**
- * Proves the audit sees what it should: a fetch from the worker and one from the popup must be recorded, and
- * an image the popup tries to load must be blocked by the CSP (never sent). The probes are then removed from
- * the record. Returns the problems found (empty when the audit and the CSP work).
+ * Proves the audit can catch a leak, without leaking (decisions.md U45):
+ * - a fetch of a packaged file from the worker and one from the popup are both recorded, so it is attached to
+ *   both;
+ * - the CSP stops a fetch from the worker, a fetch from the popup and an image in the popup, each with a
+ *   securitypolicyviolation for connect-src or img-src (so they never reach the network, where the audit would
+ *   report them).
+ * The probes are removed from the record. Returns the problems found (empty when the audit and the CSP work).
  */
-export async function selfCheck(audit, inWorker, inPopup, sleep) {
-  await inWorker(`fetch("${PROBE}/worker").then(() => 0, () => 0)`);
-  await inPopup(`(() => { fetch("${PROBE}/popup").catch(() => {}); const i = new Image(); i.src = "${PROBE}/image"; return 0; })()`);
-  await sleep(800);
-  const find = (path) => audit.requests.find((r) => r.url === `${PROBE}${path}`);
+export async function selfCheck(audit, inWorker, inPopup) {
   const problems = [];
-  if (!find("/worker")) problems.push("audit self-check: a fetch from the service worker was not recorded");
-  if (!find("/popup")) problems.push("audit self-check: a fetch from the popup was not recorded");
-  const image = find("/image");
-  if (image && image.blocked !== "csp") {
-    problems.push(`audit self-check: the popup loaded a remote image (blocked: ${image.blocked}); the CSP img-src is not enforced`);
+  audit.localBy.clear();
+  const own = `fetch(chrome.runtime.getURL("manifest.json"), { cache: "no-store" }).then((r) => r.ok)`;
+  await inWorker(own);
+  await inPopup(own);
+  await new Promise((r) => setTimeout(r, 500));
+  if (!audit.localBy.has("worker")) problems.push("audit self-check: the service worker's request was not recorded");
+  if (!audit.localBy.has("page")) problems.push("audit self-check: the popup's request was not recorded");
+  const checks = [
+    ["the worker's fetch", "connect-src", () => inWorker(violation("self", `fetch("${PROBE}/worker").catch(() => {})`))],
+    ["the popup's fetch", "connect-src", () => inPopup(violation("document", `fetch("${PROBE}/popup").catch(() => {})`))],
+    ["the popup's image", "img-src", () => inPopup(violation("document", `new Image().src = "${PROBE}/image"`))],
+  ];
+  for (const [what, want, run] of checks) {
+    const got = await run().catch((e) => `error: ${e}`);
+    if (got !== want) problems.push(`audit self-check: the CSP did not block ${what} with ${want} (got ${got})`);
   }
   audit.requests = audit.requests.filter((r) => !r.url.startsWith(PROBE));
   return problems;

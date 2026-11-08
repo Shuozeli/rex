@@ -1,9 +1,8 @@
-// Toolbar icon state (FR-EX-11): declarativeContent rules generated from the synced indexes mark sites
+// Toolbar icon state (FR-EX-11): declarativeContent rules generated from the packaged index mark sites
 // that have a site recipe with a green dot. Host-level only (stage 1's path filters are not mirrored);
 // the generic fallback still works everywhere, so the icon is never disabled.
 
-import { loadSource } from "./sync";
-import type { Settings } from "./types";
+import { builtin } from "./recipes";
 
 const RULE_ID = "rex-site-recipes";
 
@@ -17,16 +16,12 @@ function matchersFor(host: string): chrome.declarativeContent.PageStateMatcher[]
   return [m({ hostEquals: bare }), m({ hostEquals: `www.${bare}` })];
 }
 
-/** Hosts with at least one usable (non-base, not skipped) site recipe across enabled sources. */
-export async function recipeHosts(settings: Settings): Promise<string[]> {
+/** Hosts with at least one usable (non-base, not skipped) site recipe. */
+export async function recipeHosts(): Promise<string[]> {
   const hosts = new Set<string>();
-  for (const src of settings.sources.filter((s) => s.enabled)) {
-    const stored = await loadSource(src);
-    if (stored === null) continue;
-    for (const e of stored.index.entries) {
-      if (e.base === true || stored.recipes[e.ref.sha256] === undefined) continue;
-      for (const h of e.urls?.hosts ?? []) hosts.add(h.toLowerCase());
-    }
+  for (const e of (await builtin()).entries) {
+    if (e.base === true) continue;
+    for (const h of e.urls?.hosts ?? []) hosts.add(h.toLowerCase());
   }
   return [...hosts].sort();
 }
@@ -74,8 +69,8 @@ export function currentRules(): Promise<chrome.events.Rule[]> {
 }
 
 /** Replace the icon rule; returns the number of hosts it covers. */
-export async function updateRules(settings: Settings): Promise<number> {
-  const hosts = await recipeHosts(settings);
+export async function updateRules(): Promise<number> {
+  const hosts = await recipeHosts();
   await removeRules();
   if (hosts.length === 0) return 0;
   const imageData = await badgeIcons();

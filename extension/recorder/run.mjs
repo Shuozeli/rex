@@ -19,7 +19,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { attachWorker, connect, evaluate, sleep } from "./lib/cdp.mjs";
 import * as desk from "./lib/desktop.mjs";
-import { allowedOrigins, selfCheck, startAudit, violations } from "./lib/netaudit.mjs";
+import { selfCheck, startAudit, violations } from "./lib/netaudit.mjs";
 import { loadScenario } from "./lib/scenario.mjs";
 import { assemble, cardAss, sceneAss } from "./lib/video.mjs";
 
@@ -88,27 +88,17 @@ async function runScene(scenario, out, scene, index) {
   const events = [];
   let rec = null;
   let audit = null;
-  let allowed = [];
   try {
     const sw = await attachWorker(conn, EXT);
     const worker = (expr, ms) => evaluate(conn, sw, expr, ms);
-    // Every request the extension makes from here on must go to one of its recipe sources.
+    // The extension may not make a single network request from here on (decisions.md U45).
     audit = await startAudit(conn, EXT, sw);
-    allowed = await allowedOrigins(worker);
     // The e2e build exposes rexDebug; the store build does not, and is driven through its UI only.
     r.build = (await worker("typeof globalThis.rexDebug")) === "object" ? "e2e" : "store";
-    if (r.build === "e2e") {
-      const synced = await worker("globalThis.rexDebug.sync()", 120000);
-      r.bundle = `${synced.status.sources[0]?.id} #${synced.status.sources[0]?.sequence}`;
-    } else {
-      // A fresh install syncs by itself; wait until a bundle is stored.
-      r.bundle = await waitFor(
-        () => worker(`(async () => { const all = await chrome.storage.local.get(null); const s = Object.entries(all).find(([k, v]) => k.startsWith("rex.source.") && !k.endsWith(".error") && v?.sequence); return s ? s[0].slice(11) + " #" + s[1].sequence : null; })()`),
-        120000,
-        1000,
-      );
-      if (!r.bundle) throw new Error("the extension did not sync a bundle");
-    }
+    // The recipes come with the package.
+    r.bundle = await worker(
+      `(async () => (await (await fetch(chrome.runtime.getURL("recipes/index.json"))).json()).entries.length + " packaged recipes")()`,
+    );
 
     const pageTarget = (await conn.send("Target.getTargets")).targetInfos.find(isPage);
     if (!pageTarget) throw new Error("no browser tab");
@@ -190,9 +180,9 @@ async function runScene(scenario, out, scene, index) {
       const behind = ext?.recipe ? `${ext.recipe.id}@${ext.recipe.version}` : null;
       if (behind !== r.matched) r.mismatch = `popup shows ${r.matched}, the extraction is ${behind}`;
     }
-    // Once per scenario: prove the audit records the worker's and the popup's requests and the CSP blocks images.
+    // Once per scenario: prove the audit sees the worker and the popup, and the CSP blocks fetches and images.
     if (index === 0) {
-      r.auditSelfCheck = await selfCheck(audit, worker, (expr) => evaluate(conn, popup, expr, 5000), sleep);
+      r.auditSelfCheck = await selfCheck(audit, worker, (expr) => evaluate(conn, popup, expr, 5000));
     }
     r.finalUrl = await pageEval("location.href").catch(() => null);
     ev("caption", { text: r.matched ? `结果：recipe ${r.matched} · 状态 ${r.status} · ${r.fields} 个字段` : `结果：没有可用的 recipe（${r.status}）` });
@@ -221,8 +211,8 @@ async function runScene(scenario, out, scene, index) {
     conn.close();
   }
   if (audit) {
-    r.network = { allowed, requests: audit.requests.map(({ url, type, blocked }) => `${type} ${url}${blocked ? ` (blocked: ${blocked})` : ""}`) };
-    r.networkViolations = violations(audit, allowed);
+    r.network = { requests: audit.requests.map(({ url, type, blocked }) => `${type} ${url}${blocked ? ` (blocked: ${blocked})` : ""}`) };
+    r.networkViolations = violations(audit);
   }
   r.problems = [
     ...(r.error ? [r.error] : []),

@@ -78,8 +78,8 @@ depends on none of them.
    recipe for its schema.org type, clearly labeled.
 4. As a reader, when a recipe has drifted, I see "the site may have changed", and I can file a
    prefilled report in two clicks.
-5. As a maintainer, a merged recipe fix reaches every user within the refresh interval (6 h), or
-   immediately on **Refresh**.
+5. As a maintainer, a merged recipe fix reaches users with the next extension version (U45: the
+   extension packages its recipes and never connects to the internet).
 6. As an author, I run a local recipe on the live tab, read the `explain` trace, and "Save as fixture"
    to get a redacted test case for my PR.
 7. As an integrator, I run `rex extract` or the crate on HTML I already have and get the same
@@ -100,7 +100,7 @@ depends on none of them.
 | Recipe-matched pages extracting `OK` (fixtures plus a liveness sample) | ≥ 95% |
 | Generic-recipe pages with a non-empty `primary` field (article pages carrying JSON-LD or OG) | ≥ 85% |
 | Click to rendered result, p95, typical page | < 500 ms |
-| Merge to available in the extension (forced refresh) | < 15 min; < 6 h passive |
+| Merge to available in the extension | The next extension release (U45) |
 | Native vs wasm conformance | 100% byte-identical |
 | wasm size | ≤ 600 KB gzipped |
 | Broken-recipe report to fixed release, median | < 3 days |

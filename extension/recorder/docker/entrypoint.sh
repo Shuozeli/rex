@@ -7,7 +7,7 @@
 # Env: BIND (default 127.0.0.1; compose passes the Tailscale IP), CDP_PORT (9541), VNC_PORT (5941),
 #      NOVNC_PORT (6081), SCREEN (1920x1080), CHROME_ARGS (extra flags, e.g. --proxy-server=socks5://host:port).
 # Hermetic mode (REX_HERMETIC="<scenario.json> [...]"): every host resolves to 127.0.0.1, where fixture-server.mjs
-#      serves the scenario's fixture pages and the bundle in /bundle over TLS from a CA made here and trusted
+#      serves the scenario's fixture pages over TLS from a CA made here and trusted
 #      in the profile's NSS store. Nothing leaves the container.
 # With arguments, the desktop starts in the background, the arguments run as a command once Chrome answers,
 # and the container exits with the command's status (`docker compose run e2e`).
@@ -65,7 +65,7 @@ if [ -n "${REX_HERMETIC:-}" ]; then
   mkdir -p /home/rec/.pki/nssdb
   certutil -d sql:/home/rec/.pki/nssdb -N --empty-password 2>/dev/null || true
   certutil -d sql:/home/rec/.pki/nssdb -A -n "rex e2e CA" -t "C,," -i "$TLS/ca.pem"
-  node "$FIXTURE_SERVER" "$REX_HERMETIC" /repo /bundle "$TLS/site.pem" "$TLS/site.key" &
+  node "$FIXTURE_SERVER" "$REX_HERMETIC" /repo "$TLS/site.pem" "$TLS/site.key" &
   HERMETIC_ARGS=(--host-resolver-rules="MAP * 127.0.0.1, EXCLUDE localhost")
   echo "hermetic: ${#HOSTS[@]} hosts -> 127.0.0.1"
 fi

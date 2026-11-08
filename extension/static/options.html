@@ -10,37 +10,24 @@
   h1 { font-size: 20px; display: flex; align-items: center; gap: 8px; }
   h1 img { width: 28px; height: 28px; }
   h2 { font-size: 14px; margin: 22px 0 6px; }
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  td, th { text-align: left; padding: 6px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  input[type=text], input[type=url], input[type=number], select, textarea {
+  textarea {
     font: inherit; font-size: 12px; color: var(--text); background: var(--bg); border: 1px solid var(--border);
     border-radius: 6px; padding: 4px 6px; box-sizing: border-box; }
-  td input[type=text], td input[type=url], td textarea { width: 100%; margin-bottom: 4px; }
   textarea { font-family: ui-monospace, Menlo, monospace; resize: vertical; }
   #localRecipe { width: 100%; min-height: 160px; }
-  .row-actions { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
-  .row-actions button { font-size: 11px; padding: 2px 6px; }
   .st { white-space: pre-wrap; word-break: break-all; }
   .st.err { color: var(--bad); }
   .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 20px 0; }
   label.line { display: block; margin: 4px 0; }
   #errors { white-space: pre-wrap; }
-  @media (max-width: 640px) { td, th { display: block; border: none; } tr { display: block; border-bottom: 1px solid var(--border); } thead { display: none; } }
 </style>
 </head>
 <body>
 <h1><img src="icons/icon-48.png" alt=""><span data-i18n="optionsTitle"></span></h1>
 
-<h2 data-i18n="optSourcesHeading"></h2>
-<p class="meta" data-i18n="optSourcesHelp"></p>
-<table id="sources">
-  <thead><tr><th data-i18n="colOn"></th><th data-i18n="colSource"></th><th data-i18n="colKeys"></th><th data-i18n="colStatus"></th></tr></thead>
-  <tbody></tbody>
-</table>
-<p><button id="addSource" data-i18n="addSource"></button></p>
-
-<h2 data-i18n="optRefreshHeading"></h2>
-<input type="number" id="refreshHours" min="1" max="168" step="1">
+<h2 data-i18n="optRecipesHeading"></h2>
+<p class="meta" data-i18n="optRecipesHelp"></p>
+<p id="recipes" class="st"></p>
 
 <h2 data-i18n="optOutputHeading"></h2>
 <label class="line"><input type="radio" name="format" value="envelope"> <span data-i18n="outputEnvelope"></span></label>
@@ -60,7 +47,6 @@
 
 <div class="bar">
   <button id="save" class="primary" data-i18n="save"></button>
-  <button id="refresh" data-i18n="refreshNow"></button>
   <span id="result" class="meta"></span>
 </div>
 <div id="errors" class="message error" hidden></div>

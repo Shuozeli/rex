@@ -1,16 +1,15 @@
 // End-to-end test in a real Chrome (Chrome for Testing) with the unpacked e2e build loaded.
 //
-// 1. Sync: by default the repo's recipes are published with `rex bundle publish` and a throwaway key and
-//    served at https://bundles.rex.test/ (hermetic, CI-safe). REX_E2E_SOURCE=configured instead syncs the
-//    source baked into the build config (e.g. the serve-lib dev bundle or a MinIO/R2 channel).
+// 1. Recipes: the build packages them (`rex bundle embed`, decisions.md U45); the worker must load them from
+//    the package, and the extension must not make a single request outside it during the whole run.
 // 2. Fixture pages are served under their real URLs, extracted through the extension's own code path
 //    (serialize in the tab -> rex wasm in the service worker), and the record, status and provenance must
 //    equal the native engine's expected.json (native/wasm parity, engine spec §14).
-// 3. v0.2: icon rules from the index, developer mode (a local recipe overriding the bundle's, the record
+// 3. Icon rules from the packaged index, developer mode (a local recipe overriding the bundle's, the record
 //    copy format, Save as fixture -> `rex fixture import` -> `rex test`), and the options page.
 // 4. Popups and the options page are screenshotted into test-results/.
-// REX_E2E_LIVE=1 also extracts live pages. REX_E2E_LANG=zh-CN renders the UI in Chinese.
-// Sync rejection paths are in tests/e2e-sync.mjs.
+// REX_E2E_LIVE=1 also extracts live pages (the pages load from the network; the extension still does not).
+// REX_E2E_LANG=zh-CN renders the UI in Chinese.
 //
 // Usage: pnpm build:e2e && node tests/e2e.mjs
 
@@ -19,12 +18,11 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { gunzipSync } from "node:zlib";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { chromePath, ext, launch, makeKey, publishBundle, reporter, repo, rex, serveBundle, settingsFor } from "./harness.mjs";
+import { chromePath, ext, launch, reporter, repo, rex } from "./harness.mjs";
 
 const out = join(ext, "test-results");
 const lang = process.env.REX_E2E_LANG ?? "en-US";
 const suffix = lang.startsWith("en") ? "" : `-${lang}`;
-const hermetic = (process.env.REX_E2E_SOURCE ?? "hermetic") === "hermetic";
 mkdirSync(out, { recursive: true });
 
 const cases = [
@@ -85,7 +83,7 @@ const cases = [
 ];
 
 const r = reporter();
-const { context, sw, extensionId, close } = await launch({ lang });
+const { context, sw, extensionId, close, external, internal } = await launch({ lang });
 
 const tabIdFor = (url) => sw.evaluate(async (u) => (await chrome.tabs.query({})).find((t) => t.url === u)?.id ?? null, url);
 
@@ -120,24 +118,13 @@ async function screenshotPopup(tabId, name) {
 try {
   console.log(`extension ${extensionId} loaded in ${chromePath.split("/").slice(-3).join("/")}`);
 
-  // 1. Sync.
-  let synced;
-  if (hermetic) {
-    const key = makeKey("e2e-dev", 5);
-    const { files } = publishBundle({ key, channel: "dev" });
-    const { baseUrl } = await serveBundle(context, "dev", files);
-    const saved = await sw.evaluate((s) => globalThis.rexDebug.saveSettings(s), settingsFor({ id: "dev", baseUrl, channel: "dev", keys: [{ keyId: key.keyId, public: key.public }], enabled: true }));
-    if (!saved.ok) throw new Error(`saveSettings: ${saved.error}`);
-    synced = { errors: [], status: saved.status };
-  } else {
-    synced = await sw.evaluate(() => globalThis.rexDebug.sync());
+  // 1. The packaged recipes.
+  const status = await sw.evaluate(() => globalThis.rexDebug.status());
+  if (!status.recipes || status.recipes.count === 0) {
+    r.fail(`packaged recipes: ${JSON.stringify(status).slice(0, 400)}`);
+    throw new Error("cannot continue without the packaged recipes");
   }
-  const src = synced.status.sources[0];
-  if (synced.errors.length > 0 || !src.sequence || src.lastError) {
-    r.fail(`sync: ${JSON.stringify(synced).slice(0, 400)}`);
-    throw new Error("cannot continue without a synced bundle");
-  }
-  console.log(`synced ${src.id} bundle #${src.sequence} (${src.recipeCount} recipes) from ${src.baseUrl}; engine ${synced.status.engineVersion}`);
+  console.log(`${status.recipes.count} packaged recipes (built ${status.recipes.generatedAt}); engine ${status.engineVersion}`);
 
   // 2. Fixture parity.
   for (const c of cases) {
@@ -258,16 +245,14 @@ try {
     await page.close();
   }
 
-  // 3c. Options page (FR-EX-9): renders the sources with their status.
+  // 3c. Options page (FR-EX-10): says what the packaged recipes are.
   {
     const opts = await context.newPage();
     await opts.setViewportSize({ width: 900, height: 1100 });
     await opts.goto(`chrome-extension://${extensionId}/options.html`);
-    await opts.waitForSelector("#sources tbody tr .st", { timeout: 15000 });
-    const rows = await opts.evaluate(() =>
-      [...document.querySelectorAll("#sources tbody tr")].map((tr) => ({ id: tr.querySelector(".src-id").value, status: tr.querySelector(".st").textContent })),
-    );
-    r.check(`options page (${rows.map((x) => `${x.id} [${x.status.split("\n")[0]}]`).join(", ")})`, rows.length > 0 && /#\d+/.test(rows[0].status), JSON.stringify(rows));
+    await opts.waitForFunction(() => document.getElementById("recipes")?.textContent !== "", null, { timeout: 15000 });
+    const text = await opts.evaluate(() => document.getElementById("recipes").textContent);
+    r.check(`options page (${text.split("\n")[0]})`, text.includes(String(status.recipes.count)), text);
     await opts.screenshot({ path: join(out, `options${suffix}.png`), fullPage: true });
     await opts.close();
   }
@@ -299,6 +284,12 @@ try {
       await page.close();
     }
   }
+  // 5. No network (decisions.md U45): nothing the extension did reached outside its package.
+  r.check(
+    `no network requests by the extension (${external.length} out, ${internal.count} into the package)`,
+    external.length === 0 && internal.count > 0,
+    external.length > 0 ? external.slice(0, 5).join(", ") : "saw no extension requests at all: the check is blind",
+  );
 } catch (e) {
   r.fail(String(e?.stack ?? e));
 } finally {

@@ -36,11 +36,10 @@ flowchart LR
     PROTO[proto/rex] --> CI
     CI[CI: rex check · rex test · version bump · limits]
   end
-  CI -- merge to main --> PUB[publish job<br/>canonicalize · hash · descriptor set · Ed25519 sign]
-  PUB -- S3 API --> R2[(Cloudflare R2<br/>/v1/stable · /v1/dev)]
-  R2 -- static GET --> SW
-  subgraph EXT["Chrome extension"]
-    SW[service worker<br/>sync · verify · match · rex wasm] <--> ST[(storage)]
+  CI -- extension build --> EMB[rex bundle embed<br/>canonicalize · hash · descriptor set]
+  EMB -- packaged in the extension --> SW
+  subgraph EXT["Chrome extension (no network, U45)"]
+    SW[service worker<br/>packaged recipes · match · rex wasm] <--> ST[(storage: settings)]
     POP[popup] <--> SW
     CS[content script<br/>serialize DOM] --> SW
   end
@@ -248,10 +247,10 @@ Implemented by `rex bundle publish` and `rex bundle gc` (U26); setup and rotatio
 
 | Component | Responsibility |
 |---|---|
-| Service worker | Sources, sync, verification, storage, the rex wasm instance, a `CompiledRecipe` cache, matching, extraction, generating `declarativeContent` rules |
+| Service worker | The packaged recipes (`recipes/` in the package), settings, the rex wasm instance, a `CompiledRecipe` cache, matching, extraction, generating `declarativeContent` rules |
 | Content script (injected on click) | Returns `{html: doctype + outerHTML (+ serializable shadow roots when supported), url}`. Nothing else. |
 | Popup | Shows the result (record preview, status, alternatives), copy and download, "Report broken recipe" |
-| Options page | Sources (base URL plus public key, order, enabled), channel, refresh interval, developer mode, output format |
+| Options page | What the packaged recipes are (count, build date, skipped entries), developer mode, output format |
 
 ### 9.2 Click flow
 
@@ -272,24 +271,20 @@ Implemented by `rex bundle publish` and `rex bundle gc` (U26); setup and rotatio
    - actions: copy JSON (the `Extraction`, or the record only), download
      `<recipe-id>-<yyyyMMdd-HHmmss>.json`, and "Report broken recipe" on a non-OK status.
 
-### 9.3 Sync
+### 9.3 Packaged recipes (U45; replaces the bundle sync of U16/U26/U27)
 
-The sync runs on startup, on an alarm (default 6 h, configurable from 1 h to 7 d), and on manual
-**Refresh**, for each enabled source and channel:
+The extension never connects to the internet. The build runs `rex bundle embed`, which writes
+`recipes/index.json` (the bundle Index, unsigned: Chrome verifies the package), `recipes/schemas.fds` and
+`recipes/recipes.json` (the canonical recipes, in index order) into the package. It embeds
+`recipes/generic`, `recipes/sites` and `recipes/auto`; drafts are left out.
 
-1. Conditional GET of `index.json`. A 304 ends the sync.
-2. Verify the `SignedIndex` against the pinned keys, then check `channel`, `sequence > last`, and
-   `min_client_version`.
-3. Fetch every missing `r/` and `s/` object (concurrency 4, sha256 verified). The whole bundle is
-   fetched eagerly, so per-site fetches never reveal browsing.
-4. Skip entries whose `requires` the engine lacks, and everything extending them, each with a reason;
-   then compile-check the rest in wasm.
-5. Swap atomically: the index, recipes and schema set of a source are written as one `storage.local`
-   value, bound to the source's base URL, channel and pinned keys (U27).
-6. Regenerate the `declarativeContent` rules from `urls` (the icon state for supported pages).
+1. The service worker reads the three files from the package once (`chrome.runtime.getURL`).
+2. It skips entries whose `requires` the engine lacks, and everything extending them, each with a reason.
+3. It compiles the rest into one engine, with the developer-mode local recipe merged in when it compiles.
+4. On install, update and browser start it regenerates the `declarativeContent` rules from `urls` (the icon
+   state for supported pages).
 
-Settings saves and syncs are serialized in the worker. A failure at any step keeps the previous bundle
-and records the reason, which the options page shows.
+New or fixed recipes reach users with a new extension version.
 
 ### 9.4 Permissions and manifest
 
@@ -298,20 +293,17 @@ and records the reason, which the options page shows.
   "manifest_version": 3,
   "name": "rex: Page to JSON",
   "minimum_chrome_version": "137",
-  "permissions": ["activeTab", "scripting", "storage", "alarms", "declarativeContent"],
-  "host_permissions": ["https://recipes.<domain>/*"],
-  "optional_host_permissions": ["https://*/*", "http://*/*"],
+  "permissions": ["activeTab", "scripting", "storage", "declarativeContent"],
   "background": { "service_worker": "background.js", "type": "module" },
   "action": { "default_popup": "popup.html" },
   "options_page": "options.html",
-  "content_security_policy": { "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'" },
+  "content_security_policy": { "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; img-src 'self' data:; media-src 'none'; font-src 'self'; frame-src 'none'; connect-src 'self'" },
   "commands": { "_execute_action": { "suggested_key": { "default": "Alt+Shift+J" } } }
 }
 ```
 
-- There is no `tabs` permission and no `<all_urls>`.
-- Extra sources request their origin through `optional_host_permissions` at runtime.
-- The only remote content is signed data.
+- There is no `tabs` permission and no host permission at all.
+- `connect-src 'self'`: the extension can fetch only its own files. There is no remote content.
 
 ### 9.5 UI principles
 
@@ -325,11 +317,11 @@ and records the reason, which the options page shows.
 
 | Threat | Control |
 |---|---|
-| Malicious or compromised bundle host or CDN | Ed25519-signed index, pinned keys, sha256-addressed objects, anti-rollback `sequence`, HTTPS |
+| Malicious or compromised recipe host or CDN | None to compromise: the recipes are in the package, which Chrome verifies (U45) |
 | A malicious recipe that passed review | Recipes are inert data: closed sources and transforms, the RE2 subset, fuel and limits, strict parsing (engine spec §13) |
 | A hostile page | Extraction runs off-page in the extension's wasm, with spec-compliant parsing and size, node, and depth caps |
 | XSS through extracted HTML | ammonia allow-list at extraction; preview text-only or in a sandboxed iframe |
-| Leaking browsing | No per-URL requests (eager sync), no telemetry, issue reports are user-initiated and include the URL only on opt-in |
+| Leaking browsing | No network requests at all (CSP `connect-src 'self'`, checked in every e2e run), no telemetry, issue reports are user-initiated and include the URL only on opt-in |
 | Supply chain (CI signing key) | Signing only in a protected environment requiring approval, a key never present in PR workflows, two key slots for rotation |
 | Copyright of fixtures | Redaction before commit (U19); unredacted captures are gitignored |
 | Paywalls and ToS | No bypass: the extension reads only what the user's own browser renders, and stores nothing remotely |
@@ -373,7 +365,7 @@ retired explicitly in the PR.
 | **M2** ✅ | Engine E4–E5: readability port (benchmarked against Mozilla), wasm build within budget (U25), conformance under wasm. |
 | **M3** ✅ | Recipe repo: generic recipes, 12 site recipes plus one draft with redacted fixtures, CI gates, `rex fixture`, liveness. |
 | **M4** ✅ | Publishing: `rex bundle publish/gc`, `publish.yml`, `/v1/stable` and `/v1/dev`, verified on MinIO. The R2 account, domain and production key are pending (user). |
-| **M5** ✅ | Extension **v0.1**: sync, two-stage match, extract, popup, copy and download, report. |
+| **M5** ✅ | Extension **v0.1**: sync, two-stage match, extract, popup, copy and download, report. (Sync replaced by packaged recipes in v0.3, U45.) |
 | **M6** ✅ | Extension **v0.2**: options (sources, channel, interval, format), developer mode (local recipe, explain, save as fixture), `declarativeContent` icon state, en/zh. |
 | **M7** | `rex draft` (BYO-LLM) ✅; the first consumer integration (myfeed `feed.v1`) and a Chrome Web Store listing decision are pending. |
 

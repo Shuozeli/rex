@@ -2,7 +2,7 @@
 // When opened as a normal tab (e.g. by tests), `?tab=<id>` selects the tab to extract.
 
 import { langOf } from "./format";
-import { localize, t } from "./i18n";
+import { localize, t, uiLanguage } from "./i18n";
 import { renderJson, renderView, type View } from "./render";
 import type {
   EngineOutput,
@@ -11,7 +11,6 @@ import type {
   FixtureResponse,
   OutputFormat,
   Status,
-  StatusResponse,
 } from "./types";
 
 const $ = <T extends HTMLElement>(id: string): T => {
@@ -35,7 +34,7 @@ function toast(text: string): void {
   setTimeout(() => n.remove(), 1600);
 }
 
-const lang = langOf(chrome.i18n.getUILanguage());
+const lang = langOf(uiLanguage());
 document.body.dataset.lang = lang;
 
 /** The status as words; `data-status` keeps the engine's name for tests ("OK", "FAILED_EXPECTATION", …). */
@@ -122,15 +121,8 @@ function renderFooter(status: Status | null): void {
     $("bundle").textContent = "";
     return;
   }
-  const synced = status.sources.filter((s) => s.enabled && s.sequence !== null);
   const parts = [`ext ${status.extensionVersion}`, `engine ${status.engineVersion ?? "?"}`];
-  const s = synced[0] ?? status.sources.find((x) => x.enabled);
-  if (s) {
-    parts.unshift(
-      s.sequence ? t("bundleInfo", s.id, s.sequence, String(s.recipeCount)) : `${t("notSynced", s.id)}${s.lastError ? ` — ${s.lastError}` : ""}`,
-    );
-  }
-  if (synced.length > 1) parts.splice(1, 0, `+${synced.length - 1}`);
+  parts.unshift(status.recipes ? t("recipesInfo", String(status.recipes.count)) : t("errNoRecipes"));
   if (fuel) parts.push(`fuel ${fuel}`);
   $("bundle").textContent = parts.join(" · ");
 }
@@ -284,16 +276,6 @@ async function run(recipeId?: string): Promise<void> {
 
 localize();
 showView(view);
-
-$("refresh").addEventListener("click", (e) => {
-  e.preventDefault();
-  $("bundle").textContent = t("refreshing");
-  void (chrome.runtime.sendMessage({ type: "refresh" }) as Promise<StatusResponse>).then((r) => {
-    renderFooter(r.status);
-    if (!r.ok) showMessage(r.error, "error");
-    else void run();
-  });
-});
 
 void chrome.storage.local
   .get(VIEW_KEY)

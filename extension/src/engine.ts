@@ -1,5 +1,6 @@
 // Lazy wrapper around the rex wasm engine. Service workers may not use top-level await, so the
-// module is initialized on first use; engines are cached per bundle (one per source).
+// module is initialized on first use; engines are cached per recipe set (the packaged one, plus the
+// developer-mode local recipe).
 
 import init, {
   RexEngine,
@@ -9,9 +10,8 @@ import init, {
   redactHtml,
   sha256Hex,
   supportedFeatures,
-  verifyIndex,
 } from "../wasm/rex_wasm.js";
-import type { EngineOutput, PinnedKey, UrlHit } from "./types";
+import type { EngineOutput, UrlHit } from "./types";
 
 let ready: Promise<void> | null = null;
 
@@ -20,11 +20,6 @@ export function wasmReady(): Promise<void> {
     ready = init({ module_or_path: chrome.runtime.getURL("wasm/rex_wasm_bg.wasm") }).then(() => undefined);
   }
   return ready;
-}
-
-export async function verify(indexBytes: Uint8Array, keys: PinnedKey[]): Promise<string> {
-  await wasmReady();
-  return verifyIndex(indexBytes, JSON.stringify(keys));
 }
 
 export async function sha256(bytes: Uint8Array): Promise<string> {
@@ -70,8 +65,7 @@ const cache = new Map<string, Entry>();
 const leased = new Map<RexEngine, Entry>();
 
 /**
- * Engine for a bundle; `key` identifies the bundle content (source identity, sequence, schema set, local
- * recipe). The caller holds it until `releaseEngine`, so a concurrent `retainEngines` cannot free it mid-use.
+ * Engine for a recipe set; `key` identifies its content (the packaged set, plus a local recipe's hash). The caller holds it until `releaseEngine`, so a concurrent `retainEngines` cannot free it mid-use.
  */
 export async function engineFor(key: string, fds: Uint8Array, recipes: string[]): Promise<RexEngine> {
   await wasmReady();
@@ -108,12 +102,6 @@ export function retainEngines(keys: Set<string>): void {
       freeIfIdle(entry);
     }
   }
-}
-
-/** Throws if the recipes do not compile (used to validate a bundle before swapping it in). */
-export async function validateBundle(fds: Uint8Array, recipes: string[]): Promise<void> {
-  await wasmReady();
-  new RexEngine(fds, recipes).free();
 }
 
 export function urlHits(engine: RexEngine, url: string): UrlHit[] {

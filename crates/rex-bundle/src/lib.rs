@@ -5,6 +5,9 @@
 //!   r/<sha256>.json   one ExtractionRecipe, canonical protojson (the hashed bytes are the file bytes)
 //!   s/<sha256>.fds    FileDescriptorSet with every schema the index references
 //!
+//! The extension ships its recipes inside the package instead (decisions.md U45): [`embedded`] writes the same
+//! Index, unsigned (Chrome verifies the package), with the schema set and the recipes in index order.
+//!
 //! The library has no clock: `generated_at` and `sequence` are supplied by the caller.
 
 use ed25519_dalek::{Signature, Signer, SigningKey, Verifier, VerifyingKey};
@@ -96,9 +99,8 @@ fn from_protojson<M: prost::Message + Default>(pool: &DescriptorPool, name: &str
     dynamic.transcode_to::<M>().map_err(|e| e.to_string())
 }
 
-/// Build every file of a bundle for one channel. Every recipe in `set` is published.
-pub fn build(set: &RecipeSet, opts: &BuildOptions, signer: &Signer25519) -> Result<Vec<BuiltFile>, BundleError> {
-    let pool = pool_of(set);
+/// The Index for `set` and its objects: `r/<sha>.json` per recipe (in index order), then `s/<sha>.fds`.
+fn index_and_objects(set: &RecipeSet, opts: &BuildOptions) -> Result<(pb::Index, Vec<BuiltFile>), BundleError> {
     let mut files = Vec::new();
     let mut entries = Vec::new();
     for id in set.ids() {
@@ -144,6 +146,13 @@ pub fn build(set: &RecipeSet, opts: &BuildOptions, signer: &Signer25519) -> Resu
         path: format!("s/{fds_sha}.fds"),
         bytes: fds,
     });
+    Ok((index, files))
+}
+
+/// Build every file of a bundle for one channel. Every recipe in `set` is published.
+pub fn build(set: &RecipeSet, opts: &BuildOptions, signer: &Signer25519) -> Result<Vec<BuiltFile>, BundleError> {
+    let pool = pool_of(set);
+    let (index, mut files) = index_and_objects(set, opts)?;
     let payload = to_protojson(pool, "rex.bundle.v1.Index", &index)
         .map_err(BundleError::Index)?
         .into_bytes();
@@ -160,6 +169,37 @@ pub fn build(set: &RecipeSet, opts: &BuildOptions, signer: &Signer25519) -> Resu
         bytes: index_json.into_bytes(),
     });
     Ok(files)
+}
+
+/// The recipes as the extension ships them (decisions.md U45): `index.json` (the Index as protojson, unsigned),
+/// `schemas.fds`, and `recipes.json` (the canonical recipe protojson strings, in index order).
+pub fn embedded(set: &RecipeSet, opts: &BuildOptions) -> Result<Vec<BuiltFile>, BundleError> {
+    let pool = pool_of(set);
+    let (index, objects) = index_and_objects(set, opts)?;
+    let mut recipes = Vec::new();
+    let mut fds = Vec::new();
+    for f in objects {
+        if f.path.starts_with("r/") {
+            recipes.push(String::from_utf8(f.bytes).map_err(|e| BundleError::Index(e.to_string()))?);
+        } else {
+            fds = f.bytes;
+        }
+    }
+    let recipes_json = serde_json::to_string(&recipes).map_err(|e| BundleError::Index(e.to_string()))?;
+    Ok(vec![
+        BuiltFile {
+            path: "index.json".into(),
+            bytes: index_to_json(pool, &index)?.into_bytes(),
+        },
+        BuiltFile {
+            path: "schemas.fds".into(),
+            bytes: fds,
+        },
+        BuiltFile {
+            path: "recipes.json".into(),
+            bytes: recipes_json.into_bytes(),
+        },
+    ])
 }
 
 /// Verify `index.json` against pinned keys and return the Index.
@@ -233,6 +273,25 @@ mod tests {
             },
             min_client_version: "0.1.0".into(),
         }
+    }
+
+    #[test]
+    fn embedded_bundle_lists_each_recipe_once_in_index_order() {
+        // Arrange
+        let s = set();
+
+        // Act
+        let files = embedded(&s, &opts(1)).unwrap();
+
+        // Assert
+        let paths: Vec<&str> = files.iter().map(|f| f.path.as_str()).collect();
+        assert_eq!(paths, ["index.json", "schemas.fds", "recipes.json"]);
+        let index: serde_json::Value = serde_json::from_slice(&files[0].bytes).unwrap();
+        let recipes: Vec<String> = serde_json::from_slice(&files[2].bytes).unwrap();
+        assert_eq!(index["entries"].as_array().unwrap().len(), recipes.len());
+        assert_eq!(index["entries"][0]["ref"]["id"], "generic/article.v1");
+        assert!(recipes[0].contains("\"generic/article.v1\""));
+        assert_eq!(index["schemas"]["sha256"], sha256_hex(&files[1].bytes));
     }
 
     #[test]

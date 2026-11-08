@@ -1,7 +1,7 @@
 // Live-page test in a real, separately running Chrome with the e2e build of the extension loaded (decisions.md
 // U38). Unlike tests/e2e.mjs (hermetic fixtures, local headless Chrome), this opens the real pages over the
 // browser's own network, lets them render, and extracts through the extension (serialize in the tab -> wasm in
-// the service worker) against the bundle the extension synced. Values change on live pages, so each case checks
+// the service worker) with the recipes packaged in that build. Values change on live pages, so each case checks
 // the matched recipe, the status, and which fields of the fixture's expected record the live record lacks.
 //
 // It speaks raw CDP to the extension's service worker only. The worker opens each page itself (chrome.tabs),
@@ -114,15 +114,13 @@ async function reattach() {
 }
 const worker = (expr, ms) => inWorker(conn, sessionId, expr, ms);
 
-const synced = await worker("globalThis.rexDebug.sync()", 120000).catch(async (e) => {
+const status = await worker("globalThis.rexDebug.status()", 60000).catch(async (e) => {
   if (!/Session with given id not found|No target with given id/i.test(String(e))) throw e;
   await reattach();
-  return worker("globalThis.rexDebug.sync()", 120000);
+  return worker("globalThis.rexDebug.status()", 60000);
 });
-const src = synced.status.sources[0];
 const { product } = await conn.send("Browser.getVersion");
-console.log(`${product} · bundle ${src.id} #${src.sequence} (${src.recipeCount} recipes) from ${src.baseUrl}`);
-if (synced.errors.length > 0) console.log(`sync errors: ${JSON.stringify(synced.errors)}`);
+console.log(`${product} · ${status.recipes?.count ?? 0} packaged recipes (built ${status.recipes?.generatedAt})`);
 
 // Runs in the worker: open the page as a user would, wait for it to load and settle, extract, close it.
 const visit = (url, keepHtml) => `(async () => {

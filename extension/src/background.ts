@@ -1,43 +1,23 @@
-// Service worker: owns settings, sync, the wasm engines, and extraction. Page content never leaves the
-// browser.
+// Service worker: owns settings, the wasm engines, and extraction. The recipes are packaged with the
+// extension (decisions.md U45): nothing is fetched from the network, and page content never leaves the browser.
 
 import type { RexEngine } from "../wasm/rex_wasm.js";
-import { engineFor, idOfRecipe, redactForFixture, releaseEngine, retainEngines, runExtract, sha256, urlHits, version } from "./engine";
+import { engineFor, idOfRecipe, redactForFixture, releaseEngine, retainEngines, runExtract, sha256, version } from "./engine";
 import { t } from "./i18n";
+import { builtin } from "./recipes";
 import { currentRules, recipeHosts, updateRules } from "./rules";
 import { loadSettings, storeSettings, validateSettings } from "./settings";
-import { fromBase64, loadSource, pruneSources, sourceStatus, syncSource } from "./sync";
-import type {
-  ExtractResponse,
-  FixtureResponse,
-  Request,
-  Settings,
-  SettingsResponse,
-  SourceSetting,
-  Status,
-  StatusResponse,
-  ValidateResponse,
-} from "./types";
-
-const ALARM = "rex-sync";
+import type { ExtractResponse, FixtureResponse, Request, Settings, SettingsResponse, Status, StatusResponse, ValidateResponse } from "./types";
 
 const errorText = (e: unknown): string => (e instanceof Error ? e.message : String(e));
 
-// Settings writes and syncs run one at a time, each reading the settings current when it starts: a
-// startup sync must not interleave with an options save and write state for a source that changed.
+// Settings writes run one at a time, each reading the settings current when it starts.
 let queue: Promise<unknown> = Promise.resolve();
 function exclusive<T>(op: () => Promise<T>): Promise<T> {
   const run = queue.then(op, op);
   queue = run.catch(() => undefined);
   return run;
 }
-
-/** Sync every enabled source with the settings current at the time the sync runs. */
-const syncNow = (): Promise<{ settings: Settings; errors: string[] }> =>
-  exclusive(async () => {
-    const settings = await loadSettings();
-    return { settings, errors: await syncAll(settings) };
-  });
 
 /** The developer-mode local recipe, when active: its id, or the reason it cannot be used. */
 async function localRecipe(settings: Settings): Promise<{ id: string | null; error: string | null }> {
@@ -55,10 +35,14 @@ async function localRecipe(settings: Settings): Promise<{ id: string | null; err
 
 async function status(settings: Settings): Promise<Status> {
   const local = await localRecipe(settings);
+  const recipes = await builtin().then(
+    (b) => ({ count: b.recipes.length, generatedAt: b.index.generatedAt ?? null, skipped: b.skipped }),
+    () => null,
+  );
   return {
     extensionVersion: __REX_VERSION__,
     engineVersion: await version(),
-    sources: await Promise.all(settings.sources.map(sourceStatus)),
+    recipes,
     outputFormat: settings.outputFormat,
     devMode: settings.devMode,
     localRecipeId: local.id,
@@ -73,19 +57,6 @@ async function statusOrNull(): Promise<Status | null> {
   } catch {
     return null;
   }
-}
-
-async function syncAll(settings: Settings): Promise<string[]> {
-  const errors: string[] = [];
-  for (const src of settings.sources.filter((s) => s.enabled)) {
-    try {
-      await syncSource(src);
-    } catch (e) {
-      errors.push(errorText(e));
-    }
-  }
-  await updateRules(settings);
-  return errors;
 }
 
 /** Packaged serializer injected into the tab: returns the post-JavaScript DOM as HTML. */
@@ -116,93 +87,59 @@ async function readTab(tabId: number): Promise<{ url: string; title: string; htm
 }
 
 interface Candidate {
-  src: SourceSetting;
   engine: RexEngine;
-  /** Id of the local recipe merged into this engine (first synced source only). */
+  /** Id of the local recipe merged into this engine. */
   localId: string | null;
 }
 
 // Compile errors of local recipes that parse but do not build into an engine, by recipe hash; the options page
-// shows them, and extraction falls back to the bundle alone.
+// shows them, and extraction falls back to the packaged recipes alone.
 const localCompileErrors = new Map<string, string>();
 
-/** One engine per enabled, synced source, in priority order. The caller releases them (`releaseAll`). */
-async function engines(settings: Settings): Promise<Candidate[]> {
+/** The engine over the packaged recipes, with the developer-mode local recipe merged in when it compiles. */
+async function engine(settings: Settings): Promise<Candidate> {
   const local = await localRecipe(settings);
-  const out: Candidate[] = [];
-  const keys = new Set<string>();
-  try {
-    for (const src of settings.sources.filter((s) => s.enabled)) {
-      const stored = await loadSource(src);
-      if (stored === null) continue;
-      const fds = fromBase64(stored.fdsBase64);
-      const recipes = Object.values(stored.recipes);
-      // Everything that decides the engine's content: the source's identity (an edited base URL, channel or key
-      // set must not reuse an engine built from another bundle), the bundle and the schema set.
-      const key = [src.id, src.channel, src.baseUrl, stored.keysFingerprint, stored.sequence, stored.fdsSha].join("|");
-      if (out.length === 0 && local.id !== null) {
-        const localId = local.id;
-        const localHash = await sha256(new TextEncoder().encode(settings.localRecipe));
-        if (!localCompileErrors.has(localHash)) {
-          const merged = recipes.filter((r) => (JSON.parse(r) as { id: string }).id !== localId).concat(settings.localRecipe);
-          const localKey = `${key}+local:${localHash}`;
-          try {
-            const engine = await engineFor(localKey, fds, merged);
-            keys.add(localKey);
-            out.push({ src, engine, localId });
-            continue;
-          } catch (e) {
-            localCompileErrors.clear();
-            localCompileErrors.set(localHash, errorText(e));
-          }
-        }
+  const b = await builtin();
+  const key = `builtin|${b.index.generatedAt ?? ""}|${b.index.schemas.sha256}`;
+  if (local.id !== null) {
+    const localId = local.id;
+    const localHash = await sha256(new TextEncoder().encode(settings.localRecipe));
+    if (!localCompileErrors.has(localHash)) {
+      const merged = b.recipes.filter((r) => (JSON.parse(r) as { id: string }).id !== localId).concat(settings.localRecipe);
+      const localKey = `${key}+local:${localHash}`;
+      try {
+        const e = await engineFor(localKey, b.fds, merged);
+        retainEngines(new Set([localKey]));
+        return { engine: e, localId };
+      } catch (e) {
+        localCompileErrors.clear();
+        localCompileErrors.set(localHash, errorText(e));
       }
-      const engine = await engineFor(key, fds, recipes);
-      keys.add(key);
-      out.push({ src, engine, localId: null });
     }
-  } catch (e) {
-    releaseAll(out);
-    throw e;
   }
-  retainEngines(keys);
-  return out;
-}
-
-function releaseAll(cands: Candidate[]): void {
-  for (const c of cands) releaseEngine(c.engine);
-}
-
-/** The first source with a stage-1 hit for the URL, else the first source (generic fallback). */
-function choose(cands: Candidate[], url: string, recipeId: string | undefined): Candidate {
-  const first = cands[0];
-  if (first === undefined) throw new Error("no engines");
-  if (recipeId !== undefined) {
-    return cands.find((c) => c.engine.recipeIds().includes(recipeId)) ?? first;
-  }
-  return cands.find((c) => urlHits(c.engine, url).length > 0) ?? first;
+  const e = await engineFor(key, b.fds, b.recipes);
+  retainEngines(new Set([key]));
+  return { engine: e, localId: null };
 }
 
 // `nowMs` (e2e only) pins the clock that relative dates ("3 hours ago") resolve against.
 async function extract(tabId: number, recipeId?: string, nowMs?: number): Promise<ExtractResponse> {
   try {
     const settings = await loadSettings();
-    const cands = await engines(settings);
+    const c = await engine(settings).catch((e: unknown) => {
+      throw new Error(`${t("errNoRecipes")}: ${errorText(e)}`);
+    });
     try {
-      if (cands.length === 0) {
-        return { ok: false, error: t("errNoRecipes"), status: await statusOrNull() };
-      }
       const page = await readTab(tabId);
-      const c = choose(cands, page.url, recipeId);
       let output = runExtract(c.engine, page.url, page.html, recipeId, {}, nowMs);
       // Developer mode: a confirmed local recipe wins over the bundle's ranking.
       if (recipeId === undefined && c.localId !== null && output.plan?.confirmed.includes(c.localId) && output.plan.chosen !== c.localId) {
         output = runExtract(c.engine, page.url, page.html, c.localId, {}, nowMs);
       }
       const local = c.localId !== null && output.extraction?.recipe?.id === c.localId;
-      return { ok: true, page: { url: page.url, title: page.title }, output, sourceId: c.src.id, local, status: await status(settings) };
+      return { ok: true, page: { url: page.url, title: page.title }, output, local, status: await status(settings) };
     } finally {
-      releaseAll(cands);
+      releaseEngine(c.engine);
     }
   } catch (e) {
     return { ok: false, error: errorText(e), status: await statusOrNull() };
@@ -241,12 +178,9 @@ async function saveSettingsNow(input: Settings): Promise<SettingsResponse> {
     await idOfRecipe(settings.localRecipe);
   }
   await storeSettings(settings);
-  await pruneSources(settings.sources.map((s) => s.id));
-  await chrome.alarms.create(ALARM, { periodInMinutes: settings.refreshMinutes });
-  await syncAll(settings);
   if (settings.devMode && settings.localRecipeEnabled) {
-    // Build the engines now so a local recipe that parses but does not compile is reported right away.
-    await engines(settings).then(releaseAll, () => {});
+    // Build the engine now so a local recipe that parses but does not compile is reported right away.
+    await engine(settings).then((c) => releaseEngine(c.engine), () => {});
   }
   return { ok: true, settings, status: await status(settings) };
 }
@@ -259,26 +193,13 @@ async function validateRecipe(text: string): Promise<ValidateResponse> {
   }
 }
 
-async function refresh(): Promise<StatusResponse> {
-  const { settings, errors } = await syncNow();
-  const s = await status(settings);
-  return errors.length === 0 ? { ok: true, status: s } : { ok: false, error: errors.join("; "), status: s };
-}
-
+/** The toolbar icon rules follow the packaged recipes; they are set again on install, update and browser start. */
 async function startup(): Promise<void> {
-  const settings = await loadSettings();
-  await chrome.alarms.create(ALARM, { periodInMinutes: settings.refreshMinutes });
-  await syncNow();
+  await updateRules();
 }
 
 chrome.runtime.onInstalled.addListener(() => void startup());
 chrome.runtime.onStartup.addListener(() => void startup());
-
-chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === ALARM) {
-    void syncNow();
-  }
-});
 
 type Respond = (r: ExtractResponse | StatusResponse | SettingsResponse | ValidateResponse | FixtureResponse) => void;
 
@@ -300,8 +221,6 @@ chrome.runtime.onMessage.addListener((msg: Request, _sender, send: Respond) => {
         send,
         withStatus,
       );
-    case "refresh":
-      return reply(refresh(), send, withStatus);
     case "getSettings":
       return reply(
         loadSettings().then(async (settings): Promise<SettingsResponse> => ({ ok: true, settings, status: await status(settings) })),
@@ -324,16 +243,12 @@ chrome.runtime.onMessage.addListener((msg: Request, _sender, send: Respond) => {
 // Test hooks (e2e builds only): drive the same code paths without a toolbar click.
 if (__REX_E2E__) {
   (globalThis as unknown as { rexDebug: unknown }).rexDebug = {
-    sync: async () => {
-      const { settings, errors } = await syncNow();
-      return { errors, status: await status(settings) };
-    },
     status: async () => status(await loadSettings()),
     saveSettings: (s: Settings) => saveSettings(s),
     settings: () => loadSettings(),
     extractTab: (tabId: number, recipeId?: string, nowMs?: number) => extract(tabId, recipeId, nowMs),
     fixture: (tabId: number, recipeId: string | null) => fixture(tabId, recipeId),
-    rules: async () => ({ hosts: await recipeHosts(await loadSettings()), rules: await currentRules() }),
+    rules: async () => ({ hosts: await recipeHosts(), rules: await currentRules() }),
     storage: () => chrome.storage.local.get(null),
   };
 }

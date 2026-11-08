@@ -1,12 +1,3 @@
 {
-  "sources": [
-    {
-      "id": "default",
-      "baseUrl": "https://recipes.example.com/v1/stable/",
-      "channel": "stable",
-      "keys": [{ "keyId": "rex-2026a", "public": "<64 hex chars>" }]
-    }
-  ],
-  "refreshMinutes": 360,
   "reportRepo": "Shuozeli/rex"
 }

@@ -8,28 +8,31 @@ anywhere (see [Privacy](#privacy)).
 
 ![rex on a Wikipedia article: the popup hangs from the toolbar icon](user-guide/browser-with-popup.jpg)
 
-*Screenshots: Google Chrome 156 on Linux, rex 0.2.0 store build, dev recipe bundle #13, taken 2026-11-05 with
+*Screenshots: Google Chrome 156 on Linux, rex 0.3.0 store build (1036 built-in recipes), taken 2026-11-07 with
 `extension/recorder/guide.mjs`.*
 
 ## Install
 
-rex is not in the Chrome Web Store yet. Install the dev build by hand:
+**From the Chrome Web Store:** open rex's page in the store and click **Add to Chrome**, then click the
+puzzle-piece icon in the toolbar and pin **rex: Page to JSON**. Chrome updates it by itself. (The store page is
+linked from the repository's README once it is published; store/README.md describes the listing.)
 
-1. Download **rex-extension-0.2.0-dev.zip** from
-   <http://shuoze25-yuacx.tail8f3b66.ts.net:8091/rex-ext/>.
-2. Unzip it into a folder you keep. Chrome loads the extension from that folder every time.
-3. Open `chrome://extensions` and turn on **Developer mode** (top right).
-4. Click **Load unpacked** and pick the unzipped folder.
-5. Click the puzzle-piece icon in the toolbar and pin **rex: Page to JSON**.
+**From source** (unpacked, for development):
+
+1. `scripts/store-package.sh` builds `target/store/rex-extension-<version>.zip`, or `scripts/build-extension.sh`
+   builds `extension/dist/`.
+2. Unzip the ZIP into a folder you keep (Chrome loads the extension from it every time).
+3. Open `chrome://extensions`, turn on **Developer mode** (top right), click **Load unpacked**, and pick the folder.
+4. Pin **rex: Page to JSON** from the puzzle-piece icon.
 
 Requirements:
 
 - **Chrome 137 or newer.**
-- **Tailscale.** The dev build downloads its recipes from a bundle on the tailnet, so the computer must be on
-  Tailscale. Without it rex has no recipes and finds nothing.
+- Nothing else. The recipes are built into the extension, which never connects to the internet. New recipes
+  come with a new version of the extension.
 
-**Updating:** download the new zip, unzip it over the same folder, and click the reload arrow on rex's card
-in `chrome://extensions`.
+**Updating an unpacked install:** replace the folder's contents with the new build and click the reload arrow
+on rex's card in `chrome://extensions`.
 
 ## Use it
 
@@ -180,8 +183,8 @@ in a new tab, so you can review it before sending. The page address is included 
 Open **Trace & diagnostics** at the bottom of the popup to see, for each field, the candidates the recipe
 tried and which one **won** or found **no_match**. It helps when a value looks wrong or a field is missing.
 
-The footer shows the recipe bundle in use (here `dev bundle #13 (1037 recipes)`), the extension and engine
-versions, and a **Refresh recipes** link that downloads the newest bundle now.
+The footer shows how many recipes are built into this version (here `1036 recipes`) and the extension and
+engine versions.
 
 <br clear="right">
 
@@ -191,18 +194,11 @@ Right-click the rex icon → **Options**, or use the **Options** link in the pop
 
 ![The options page](user-guide/options.png)
 
-- **Recipe sources:** where rex downloads recipe bundles.
-  - Each source has a base URL, a channel, and the public keys its bundles must be signed with. rex refuses a
-    bundle whose signature does not match, or one older than the one it has.
-  - The **Status** column shows the bundle number, the recipe count, when it last synced, and any error.
-  - Sources are tried in order: the first one with a recipe for the page's site is used, otherwise the first
-    source's generic recipes.
-  - **Add source** adds another one; Save asks for permission to that host.
-- **Refresh every (hours):** how often rex checks for a new bundle, between 1 and 168. **Refresh recipes now**
-  checks immediately.
+- **Recipes:** how many recipes are built into this version, and when they were built. There is nothing to
+  configure: rex never downloads recipes.
 - **Copy JSON copies:** the Extraction envelope (the default) or the record only.
 - **Developer mode** is for writing recipes. It expands the trace, adds **Save as fixture** (a redacted copy
-  of the page for tests), and can run a local, unsigned recipe in place of the bundle's.
+  of the page for tests), and can run a local, unsigned recipe in place of the built-in one.
 
 ## Privacy
 
@@ -210,10 +206,10 @@ Right-click the rex icon → **Options**, or use the **Options** link in the pop
   Chrome's `activeTab` permission.
 - **Where the page goes:** nowhere. The page and the extracted record stay in your browser, and the recipe
   engine runs inside the extension (WebAssembly). Results leave only when you copy or download them.
-- **rex's only network use:** downloading signed recipe bundles from the sources in Options. It does not load
-  a page's images or anything else. Its content security policy blocks images, media, fonts and frames from
-  outside the extension, and every test run checks that the extension contacts nothing but its recipe
-  sources (decisions.md U42).
+- **No network at all:** the recipes are inside the extension, and rex asks Chrome for no access to any website.
+  Its content security policy lets it connect only to its own files, and blocks images, media, fonts and
+  frames from outside the extension. Every test run checks that the extension makes no network request
+  (decisions.md U42, U45).
 - **Report broken recipe** opens GitHub only when you click it, and includes the page address only if you
   tick the box.
 
@@ -221,10 +217,10 @@ Right-click the rex icon → **Options**, or use the **Options** link in the pop
 
 | Problem | Fix |
 |---|---|
-| The popup says there are no recipes, or Options shows a sync error. | The computer must be on Tailscale to reach the dev bundle. Then click **Refresh recipes now** in Options. |
+| The popup says the built-in recipes could not be loaded. | The unzipped folder is incomplete: unzip the download again and reload the extension. |
 | A site that used to work now shows **Check**, **Incomplete** or **Empty**. | Reload the page, wait until it has finished, and try again. If you see the content but rex does not, report it. |
 | A site shows a login page, a captcha, or "verify you are human". | rex reads only what the page shows. Sign in or pass the check first. |
 | The icon does nothing on `chrome://` pages, the Web Store or PDF viewers. | Chrome does not let extensions read those pages. |
-| The popup shows an old result after a site update. | **Refresh recipes now** in Options, then click the icon again. |
+| A site changed and rex no longer reads it. | Install the newest version of the extension; recipe fixes arrive with it. Otherwise report it. |
 
 The popup and Options follow Chrome's language: English, or Chinese (简体中文).

@@ -350,7 +350,7 @@ The extension now runs end to end in Chrome.
 | Engine | `rex-wasm` (wasm-bindgen `--target web`) runs in the module service worker under `wasm-unsafe-eval`. It is initialized lazily, because service workers forbid top-level await. |
 | Signature check | Bundle signatures are verified **inside the wasm engine** (`rex-bundle`, ed25519-dalek), not with WebCrypto. One implementation serves the CLI and the extension, with no dependency on a Chrome version for Ed25519. |
 | Storage | v0.1 keeps one `chrome.storage.local` value per source (index, recipes, base64 descriptor set), written in a single atomic `set`. |
-| Dev hosting | Until Cloudflare is set up, the dev bundle is published with `rex bundle build` to `~/.local/share/rex/bundle` and served by serve-lib at `http://shuoze25-yuacx.tail8f3b66.ts.net:8091/rex-bundle/v1/dev/`. The signing key lives in `~/.config/rex/dev-signing-key.json` (never in the repo). The machine-local source URL and public key are in the gitignored `extension/config.local.json`. |
+| Dev hosting | Until Cloudflare is set up, the dev bundle is published with `rex bundle build` to `~/.local/share/rex/bundle` and served by serve-lib at `http://$TAILSCALE_HOST:8091/rex-bundle/v1/dev/`. The signing key lives in `~/.config/rex/dev-signing-key.json` (never in the repo). The machine-local source URL and public key are in the gitignored `extension/config.local.json`. |
 | e2e build | `REX_E2E=1` adds `<all_urls>` host access and the `rexDebug` hooks, because a toolbar click (which grants `activeTab`) cannot be automated. The normal build has neither (verified). |
 
 ## U25: Wasm size and speed budget [delegated], 2026-10-13
@@ -841,7 +841,7 @@ U33-U36 were, and is open to revision.
 only against fixtures in a local headless Chrome.
 
 - **Set-up** (operations.md, "Live-page test in a real Chrome"):
-  - Chrome for Testing 155 runs in its own profile on `armwinroot-yuacx` (residential network), with the e2e
+  - Chrome for Testing 155 runs in its own profile on the ARM Windows host (residential network), with the e2e
     build of the extension loaded. It syncs the real dev bundle from serve-lib over the tailnet.
   - A scheduled task starts it; CDP sits on 127.0.0.1:9530 behind an SSH tunnel.
   - The 15 Chrome instances that host runs for other jobs are left alone.
@@ -1245,12 +1245,128 @@ catch this kind of problem itself instead of them pointing out each one. Their d
 - The redactor rewrites letters inside character references (`&#x10D;` became `&#x10X;`).
 - A schedule for `audit.sh` with a notification.
 
+## U45: The extension packages its recipes and never connects to the internet [user decisions], 2026-11-07
+
+The user's requirement: the packed Chrome extension must not use the internet. The recipes may live apart from
+the code, but they cannot be loaded at run time. The user also decided:
+
+- online sync is removed entirely, the developer builds included;
+- the recipes stay in the rex repository;
+- "Report broken recipe" keeps opening the GitHub issue form (a link the user clicks; the extension sends
+  nothing).
+
+**Before:** the package held no recipes. On first run, and every 6 hours after, it downloaded a signed bundle
+(U16, U26, U27) from the source in its config (the dev source on the tailnet, later R2). Requirement FR-EX-2
+required exactly this.
+
+**Now:**
+
+- **Build:** `rex bundle embed` writes `index.json` (the same Index, unsigned, because Chrome verifies the
+  package), `schemas.fds` and `recipes.json` (the canonical recipes in index order). It embeds
+  `recipes/generic`, `recipes/sites` and `recipes/auto`, 1036 recipes and about 950 KB; drafts are left out.
+  - `scripts/build-extension.sh`, CI and `scripts/docker-e2e.sh` run it.
+  - `build.mjs` refuses to build without it and copies it to `dist/recipes/`.
+- **Extension (v0.3.0):** `src/recipes.ts` reads the three files from the package once, skips entries the
+  engine cannot run (FR-EX-5), and builds one engine, with the developer-mode local recipe merged in.
+  - Removed: `src/sync.ts` (verification, anti-rollback, ETags, alarms), the recipe sources and refresh
+    interval in Options, and the popup's Refresh link.
+  - Old stored settings keys are dropped on load.
+  - The icon rules come from the packaged index, set on install, update and browser start.
+- **Manifest:**
+  - permissions are `activeTab`, `scripting`, `storage`, `declarativeContent`: no `alarms`, no
+    `host_permissions`, no `optional_host_permissions`;
+  - CSP has `connect-src 'self'`;
+  - test builds alone add `<all_urls>`, for the e2e hooks.
+- **Checks:**
+  - `tests/e2e.mjs` records every request the extension makes and requires none outside the package. A run
+    sees 206 requests into the package, which shows the listener works.
+  - The recorder's network audit counts every request that leaves as a violation. Its self-check now also
+    requires the CSP to block the worker's and the popup's probe fetches.
+  - CI and ci-local check the store manifest (no host access, `connect-src 'self'`, recipes present).
+  - `tests/e2e-sync.mjs` was deleted.
+- **Removed:** the `publish.yml` workflow (it existed to feed the sync).
+- **Kept:** `rex bundle build/publish/gc/verify` and the bundle format, for other hosts of the engine.
+  `rex bundle build` is also what the wasm conformance test uses.
+
+**Consequences:**
+
+- A recipe fix reaches users with the next extension version, not within 6 hours.
+- U16/U26/U27's signing and rollback protection no longer apply to the extension.
+- The open action "choose the Cloudflare account, R2 bucket and domain" is not needed for the extension.
+
+## U46: Chrome Web Store listing material in the repository [user decisions + delegated], 2026-11-07
+
+The user asked for everything the Chrome Web Store needs to be ready in the repository, so they can upload it.
+Their decisions:
+
+- the repository becomes public, so the privacy policy, the support page and the popup's "Report broken recipe"
+  link (GitHub issues) are reachable by every user;
+- the listing is public;
+- the listing is in English and Simplified Chinese.
+
+**What the store needs** (Google's docs, checked 2026-11-07; links in store/README.md):
+
+- the ZIP;
+- a 128×128 store icon (96×96 artwork, 16 px transparent padding);
+- 1 to 5 screenshots at 1280×800, full bleed, showing the real experience;
+- a small promo tile (440×280) and an optional marquee tile (1400×560), both without text;
+- the description, a category and a language;
+- the privacy tab: single purpose, a justification for each permission, the remote-code answer, data-use
+  disclosures and certifications, and a privacy policy URL.
+
+The user data FAQ counts reading page content as handling user data even when nothing leaves the device. So
+rex discloses **Website content** and needs a privacy policy, although it never connects to the internet.
+
+**In the repository:**
+
+- `store/README.md`: the dashboard tab by tab, with every value to paste;
+- `store/listing/{en,zh_CN}.md`: the descriptions;
+- `store/assets/`:
+  - the icon;
+  - 5 + 5 screenshots;
+  - both promo tiles;
+- `PRIVACY.md` (English and Chinese);
+- `scripts/store-package.sh`: builds with the committed config, checks the manifest, and writes
+  `target/store/rex-extension-<version>.zip`.
+
+**How the images are made:**
+
+- **Screenshots:** `extension/recorder/store.mjs`, in the recorder desktop at 1280×800, with the store build in
+  real Google Chrome on live pages and the popup open under its icon.
+  - Only pages without third-party ads are used: YouTube plays an ad, recipe sites and Eastmoney run banners.
+  - No pages covered by login dialogs (Xueqiu).
+  - No other people's video footage.
+  - zh.wikipedia's variant prompt is closed with its own button.
+- **Icon and tiles:** `tools/icons/make_icons.py`. The package's `icon-128.png` now has the store's padding too;
+  16, 32 and 48 are unchanged.
+
+**Found while shooting, and fixed:**
+
+1. `wikipedia.org/article` did not match the language-variant paths (`/zh-cn/…`, `/zh-tw/…`, `/sr-ec/…`), so
+   those pages fell to the generic recipe and kept the "- 维基百科，自由的百科全书" suffix in the title. Version 2
+   matches them; a captured fixture covers it.
+2. Rendered zh.wikipedia puts the "[编辑]" edit link inside `h1#firstHeading`. The title rule now excludes
+   `.mw-editsection`; a fixture of the rendered page covers it.
+3. Under Chrome on Linux with `--lang=zh-CN`, `chrome.i18n.getUILanguage()` reports `en-US` while Chrome serves
+   the zh_CN messages. The popup's buttons were Chinese but its labels and dates English. The popup now takes the
+   language of the messages in use (a `uiLang` message).
+4. Without Segoe UI or Roboto (Linux), the popup's font stack fell to Noto Sans CJK, which draws `’` full width
+   ("Apple’ s"). Latin fonts now come first.
+
+**Made public safely:**
+
+- Before the repository was made public, its whole history was scanned. It has no keys or credentials: the
+  signing key's seed, the CRX key and the MinIO credentials are absent, and the internal LLM endpoint only appears
+  as a test placeholder.
+- The current docs replace the ARM Windows host's address and user and the tailnet hostnames with variables. The
+  history still has them; they are not reachable from the internet.
+
 ## Open actions (need the user)
 
 | Action | Why it needs you |
 |---|---|
-| Choose the Cloudflare account, R2 bucket, and domain; generate the production Ed25519 key (`rex bundle keygen`); set the publish.yml variables and secrets (operations.md) | Accounts and secrets (U16, U26) |
-| Decide on a Chrome Web Store listing (unlisted or public) | Store account and policy (M7) |
+| ~~Choose the Cloudflare account, R2 bucket, and domain; generate the production Ed25519 key~~ | Not needed: the extension packages its recipes (U45) |
+| Register a Chrome Web Store developer account and submit the listing (store/README.md); the repository must be public first | Account, fee and review (U46) |
 | Commit and push the M2–M7 work; create the GitHub repo `Shuozeli/rex-fixtures` | Not committed until you say so |
 | Fix the ARM2 browser endpoint (502) or allow another real browser for captures | Bot-walled and TLS-fingerprinting sites (U31) need a real browser |
 | Bring the Alienware host back online (offline since 2026-10-14); clean the 63 leaked tabs on ARM Chrome :9401 | Captures fell back to ARM Chrome :9403/:9405 (U37) |

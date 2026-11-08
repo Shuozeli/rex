@@ -1,8 +1,8 @@
 {
   "recipe": {
     "id": "wikipedia.org/article",
-    "version": 1,
-    "sha256": "ed451c20925e117cb0c1926bc4d621e93c86053042ebed2ef6f96eb42d7f7883"
+    "version": 2,
+    "sha256": "17fff5811e9d6133460434fe7611037d3ca957d56882e9f68e2af368b1c3d967"
   },
   "schema": "rex.schema.article.v1.Article",
   "url": "https://en.wikipedia.org/wiki/Web_scraping",
@@ -19,7 +19,7 @@
     {
       "path": "title",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "wikipedia.org/article@1"
+      "recipe": "wikipedia.org/article@2"
     },
     {
       "path": "authors",
@@ -39,12 +39,12 @@
     {
       "path": "summary",
       "origin": "FIELD_ORIGIN_JSON_LD",
-      "recipe": "wikipedia.org/article@1"
+      "recipe": "wikipedia.org/article@2"
     },
     {
       "path": "body_html",
       "origin": "FIELD_ORIGIN_SITE_SELECTOR",
-      "recipe": "wikipedia.org/article@1"
+      "recipe": "wikipedia.org/article@2"
     },
     {
       "path": "body_text",
@@ -71,8 +71,8 @@
   "chain": [
     {
       "id": "wikipedia.org/article",
-      "version": 1,
-      "sha256": "ed451c20925e117cb0c1926bc4d621e93c86053042ebed2ef6f96eb42d7f7883"
+      "version": 2,
+      "sha256": "17fff5811e9d6133460434fe7611037d3ca957d56882e9f68e2af368b1c3d967"
     },
     {
       "id": "generic/article.v1",

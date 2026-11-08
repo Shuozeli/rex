@@ -51,7 +51,7 @@ tested locally but **not yet committed** (see the open actions in decisions.md).
 - [x] Developer mode: local unsigned recipe, expanded trace, Save as fixture (FR-EX-10) (2026-10-13)
 - [x] Unsupported `requires` and `min_client_version` handling (FR-EX-5) (2026-10-13)
 - [x] `declarativeContent` icon state (FR-EX-11); icons; en/zh UI (NFR-9) (2026-10-13)
-- [x] Hermetic e2e: fixture parity, dev mode, fixture round trip, options; sync rejection paths (`tests/e2e-sync.mjs`) (2026-10-13)
+- [x] Hermetic e2e: fixture parity, dev mode, fixture round trip, options; sync rejection paths (`tests/e2e-sync.mjs`, removed with the sync in U45) (2026-10-13)
 - [x] **Bug fixed**: an install-time sync could clobber a just-saved source; worker operations are now serialized (2026-10-13)
 
 ## M7: draft tool and integrations, partly done
@@ -113,6 +113,9 @@ tested locally but **not yet committed** (see the open actions in decisions.md).
 - [ ] Recorder follow-ups: Windows backend in the framework; scheduled live run with the video and results published
 - [x] Three-layer recipe judge (U44): L1 rules in test/liveness/draft gate; L2 coverage in `rex check` (a captured fixture per site recipe, liveness or a written exemption); L3 `rex judge` LLM review with grounding and a cache, `rex draft --review`, `tools/judge/audit.sh`; engine pipes `drop_codes`, `not_future`, `strip_site_name`, `unique.ignore_case`, `filter.key`, JSON path `[key=Name]`; WSJ recipe rewritten from real pages; 2094/2094 with no judge errors (2026-11-05)
 - [ ] Judge follow-ups: schedule `tools/judge/audit.sh` (systemd timer + ntfy) with the pro model; Michelin and wikiHow site recipes; redactor keeps character references intact; a paywall/teaser signal in the Article schema
+- [x] No network in the extension (U45): recipes packaged at build time (`rex bundle embed`), sync, sources, refresh and host permissions removed, CSP `connect-src 'self'`, e2e and the recorder require zero external requests; publish.yml removed; extension 0.3.0 (2026-11-07)
+- [x] Chrome Web Store material (U46): store/README.md (every dashboard field), en + zh_CN descriptions, 5 + 5 screenshots at 1280×800 (`extension/recorder/store.mjs`), padded store icon and promo tiles (`tools/icons/make_icons.py`), PRIVACY.md, `scripts/store-package.sh`; Wikipedia variant paths and "[编辑]" title, popup language and font fixes (2026-11-07)
+- [ ] Publish: make the repository public, register the developer account, upload and submit (store/README.md)
 - [ ] Next in the approved order: table/list extraction
 
 ## Known gaps

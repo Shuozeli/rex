@@ -21,5 +21,10 @@ export function localize(root: ParentNode = document): void {
   for (const el of root.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("[data-i18n-placeholder]")) {
     el.placeholder = t(el.dataset["i18nPlaceholder"] as MsgKey);
   }
-  document.documentElement.lang = chrome.i18n.getUILanguage();
+  document.documentElement.lang = uiLanguage();
+}
+
+/** The language of the messages in use (see `uiLang` in messages.ts), e.g. "en" or "zh-CN". */
+export function uiLanguage(): string {
+  return chrome.i18n.getMessage("uiLang") || chrome.i18n.getUILanguage();
 }

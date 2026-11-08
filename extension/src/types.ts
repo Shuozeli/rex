@@ -1,22 +1,9 @@
-// Shared types: build-time config, user settings, stored bundle state, engine output, and the message
+// Shared types: build-time config, user settings, the packaged recipe index, engine output, and the message
 // protocol between the popup/options pages and the service worker.
 
-export interface PinnedKey {
-  keyId: string;
-  public: string;
-}
-
-export interface SourceConfig {
-  id: string;
-  baseUrl: string;
-  channel: string;
-  keys: PinnedKey[];
-}
-
-/** Build-time defaults (config.local.json or config.example.json). */
+/** Build-time config (config.local.json or config.example.json). */
 export interface RexConfig {
-  sources: SourceConfig[];
-  refreshMinutes: number;
+  /** GitHub repository that "Report broken recipe" opens an issue form in. */
   reportRepo: string;
 }
 
@@ -28,17 +15,10 @@ declare global {
   const __REX_ENUM_PREFIXES__: readonly string[];
 }
 
-export interface SourceSetting extends SourceConfig {
-  enabled: boolean;
-}
-
 export type OutputFormat = "envelope" | "record";
 
-/** User settings (FR-EX-9, FR-EX-10), stored in chrome.storage.local; defaults come from RexConfig. */
+/** User settings (FR-EX-10), stored in chrome.storage.local. */
 export interface Settings {
-  /** In priority order: the first enabled source whose recipes match the URL is used. */
-  sources: SourceSetting[];
-  refreshMinutes: number;
   outputFormat: OutputFormat;
   devMode: boolean;
   /** One recipe as protojson (`rex fmt --json`); "" when unset. Unsigned, developer mode only. */
@@ -52,7 +32,7 @@ export interface UrlPattern {
   exclude?: string[];
 }
 
-/** Subset of rex.bundle.v1.Index (protojson) the extension reads. */
+/** Subset of rex.bundle.v1.Index (protojson) the extension reads: the packaged recipes/index.json. */
 export interface BundleIndex {
   format: string;
   channel: string;
@@ -75,26 +55,6 @@ export interface IndexEntry {
 export interface SkippedEntry {
   id: string;
   reason: string;
-}
-
-/** What a source keeps in chrome.storage.local (written atomically as one value). */
-export interface StoredSource {
-  /** The source identity this bundle was verified for; a mismatch means "not synced". */
-  baseUrl: string;
-  channel: string;
-  keysFingerprint: string;
-  etag: string | null;
-  sequence: string;
-  index: BundleIndex;
-  fdsSha: string;
-  fdsBase64: string;
-  /** sha256 -> canonical recipe protojson, for every entry that was not skipped. */
-  recipes: Record<string, string>;
-  skipped: SkippedEntry[];
-  /** Engine features when the entries were selected; a newer engine re-selects (it may run skipped ones). */
-  features?: string;
-  lastSync: number;
-  lastError: string | null;
 }
 
 export interface UrlHit {
@@ -168,24 +128,11 @@ export interface EngineOutput {
   fuelUsed: number;
 }
 
-export interface SourceStatus {
-  id: string;
-  baseUrl: string;
-  channel: string;
-  enabled: boolean;
-  hasPermission: boolean;
-  sequence: string | null;
-  generatedAt: string | null;
-  recipeCount: number;
-  skipped: SkippedEntry[];
-  lastSync: number | null;
-  lastError: string | null;
-}
-
 export interface Status {
   extensionVersion: string;
   engineVersion: string | null;
-  sources: SourceStatus[];
+  /** The recipes packaged with this version. */
+  recipes: { count: number; generatedAt: string | null; skipped: SkippedEntry[] } | null;
   outputFormat: OutputFormat;
   devMode: boolean;
   /** Id of the developer-mode local recipe when it is active and valid. */
@@ -205,7 +152,6 @@ export interface FixtureFile {
 export type Request =
   | { type: "extract"; tabId: number; recipeId?: string }
   | { type: "status" }
-  | { type: "refresh" }
   | { type: "getSettings" }
   | { type: "saveSettings"; settings: Settings }
   | { type: "validateRecipe"; text: string }
@@ -216,7 +162,6 @@ export type ExtractResponse =
       ok: true;
       page: { url: string; title: string };
       output: EngineOutput;
-      sourceId: string;
       local: boolean;
       status: Status;
     }

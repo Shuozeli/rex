@@ -151,17 +151,28 @@ jobs:
           name: rex-wasm-web
           path: extension/wasm
       - run: chmod +x ../target/release/rex
+      # The recipes ship inside the package (decisions.md U45).
+      - run: target/release/rex bundle embed --out extension/builtin
+        working-directory: .
       - run: pnpm install --frozen-lockfile
       - run: pnpm run typecheck
       - run: pnpm run test:unit
-      - name: Store build (no test hooks, no <all_urls>)
+      - name: Store build (recipes inside, no host access, no network, no test hooks)
         run: |
           pnpm run build
           node -e '
-            const m = JSON.parse(require("fs").readFileSync("dist/manifest.json", "utf8"));
-            const bad = m.host_permissions.includes("<all_urls>") || require("fs").readFileSync("dist/background.js", "utf8").includes("rexDebug");
-            if (bad) { console.error("store build leaks e2e hooks or <all_urls>"); process.exit(1); }
-            console.log("manifest ok:", m.permissions.join(","));'
+            const fs = require("fs");
+            const m = JSON.parse(fs.readFileSync("dist/manifest.json", "utf8"));
+            const csp = m.content_security_policy.extension_pages;
+            const problems = [
+              m.host_permissions && "host_permissions",
+              m.optional_host_permissions && "optional_host_permissions",
+              !/connect-src .self.(;|$)/.test(csp) && `CSP connect-src is not self only: ${csp}`,
+              fs.readFileSync("dist/background.js", "utf8").includes("rexDebug") && "e2e hooks",
+              !fs.existsSync("dist/recipes/recipes.json") && "no packaged recipes",
+            ].filter(Boolean);
+            if (problems.length) { console.error("store build:", problems.join("; ")); process.exit(1); }
+            console.log("manifest ok:", m.permissions.join(","), "| recipes:", JSON.parse(fs.readFileSync("dist/recipes/index.json", "utf8")).entries.length);'
           (cd dist && zip -qr ../rex-extension.zip .)
           ls -l rex-extension.zip
       - uses: actions/upload-artifact@v4
@@ -175,7 +186,6 @@ jobs:
           echo "REX_CHROME=$(node -e 'import("playwright-core").then(m => console.log(m.chromium.executablePath()))')" >> "$GITHUB_ENV"
       - run: pnpm run build:e2e
       - run: node tests/e2e.mjs
-      - run: node tests/e2e-sync.mjs
       - if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -228,7 +238,7 @@ jobs:
           build-args: CHROME_REFRESH=${{ steps.week.outputs.v }}
           cache-from: type=gha,scope=rex-recorder
           cache-to: type=gha,mode=max,scope=rex-recorder
-      # No network inside the container: fixture pages and a bundle published from recipes/ (operations.md).
+      # No network inside the container: fixture pages only; the recipes are in the package (operations.md).
       - name: Hermetic e2e (results against expected.json)
         run: scripts/docker-e2e.sh
         env:

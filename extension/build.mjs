@@ -1,11 +1,16 @@
 // Builds the MV3 extension into dist/: bundles TS (and the wasm-bindgen glue in wasm/) with esbuild,
-// copies static files, icons and the engine binary (wasm/rex_wasm_bg.wasm, produced by
-// `cargo build -p rex-wasm` + `wasm-bindgen --target web --out-dir extension/wasm`), renders
-// _locales from src/messages.ts, and renders the manifest.
+// copies static files, icons, the engine binary (wasm/rex_wasm_bg.wasm, produced by
+// `cargo build -p rex-wasm` + `wasm-bindgen --target web --out-dir extension/wasm`) and the recipes
+// (builtin/, produced by `rex bundle embed --out extension/builtin`; decisions.md U45), renders
+// _locales from src/messages.ts, and renders the manifest. scripts/build-extension.sh does all three steps.
+//
+// The extension never connects to the internet: the recipes are in the package, the manifest asks for no
+// host access, and CSP allows connections to the package only.
 //
 // Config: $REX_CONFIG, else config.local.json (machine-local, gitignored), else config.example.json.
 // REX_E2E=1 adds <all_urls> host access and the rexDebug hooks so automated tests can drive the
-// extension without a toolbar click. REX_DIST puts the build somewhere other than dist/.
+// extension without a toolbar click. REX_DIST puts the build somewhere other than dist/; REX_BUILTIN reads
+// the recipes from another directory than builtin/.
 import { build } from "esbuild";
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, join, resolve } from "node:path";
@@ -20,12 +25,22 @@ const configPath = process.env.REX_CONFIG
 const config = JSON.parse(readFileSync(configPath, "utf8"));
 const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
 
+const builtin = process.env.REX_BUILTIN ? resolve(process.cwd(), process.env.REX_BUILTIN) : join(root, "builtin");
 if (!existsSync(join(root, "wasm", "rex_wasm_bg.wasm"))) {
   throw new Error("wasm/ is missing: build the engine first (scripts/build-extension.sh)");
+}
+const RECIPE_FILES = ["index.json", "schemas.fds", "recipes.json"];
+for (const f of RECIPE_FILES) {
+  if (!existsSync(join(builtin, f))) {
+    throw new Error(`${builtin}/${f} is missing: run \`rex bundle embed --out extension/builtin\` (scripts/build-extension.sh)`);
+  }
 }
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(join(dist, "wasm"), { recursive: true });
 cpSync(join(root, "wasm", "rex_wasm_bg.wasm"), join(dist, "wasm", "rex_wasm_bg.wasm"));
+mkdirSync(join(dist, "recipes"), { recursive: true });
+for (const f of RECIPE_FILES) cpSync(join(builtin, f), join(dist, "recipes", f));
+const recipeCount = JSON.parse(readFileSync(join(builtin, "index.json"), "utf8")).entries.length;
 
 // Enum value prefixes of the record schemas ("INSTRUMENT_TYPE_", …): the popup shows enum values without
 // them ("INSTRUMENT_TYPE_STOCK" -> "Stock"). Proto style puts the enum's name in SCREAMING_SNAKE before each value.
@@ -94,10 +109,6 @@ for (const f of ["popup.html", "options.html"]) {
   }
 }
 
-const origins = [...new Set(config.sources.map((s) => {
-  const u = new URL(s.baseUrl);
-  return `${u.protocol}//${u.hostname}/*`;
-}))];
 const icons = { 16: "icons/icon-16.png", 32: "icons/icon-32.png", 48: "icons/icon-48.png", 128: "icons/icon-128.png" };
 const manifest = {
   manifest_version: 3,
@@ -107,21 +118,20 @@ const manifest = {
   default_locale: "en",
   minimum_chrome_version: "137",
   icons,
-  permissions: ["activeTab", "scripting", "storage", "alarms", "declarativeContent"],
-  host_permissions: e2e ? [...origins, "<all_urls>"] : origins,
-  optional_host_permissions: ["https://*/*", "http://*/*"],
+  permissions: ["activeTab", "scripting", "storage", "declarativeContent"],
+  // Test builds only: the e2e hooks read tabs without a toolbar click. The store build asks for no host access.
+  ...(e2e ? { host_permissions: ["<all_urls>"] } : {}),
   background: { service_worker: "background.js", type: "module" },
   action: { default_popup: "popup.html", default_title: "__MSG_extName__", default_icon: icons },
   options_page: "options.html",
-  // The only network the extension uses is fetch() to recipe sources (user-configurable, so any http(s)
-  // origin). Images, media, fonts and frames stay inside the package: the popup never loads a page's
-  // images, so nothing reaches a third party. tests/e2e and the recorder check the requests made.
+  // No network at all (decisions.md U45): fetch() reaches the package only (the engine and the recipes), and
+  // images, media, fonts and frames stay inside it. tests/e2e and the recorder check the requests made.
   content_security_policy: {
     extension_pages:
       "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; img-src 'self' data:; media-src 'none'; " +
-      "font-src 'self'; frame-src 'none'; connect-src 'self' https: http:",
+      "font-src 'self'; frame-src 'none'; connect-src 'self'",
   },
   commands: { _execute_action: { suggested_key: { default: "Alt+Shift+J" } } },
 };
 writeFileSync(join(dist, "manifest.json"), JSON.stringify(manifest, null, 2));
-console.log(`built ${dist.replace(root + "/", "")}/ v${pkg.version} (config: ${configPath.replace(root + "/", "")}${e2e ? ", e2e hooks" : ""})`);
+console.log(`built ${dist.replace(root + "/", "")}/ v${pkg.version} (${recipeCount} recipes; config: ${configPath.replace(root + "/", "")}${e2e ? ", e2e hooks" : ""})`);

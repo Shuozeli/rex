@@ -13,11 +13,14 @@ and later products, threads, and more. It does this with declarative, signed, re
 - **One engine.** A deterministic Rust engine (native, CLI, and wasm) produces a
   `rex.extract.v1.Extraction` with a status, per-field provenance, and the typed record.
 - **The browser extension** ("rex: Page to JSON", Chrome MV3) extracts the page you're reading with
-  one click. Recipes sync from a signed bundle on an S3-compatible host (Cloudflare R2 by default), so
-  sites are added and fixed without an extension release.
+  one click. The recipes are packaged with it (`rex bundle embed`), and it never connects to the internet:
+  sites are added and fixed with an extension release (decisions.md U45).
 
 **Using the extension:** see the [user guide](docs/user-guide.md) (install, the popup, statuses, options,
 privacy, troubleshooting, with screenshots).
+
+**Chrome Web Store:** the listing material (package script, descriptions in English and Chinese, screenshots,
+promo tiles, privacy answers) is in [store/](store/README.md); the privacy policy is [PRIVACY.md](PRIVACY.md).
 
 rex is an independent project. Crawlers and apps (crawlc, myfeed, …) can embed the engine, but rex
 depends on none of them.
@@ -32,7 +35,7 @@ depends on none of them.
 proto/rex/      contracts: schema annotations, article.v1, feed.v1, Extraction, ExtractionRecipe, bundle
 crates/         rex-proto, rex-schema, rex-dom, rex-readability, rex-engine, rex-redact,
                 rex-bundle (build/sign/verify), rex-wasm (engine for the extension), rex-cli (`rex`)
-extension/      Chrome MV3 extension (TypeScript + esbuild); tests/e2e.mjs, tests/e2e-sync.mjs
+extension/      Chrome MV3 extension (TypeScript + esbuild); tests/e2e.mjs
 recipes/        generic/ base recipes, sites/<host>/<name>.yaml, drafts/ (dev channel only)
 fixtures/       per-recipe page fixtures (redacted page.html, meta.json, expected.json)
 conformance/    engine-level cases with their own recipe.yaml
@@ -41,6 +44,7 @@ tools/          readability-bench (vs Mozilla Readability.js), icons
 scripts/        build-extension.sh, ci-local.sh
 .github/        ci.yml, publish.yml, liveness.yml
 docs/           user guide, design docs, operations, index.html (animated explainer)
+store/          Chrome Web Store listing: README (what to upload where), listing/ text, assets/ images
 ```
 
 ## Build and use
@@ -88,21 +92,19 @@ Hosting setup, key rotation and GC are in [operations](docs/operations.md).
 ### Chrome extension
 
 ```bash
-cp extension/config.example.json extension/config.local.json   # default source baseUrl + pinned public key
-scripts/build-extension.sh                                     # -> extension/dist (load unpacked)
+scripts/build-extension.sh                                     # wasm + `rex bundle embed` + build -> extension/dist (load unpacked)
 REX_E2E=1 scripts/build-extension.sh
-(cd extension && node tests/e2e.mjs && node tests/e2e-sync.mjs)   # real Chrome, hermetic
+(cd extension && node tests/e2e.mjs)                           # real Chrome, hermetic, no network
 ```
 
 - **Popup:** status, the typed record with per-field origins, alternatives, copy (envelope or record),
   download, and a report for broken recipes.
-- **Options:** sources (order, enable, pinned keys, host permission), refresh interval, copy format, and
-  developer mode (local unsigned recipe, expanded trace, Save as fixture). The UI is in English and
+- **Options:** the packaged recipes (count, build date), copy format, and developer mode (local unsigned recipe, expanded trace, Save as fixture). The UI is in English and
   Chinese.
 - **e2e:**
   - the fixture pages, under their real URLs, must give wasm output byte-identical to native;
   - developer mode and the fixture round trip are exercised;
-  - `e2e-sync.mjs` forges every sync rejection path;
+  - the extension must make no network request during the run;
   - screenshots go to `extension/test-results/`;
   - `REX_E2E_LIVE=1` adds live pages, and `REX_E2E_LANG=zh-CN` switches the UI to Chinese.
 

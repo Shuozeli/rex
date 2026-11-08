@@ -44,6 +44,8 @@ rm -rf target/conformance-bundle
 $rex bundle build --key "$tmp/key.json" --out target/conformance-bundle >/dev/null
 node crates/rex-wasm/tests/conformance.mjs target/wasm-node target/conformance-bundle | tail -1
 
+step "embed recipes";       rm -rf extension/builtin; $rex bundle embed --out extension/builtin
+
 cd extension
 step "extension typecheck"; pnpm install --silent --frozen-lockfile; pnpm -s run typecheck
 step "extension unit tests"; node --test tests/format.test.mjs 2>&1 | grep -E "^# (pass|fail)"
@@ -51,10 +53,16 @@ step "store build";         pnpm -s run build
 node -e '
   const fs = require("fs");
   const m = JSON.parse(fs.readFileSync("dist/manifest.json", "utf8"));
-  if (m.host_permissions.includes("<all_urls>") || fs.readFileSync("dist/background.js", "utf8").includes("rexDebug")) {
-    console.error("store build leaks e2e hooks or <all_urls>"); process.exit(1);
-  }
-  console.log("manifest ok:", m.permissions.join(","), "| hosts:", m.host_permissions.join(","));'
+  const csp = m.content_security_policy.extension_pages;
+  const problems = [
+    m.host_permissions && "host_permissions",
+    m.optional_host_permissions && "optional_host_permissions",
+    !/connect-src .self.(;|$)/.test(csp) && `CSP connect-src is not self only: ${csp}`,
+    fs.readFileSync("dist/background.js", "utf8").includes("rexDebug") && "e2e hooks",
+    !fs.existsSync("dist/recipes/recipes.json") && "no packaged recipes",
+  ].filter(Boolean);
+  if (problems.length) { console.error("store build:", problems.join("; ")); process.exit(1); }
+  console.log("manifest ok:", m.permissions.join(","), "| recipes:", JSON.parse(fs.readFileSync("dist/recipes/index.json", "utf8")).entries.length);'
 if command -v zip >/dev/null; then
   (cd dist && zip -qr "$tmp/rex-extension.zip" .)
 else
@@ -67,8 +75,7 @@ fi
 echo "packed: $(wc -c < "$tmp/rex-extension.zip") bytes"
 step "e2e build";           pnpm -s run build:e2e
 step "e2e";                 node tests/e2e.mjs | tail -14
-step "e2e sync";            node tests/e2e-sync.mjs | tail -3
 if [ "${REX_DOCKER_E2E:-0}" = "1" ]; then
-  step "docker e2e (Google Chrome)"; scripts/docker-e2e.sh --no-video | tail -9
+  step "docker e2e (Google Chrome)"; (cd .. && scripts/docker-e2e.sh --no-video) | tail -9
 fi
 echo; echo "CI-LOCAL PASSED"

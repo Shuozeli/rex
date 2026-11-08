@@ -2,8 +2,12 @@
 
 # Operations
 
-Running the recipe host: publishing, keys, garbage collection, and drift handling. The design is in
-[decisions.md](decisions.md) U16, U26 and U30.
+Shipping recipes, recording, and drift handling.
+
+**Since U45 the extension packages its recipes and never connects to the internet.** A recipe change reaches
+users with the next extension build (`scripts/build-extension.sh`, which runs `rex bundle embed`). The bundle
+host below (U16, U26, U30) is no longer used by the extension, and its publish workflow was removed. The
+`rex bundle build/publish/gc/verify` commands remain for other hosts of the engine.
 
 ## Hosting layout
 
@@ -102,21 +106,19 @@ REX_S3_ENDPOINT=http://$TAILSCALE_HOST:9900 REX_S3_REGION=us-east-1 REX_S3_ACCES
   REX_S3_SECRET_ACCESS_KEY=<secret> rex bundle publish --key <dev key> --to s3://rex-recipes/rex-bundle
 ```
 
-`extension/tests/e2e-sync.mjs` can also sync from such a host:
-`REX_E2E_MINIO=http://$TAILSCALE_HOST:9900/rex-recipes/rex-bundle/v1/dev/ REX_E2E_MINIO_KEY=<id>:<hex>`.
 
 ## Live-page test in a real Chrome (ARM Windows)
 
 `extension/tests/live-remote.mjs` drives a separately running Chrome with the extension loaded. It opens the
 real pages from `extension/tests/live-cases.json` over that machine's residential network, extracts through
 the extension, and compares the matched recipe, the status and the field set with each case's fixture
-(decisions.md U38). The browser runs on the ARM Windows host (`armwinroot-yuacx`, SSH `cyuan@100.77.171.126`):
+(decisions.md U38). The browser runs on the ARM Windows host (`$ARM_HOST` below: its Tailscale name or address; SSH as `$ARM_USER`):
 
-- **Chrome:** Chrome for Testing in `C:\Users\cyuan\rex-live\chrome-win64`. Branded Chrome ignores
+- **Chrome:** Chrome for Testing in `C:\Users\$ARM_USER\rex-live\chrome-win64`. Branded Chrome ignores
   `--load-extension` since M137.
 - **Profile:** its own, in `rex-live\profile`, separate from the 15 Chrome instances that host runs for other
   jobs. Never use their `taskkill /IM chrome.exe` procedure.
-- **Extension:** the e2e build (`pnpm build:e2e`, which syncs the serve-lib dev bundle) unpacked into
+- **Extension:** the e2e build (`REX_E2E=1 scripts/build-extension.sh`, recipes packaged) unpacked into
   `rex-live\ext`.
 - **Launch:** the scheduled task `rex-live-chrome` runs `rex-live\start-chrome.cmd`. A process started from
   an SSH session dies when the session closes.
@@ -125,10 +127,10 @@ the extension, and compares the matched recipe, the status and the field set wit
 ```bash
 # update the extension, restart that Chrome only, open the tunnel, run
 pnpm -C extension build:e2e && tar -czf /tmp/rex-ext.tgz -C extension/dist .
-sshpass -p <pw> scp /tmp/rex-ext.tgz cyuan@100.77.171.126:rex-live/rex-ext.tgz
-sshpass -p <pw> ssh cyuan@100.77.171.126 "powershell -Command \"Remove-Item -Recurse -Force C:\Users\cyuan\rex-live\ext; New-Item -ItemType Directory C:\Users\cyuan\rex-live\ext; tar -xzf C:\Users\cyuan\rex-live\rex-ext.tgz -C C:\Users\cyuan\rex-live\ext\""
-sshpass -p <pw> ssh cyuan@100.77.171.126 "powershell -ExecutionPolicy Bypass -File C:\Users\cyuan\rex-live\restart.ps1"
-sshpass -p <pw> ssh -N -L 127.0.0.1:9530:127.0.0.1:9530 cyuan@100.77.171.126 &
+sshpass -p <pw> scp /tmp/rex-ext.tgz $ARM_USER@$ARM_HOST:rex-live/rex-ext.tgz
+sshpass -p <pw> ssh $ARM_USER@$ARM_HOST "powershell -Command \"Remove-Item -Recurse -Force C:\Users\$ARM_USER\rex-live\ext; New-Item -ItemType Directory C:\Users\$ARM_USER\rex-live\ext; tar -xzf C:\Users\$ARM_USER\rex-live\rex-ext.tgz -C C:\Users\$ARM_USER\rex-live\ext\""
+sshpass -p <pw> ssh $ARM_USER@$ARM_HOST "powershell -ExecutionPolicy Bypass -File C:\Users\$ARM_USER\rex-live\restart.ps1"
+sshpass -p <pw> ssh -N -L 127.0.0.1:9530:127.0.0.1:9530 $ARM_USER@$ARM_HOST &
 node extension/tests/live-remote.mjs --ext-id nhclffgaalnjhlfdmkmbokplmikibheo   # --only <substring>
 ```
 
@@ -163,8 +165,7 @@ run, not Chrome for Testing.
   - Other policies turn off sign-in, sync, promos, translate and the password manager.
 - **Either build:** the runner works with the store build (`pnpm build`, what users get) or the e2e build
   (`pnpm build:e2e`).
-  - **Store build:** driven through the UI only. The runner waits for the extension's own first sync and
-    reads the result from the popup (status badge, `Recipe <id>@<v>`, one row per field). It has no
+  - **Store build:** driven through the UI only. The runner reads the result from the popup (status badge, `Recipe <id>@<v>`, one row per field). It has no
     `<all_urls>`, so the real toolbar click is what grants `activeTab`; that path is now tested.
   - **e2e build:** the runner also checks that the extraction behind the popup matches what the popup shows.
 - **Real input:** each scene is the user's flow, done with `xdotool`:
@@ -220,6 +221,26 @@ docker compose -f extension/recorder/docker/compose.yaml exec desktop \
   node /repo/extension/recorder/guide.mjs --out /out/guide
 # then copy the crops into docs/user-guide/ (names as linked from docs/user-guide.md)
 ```
+
+### Screenshots for the Chrome Web Store
+
+`extension/recorder/store.mjs` takes the five 1280×800 store screenshots per language (store/README.md). The
+desktop runs at 1280×800, so each shot is the whole screen, with the popup open under the icon.
+
+```bash
+scripts/store-package.sh                                   # or: pnpm -C extension build (the store build in dist/)
+export TAILSCALE_IP=$(tailscale ip -4)
+REX_RECORDER_SCREEN=1280x800 REX_RECORDER_CHROME_ARGS=--lang=en-US \
+  docker compose -f extension/recorder/docker/compose.yaml up -d --force-recreate desktop
+docker compose -f extension/recorder/docker/compose.yaml exec desktop \
+  node /repo/extension/recorder/store.mjs --locale en --out /out/store/en
+# zh_CN: --lang=zh-CN and --locale zh_CN; then copy out/store/<locale>/screenshot-*.png to store/assets/<locale>/
+```
+
+- **Pages:** without third-party ads, login dialogs or other people's video footage (the list and the reasons are
+  in the script).
+- **Rebuilding `dist/`:** this replaces the directory the container mounted, so recreate the container afterwards.
+- **Icon and promo tiles:** `uv run --with pillow tools/icons/make_icons.py`.
 
 ### Hermetic docker e2e (CI-safe)
 
@@ -281,8 +302,8 @@ REX_DOCKER_E2E=1 scripts/ci-local.sh  # as the last ci-local step
 - **Infobar:** Chrome shows an "unsupported command-line flag" bar for `--host-resolver-rules`. It is the
   only extra flag, and only in this mode.
 
-- **Watch live:** noVNC at `http://shuoze25-yuacx.tail8f3b66.ts.net:6081/vnc.html`.
-- **CDP:** `http://shuoze25-yuacx.tail8f3b66.ts.net:9541`. A small relay rewrites the Host header, which Chrome
+- **Watch live:** noVNC at `http://$TAILSCALE_HOST:6081/vnc.html`.
+- **CDP:** `http://$TAILSCALE_HOST:9541`. A small relay rewrites the Host header, which Chrome
   only accepts as an IP or localhost. Both bind to the Tailscale IP only.
 - **Network:** host networking, so the extension reaches the serve-lib bundle by MagicDNS.
   - Pages see this host's egress IP, a residential Comcast line (Sunnyvale), IPv4 only. The ARM Windows
