@@ -124,3 +124,11 @@ configured (operations.md); `liveness.yml` runs daily.
 - [Engine spec](docs/designs/261012-generic-recipe-extractor.md): evaluation and normative value semantics
 - [PRD](docs/prd.md) and [Requirements](docs/requirements.md)
 - [Doc manifest](docs/MANIFEST.md)
+
+## License
+
+MIT: see [LICENSE](LICENSE). This covers the code, the recipes in `recipes/`, the schemas in `proto/`, the
+conformance cases and the hand-written (`synthetic`) fixtures.
+
+The captured pages in `fixtures/` are copies of other publishers' pages with their text replaced (decisions.md
+U19), kept only to test recipes. The license does not grant rights in those pages.
